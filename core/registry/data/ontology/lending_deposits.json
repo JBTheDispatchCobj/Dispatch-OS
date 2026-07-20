@@ -1,0 +1,3398 @@
+{
+  "key": "ontology:lending_deposits",
+  "label": "Lending & Deposits Ontology",
+  "version": 1,
+  "domain": "financial_services",
+  "notes": "Volume XI breadth pack (ADR-0014). Operational ontology for the full lending-products and deposit-products families beyond the credit-union anchor (auto_loan, mortgage, savings, certificate live in ontology/credit_union.json and are not redefined here). Enriches Object Registry classes by schema_ref with relationships, lifecycle, KPIs, required documents, and connectors. Relationship targets are catalog schema_refs (closed graph). Connector keys are forward references into the Connector Registry (Volume IX); required_document and KPI keys are free-form. Anchor products (consumer_loan, heloc, commercial_mortgage, construction_loan, sba_loan, equipment_loan, commercial_loc, checking, money_market, business_checking, ira) are hand-authored in full; the remaining consumer and specialty products are drafted on the same schema.",
+  "ontologies": [
+    {
+      "object": "financial_services:lending_products:consumer_loan",
+      "label": "Consumer Loan (Unsecured Installment)",
+      "notes": "Closed-end unsecured installment credit to an individual; Reg Z closed-end disclosures apply.",
+      "relationships": [
+        {
+          "predicate": "borrower",
+          "target": "financial_services:people:borrower",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "co_borrower",
+          "target": "financial_services:people:co_borrower",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "originated_by",
+          "target": "financial_services:people:loan_officer",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "offered_by",
+          "target": "financial_services:institutions:community_bank",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "scored_by",
+          "target": "financial_services:credit:credit_score",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "assessed_by",
+          "target": "financial_services:credit:risk_rating",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "serviced_by",
+          "target": "financial_services:people:servicer",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "booked_as",
+          "target": "financial_services:financial_accounts:loan_account",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "disclosed_under",
+          "target": "financial_services:compliance:tila",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "governed_by",
+          "target": "financial_services:credit:credit_policy",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "application",
+        "states": [
+          {
+            "key": "application",
+            "label": "Application"
+          },
+          {
+            "key": "underwriting",
+            "label": "Underwriting"
+          },
+          {
+            "key": "approved",
+            "label": "Approved"
+          },
+          {
+            "key": "declined",
+            "label": "Declined",
+            "terminal": true
+          },
+          {
+            "key": "funded",
+            "label": "Funded"
+          },
+          {
+            "key": "servicing",
+            "label": "Servicing"
+          },
+          {
+            "key": "delinquent",
+            "label": "Delinquent"
+          },
+          {
+            "key": "paid_off",
+            "label": "Paid Off",
+            "terminal": true
+          },
+          {
+            "key": "charged_off",
+            "label": "Charged Off",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "application",
+            "to": "underwriting",
+            "on": "submitted"
+          },
+          {
+            "from": "underwriting",
+            "to": "approved",
+            "on": "credit_decision_approve"
+          },
+          {
+            "from": "underwriting",
+            "to": "declined",
+            "on": "adverse_action"
+          },
+          {
+            "from": "approved",
+            "to": "funded",
+            "on": "disbursed"
+          },
+          {
+            "from": "funded",
+            "to": "servicing",
+            "on": "repayment_begins"
+          },
+          {
+            "from": "servicing",
+            "to": "delinquent",
+            "on": "missed_payment"
+          },
+          {
+            "from": "delinquent",
+            "to": "servicing",
+            "on": "cured"
+          },
+          {
+            "from": "servicing",
+            "to": "paid_off",
+            "on": "final_payment"
+          },
+          {
+            "from": "delinquent",
+            "to": "charged_off",
+            "on": "default_120_days"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "dti",
+          "label": "Debt-to-Income",
+          "formula": "monthly_debt / monthly_income",
+          "unit": "%",
+          "threshold": "<= 43% typical"
+        },
+        {
+          "key": "apr",
+          "label": "Annual Percentage Rate",
+          "unit": "%"
+        },
+        {
+          "key": "net_yield",
+          "label": "Net Yield",
+          "formula": "interest_income - cost_of_funds - expected_loss",
+          "unit": "%"
+        },
+        {
+          "key": "approval_rate",
+          "label": "Approval Rate",
+          "formula": "approved / applications",
+          "unit": "%"
+        },
+        {
+          "key": "delinquency_ratio",
+          "label": "Delinquency Ratio",
+          "formula": "delinquent_balance / outstanding_balance",
+          "unit": "%",
+          "threshold": "< 1% healthy"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "loan_application",
+          "label": "Consumer Loan Application",
+          "required": true
+        },
+        {
+          "key": "tila_disclosure",
+          "label": "Truth in Lending (Reg Z) Disclosure",
+          "required": true
+        },
+        {
+          "key": "credit_report",
+          "label": "Credit Report",
+          "required": true
+        },
+        {
+          "key": "income_verification",
+          "label": "Income / Employment Verification",
+          "required": true
+        },
+        {
+          "key": "adverse_action_notice",
+          "label": "Adverse Action Notice (if declined)",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:los",
+          "label": "Loan Origination System",
+          "role": "system_of_record"
+        },
+        {
+          "key": "connector:credit_bureau",
+          "label": "Credit Bureau",
+          "role": "ingest"
+        },
+        {
+          "key": "connector:decisioning",
+          "label": "Automated Decisioning Engine",
+          "role": "enrichment"
+        },
+        {
+          "key": "connector:core_banking",
+          "label": "Core Banking (servicing)",
+          "role": "enrichment"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:lending_products:personal_loan",
+      "label": "Personal Loan",
+      "notes": "Fixed-rate personal installment loan; distinguished from consumer_loan chiefly by product packaging/marketing.",
+      "relationships": [
+        {
+          "predicate": "borrower",
+          "target": "financial_services:people:borrower",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "originated_by",
+          "target": "financial_services:people:loan_officer",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "scored_by",
+          "target": "financial_services:credit:credit_score",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "disclosed_under",
+          "target": "financial_services:compliance:tila",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "booked_as",
+          "target": "financial_services:financial_accounts:loan_account",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "application",
+        "states": [
+          {
+            "key": "application",
+            "label": "Application"
+          },
+          {
+            "key": "underwriting",
+            "label": "Underwriting"
+          },
+          {
+            "key": "funded",
+            "label": "Funded"
+          },
+          {
+            "key": "servicing",
+            "label": "Servicing"
+          },
+          {
+            "key": "paid_off",
+            "label": "Paid Off",
+            "terminal": true
+          },
+          {
+            "key": "charged_off",
+            "label": "Charged Off",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "application",
+            "to": "underwriting",
+            "on": "submitted"
+          },
+          {
+            "from": "underwriting",
+            "to": "funded",
+            "on": "approved_and_disbursed"
+          },
+          {
+            "from": "funded",
+            "to": "servicing",
+            "on": "repayment_begins"
+          },
+          {
+            "from": "servicing",
+            "to": "paid_off",
+            "on": "final_payment"
+          },
+          {
+            "from": "servicing",
+            "to": "charged_off",
+            "on": "default_120_days"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "dti",
+          "label": "Debt-to-Income",
+          "formula": "monthly_debt / monthly_income",
+          "unit": "%"
+        },
+        {
+          "key": "apr",
+          "label": "Annual Percentage Rate",
+          "unit": "%"
+        },
+        {
+          "key": "charge_off_rate",
+          "label": "Charge-Off Rate",
+          "formula": "net_charge_offs / average_balance",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "loan_application",
+          "label": "Loan Application",
+          "required": true
+        },
+        {
+          "key": "tila_disclosure",
+          "label": "Truth in Lending (Reg Z) Disclosure",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:los",
+          "label": "Loan Origination System",
+          "role": "system_of_record"
+        },
+        {
+          "key": "connector:credit_bureau",
+          "label": "Credit Bureau",
+          "role": "ingest"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:lending_products:heloc",
+      "label": "Home Equity Line of Credit (HELOC)",
+      "notes": "Open-end revolving credit secured by a junior lien on the borrower's residence; Reg Z open-end + RESPA/appraisal rules apply.",
+      "relationships": [
+        {
+          "predicate": "borrower",
+          "target": "financial_services:people:borrower",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "co_borrower",
+          "target": "financial_services:people:co_borrower",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "originated_by",
+          "target": "financial_services:people:loan_officer",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "secured_by",
+          "target": "financial_services:real_estate:property",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "perfected_by",
+          "target": "financial_services:credit:lien",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "valued_by",
+          "target": "financial_services:real_estate:appraisal",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "disclosed_under",
+          "target": "financial_services:compliance:tila",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "booked_as",
+          "target": "financial_services:financial_accounts:loan_account",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "application",
+        "states": [
+          {
+            "key": "application",
+            "label": "Application"
+          },
+          {
+            "key": "underwriting",
+            "label": "Underwriting"
+          },
+          {
+            "key": "approved",
+            "label": "Approved"
+          },
+          {
+            "key": "draw_period",
+            "label": "Draw Period"
+          },
+          {
+            "key": "repayment_period",
+            "label": "Repayment Period"
+          },
+          {
+            "key": "closed",
+            "label": "Closed",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "application",
+            "to": "underwriting",
+            "on": "submitted"
+          },
+          {
+            "from": "underwriting",
+            "to": "approved",
+            "on": "credit_decision_approve"
+          },
+          {
+            "from": "approved",
+            "to": "draw_period",
+            "on": "line_activated"
+          },
+          {
+            "from": "draw_period",
+            "to": "repayment_period",
+            "on": "draw_period_ends"
+          },
+          {
+            "from": "repayment_period",
+            "to": "closed",
+            "on": "balance_repaid"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "cltv",
+          "label": "Combined Loan-to-Value",
+          "formula": "(first_lien + line_commitment) / appraised_value",
+          "unit": "%",
+          "threshold": "<= 80-90% typical"
+        },
+        {
+          "key": "utilization",
+          "label": "Line Utilization",
+          "formula": "drawn_balance / commitment",
+          "unit": "%"
+        },
+        {
+          "key": "dti",
+          "label": "Debt-to-Income",
+          "formula": "monthly_debt / monthly_income",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "loan_application",
+          "label": "Loan Application (1003-equivalent)",
+          "required": true
+        },
+        {
+          "key": "appraisal",
+          "label": "Appraisal / AVM",
+          "required": true
+        },
+        {
+          "key": "title_report",
+          "label": "Title Report / Lien Search",
+          "required": true
+        },
+        {
+          "key": "tila_heloc_disclosure",
+          "label": "HELOC (Reg Z open-end) Disclosure",
+          "required": true
+        },
+        {
+          "key": "right_of_rescission",
+          "label": "Notice of Right to Rescind",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:los",
+          "label": "Loan Origination System",
+          "role": "system_of_record"
+        },
+        {
+          "key": "connector:collateral_valuation",
+          "label": "AVM / Appraisal Service",
+          "role": "enrichment"
+        },
+        {
+          "key": "connector:core_banking",
+          "label": "Core Banking (line servicing)",
+          "role": "enrichment"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:lending_products:commercial_mortgage",
+      "label": "Commercial Mortgage (CRE)",
+      "notes": "Term loan secured by income-producing commercial real estate; underwritten on property cash flow (DSCR) and sponsor strength.",
+      "relationships": [
+        {
+          "predicate": "borrower",
+          "target": "financial_services:people:borrower",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "guaranteed_by",
+          "target": "financial_services:people:guarantor",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "originated_by",
+          "target": "financial_services:people:relationship_manager",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "secured_by",
+          "target": "financial_services:real_estate:property",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "perfected_by",
+          "target": "financial_services:credit:lien",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "valued_by",
+          "target": "financial_services:real_estate:appraisal",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "assessed_by",
+          "target": "financial_services:credit:dscr",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "documented_in",
+          "target": "financial_services:credit:credit_memo",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "offered_by",
+          "target": "financial_services:institutions:regional_bank",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "may_participate",
+          "target": "financial_services:lending_products:participation_loan",
+          "cardinality": "many"
+        }
+      ],
+      "lifecycle": {
+        "initial": "application",
+        "states": [
+          {
+            "key": "application",
+            "label": "Application / Term Sheet"
+          },
+          {
+            "key": "underwriting",
+            "label": "Underwriting"
+          },
+          {
+            "key": "credit_approval",
+            "label": "Credit Committee Approval"
+          },
+          {
+            "key": "closing",
+            "label": "Closing"
+          },
+          {
+            "key": "funded",
+            "label": "Funded"
+          },
+          {
+            "key": "servicing",
+            "label": "Servicing"
+          },
+          {
+            "key": "paid_off",
+            "label": "Paid Off",
+            "terminal": true
+          },
+          {
+            "key": "default",
+            "label": "Default / Workout",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "application",
+            "to": "underwriting",
+            "on": "term_sheet_signed"
+          },
+          {
+            "from": "underwriting",
+            "to": "credit_approval",
+            "on": "credit_memo_complete"
+          },
+          {
+            "from": "credit_approval",
+            "to": "closing",
+            "on": "committee_approves"
+          },
+          {
+            "from": "closing",
+            "to": "funded",
+            "on": "loan_closes"
+          },
+          {
+            "from": "funded",
+            "to": "servicing",
+            "on": "repayment_begins"
+          },
+          {
+            "from": "servicing",
+            "to": "paid_off",
+            "on": "maturity_or_payoff"
+          },
+          {
+            "from": "servicing",
+            "to": "default",
+            "on": "covenant_breach_or_nonpayment"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "dscr",
+          "label": "Debt Service Coverage Ratio",
+          "formula": "net_operating_income / annual_debt_service",
+          "unit": "x",
+          "threshold": ">= 1.20x-1.25x typical"
+        },
+        {
+          "key": "ltv",
+          "label": "Loan-to-Value",
+          "formula": "loan_amount / appraised_value",
+          "unit": "%",
+          "threshold": "<= 65-75% CRE"
+        },
+        {
+          "key": "debt_yield",
+          "label": "Debt Yield",
+          "formula": "net_operating_income / loan_amount",
+          "unit": "%",
+          "threshold": ">= 8-10%"
+        },
+        {
+          "key": "cap_rate",
+          "label": "Capitalization Rate",
+          "formula": "net_operating_income / property_value",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "credit_memo",
+          "label": "Credit Memorandum",
+          "required": true
+        },
+        {
+          "key": "appraisal",
+          "label": "MAI Appraisal",
+          "required": true
+        },
+        {
+          "key": "environmental_phase_i",
+          "label": "Phase I Environmental Report",
+          "required": true
+        },
+        {
+          "key": "rent_roll",
+          "label": "Rent Roll / Operating Statements",
+          "required": true
+        },
+        {
+          "key": "loan_agreement",
+          "label": "Loan Agreement & Note",
+          "required": true
+        },
+        {
+          "key": "guaranty",
+          "label": "Personal / Corporate Guaranty",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:los",
+          "label": "Commercial Loan Origination System",
+          "role": "system_of_record"
+        },
+        {
+          "key": "connector:collateral_valuation",
+          "label": "Appraisal Management",
+          "role": "enrichment"
+        },
+        {
+          "key": "connector:loan_servicing",
+          "label": "Commercial Loan Servicing",
+          "role": "enrichment"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:lending_products:construction_loan",
+      "label": "Construction Loan",
+      "notes": "Interest-only, draw-based facility funding vertical construction; converts to permanent financing at completion.",
+      "relationships": [
+        {
+          "predicate": "borrower",
+          "target": "financial_services:people:borrower",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "guaranteed_by",
+          "target": "financial_services:people:guarantor",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "secured_by",
+          "target": "financial_services:real_estate:parcel",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "funds",
+          "target": "financial_services:real_estate:capital_project",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "inspected_by",
+          "target": "financial_services:real_estate:inspection",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "converts_to",
+          "target": "financial_services:lending_products:commercial_mortgage",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "documented_in",
+          "target": "financial_services:credit:credit_memo",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "commitment",
+        "states": [
+          {
+            "key": "commitment",
+            "label": "Commitment"
+          },
+          {
+            "key": "drawing",
+            "label": "Draw Period"
+          },
+          {
+            "key": "completion",
+            "label": "Completion / Certificate of Occupancy"
+          },
+          {
+            "key": "conversion",
+            "label": "Conversion to Permanent"
+          },
+          {
+            "key": "paid_off",
+            "label": "Paid Off",
+            "terminal": true
+          },
+          {
+            "key": "default",
+            "label": "Default",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "commitment",
+            "to": "drawing",
+            "on": "first_draw"
+          },
+          {
+            "from": "drawing",
+            "to": "completion",
+            "on": "final_inspection_passed"
+          },
+          {
+            "from": "completion",
+            "to": "conversion",
+            "on": "converts_to_permanent"
+          },
+          {
+            "from": "conversion",
+            "to": "paid_off",
+            "on": "permanent_takeout"
+          },
+          {
+            "from": "drawing",
+            "to": "default",
+            "on": "cost_overrun_or_nonpayment"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "ltc",
+          "label": "Loan-to-Cost",
+          "formula": "loan_amount / total_project_cost",
+          "unit": "%",
+          "threshold": "<= 75-80%"
+        },
+        {
+          "key": "ltv_as_completed",
+          "label": "As-Completed LTV",
+          "formula": "loan_amount / as_completed_value",
+          "unit": "%"
+        },
+        {
+          "key": "draw_variance",
+          "label": "Budget Draw Variance",
+          "formula": "actual_draws / budgeted_draws",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "construction_budget",
+          "label": "Construction Budget / Sworn Statement",
+          "required": true
+        },
+        {
+          "key": "plans_specs",
+          "label": "Plans & Specifications",
+          "required": true
+        },
+        {
+          "key": "builder_contract",
+          "label": "Contractor Agreement",
+          "required": true
+        },
+        {
+          "key": "inspection_reports",
+          "label": "Draw Inspection Reports",
+          "required": true
+        },
+        {
+          "key": "title_endorsements",
+          "label": "Title Date-Down Endorsements",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:los",
+          "label": "Loan Origination System",
+          "role": "system_of_record"
+        },
+        {
+          "key": "connector:construction_draw",
+          "label": "Construction Draw Management",
+          "role": "enrichment"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:lending_products:bridge_loan",
+      "label": "Bridge Loan",
+      "notes": "Short-term interim financing pending permanent takeout or asset sale.",
+      "relationships": [
+        {
+          "predicate": "borrower",
+          "target": "financial_services:people:borrower",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "secured_by",
+          "target": "financial_services:real_estate:property",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "converts_to",
+          "target": "financial_services:lending_products:commercial_mortgage",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "funded",
+        "states": [
+          {
+            "key": "funded",
+            "label": "Funded"
+          },
+          {
+            "key": "servicing",
+            "label": "Servicing"
+          },
+          {
+            "key": "taken_out",
+            "label": "Taken Out",
+            "terminal": true
+          },
+          {
+            "key": "default",
+            "label": "Default",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "funded",
+            "to": "servicing",
+            "on": "repayment_begins"
+          },
+          {
+            "from": "servicing",
+            "to": "taken_out",
+            "on": "permanent_or_sale_takeout"
+          },
+          {
+            "from": "servicing",
+            "to": "default",
+            "on": "maturity_default"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "ltv",
+          "label": "Loan-to-Value",
+          "formula": "loan_amount / as_is_value",
+          "unit": "%"
+        },
+        {
+          "key": "exit_dscr",
+          "label": "Exit DSCR (takeout)",
+          "formula": "stabilized_noi / takeout_debt_service",
+          "unit": "x"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "exit_plan",
+          "label": "Documented Exit / Takeout Plan",
+          "required": true
+        },
+        {
+          "key": "appraisal",
+          "label": "As-Is Appraisal",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:los",
+          "label": "Loan Origination System",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:lending_products:commercial_loc",
+      "label": "Commercial Line of Credit",
+      "notes": "Revolving working-capital facility, often borrowing-base governed and secured by AR/inventory.",
+      "relationships": [
+        {
+          "predicate": "borrower",
+          "target": "financial_services:people:borrower",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "guaranteed_by",
+          "target": "financial_services:people:guarantor",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "originated_by",
+          "target": "financial_services:people:relationship_manager",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "secured_by",
+          "target": "financial_services:credit:collateral",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "perfected_by",
+          "target": "financial_services:credit:lien",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "assessed_by",
+          "target": "financial_services:credit:cash_flow",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "booked_as",
+          "target": "financial_services:financial_accounts:loan_account",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "approved",
+        "states": [
+          {
+            "key": "approved",
+            "label": "Approved / Committed"
+          },
+          {
+            "key": "active",
+            "label": "Active / Revolving"
+          },
+          {
+            "key": "annual_review",
+            "label": "Annual Review"
+          },
+          {
+            "key": "renewed",
+            "label": "Renewed"
+          },
+          {
+            "key": "matured",
+            "label": "Matured",
+            "terminal": true
+          },
+          {
+            "key": "default",
+            "label": "Default",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "approved",
+            "to": "active",
+            "on": "first_advance"
+          },
+          {
+            "from": "active",
+            "to": "annual_review",
+            "on": "review_due"
+          },
+          {
+            "from": "annual_review",
+            "to": "renewed",
+            "on": "recommitted"
+          },
+          {
+            "from": "renewed",
+            "to": "active",
+            "on": "line_continues"
+          },
+          {
+            "from": "annual_review",
+            "to": "matured",
+            "on": "not_renewed"
+          },
+          {
+            "from": "active",
+            "to": "default",
+            "on": "borrowing_base_or_covenant_breach"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "utilization",
+          "label": "Line Utilization",
+          "formula": "outstanding / commitment",
+          "unit": "%"
+        },
+        {
+          "key": "borrowing_base_availability",
+          "label": "Borrowing Base Availability",
+          "formula": "eligible_collateral * advance_rate - outstanding",
+          "unit": "$"
+        },
+        {
+          "key": "dscr",
+          "label": "Debt Service Coverage",
+          "formula": "ebitda / total_debt_service",
+          "unit": "x",
+          "threshold": ">= 1.25x"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "loan_agreement",
+          "label": "Credit Agreement",
+          "required": true
+        },
+        {
+          "key": "borrowing_base_certificate",
+          "label": "Borrowing Base Certificate",
+          "required": true
+        },
+        {
+          "key": "financial_statements",
+          "label": "Business Financial Statements",
+          "required": true
+        },
+        {
+          "key": "ucc_filing",
+          "label": "UCC-1 Financing Statement",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:los",
+          "label": "Commercial LOS",
+          "role": "system_of_record"
+        },
+        {
+          "key": "connector:core_banking",
+          "label": "Core Banking",
+          "role": "enrichment"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:lending_products:equipment_loan",
+      "label": "Equipment Loan",
+      "notes": "Term loan to acquire business equipment, self-secured by the financed asset.",
+      "relationships": [
+        {
+          "predicate": "borrower",
+          "target": "financial_services:people:borrower",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "secured_by",
+          "target": "financial_services:credit:collateral",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "perfected_by",
+          "target": "financial_services:credit:lien",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "may_finance",
+          "target": "financial_services:real_estate:ffe",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "documented_in",
+          "target": "financial_services:credit:credit_memo",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "application",
+        "states": [
+          {
+            "key": "application",
+            "label": "Application"
+          },
+          {
+            "key": "underwriting",
+            "label": "Underwriting"
+          },
+          {
+            "key": "funded",
+            "label": "Funded"
+          },
+          {
+            "key": "servicing",
+            "label": "Servicing"
+          },
+          {
+            "key": "paid_off",
+            "label": "Paid Off",
+            "terminal": true
+          },
+          {
+            "key": "charged_off",
+            "label": "Charged Off",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "application",
+            "to": "underwriting",
+            "on": "submitted"
+          },
+          {
+            "from": "underwriting",
+            "to": "funded",
+            "on": "approved_and_disbursed"
+          },
+          {
+            "from": "funded",
+            "to": "servicing",
+            "on": "repayment_begins"
+          },
+          {
+            "from": "servicing",
+            "to": "paid_off",
+            "on": "final_payment"
+          },
+          {
+            "from": "servicing",
+            "to": "charged_off",
+            "on": "default"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "ltv",
+          "label": "Loan-to-Value (equipment)",
+          "formula": "loan_amount / equipment_cost",
+          "unit": "%",
+          "threshold": "<= 80-100%"
+        },
+        {
+          "key": "dscr",
+          "label": "Debt Service Coverage",
+          "formula": "ebitda / debt_service",
+          "unit": "x"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "invoice_quote",
+          "label": "Equipment Invoice / Quote",
+          "required": true
+        },
+        {
+          "key": "ucc_filing",
+          "label": "UCC-1 Financing Statement",
+          "required": true
+        },
+        {
+          "key": "financial_statements",
+          "label": "Business Financial Statements",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:los",
+          "label": "Loan Origination System",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:lending_products:sba_loan",
+      "label": "SBA Loan (7(a) / 504)",
+      "notes": "Small-business loan partially guaranteed by the U.S. Small Business Administration; SBA SOP eligibility and forms apply.",
+      "relationships": [
+        {
+          "predicate": "borrower",
+          "target": "financial_services:people:borrower",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "guaranteed_by",
+          "target": "financial_services:institutions:government_agency",
+          "cardinality": "one",
+          "description": "SBA guarantees a portion (typically 50-85%) of the loan."
+        },
+        {
+          "predicate": "guaranteed_by",
+          "target": "financial_services:people:guarantor",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "originated_by",
+          "target": "financial_services:people:relationship_manager",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "secured_by",
+          "target": "financial_services:credit:collateral",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "documented_in",
+          "target": "financial_services:credit:credit_memo",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "eligibility",
+        "states": [
+          {
+            "key": "eligibility",
+            "label": "Eligibility Screening"
+          },
+          {
+            "key": "application",
+            "label": "Application"
+          },
+          {
+            "key": "underwriting",
+            "label": "Underwriting"
+          },
+          {
+            "key": "sba_authorization",
+            "label": "SBA Authorization"
+          },
+          {
+            "key": "funded",
+            "label": "Funded"
+          },
+          {
+            "key": "servicing",
+            "label": "Servicing"
+          },
+          {
+            "key": "paid_off",
+            "label": "Paid Off",
+            "terminal": true
+          },
+          {
+            "key": "guaranty_purchase",
+            "label": "Guaranty Purchase (default)",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "eligibility",
+            "to": "application",
+            "on": "eligible"
+          },
+          {
+            "from": "application",
+            "to": "underwriting",
+            "on": "submitted"
+          },
+          {
+            "from": "underwriting",
+            "to": "sba_authorization",
+            "on": "credit_approved"
+          },
+          {
+            "from": "sba_authorization",
+            "to": "funded",
+            "on": "loan_number_issued"
+          },
+          {
+            "from": "funded",
+            "to": "servicing",
+            "on": "repayment_begins"
+          },
+          {
+            "from": "servicing",
+            "to": "paid_off",
+            "on": "final_payment"
+          },
+          {
+            "from": "servicing",
+            "to": "guaranty_purchase",
+            "on": "default_and_sba_purchase"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "guaranty_pct",
+          "label": "SBA Guaranty Percentage",
+          "unit": "%",
+          "threshold": "50-85% by program"
+        },
+        {
+          "key": "dscr",
+          "label": "Debt Service Coverage",
+          "formula": "ebitda / debt_service",
+          "unit": "x",
+          "threshold": ">= 1.15x SOP minimum"
+        },
+        {
+          "key": "ltv",
+          "label": "Collateral Coverage",
+          "formula": "loan_amount / collateral_value",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "sba_1919",
+          "label": "SBA Form 1919 (Borrower Information)",
+          "required": true
+        },
+        {
+          "key": "sba_1920",
+          "label": "SBA Form 1920 (Lender Application)",
+          "required": true
+        },
+        {
+          "key": "business_plan",
+          "label": "Business Plan / Projections",
+          "required": true
+        },
+        {
+          "key": "tax_returns",
+          "label": "Business & Personal Tax Returns",
+          "required": true
+        },
+        {
+          "key": "sba_authorization",
+          "label": "SBA Loan Authorization",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:los",
+          "label": "SBA-enabled LOS",
+          "role": "system_of_record"
+        },
+        {
+          "key": "connector:sba_etran",
+          "label": "SBA E-Tran / Capital Access",
+          "role": "ingest"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:lending_products:usda_loan",
+      "label": "USDA Loan (Rural Development / B&I)",
+      "notes": "USDA-guaranteed rural housing or business & industry loan.",
+      "relationships": [
+        {
+          "predicate": "borrower",
+          "target": "financial_services:people:borrower",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "guaranteed_by",
+          "target": "financial_services:regulation:usda",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "secured_by",
+          "target": "financial_services:real_estate:property",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "application",
+        "states": [
+          {
+            "key": "application",
+            "label": "Application"
+          },
+          {
+            "key": "underwriting",
+            "label": "Underwriting"
+          },
+          {
+            "key": "usda_conditional_commitment",
+            "label": "USDA Conditional Commitment"
+          },
+          {
+            "key": "funded",
+            "label": "Funded"
+          },
+          {
+            "key": "servicing",
+            "label": "Servicing"
+          },
+          {
+            "key": "paid_off",
+            "label": "Paid Off",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "application",
+            "to": "underwriting",
+            "on": "submitted"
+          },
+          {
+            "from": "underwriting",
+            "to": "usda_conditional_commitment",
+            "on": "usda_approves"
+          },
+          {
+            "from": "usda_conditional_commitment",
+            "to": "funded",
+            "on": "loan_note_guarantee"
+          },
+          {
+            "from": "funded",
+            "to": "servicing",
+            "on": "repayment_begins"
+          },
+          {
+            "from": "servicing",
+            "to": "paid_off",
+            "on": "final_payment"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "income_eligibility",
+          "label": "Income Eligibility (area median)",
+          "unit": "%",
+          "threshold": "<= 115% AMI (SFH guaranteed)"
+        },
+        {
+          "key": "ltv",
+          "label": "Loan-to-Value",
+          "formula": "loan_amount / appraised_value",
+          "unit": "%",
+          "threshold": "up to 100%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "usda_eligibility",
+          "label": "USDA Property & Income Eligibility",
+          "required": true
+        },
+        {
+          "key": "appraisal",
+          "label": "Appraisal",
+          "required": true
+        },
+        {
+          "key": "loan_note_guarantee",
+          "label": "USDA Loan Note Guarantee",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:los",
+          "label": "Loan Origination System",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:lending_products:participation_loan",
+      "label": "Participation Loan",
+      "notes": "A loan in which a lead institution sells fractional interests to participant institutions under a participation agreement.",
+      "relationships": [
+        {
+          "predicate": "led_by",
+          "target": "financial_services:institutions:regional_bank",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "participated_by",
+          "target": "financial_services:institutions:community_bank",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "structured_as",
+          "target": "financial_services:capital_markets:participation",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "underlies",
+          "target": "financial_services:lending_products:commercial_mortgage",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "originated",
+        "states": [
+          {
+            "key": "originated",
+            "label": "Originated by Lead"
+          },
+          {
+            "key": "syndicated",
+            "label": "Interests Sold"
+          },
+          {
+            "key": "servicing",
+            "label": "Servicing"
+          },
+          {
+            "key": "paid_off",
+            "label": "Paid Off",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "originated",
+            "to": "syndicated",
+            "on": "participations_placed"
+          },
+          {
+            "from": "syndicated",
+            "to": "servicing",
+            "on": "lead_services"
+          },
+          {
+            "from": "servicing",
+            "to": "paid_off",
+            "on": "final_payment"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "lead_retention",
+          "label": "Lead Retention",
+          "formula": "retained_amount / total_loan",
+          "unit": "%"
+        },
+        {
+          "key": "participation_yield",
+          "label": "Participant Net Yield",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "participation_agreement",
+          "label": "Loan Participation Agreement",
+          "required": true
+        },
+        {
+          "key": "credit_memo",
+          "label": "Credit Memorandum",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:loan_servicing",
+          "label": "Loan Servicing (lead)",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:lending_products:syndicated_loan",
+      "label": "Syndicated Loan",
+      "notes": "Large facility arranged by an agent bank and funded by a syndicate of lenders under a common credit agreement.",
+      "relationships": [
+        {
+          "predicate": "arranged_by",
+          "target": "financial_services:institutions:investment_bank",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "funded_by",
+          "target": "financial_services:institutions:regional_bank",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "structured_as",
+          "target": "financial_services:capital_markets:syndication",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "ranks_as",
+          "target": "financial_services:capital_markets:senior_debt",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "borrower",
+          "target": "financial_services:people:borrower",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "mandate",
+        "states": [
+          {
+            "key": "mandate",
+            "label": "Mandate"
+          },
+          {
+            "key": "syndication",
+            "label": "Syndication / Book-Building"
+          },
+          {
+            "key": "close",
+            "label": "Close / Allocation"
+          },
+          {
+            "key": "servicing",
+            "label": "Agent Servicing"
+          },
+          {
+            "key": "repaid",
+            "label": "Repaid",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "mandate",
+            "to": "syndication",
+            "on": "launch"
+          },
+          {
+            "from": "syndication",
+            "to": "close",
+            "on": "allocations_set"
+          },
+          {
+            "from": "close",
+            "to": "servicing",
+            "on": "funded"
+          },
+          {
+            "from": "servicing",
+            "to": "repaid",
+            "on": "final_payment"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "oversubscription",
+          "label": "Oversubscription",
+          "formula": "orders / target",
+          "unit": "x"
+        },
+        {
+          "key": "leverage",
+          "label": "Total Leverage",
+          "formula": "total_debt / ebitda",
+          "unit": "x"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "credit_agreement",
+          "label": "Syndicated Credit Agreement",
+          "required": true
+        },
+        {
+          "key": "information_memorandum",
+          "label": "Confidential Information Memorandum",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:loan_servicing",
+          "label": "Agency / Servicing Platform",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:lending_products:warehouse_line",
+      "label": "Warehouse Line",
+      "notes": "Short-term revolving facility funding mortgages between origination and sale into the secondary market.",
+      "relationships": [
+        {
+          "predicate": "borrower",
+          "target": "financial_services:institutions:mortgage_company",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "funds",
+          "target": "financial_services:lending_products:mortgage",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "booked_as",
+          "target": "financial_services:financial_accounts:warehouse_account",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "structured_as",
+          "target": "financial_services:capital_markets:warehouse_facility",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "takeout_by",
+          "target": "financial_services:regulation:fannie_mae",
+          "cardinality": "many"
+        }
+      ],
+      "lifecycle": {
+        "initial": "committed",
+        "states": [
+          {
+            "key": "committed",
+            "label": "Committed"
+          },
+          {
+            "key": "active",
+            "label": "Active / Revolving"
+          },
+          {
+            "key": "renewed",
+            "label": "Renewed"
+          },
+          {
+            "key": "terminated",
+            "label": "Terminated",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "committed",
+            "to": "active",
+            "on": "first_advance"
+          },
+          {
+            "from": "active",
+            "to": "renewed",
+            "on": "annual_renewal"
+          },
+          {
+            "from": "renewed",
+            "to": "active",
+            "on": "continues"
+          },
+          {
+            "from": "active",
+            "to": "terminated",
+            "on": "facility_ends"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "utilization",
+          "label": "Line Utilization",
+          "formula": "outstanding / commitment",
+          "unit": "%"
+        },
+        {
+          "key": "dwell_time",
+          "label": "Average Dwell Time",
+          "formula": "avg_days_on_line",
+          "unit": "days",
+          "threshold": "< 15 days healthy"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "warehouse_agreement",
+          "label": "Mortgage Warehouse Agreement",
+          "required": true
+        },
+        {
+          "key": "takeout_commitments",
+          "label": "Investor Takeout Commitments",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:warehouse_lending",
+          "label": "Warehouse Lending Platform",
+          "role": "system_of_record"
+        },
+        {
+          "key": "connector:secondary_market",
+          "label": "Secondary Market / Investor Delivery",
+          "role": "enrichment"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:lending_products:private_credit_facility",
+      "label": "Private Credit Facility",
+      "notes": "Bilaterally or club-negotiated non-bank loan, typically from a private credit fund to a sponsor-owned borrower.",
+      "relationships": [
+        {
+          "predicate": "lent_by",
+          "target": "financial_services:institutions:private_credit_fund",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "borrower",
+          "target": "financial_services:people:borrower",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "structured_as",
+          "target": "financial_services:capital_markets:private_credit",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "ranks_as",
+          "target": "financial_services:capital_markets:senior_debt",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "term_sheet",
+        "states": [
+          {
+            "key": "term_sheet",
+            "label": "Term Sheet"
+          },
+          {
+            "key": "due_diligence",
+            "label": "Due Diligence"
+          },
+          {
+            "key": "funded",
+            "label": "Funded"
+          },
+          {
+            "key": "monitoring",
+            "label": "Portfolio Monitoring"
+          },
+          {
+            "key": "repaid",
+            "label": "Repaid",
+            "terminal": true
+          },
+          {
+            "key": "restructured",
+            "label": "Restructured",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "term_sheet",
+            "to": "due_diligence",
+            "on": "signed"
+          },
+          {
+            "from": "due_diligence",
+            "to": "funded",
+            "on": "closes"
+          },
+          {
+            "from": "funded",
+            "to": "monitoring",
+            "on": "draws"
+          },
+          {
+            "from": "monitoring",
+            "to": "repaid",
+            "on": "refinanced_or_exit"
+          },
+          {
+            "from": "monitoring",
+            "to": "restructured",
+            "on": "covenant_breach"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "leverage",
+          "label": "Net Leverage",
+          "formula": "net_debt / ebitda",
+          "unit": "x"
+        },
+        {
+          "key": "yield",
+          "label": "All-In Yield",
+          "formula": "base_rate + spread + oid_amort",
+          "unit": "%"
+        },
+        {
+          "key": "loan_to_value",
+          "label": "Loan-to-Value (enterprise)",
+          "formula": "debt / enterprise_value",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "credit_agreement",
+          "label": "Credit Agreement",
+          "required": true
+        },
+        {
+          "key": "diligence_report",
+          "label": "Quality-of-Earnings / Diligence Report",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:portfolio_monitoring",
+          "label": "Portfolio Monitoring",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:lending_products:factoring",
+      "label": "Factoring",
+      "notes": "Purchase of a business's accounts receivable at a discount; advance plus reserve on collection.",
+      "relationships": [
+        {
+          "predicate": "client",
+          "target": "financial_services:people:borrower",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "purchases",
+          "target": "financial_services:credit:trade_line",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "provided_by",
+          "target": "financial_services:institutions:finance_company",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "onboarded",
+        "states": [
+          {
+            "key": "onboarded",
+            "label": "Onboarded"
+          },
+          {
+            "key": "purchasing",
+            "label": "Purchasing Invoices"
+          },
+          {
+            "key": "collecting",
+            "label": "Collecting"
+          },
+          {
+            "key": "closed",
+            "label": "Closed",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "onboarded",
+            "to": "purchasing",
+            "on": "first_purchase"
+          },
+          {
+            "from": "purchasing",
+            "to": "collecting",
+            "on": "invoice_due"
+          },
+          {
+            "from": "collecting",
+            "to": "closed",
+            "on": "facility_ends"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "advance_rate",
+          "label": "Advance Rate",
+          "formula": "advance / invoice_face",
+          "unit": "%",
+          "threshold": "70-90%"
+        },
+        {
+          "key": "discount_fee",
+          "label": "Discount Fee",
+          "unit": "%"
+        },
+        {
+          "key": "dilution",
+          "label": "Dilution",
+          "formula": "credits_and_disputes / gross_sales",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "factoring_agreement",
+          "label": "Factoring Agreement",
+          "required": true
+        },
+        {
+          "key": "notice_of_assignment",
+          "label": "Notice of Assignment",
+          "required": true
+        },
+        {
+          "key": "ucc_filing",
+          "label": "UCC-1 Financing Statement",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:factoring_platform",
+          "label": "Factoring / AR Platform",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:lending_products:invoice_financing",
+      "label": "Invoice Financing",
+      "notes": "Advance against outstanding invoices where the borrower retains ownership of the receivable (vs. factoring's sale).",
+      "relationships": [
+        {
+          "predicate": "borrower",
+          "target": "financial_services:people:borrower",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "collateralized_by",
+          "target": "financial_services:credit:trade_line",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "perfected_by",
+          "target": "financial_services:credit:lien",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "advance_rate",
+          "label": "Advance Rate",
+          "formula": "advance / eligible_receivables",
+          "unit": "%"
+        },
+        {
+          "key": "turn_days",
+          "label": "Receivable Turn Days",
+          "unit": "days"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "financing_agreement",
+          "label": "Invoice Financing Agreement",
+          "required": true
+        },
+        {
+          "key": "ar_aging",
+          "label": "Accounts Receivable Aging",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:factoring_platform",
+          "label": "AR Financing Platform",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:lending_products:lease",
+      "label": "Lease (Equipment / Capital)",
+      "notes": "Financing structured as a lease of an asset; capital vs. operating classification per ASC 842.",
+      "relationships": [
+        {
+          "predicate": "lessee",
+          "target": "financial_services:people:borrower",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "lessor",
+          "target": "financial_services:institutions:finance_company",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "covers",
+          "target": "financial_services:real_estate:ffe",
+          "cardinality": "many"
+        }
+      ],
+      "lifecycle": {
+        "initial": "origination",
+        "states": [
+          {
+            "key": "origination",
+            "label": "Origination"
+          },
+          {
+            "key": "in_term",
+            "label": "In Term"
+          },
+          {
+            "key": "end_of_term",
+            "label": "End of Term"
+          },
+          {
+            "key": "purchased",
+            "label": "Purchased (buyout)",
+            "terminal": true
+          },
+          {
+            "key": "returned",
+            "label": "Returned",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "origination",
+            "to": "in_term",
+            "on": "commences"
+          },
+          {
+            "from": "in_term",
+            "to": "end_of_term",
+            "on": "term_expires"
+          },
+          {
+            "from": "end_of_term",
+            "to": "purchased",
+            "on": "buyout_exercised"
+          },
+          {
+            "from": "end_of_term",
+            "to": "returned",
+            "on": "asset_returned"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "implicit_rate",
+          "label": "Implicit Rate",
+          "unit": "%"
+        },
+        {
+          "key": "residual_value",
+          "label": "Residual Value",
+          "unit": "$"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "lease_agreement",
+          "label": "Lease Agreement / Schedule",
+          "required": true
+        },
+        {
+          "key": "acceptance_certificate",
+          "label": "Delivery & Acceptance Certificate",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:lease_accounting",
+          "label": "Lease Accounting System",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:lending_products:agricultural_loan",
+      "label": "Agricultural Loan",
+      "notes": "Operating or real-estate credit to farm/agribusiness borrowers; often FSA-guaranteed or Farm Credit sourced.",
+      "relationships": [
+        {
+          "predicate": "borrower",
+          "target": "financial_services:people:borrower",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "guaranteed_by",
+          "target": "financial_services:regulation:usda",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "secured_by",
+          "target": "financial_services:real_estate:parcel",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "secured_by",
+          "target": "financial_services:credit:collateral",
+          "cardinality": "many"
+        }
+      ],
+      "lifecycle": {
+        "initial": "application",
+        "states": [
+          {
+            "key": "application",
+            "label": "Application"
+          },
+          {
+            "key": "underwriting",
+            "label": "Underwriting"
+          },
+          {
+            "key": "funded",
+            "label": "Funded"
+          },
+          {
+            "key": "servicing",
+            "label": "Servicing"
+          },
+          {
+            "key": "renewed",
+            "label": "Renewed (operating)"
+          },
+          {
+            "key": "paid_off",
+            "label": "Paid Off",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "application",
+            "to": "underwriting",
+            "on": "submitted"
+          },
+          {
+            "from": "underwriting",
+            "to": "funded",
+            "on": "approved_and_disbursed"
+          },
+          {
+            "from": "funded",
+            "to": "servicing",
+            "on": "repayment_begins"
+          },
+          {
+            "from": "servicing",
+            "to": "renewed",
+            "on": "operating_line_renews"
+          },
+          {
+            "from": "servicing",
+            "to": "paid_off",
+            "on": "final_payment"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "dscr",
+          "label": "Debt Service Coverage",
+          "formula": "farm_income / debt_service",
+          "unit": "x"
+        },
+        {
+          "key": "ltv",
+          "label": "Loan-to-Value (land)",
+          "formula": "loan_amount / land_value",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "farm_financials",
+          "label": "Farm Financial Statements / Balance Sheet",
+          "required": true
+        },
+        {
+          "key": "crop_insurance",
+          "label": "Crop / Revenue Insurance",
+          "required": false
+        },
+        {
+          "key": "fsa_guarantee",
+          "label": "FSA Guarantee (if applicable)",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:los",
+          "label": "Ag Loan Origination System",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:lending_products:rv_loan",
+      "label": "RV Loan",
+      "relationships": [
+        {
+          "predicate": "borrower",
+          "target": "financial_services:people:borrower",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "originated_by",
+          "target": "financial_services:people:loan_officer",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "secured_by",
+          "target": "financial_services:credit:collateral",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "disclosed_under",
+          "target": "financial_services:compliance:tila",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "ltv",
+          "label": "Loan-to-Value",
+          "formula": "loan_amount / collateral_value",
+          "unit": "%"
+        },
+        {
+          "key": "term_months",
+          "label": "Term",
+          "unit": "months"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "loan_application",
+          "label": "Loan Application",
+          "required": true
+        },
+        {
+          "key": "title_lien",
+          "label": "Title / Lien Perfection",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:los",
+          "label": "Loan Origination System",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:lending_products:boat_loan",
+      "label": "Boat Loan",
+      "relationships": [
+        {
+          "predicate": "borrower",
+          "target": "financial_services:people:borrower",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "secured_by",
+          "target": "financial_services:credit:collateral",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "disclosed_under",
+          "target": "financial_services:compliance:tila",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "ltv",
+          "label": "Loan-to-Value",
+          "formula": "loan_amount / collateral_value",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "loan_application",
+          "label": "Loan Application",
+          "required": true
+        },
+        {
+          "key": "title_lien",
+          "label": "Title / Lien Perfection",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:los",
+          "label": "Loan Origination System",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:lending_products:motorcycle_loan",
+      "label": "Motorcycle Loan",
+      "relationships": [
+        {
+          "predicate": "borrower",
+          "target": "financial_services:people:borrower",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "secured_by",
+          "target": "financial_services:credit:collateral",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "disclosed_under",
+          "target": "financial_services:compliance:tila",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "ltv",
+          "label": "Loan-to-Value",
+          "formula": "loan_amount / collateral_value",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "loan_application",
+          "label": "Loan Application",
+          "required": true
+        },
+        {
+          "key": "title_lien",
+          "label": "Title / Lien Perfection",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:los",
+          "label": "Loan Origination System",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:deposit_products:checking",
+      "label": "Checking / Share Draft Account",
+      "notes": "Transaction (demand deposit / share draft) account; Reg DD, Reg E, and Reg CC apply.",
+      "relationships": [
+        {
+          "predicate": "held_by",
+          "target": "financial_services:people:depositor",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "offered_by",
+          "target": "financial_services:institutions:community_bank",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "insured_by",
+          "target": "financial_services:regulation:fdic",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "booked_as",
+          "target": "financial_services:financial_accounts:checking",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "screened_by",
+          "target": "financial_services:compliance:kyc",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "opened",
+        "states": [
+          {
+            "key": "opened",
+            "label": "Opened"
+          },
+          {
+            "key": "active",
+            "label": "Active"
+          },
+          {
+            "key": "overdrawn",
+            "label": "Overdrawn"
+          },
+          {
+            "key": "dormant",
+            "label": "Dormant"
+          },
+          {
+            "key": "closed",
+            "label": "Closed",
+            "terminal": true
+          },
+          {
+            "key": "escheated",
+            "label": "Escheated",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "opened",
+            "to": "active",
+            "on": "funded"
+          },
+          {
+            "from": "active",
+            "to": "overdrawn",
+            "on": "negative_balance"
+          },
+          {
+            "from": "overdrawn",
+            "to": "active",
+            "on": "cured"
+          },
+          {
+            "from": "active",
+            "to": "dormant",
+            "on": "inactivity"
+          },
+          {
+            "from": "dormant",
+            "to": "escheated",
+            "on": "unclaimed_property_period"
+          },
+          {
+            "from": "active",
+            "to": "closed",
+            "on": "customer_closes"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "average_balance",
+          "label": "Average Balance",
+          "unit": "$"
+        },
+        {
+          "key": "interchange_income",
+          "label": "Interchange Income",
+          "unit": "$"
+        },
+        {
+          "key": "overdraft_incidence",
+          "label": "Overdraft Incidence",
+          "formula": "overdraft_events / active_accounts",
+          "unit": "%"
+        },
+        {
+          "key": "non_interest_income",
+          "label": "Non-Interest Income per Account",
+          "unit": "$"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "account_agreement",
+          "label": "Deposit Account Agreement",
+          "required": true
+        },
+        {
+          "key": "truth_in_savings_disclosure",
+          "label": "Truth in Savings (Reg DD) Disclosure",
+          "required": true
+        },
+        {
+          "key": "reg_e_disclosure",
+          "label": "Electronic Fund Transfer (Reg E) Disclosure",
+          "required": true
+        },
+        {
+          "key": "kyc_identity",
+          "label": "CIP / KYC Identity Verification",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:core_banking",
+          "label": "Core Banking",
+          "role": "system_of_record"
+        },
+        {
+          "key": "connector:card_processor",
+          "label": "Debit Card Processor",
+          "role": "enrichment"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:deposit_products:money_market",
+      "label": "Money Market Account",
+      "notes": "Tiered-rate savings deposit with limited transactions; Reg DD disclosures apply.",
+      "relationships": [
+        {
+          "predicate": "held_by",
+          "target": "financial_services:people:depositor",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "offered_by",
+          "target": "financial_services:institutions:community_bank",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "insured_by",
+          "target": "financial_services:regulation:fdic",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "booked_as",
+          "target": "financial_services:financial_accounts:money_market",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "opened",
+        "states": [
+          {
+            "key": "opened",
+            "label": "Opened"
+          },
+          {
+            "key": "active",
+            "label": "Active"
+          },
+          {
+            "key": "dormant",
+            "label": "Dormant"
+          },
+          {
+            "key": "closed",
+            "label": "Closed",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "opened",
+            "to": "active",
+            "on": "funded"
+          },
+          {
+            "from": "active",
+            "to": "dormant",
+            "on": "inactivity"
+          },
+          {
+            "from": "active",
+            "to": "closed",
+            "on": "customer_closes"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "average_balance",
+          "label": "Average Balance",
+          "unit": "$"
+        },
+        {
+          "key": "cost_of_funds",
+          "label": "Cost of Funds",
+          "formula": "interest_expense / average_balance",
+          "unit": "%"
+        },
+        {
+          "key": "tier_rate",
+          "label": "Tiered Rate",
+          "unit": "% APY"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "account_agreement",
+          "label": "Deposit Account Agreement",
+          "required": true
+        },
+        {
+          "key": "truth_in_savings_disclosure",
+          "label": "Truth in Savings (Reg DD) Disclosure",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:core_banking",
+          "label": "Core Banking",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:deposit_products:business_checking",
+      "label": "Business Checking",
+      "notes": "Commercial demand deposit account; often paired with treasury/analysis and earnings credit.",
+      "relationships": [
+        {
+          "predicate": "held_by",
+          "target": "financial_services:people:customer",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "managed_by",
+          "target": "financial_services:people:relationship_manager",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "offered_by",
+          "target": "financial_services:institutions:regional_bank",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "booked_as",
+          "target": "financial_services:financial_accounts:commercial_dda",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "screened_by",
+          "target": "financial_services:compliance:kyb",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "opened",
+        "states": [
+          {
+            "key": "opened",
+            "label": "Opened"
+          },
+          {
+            "key": "active",
+            "label": "Active"
+          },
+          {
+            "key": "analysis",
+            "label": "Analysis / Earnings Credit"
+          },
+          {
+            "key": "closed",
+            "label": "Closed",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "opened",
+            "to": "active",
+            "on": "funded"
+          },
+          {
+            "from": "active",
+            "to": "analysis",
+            "on": "analysis_billing"
+          },
+          {
+            "from": "analysis",
+            "to": "active",
+            "on": "cycle_resets"
+          },
+          {
+            "from": "active",
+            "to": "closed",
+            "on": "customer_closes"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "average_collected_balance",
+          "label": "Average Collected Balance",
+          "unit": "$"
+        },
+        {
+          "key": "earnings_credit_rate",
+          "label": "Earnings Credit Rate",
+          "unit": "%"
+        },
+        {
+          "key": "treasury_fee_income",
+          "label": "Treasury Management Fee Income",
+          "unit": "$"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "account_resolution",
+          "label": "Corporate Account Resolution",
+          "required": true
+        },
+        {
+          "key": "beneficial_ownership",
+          "label": "Beneficial Ownership Certification",
+          "required": true
+        },
+        {
+          "key": "kyb_verification",
+          "label": "KYB / Business Verification",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:core_banking",
+          "label": "Core Banking",
+          "role": "system_of_record"
+        },
+        {
+          "key": "connector:treasury_management",
+          "label": "Treasury Management Platform",
+          "role": "enrichment"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:deposit_products:ira",
+      "label": "IRA Deposit",
+      "notes": "Tax-advantaged retirement deposit (Traditional/Roth); IRS contribution and RMD rules apply.",
+      "relationships": [
+        {
+          "predicate": "held_by",
+          "target": "financial_services:people:depositor",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "offered_by",
+          "target": "financial_services:institutions:community_bank",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "booked_as",
+          "target": "financial_services:financial_accounts:ira",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "opened",
+        "states": [
+          {
+            "key": "opened",
+            "label": "Opened"
+          },
+          {
+            "key": "contributing",
+            "label": "Contributing"
+          },
+          {
+            "key": "distribution",
+            "label": "Distribution / RMD"
+          },
+          {
+            "key": "closed",
+            "label": "Closed",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "opened",
+            "to": "contributing",
+            "on": "first_contribution"
+          },
+          {
+            "from": "contributing",
+            "to": "distribution",
+            "on": "reaches_rmd_age"
+          },
+          {
+            "from": "distribution",
+            "to": "closed",
+            "on": "fully_distributed"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "average_balance",
+          "label": "Average Balance",
+          "unit": "$"
+        },
+        {
+          "key": "contribution_utilization",
+          "label": "Contribution Limit Utilization",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "ira_agreement",
+          "label": "IRA Custodial Agreement (Form 5305)",
+          "required": true
+        },
+        {
+          "key": "beneficiary_designation",
+          "label": "Beneficiary Designation",
+          "required": true
+        },
+        {
+          "key": "truth_in_savings_disclosure",
+          "label": "Truth in Savings (Reg DD) Disclosure",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:core_banking",
+          "label": "Core Banking",
+          "role": "system_of_record"
+        },
+        {
+          "key": "connector:ira_administration",
+          "label": "IRA Administration / Reporting",
+          "role": "enrichment"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:deposit_products:sweep",
+      "label": "Sweep Account",
+      "notes": "Automated overnight movement of excess demand balances into an interest-bearing or investment vehicle.",
+      "relationships": [
+        {
+          "predicate": "linked_to",
+          "target": "financial_services:deposit_products:business_checking",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "held_by",
+          "target": "financial_services:people:customer",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "settles_to",
+          "target": "financial_services:financial_accounts:settlement_account",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "swept_balance",
+          "label": "Average Swept Balance",
+          "unit": "$"
+        },
+        {
+          "key": "sweep_yield",
+          "label": "Sweep Yield",
+          "unit": "% APY"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "sweep_agreement",
+          "label": "Sweep Agreement",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:treasury_management",
+          "label": "Treasury Management Platform",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:deposit_products:escrow",
+      "label": "Escrow Deposit",
+      "notes": "Impound account holding third-party funds (taxes, insurance, earnest money); RESPA escrow rules apply for mortgages.",
+      "relationships": [
+        {
+          "predicate": "administered_by",
+          "target": "financial_services:people:servicer",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "supports",
+          "target": "financial_services:lending_products:mortgage",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "booked_as",
+          "target": "financial_services:financial_accounts:escrow",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "governed_by",
+          "target": "financial_services:compliance:respa",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "established",
+        "states": [
+          {
+            "key": "established",
+            "label": "Established"
+          },
+          {
+            "key": "active",
+            "label": "Active"
+          },
+          {
+            "key": "analyzed",
+            "label": "Annual Escrow Analysis"
+          },
+          {
+            "key": "closed",
+            "label": "Closed",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "established",
+            "to": "active",
+            "on": "funded_at_closing"
+          },
+          {
+            "from": "active",
+            "to": "analyzed",
+            "on": "annual_analysis"
+          },
+          {
+            "from": "analyzed",
+            "to": "active",
+            "on": "adjusted"
+          },
+          {
+            "from": "active",
+            "to": "closed",
+            "on": "loan_paid_off"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "cushion",
+          "label": "Escrow Cushion",
+          "formula": "reserve / annual_disbursements",
+          "unit": "%",
+          "threshold": "<= 1/6 (RESPA)"
+        },
+        {
+          "key": "shortage_rate",
+          "label": "Escrow Shortage Rate",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "escrow_agreement",
+          "label": "Escrow Agreement",
+          "required": true
+        },
+        {
+          "key": "annual_escrow_statement",
+          "label": "Annual Escrow Analysis Statement",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:loan_servicing",
+          "label": "Loan Servicing / Escrow Admin",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:deposit_products:trust",
+      "label": "Trust Deposit",
+      "notes": "Deposit held by an institution in a fiduciary capacity under a trust instrument.",
+      "relationships": [
+        {
+          "predicate": "administered_by",
+          "target": "financial_services:institutions:trust_company",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "benefits",
+          "target": "financial_services:people:customer",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "booked_as",
+          "target": "financial_services:financial_accounts:trust_account",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "assets_under_administration",
+          "label": "Assets Under Administration",
+          "unit": "$"
+        },
+        {
+          "key": "fiduciary_fee_income",
+          "label": "Fiduciary Fee Income",
+          "unit": "$"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "trust_instrument",
+          "label": "Trust Instrument / Agreement",
+          "required": true
+        },
+        {
+          "key": "certification_of_trust",
+          "label": "Certification of Trust",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:trust_accounting",
+          "label": "Trust Accounting System",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:deposit_products:custodial",
+      "label": "Custodial Deposit",
+      "notes": "Account held by a custodian for the benefit of another (e.g., UTMA/UGMA, HSA custodial, FBO).",
+      "relationships": [
+        {
+          "predicate": "held_by",
+          "target": "financial_services:people:customer",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "administered_by",
+          "target": "financial_services:institutions:trust_company",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "booked_as",
+          "target": "financial_services:financial_accounts:trust_account",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "average_balance",
+          "label": "Average Balance",
+          "unit": "$"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "custodial_agreement",
+          "label": "Custodial Agreement",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:core_banking",
+          "label": "Core Banking",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:deposit_products:brokered_deposit",
+      "label": "Brokered Deposit",
+      "notes": "Deposit placed by a broker/deposit network; FDIC brokered-deposit rules and liquidity treatment apply.",
+      "relationships": [
+        {
+          "predicate": "placed_by",
+          "target": "financial_services:institutions:broker_dealer",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "held_at",
+          "target": "financial_services:institutions:regional_bank",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "insured_by",
+          "target": "financial_services:regulation:fdic",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "booked_as",
+          "target": "financial_services:financial_accounts:certificate",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "sourced_via",
+          "target": "financial_services:deposit_products:sweep",
+          "cardinality": "many"
+        }
+      ],
+      "lifecycle": {
+        "initial": "placed",
+        "states": [
+          {
+            "key": "placed",
+            "label": "Placed"
+          },
+          {
+            "key": "active",
+            "label": "Active"
+          },
+          {
+            "key": "matured",
+            "label": "Matured",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "placed",
+            "to": "active",
+            "on": "settled"
+          },
+          {
+            "from": "active",
+            "to": "matured",
+            "on": "reaches_maturity"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "cost_of_funds",
+          "label": "Cost of Funds",
+          "formula": "interest_expense / average_balance",
+          "unit": "%"
+        },
+        {
+          "key": "brokered_ratio",
+          "label": "Brokered-to-Total Deposits",
+          "formula": "brokered_deposits / total_deposits",
+          "unit": "%",
+          "threshold": "regulatory scrutiny above ~10%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "deposit_placement_agreement",
+          "label": "Deposit Placement Agreement",
+          "required": true
+        },
+        {
+          "key": "fdic_brokered_notice",
+          "label": "FDIC Brokered Deposit Notice",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:deposit_network",
+          "label": "Brokered Deposit / Listing Network",
+          "role": "system_of_record"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1548 @@
+{
+  "key": "ontology:innovation_ecosystem",
+  "label": "Innovation Ecosystem Ontology",
+  "version": 1,
+  "domain": "financial_services",
+  "notes": "Volume XI pack (ADR-0014) for the innovation half of the VC / CU / fintech / innovation stack \u2014 the Cooperative Markets graph that connects credit unions and innovation companies. Enriches the innovation_ecosystem family (startup, founder, product, technology, pilot, proof_of_concept, integration, partnership, capability, market_category, vendor_evaluation, innovation_score, institution_readiness, startup_readiness, investment_thesis, investment_committee_memo). The partnership object carries the discovery->evaluation->pilot->integration->partnership->investment->monitoring relationship ladder. Relationship targets are catalog schema_refs (closed graph). innovation_score is a Dispatch inference (calculation), not a weights-only conclusion \u2014 evidence/source/confidence/lineage are persisted per doctrine. Connector keys are forward references into the Connector Registry (Volume IX); required_document and KPI keys are free-form.",
+  "ontologies": [
+    {
+      "object": "financial_services:innovation_ecosystem:startup",
+      "label": "Startup (Innovation Company)",
+      "notes": "A venture-backed innovation company \u2014 the other half of the Cooperative Markets graph (institutions <-> innovation). Often a fintech selling into credit unions and banks.",
+      "relationships": [
+        {
+          "predicate": "founded_by",
+          "target": "financial_services:innovation_ecosystem:founder",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "builds",
+          "target": "financial_services:innovation_ecosystem:product",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "raises",
+          "target": "financial_services:capital_markets:equity",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "raises",
+          "target": "financial_services:capital_markets:safe",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "backed_by",
+          "target": "financial_services:institutions:venture_capital_firm",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "target_of",
+          "target": "financial_services:investments:investment",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "scored_by",
+          "target": "financial_services:innovation_ecosystem:innovation_score",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "assessed_by",
+          "target": "financial_services:innovation_ecosystem:startup_readiness",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "runs",
+          "target": "financial_services:innovation_ecosystem:pilot",
+          "cardinality": "many",
+          "description": "Pilots with institutions."
+        },
+        {
+          "predicate": "partners_with",
+          "target": "financial_services:institutions:federal_credit_union",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "competes_in",
+          "target": "financial_services:innovation_ecosystem:market_category",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "idea",
+        "states": [
+          {
+            "key": "idea",
+            "label": "Idea"
+          },
+          {
+            "key": "pre_seed",
+            "label": "Pre-Seed"
+          },
+          {
+            "key": "seed",
+            "label": "Seed"
+          },
+          {
+            "key": "series_a",
+            "label": "Series A"
+          },
+          {
+            "key": "growth",
+            "label": "Growth"
+          },
+          {
+            "key": "scale",
+            "label": "Scale"
+          },
+          {
+            "key": "exit",
+            "label": "Exit",
+            "terminal": true
+          },
+          {
+            "key": "shutdown",
+            "label": "Shutdown",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "idea",
+            "to": "pre_seed",
+            "on": "incorporated"
+          },
+          {
+            "from": "pre_seed",
+            "to": "seed",
+            "on": "seed_round"
+          },
+          {
+            "from": "seed",
+            "to": "series_a",
+            "on": "series_a_round"
+          },
+          {
+            "from": "series_a",
+            "to": "growth",
+            "on": "product_market_fit"
+          },
+          {
+            "from": "growth",
+            "to": "scale",
+            "on": "revenue_scale"
+          },
+          {
+            "from": "scale",
+            "to": "exit",
+            "on": "acquisition_or_ipo"
+          },
+          {
+            "from": "seed",
+            "to": "shutdown",
+            "on": "runway_exhausted"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "arr",
+          "label": "Annual Recurring Revenue",
+          "unit": "$"
+        },
+        {
+          "key": "growth_rate",
+          "label": "YoY Growth",
+          "unit": "%"
+        },
+        {
+          "key": "burn_multiple",
+          "label": "Burn Multiple",
+          "formula": "net_burn / net_new_arr",
+          "unit": "x",
+          "threshold": "< 1.5 healthy"
+        },
+        {
+          "key": "runway",
+          "label": "Runway",
+          "formula": "cash / monthly_burn",
+          "unit": "months",
+          "threshold": ">= 18 healthy"
+        },
+        {
+          "key": "ndr",
+          "label": "Net Dollar Retention",
+          "unit": "%",
+          "threshold": ">= 110% strong"
+        },
+        {
+          "key": "logo_count",
+          "label": "Institutional Logos",
+          "unit": "count"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "pitch_deck",
+          "label": "Pitch Deck",
+          "required": true
+        },
+        {
+          "key": "cap_table",
+          "label": "Cap Table",
+          "required": true
+        },
+        {
+          "key": "financial_model",
+          "label": "Financial Model",
+          "required": false
+        },
+        {
+          "key": "data_room",
+          "label": "Data Room",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:cap_table",
+          "label": "Cap Table",
+          "role": "ingest"
+        },
+        {
+          "key": "connector:crm",
+          "label": "CRM",
+          "role": "enrichment"
+        },
+        {
+          "key": "connector:auric_profile",
+          "label": "Auric Public Profile",
+          "role": "enrichment"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:innovation_ecosystem:founder",
+      "label": "Founder",
+      "relationships": [
+        {
+          "predicate": "founded",
+          "target": "financial_services:innovation_ecosystem:startup",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "holds",
+          "target": "financial_services:capital_markets:equity",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "advised_by",
+          "target": "financial_services:people:advisor",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "pitches_to",
+          "target": "financial_services:institutions:venture_capital_firm",
+          "cardinality": "many"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "prior_exits",
+          "label": "Prior Exits",
+          "unit": "count"
+        },
+        {
+          "key": "ownership",
+          "label": "Founder Ownership",
+          "unit": "%"
+        },
+        {
+          "key": "tenure",
+          "label": "Tenure",
+          "unit": "years"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "founder_agreement",
+          "label": "Founder / Vesting Agreement",
+          "required": false
+        },
+        {
+          "key": "ip_assignment",
+          "label": "IP Assignment Agreement",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:crm",
+          "label": "CRM",
+          "role": "enrichment"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:innovation_ecosystem:product",
+      "label": "Product",
+      "relationships": [
+        {
+          "predicate": "built_by",
+          "target": "financial_services:innovation_ecosystem:startup",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "delivers",
+          "target": "financial_services:innovation_ecosystem:capability",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "deployed_via",
+          "target": "financial_services:innovation_ecosystem:integration",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "evaluated_in",
+          "target": "financial_services:innovation_ecosystem:vendor_evaluation",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "adopted_by",
+          "target": "financial_services:institutions:federal_credit_union",
+          "cardinality": "many"
+        }
+      ],
+      "lifecycle": {
+        "initial": "concept",
+        "states": [
+          {
+            "key": "concept",
+            "label": "Concept"
+          },
+          {
+            "key": "beta",
+            "label": "Beta"
+          },
+          {
+            "key": "ga",
+            "label": "General Availability"
+          },
+          {
+            "key": "mature",
+            "label": "Mature"
+          },
+          {
+            "key": "sunset",
+            "label": "Sunset",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "concept",
+            "to": "beta",
+            "on": "first_build"
+          },
+          {
+            "from": "beta",
+            "to": "ga",
+            "on": "launch"
+          },
+          {
+            "from": "ga",
+            "to": "mature",
+            "on": "scaled_adoption"
+          },
+          {
+            "from": "mature",
+            "to": "sunset",
+            "on": "end_of_life"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "active_customers",
+          "label": "Active Customers",
+          "unit": "count"
+        },
+        {
+          "key": "nps",
+          "label": "Net Promoter Score",
+          "unit": "score"
+        },
+        {
+          "key": "uptime",
+          "label": "Uptime",
+          "unit": "%",
+          "threshold": ">= 99.9% SLA"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "product_spec",
+          "label": "Product Specification",
+          "required": false
+        },
+        {
+          "key": "security_review",
+          "label": "Security Review / SOC 2",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:product_analytics",
+          "label": "Product Analytics",
+          "role": "ingest"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:innovation_ecosystem:technology",
+      "label": "Technology",
+      "relationships": [
+        {
+          "predicate": "underlies",
+          "target": "financial_services:innovation_ecosystem:product",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "implemented_as",
+          "target": "financial_services:technology:api",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "assessed_for",
+          "target": "financial_services:risk:cyber_risk",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "maturity",
+          "label": "Technology Maturity (TRL)",
+          "unit": "1-9"
+        },
+        {
+          "key": "patents",
+          "label": "Patents Filed",
+          "unit": "count"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "architecture_doc",
+          "label": "Architecture Overview",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:code_repository",
+          "label": "Code Repository",
+          "role": "ingest"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:innovation_ecosystem:pilot",
+      "label": "Pilot",
+      "notes": "A time-boxed evaluation of an innovation product inside an institution \u2014 the first rung of the Cooperative Markets relationship ladder.",
+      "relationships": [
+        {
+          "predicate": "run_by",
+          "target": "financial_services:innovation_ecosystem:startup",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "host",
+          "target": "financial_services:institutions:federal_credit_union",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "evaluates",
+          "target": "financial_services:innovation_ecosystem:product",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "precedes",
+          "target": "financial_services:innovation_ecosystem:proof_of_concept",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "advances_to",
+          "target": "financial_services:innovation_ecosystem:integration",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "governed_by",
+          "target": "financial_services:organizational_structure:innovation_committee",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "proposed",
+        "states": [
+          {
+            "key": "proposed",
+            "label": "Proposed"
+          },
+          {
+            "key": "scoping",
+            "label": "Scoping"
+          },
+          {
+            "key": "active",
+            "label": "Active"
+          },
+          {
+            "key": "evaluation",
+            "label": "Evaluation"
+          },
+          {
+            "key": "succeeded",
+            "label": "Succeeded",
+            "terminal": true
+          },
+          {
+            "key": "failed",
+            "label": "Failed",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "proposed",
+            "to": "scoping",
+            "on": "approved_to_scope"
+          },
+          {
+            "from": "scoping",
+            "to": "active",
+            "on": "kickoff"
+          },
+          {
+            "from": "active",
+            "to": "evaluation",
+            "on": "pilot_ends"
+          },
+          {
+            "from": "evaluation",
+            "to": "succeeded",
+            "on": "success_criteria_met"
+          },
+          {
+            "from": "evaluation",
+            "to": "failed",
+            "on": "criteria_missed"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "success_criteria_met",
+          "label": "Success Criteria Met",
+          "unit": "%"
+        },
+        {
+          "key": "time_to_value",
+          "label": "Time to Value",
+          "unit": "days"
+        },
+        {
+          "key": "conversion",
+          "label": "Pilot-to-Contract Conversion",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "pilot_agreement",
+          "label": "Pilot Agreement / SOW",
+          "required": true
+        },
+        {
+          "key": "success_criteria",
+          "label": "Success Criteria Definition",
+          "required": true
+        },
+        {
+          "key": "evaluation_report",
+          "label": "Pilot Evaluation Report",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:crm",
+          "label": "Relationship CRM",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:innovation_ecosystem:proof_of_concept",
+      "label": "Proof of Concept (POC)",
+      "relationships": [
+        {
+          "predicate": "for",
+          "target": "financial_services:innovation_ecosystem:product",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "sponsored_by",
+          "target": "financial_services:institutions:federal_credit_union",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "validates",
+          "target": "financial_services:innovation_ecosystem:capability",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "feeds",
+          "target": "financial_services:innovation_ecosystem:pilot",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "defined",
+        "states": [
+          {
+            "key": "defined",
+            "label": "Defined"
+          },
+          {
+            "key": "building",
+            "label": "Building"
+          },
+          {
+            "key": "demonstrated",
+            "label": "Demonstrated"
+          },
+          {
+            "key": "accepted",
+            "label": "Accepted",
+            "terminal": true
+          },
+          {
+            "key": "rejected",
+            "label": "Rejected",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "defined",
+            "to": "building",
+            "on": "kickoff"
+          },
+          {
+            "from": "building",
+            "to": "demonstrated",
+            "on": "demo"
+          },
+          {
+            "from": "demonstrated",
+            "to": "accepted",
+            "on": "validated"
+          },
+          {
+            "from": "demonstrated",
+            "to": "rejected",
+            "on": "not_validated"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "hypotheses_validated",
+          "label": "Hypotheses Validated",
+          "unit": "%"
+        },
+        {
+          "key": "effort",
+          "label": "Engineering Effort",
+          "unit": "days"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "poc_scope",
+          "label": "POC Scope Document",
+          "required": true
+        },
+        {
+          "key": "poc_results",
+          "label": "POC Results",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:crm",
+          "label": "Relationship CRM",
+          "role": "enrichment"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:innovation_ecosystem:integration",
+      "label": "Integration",
+      "relationships": [
+        {
+          "predicate": "connects",
+          "target": "financial_services:innovation_ecosystem:product",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "into",
+          "target": "financial_services:technology:core_processor",
+          "cardinality": "one",
+          "description": "Typically core-banking integration."
+        },
+        {
+          "predicate": "exposes",
+          "target": "financial_services:technology:api",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "delivered_for",
+          "target": "financial_services:institutions:federal_credit_union",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "follows",
+          "target": "financial_services:innovation_ecosystem:pilot",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "matures_into",
+          "target": "financial_services:innovation_ecosystem:partnership",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "scoped",
+        "states": [
+          {
+            "key": "scoped",
+            "label": "Scoped"
+          },
+          {
+            "key": "in_development",
+            "label": "In Development"
+          },
+          {
+            "key": "testing",
+            "label": "Testing / UAT"
+          },
+          {
+            "key": "live",
+            "label": "Live"
+          },
+          {
+            "key": "deprecated",
+            "label": "Deprecated",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "scoped",
+            "to": "in_development",
+            "on": "build_starts"
+          },
+          {
+            "from": "in_development",
+            "to": "testing",
+            "on": "feature_complete"
+          },
+          {
+            "from": "testing",
+            "to": "live",
+            "on": "uat_passed"
+          },
+          {
+            "from": "live",
+            "to": "deprecated",
+            "on": "retired"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "time_to_integrate",
+          "label": "Time to Integrate",
+          "unit": "weeks"
+        },
+        {
+          "key": "transactions",
+          "label": "Transactions Processed",
+          "unit": "count"
+        },
+        {
+          "key": "error_rate",
+          "label": "Integration Error Rate",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "integration_spec",
+          "label": "Integration Specification",
+          "required": true
+        },
+        {
+          "key": "api_docs",
+          "label": "API Documentation",
+          "required": false
+        },
+        {
+          "key": "security_assessment",
+          "label": "Vendor Security Assessment",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:core_processor",
+          "label": "Core Processor",
+          "role": "system_of_record"
+        },
+        {
+          "key": "connector:api_gateway",
+          "label": "API Gateway",
+          "role": "enrichment"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:innovation_ecosystem:partnership",
+      "label": "Partnership",
+      "notes": "A durable institution <-> innovation-company relationship \u2014 the upper rungs of the Cooperative Markets ladder (integration -> partnership -> investment).",
+      "relationships": [
+        {
+          "predicate": "between",
+          "target": "financial_services:institutions:federal_credit_union",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "and",
+          "target": "financial_services:innovation_ecosystem:startup",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "built_on",
+          "target": "financial_services:innovation_ecosystem:integration",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "formalized_by",
+          "target": "financial_services:vendors_partners:contract",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "may_lead_to",
+          "target": "financial_services:investments:investment",
+          "cardinality": "one",
+          "description": "CU or CUSO investment into the partner."
+        },
+        {
+          "predicate": "involves",
+          "target": "financial_services:institutions:credit_union_service_organization_cuso",
+          "cardinality": "many"
+        }
+      ],
+      "lifecycle": {
+        "initial": "exploration",
+        "states": [
+          {
+            "key": "exploration",
+            "label": "Exploration"
+          },
+          {
+            "key": "evaluation",
+            "label": "Evaluation"
+          },
+          {
+            "key": "pilot",
+            "label": "Pilot"
+          },
+          {
+            "key": "integration",
+            "label": "Integration"
+          },
+          {
+            "key": "partnership",
+            "label": "Partnership"
+          },
+          {
+            "key": "investment",
+            "label": "Investment"
+          },
+          {
+            "key": "monitoring",
+            "label": "Monitoring"
+          },
+          {
+            "key": "ended",
+            "label": "Ended",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "exploration",
+            "to": "evaluation",
+            "on": "discovery_complete"
+          },
+          {
+            "from": "evaluation",
+            "to": "pilot",
+            "on": "pilot_approved"
+          },
+          {
+            "from": "pilot",
+            "to": "integration",
+            "on": "pilot_succeeded"
+          },
+          {
+            "from": "integration",
+            "to": "partnership",
+            "on": "contract_signed"
+          },
+          {
+            "from": "partnership",
+            "to": "investment",
+            "on": "invests"
+          },
+          {
+            "from": "partnership",
+            "to": "monitoring",
+            "on": "steady_state"
+          },
+          {
+            "from": "monitoring",
+            "to": "ended",
+            "on": "wind_down"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "stage",
+          "label": "Relationship Stage",
+          "unit": "ladder"
+        },
+        {
+          "key": "contract_value",
+          "label": "Contract Value",
+          "unit": "$"
+        },
+        {
+          "key": "nps",
+          "label": "Partner NPS",
+          "unit": "score"
+        },
+        {
+          "key": "time_in_stage",
+          "label": "Time in Stage",
+          "unit": "days"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "partnership_agreement",
+          "label": "Partnership Agreement",
+          "required": true
+        },
+        {
+          "key": "msa",
+          "label": "Master Services Agreement",
+          "required": false
+        },
+        {
+          "key": "due_diligence",
+          "label": "Vendor Due Diligence Package",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:crm",
+          "label": "Relationship CRM",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:innovation_ecosystem:capability",
+      "label": "Capability",
+      "relationships": [
+        {
+          "predicate": "delivered_by",
+          "target": "financial_services:innovation_ecosystem:product",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "maps_to",
+          "target": "financial_services:innovation_ecosystem:market_category",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "required_by",
+          "target": "financial_services:institutions:federal_credit_union",
+          "cardinality": "many"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "maturity",
+          "label": "Capability Maturity",
+          "unit": "1-5"
+        },
+        {
+          "key": "coverage",
+          "label": "Market Coverage",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "capability_definition",
+          "label": "Capability Definition",
+          "required": false
+        }
+      ],
+      "connectors": []
+    },
+    {
+      "object": "financial_services:innovation_ecosystem:market_category",
+      "label": "Market Category",
+      "relationships": [
+        {
+          "predicate": "contains",
+          "target": "financial_services:innovation_ecosystem:startup",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "groups",
+          "target": "financial_services:innovation_ecosystem:capability",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "tracked_by",
+          "target": "financial_services:documents:research",
+          "cardinality": "many"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "tam",
+          "label": "Total Addressable Market",
+          "unit": "$"
+        },
+        {
+          "key": "vendor_count",
+          "label": "Active Vendors",
+          "unit": "count"
+        },
+        {
+          "key": "adoption",
+          "label": "Institutional Adoption",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "category_report",
+          "label": "Market Category Report",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:auric_profile",
+          "label": "Auric Market Feed",
+          "role": "enrichment"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:innovation_ecosystem:vendor_evaluation",
+      "label": "Vendor Evaluation",
+      "notes": "Structured institutional assessment of an innovation vendor/product; feeds third-party risk and the buying decision.",
+      "relationships": [
+        {
+          "predicate": "evaluates",
+          "target": "financial_services:innovation_ecosystem:startup",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "of",
+          "target": "financial_services:innovation_ecosystem:product",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "conducted_by",
+          "target": "financial_services:institutions:federal_credit_union",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "assesses",
+          "target": "financial_services:risk:vendor_risk",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "informs",
+          "target": "financial_services:documents:investment_memo",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "uses",
+          "target": "financial_services:innovation_ecosystem:institution_readiness",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "requested",
+        "states": [
+          {
+            "key": "requested",
+            "label": "Requested"
+          },
+          {
+            "key": "in_review",
+            "label": "In Review"
+          },
+          {
+            "key": "scored",
+            "label": "Scored"
+          },
+          {
+            "key": "approved",
+            "label": "Approved",
+            "terminal": true
+          },
+          {
+            "key": "rejected",
+            "label": "Rejected",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "requested",
+            "to": "in_review",
+            "on": "assigned"
+          },
+          {
+            "from": "in_review",
+            "to": "scored",
+            "on": "assessment_complete"
+          },
+          {
+            "from": "scored",
+            "to": "approved",
+            "on": "committee_approves"
+          },
+          {
+            "from": "scored",
+            "to": "rejected",
+            "on": "committee_declines"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "overall_score",
+          "label": "Overall Score",
+          "unit": "0-100"
+        },
+        {
+          "key": "security_score",
+          "label": "Security Score",
+          "unit": "0-100"
+        },
+        {
+          "key": "risk_tier",
+          "label": "Risk Tier",
+          "unit": "low/med/high"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "rfi_response",
+          "label": "RFI / RFP Response",
+          "required": true
+        },
+        {
+          "key": "soc2",
+          "label": "SOC 2 Report",
+          "required": false
+        },
+        {
+          "key": "risk_assessment",
+          "label": "Third-Party Risk Assessment",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:grc",
+          "label": "GRC / Vendor Risk",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:innovation_ecosystem:innovation_score",
+      "label": "Innovation Score",
+      "notes": "Dispatch inference (calculation over public + verified signals) \u2014 never a conclusion held only in model weights; persists evidence, source, confidence, lineage.",
+      "relationships": [
+        {
+          "predicate": "scores",
+          "target": "financial_services:innovation_ecosystem:startup",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "derived_from",
+          "target": "financial_services:innovation_ecosystem:market_category",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "compared_with",
+          "target": "financial_services:innovation_ecosystem:institution_readiness",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "composite",
+          "label": "Composite Innovation Score",
+          "unit": "0-100"
+        },
+        {
+          "key": "momentum",
+          "label": "Momentum",
+          "unit": "percentile"
+        },
+        {
+          "key": "confidence",
+          "label": "Confidence",
+          "unit": "0-1",
+          "threshold": "persist evidence + lineage"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "scoring_methodology",
+          "label": "Scoring Methodology",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:auric_profile",
+          "label": "Auric Signals",
+          "role": "ingest"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:innovation_ecosystem:institution_readiness",
+      "label": "Institution Readiness",
+      "notes": "How prepared an institution is to adopt innovation (buying process, integration surface, risk appetite, budget).",
+      "relationships": [
+        {
+          "predicate": "assesses",
+          "target": "financial_services:institutions:federal_credit_union",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "informs",
+          "target": "financial_services:innovation_ecosystem:vendor_evaluation",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "paired_with",
+          "target": "financial_services:innovation_ecosystem:startup_readiness",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "readiness_index",
+          "label": "Readiness Index",
+          "unit": "0-100"
+        },
+        {
+          "key": "integration_capacity",
+          "label": "Integration Capacity",
+          "unit": "1-5"
+        },
+        {
+          "key": "risk_appetite",
+          "label": "Risk Appetite",
+          "unit": "low/med/high"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "readiness_assessment",
+          "label": "Readiness Assessment",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:crm",
+          "label": "Relationship CRM",
+          "role": "enrichment"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:innovation_ecosystem:startup_readiness",
+      "label": "Startup Readiness",
+      "notes": "How prepared an innovation company is for institutional-grade adoption (security, compliance, references, financial durability).",
+      "relationships": [
+        {
+          "predicate": "assesses",
+          "target": "financial_services:innovation_ecosystem:startup",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "gates",
+          "target": "financial_services:innovation_ecosystem:pilot",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "paired_with",
+          "target": "financial_services:innovation_ecosystem:institution_readiness",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "readiness_index",
+          "label": "Institutional-Readiness Index",
+          "unit": "0-100"
+        },
+        {
+          "key": "compliance_maturity",
+          "label": "Compliance Maturity",
+          "unit": "1-5"
+        },
+        {
+          "key": "reference_count",
+          "label": "Institutional References",
+          "unit": "count"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "readiness_scorecard",
+          "label": "Readiness Scorecard",
+          "required": false
+        },
+        {
+          "key": "soc2",
+          "label": "SOC 2 Report",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:grc",
+          "label": "GRC / Vendor Risk",
+          "role": "enrichment"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:innovation_ecosystem:investment_thesis",
+      "label": "Investment Thesis",
+      "relationships": [
+        {
+          "predicate": "guides",
+          "target": "financial_services:institutions:venture_capital_firm",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "targets",
+          "target": "financial_services:innovation_ecosystem:market_category",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "frames",
+          "target": "financial_services:investments:investment",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "documented_in",
+          "target": "financial_services:documents:investment_memo",
+          "cardinality": "many"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "target_check_size",
+          "label": "Target Check Size",
+          "unit": "$"
+        },
+        {
+          "key": "target_stage",
+          "label": "Target Stage",
+          "unit": "text"
+        },
+        {
+          "key": "hit_rate",
+          "label": "Thesis Hit Rate",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "thesis_memo",
+          "label": "Thesis Memo",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:crm",
+          "label": "Deal-Flow CRM",
+          "role": "enrichment"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:innovation_ecosystem:investment_committee_memo",
+      "label": "Investment Committee Memo",
+      "relationships": [
+        {
+          "predicate": "recommends",
+          "target": "financial_services:investments:investment",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "about",
+          "target": "financial_services:innovation_ecosystem:startup",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "reviewed_by",
+          "target": "financial_services:organizational_structure:investment_committee",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "applies",
+          "target": "financial_services:innovation_ecosystem:investment_thesis",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "cites",
+          "target": "financial_services:innovation_ecosystem:vendor_evaluation",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "drafting",
+        "states": [
+          {
+            "key": "drafting",
+            "label": "Drafting"
+          },
+          {
+            "key": "circulated",
+            "label": "Circulated"
+          },
+          {
+            "key": "committee_review",
+            "label": "Committee Review"
+          },
+          {
+            "key": "approved",
+            "label": "Approved",
+            "terminal": true
+          },
+          {
+            "key": "declined",
+            "label": "Declined",
+            "terminal": true
+          },
+          {
+            "key": "tabled",
+            "label": "Tabled"
+          }
+        ],
+        "transitions": [
+          {
+            "from": "drafting",
+            "to": "circulated",
+            "on": "draft_complete"
+          },
+          {
+            "from": "circulated",
+            "to": "committee_review",
+            "on": "meeting_scheduled"
+          },
+          {
+            "from": "committee_review",
+            "to": "approved",
+            "on": "ic_approves"
+          },
+          {
+            "from": "committee_review",
+            "to": "declined",
+            "on": "ic_declines"
+          },
+          {
+            "from": "committee_review",
+            "to": "tabled",
+            "on": "needs_more_diligence"
+          },
+          {
+            "from": "tabled",
+            "to": "committee_review",
+            "on": "diligence_complete"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "recommended_amount",
+          "label": "Recommended Amount",
+          "unit": "$"
+        },
+        {
+          "key": "decision",
+          "label": "IC Decision",
+          "unit": "approve/decline/table"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "ic_memo",
+          "label": "IC Memo",
+          "required": true
+        },
+        {
+          "key": "diligence_appendix",
+          "label": "Diligence Appendix",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:deal_management",
+          "label": "Deal Management",
+          "role": "system_of_record"
+        }
+      ]
+    }
+  ]
+}

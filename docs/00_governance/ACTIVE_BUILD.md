@@ -4,6 +4,19 @@
 Cooperative Markets foundation on Dispatch OS. The full Specification Program (Vols
 I–X) is reconciled/adopted; forward work is BUILD.
 
+## Roadmap / knowledge-encoding sprints (Vol XI+)
+Plan of record: `DISPATCH_OS_REMAINING_ROADMAP.md` — Sprints 1–10 encode business
+knowledge (ontology, truth models, rule/workflow/agent/connector/KPI/knowledge-pack
+libraries, reports, institution graph). **Vertical scope: the finance / VC / CU / fintech /
+innovation stack (ADR-0015); Hospitality descoped.** **Sprint 1 = Volume XI Canonical
+Ontology (ADR-0014), IN PROGRESS:** framework (`core/registry/ontology.ts`) + **4 packs /
+113 objects, closed graph (0 unresolved)** done — Credit Union (`ontology/credit_union.json`,
+13), Lending & Deposits (`ontology/lending_deposits.json`, 30), Capital Markets & Institutions
+(`ontology/capital_markets.json`, 54), Innovation Ecosystem (`ontology/innovation_ecosystem.json`,
+16). Closed-graph check: `scripts/ontology-check.mjs`. Remaining ontology packs: Compliance,
+Regulation, Technology/Vendor, AI. Substrate done: Object Registry index (`0017`) + the
+341-class FS catalog + loader + `financial_services` base package.
+
 ## Current context pack
 `docs/context/packs/cooperative-markets-foundation.md`
 

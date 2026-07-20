@@ -1,0 +1,3557 @@
+{
+  "key": "ontology:capital_markets",
+  "label": "Capital Markets & Institutions Ontology",
+  "version": 1,
+  "domain": "financial_services",
+  "notes": "Volume XI pack (ADR-0014) for the capital-formation side of the VC / CU / fintech / innovation stack. Enriches the innovation-finance institution types (VC/PE/private-credit/investment & merchant banks, fintech/neobank/broker-dealer/RIA, funds/SPVs/holding cos), the capital_markets instruments and events (equity, preferred, SAFE, convertible, warrant, senior/mezz/sub debt, private credit, warehouse, participation, syndication, fund/SPV vehicles, capital_call, distribution, exit, IPO, recap, acquisition, disposition), the investments family (portfolio/holding/position/security and asset classes), and investor people (investor/LP/GP/advisor/PM/financial_advisor). Relationship targets are catalog schema_refs (closed graph). Connector keys are forward references into the Connector Registry (Volume IX); required_document and KPI keys are free-form. Anchors (VC/PE firm, investment bank, fintech, priced equity, SAFE, convertible note, fund vehicle, capital_call, exit, IPO, acquisition, investment record) hand-authored in full; the long tail is drafted on the same schema.",
+  "ontologies": [
+    {
+      "object": "financial_services:institutions:venture_capital_firm",
+      "label": "Venture Capital Firm",
+      "notes": "Manages one or more VC funds; raises from LPs, invests equity into startups, supports and exits.",
+      "relationships": [
+        {
+          "predicate": "manages",
+          "target": "financial_services:capital_markets:fund",
+          "cardinality": "many",
+          "description": "GP of the fund vehicles it raises."
+        },
+        {
+          "predicate": "raises_from",
+          "target": "financial_services:people:lp",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "led_by",
+          "target": "financial_services:people:gp",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "employs",
+          "target": "financial_services:people:portfolio_manager",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "invests_in",
+          "target": "financial_services:innovation_ecosystem:startup",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "holds",
+          "target": "financial_services:investments:position",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "issues",
+          "target": "financial_services:documents:investment_memo",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "guided_by",
+          "target": "financial_services:innovation_ecosystem:investment_thesis",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "registered_with",
+          "target": "financial_services:regulation:sec",
+          "cardinality": "one",
+          "description": "Exempt reporting adviser / RIA depending on AUM."
+        }
+      ],
+      "lifecycle": {
+        "initial": "fundraising",
+        "states": [
+          {
+            "key": "fundraising",
+            "label": "Fundraising"
+          },
+          {
+            "key": "investing",
+            "label": "Investing / Deployment"
+          },
+          {
+            "key": "harvesting",
+            "label": "Harvesting"
+          },
+          {
+            "key": "winding_down",
+            "label": "Winding Down",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "fundraising",
+            "to": "investing",
+            "on": "first_close"
+          },
+          {
+            "from": "investing",
+            "to": "harvesting",
+            "on": "deployment_complete"
+          },
+          {
+            "from": "harvesting",
+            "to": "winding_down",
+            "on": "fund_life_ends"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "aum",
+          "label": "Assets Under Management",
+          "unit": "$"
+        },
+        {
+          "key": "dpi",
+          "label": "DPI (Distributions to Paid-In)",
+          "formula": "distributions / paid_in_capital",
+          "unit": "x"
+        },
+        {
+          "key": "tvpi",
+          "label": "TVPI (Total Value to Paid-In)",
+          "formula": "(nav + distributions) / paid_in_capital",
+          "unit": "x"
+        },
+        {
+          "key": "net_irr",
+          "label": "Net IRR",
+          "unit": "%"
+        },
+        {
+          "key": "dry_powder",
+          "label": "Dry Powder",
+          "formula": "committed_capital - deployed_capital",
+          "unit": "$"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "lpa",
+          "label": "Limited Partnership Agreement",
+          "required": true
+        },
+        {
+          "key": "ppm",
+          "label": "Private Placement Memorandum",
+          "required": true
+        },
+        {
+          "key": "form_adv",
+          "label": "SEC Form ADV / Form D",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:portfolio_monitoring",
+          "label": "Portfolio Monitoring / Fund Admin",
+          "role": "system_of_record"
+        },
+        {
+          "key": "connector:cap_table",
+          "label": "Cap Table (Carta/Pulley)",
+          "role": "ingest"
+        },
+        {
+          "key": "connector:crm",
+          "label": "Deal-Flow CRM (Affinity)",
+          "role": "enrichment"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:institutions:private_equity_firm",
+      "label": "Private Equity Firm",
+      "notes": "Buyout/growth manager; control or significant-minority equity, value creation, leveraged exits.",
+      "relationships": [
+        {
+          "predicate": "manages",
+          "target": "financial_services:capital_markets:fund",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "raises_from",
+          "target": "financial_services:people:lp",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "led_by",
+          "target": "financial_services:people:gp",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "executes",
+          "target": "financial_services:capital_markets:acquisition",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "uses",
+          "target": "financial_services:capital_markets:mezzanine_debt",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "holds",
+          "target": "financial_services:investments:holding",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "exits_via",
+          "target": "financial_services:capital_markets:exit",
+          "cardinality": "many"
+        }
+      ],
+      "lifecycle": {
+        "initial": "fundraising",
+        "states": [
+          {
+            "key": "fundraising",
+            "label": "Fundraising"
+          },
+          {
+            "key": "investing",
+            "label": "Investing"
+          },
+          {
+            "key": "value_creation",
+            "label": "Value Creation"
+          },
+          {
+            "key": "harvesting",
+            "label": "Harvesting"
+          },
+          {
+            "key": "winding_down",
+            "label": "Winding Down",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "fundraising",
+            "to": "investing",
+            "on": "first_close"
+          },
+          {
+            "from": "investing",
+            "to": "value_creation",
+            "on": "platform_acquired"
+          },
+          {
+            "from": "value_creation",
+            "to": "harvesting",
+            "on": "hold_period_matures"
+          },
+          {
+            "from": "harvesting",
+            "to": "winding_down",
+            "on": "fund_life_ends"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "net_irr",
+          "label": "Net IRR",
+          "unit": "%"
+        },
+        {
+          "key": "moic",
+          "label": "MOIC",
+          "formula": "total_value / invested_capital",
+          "unit": "x"
+        },
+        {
+          "key": "leverage",
+          "label": "Entry Leverage",
+          "formula": "net_debt / ebitda",
+          "unit": "x"
+        },
+        {
+          "key": "dpi",
+          "label": "DPI",
+          "formula": "distributions / paid_in_capital",
+          "unit": "x"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "lpa",
+          "label": "Limited Partnership Agreement",
+          "required": true
+        },
+        {
+          "key": "ppm",
+          "label": "Private Placement Memorandum",
+          "required": true
+        },
+        {
+          "key": "form_adv",
+          "label": "SEC Form ADV",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:portfolio_monitoring",
+          "label": "Portfolio Monitoring / Fund Admin",
+          "role": "system_of_record"
+        },
+        {
+          "key": "connector:data_room",
+          "label": "Diligence Data Room",
+          "role": "ingest"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:institutions:investment_bank",
+      "label": "Investment Bank",
+      "notes": "Advises on and underwrites capital-markets transactions; arranges syndications, M&A, IPOs.",
+      "relationships": [
+        {
+          "predicate": "arranges",
+          "target": "financial_services:capital_markets:syndication",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "underwrites",
+          "target": "financial_services:capital_markets:ipo",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "advises_on",
+          "target": "financial_services:capital_markets:acquisition",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "distributes",
+          "target": "financial_services:capital_markets:senior_debt",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "employs",
+          "target": "financial_services:people:advisor",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "regulated_by",
+          "target": "financial_services:regulation:finra",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "regulated_by",
+          "target": "financial_services:regulation:sec",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "deal_volume",
+          "label": "Deal Volume",
+          "unit": "$"
+        },
+        {
+          "key": "league_rank",
+          "label": "League Table Rank",
+          "unit": "rank"
+        },
+        {
+          "key": "advisory_fees",
+          "label": "Advisory Fee Income",
+          "unit": "$"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "engagement_letter",
+          "label": "Engagement Letter",
+          "required": true
+        },
+        {
+          "key": "fairness_opinion",
+          "label": "Fairness Opinion",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:deal_management",
+          "label": "Deal / Pipeline Management",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:institutions:private_credit_fund",
+      "label": "Private Credit Fund",
+      "notes": "Non-bank lender deploying LP capital into direct-lending facilities; the credit analogue to a VC/PE fund.",
+      "relationships": [
+        {
+          "predicate": "manages",
+          "target": "financial_services:capital_markets:fund",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "raises_from",
+          "target": "financial_services:people:lp",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "originates",
+          "target": "financial_services:lending_products:private_credit_facility",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "structures_as",
+          "target": "financial_services:capital_markets:private_credit",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "holds",
+          "target": "financial_services:investments:position",
+          "cardinality": "many"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "net_irr",
+          "label": "Net IRR",
+          "unit": "%"
+        },
+        {
+          "key": "yield",
+          "label": "Portfolio Yield",
+          "unit": "%"
+        },
+        {
+          "key": "loss_rate",
+          "label": "Realized Loss Rate",
+          "unit": "%"
+        },
+        {
+          "key": "leverage",
+          "label": "Fund-Level Leverage",
+          "formula": "fund_debt / nav",
+          "unit": "x"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "lpa",
+          "label": "Limited Partnership Agreement",
+          "required": true
+        },
+        {
+          "key": "credit_policy",
+          "label": "Credit Policy",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:portfolio_monitoring",
+          "label": "Portfolio Monitoring",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:institutions:fintech",
+      "label": "Fintech",
+      "notes": "Technology company delivering financial products/infrastructure; a core Cooperative Markets innovation-company type.",
+      "relationships": [
+        {
+          "predicate": "builds",
+          "target": "financial_services:innovation_ecosystem:product",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "founded_by",
+          "target": "financial_services:innovation_ecosystem:founder",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "raises",
+          "target": "financial_services:capital_markets:equity",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "backed_by",
+          "target": "financial_services:institutions:venture_capital_firm",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "partners_with",
+          "target": "financial_services:institutions:federal_credit_union",
+          "cardinality": "many",
+          "description": "Sells into / integrates with institutions (Cooperative Markets)."
+        },
+        {
+          "predicate": "evaluated_in",
+          "target": "financial_services:innovation_ecosystem:vendor_evaluation",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "integrates_via",
+          "target": "financial_services:innovation_ecosystem:integration",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "scored_by",
+          "target": "financial_services:innovation_ecosystem:innovation_score",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "pre_seed",
+        "states": [
+          {
+            "key": "pre_seed",
+            "label": "Pre-Seed"
+          },
+          {
+            "key": "seed",
+            "label": "Seed"
+          },
+          {
+            "key": "series_a",
+            "label": "Series A"
+          },
+          {
+            "key": "growth",
+            "label": "Growth"
+          },
+          {
+            "key": "scale",
+            "label": "Scale"
+          },
+          {
+            "key": "exit",
+            "label": "Exit",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "pre_seed",
+            "to": "seed",
+            "on": "seed_round"
+          },
+          {
+            "from": "seed",
+            "to": "series_a",
+            "on": "series_a_round"
+          },
+          {
+            "from": "series_a",
+            "to": "growth",
+            "on": "product_market_fit"
+          },
+          {
+            "from": "growth",
+            "to": "scale",
+            "on": "revenue_scale"
+          },
+          {
+            "from": "scale",
+            "to": "exit",
+            "on": "acquisition_or_ipo"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "arr",
+          "label": "Annual Recurring Revenue",
+          "unit": "$"
+        },
+        {
+          "key": "growth_rate",
+          "label": "YoY Growth Rate",
+          "unit": "%"
+        },
+        {
+          "key": "burn_multiple",
+          "label": "Burn Multiple",
+          "formula": "net_burn / net_new_arr",
+          "unit": "x",
+          "threshold": "< 1.5 healthy"
+        },
+        {
+          "key": "runway",
+          "label": "Runway",
+          "formula": "cash / monthly_burn",
+          "unit": "months"
+        },
+        {
+          "key": "ndr",
+          "label": "Net Dollar Retention",
+          "unit": "%",
+          "threshold": ">= 110% strong"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "pitch_deck",
+          "label": "Pitch Deck",
+          "required": true
+        },
+        {
+          "key": "cap_table",
+          "label": "Cap Table",
+          "required": true
+        },
+        {
+          "key": "financial_model",
+          "label": "Financial Model",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:cap_table",
+          "label": "Cap Table",
+          "role": "ingest"
+        },
+        {
+          "key": "connector:crm",
+          "label": "CRM",
+          "role": "enrichment"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:institutions:merchant_bank",
+      "label": "Merchant Bank",
+      "relationships": [
+        {
+          "predicate": "invests_in",
+          "target": "financial_services:innovation_ecosystem:startup",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "advises_on",
+          "target": "financial_services:capital_markets:acquisition",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "provides",
+          "target": "financial_services:capital_markets:mezzanine_debt",
+          "cardinality": "many"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "aum",
+          "label": "Assets / Capital Deployed",
+          "unit": "$"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "engagement_letter",
+          "label": "Engagement Letter",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:deal_management",
+          "label": "Deal Management",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:institutions:family_office",
+      "label": "Family Office",
+      "relationships": [
+        {
+          "predicate": "allocates_to",
+          "target": "financial_services:capital_markets:fund",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "acts_as",
+          "target": "financial_services:people:lp",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "holds",
+          "target": "financial_services:investments:portfolio",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "co_invests",
+          "target": "financial_services:innovation_ecosystem:startup",
+          "cardinality": "many"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "aum",
+          "label": "Assets Under Management",
+          "unit": "$"
+        },
+        {
+          "key": "allocation_alt",
+          "label": "Alternatives Allocation",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "ips",
+          "label": "Investment Policy Statement",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:portfolio_monitoring",
+          "label": "Portfolio Reporting",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:institutions:neobank",
+      "label": "Neobank",
+      "relationships": [
+        {
+          "predicate": "builds",
+          "target": "financial_services:innovation_ecosystem:product",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "backed_by",
+          "target": "financial_services:institutions:venture_capital_firm",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "partners_with",
+          "target": "financial_services:institutions:community_bank",
+          "cardinality": "many",
+          "description": "Sponsor-bank / BaaS relationship."
+        },
+        {
+          "predicate": "subject_to",
+          "target": "financial_services:compliance:bsa",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "active_users",
+          "label": "Active Users",
+          "unit": "count"
+        },
+        {
+          "key": "deposits",
+          "label": "Deposits Under Management",
+          "unit": "$"
+        },
+        {
+          "key": "cac",
+          "label": "Customer Acquisition Cost",
+          "unit": "$"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "sponsor_agreement",
+          "label": "Sponsor Bank Agreement",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:baas",
+          "label": "Banking-as-a-Service Platform",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:institutions:broker_dealer",
+      "label": "Broker-Dealer",
+      "relationships": [
+        {
+          "predicate": "regulated_by",
+          "target": "financial_services:regulation:finra",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "regulated_by",
+          "target": "financial_services:regulation:sec",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "places",
+          "target": "financial_services:capital_markets:equity",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "places",
+          "target": "financial_services:deposit_products:brokered_deposit",
+          "cardinality": "many"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "net_capital",
+          "label": "Net Capital",
+          "unit": "$",
+          "threshold": ">= SEC Rule 15c3-1 minimum"
+        },
+        {
+          "key": "commission_income",
+          "label": "Commission Income",
+          "unit": "$"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "form_bd",
+          "label": "SEC Form BD",
+          "required": true
+        },
+        {
+          "key": "finra_membership",
+          "label": "FINRA Membership Agreement",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:clearing",
+          "label": "Clearing / Custody",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:institutions:registered_investment_advisor_ria",
+      "label": "Registered Investment Advisor (RIA)",
+      "relationships": [
+        {
+          "predicate": "registered_with",
+          "target": "financial_services:regulation:sec",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "advises",
+          "target": "financial_services:people:investor",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "manages",
+          "target": "financial_services:investments:portfolio",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "employs",
+          "target": "financial_services:people:financial_advisor",
+          "cardinality": "many"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "aum",
+          "label": "Assets Under Management",
+          "unit": "$"
+        },
+        {
+          "key": "net_flows",
+          "label": "Net Client Flows",
+          "unit": "$"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "form_adv",
+          "label": "SEC Form ADV Parts 1 & 2",
+          "required": true
+        },
+        {
+          "key": "advisory_agreement",
+          "label": "Client Advisory Agreement",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:portfolio_monitoring",
+          "label": "Portfolio Management System",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:institutions:fund",
+      "label": "Fund (Institution)",
+      "notes": "The fund as a legal institution/entity (vs. capital_markets:fund the vehicle-instrument and investments:fund the holding record).",
+      "relationships": [
+        {
+          "predicate": "managed_by",
+          "target": "financial_services:institutions:venture_capital_firm",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "governed_by",
+          "target": "financial_services:organizational_structure:investment_committee",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "funded_by",
+          "target": "financial_services:people:lp",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "holds",
+          "target": "financial_services:investments:holding",
+          "cardinality": "many"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "committed_capital",
+          "label": "Committed Capital",
+          "unit": "$"
+        },
+        {
+          "key": "called_capital",
+          "label": "Called Capital",
+          "unit": "$"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "lpa",
+          "label": "Limited Partnership Agreement",
+          "required": true
+        },
+        {
+          "key": "side_letters",
+          "label": "Side Letters",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:fund_admin",
+          "label": "Fund Administration",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:institutions:spv",
+      "label": "Special Purpose Vehicle (Institution)",
+      "relationships": [
+        {
+          "predicate": "sponsored_by",
+          "target": "financial_services:institutions:venture_capital_firm",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "pools",
+          "target": "financial_services:people:investor",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "holds",
+          "target": "financial_services:investments:position",
+          "cardinality": "one",
+          "description": "Typically a single-asset holding."
+        },
+        {
+          "predicate": "structured_as",
+          "target": "financial_services:capital_markets:spv",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "committed_capital",
+          "label": "Committed Capital",
+          "unit": "$"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "operating_agreement",
+          "label": "SPV Operating Agreement",
+          "required": true
+        },
+        {
+          "key": "subscription_docs",
+          "label": "Subscription Documents",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:fund_admin",
+          "label": "SPV Administration",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:institutions:holding_company",
+      "label": "Holding Company",
+      "relationships": [
+        {
+          "predicate": "owns",
+          "target": "financial_services:institutions:subsidiary",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "consolidates",
+          "target": "financial_services:finance_accounting:balance_sheet",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "issues",
+          "target": "financial_services:capital_markets:equity",
+          "cardinality": "many"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "consolidated_assets",
+          "label": "Consolidated Assets",
+          "unit": "$"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "articles",
+          "label": "Articles of Incorporation",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:erp",
+          "label": "Consolidation / ERP",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:people:investor",
+      "label": "Investor",
+      "relationships": [
+        {
+          "predicate": "invests_in",
+          "target": "financial_services:capital_markets:fund",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "holds",
+          "target": "financial_services:investments:position",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "advised_by",
+          "target": "financial_services:people:financial_advisor",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "committed_capital",
+          "label": "Committed Capital",
+          "unit": "$"
+        },
+        {
+          "key": "portfolio_irr",
+          "label": "Portfolio IRR",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "accreditation",
+          "label": "Accredited Investor Verification",
+          "required": true
+        },
+        {
+          "key": "subscription_agreement",
+          "label": "Subscription Agreement",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:investor_portal",
+          "label": "Investor Portal",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:people:lp",
+      "label": "Limited Partner (LP)",
+      "relationships": [
+        {
+          "predicate": "commits_to",
+          "target": "financial_services:capital_markets:fund",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "receives",
+          "target": "financial_services:capital_markets:distribution",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "responds_to",
+          "target": "financial_services:capital_markets:capital_call",
+          "cardinality": "many"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "commitment",
+          "label": "Commitment",
+          "unit": "$"
+        },
+        {
+          "key": "unfunded",
+          "label": "Unfunded Commitment",
+          "unit": "$"
+        },
+        {
+          "key": "net_irr",
+          "label": "Net IRR",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "subscription_agreement",
+          "label": "Subscription Agreement",
+          "required": true
+        },
+        {
+          "key": "side_letter",
+          "label": "Side Letter",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:investor_portal",
+          "label": "LP Portal",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:people:gp",
+      "label": "General Partner (GP)",
+      "relationships": [
+        {
+          "predicate": "manages",
+          "target": "financial_services:capital_markets:fund",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "issues",
+          "target": "financial_services:capital_markets:capital_call",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "declares",
+          "target": "financial_services:capital_markets:distribution",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "owes_duty_to",
+          "target": "financial_services:people:lp",
+          "cardinality": "many"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "carried_interest",
+          "label": "Carried Interest",
+          "unit": "%",
+          "threshold": "typically 20%"
+        },
+        {
+          "key": "gp_commitment",
+          "label": "GP Commitment",
+          "unit": "%",
+          "threshold": "typically 1-5%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "lpa",
+          "label": "Limited Partnership Agreement",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:fund_admin",
+          "label": "Fund Administration",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:people:advisor",
+      "label": "Advisor",
+      "relationships": [
+        {
+          "predicate": "advises",
+          "target": "financial_services:innovation_ecosystem:startup",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "advises",
+          "target": "financial_services:institutions:venture_capital_firm",
+          "cardinality": "many"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "engagements",
+          "label": "Active Engagements",
+          "unit": "count"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "advisory_agreement",
+          "label": "Advisory Agreement",
+          "required": false
+        }
+      ],
+      "connectors": []
+    },
+    {
+      "object": "financial_services:people:portfolio_manager",
+      "label": "Portfolio Manager",
+      "relationships": [
+        {
+          "predicate": "manages",
+          "target": "financial_services:investments:portfolio",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "monitors",
+          "target": "financial_services:investments:holding",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "sits_on",
+          "target": "financial_services:organizational_structure:investment_committee",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "portfolio_return",
+          "label": "Portfolio Return",
+          "unit": "%"
+        },
+        {
+          "key": "active_positions",
+          "label": "Active Positions",
+          "unit": "count"
+        }
+      ],
+      "required_documents": [],
+      "connectors": [
+        {
+          "key": "connector:portfolio_monitoring",
+          "label": "Portfolio Monitoring",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:people:financial_advisor",
+      "label": "Financial Advisor",
+      "relationships": [
+        {
+          "predicate": "advises",
+          "target": "financial_services:people:investor",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "employed_by",
+          "target": "financial_services:institutions:registered_investment_advisor_ria",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "manages",
+          "target": "financial_services:investments:portfolio",
+          "cardinality": "many"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "aum_managed",
+          "label": "AUM Managed",
+          "unit": "$"
+        },
+        {
+          "key": "client_count",
+          "label": "Client Count",
+          "unit": "count"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "series_licenses",
+          "label": "Series 65/66 Licensing",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:crm",
+          "label": "Wealth CRM",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:capital_markets:equity",
+      "label": "Equity (Common Stock)",
+      "notes": "Common ownership issued in a priced financing round; the base security of a startup cap table.",
+      "relationships": [
+        {
+          "predicate": "issued_by",
+          "target": "financial_services:innovation_ecosystem:startup",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "subscribed_by",
+          "target": "financial_services:people:investor",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "recorded_as",
+          "target": "financial_services:investments:stock",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "converts_from",
+          "target": "financial_services:capital_markets:safe",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "converts_from",
+          "target": "financial_services:capital_markets:convertible_note",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "filed_under",
+          "target": "financial_services:compliance:consent",
+          "cardinality": "one",
+          "description": "Reg D exemption / Form D filing."
+        }
+      ],
+      "lifecycle": {
+        "initial": "term_sheet",
+        "states": [
+          {
+            "key": "term_sheet",
+            "label": "Term Sheet"
+          },
+          {
+            "key": "priced_round",
+            "label": "Priced Round"
+          },
+          {
+            "key": "issued",
+            "label": "Issued / Closed"
+          },
+          {
+            "key": "exited",
+            "label": "Exited",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "term_sheet",
+            "to": "priced_round",
+            "on": "valuation_set"
+          },
+          {
+            "from": "priced_round",
+            "to": "issued",
+            "on": "docs_signed"
+          },
+          {
+            "from": "issued",
+            "to": "exited",
+            "on": "liquidity_event"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "pre_money",
+          "label": "Pre-Money Valuation",
+          "unit": "$"
+        },
+        {
+          "key": "post_money",
+          "label": "Post-Money Valuation",
+          "unit": "$"
+        },
+        {
+          "key": "dilution",
+          "label": "Dilution",
+          "unit": "%"
+        },
+        {
+          "key": "ownership",
+          "label": "Ownership Acquired",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "spa",
+          "label": "Stock Purchase Agreement",
+          "required": true
+        },
+        {
+          "key": "term_sheet",
+          "label": "Term Sheet",
+          "required": true
+        },
+        {
+          "key": "form_d",
+          "label": "SEC Form D",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:cap_table",
+          "label": "Cap Table",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:capital_markets:preferred_equity",
+      "label": "Preferred Equity",
+      "notes": "Preferred stock with liquidation preference, anti-dilution, and control terms; the standard VC instrument.",
+      "relationships": [
+        {
+          "predicate": "issued_by",
+          "target": "financial_services:innovation_ecosystem:startup",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "held_by",
+          "target": "financial_services:institutions:venture_capital_firm",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "senior_to",
+          "target": "financial_services:capital_markets:equity",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "recorded_as",
+          "target": "financial_services:investments:position",
+          "cardinality": "many"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "liquidation_preference",
+          "label": "Liquidation Preference",
+          "unit": "x",
+          "threshold": "1x non-participating typical"
+        },
+        {
+          "key": "post_money",
+          "label": "Post-Money Valuation",
+          "unit": "$"
+        },
+        {
+          "key": "option_pool",
+          "label": "Option Pool",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "coi",
+          "label": "Amended Certificate of Incorporation",
+          "required": true
+        },
+        {
+          "key": "ir_agreement",
+          "label": "Investors' Rights Agreement",
+          "required": true
+        },
+        {
+          "key": "voting_agreement",
+          "label": "Voting Agreement",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:cap_table",
+          "label": "Cap Table",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:capital_markets:convertible_note",
+      "label": "Convertible Note",
+      "notes": "Debt that converts to equity at a priced round; carries interest, discount, and valuation cap.",
+      "relationships": [
+        {
+          "predicate": "issued_by",
+          "target": "financial_services:innovation_ecosystem:startup",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "held_by",
+          "target": "financial_services:people:investor",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "converts_to",
+          "target": "financial_services:capital_markets:preferred_equity",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "issued",
+        "states": [
+          {
+            "key": "issued",
+            "label": "Issued"
+          },
+          {
+            "key": "accruing",
+            "label": "Accruing"
+          },
+          {
+            "key": "converted",
+            "label": "Converted",
+            "terminal": true
+          },
+          {
+            "key": "repaid",
+            "label": "Repaid",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "issued",
+            "to": "accruing",
+            "on": "funds_received"
+          },
+          {
+            "from": "accruing",
+            "to": "converted",
+            "on": "qualified_financing"
+          },
+          {
+            "from": "accruing",
+            "to": "repaid",
+            "on": "maturity_no_round"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "valuation_cap",
+          "label": "Valuation Cap",
+          "unit": "$"
+        },
+        {
+          "key": "discount",
+          "label": "Conversion Discount",
+          "unit": "%",
+          "threshold": "10-25% typical"
+        },
+        {
+          "key": "interest_rate",
+          "label": "Interest Rate",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "note_purchase_agreement",
+          "label": "Note Purchase Agreement",
+          "required": true
+        },
+        {
+          "key": "convertible_note",
+          "label": "Convertible Promissory Note",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:cap_table",
+          "label": "Cap Table",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:capital_markets:safe",
+      "label": "SAFE (Simple Agreement for Future Equity)",
+      "notes": "Non-debt right to future equity on a trigger event; post-money or pre-money, cap and/or discount.",
+      "relationships": [
+        {
+          "predicate": "issued_by",
+          "target": "financial_services:innovation_ecosystem:startup",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "held_by",
+          "target": "financial_services:people:investor",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "converts_to",
+          "target": "financial_services:capital_markets:preferred_equity",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "signed",
+        "states": [
+          {
+            "key": "signed",
+            "label": "Signed"
+          },
+          {
+            "key": "outstanding",
+            "label": "Outstanding"
+          },
+          {
+            "key": "converted",
+            "label": "Converted",
+            "terminal": true
+          },
+          {
+            "key": "terminated",
+            "label": "Terminated",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "signed",
+            "to": "outstanding",
+            "on": "funds_received"
+          },
+          {
+            "from": "outstanding",
+            "to": "converted",
+            "on": "equity_financing_or_liquidity"
+          },
+          {
+            "from": "outstanding",
+            "to": "terminated",
+            "on": "dissolution"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "valuation_cap",
+          "label": "Valuation Cap",
+          "unit": "$"
+        },
+        {
+          "key": "discount",
+          "label": "Discount",
+          "unit": "%"
+        },
+        {
+          "key": "mfn",
+          "label": "Most-Favored-Nation Clause",
+          "unit": "bool"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "safe",
+          "label": "SAFE Agreement",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:cap_table",
+          "label": "Cap Table",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:capital_markets:warrant",
+      "label": "Warrant",
+      "relationships": [
+        {
+          "predicate": "issued_by",
+          "target": "financial_services:innovation_ecosystem:startup",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "held_by",
+          "target": "financial_services:people:investor",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "exercises_into",
+          "target": "financial_services:capital_markets:equity",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "strike",
+          "label": "Strike Price",
+          "unit": "$"
+        },
+        {
+          "key": "coverage",
+          "label": "Warrant Coverage",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "warrant_agreement",
+          "label": "Warrant Agreement",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:cap_table",
+          "label": "Cap Table",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:capital_markets:senior_debt",
+      "label": "Senior Debt",
+      "relationships": [
+        {
+          "predicate": "provided_by",
+          "target": "financial_services:institutions:investment_bank",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "owed_by",
+          "target": "financial_services:people:borrower",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "senior_to",
+          "target": "financial_services:capital_markets:subordinated_debt",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "secured_by",
+          "target": "financial_services:credit:collateral",
+          "cardinality": "many"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "leverage",
+          "label": "Senior Leverage",
+          "formula": "senior_debt / ebitda",
+          "unit": "x"
+        },
+        {
+          "key": "spread",
+          "label": "Spread",
+          "unit": "bps"
+        },
+        {
+          "key": "dscr",
+          "label": "Debt Service Coverage",
+          "formula": "ebitda / debt_service",
+          "unit": "x"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "credit_agreement",
+          "label": "Credit Agreement",
+          "required": true
+        },
+        {
+          "key": "intercreditor",
+          "label": "Intercreditor Agreement",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:loan_servicing",
+          "label": "Agency / Servicing",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:capital_markets:mezzanine_debt",
+      "label": "Mezzanine Debt",
+      "relationships": [
+        {
+          "predicate": "provided_by",
+          "target": "financial_services:institutions:private_credit_fund",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "subordinate_to",
+          "target": "financial_services:capital_markets:senior_debt",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "carries",
+          "target": "financial_services:capital_markets:warrant",
+          "cardinality": "many"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "cash_coupon",
+          "label": "Cash Coupon",
+          "unit": "%"
+        },
+        {
+          "key": "pik",
+          "label": "PIK Rate",
+          "unit": "%"
+        },
+        {
+          "key": "total_leverage",
+          "label": "Total Leverage",
+          "formula": "total_debt / ebitda",
+          "unit": "x"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "note_agreement",
+          "label": "Mezzanine Note Agreement",
+          "required": true
+        },
+        {
+          "key": "warrant_agreement",
+          "label": "Warrant Agreement",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:portfolio_monitoring",
+          "label": "Portfolio Monitoring",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:capital_markets:subordinated_debt",
+      "label": "Subordinated Debt",
+      "relationships": [
+        {
+          "predicate": "issued_by",
+          "target": "financial_services:institutions:holding_company",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "subordinate_to",
+          "target": "financial_services:capital_markets:senior_debt",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "held_by",
+          "target": "financial_services:people:investor",
+          "cardinality": "many"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "coupon",
+          "label": "Coupon",
+          "unit": "%"
+        },
+        {
+          "key": "tier2_eligible",
+          "label": "Tier 2 Capital Eligible",
+          "unit": "bool"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "indenture",
+          "label": "Subordinated Note Indenture",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:loan_servicing",
+          "label": "Servicing",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:capital_markets:private_credit",
+      "label": "Private Credit (Instrument)",
+      "relationships": [
+        {
+          "predicate": "originated_by",
+          "target": "financial_services:institutions:private_credit_fund",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "owed_by",
+          "target": "financial_services:people:borrower",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "held_in",
+          "target": "financial_services:investments:portfolio",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "yield",
+          "label": "All-In Yield",
+          "unit": "%"
+        },
+        {
+          "key": "leverage",
+          "label": "Leverage",
+          "formula": "net_debt / ebitda",
+          "unit": "x"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "credit_agreement",
+          "label": "Credit Agreement",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:portfolio_monitoring",
+          "label": "Portfolio Monitoring",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:capital_markets:warehouse_facility",
+      "label": "Warehouse Facility (Instrument)",
+      "relationships": [
+        {
+          "predicate": "provided_by",
+          "target": "financial_services:institutions:investment_bank",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "funds",
+          "target": "financial_services:lending_products:warehouse_line",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "collateralized_by",
+          "target": "financial_services:investments:security",
+          "cardinality": "many"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "advance_rate",
+          "label": "Advance Rate",
+          "unit": "%"
+        },
+        {
+          "key": "utilization",
+          "label": "Utilization",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "warehouse_agreement",
+          "label": "Warehouse Facility Agreement",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:warehouse_lending",
+          "label": "Warehouse Lending",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:capital_markets:participation",
+      "label": "Participation (Instrument)",
+      "relationships": [
+        {
+          "predicate": "sold_by",
+          "target": "financial_services:institutions:regional_bank",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "bought_by",
+          "target": "financial_services:institutions:community_bank",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "underlies",
+          "target": "financial_services:lending_products:participation_loan",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "participation_pct",
+          "label": "Participation Percentage",
+          "unit": "%"
+        },
+        {
+          "key": "yield",
+          "label": "Net Yield",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "participation_agreement",
+          "label": "Participation Agreement",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:loan_servicing",
+          "label": "Servicing",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:capital_markets:syndication",
+      "label": "Syndication",
+      "relationships": [
+        {
+          "predicate": "arranged_by",
+          "target": "financial_services:institutions:investment_bank",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "allocates_to",
+          "target": "financial_services:institutions:regional_bank",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "underlies",
+          "target": "financial_services:lending_products:syndicated_loan",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "oversubscription",
+          "label": "Oversubscription",
+          "formula": "orders / target",
+          "unit": "x"
+        },
+        {
+          "key": "final_hold",
+          "label": "Arranger Final Hold",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "cim",
+          "label": "Confidential Information Memorandum",
+          "required": true
+        },
+        {
+          "key": "allocation_schedule",
+          "label": "Allocation Schedule",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:loan_servicing",
+          "label": "Agency Platform",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:capital_markets:fund",
+      "label": "Fund (Vehicle Instrument)",
+      "notes": "The pooled fund vehicle as a capital-markets instrument LPs subscribe to (vs. institutions:fund the entity, investments:fund the holding record).",
+      "relationships": [
+        {
+          "predicate": "managed_by",
+          "target": "financial_services:people:gp",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "subscribed_by",
+          "target": "financial_services:people:lp",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "issues",
+          "target": "financial_services:capital_markets:capital_call",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "pays",
+          "target": "financial_services:capital_markets:distribution",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "deploys_into",
+          "target": "financial_services:innovation_ecosystem:startup",
+          "cardinality": "many"
+        }
+      ],
+      "lifecycle": {
+        "initial": "first_close",
+        "states": [
+          {
+            "key": "first_close",
+            "label": "First Close"
+          },
+          {
+            "key": "investing",
+            "label": "Investing"
+          },
+          {
+            "key": "harvesting",
+            "label": "Harvesting"
+          },
+          {
+            "key": "liquidated",
+            "label": "Liquidated",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "first_close",
+            "to": "investing",
+            "on": "final_close"
+          },
+          {
+            "from": "investing",
+            "to": "harvesting",
+            "on": "investment_period_ends"
+          },
+          {
+            "from": "harvesting",
+            "to": "liquidated",
+            "on": "final_distribution"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "committed",
+          "label": "Committed Capital",
+          "unit": "$"
+        },
+        {
+          "key": "dpi",
+          "label": "DPI",
+          "unit": "x"
+        },
+        {
+          "key": "tvpi",
+          "label": "TVPI",
+          "unit": "x"
+        },
+        {
+          "key": "net_irr",
+          "label": "Net IRR",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "lpa",
+          "label": "Limited Partnership Agreement",
+          "required": true
+        },
+        {
+          "key": "ppm",
+          "label": "Private Placement Memorandum",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:fund_admin",
+          "label": "Fund Administration",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:capital_markets:spv",
+      "label": "SPV (Vehicle Instrument)",
+      "relationships": [
+        {
+          "predicate": "sponsored_by",
+          "target": "financial_services:institutions:venture_capital_firm",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "subscribed_by",
+          "target": "financial_services:people:investor",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "holds",
+          "target": "financial_services:investments:position",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "committed",
+          "label": "Committed Capital",
+          "unit": "$"
+        },
+        {
+          "key": "carry",
+          "label": "Carry",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "operating_agreement",
+          "label": "SPV Operating Agreement",
+          "required": true
+        },
+        {
+          "key": "subscription_docs",
+          "label": "Subscription Documents",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:fund_admin",
+          "label": "SPV Administration",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:capital_markets:capital_call",
+      "label": "Capital Call",
+      "relationships": [
+        {
+          "predicate": "issued_by",
+          "target": "financial_services:people:gp",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "directed_to",
+          "target": "financial_services:people:lp",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "drawn_against",
+          "target": "financial_services:capital_markets:fund",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "noticed",
+        "states": [
+          {
+            "key": "noticed",
+            "label": "Noticed"
+          },
+          {
+            "key": "funded",
+            "label": "Funded"
+          },
+          {
+            "key": "defaulted",
+            "label": "Defaulted",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "noticed",
+            "to": "funded",
+            "on": "lp_wires"
+          },
+          {
+            "from": "noticed",
+            "to": "defaulted",
+            "on": "lp_default"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "call_amount",
+          "label": "Call Amount",
+          "unit": "$"
+        },
+        {
+          "key": "call_pct",
+          "label": "% of Commitment Called",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "capital_call_notice",
+          "label": "Capital Call Notice",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:fund_admin",
+          "label": "Fund Administration",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:capital_markets:distribution",
+      "label": "Distribution",
+      "relationships": [
+        {
+          "predicate": "declared_by",
+          "target": "financial_services:people:gp",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "paid_to",
+          "target": "financial_services:people:lp",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "from",
+          "target": "financial_services:capital_markets:exit",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "distribution_amount",
+          "label": "Distribution Amount",
+          "unit": "$"
+        },
+        {
+          "key": "dpi_contribution",
+          "label": "DPI Contribution",
+          "unit": "x"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "distribution_notice",
+          "label": "Distribution Notice",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:fund_admin",
+          "label": "Fund Administration",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:capital_markets:exit",
+      "label": "Exit",
+      "relationships": [
+        {
+          "predicate": "realizes",
+          "target": "financial_services:investments:holding",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "via",
+          "target": "financial_services:capital_markets:acquisition",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "via",
+          "target": "financial_services:capital_markets:ipo",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "generates",
+          "target": "financial_services:capital_markets:distribution",
+          "cardinality": "many"
+        }
+      ],
+      "lifecycle": {
+        "initial": "pipeline",
+        "states": [
+          {
+            "key": "pipeline",
+            "label": "Pipeline"
+          },
+          {
+            "key": "process",
+            "label": "Process / Marketing"
+          },
+          {
+            "key": "signed",
+            "label": "Signed"
+          },
+          {
+            "key": "closed",
+            "label": "Closed",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "pipeline",
+            "to": "process",
+            "on": "banker_engaged"
+          },
+          {
+            "from": "process",
+            "to": "signed",
+            "on": "buyer_selected"
+          },
+          {
+            "from": "signed",
+            "to": "closed",
+            "on": "transaction_closes"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "moic",
+          "label": "MOIC",
+          "formula": "proceeds / invested",
+          "unit": "x"
+        },
+        {
+          "key": "gross_irr",
+          "label": "Gross IRR",
+          "unit": "%"
+        },
+        {
+          "key": "exit_value",
+          "label": "Exit Value",
+          "unit": "$"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "purchase_agreement",
+          "label": "Purchase / Merger Agreement",
+          "required": true
+        },
+        {
+          "key": "fairness_opinion",
+          "label": "Fairness Opinion",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:deal_management",
+          "label": "Deal Management",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:capital_markets:ipo",
+      "label": "IPO",
+      "relationships": [
+        {
+          "predicate": "underwritten_by",
+          "target": "financial_services:institutions:investment_bank",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "registered_with",
+          "target": "financial_services:regulation:sec",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "lists",
+          "target": "financial_services:capital_markets:equity",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "realizes",
+          "target": "financial_services:innovation_ecosystem:startup",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "confidential_filing",
+        "states": [
+          {
+            "key": "confidential_filing",
+            "label": "Confidential S-1"
+          },
+          {
+            "key": "roadshow",
+            "label": "Roadshow"
+          },
+          {
+            "key": "priced",
+            "label": "Priced"
+          },
+          {
+            "key": "trading",
+            "label": "Trading",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "confidential_filing",
+            "to": "roadshow",
+            "on": "s1_public"
+          },
+          {
+            "from": "roadshow",
+            "to": "priced",
+            "on": "book_built"
+          },
+          {
+            "from": "priced",
+            "to": "trading",
+            "on": "first_trade"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "offer_size",
+          "label": "Offering Size",
+          "unit": "$"
+        },
+        {
+          "key": "valuation",
+          "label": "IPO Valuation",
+          "unit": "$"
+        },
+        {
+          "key": "first_day_pop",
+          "label": "First-Day Pop",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "s1",
+          "label": "SEC Form S-1",
+          "required": true
+        },
+        {
+          "key": "underwriting_agreement",
+          "label": "Underwriting Agreement",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:deal_management",
+          "label": "Deal Management",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:capital_markets:recapitalization",
+      "label": "Recapitalization",
+      "relationships": [
+        {
+          "predicate": "restructures",
+          "target": "financial_services:institutions:holding_company",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "adjusts",
+          "target": "financial_services:capital_markets:senior_debt",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "returns_capital_to",
+          "target": "financial_services:people:investor",
+          "cardinality": "many"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "new_leverage",
+          "label": "Post-Recap Leverage",
+          "formula": "total_debt / ebitda",
+          "unit": "x"
+        },
+        {
+          "key": "dividend",
+          "label": "Dividend Recap Amount",
+          "unit": "$"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "recap_agreement",
+          "label": "Recapitalization Agreement",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:deal_management",
+          "label": "Deal Management",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:capital_markets:acquisition",
+      "label": "Acquisition",
+      "relationships": [
+        {
+          "predicate": "acquirer",
+          "target": "financial_services:institutions:private_equity_firm",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "target",
+          "target": "financial_services:innovation_ecosystem:startup",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "advised_by",
+          "target": "financial_services:institutions:investment_bank",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "financed_by",
+          "target": "financial_services:capital_markets:senior_debt",
+          "cardinality": "many"
+        }
+      ],
+      "lifecycle": {
+        "initial": "sourcing",
+        "states": [
+          {
+            "key": "sourcing",
+            "label": "Sourcing"
+          },
+          {
+            "key": "diligence",
+            "label": "Diligence"
+          },
+          {
+            "key": "signed",
+            "label": "Signed"
+          },
+          {
+            "key": "closed",
+            "label": "Closed",
+            "terminal": true
+          },
+          {
+            "key": "integration",
+            "label": "Integration",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "sourcing",
+            "to": "diligence",
+            "on": "loi_signed"
+          },
+          {
+            "from": "diligence",
+            "to": "signed",
+            "on": "definitive_agreement"
+          },
+          {
+            "from": "signed",
+            "to": "closed",
+            "on": "conditions_met"
+          },
+          {
+            "from": "closed",
+            "to": "integration",
+            "on": "day_one"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "ev",
+          "label": "Enterprise Value",
+          "unit": "$"
+        },
+        {
+          "key": "ev_ebitda",
+          "label": "EV / EBITDA",
+          "formula": "enterprise_value / ebitda",
+          "unit": "x"
+        },
+        {
+          "key": "synergies",
+          "label": "Targeted Synergies",
+          "unit": "$"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "purchase_agreement",
+          "label": "Definitive Purchase Agreement",
+          "required": true
+        },
+        {
+          "key": "qofe",
+          "label": "Quality of Earnings Report",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:data_room",
+          "label": "Diligence Data Room",
+          "role": "ingest"
+        },
+        {
+          "key": "connector:deal_management",
+          "label": "Deal Management",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:capital_markets:disposition",
+      "label": "Disposition",
+      "relationships": [
+        {
+          "predicate": "sells",
+          "target": "financial_services:investments:holding",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "executed_by",
+          "target": "financial_services:institutions:private_equity_firm",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "generates",
+          "target": "financial_services:capital_markets:distribution",
+          "cardinality": "many"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "proceeds",
+          "label": "Net Proceeds",
+          "unit": "$"
+        },
+        {
+          "key": "realized_moic",
+          "label": "Realized MOIC",
+          "formula": "proceeds / cost",
+          "unit": "x"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "sale_agreement",
+          "label": "Sale Agreement",
+          "required": true
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:deal_management",
+          "label": "Deal Management",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:investments:portfolio",
+      "label": "Portfolio",
+      "relationships": [
+        {
+          "predicate": "managed_by",
+          "target": "financial_services:people:portfolio_manager",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "contains",
+          "target": "financial_services:investments:holding",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "owned_by",
+          "target": "financial_services:people:investor",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "benchmarked_against",
+          "target": "financial_services:investments:etf",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "nav",
+          "label": "Net Asset Value",
+          "unit": "$"
+        },
+        {
+          "key": "irr",
+          "label": "Portfolio IRR",
+          "unit": "%"
+        },
+        {
+          "key": "tvpi",
+          "label": "TVPI",
+          "unit": "x"
+        },
+        {
+          "key": "concentration",
+          "label": "Top-5 Concentration",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "ips",
+          "label": "Investment Policy Statement",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:portfolio_monitoring",
+          "label": "Portfolio Monitoring",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:investments:fund",
+      "label": "Fund Holding (Investment Record)",
+      "notes": "A fund position held within a portfolio (vs. capital_markets:fund the vehicle and institutions:fund the entity).",
+      "relationships": [
+        {
+          "predicate": "held_in",
+          "target": "financial_services:investments:portfolio",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "invests_in",
+          "target": "financial_services:capital_markets:fund",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "reports",
+          "target": "financial_services:capital_markets:distribution",
+          "cardinality": "many"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "nav",
+          "label": "NAV",
+          "unit": "$"
+        },
+        {
+          "key": "unfunded",
+          "label": "Unfunded Commitment",
+          "unit": "$"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "capital_account_statement",
+          "label": "Capital Account Statement",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:fund_admin",
+          "label": "Fund Admin Feed",
+          "role": "ingest"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:investments:investment",
+      "label": "Investment",
+      "relationships": [
+        {
+          "predicate": "made_by",
+          "target": "financial_services:institutions:venture_capital_firm",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "into",
+          "target": "financial_services:innovation_ecosystem:startup",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "via",
+          "target": "financial_services:capital_markets:preferred_equity",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "recorded_in",
+          "target": "financial_services:investments:portfolio",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "supported_by",
+          "target": "financial_services:documents:investment_memo",
+          "cardinality": "one"
+        }
+      ],
+      "lifecycle": {
+        "initial": "sourced",
+        "states": [
+          {
+            "key": "sourced",
+            "label": "Sourced"
+          },
+          {
+            "key": "diligence",
+            "label": "Diligence"
+          },
+          {
+            "key": "committed",
+            "label": "Committed"
+          },
+          {
+            "key": "active",
+            "label": "Active"
+          },
+          {
+            "key": "realized",
+            "label": "Realized",
+            "terminal": true
+          },
+          {
+            "key": "written_off",
+            "label": "Written Off",
+            "terminal": true
+          }
+        ],
+        "transitions": [
+          {
+            "from": "sourced",
+            "to": "diligence",
+            "on": "ic_screen"
+          },
+          {
+            "from": "diligence",
+            "to": "committed",
+            "on": "ic_approves"
+          },
+          {
+            "from": "committed",
+            "to": "active",
+            "on": "funds_wired"
+          },
+          {
+            "from": "active",
+            "to": "realized",
+            "on": "exit"
+          },
+          {
+            "from": "active",
+            "to": "written_off",
+            "on": "impairment"
+          }
+        ]
+      },
+      "kpis": [
+        {
+          "key": "cost_basis",
+          "label": "Cost Basis",
+          "unit": "$"
+        },
+        {
+          "key": "fair_value",
+          "label": "Fair Value",
+          "unit": "$"
+        },
+        {
+          "key": "moic",
+          "label": "MOIC",
+          "formula": "fair_value / cost_basis",
+          "unit": "x"
+        },
+        {
+          "key": "ownership",
+          "label": "Ownership",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "investment_memo",
+          "label": "Investment Memo",
+          "required": true
+        },
+        {
+          "key": "closing_binder",
+          "label": "Closing Binder",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:portfolio_monitoring",
+          "label": "Portfolio Monitoring",
+          "role": "system_of_record"
+        },
+        {
+          "key": "connector:cap_table",
+          "label": "Cap Table",
+          "role": "ingest"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:investments:holding",
+      "label": "Holding",
+      "relationships": [
+        {
+          "predicate": "part_of",
+          "target": "financial_services:investments:portfolio",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "represents",
+          "target": "financial_services:investments:position",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "in",
+          "target": "financial_services:innovation_ecosystem:startup",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "fair_value",
+          "label": "Fair Value",
+          "unit": "$"
+        },
+        {
+          "key": "unrealized_gain",
+          "label": "Unrealized Gain",
+          "unit": "$"
+        }
+      ],
+      "required_documents": [],
+      "connectors": [
+        {
+          "key": "connector:portfolio_monitoring",
+          "label": "Portfolio Monitoring",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:investments:position",
+      "label": "Position",
+      "relationships": [
+        {
+          "predicate": "in",
+          "target": "financial_services:investments:security",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "held_by",
+          "target": "financial_services:people:investor",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "part_of",
+          "target": "financial_services:investments:holding",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "quantity",
+          "label": "Quantity",
+          "unit": "units"
+        },
+        {
+          "key": "market_value",
+          "label": "Market Value",
+          "unit": "$"
+        },
+        {
+          "key": "cost_basis",
+          "label": "Cost Basis",
+          "unit": "$"
+        }
+      ],
+      "required_documents": [],
+      "connectors": [
+        {
+          "key": "connector:portfolio_monitoring",
+          "label": "Portfolio Monitoring",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:investments:security",
+      "label": "Security",
+      "relationships": [
+        {
+          "predicate": "issued_by",
+          "target": "financial_services:innovation_ecosystem:startup",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "held_in",
+          "target": "financial_services:investments:position",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "classified_as",
+          "target": "financial_services:investments:stock",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "last_price",
+          "label": "Last Price / 409A",
+          "unit": "$"
+        },
+        {
+          "key": "share_class",
+          "label": "Share Class",
+          "unit": "text"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "409a",
+          "label": "409A Valuation",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:cap_table",
+          "label": "Cap Table",
+          "role": "ingest"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:investments:bond",
+      "label": "Bond",
+      "relationships": [
+        {
+          "predicate": "issued_by",
+          "target": "financial_services:institutions:holding_company",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "held_in",
+          "target": "financial_services:investments:position",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "rated_by",
+          "target": "financial_services:credit:risk_rating",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "ytm",
+          "label": "Yield to Maturity",
+          "unit": "%"
+        },
+        {
+          "key": "duration",
+          "label": "Duration",
+          "unit": "years"
+        },
+        {
+          "key": "coupon",
+          "label": "Coupon",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "indenture",
+          "label": "Bond Indenture",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:market_data",
+          "label": "Market Data",
+          "role": "ingest"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:investments:stock",
+      "label": "Stock",
+      "relationships": [
+        {
+          "predicate": "issued_by",
+          "target": "financial_services:institutions:holding_company",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "held_in",
+          "target": "financial_services:investments:position",
+          "cardinality": "many"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "price",
+          "label": "Price",
+          "unit": "$"
+        },
+        {
+          "key": "market_cap",
+          "label": "Market Cap",
+          "unit": "$"
+        }
+      ],
+      "required_documents": [],
+      "connectors": [
+        {
+          "key": "connector:market_data",
+          "label": "Market Data",
+          "role": "ingest"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:investments:etf",
+      "label": "ETF",
+      "relationships": [
+        {
+          "predicate": "held_in",
+          "target": "financial_services:investments:portfolio",
+          "cardinality": "many"
+        },
+        {
+          "predicate": "tracks",
+          "target": "financial_services:investments:security",
+          "cardinality": "many"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "expense_ratio",
+          "label": "Expense Ratio",
+          "unit": "%"
+        },
+        {
+          "key": "aum",
+          "label": "AUM",
+          "unit": "$"
+        },
+        {
+          "key": "tracking_error",
+          "label": "Tracking Error",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [],
+      "connectors": [
+        {
+          "key": "connector:market_data",
+          "label": "Market Data",
+          "role": "ingest"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:investments:private_equity",
+      "label": "Private Equity (Investment)",
+      "relationships": [
+        {
+          "predicate": "managed_by",
+          "target": "financial_services:institutions:private_equity_firm",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "held_in",
+          "target": "financial_services:investments:portfolio",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "realized_via",
+          "target": "financial_services:capital_markets:exit",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "moic",
+          "label": "MOIC",
+          "unit": "x"
+        },
+        {
+          "key": "net_irr",
+          "label": "Net IRR",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "capital_account_statement",
+          "label": "Capital Account Statement",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:fund_admin",
+          "label": "Fund Admin Feed",
+          "role": "ingest"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:investments:vc",
+      "label": "Venture Capital (Investment)",
+      "relationships": [
+        {
+          "predicate": "managed_by",
+          "target": "financial_services:institutions:venture_capital_firm",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "into",
+          "target": "financial_services:innovation_ecosystem:startup",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "held_in",
+          "target": "financial_services:investments:portfolio",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "tvpi",
+          "label": "TVPI",
+          "unit": "x"
+        },
+        {
+          "key": "loss_ratio",
+          "label": "Loss Ratio",
+          "unit": "%"
+        },
+        {
+          "key": "markup",
+          "label": "Markup vs Cost",
+          "unit": "x"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "investment_memo",
+          "label": "Investment Memo",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:portfolio_monitoring",
+          "label": "Portfolio Monitoring",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:investments:real_estate",
+      "label": "Real Estate (Investment)",
+      "relationships": [
+        {
+          "predicate": "held_in",
+          "target": "financial_services:investments:portfolio",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "secured_by",
+          "target": "financial_services:real_estate:property",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "cap_rate",
+          "label": "Cap Rate",
+          "unit": "%"
+        },
+        {
+          "key": "noi",
+          "label": "Net Operating Income",
+          "unit": "$"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "appraisal",
+          "label": "Appraisal",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:portfolio_monitoring",
+          "label": "Portfolio Monitoring",
+          "role": "system_of_record"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:investments:treasury",
+      "label": "Treasury (Investment)",
+      "relationships": [
+        {
+          "predicate": "held_in",
+          "target": "financial_services:investments:portfolio",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "issued_by",
+          "target": "financial_services:regulation:federal_reserve",
+          "cardinality": "one",
+          "description": "U.S. Treasury securities."
+        }
+      ],
+      "kpis": [
+        {
+          "key": "yield",
+          "label": "Yield",
+          "unit": "%"
+        },
+        {
+          "key": "duration",
+          "label": "Duration",
+          "unit": "years"
+        }
+      ],
+      "required_documents": [],
+      "connectors": [
+        {
+          "key": "connector:market_data",
+          "label": "Market Data",
+          "role": "ingest"
+        }
+      ]
+    },
+    {
+      "object": "financial_services:investments:alternative_investment",
+      "label": "Alternative Investment",
+      "relationships": [
+        {
+          "predicate": "held_in",
+          "target": "financial_services:investments:portfolio",
+          "cardinality": "one"
+        },
+        {
+          "predicate": "managed_by",
+          "target": "financial_services:institutions:family_office",
+          "cardinality": "one"
+        }
+      ],
+      "kpis": [
+        {
+          "key": "allocation",
+          "label": "Portfolio Allocation",
+          "unit": "%"
+        },
+        {
+          "key": "illiquidity_discount",
+          "label": "Illiquidity Discount",
+          "unit": "%"
+        }
+      ],
+      "required_documents": [
+        {
+          "key": "subscription_agreement",
+          "label": "Subscription Agreement",
+          "required": false
+        }
+      ],
+      "connectors": [
+        {
+          "key": "connector:portfolio_monitoring",
+          "label": "Portfolio Monitoring",
+          "role": "system_of_record"
+        }
+      ]
+    }
+  ]
+}

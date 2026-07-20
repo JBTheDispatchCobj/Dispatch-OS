@@ -1,0 +1,458 @@
+{
+  "key": "ontology:credit_union",
+  "label": "Credit Union Ontology",
+  "version": 1,
+  "domain": "financial_services",
+  "notes": "Volume XI anchor pack (ADR-0014). Operational ontology for the credit-union core — the Cooperative Markets first-product domain. Enriches Object Registry classes by schema_ref with relationships, lifecycle, KPIs, required documents, and connectors. Relationship targets are catalog schema_refs (closed graph). Connector keys are forward references into the Connector Registry (Volume IX).",
+  "ontologies": [
+    {
+      "object": "financial_services:institutions:federal_credit_union",
+      "label": "Federal Credit Union",
+      "relationships": [
+        { "predicate": "regulated_by", "target": "financial_services:regulation:ncua", "cardinality": "one", "description": "Chartered and supervised by the NCUA; shares insured by the NCUSIF." },
+        { "predicate": "serves", "target": "financial_services:people:member", "cardinality": "many", "description": "Member-owners within the field of membership." },
+        { "predicate": "employs", "target": "financial_services:people:loan_officer", "cardinality": "many" },
+        { "predicate": "offers", "target": "financial_services:lending_products:auto_loan", "cardinality": "many" },
+        { "predicate": "offers", "target": "financial_services:lending_products:consumer_loan", "cardinality": "many" },
+        { "predicate": "offers", "target": "financial_services:lending_products:mortgage", "cardinality": "many" },
+        { "predicate": "offers", "target": "financial_services:deposit_products:savings", "cardinality": "many" },
+        { "predicate": "offers", "target": "financial_services:deposit_products:certificate", "cardinality": "many" },
+        { "predicate": "files", "target": "financial_services:regulation:call_reports", "cardinality": "many" },
+        { "predicate": "undergoes", "target": "financial_services:regulation:examinations", "cardinality": "many" },
+        { "predicate": "subject_to", "target": "financial_services:compliance:bsa", "cardinality": "one" },
+        { "predicate": "affiliated_with", "target": "financial_services:institutions:credit_union_service_organization_cuso", "cardinality": "many" }
+      ],
+      "lifecycle": {
+        "initial": "chartered",
+        "states": [
+          { "key": "chartered", "label": "Chartered" },
+          { "key": "operating", "label": "Operating" },
+          { "key": "troubled", "label": "Troubled (CAMELS 4-5 / net worth < 6%)" },
+          { "key": "conserved", "label": "Conserved" },
+          { "key": "merged", "label": "Merged", "terminal": true },
+          { "key": "liquidated", "label": "Liquidated", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "chartered", "to": "operating", "on": "commences_operations" },
+          { "from": "operating", "to": "troubled", "on": "net_worth_or_camels_deteriorates" },
+          { "from": "troubled", "to": "operating", "on": "rehabilitated" },
+          { "from": "troubled", "to": "conserved", "on": "ncua_conservatorship" },
+          { "from": "troubled", "to": "merged", "on": "voluntary_or_assisted_merger" },
+          { "from": "conserved", "to": "liquidated", "on": "involuntary_liquidation" }
+        ]
+      },
+      "kpis": [
+        { "key": "net_worth_ratio", "label": "Net Worth Ratio", "formula": "net_worth / total_assets", "unit": "%", "threshold": ">= 7% well-capitalized; < 6% undercapitalized (PCA)" },
+        { "key": "roa", "label": "Return on Average Assets", "formula": "net_income / average_assets", "unit": "%", "threshold": "peer-relative; positive trend" },
+        { "key": "loan_to_share", "label": "Loan-to-Share Ratio", "formula": "total_loans / total_shares", "unit": "%", "threshold": "70-90% typical" },
+        { "key": "delinquency_ratio", "label": "Delinquency Ratio", "formula": "delinquent_loans / total_loans", "unit": "%", "threshold": "< 1% healthy" },
+        { "key": "net_charge_off_ratio", "label": "Net Charge-Off Ratio", "formula": "net_charge_offs / average_loans", "unit": "%" },
+        { "key": "operating_expense_ratio", "label": "Operating Expense Ratio", "formula": "operating_expenses / average_assets", "unit": "%" },
+        { "key": "membership_growth", "label": "Membership Growth", "formula": "(members_end - members_start) / members_start", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "charter", "label": "Federal Charter", "required": true },
+        { "key": "bylaws", "label": "Bylaws", "required": true },
+        { "key": "field_of_membership", "label": "Field of Membership Definition", "required": true },
+        { "key": "call_report_5300", "label": "NCUA 5300 Call Report", "required": true },
+        { "key": "bsa_aml_program", "label": "BSA/AML Program", "required": true },
+        { "key": "investment_policy", "label": "Investment Policy", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:core_banking", "label": "Core Banking / Core Processor", "role": "system_of_record" },
+        { "key": "connector:ncua_call_reports", "label": "NCUA Call Report Feed", "role": "ingest" },
+        { "key": "connector:los", "label": "Loan Origination System", "role": "enrichment" }
+      ]
+    },
+    {
+      "object": "financial_services:institutions:state_credit_union",
+      "label": "State Credit Union",
+      "notes": "Dual supervision: a state regulator plus NCUA when federally (NCUSIF) insured.",
+      "relationships": [
+        { "predicate": "regulated_by", "target": "financial_services:regulation:ncua", "cardinality": "one", "description": "NCUA supervision where NCUSIF-insured; state regulator is the primary charter authority." },
+        { "predicate": "serves", "target": "financial_services:people:member", "cardinality": "many" },
+        { "predicate": "files", "target": "financial_services:regulation:call_reports", "cardinality": "many" },
+        { "predicate": "subject_to", "target": "financial_services:compliance:bsa", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "chartered",
+        "states": [
+          { "key": "chartered", "label": "Chartered" },
+          { "key": "operating", "label": "Operating" },
+          { "key": "merged", "label": "Merged", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "chartered", "to": "operating", "on": "commences_operations" },
+          { "from": "operating", "to": "merged", "on": "merger" }
+        ]
+      },
+      "kpis": [
+        { "key": "net_worth_ratio", "label": "Net Worth Ratio", "formula": "net_worth / total_assets", "unit": "%", "threshold": ">= 7% well-capitalized" }
+      ],
+      "required_documents": [
+        { "key": "state_charter", "label": "State Charter", "required": true },
+        { "key": "call_report_5300", "label": "NCUA 5300 Call Report", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:core_banking", "label": "Core Banking", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:institutions:credit_union_service_organization_cuso",
+      "label": "Credit Union Service Organization (CUSO)",
+      "relationships": [
+        { "predicate": "owned_by", "target": "financial_services:institutions:federal_credit_union", "cardinality": "many", "description": "Owned/invested in by one or more credit unions; NCUA aggregate investment/loan limits apply." },
+        { "predicate": "serves", "target": "financial_services:institutions:federal_credit_union", "cardinality": "many" }
+      ],
+      "lifecycle": {
+        "initial": "formed",
+        "states": [
+          { "key": "formed", "label": "Formed" },
+          { "key": "operating", "label": "Operating" },
+          { "key": "wound_down", "label": "Wound Down", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "formed", "to": "operating", "on": "begins_services" },
+          { "from": "operating", "to": "wound_down", "on": "dissolution" }
+        ]
+      },
+      "kpis": [
+        { "key": "vendor_risk_rating", "label": "Vendor Risk Rating", "threshold": "third-party risk per NCUA due-diligence guidance" }
+      ],
+      "required_documents": [
+        { "key": "cuso_agreement", "label": "CUSO Agreement", "required": true },
+        { "key": "audited_financials", "label": "Audited Financial Statements", "required": true }
+      ],
+      "connectors": []
+    },
+    {
+      "object": "financial_services:people:member",
+      "label": "Member",
+      "relationships": [
+        { "predicate": "member_of", "target": "financial_services:institutions:federal_credit_union", "cardinality": "one" },
+        { "predicate": "holds", "target": "financial_services:deposit_products:savings", "cardinality": "many", "description": "The par-value share account establishes membership." },
+        { "predicate": "holds", "target": "financial_services:deposit_products:certificate", "cardinality": "many" },
+        { "predicate": "borrower_on", "target": "financial_services:lending_products:auto_loan", "cardinality": "many" }
+      ],
+      "lifecycle": {
+        "initial": "prospect",
+        "states": [
+          { "key": "prospect", "label": "Prospect" },
+          { "key": "member", "label": "Member" },
+          { "key": "dormant", "label": "Dormant" },
+          { "key": "closed", "label": "Closed", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "prospect", "to": "member", "on": "opens_share_account" },
+          { "from": "member", "to": "dormant", "on": "no_activity_period" },
+          { "from": "dormant", "to": "member", "on": "reengages" },
+          { "from": "member", "to": "closed", "on": "closes_all_accounts" }
+        ]
+      },
+      "kpis": [
+        { "key": "products_per_member", "label": "Products per Member", "formula": "count(accounts + loans + services)" },
+        { "key": "member_tenure", "label": "Member Tenure", "unit": "years" },
+        { "key": "member_profitability", "label": "Member Profitability", "formula": "member_revenue - member_cost" }
+      ],
+      "required_documents": [
+        { "key": "membership_application", "label": "Membership Application", "required": true },
+        { "key": "kyc_identity", "label": "CIP / KYC Identity Verification", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:core_banking", "label": "Core Banking", "role": "system_of_record" },
+        { "key": "connector:crm", "label": "CRM", "role": "enrichment" }
+      ]
+    },
+    {
+      "object": "financial_services:people:loan_officer",
+      "label": "Loan Officer",
+      "relationships": [
+        { "predicate": "employed_by", "target": "financial_services:institutions:federal_credit_union", "cardinality": "one" },
+        { "predicate": "originates", "target": "financial_services:lending_products:auto_loan", "cardinality": "many" },
+        { "predicate": "originates", "target": "financial_services:lending_products:mortgage", "cardinality": "many" }
+      ],
+      "kpis": [
+        { "key": "loans_originated", "label": "Loans Originated", "unit": "count / $" },
+        { "key": "approval_rate", "label": "Approval Rate", "formula": "approved / applications", "unit": "%" },
+        { "key": "portfolio_delinquency", "label": "Originated-Portfolio Delinquency", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "nmls_registration", "label": "NMLS Registration (MLO)", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:los", "label": "Loan Origination System", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:deposit_products:savings",
+      "label": "Share / Savings Account",
+      "relationships": [
+        { "predicate": "held_by", "target": "financial_services:people:member", "cardinality": "one" },
+        { "predicate": "offered_by", "target": "financial_services:institutions:federal_credit_union", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "opened",
+        "states": [
+          { "key": "opened", "label": "Opened" },
+          { "key": "active", "label": "Active" },
+          { "key": "dormant", "label": "Dormant" },
+          { "key": "closed", "label": "Closed", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "opened", "to": "active", "on": "funded_to_par_value" },
+          { "from": "active", "to": "dormant", "on": "inactivity" },
+          { "from": "active", "to": "closed", "on": "member_closes" }
+        ]
+      },
+      "kpis": [
+        { "key": "average_share_balance", "label": "Average Share Balance", "unit": "$" },
+        { "key": "dividend_rate", "label": "Dividend Rate", "unit": "% APY" }
+      ],
+      "required_documents": [
+        { "key": "truth_in_savings_disclosure", "label": "Truth in Savings (Reg DD) Disclosure", "required": true },
+        { "key": "membership_agreement", "label": "Membership & Account Agreement", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:core_banking", "label": "Core Banking", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:deposit_products:certificate",
+      "label": "Share Certificate",
+      "relationships": [
+        { "predicate": "held_by", "target": "financial_services:people:member", "cardinality": "one" },
+        { "predicate": "offered_by", "target": "financial_services:institutions:federal_credit_union", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "opened",
+        "states": [
+          { "key": "opened", "label": "Opened" },
+          { "key": "active", "label": "Active" },
+          { "key": "matured", "label": "Matured" },
+          { "key": "renewed", "label": "Renewed" },
+          { "key": "closed", "label": "Closed", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "opened", "to": "active", "on": "funded" },
+          { "from": "active", "to": "matured", "on": "reaches_maturity" },
+          { "from": "matured", "to": "renewed", "on": "auto_or_elected_renewal" },
+          { "from": "matured", "to": "closed", "on": "withdrawn" }
+        ]
+      },
+      "kpis": [
+        { "key": "cost_of_funds", "label": "Cost of Funds", "formula": "dividend_expense / average_balance", "unit": "%" },
+        { "key": "early_withdrawal_rate", "label": "Early Withdrawal Rate", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "truth_in_savings_disclosure", "label": "Truth in Savings (Reg DD) Disclosure", "required": true },
+        { "key": "certificate_agreement", "label": "Certificate Account Agreement", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:core_banking", "label": "Core Banking", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:lending_products:auto_loan",
+      "label": "Auto Loan",
+      "relationships": [
+        { "predicate": "borrower", "target": "financial_services:people:member", "cardinality": "one" },
+        { "predicate": "originated_by", "target": "financial_services:people:loan_officer", "cardinality": "one" },
+        { "predicate": "offered_by", "target": "financial_services:institutions:federal_credit_union", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "application",
+        "states": [
+          { "key": "application", "label": "Application" },
+          { "key": "underwriting", "label": "Underwriting" },
+          { "key": "approved", "label": "Approved" },
+          { "key": "funded", "label": "Funded" },
+          { "key": "servicing", "label": "Servicing" },
+          { "key": "paid_off", "label": "Paid Off", "terminal": true },
+          { "key": "charged_off", "label": "Charged Off", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "application", "to": "underwriting", "on": "submitted" },
+          { "from": "underwriting", "to": "approved", "on": "credit_decision_approve" },
+          { "from": "underwriting", "to": "charged_off", "on": "declined" },
+          { "from": "approved", "to": "funded", "on": "disbursed" },
+          { "from": "funded", "to": "servicing", "on": "repayment_begins" },
+          { "from": "servicing", "to": "paid_off", "on": "final_payment" },
+          { "from": "servicing", "to": "charged_off", "on": "default_120_days" }
+        ]
+      },
+      "kpis": [
+        { "key": "dti", "label": "Debt-to-Income", "formula": "monthly_debt / monthly_income", "unit": "%", "threshold": "<= 43% typical" },
+        { "key": "ltv", "label": "Loan-to-Value", "formula": "loan_amount / collateral_value", "unit": "%", "threshold": "<= 125% incl. add-ons" },
+        { "key": "apr", "label": "Annual Percentage Rate", "unit": "%" },
+        { "key": "net_yield", "label": "Net Yield", "formula": "interest_income - cost_of_funds - expected_loss", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "loan_application", "label": "Loan Application (1003-equivalent)", "required": true },
+        { "key": "title_lien", "label": "Title / Lien Perfection", "required": true },
+        { "key": "tila_disclosure", "label": "Truth in Lending (Reg Z) Disclosure", "required": true },
+        { "key": "insurance_binder", "label": "Collateral Insurance Binder", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:los", "label": "Loan Origination System", "role": "system_of_record" },
+        { "key": "connector:core_banking", "label": "Core Banking (servicing)", "role": "enrichment" }
+      ]
+    },
+    {
+      "object": "financial_services:lending_products:mortgage",
+      "label": "Mortgage",
+      "relationships": [
+        { "predicate": "borrower", "target": "financial_services:people:member", "cardinality": "one" },
+        { "predicate": "originated_by", "target": "financial_services:people:loan_officer", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "application",
+        "states": [
+          { "key": "application", "label": "Application" },
+          { "key": "processing", "label": "Processing" },
+          { "key": "underwriting", "label": "Underwriting" },
+          { "key": "clear_to_close", "label": "Clear to Close" },
+          { "key": "funded", "label": "Funded" },
+          { "key": "servicing", "label": "Servicing" },
+          { "key": "paid_off", "label": "Paid Off", "terminal": true },
+          { "key": "foreclosed", "label": "Foreclosed", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "application", "to": "processing", "on": "intake_complete" },
+          { "from": "processing", "to": "underwriting", "on": "docs_complete" },
+          { "from": "underwriting", "to": "clear_to_close", "on": "conditions_cleared" },
+          { "from": "clear_to_close", "to": "funded", "on": "closing_disbursed" },
+          { "from": "funded", "to": "servicing", "on": "repayment_begins" },
+          { "from": "servicing", "to": "paid_off", "on": "final_payment" },
+          { "from": "servicing", "to": "foreclosed", "on": "default_foreclosure" }
+        ]
+      },
+      "kpis": [
+        { "key": "front_end_dti", "label": "Front-End DTI", "formula": "housing_expense / gross_income", "unit": "%", "threshold": "<= 28% typical" },
+        { "key": "back_end_dti", "label": "Back-End DTI", "formula": "total_debt / gross_income", "unit": "%", "threshold": "<= 43% QM" },
+        { "key": "ltv", "label": "Loan-to-Value", "formula": "loan_amount / appraised_value", "unit": "%", "threshold": "<= 80% to avoid PMI" }
+      ],
+      "required_documents": [
+        { "key": "trid_loan_estimate", "label": "TRID Loan Estimate", "required": true },
+        { "key": "trid_closing_disclosure", "label": "TRID Closing Disclosure", "required": true },
+        { "key": "appraisal", "label": "Appraisal", "required": true },
+        { "key": "flood_determination", "label": "Flood Determination", "required": true },
+        { "key": "hmda_lar", "label": "HMDA LAR Record", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:los", "label": "Loan Origination System", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:regulation:ncua",
+      "label": "NCUA",
+      "notes": "National Credit Union Administration — charters and supervises federal credit unions; administers the NCUSIF.",
+      "relationships": [
+        { "predicate": "regulates", "target": "financial_services:institutions:federal_credit_union", "cardinality": "many" },
+        { "predicate": "regulates", "target": "financial_services:institutions:corporate_credit_union", "cardinality": "many" },
+        { "predicate": "conducts", "target": "financial_services:regulation:examinations", "cardinality": "many" },
+        { "predicate": "requires", "target": "financial_services:regulation:call_reports", "cardinality": "many" }
+      ],
+      "kpis": [],
+      "required_documents": [
+        { "key": "rules_and_regulations", "label": "NCUA Rules & Regulations (12 CFR)", "required": false },
+        { "key": "consent_orders", "label": "Published Consent Orders / LUAs", "required": false }
+      ],
+      "connectors": [
+        { "key": "connector:ncua_call_reports", "label": "NCUA Call Report / Financial Performance Report", "role": "ingest" }
+      ]
+    },
+    {
+      "object": "financial_services:regulation:call_reports",
+      "label": "Call Report (NCUA 5300)",
+      "relationships": [
+        { "predicate": "filed_by", "target": "financial_services:institutions:federal_credit_union", "cardinality": "one" },
+        { "predicate": "reviewed_by", "target": "financial_services:regulation:ncua", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "draft",
+        "states": [
+          { "key": "draft", "label": "Draft" },
+          { "key": "submitted", "label": "Submitted" },
+          { "key": "accepted", "label": "Accepted" },
+          { "key": "amended", "label": "Amended" }
+        ],
+        "transitions": [
+          { "from": "draft", "to": "submitted", "on": "quarterly_filing" },
+          { "from": "submitted", "to": "accepted", "on": "ncua_validation_pass" },
+          { "from": "accepted", "to": "amended", "on": "correction_filed" }
+        ]
+      },
+      "kpis": [
+        { "key": "net_worth_ratio", "label": "Net Worth Ratio (from 5300)", "formula": "net_worth / total_assets", "unit": "%", "threshold": ">= 7% well-capitalized" },
+        { "key": "loan_to_share", "label": "Loan-to-Share (from 5300)", "formula": "total_loans / total_shares", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "form_5300", "label": "NCUA Form 5300", "required": true },
+        { "key": "profile_4501a", "label": "NCUA Profile (Form 4501A)", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:core_banking", "label": "Core Banking (source figures)", "role": "ingest" },
+        { "key": "connector:ncua_call_reports", "label": "NCUA Filing System", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:regulation:examinations",
+      "label": "Examination",
+      "relationships": [
+        { "predicate": "conducted_by", "target": "financial_services:regulation:ncua", "cardinality": "one" },
+        { "predicate": "subject", "target": "financial_services:institutions:federal_credit_union", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "scheduled",
+        "states": [
+          { "key": "scheduled", "label": "Scheduled" },
+          { "key": "fieldwork", "label": "Fieldwork" },
+          { "key": "draft_report", "label": "Draft Report" },
+          { "key": "final_report", "label": "Final Report" },
+          { "key": "consent_order", "label": "Consent Order / LUA", "terminal": true },
+          { "key": "resolved", "label": "Resolved", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "scheduled", "to": "fieldwork", "on": "exam_begins" },
+          { "from": "fieldwork", "to": "draft_report", "on": "findings_drafted" },
+          { "from": "draft_report", "to": "final_report", "on": "management_response" },
+          { "from": "final_report", "to": "consent_order", "on": "enforcement_action" },
+          { "from": "final_report", "to": "resolved", "on": "dors_cleared" }
+        ]
+      },
+      "kpis": [
+        { "key": "camels_composite", "label": "CAMELS Composite", "unit": "1-5", "threshold": "1-2 satisfactory; 3 watch; 4-5 troubled" },
+        { "key": "dor_count", "label": "Documents of Resolution (open)", "unit": "count" }
+      ],
+      "required_documents": [
+        { "key": "exam_report", "label": "Examination Report", "required": true },
+        { "key": "dor", "label": "Document of Resolution", "required": false }
+      ],
+      "connectors": []
+    },
+    {
+      "object": "financial_services:compliance:bsa",
+      "label": "BSA / AML Program",
+      "relationships": [
+        { "predicate": "applies_to", "target": "financial_services:institutions:federal_credit_union", "cardinality": "one" },
+        { "predicate": "screens", "target": "financial_services:people:member", "cardinality": "many" },
+        { "predicate": "references", "target": "financial_services:compliance:ofac", "cardinality": "one" },
+        { "predicate": "references", "target": "financial_services:compliance:aml", "cardinality": "one" }
+      ],
+      "kpis": [
+        { "key": "sars_filed", "label": "SARs Filed", "unit": "count", "threshold": "SAR within 30 days of detection" },
+        { "key": "ctrs_filed", "label": "CTRs Filed", "unit": "count", "threshold": "cash > $10,000 aggregate/day" },
+        { "key": "alert_clearance_time", "label": "Alert Clearance Time", "unit": "days" }
+      ],
+      "required_documents": [
+        { "key": "bsa_risk_assessment", "label": "BSA/AML Risk Assessment", "required": true },
+        { "key": "sar", "label": "Suspicious Activity Report", "required": false },
+        { "key": "ctr", "label": "Currency Transaction Report", "required": false },
+        { "key": "ofac_screening_log", "label": "OFAC Screening Log", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:bsa_aml", "label": "BSA/AML Monitoring System", "role": "system_of_record" }
+      ]
+    }
+  ]
+}

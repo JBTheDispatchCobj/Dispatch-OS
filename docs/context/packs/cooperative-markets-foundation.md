@@ -19,7 +19,12 @@ Constitution (read only the articles a task references — never the whole file)
 
 Implemented contracts (read the source when touching them):
 - `core/truth/` · `core/relationships/` · `core/intelligence/` · `core/profile/` ·
-  `core/registry/`; migrations `db/migrations/0011`–`0015` (applied).
+  `core/registry/`; migrations `db/migrations/0011`–`0015` (applied); `0016`/`0017` written,
+  pending apply.
+- **Volume XI ontology (ADR-0014):** `core/registry/ontology.ts` + packs under
+  `core/registry/data/ontology/` (credit_union, lending_deposits, capital_markets,
+  innovation_ecosystem — 113 objects, closed graph). Scope = finance/VC/CU/fintech/innovation
+  (ADR-0015). Check: `node scripts/ontology-check.mjs`.
 
 Registry store (separate repo): `Dispatch-Knowledge-Registry`.
 

@@ -1,6 +1,11 @@
 # Build Progress Tracker
 
-**Current build completion: ~13%** &nbsp;·&nbsp; Last updated: 2026-07-20 (post FS Object Registry catalog)
+**Current build completion: ~13%** &nbsp;·&nbsp; Last updated: 2026-07-20 (Volume XI ontology: +3 packs — Lending & Deposits, Capital Markets & Institutions, Innovation Ecosystem)
+
+> Note: this table tracks the **platform** build. Knowledge-content sprints (Volume XI
+> Canonical Ontology and the roadmap's Truth Models / Rule / Workflow / Agent / Connector /
+> KPI / Knowledge-Pack libraries) are tracked by `DISPATCH_OS_REMAINING_ROADMAP.md`'s own
+> estimates, not this platform %, so encoding domain knowledge doesn't inflate the platform number.
 
 This file tracks how much of the Dispatch OS **build** is done — implementation only
 (design/specification work is excluded; the Specification Program Vols I–X is
@@ -60,6 +65,31 @@ service (types + in-memory store; no service/API/engine/UI layer yet).
    now seedable from the Financial Services object catalog (`core/registry/data/`).
 
 ## Changelog
+- 2026-07-20 — **Volume XI ontology packs +3 (Sprint 1 continued).** Authored three
+  finance-native packs on the existing `core/registry/ontology.ts` schema:
+  `ontology/lending_deposits.json` (**30** objects — full lending-products +
+  deposit-products breadth beyond the CU anchor), `ontology/capital_markets.json`
+  (**54** — VC/PE/private-credit/investment-merchant banks, fintech/neobank/broker-dealer/
+  RIA, funds/SPVs, capital-markets instruments + events, investments family, investor
+  people), `ontology/innovation_ecosystem.json` (**16** — the CU↔innovation-company
+  graph: startup/founder/pilot/partnership/thesis, with the discovery→…→investment
+  relationship ladder on `partnership`). Ontology now enriches **113 objects across 4
+  packs**; closed graph **0 unresolved** (176 distinct referenced objects), strict `tsc
+  --noEmit` clean. Added `scripts/ontology-check.mjs` (repeatable closed-graph check).
+  **Hospitality descoped** as a vertical (ADR-0015). Knowledge encoding (roadmap Sprint 1),
+  tracked in the roadmap's own %; platform headline holds at ~13%.
+- 2026-07-20 — **Volume XI Canonical Ontology framework** started (ADR-0014).
+  `core/registry/ontology.ts` enriches Object Registry classes (by `schema_ref`) with
+  relationships / lifecycle / KPIs / required documents / connectors; first pack
+  `core/registry/data/ontology/credit_union.json` authored in full for the credit-union core
+  (**13 objects**, closed graph — 0 unresolved references, `tsc` clean). Knowledge encoding
+  (roadmap Sprint 1), tracked in the roadmap's own %; platform headline holds at ~13%.
+- 2026-07-20 — **Object Registry loader wired.** `core/registry/objects.ts` projects the FS
+  catalog into `EntityType[]` + `ObjectRegistryEntry[]`; `cartridges/financial_services/`
+  installs all **341 classes as live entity_types** (registered via `cartridges/index.ts`).
+  Strict `tsc --noEmit` clean; runtime smoke test confirms 341 unique entity_types install.
+  Vertical cartridges (cooperative_markets) can now inherit them. First running code over the
+  catalog — headline holds at ~13% (no engine consumes the types at scale yet).
 - 2026-07-20 — **Financial Services Object Registry** landed as config-as-data:
   `core/registry/data/financial_services_objects.json` (20 families, 341 object classes, 39
   universal fields; DKR `ObjectRegistryEntry` shape, keyed to `0017`'s `object_class`) +
