@@ -2,12 +2,15 @@
 
 Read in this order at the start of every session:
 1. `README.md`
-2. `docs/00_governance/DOCTRINE.md`
+2. `docs/00_governance/DOCTRINE.md` (the short summary of the Constitution)
 3. `docs/00_governance/CURRENT_STATE.md`
 4. `docs/00_governance/ACTIVE_BUILD.md`
 5. The task-specific context pack named in `ACTIVE_BUILD.md`
 
 Do **not** recursively reread all documentation. The documentation library is authoritative but modular. Read only files referenced by the active context pack or by direct links from a document already in scope.
+
+## Specification hierarchy (authority order)
+`docs/00_governance/constitution/` holds the **Dispatch Constitution V1** (Volume I) — the top authority — and the 10-Volume Specification Program roadmap. `DOCTRINE.md` is its short summary; the Constitution governs when they differ, except where an ADR amends it (Constitution Art. 37/38/50). Order: **Constitution (Vol I) → ADRs → subsystem volumes (II–X) → registries → `ACTIVE_BUILD.md`.** Read the Constitution *by section*, never in full every session. Adoption + reconciliation: `ADR-0008`.
 
 ## Non-negotiable rules
 - Dispatch is the kernel and orchestration brain; it is not the customer-facing brand.
@@ -34,5 +37,5 @@ Before ending a substantive session:
 - Prefer additive migrations and backward-compatible contracts.
 - Keep PRDs separate from implementation status.
 - A PRD says what must exist. `CURRENT_STATE.md` says what exists now.
-- Do not silently change doctrine. Propose an ADR.
+- Do not silently change doctrine or the Constitution. Propose an ADR.
 - Every generated artifact must identify its source objects and model/human provenance.

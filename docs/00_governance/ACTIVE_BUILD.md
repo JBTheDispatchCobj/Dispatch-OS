@@ -1,40 +1,48 @@
 # Active Build
 
 ## Active initiative
-Cooperative Markets foundation on Dispatch OS.
+Cooperative Markets foundation on Dispatch OS, under the Dispatch Constitution V1.
 
 ## Current context pack
 `docs/context/packs/cooperative-markets-foundation.md`
 
-## Immediate implementation sequence
-1. ~~Reconcile core schemas with Truth, Source, Claim, Observation, Inference,
-   Relationship, Intelligence Object, and Personal Profile contracts.~~
-   **DONE (contracts + migrations 0011–0014; typecheck clean).**
-1b. ~~Adopt the Dispatch Knowledge Registry (DKR) — registry contracts + spec +
-   store + ops migration.~~ **DONE (ADR-0006/0007, `core/registry/types.ts`,
-   migration `0015`, `Dispatch_Knowledge_Registry_v1/`).**
-2. Add shared-market versus tenant visibility model — **RLS policies** for the
+## Done
+1. Core contracts — Truth, Source, Claim, Observation, Inference, Relationship,
+   Intelligence Object, Personal Profile (migrations `0011`–`0014`).
+1b. Dispatch Knowledge Registry adopted (ADR-0006; contracts + store + `0015`).
+1c. Dispatch Constitution V1 adopted as Volume I (ADR-0008); deltas reconciled.
+    Migrations `0011`–`0015` applied to Supabase; both repos on GitHub.
+
+## Immediate next
+2. **Shared-market vs tenant visibility — RLS** (`0016_market_rls.sql`) for the
    plane-aware tables (truth family, relationships, intelligence, profiles,
-   source_documents) + the registry-ops tables. **← NEXT.**
-3. Add public CU ingestion fixtures and deterministic profile calculations
-   (NCUA datasets staged; source registry seeded).
-4. Add Cooperative Markets cartridge manifest (`cartridges/cooperative_markets/`),
-   wiring the registry entries seeded in the DKR store.
-5. Add model-routing interfaces without binding to a provider.
+   source_documents) + registry-ops tables. Activates plane/visibility columns.
+   (Constitution Art. 20/23.) **← NEXT.**
+3. Public CU ingestion fixtures + deterministic profile calculations (NCUA data staged).
+4. Cooperative Markets cartridge manifest (`cartridges/cooperative_markets/`).
+5. Model-routing interfaces without binding to a provider.
 
-## Registry-first rule (DKR, ADR-0006)
-Before one-off logic, ask: new object / connector / intelligence object /
-cartridge, or a registry update? Update the registry first, then implement.
-
-## Open follow-ups
-- Apply migrations `0011`–`0015` in Supabase (Bryan pastes SQL).
-- Registry loader: read `Dispatch_Knowledge_Registry_v1/` into typed entries.
-- Truth-resolution/precedence engine; in-memory store methods + adapter mappings
-  for the new objects.
+## Forward backlog — Specification Program Volumes II–X
+(The roadmap's volumes are the durable backlog; build order per the roadmap.)
+- **Vol II Kernel** — kernel boundary; general event store + derived state;
+  identity/role/tenancy service; memory subsystem; action-level cost metering;
+  audit-log subsystem; configuration/versioning framework.
+- **Vol III Knowledge Graph / Truth** — RLS (#2); confidence-routing engine;
+  source-authority precedence; conflict coexistence/resolution (truth resolver).
+- **Vol IV Harness** — rules→small→strong→frontier→human router; human-review
+  workflow over `verifications`; model-route + review-packet standards.
+- **Vol V Intelligence / Publication** — rendering/lensing pipeline; Recommendation
+  object; actionability paths; search; editorial brevity rules.
+- **Vol VI Terminal** — Terminal environment; institution profile; org lensing.
+- **Vol VII Cartridge SDK** — cartridge runtime, manifest, install/remove,
+  dependency + isolation enforcement.
+- **Vol VIII Cooperative Markets** — cartridge objects (credit union, startup,
+  vendor, CUSO, executive, regulation, investment), rules, fixtures, workflows.
+- **Vol IX Connector Registry** — connector implementations; change-detection/
+  refresh/failure handling; discovery-pipeline promotion.
+- **Vol X Developer / Repo SDK** — evaluation + regression harness; context-pack
+  generator; workflow engine; security controls; freemium/pricing; UI (last).
 
 ## Explicitly deferred
-- Final UI design
-- Securities execution mechanics
-- Production fund/SPV administration
-- Full multimedia rendering
-- Paid billing implementation
+Final UI design; securities execution mechanics; production fund/SPV
+administration; full multimedia rendering; paid billing implementation.

@@ -1,48 +1,50 @@
-# Session Handoff
+# Session Handoff — AW Handoff 2
 
-## Completed (this session — AW build: truth/relationship/profile contracts + DKR)
-- Truth architecture as TS contracts + additive migrations, reconciled with the
-  existing `core/` object model:
-  - `core/truth/`, `core/relationships/`, `core/intelligence/`, `core/profile/`;
-    `Source` extended in `core/types.ts` (additive optional fields).
-  - Migrations `0011`–`0014` (truth layer, relationships, intelligence, profiles).
-- Adopted the **Dispatch Knowledge Registry (DKR)**:
-  - `core/registry/types.ts` (Source/Connector/Object/Intelligence/Cartridge
-    registry entries + DiscoveryCandidate).
-  - Spec `docs/01_architecture/DISPATCH_KNOWLEDGE_REGISTRY.md`; ADR-0006 (adopt),
-    ADR-0007 (truth-model reconciliation — map DKR terms to canonical TruthTier,
-    no code churn).
-  - Migration `0015` (`connector_runs`, `discovery_candidates`).
-  - Registry **store** structured in `Dispatch_Knowledge_Registry_v1/`
-    (README, connector schema, source registry seed with real NCUA/SEC/FFIEC,
-    object registry mapped to core, intelligence registry, cartridge index,
-    research queue).
-- ADR-0004/0005 (plane graph, truth envelope) from earlier in the session.
-- NCUA docs under `docs/04_sources/ncua/`.
-- Governance docs + context pack updated.
+## Where we are (end of this session)
+Foundation contracts are built, committed to GitHub, and applied to Supabase; the
+Dispatch Constitution V1 is adopted as the governing doctrine. Clean checkpoint.
 
-## Key decisions
-- One plane-aware graph, not forked public/tenant tables (ADR-0004).
-- Truth = assertion family over immutable `source_documents`, provenance as
-  indexed columns + bi-temporal validity (ADR-0005).
-- Registries are the source of truth; kernel executes. Registry store is its own
-  folder; contracts + spec live in the kernel repo (ADR-0006).
-- Canonical `TruthTier` kept; DKR truth terms mapped onto it (ADR-0007).
+## Completed this session
+- **Core contracts** (TS + additive SQL, reconciled with the existing model):
+  `core/truth/`, `core/relationships/`, `core/intelligence/`, `core/profile/`,
+  `core/registry/`; `Source` extended. Migrations `0011`–`0015`.
+- **Dispatch Knowledge Registry (DKR)** adopted — registry contracts + spec +
+  separate store repo + ops tables. ADR-0006.
+- **Dispatch Constitution V1** adopted as Volume I (`docs/00_governance/
+  constitution/`) + the 10-Volume roadmap. Reconciled against the committed
+  build in **ADR-0008** (one real conflict — Article 10 truth tiers — resolved in
+  favor of the committed `TruthTier`; language deltas + V1.1 errata recorded).
+- ADRs 0004–0008. Governance docs + context pack + `CLAUDE.md` updated for the
+  spec hierarchy.
+- NCUA source fixtures under `docs/04_sources/ncua/`.
 
-## Tests
-- `core/**/*.ts` (incl. `core/registry`) typecheck clean under `strict`
-  (isolated `tsc --noEmit`).
-- Full `npm run typecheck` NOT run this session (device has no `node_modules`).
+## State of the world
+- **GitHub:** `JBTheDispatchCobj/Dispatch-OS` (kernel) and
+  `JBTheDispatchCobj/Dispatch-Knowledge-Registry` (registry store), both `main`.
+- **Supabase:** migrations `0011`–`0015` applied — 16 new tables live.
+- **Contracts** typecheck clean under `strict` (isolated `tsc`).
+
+## Key decisions (ADRs)
+- 0004 one plane-aware graph (plane + visibility + nullable workspace_id).
+- 0005 truth = assertion family over immutable `source_documents`; provenance as
+  indexed columns + bi-temporal validity.
+- 0006 DKR: registries are the source of truth; store is its own repo.
+- 0007 canonical `TruthTier` kept; external truth terms mapped onto it.
+- 0008 Constitution V1 adopted as Volume I; Article 10 tier list is a V1.1 erratum.
 
 ## Blockers / risks
-- RLS deferred (ACTIVE_BUILD #2). Do not expose tenant-plane rows via PostgREST
-  until `0016_market_rls.sql` lands. Flagged in every migration header.
-- Migrations `0011`–`0015` drafted but NOT applied — Bryan pastes them.
-- No in-memory store methods / adapter mappings / registry loader yet.
+- **RLS deferred** — do not expose tenant-plane rows via PostgREST until
+  `0016_market_rls.sql` lands. Flagged in every migration header.
+- No in-memory store methods / adapter mappings / registry loader for the new
+  objects yet (contracts + DB only).
+- Git via the Cowork device bridge does not work (bridge can't do git locks);
+  git runs from Bryan's Mac terminal. Re-push after a change is 3 lines:
+  `cd <repo> && git add -A && git commit -m "..." && git push`.
 
 ## Next task / exact next step
-1. `cd ~/Downloads/Dispatch_OS_Cooperative_Markets_Repo && npm install && npm run typecheck`.
-2. Paste `0011`→`0015` into Supabase in order.
-3. ACTIVE_BUILD #2: draft `0016_market_rls.sql` — RLS for the plane-aware +
-   registry-ops tables (public read for shared_market/visibility='public';
-   tenant isolation otherwise).
+1. Draft `0016_market_rls.sql` — RLS for the plane-aware + registry-ops tables
+   (public read where `plane='shared_market'`/`visibility='public'`; tenant
+   isolation by `workspace_id`/`organization_id`; personal/relationship scopes).
+   This is ACTIVE_BUILD #2 and Constitution Art. 20/23.
+2. Then Volume III truth engine (confidence routing, source precedence, conflict
+   resolution) and Volume II kernel (event store, identity/role) per the roadmap.
