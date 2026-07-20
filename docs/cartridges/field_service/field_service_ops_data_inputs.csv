@@ -1,0 +1,68 @@
+Data Input Category,Input,Purpose,Preferred Pathway,Recommended Cadence
+Lead / Demand Intake,New website form lead,Create intake work item and prevent missed revenue,Webhook from form tool or email notification parsing,Real time to 5 minutes
+Lead / Demand Intake,Missed call,Trigger urgent callback and capture speed-to-lead leakage,Phone/SMS provider webhook or missed-call email alert,Real time to 5 minutes
+Lead / Demand Intake,Voicemail transcript,"Classify request, urgency, location, and callback need",Phone provider transcript webhook/API or email parsing,Real time to 5 minutes
+Lead / Demand Intake,Inbound SMS/text request,Create or update customer request and route follow-up,SMS platform API/webhook,Real time to 5 minutes
+Lead / Demand Intake,Inbound email request,Create intake work item and match to customer/location,Connected mailbox or forwarding address parser,Real time to 15 minutes
+Lead / Demand Intake,Marketplace lead,Capture third-party lead and track response/close rate,"Email parsing, Zapier/Make/n8n, or marketplace API where available",Real time to 15 minutes
+Lead / Demand Intake,Referral note,Create lead and preserve referral source attribution,"Email parsing, CRM sync, or lightweight manual/voice capture",Hourly to daily
+Customer / Location,Customer master record,Maintain canonical customer identity and match work history,"FSM API sync, CRM export, or scheduled report import",Hourly to daily
+Customer / Location,Service address/location,"Attach work, history, equipment, and access instructions to place","FSM API, CRM sync, calendar/job export, or customer list import",Hourly to daily
+Customer / Location,Access instructions/gate codes,Prevent failed visits and dispatch friction,"FSM notes API/export, tech note capture, or customer message parsing",Real time to daily
+Customer / Location,Customer preferences/constraints,Improve service quality and reduce owner-memory dependency,"CRM notes sync, email parsing, or technician voice/note capture",Daily
+Customer / Location,Prior service history,"Support diagnosis, repeat issue detection, and upsell timing",FSM job history API/report/export,Daily to weekly
+Scheduling / Dispatch,New job scheduled,Create schedule visibility and verify owner/tech assignment,"FSM webhook/API, calendar sync, or emailed schedule report",Real time to 15 minutes
+Scheduling / Dispatch,Job rescheduled/canceled,Update work queue and trigger customer/technician awareness,FSM webhook/API or calendar sync,Real time to 15 minutes
+Scheduling / Dispatch,Technician/crew assignment,Show who owns the job and detect unassigned work,"FSM dispatch API, calendar sync, or schedule export",Real time to 15 minutes
+Scheduling / Dispatch,Schedule gaps/open capacity,Surface unused technician capacity and routing issues,FSM schedule API/export or calendar sync analysis,Hourly
+Scheduling / Dispatch,Emergency priority flag,Route urgent work above normal queue,"Lead source webhook/API, dispatcher update, or agent classification",Real time
+Job / Work Order,Job created,Create canonical work object and attach customer/location/source,FSM webhook/API or report import,Real time to 15 minutes
+Job / Work Order,Job status changed,Keep operating visibility current and trigger next-step workflows,FSM webhook/API or technician mobile capture,Real time to 15 minutes
+Job / Work Order,Technician en route/arrived,Support live dispatch visibility and customer communication,FSM mobile event webhook/API or technician one-tap capture,Real time
+Job / Work Order,Diagnosis/work performed note,Create operating memory and support evidence/reporting,"Technician voice note, FSM notes API/export, or mobile capture",Real time to 1 hour
+Job / Work Order,Job completed,Trigger invoice/evidence/customer follow-up checks,FSM webhook/API or technician one-tap completion,Real time to 15 minutes
+Job / Work Order,Unable to complete reason,Trigger blocked-job or return-visit workflow,"Technician one-tap reason, voice note, or FSM status/note sync",Real time
+Evidence / Closeout,Before/after photos,"Prove completion and support disputes, reviews, and training","Technician mobile upload, FSM attachment sync, or shared folder sync",Real time to 1 hour
+Evidence / Closeout,Customer signature/approval,Confirm acceptance and reduce disputes,"FSM attachment/API, mobile capture, or document upload",Real time to 1 hour
+Evidence / Closeout,Checklist completion,Verify standard process was followed,Dispatch-owned mobile checklist or FSM task/checklist sync,Real time
+Evidence / Closeout,Missing evidence flag,Prevent incomplete closeout and weak proof trail,Dispatch rule from job completion + evidence requirements,Real time to 1 hour
+Parts / Materials,Part needed,Create parts workflow and prevent job from disappearing,"Technician one-tap capture, voice note, or FSM job note parsing",Real time
+Parts / Materials,Part ordered/vendor ETA,Track blocked jobs and return-visit readiness,"Vendor email parsing, purchasing export, or FSM note/status sync",Hourly to daily
+Parts / Materials,Return visit required,Create scheduled follow-up and customer communication loop,FSM status/note sync or Dispatch work item from parts-needed event,Real time to 1 hour
+Parts / Materials,Truck stock issue,Identify inventory/process leakage and technician friction,"Technician capture, FSM note parsing, or inventory export",Daily to weekly
+Estimate / Quote,Estimate created,Track open sales opportunities and quote pipeline,FSM API/webhook/report export,Real time to hourly
+Estimate / Quote,Estimate sent date/status,Trigger stale-estimate follow-up and sales leakage tracking,FSM API/report export or email notification parsing,Hourly to daily
+Estimate / Quote,Estimate approved,Trigger scheduling/work order conversion check,FSM webhook/API or email notification parsing,Real time to 15 minutes
+Estimate / Quote,Estimate declined/lost reason,Improve sales process and pricing intelligence,FSM update/API/export or follow-up outcome capture,Daily
+Estimate / Quote,High-value estimate stuck,Escalate owner/manager follow-up on large open opportunities,Dispatch rule from estimate amount + status age,Hourly to daily
+Invoice / Payment,Invoice created,Verify completed jobs are billed and connect work to cash,"FSM/QuickBooks API, webhook, or report export",Hourly to daily
+Invoice / Payment,Completed job not invoiced,Create billing follow-up and reduce cash leakage,Dispatch rule comparing completed jobs vs invoice records,Daily
+Invoice / Payment,Payment received,Close cash loop and update customer/job status,QuickBooks/payment processor/FSM API or daily report import,Daily
+Invoice / Payment,Unpaid invoice aging,Create collection/follow-up work items by threshold,QuickBooks/FSM aging report or API sync,Daily
+Invoice / Payment,Dispute/refund/credit note,Escalate customer service and revenue protection issue,Accounting email/API/report or manager note,Daily
+Quality / Callback / Warranty,Customer complaint,Escalate rescue workflow and reputation risk,"Email/SMS parsing, phone note, review alert, or FSM issue sync",Real time
+Quality / Callback / Warranty,Callback created,"Track rework, margin loss, and technician/process issues",FSM callback/job type API/report or dispatcher capture,Real time to daily
+Quality / Callback / Warranty,Warranty claim,Route warranty work and connect to original job/evidence,"FSM API/export, email parsing, or manual exception capture",Daily
+Quality / Callback / Warranty,Bad review posted,Create customer rescue and owner notification,"Google Business/reputation tool alert, email parser, or API",Real time to 1 hour
+Quality / Callback / Warranty,Repeat issue at same location,Detect recurring problem and create deeper diagnosis workflow,Dispatch rule across job history/customer/location records,Daily
+Recurring Service,Service agreement active,Identify recurring customers and service obligations,FSM/CRM/service agreement API/report export,Daily to weekly
+Recurring Service,Next service due,Create scheduling work and prevent missed recurring revenue,FSM/CRM report/API or calendar/service list sync,Daily
+Recurring Service,Missed recurring visit,Escalate service failure and revenue risk,Dispatch rule comparing due dates vs completed jobs,Daily
+Recurring Service,Renewal date approaching,Create renewal follow-up and retention workflow,CRM/FSM report/API or scheduled export,Daily to weekly
+Recurring Service,Maintenance plan opportunity,Surface upsell opportunities from job type/history,Dispatch rule from job history + customer eligibility,Daily to weekly
+Admin / Operating Context,Technician roster and skills,Assign work to appropriate people and detect capacity gaps,"FSM/user export, HR roster, or configuration setup",Weekly or on change
+Admin / Operating Context,Service area/territory,"Support routing, eligibility, and lead qualification","Configuration, mapping tool, CRM/FSM export",Weekly or on change
+Admin / Operating Context,Pricing rules/margin targets,Support quote review and leakage detection,"Configuration, pricing sheet upload, or accounting/FSM export",Weekly/monthly or on change
+Admin / Operating Context,SOPs/checklists,Define evidence and execution standards,"Document upload, configuration, or agent-assisted SOP extraction",On setup and on change
+Admin / Operating Context,Escalation/approval rules,Route exceptions and high-risk decisions correctly,Configuration and manager approval workflow,On setup and on change
+Admin / Operating Context,Vendor/supplier list,Support parts ETA and purchasing follow-up workflows,"Accounting/vendor export, FSM config, or document upload",Weekly/monthly or on change
+System Health / Data Quality,Source sync status,Detect broken feeds before data gaps kill the loop,Connector health checks and sync run logs,Every sync run
+System Health / Data Quality,Required field completeness,Create data-gap work items instead of relying on manual entry,Dispatch validation rules on normalized records,Hourly to daily
+System Health / Data Quality,Duplicate customer/location records,Improve matching and reporting accuracy,Dispatch matching rules and periodic data quality scan,Daily to weekly
+System Health / Data Quality,Stale data/source gap,Flag missing reports/API failures and repair pipeline,Dispatch source monitor comparing expected vs received cadence,Hourly to daily
+Management / ROI,Open work volume,Show operational load and bottlenecks,Dispatch event/work item database,Real time to hourly
+Management / ROI,Estimate follow-up leakage,Quantify revenue at risk from stale quotes,Dispatch metrics from estimates + follow-up events,Daily
+Management / ROI,Cash leakage,Quantify unpaid/completed-not-invoiced work,Dispatch metrics from jobs + invoices + payments,Daily
+Management / ROI,Callback/rework trend,Quantify quality and margin impact,Dispatch metrics from callbacks + original jobs + evidence,Weekly
+Management / ROI,Technician utilization/workload,Show capacity and imbalance,Dispatch metrics from schedule + job events,Daily to weekly
+Management / ROI,Recurring revenue opportunity,Show maintenance/renewal/service-plan upside,Dispatch metrics from service history + eligibility rules,Weekly

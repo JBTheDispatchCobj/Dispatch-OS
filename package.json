@@ -1,0 +1,29 @@
+{
+  "name": "dispatch-os",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Dispatch OS \u2014 an industry-agnostic operating core. Verticals plug in as cartridges. Runs on a local in-memory data layer in idea state; Supabase migrations ship as files for later hosting.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "docs:check": "python scripts/check_docs.py",
+    "context:cooperative": "python scripts/build_context_pack.py cooperative-markets",
+    "context:truth": "python scripts/build_context_pack.py truth-data",
+    "context:intelligence": "python scripts/build_context_pack.py intelligence",
+    "context:harness": "python scripts/build_context_pack.py model-harness"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.108.2",
+    "next": "16.0.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "typescript": "^5"
+  }
+}

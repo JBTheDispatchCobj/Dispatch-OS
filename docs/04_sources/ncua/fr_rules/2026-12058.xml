@@ -1,0 +1,495 @@
+<RULE>
+            <PREAMB>
+                <AGENCY TYPE="N">NATIONAL CREDIT UNION ADMINISTRATION</AGENCY>
+                <CFR>12 CFR Parts 703 and 749</CFR>
+                <RIN>RIN 3133-AF61</RIN>
+                <SUBJECT>Records Preservation Program and Appendices—Record Retention Guidelines; Catastrophic Act Preparedness Guidelines</SUBJECT>
+                <AGY>
+                    <HD SOURCE="HED">AGENCY:</HD>
+                    <P>National Credit Union Administration (NCUA).</P>
+                </AGY>
+                <ACT>
+                    <HD SOURCE="HED">ACTION:</HD>
+                    <P>Final rule.</P>
+                </ACT>
+                <SUM>
+                    <HD SOURCE="HED">SUMMARY:</HD>
+                    <P>On March 11, 2026, the NCUA (or `agency') published a proposed rule to solicit comments on ways to improve and update the vital records preservation program regulation and accompanying guidelines. Based on the comments received, and upon further consideration of the issues involved, the NCUA Board is publishing this final rule, mostly as proposed, to clarify the purpose of part 749, update the definitions, and remove unnecessary references to recommendations and guidance.</P>
+                </SUM>
+                <EFFDATE>
+                    <HD SOURCE="HED">DATES:</HD>
+                    <P>This final rule is effective on July 16, 2026.</P>
+                </EFFDATE>
+                <FURINF>
+                    <HD SOURCE="HED">FOR FURTHER INFORMATION CONTACT:</HD>
+                    <P>
+                        Policy: Matt Huston, Policy Officer, Office of Examination and Insurance, at (571) 309-7684 or 
+                        <E T="03">jhuston@ncua.gov;</E>
+                         Legal: Gira Bose, Senior Staff Attorney, Office of General Counsel, at (703) 518-6562 or 
+                        <E T="03">gbose@ncua.gov.</E>
+                    </P>
+                </FURINF>
+            </PREAMB>
+            <SUPLINF>
+                <HD SOURCE="HED">SUPPLEMENTARY INFORMATION:</HD>
+                <HD SOURCE="HD1">I. Introduction</HD>
+                <HD SOURCE="HD2">A. Background</HD>
+                <P>
+                    The NCUA's first vital records preservation program rule was promulgated in 1972 to ensure that duplicate vital records could be used for reconstruction purposes in the event of a catastrophe.
+                    <SU>1</SU>
+                    <FTREF/>
+                     The rule has been periodically amended since that time.
+                    <SU>2</SU>
+                    <FTREF/>
+                     While the Board believes part 749 continues to serve an important purpose, it has not been updated since 2007, and Appendix A, which was promulgated in 2001, has never been updated. In 2018, the NCUA's Regulatory Reform Taskforce recommended that the Board review part 749 to identify if any changes or 
+                    <PRTPAGE P="36074"/>
+                    improvements are needed.
+                    <SU>3</SU>
+                    <FTREF/>
+                     Over the next few years the Board received feedback that part 749 is unnecessarily burdensome and unclear to credit unions. In 2024, the Board issued an Advance Notice of Proposed Rulemaking (ANPR) on part 749 to inform any future changes the agency might make.
+                    <SU>4</SU>
+                    <FTREF/>
+                     This final rule builds on the comments received pursuant to the ANPR and the proposed rule issued in March 2026.
+                    <SU>5</SU>
+                    <FTREF/>
+                     The proposed rule primarily suggested removing Appendices A and B from the Code of Federal Regulations, in addition to tightening up the definitions used in part 749 and generally streamlining the regulation. Appendix A was added to part 749 as “suggested guidelines” based on the frequency of requests for assistance from credit unions. However, many commenters to the ANPR stated that, in practice, Appendix A is followed as if it were a requirement; thus, the Board concluded that Appendix A has become an obstacle to sound record retention practices and has resulted in credit unions retaining unused and obsolete records. The Board proposed removing Appendix B because, upon reconsideration, the benefit of having the guidance in proximity to the regulation does not outweigh the potential for misinterpretation.
+                </P>
+                <FTNT>
+                    <P>
+                        <SU>1</SU>
+                         Records Preservation Program, 37 FR 19387 (Sept. 20, 1972) (establishing 12 CFR 749).
+                    </P>
+                </FTNT>
+                <FTNT>
+                    <P>
+                        <SU>2</SU>
+                         
+                        <E T="03">See,</E>
+                         NCUA Board Action Memorandum (Nov. 12, 1980); Records Preservation Program, 66 FR 40578 (Aug. 3, 2001); and Records Preservation Program and Appendices—Record Retention Guidelines; Catastrophic Act Preparedness Guidelines, 72 FR 14251 (Mar. 27, 2007).
+                    </P>
+                </FTNT>
+                <FTNT>
+                    <P>
+                        <SU>3</SU>
+                         Regulatory Reform Agenda, 83 FR 65926 (Dec. 21, 2018).
+                    </P>
+                </FTNT>
+                <FTNT>
+                    <P>
+                        <SU>4</SU>
+                         Records Preservation Program and Appendices—Record Retention Guidelines; Catastrophic Act Preparedness Guidelines, 89 FR 31117 (Apr. 24, 2024). See proposed rule for an overview of the ANPR and the comments received in response. Records Preservation Program and Appendices—Record Retention Guidelines; Catastrophic Act Preparedness Guidelines, 91 FR 11934 (Mar. 11, 2026).
+                    </P>
+                </FTNT>
+                <FTNT>
+                    <P>
+                        <SU>5</SU>
+                         Records Preservation Program and Appendices—Record Retention Guidelines; Catastrophic Act Preparedness Guidelines, 91 FR 11934 (Mar. 11, 2026).
+                    </P>
+                </FTNT>
+                <HD SOURCE="HD2">B. Legal Authority</HD>
+                <P>
+                    The Board is issuing this final rule pursuant to its authority under the Federal Credit Union Act (FCU Act). Under the FCU Act, NCUA is the chartering and supervisory authority for federal credit unions and the federal supervisory authority for federally insured credit unions (FICUs).
+                    <SU>6</SU>
+                    <FTREF/>
+                     The FCU Act grants NCUA a broad mandate to issue regulations governing both FCUs and all FICUs. Section 120 of the FCU Act is a general grant of regulatory authority and authorizes the Board to prescribe rules and regulations for the administration of the FCU Act.
+                    <SU>7</SU>
+                    <FTREF/>
+                     Section 209 of the FCU Act is a plenary grant of regulatory authority to issue rules and regulations necessary or appropriate to carry out its role as share insurer for all FICUs.
+                    <SU>8</SU>
+                    <FTREF/>
+                     Accordingly, the FCU Act grants the Board broad rulemaking authority to ensure that FICUs and the Share Insurance Fund remain safe and sound.
+                </P>
+                <FTNT>
+                    <P>
+                        <SU>6</SU>
+                         12 U.S.C. 1752-1775.
+                    </P>
+                </FTNT>
+                <FTNT>
+                    <P>
+                        <SU>7</SU>
+                         12 U.S.C. 1766(a).
+                    </P>
+                </FTNT>
+                <FTNT>
+                    <P>
+                        <SU>8</SU>
+                         12 U.S.C. 1789.
+                    </P>
+                </FTNT>
+                <P>Part 749 also incorporates 15 U.S.C. 7001(d)—the Electronic Signatures in National and Global Commerce Act—which states that if a statute, regulation, or other rule of law requires a record be retained, that requirement is met by retaining an electronic record of the information in the record that accurately reflects the information in the record and remains accessible to all persons who are entitled to access by statute, regulation, or rule of law, for the period required by such statute, regulation, or rule of law, in a form that is capable of being accurately reproduced for later reference, whether by transmission, printing, or otherwise.</P>
+                <HD SOURCE="HD1">II. Final Rule</HD>
+                <HD SOURCE="HD2">A. Overview</HD>
+                <P>
+                    This final rule follows publication of the proposed rule and takes into consideration the comments received on the proposal. By the close of the public comment period on May 11, 2026, the Board had received 19 comments.
+                    <SU>9</SU>
+                    <FTREF/>
+                     These were submitted by seven credit unions, seven state and regional credit union leagues, two national credit union trade associations, one trade association for state credit union supervisors, and one individual member of the public who did not disclose a group affiliation. After careful consideration of the issues raised by the commenters, the Board has made two changes to the proposal, as discussed in section B. below.
+                </P>
+                <FTNT>
+                    <P>
+                        <SU>9</SU>
+                         Two comments were duplicate submissions from the same commenter.
+                    </P>
+                </FTNT>
+                <HD SOURCE="HD2">B. Discussion of Public Comments</HD>
+                <P>This section of the preamble discusses issues raised by commenters, and the Board's responses to the comments.</P>
+                <P>Six commenters supported the proposal unconditionally. Eleven commenters expressed overall support but also provided feedback on issues raised in the proposal. Only one commenter opposed the proposal stating that reduced record retention would lead to the spoliation of certain types of records.</P>
+                <P>Commenters requested changes to the proposal in two main areas. First, part 749 currently requires credit unions to maintain a records preservation log with a list of items to be recorded as part of the log. The proposed rule did not alter this requirement. Second, the proposed rule solicited feedback on adding a reference to part 749 on consulting with legal counsel when determining record retention timeframes.</P>
+                <P>On the requirement to maintain a records preservation log, one commenter expressed support for keeping the current provision. Another nine commenters recommended either removing the provision or revising it with an approach that gives a credit union more flexibility to determine what its individual records preservation log should incorporate and that works with the modern practice of electronic storage and automatic back up of data. Commenters stated that the final rule should not require credit unions to manually create or track information that is stored and tracked through automated systems.</P>
+                <P>Upon consideration of the comments, the Board agrees that the proposed rule text is unnecessarily prescriptive in mandating specific requirements and does not give a credit union the appropriate flexibility to create a records preservation log that will be most useful to the credit union. The Board believes it is important for a credit union and for the agency to know where vital records are stored. The purpose of a records preservation log is, therefore, to facilitate easy access when these records are needed. This is particularly important in the aftermath of a catastrophic event. But how the credit union structures such a log and what information it records in the log should be determined by the credit union. To be clear, the agency is not requiring or expecting credit unions to manually create or maintain this tool. As stated in the proposed rule, the log may be in electronic format if the credit union chooses. Therefore, paragraph 749.2(a)(3) is revised to read as follows:</P>
+                <EXTRACT>
+                    <P>a records preservation log as determined by the credit union that will aid in locating and easily accessing the vital records. The log may be in electronic or any other format as determined by the credit union.</P>
+                </EXTRACT>
+                <P>
+                    Second, the preamble to the proposed rule asked whether the agency should include a reference in the regulation to consulting with legal counsel when setting minimum retention periods. Nine commenters provided feedback on this point. Six commenters stated that any reference to consulting with legal counsel should be clearly optional, nonbinding guidance, and should not create a supervisory expectation of consulting with legal counsel. Three commenters opposed any reference to such consultation in the rule. One commenter stated that any such reference could be communicated 
+                    <PRTPAGE P="36075"/>
+                    through a Letter to Credit Unions rather than in the Code of Federal Regulations. One comment from a credit union league stated that this is a service that it provides to its members, as do other leagues, at much less cost than outside counsel would charge. Finally, one commenter said that any reference to consulting with legal counsel would be interpreted as a requirement when this is a decision that should be left to a credit union's board of directors.
+                </P>
+                <P>On further reflection, the Board has decided not to include a reference in the regulation to consulting with legal counsel when crafting record retention periods. While such consultation may be prudent for some credit unions, the reference was not intended to be taken as a requirement. As explained by commenters, however, the mere reference may in time be interpreted as a requirement by credit unions or examiners. And in light of the services provided by credit union leagues to their members, there may be sufficient industry-generated guidance available to assist with record retention periods that obviates the need for NCUA to include this reference in the regulation.</P>
+                <P>Other issues raised in the comments are addressed as follows. All commenters who opined on the proposal to remove Appendices A and B were supportive of the change. Commenters generally reiterated the concerns expressed by commenters to the ANPR stating that the appendices have become overly burdensome, are unreasonably prescriptive, and are confusing in practice because they operate as requirements even though they were intended to be nonbinding recommendations. The final rule repeals both appendices. A few commenters did state, however, that Appendix B contains helpful guidance on catastrophic act preparedness and the agency should publish its content in some other publication or on its website as an aid to any credit unions that choose to consult it. While this suggestion is beyond the scope of this rulemaking, the agency plans to publish the content of Appendix B for informational purposes for any credit union that finds it useful.</P>
+                <P>Two commenters asked that the agency provide guidance on what credit unions should do with certain documents that were referenced in Appendix A but fall outside part 749 because they are not records that would be needed to restore vital member services, such as a credit union's bylaws, charter, and other foundational documents. These documents are beyond the scope of part 749 but they are important documents, and credit unions should be thoughtful in their approach to managing them. As stated in the preamble to the proposed rule, it should be reasonable for the Board and for a credit union's membership to expect that a credit union's leadership would retain key foundational documents of its own volition. While this request for guidance is beyond the scope of this rulemaking, the agency will consider this suggestion as it reviews the need for future guidance.</P>
+                <P>One commenter opposed the rule stating that records related to escheatment and beneficiary designation should be retained permanently. As stated in the regulation, a credit union may classify additional records as vital and maintain older versions of any vital records as it determines necessary. Also, as revised § 749.0 makes clear, nothing in this rulemaking relieves a credit union of any recordkeeping obligations under other laws and regulations.</P>
+                <P>Finally, this rule removes 12 CFR 703.105(d), which requires reports to be maintained in accordance with Appendix A to part 749. This is a technical amendment to remove the inconsistency that would otherwise arise between part 703 and the revised part 749.</P>
+                <HD SOURCE="HD1">III. Regulatory Procedures</HD>
+                <HD SOURCE="HD2">A. Executive Orders 12866, 13563, and 14192</HD>
+                <P>
+                    Pursuant to Executive Order 12866 (“Regulatory Planning and Review”), a determination must be made whether a regulatory action is significant and therefore subject to review by the Office of Information and Regulatory Affairs (OIRA), within the Office of Management and Budget (OMB) in accordance with the requirements of the Executive Order.
+                    <SU>10</SU>
+                    <FTREF/>
+                     Executive Order 13563 (“Improving Regulation and Regulatory Review”) supplements and reaffirms the principles, structures, and definitions governing contemporary regulatory review established in Executive Order 12866.
+                    <SU>11</SU>
+                    <FTREF/>
+                     This final rule was drafted and reviewed in accordance with Executive Order 12866 and Executive Order 13563. OIRA has determined that this final rule is not a “significant regulatory action” as defined by section 3(f) of Executive Order 12866.
+                </P>
+                <FTNT>
+                    <P>
+                        <SU>10</SU>
+                         58 FR 51735 (Oct. 4, 1993).
+                    </P>
+                </FTNT>
+                <FTNT>
+                    <P>
+                        <SU>11</SU>
+                         76 FR 3821 (Jan. 21, 2011).
+                    </P>
+                </FTNT>
+                <P>
+                    Executive Order 14192 (“Unleashing Prosperity Through Deregulation”) requires that any new incremental costs associated with new regulations shall, to the extent permitted by law, be offset by the elimination of existing costs associated with at least 10 prior regulations.
+                    <SU>12</SU>
+                    <FTREF/>
+                     This final rule is not an E.O. 14192 regulatory action because this rule is not significant under E.O. 12866.
+                </P>
+                <FTNT>
+                    <P>
+                        <SU>12</SU>
+                         90 FR 9065 (Feb. 6, 2025).
+                    </P>
+                </FTNT>
+                <HD SOURCE="HD2">B. Regulatory Flexibility Act</HD>
+                <P>
+                    The Regulatory Flexibility Act 
+                    <SU>13</SU>
+                    <FTREF/>
+                     generally requires an agency to conduct a regulatory flexibility analysis of any rule subject to notice and comment rulemaking requirements, unless the agency certifies that the rule will not have a significant economic impact on a substantial number of small entities. If the agency makes such a certification, it shall publish the certification at the time of publication of either the proposed rule or the final rule, along with a statement providing the factual basis for such certification.
+                    <SU>14</SU>
+                    <FTREF/>
+                     For purposes of this analysis, NCUA considers small credit unions to be those having under $100 million in assets.
+                    <SU>15</SU>
+                    <FTREF/>
+                     The Board fully considered the potential economic impacts of the regulatory amendments on small credit unions.
+                </P>
+                <FTNT>
+                    <P>
+                        <SU>13</SU>
+                         5 U.S.C. 601 
+                        <E T="03">et seq.</E>
+                    </P>
+                </FTNT>
+                <FTNT>
+                    <P>
+                        <SU>14</SU>
+                         5 U.S.C. 605(b).
+                    </P>
+                </FTNT>
+                <FTNT>
+                    <P>
+                        <SU>15</SU>
+                         80 FR 57512 (Sept. 24, 2015).
+                    </P>
+                </FTNT>
+                <P>This final rule amends part 749 by clarifying the purpose of the regulation, updating the definitions, and removing unnecessary references to recommendations and guidance. Part 749 is a longstanding regulation that requires credit unions to establish a vital records preservation program to identify, store, and reconstruct vital records for the purpose of restoring vital member services after a catastrophic event. The preamble makes clear that the purpose of the rule is to reduce the regulatory burden of vital records preservation. It does so by streamlining the regulation so that only vital records are preserved and only for so long as they can be used to restore vital member services. The rule is based on industry feedback, particularly from small credit unions, that part 749, particularly Appendix A, is unnecessarily burdensome and unclear. The elimination of Appendix A, which recommends credit unions retain certain documents permanently, should reduce the costs of compliance with part 749. Accordingly, NCUA certifies the final rule will not have a significant economic impact on a substantial number of small credit unions.</P>
+                <HD SOURCE="HD2">C. Paperwork Reduction Act</HD>
+                <P>
+                    The Paperwork Reduction Act of 1995 (PRA) generally provides that an agency 
+                    <PRTPAGE P="36076"/>
+                    may not conduct or sponsor, and not withstanding any other provision of law, a person is not required to respond to, a collection of information, unless it displays a currently valid OMB control number. The PRA applies to rulemaking in which an agency creates a new or amends existing information collection requirements. For purposes of the PRA, an information collection requirement may take the form of a reporting, recordkeeping, or a third-party disclosure requirement.
+                </P>
+                <P>The final rule contains information collection recordkeeping requirements associated with establishing, retaining and maintaining a written vital records preservation program. This action will require revision of an existing information collection for approval under the PRA. The NCUA is proposing to extend, for three years, with revision, its information collection. The revision was submitted to OMB for approval under OMB control number 3133-0032.</P>
+                <P>
+                    <E T="03">Title of Information Collection:</E>
+                     Records Preservation, 12 CFR part 749.
+                </P>
+                <P>
+                    <E T="03">OMB Control Number:</E>
+                     3133-0032.
+                </P>
+                <P>
+                    <E T="03">Estimated Number of Respondents:</E>
+                     4,339.
+                </P>
+                <P>
+                    <E T="03">Estimated Number of Responses per Respondent:</E>
+                     1.
+                </P>
+                <P>
+                    <E T="03">Estimated Annual Responses:</E>
+                     4,339.
+                </P>
+                <P>
+                    <E T="03">Estimated Hours per response:</E>
+                     Varies.
+                </P>
+                <P>
+                    <E T="03">Estimated Total Annual Burden Hours:</E>
+                     8,726.
+                </P>
+                <P>The NCUA estimates a total annual burden of 8,726 hours as follows:</P>
+                <GPOTABLE COLS="6" OPTS="L2,nj,i1" CDEF="s50,r50,12,13,12,12">
+                    <TTITLE>NCUA Summary of Estimated Annual Burden </TTITLE>
+                    <TDESC>[3133-0032]</TDESC>
+                    <BOXHD>
+                        <CHED H="1">
+                            Information
+                            <LI>collection activity</LI>
+                        </CHED>
+                        <CHED H="1">
+                            Type of burden
+                            <LI>(frequency of</LI>
+                            <LI>response)</LI>
+                        </CHED>
+                        <CHED H="1">
+                            Number of
+                            <LI>respondents</LI>
+                        </CHED>
+                        <CHED H="1">
+                            Number of
+                            <LI>responses</LI>
+                            <LI>per</LI>
+                            <LI>respondent</LI>
+                        </CHED>
+                        <CHED H="1">
+                            Hours
+                            <LI>per response</LI>
+                        </CHED>
+                        <CHED H="1">
+                            Total
+                            <LI>estimated</LI>
+                            <LI>annual</LI>
+                            <LI>burden</LI>
+                            <LI>hours</LI>
+                        </CHED>
+                    </BOXHD>
+                    <ROW>
+                        <ENT I="01">Retain and maintain a written vital records preservation program</ENT>
+                        <ENT>Recordkeeping (On Occasion)</ENT>
+                        <ENT>4,331</ENT>
+                        <ENT>1</ENT>
+                        <ENT>2</ENT>
+                        <ENT>8,662</ENT>
+                    </ROW>
+                    <ROW RUL="n,s">
+                        <ENT I="01">Establish a written program</ENT>
+                        <ENT>Recordkeeping (One-time)</ENT>
+                        <ENT>8</ENT>
+                        <ENT>1</ENT>
+                        <ENT>8</ENT>
+                        <ENT>64</ENT>
+                    </ROW>
+                    <ROW>
+                        <ENT I="03">
+                            <E T="03">Total Estimated Annual Burden (Hours)</E>
+                        </ENT>
+                        <ENT/>
+                        <ENT/>
+                        <ENT/>
+                        <ENT/>
+                        <ENT>8,726</ENT>
+                    </ROW>
+                </GPOTABLE>
+                <HD SOURCE="HD2">D. Executive Order 13132 on Federalism</HD>
+                <P>
+                    Executive Order 13132 encourages independent regulatory agencies to consider the impact of their actions on state and local interests.
+                    <SU>16</SU>
+                    <FTREF/>
+                     NCUA, an agency as defined in 44 U.S.C. 3502(5), voluntarily complies with the executive order to adhere to fundamental federalism principles. This final rule would apply to all FICUs, including state-chartered credit unions. The NCUA expects that any effect on states or on the distribution of power and responsibilities among the various levels of government will be minor. The changes to part 749 would mainly clarify the existing regulations and guidance in this area and are not intended to affect the division of responsibilities between the NCUA and state regulatory authorities with oversight of federally insured, state-chartered credit unions.
+                </P>
+                <FTNT>
+                    <P>
+                        <SU>16</SU>
+                         64 FR 43255 (Aug. 4, 1999).
+                    </P>
+                </FTNT>
+                <HD SOURCE="HD2">E. Assessment of Federal Regulations and Policies on Families</HD>
+                <P>
+                    NCUA has determined that this final rule will not affect family well-being within the meaning of Section 654 of the Treasury and General Government Appropriations Act, 1999.
+                    <SU>17</SU>
+                    <FTREF/>
+                     This final rule relates to FICUs' vital records retention programs, and any effect on family well-being is expected to be indirect.
+                </P>
+                <FTNT>
+                    <P>
+                        <SU>17</SU>
+                         Public Law 105-277, 112 Stat. 2681 (1998).
+                    </P>
+                </FTNT>
+                <HD SOURCE="HD2">F. Congressional Review Act</HD>
+                <P>
+                    The Congressional Review Act (CRA) generally provides for congressional review of agency rules.
+                    <SU>18</SU>
+                    <FTREF/>
+                     NCUA must submit a report to Congress and the Comptroller General when it issues a final rule, as defined by the CRA.
+                    <SU>19</SU>
+                    <FTREF/>
+                     An agency rule, in addition to being subject to congressional oversight, may also be subject to a delayed effective date if the rule is a “major rule.” The Office of Information and Regulatory Affairs (OIRA), within the Office of Management and Budget (OMB), has determined that this rule is not a “major rule” within the meaning of the relevant sections of the CRA. NCUA will also file appropriate reports with Congress and the Comptroller General so this rule may be reviewed.
+                </P>
+                <FTNT>
+                    <P>
+                        <SU>18</SU>
+                         5 U.S.C. 801-808.
+                    </P>
+                </FTNT>
+                <FTNT>
+                    <P>
+                        <SU>19</SU>
+                         5 U.S.C. 804(3).
+                    </P>
+                </FTNT>
+                <LSTSUB>
+                    <HD SOURCE="HED">List of Subjects</HD>
+                    <CFR>12 CFR Part 703</CFR>
+                    <P>Credit unions, Investments, Reporting and recordkeeping requirements.</P>
+                    <CFR>12 CFR Part 749</CFR>
+                    <P>Archives and records, Credit unions, Reporting and recordkeeping requirements.</P>
+                </LSTSUB>
+                <SIG>
+                    <DATED>By the National Credit Union Administration Board, this 9th day of June, 2026.</DATED>
+                    <NAME>Melane Conyers-Ausbrooks,</NAME>
+                    <TITLE>Secretary of the Board.</TITLE>
+                </SIG>
+                <P>For the reasons stated in the preamble, the NCUA Board amends 12 CFR parts 703 and 749 as follows:</P>
+                <PART>
+                    <HD SOURCE="HED">PART 703—INVESTMENT AND DEPOSIT ACTIVITIES</HD>
+                    <SUBPART>
+                        <HD SOURCE="HED">Subpart B—Derivatives</HD>
+                    </SUBPART>
+                </PART>
+                <REGTEXT TITLE="12" PART="703">
+                    <AMDPAR>1. The authority citation for part 703 continues to read as follows:</AMDPAR>
+                    <AUTH>
+                        <HD SOURCE="HED">Authority:</HD>
+                        <P> 12 U.S.C. 1757(7), 1757(8), 1757(14), and 1757(15).</P>
+                    </AUTH>
+                </REGTEXT>
+                <SECTION>
+                    <SECTNO>§ 703.105</SECTNO>
+                    <SUBJECT>[Amended]</SUBJECT>
+                </SECTION>
+                <REGTEXT TITLE="12" PART="703">
+                    <AMDPAR>2. Remove and reserve § 703.105(d).</AMDPAR>
+                </REGTEXT>
+                <PART>
+                    <HD SOURCE="HED">PART 749—RECORDS PRESERVATION PROGRAM AND APPENDICES—RECORD RETENTION GUIDELINES; CATASTROPHIC ACT PREPAREDENESS GUIDELINES</HD>
+                </PART>
+                <REGTEXT TITLE="12" PART="749">
+                    <AMDPAR>3. The authority citation for part 749 continues to read as follows:</AMDPAR>
+                    <AUTH>
+                        <HD SOURCE="HED">Authority:</HD>
+                        <P>12 U.S.C. 1756, 1766(a), 1784, 1786, 1789; 15 U.S.C. 7001(d).</P>
+                    </AUTH>
+                </REGTEXT>
+                <REGTEXT>
+                    <AMDPAR>4. Revise part 749 to read as follows:</AMDPAR>
+                    <PART>
+                        <HD SOURCE="HED">PART 749—VITAL RECORDS PRESERVATION PROGRAM</HD>
+                        <CONTENTS>
+                            <SECHD>Sec.</SECHD>
+                            <SECTNO>749.0</SECTNO>
+                            <SUBJECT>
+                                Purpose and scope.
+                                <PRTPAGE P="36077"/>
+                            </SUBJECT>
+                            <SECTNO>749.1</SECTNO>
+                            <SUBJECT>Definitions.</SUBJECT>
+                            <SECTNO>749.2</SECTNO>
+                            <SUBJECT>Vital records preservation program.</SUBJECT>
+                            <SECTNO>749.3</SECTNO>
+                            <SUBJECT>Vital records center and third-party service providers.</SUBJECT>
+                            <SECTNO>749.4</SECTNO>
+                            <SUBJECT>Format for vital records preservation.</SUBJECT>
+                            <SECTNO>749.5</SECTNO>
+                            <SUBJECT>Format for records required by other NCUA regulations.</SUBJECT>
+                        </CONTENTS>
+                        <SECTION>
+                            <SECTNO>§  749.0</SECTNO>
+                            <SUBJECT>Purpose and scope.</SUBJECT>
+                            <P>(a) This part describes the obligations of a federally insured credit union to maintain a vital records preservation program to identify, store, and reconstruct vital records in the event such records are destroyed.</P>
+                            <P>(b) This part does not supersede records preservation requirements that may apply to a credit union pursuant to other law or regulation.</P>
+                        </SECTION>
+                        <SECTION>
+                            <SECTNO>§  749.1</SECTNO>
+                            <SUBJECT>Definitions.</SUBJECT>
+                            <P>For purposes of this part:</P>
+                            <P>
+                                <E T="03">Vital member services</E>
+                                 are the essential financial services that a credit union provides to its members, such as member access to their accounts, share withdrawal and deposit facilities, and loan payments and disbursements.
+                            </P>
+                            <P>
+                                <E T="03">Vital records</E>
+                                 are the most recent and current versions of the records a credit union needs to restore vital member services. These records are:
+                            </P>
+                            <P>(1) A list of share, deposit, and loan balances for each member's account as of the close of the most recent business day that:</P>
+                            <P>(i) Shows each balance individually identified by a name or number,</P>
+                            <P>(ii) Lists multiple loans of one account separately, and</P>
+                            <P>(iii) Contains information sufficient to enable the credit union to locate each member, such as address and telephone number.</P>
+                            <P>(2) A financial report, which lists all of the credit union's asset and liability accounts, current as of the most recent month-end.</P>
+                            <P>(3) Bank reconcilements, current as of the most recent month-end.</P>
+                            <P>(4) A list of the credit union's accounts at financial institutions, insurance policies, and investments along with related contact information, current as of the most recent month-end.</P>
+                            <P>(5) Emergency contact information for employees, officials, regulatory offices, and vendors used to support vital records.</P>
+                            <P>(6) A credit union may classify additional records as vital and maintain older versions of any vital records as it determines necessary.</P>
+                            <P>
+                                <E T="03">Vital records center</E>
+                                 is a storage facility, which may include another federally insured credit union, at any location far enough from the credit union's offices to avoid the simultaneous loss of both sets of records in the event of a catastrophic act.
+                            </P>
+                        </SECTION>
+                        <SECTION>
+                            <SECTNO>§ 749.2</SECTNO>
+                            <SUBJECT>Vital records preservation program.</SUBJECT>
+                            <P>(a) The board of directors of a credit union is responsible for establishing a vital records preservation program within six months of its insurance certificate being issued. The program must be in writing and contain procedures for maintaining duplicate vital records at a vital records center. The procedures must include:</P>
+                            <P>(1) Designated staff responsible for vital records preservation,</P>
+                            <P>(2) A schedule for the storage and destruction of vital records, and</P>
+                            <P>(3) A records preservation log as determined by the credit union that will aid in locating and easily accessing the vital records. The log may be in electronic or any other format as determined by the credit union.</P>
+                            <P>(b) A credit union that has some or all of its vital records maintained by an off-site data processor is considered to be in compliance for the storage of those records if the service agreement specifies the data processor safeguards against the simultaneous destruction of production and back-up information.</P>
+                            <P>(c) Unless required by other law or regulation, older versions of vital records may be destroyed once their current versions are stored.</P>
+                        </SECTION>
+                        <SECTION>
+                            <SECTNO>§  749.3</SECTNO>
+                            <SUBJECT>Vital records center and third-party service providers.</SUBJECT>
+                            <P>A credit union must maintain, or contract with a third-party service provider to maintain, any equipment or software for its vital records center necessary for the credit union to access its records. If a credit union contracts with a third-party service provider to maintain its records, the credit union must maintain effective oversight of the third-party service provider to ensure the records meet the requirements of this section.</P>
+                        </SECTION>
+                        <SECTION>
+                            <SECTNO>§  749.4</SECTNO>
+                            <SUBJECT>Format for vital records preservation.</SUBJECT>
+                            <P>Preserved vital records may be in any format that can be used to reconstruct the credit union's vital records. The format used must accurately reflect the information in the record, remain accessible to all persons entitled to access by statute, regulation, or rule of law, and be capable of reproduction by transmission, printing, or otherwise.</P>
+                        </SECTION>
+                        <SECTION>
+                            <SECTNO>§  749.5</SECTNO>
+                            <SUBJECT>Format for records required by other NCUA regulations.</SUBJECT>
+                            <P>Where NCUA regulations require a credit union to retain certain writings, records, or information, the credit union may use any format that accurately reflects the information in the record, is accessible to all persons entitled to access by statute, regulation, or rule of law, and is capable of being reproduced by transmission, printing, or otherwise. The credit union must maintain the necessary equipment or software to permit an examiner to access the records during the examination process.</P>
+                        </SECTION>
+                    </PART>
+                </REGTEXT>
+            </SUPLINF>
+            <FRDOC>[FR Doc. 2026-12058 Filed 6-15-26; 8:45 am]</FRDOC>
+            <BILCOD>BILLING CODE 7535-01-P</BILCOD>
+        </RULE>

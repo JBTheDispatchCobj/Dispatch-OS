@@ -1,0 +1,36 @@
+always:
+- README.md
+- CLAUDE.md
+- docs/00_governance/DOCTRINE.md
+- docs/00_governance/CURRENT_STATE.md
+- docs/00_governance/ACTIVE_BUILD.md
+packs:
+  cooperative-markets:
+  - docs/02_product/MASTER_PRODUCT_MAP.md
+  - docs/03_subsystems/COOPERATIVE_MARKETS_PRD.md
+  - docs/03_subsystems/CU_SIDE_PRD.md
+  - docs/03_subsystems/STARTUP_SIDE_PRD.md
+  - docs/04_sources/SOURCE_CATALOG.md
+  - docs/05_build/BUILD_SEQUENCE.md
+  truth-data:
+  - docs/01_architecture/DATA_ARCHITECTURE.md
+  - docs/01_architecture/adr/ADR-0001-SHARED-MARKET-PRIVATE-TENANT.md
+  - docs/03_subsystems/OBJECTS_PRD.md
+  - docs/03_subsystems/PROFILES_PRD.md
+  - docs/03_subsystems/RELATIONSHIPS_PRD.md
+  intelligence:
+  - docs/02_product/THE_AURIC_PRD.md
+  - docs/03_subsystems/INTELLIGENCE_OBJECTS_PRD.md
+  - docs/03_subsystems/CONTENT_ENGINE_PRD.md
+  - docs/03_subsystems/PERSONAL_PROFILE_PRD.md
+  - docs/04_sources/NEWS_AND_FAIR_USE_POLICY.md
+  model-harness:
+  - docs/01_architecture/MODEL_HARNESS_ARCHITECTURE.md
+  - docs/01_architecture/AGENTIC_EXECUTION_ARCHITECTURE.md
+  - docs/01_architecture/OPEN_SOURCE_STACK.md
+  - docs/01_architecture/adr/ADR-0002-MODEL-AGNOSTIC-HARNESS.md
+  terminal:
+  - docs/02_product/TERMINAL_PRD.md
+  - docs/02_product/DISPATCH_AS_SERVICE_PRD.md
+  - docs/02_product/FREEMIUM_AND_PRICING_PRD.md
+  - docs/03_subsystems/CARTRIDGES_PRD.md
