@@ -798,13 +798,23 @@ A conforming implementation:
 
 The Harness determines how work is executed.
 
-Execution order:
-1. deterministic rules and SQL
-2. retrieval and structured tools
-3. small shared open model
-4. stronger open model
-5. frontier model
-6. human expert
+Execution order (routing ladder — canonical per RFC-2013; amended V1.1, ADR-0011):
+1. deterministic rules
+2. SQL
+3. registered tool
+4. connector
+5. local open model
+6. shared open model
+7. large open model
+8. frontier model
+9. human expert
+
+> **V1.1 erratum (ADR-0011).** The routing ladder was refined from the original
+> six-rung list to RFC-2013's canonical rungs (adding *registered tool*,
+> *connector*, and splitting *local / shared / large open model*). The governing
+> principle — the cheapest sufficient intelligence always wins (Art. Rule Eight) —
+> is unchanged; only the rung granularity was made canonical. Amendment per
+> Art. 37/38/50.
 
 Routing must consider complexity, stakes, latency, privacy, cost, confidence, and tenant policy.
 

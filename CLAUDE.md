@@ -5,7 +5,8 @@ Read in this order at the start of every session:
 2. `docs/00_governance/DOCTRINE.md` (the short summary of the Constitution)
 3. `docs/00_governance/CURRENT_STATE.md`
 4. `docs/00_governance/ACTIVE_BUILD.md`
-5. The task-specific context pack named in `ACTIVE_BUILD.md`
+5. `docs/00_governance/BUILD_PROGRESS.md` (the % build tracker — always keep it current)
+6. The task-specific context pack named in `ACTIVE_BUILD.md`
 
 Do **not** recursively reread all documentation. The documentation library is authoritative but modular. Read only files referenced by the active context pack or by direct links from a document already in scope.
 
@@ -31,7 +32,10 @@ Before ending a substantive session:
 2. Update `docs/00_governance/ACTIVE_BUILD.md`.
 3. Add or update the relevant ADR in `docs/01_architecture/adr/` for durable decisions.
 4. Update the active context pack.
-5. Write a concise `HANDOFF.md` with completed work, changed files, decisions, tests, blockers, and the exact next command/task.
+5. **Update `docs/00_governance/BUILD_PROGRESS.md`** — recompute the % build completion
+   from its weighted table, adjust the `built` column for any layer that advanced, and
+   add a dated changelog line. Always be tracking the percentage.
+6. Write a concise `HANDOFF.md` with completed work, changed files, decisions, tests, blockers, and the exact next command/task. Include the current build %.
 
 ## Change policy
 - Prefer additive migrations and backward-compatible contracts.
