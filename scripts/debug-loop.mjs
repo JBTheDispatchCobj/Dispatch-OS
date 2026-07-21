@@ -351,6 +351,47 @@ await step("DATA       (regulatory + profiles reconcile to source)", async () =>
   return `regulatory ${corpus.total_sections} in-force + ${corpus.pending_full_text} pending + ${corpus.held_instructions} held (bi-temporal, deterministic) · ${batch.length} profiles reconcile to source · registry resolves+merges (proposed→gated)`;
 });
 
+// --- 7. Editorial gate (Wave 4: nothing publishes without a human editorial sign-off) ---
+await step("EDITORIAL  (publication gate has teeth)", async () => {
+  const { register } = await import("node:module");
+  register("./alias-hook.mjs", import.meta.url);
+  const { runDealPipeline } = await import("@/cartridges/cooperative_markets/pipeline");
+  const { halcyonSummitRun } = await import("@/cartridges/cooperative_markets/pipeline_fixtures");
+  const { distribute, deliveriesRestateIO, DEFAULT_CHANNELS } = await import("@/core/auric/distribution");
+
+  const g = halcyonSummitRun();
+  const run = runDealPipeline(g.input, g.ctx);
+  assert(run.io && run.variants.length > 0, "need an assembled IO + variants to test distribution");
+  const ctx = { idPrefix: "pub:test", publishedAt: g.ctx.startedAt };
+
+  // GATE HAS TEETH: no editorial disposition → nothing published.
+  const held = distribute(run.io, run.variants, DEFAULT_CHANNELS, null, ctx);
+  assert(held.status === "held_for_editorial" && held.deliveries.length === 0, "absent editorial disposition must publish nothing");
+  // Rejected → nothing published.
+  const rejected = distribute(run.io, run.variants, DEFAULT_CHANNELS, { disposition: "rejected", by: "user:editor", decision_ref: "decision:ed:reject" }, ctx);
+  assert(rejected.status === "rejected" && rejected.deliveries.length === 0, "rejected editorial disposition must publish nothing");
+  // Held → nothing published.
+  const held2 = distribute(run.io, run.variants, DEFAULT_CHANNELS, { disposition: "held", by: "user:editor", decision_ref: "decision:ed:hold" }, ctx);
+  assert(held2.status === "held_for_editorial" && held2.deliveries.length === 0, "held editorial disposition must publish nothing");
+
+  // APPROVED → publishes, and every delivery is sourced + carries the authorizing decision.
+  const ed = { disposition: "approved", by: "user:managing_editor", decision_ref: "decision:ed:summit_halcyon:approved" };
+  const pub = distribute(run.io, run.variants, DEFAULT_CHANNELS, ed, ctx);
+  assert(pub.status === "published" && pub.deliveries.length > 0, "approved editorial disposition must publish deliveries");
+  assert(pub.deliveries.every((d) => d.editorial_decision_ref === ed.decision_ref && d.approved_by === ed.by), "every delivery must carry the authorizing editorial decision (lineage, not a weight)");
+  // TRUTH DISCIPLINE: every delivery restates the IO's refs exactly (no superset).
+  assert(deliveriesRestateIO(run.io, pub.deliveries), "channel deliveries must restate the IO refs exactly");
+  // Channel reach: terminal_feed is network (institution), market_feed is public.
+  const term = pub.deliveries.filter((d) => d.channel === "terminal_feed");
+  const market = pub.deliveries.filter((d) => d.channel === "market_feed");
+  assert(term.length > 0 && term.every((d) => d.visibility === "network"), "terminal_feed deliveries must be network-visibility");
+  assert(market.every((d) => d.visibility === "public"), "market_feed deliveries must be public-visibility");
+  // Determinism: same inputs → byte-identical publication.
+  assert(JSON.stringify(distribute(run.io, run.variants, DEFAULT_CHANNELS, ed, ctx)) === JSON.stringify(pub), "distribution must be deterministic");
+
+  return `held/rejected→0 deliveries (gate has teeth) · approved→${pub.deliveries.length} deliveries across ${pub.channels.length} channels · sourced + restates IO · deterministic`;
+});
+
 // --- Summary -----------------------------------------------------------------
 const failed = results.filter((r) => !r.ok);
 console.log(`\n${"═".repeat(52)}`);

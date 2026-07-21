@@ -1,10 +1,23 @@
-# Session Handoff — OLYMPIC SPRINT WAVE 3 (live data + kernel/truth services)
+# Session Handoff — OLYMPIC SPRINT WAVE 3 (done) + WAVE 4 slice (editorial gate)
 
 ## Where we are
-Platform build **~33%** (up from ~28%). Waves 1, 2 **and** 3 of the Olympic Sprint are **DONE**. The
-Cooperative Markets vertical now runs **on real data at scale** and has its first kernel/truth services.
-Gate is green on all three checks: `npm run build` (exit 0, `/market` **and** `/terminal` prerender),
-full-app `tsc --noEmit` clean, and `node scripts/debug-loop.mjs` **ALL GREEN (6/6)**.
+Platform build **~33%**. Waves 1, 2, 3 are **DONE**, and the **first slice of Wave 4** (Auric distribution +
+the editorial verification gate) is done. The Cooperative Markets vertical runs **on real data at scale**, has
+its first kernel/truth services, and now publishes to lensed channels behind a human editorial gate. Gate is
+green on all three checks: `npm run build` (exit 0, `/market` + `/terminal` prerender), full-app `tsc --noEmit`
+clean, and `node scripts/debug-loop.mjs` **ALL GREEN (7/7)**.
+
+## Wave 4 slice completed this session (editorial gate + channel distribution)
+- **`core/auric/distribution.ts`** (NEW) — channel variants (brief / market-feed / terminal-feed) + the
+  **editorial verification gate**: `distribute(io, variants, channels, editorial, ctx)` publishes to a channel
+  ONLY on an approved HUMAN `EditorialDisposition` (a SECOND human gate, distinct from the IC deal gate). Held /
+  rejected / absent → nothing delivered; every `ChannelDelivery` carries the editorial `decision_ref` +
+  `approved_by` (lineage) and restates the IO refs exactly (`deliveriesRestateIO`). Pure/deterministic.
+- **`scripts/debug-loop.mjs`** — new **EDITORIAL** step (step 7): gate has teeth (held/rejected→0 deliveries;
+  approved→sourced deliveries that restate the IO; deterministic). ALL GREEN (7/7).
+- **Remaining Wave 4** (next chat): unit tests for the engines + wire debug-loop into CI; observability
+  (cost-ledger dashboards / event replay); a channel/distribution Terminal surface; `DEBUG_LOG` cleanup; wire the
+  Object Registry service to the supabase adapter IF `0016`+`0017` are applied. Wave 4 closes Sprint I (~40%).
 
 ## The reality-check that shaped Wave 3 (read this)
 The kickoff said to wire `ingest_call_report` to "the real 5300 data in `docs/04_sources/ncua/`." That
@@ -68,6 +81,8 @@ The Dispatch cloud sandbox cannot `git commit`/`git push` (its git VM blocks `.g
 identity). The Wave-3 files were written to your repo on disk. Run this in your Mac terminal (it first removes
 the two staging tarballs the cloud session used to move files, then commits):
 ```
-cd ~/Downloads/Dispatch_OS_Cooperative_Markets_Repo && rm -f .git/index.lock && rm -rf _to_delete && git status && git add -A && git commit -m "Olympic Sprint Wave 3: live data + kernel/truth services — real NCUA regulatory ingestion at scale (ingest_regulations.ts: 675 in-force 12 CFR sections + 10 pending amendments -> sourced bi-temporal public_fact truth objects; instructions held pending human merge), Profile Assembly Engine (core/profile/assemble.ts, RFC-3012) over the confidence engine, 5300 batch path -> assembled institution profiles (labeled fixture batch), Object Registry service (core/registry/service.ts, RFC-2003) + entity resolution behind the 0016/0017 seam, and a /market Terminal surface. Debug loop gains a DATA-INTEGRITY step (pinned source counts + independent ratio oracle + reconciliation). npm run build exit 0 (/market prerenders); tsc clean; debug-loop ALL GREEN (6/6)." && git push
+cd ~/Downloads/Dispatch_OS_Cooperative_Markets_Repo && rm -f .git/index.lock && rm -rf _to_delete && git status && git add -A && git commit -m "Olympic Sprint Wave 4 (slice): Auric distribution + editorial verification gate — core/auric/distribution.ts publishes an IO's rendered variants to channels (brief/market-feed/terminal-feed) ONLY on an approved human EditorialDisposition (a second human gate, distinct from the IC deal gate); held/rejected/absent -> nothing published; deliveries carry the editorial decision_ref + approved_by and restate the IO refs exactly. Debug loop gains an EDITORIAL step (gate has teeth). npm run build exit 0; tsc clean; debug-loop ALL GREEN (7/7)." && git push
 ```
-Always `git status` first (the command above does) to confirm no lost updates before you commit.
+Always `git status` first (the command above does) to confirm no lost updates before you commit. (Wave 3 is
+already pushed at `eed2490`; this commit is the Wave-4 editorial-gate slice: `core/auric/distribution.ts` +
+the debug-loop EDITORIAL step + the governance docs.)

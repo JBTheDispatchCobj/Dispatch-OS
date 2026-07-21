@@ -25,11 +25,11 @@ service (types + in-memory store; no service/API/engine/UI layer yet).
 | Kernel services (identity/permissions, event bus, object registry, cost ledger, contracts/API) | 20% | 20% | 4.0 |
 | Truth/graph engines (resolver, confidence, entity resolution, assembly, query) | 15% | 17% | 2.55 |
 | Agent Harness + Execution Engine (router, planner, runtime, evaluation) | 15% | 13% | 1.95 |
-| Publication (Auric) engine | 8% | 20% | 1.6 |
+| Publication (Auric) engine | 8% | 26% | 2.08 |
 | Connector implementations + ingestion | 7% | 19% | 1.33 |
 | Cooperative Markets cartridge (first product) | 8% | 72% | 5.76 |
 | Terminal (customer-facing product) | 7% | 30% | 2.1 |
-| Tests / observability / productionization | 5% | 20% | 1.0 |
+| Tests / observability / productionization | 5% | 22% | 1.1 |
 | **Total** | **100%** | — | **~33%** |
 
 > Wave 1 turned the monster-batch libraries into a **running system**: the pipeline spine executes
@@ -112,6 +112,19 @@ service (types + in-memory store; no service/API/engine/UI layer yet).
    now seedable from the Financial Services object catalog (`core/registry/data/`).
 
 ## Changelog
+- 2026-07-21 — **OLYMPIC SPRINT WAVE 4 (in progress) — Auric distribution + the editorial verification gate.**
+  New: `core/auric/distribution.ts` — channel variants (brief / market-feed / terminal-feed) + the **editorial
+  verification gate**: an assembled + rendered IntelligenceObject reaches a channel ONLY on an approved HUMAN
+  editorial disposition (`EditorialDisposition`, mirroring the pipeline's `ICApproval` pattern) — a SECOND, distinct
+  human gate governing PUBLICATION (the IC gate governs the deal decision). Held/rejected/absent → nothing is
+  delivered; every delivery carries the editorial `decision_ref` + `approved_by` (lineage, never a weight) and
+  restates the IO's refs exactly (no superset). `terminal_feed` deliveries are network-reach, `market_feed`/`brief`
+  public. Pure/deterministic. Debug loop gained an **EDITORIAL** step (gate has teeth: held/rejected→0 deliveries;
+  approved→sourced deliveries that restate the IO; deterministic). Gate: **debug-loop ALL GREEN (7/7)** + `tsc`
+  clean + `npm run build` exit 0. Layers: Auric **20→26**, tests **20→22**; headline holds **~33%** (this is the
+  first slice of Wave 4). **Remaining Wave 4** (next chat): unit tests for the engines + wire debug-loop into CI;
+  cost-ledger dashboards + event replay (observability); a channel/distribution Terminal surface; burn down
+  `DEBUG_LOG` [NON-BLOCKING]/[DEFERRED]. Additive; no core vertical leak.
 - 2026-07-21 — **OLYMPIC SPRINT WAVE 3 — live data + kernel/truth services (the vertical runs on REAL data at scale).**
   Fanned out 5 workstream agents (new files only), integrated + gated by the lead; 3-lens adversarial
   verification before commit. **Reality-check that shaped the wave:** the data staged in

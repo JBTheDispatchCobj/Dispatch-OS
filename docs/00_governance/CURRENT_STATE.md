@@ -33,8 +33,15 @@ duplicates **proposed, never auto-merged**; live persistence gated on `0016`+`00
 surface, **`/market`**, renders the institution-profile list + the real regulatory environment + the
 registry status. The debug loop gained a **DATA-INTEGRITY** step (pinned source counts + an independent
 ratio oracle + profile→source reconciliation). Gate: `npm run build` exit 0 (`/market` prerenders) +
-debug-loop **ALL GREEN (6/6)** + `tsc` clean. Next: **Wave 4 — Auric distribution + hardening**
-(channel variants + editorial gate; unit tests; debug loop → CI; cost-ledger dashboards / event replay).
+debug-loop **ALL GREEN (6/6)** + `tsc` clean.
+
+**Wave 4 (IN PROGRESS, 2026-07-21):** the **Auric distribution + editorial verification gate** slice is
+done — `core/auric/distribution.ts` publishes an IO's rendered variants to channels (brief / market-feed /
+terminal-feed) ONLY on an approved HUMAN `EditorialDisposition` (a second human gate, distinct from the IC
+deal gate; held/rejected/absent → nothing published; deliveries carry the editorial `decision_ref` +
+`approved_by` and restate the IO refs exactly). Debug loop gained an **EDITORIAL** step; **ALL GREEN (7/7)** +
+`tsc` clean + `npm run build` exit 0. Remaining Wave 4: unit tests + CI, observability (cost dashboards / event
+replay), a channel Terminal surface, and `DEBUG_LOG` cleanup. Wave 4 closes Sprint I (~40%).
 
 ## Existing foundation
 - Next.js app; Supabase/Postgres adapter + migrations (`0001`–`0015` applied;

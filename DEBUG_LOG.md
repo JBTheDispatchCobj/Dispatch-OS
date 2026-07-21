@@ -55,6 +55,21 @@ any time with `node scripts/debug-loop.mjs` (after `npm install`).
   scripts/ runtime shim only, never imported by `app/` or `core/`, and does not affect `next build`.
   Also: the pipeline avoids TS parameter-properties/enums (erasable-only) so type-stripping runs it.
 
+## Wave 4 — Auric distribution + editorial gate (2026-07-21, in progress)
+
+- **[NON-BLOCKING] `brief` channel has no rendered variant yet.** `DEFAULT_CHANNELS` includes `brief`, but the
+  pipeline renders variants only on `market_feed` (cartridge lens) + `terminal_feed` (role lenses), so an approved
+  publication yields 4 deliveries across 2 channels (brief = 0). `distribute()` is channel-agnostic and correct;
+  it just needs a brief-lensed variant upstream. Action (Wave 4 cont.): add a `brief` LensSpec to the pipeline's
+  `renderVariants` (or a digest synthesis) so the bi-daily brief carries a delivery. Additive.
+- **[NON-BLOCKING] Per-delivery visibility is the channel default.** `distribute()` sets each delivery's
+  visibility from its `ChannelSpec` (terminal_feed→network, market_feed/brief→public). A future policy step could
+  narrow an individual variant below its channel default (the Wave-1 per-variant-visibility carry-over). No leak
+  today — deliveries restate the IO refs exactly and only publish on the approved editorial path.
+- **[DEFERRED] Distribution not yet surfaced in the Terminal.** `core/auric/distribution.ts` runs + is gated in
+  the debug loop, but no UI renders the channel deliveries. A channel/distribution Terminal surface is a Wave-4
+  continuation item.
+
 ## Wave 3 — Live data + kernel/truth services (2026-07-21)
 
 - **[was ENV RISK → RESOLVED] JSON import under bare-Node type-stripping.** `ingest_regulations.ts`

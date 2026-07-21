@@ -120,11 +120,18 @@ Waves: 1 spine · 2 Terminal UI · 3 live data + services · 4 Auric distributio
   ALL GREEN (6/6)** + `tsc` clean + `npm run build` exit 0 (`/market` prerenders). Adversarially verified
   (3 lenses; no blockers; the DATA gate was hardened — pinned source counts + independent ratio oracle —
   in response to the verification).
-- **▶ WAVE 4 — Auric distribution + hardening (NEXT).** Channel variants (brief / market-feed /
-  terminal-feed) over the Auric engine + the editorial verification gate (human-approved before publish);
-  unit tests for the engines; wire `scripts/debug-loop.mjs` into CI as the gate; cost-ledger dashboards +
-  event replay; burn down `DEBUG_LOG` [DEFERRED] items. Debug cadence: log to `DEBUG_LOG.md`, fix blockers,
-  `node scripts/debug-loop.mjs` green at the wave gate.
+- **◑ WAVE 4 — Auric distribution + hardening (IN PROGRESS).**
+  - **✅ Done (2026-07-21):** `core/auric/distribution.ts` — channel variants (brief / market-feed /
+    terminal-feed) + the **editorial verification gate**: an IO publishes to a channel ONLY on an approved
+    HUMAN `EditorialDisposition` (a second human gate, distinct from the IC deal gate); held/rejected/absent →
+    nothing delivered; deliveries carry the editorial `decision_ref` + `approved_by` and restate the IO refs
+    exactly. Debug loop gained an **EDITORIAL** step (gate has teeth). **debug-loop ALL GREEN (7/7)** + `tsc`
+    clean + `npm run build` exit 0.
+  - **▶ Remaining (next chat):** unit tests for the engines (deal engine, ic_memo, allocation, settlement,
+    auric engine + distribution, confidence, profile/assemble, ingest_regulations, registry/service); wire
+    `scripts/debug-loop.mjs` into CI as the commit gate; cost-ledger dashboards + event replay (observability);
+    a channel/distribution Terminal surface; burn down `DEBUG_LOG` [NON-BLOCKING]/[DEFERRED] items; wire the
+    Object Registry service to the supabase adapter IF Bryan has applied `0016`+`0017`. Wave 4 closes Sprint I (~40%).
 2. **Live intake path** — call-report/startup ingestion so the loop runs on real data, not the
    seed (a real connector over the `ncua_call_reports` / `startup_intake` source types).
 3. **Canonical Entity Model + entity resolution (RFC-3002)** and **Identity & Tenancy
