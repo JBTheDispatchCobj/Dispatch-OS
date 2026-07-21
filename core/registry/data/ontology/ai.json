@@ -1,0 +1,410 @@
+{
+  "key": "ontology:ai",
+  "label": "AI Ontology",
+  "version": 1,
+  "domain": "financial_services",
+  "notes": "Volume XI Sprint-1 pack (ADR-0014/0015). Operational ontology for Dispatch's AI/agent layer as it operates inside the finance vertical: agents, prompts, models, reasoning sessions, executions, tools, memory, knowledge packs, capabilities, and AI workflows. This encodes the Constitution's routing doctrine (cheapest sufficient intelligence: deterministic rules -> small open model -> strong open model -> frontier -> human expert) and kernel RFCs (Model Router/Orchestration RFC-2013, Memory RFC-2012, Cartridge Runtime RFC-2010, Agent Harness Vol IV). Governance invariant: an AI must never place a regulated or financial conclusion solely in model weights or prompts — every consequential output persists evidence, source, confidence, and decision lineage and is gated by human approval where required (DOCTRINE; ADR-0005; CLAUDE.md). Relationship targets are catalog schema_refs (closed graph). Connector keys are forward references into the Connector Registry (Volume IX).",
+  "ontologies": [
+    {
+      "object": "financial_services:ai:agent",
+      "label": "Agent",
+      "notes": "A goal-directed AI agent that plans and executes tasks using tools, memory, and models under the routing ladder. Operates within a cartridge's permissions; regulated conclusions are proposals subject to the approval gate, not autonomous decisions.",
+      "relationships": [
+        { "predicate": "uses", "target": "financial_services:ai:model", "cardinality": "many" },
+        { "predicate": "invokes", "target": "financial_services:ai:tool", "cardinality": "many" },
+        { "predicate": "reads_writes", "target": "financial_services:ai:memory", "cardinality": "many" },
+        { "predicate": "guided_by", "target": "financial_services:ai:prompt", "cardinality": "many" },
+        { "predicate": "grounded_in", "target": "financial_services:ai:knowledge_pack", "cardinality": "many" },
+        { "predicate": "runs", "target": "financial_services:ai:reasoning_session", "cardinality": "many" },
+        { "predicate": "executes", "target": "financial_services:ai:workflow", "cardinality": "many" },
+        { "predicate": "produces", "target": "financial_services:operations:approval", "cardinality": "many", "description": "Consequential outputs enter the propose->approve gate; nothing regulated auto-commits." },
+        { "predicate": "escalates_to", "target": "financial_services:people:employee", "cardinality": "one", "description": "Human-expert rung of the routing ladder." }
+      ],
+      "lifecycle": {
+        "initial": "defined",
+        "states": [
+          { "key": "defined", "label": "Defined" },
+          { "key": "evaluated", "label": "Evaluated" },
+          { "key": "active", "label": "Active" },
+          { "key": "supervised", "label": "Supervised / Human-in-Loop" },
+          { "key": "retired", "label": "Retired", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "defined", "to": "evaluated", "on": "eval_suite_run" },
+          { "from": "evaluated", "to": "active", "on": "meets_quality_bar" },
+          { "from": "active", "to": "supervised", "on": "risk_or_incident_triggers_oversight" },
+          { "from": "supervised", "to": "active", "on": "cleared" },
+          { "from": "active", "to": "retired", "on": "decommissioned" }
+        ]
+      },
+      "kpis": [
+        { "key": "task_success_rate", "label": "Task Success Rate", "unit": "%" },
+        { "key": "escalation_rate", "label": "Human Escalation Rate", "unit": "%" },
+        { "key": "cost_per_task", "label": "Cost per Task", "unit": "$" },
+        { "key": "approval_acceptance", "label": "Proposal Acceptance Rate", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "agent_spec", "label": "Agent Specification / Policy", "required": true },
+        { "key": "eval_report", "label": "Evaluation Report", "required": true },
+        { "key": "permissions_scope", "label": "Permissions / Tool Scope", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:agent_runtime", "label": "Agent Runtime / Orchestrator", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:ai:prompt",
+      "label": "Prompt",
+      "notes": "A versioned prompt/template in the Prompt Registry (kernel RFC-2013). Carries variables, guardrails, and evaluation history; changes are governed and testable.",
+      "relationships": [
+        { "predicate": "used_by", "target": "financial_services:ai:agent", "cardinality": "many" },
+        { "predicate": "targets", "target": "financial_services:ai:model", "cardinality": "one" },
+        { "predicate": "references", "target": "financial_services:ai:knowledge_pack", "cardinality": "many" },
+        { "predicate": "evaluated_by", "target": "financial_services:ai:reasoning_session", "cardinality": "many" }
+      ],
+      "lifecycle": {
+        "initial": "draft",
+        "states": [
+          { "key": "draft", "label": "Draft" },
+          { "key": "in_review", "label": "In Review" },
+          { "key": "published", "label": "Published" },
+          { "key": "deprecated", "label": "Deprecated", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "draft", "to": "in_review", "on": "submitted" },
+          { "from": "in_review", "to": "published", "on": "eval_passed_and_approved" },
+          { "from": "published", "to": "deprecated", "on": "superseded" }
+        ]
+      },
+      "kpis": [
+        { "key": "eval_score", "label": "Evaluation Score", "unit": "%" },
+        { "key": "regression_rate", "label": "Regression Rate", "unit": "%" },
+        { "key": "token_cost", "label": "Avg Token Cost", "unit": "$" }
+      ],
+      "required_documents": [
+        { "key": "prompt_version", "label": "Versioned Prompt Record", "required": true },
+        { "key": "eval_fixtures", "label": "Evaluation Fixtures", "required": false }
+      ],
+      "connectors": [
+        { "key": "connector:prompt_registry", "label": "Prompt Registry", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:ai:model",
+      "label": "Model",
+      "notes": "A model registered in the Model Router (kernel RFC-2013), positioned on the routing ladder (small open / strong open / frontier). Governance and model-risk controls attach here; a deployed instance is technology:ai_model.",
+      "relationships": [
+        { "predicate": "deployed_as", "target": "financial_services:technology:ai_model", "cardinality": "many" },
+        { "predicate": "used_by", "target": "financial_services:ai:agent", "cardinality": "many" },
+        { "predicate": "assessed_by", "target": "financial_services:risk:model_risk", "cardinality": "one" },
+        { "predicate": "governed_by", "target": "financial_services:compliance:compliance_review", "cardinality": "one", "description": "Fair-lending/UDAAP + model-risk governance for consumer-impacting use." },
+        { "predicate": "provided_by", "target": "financial_services:vendors_partners:vendor", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "registered",
+        "states": [
+          { "key": "registered", "label": "Registered" },
+          { "key": "benchmarked", "label": "Benchmarked" },
+          { "key": "approved", "label": "Approved for Use" },
+          { "key": "in_use", "label": "In Use" },
+          { "key": "retired", "label": "Retired", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "registered", "to": "benchmarked", "on": "eval_suite_run" },
+          { "from": "benchmarked", "to": "approved", "on": "governance_signoff" },
+          { "from": "approved", "to": "in_use", "on": "routed_to_production" },
+          { "from": "in_use", "to": "retired", "on": "deprecated_or_replaced" }
+        ]
+      },
+      "kpis": [
+        { "key": "quality_benchmark", "label": "Quality Benchmark", "unit": "score" },
+        { "key": "cost_per_1k_tokens", "label": "Cost per 1K Tokens", "unit": "$" },
+        { "key": "latency", "label": "Latency", "unit": "ms" },
+        { "key": "routing_share", "label": "Routing Share", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "model_card", "label": "Model Card", "required": true },
+        { "key": "governance_approval", "label": "Model Governance Approval", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:model_router", "label": "Model Router", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:ai:reasoning_session",
+      "label": "Reasoning Session",
+      "notes": "A single traced reasoning/inference run (a step or chain) with inputs, tool calls, outputs, tokens, cost, and provenance. The unit of auditability behind any AI-assisted conclusion.",
+      "relationships": [
+        { "predicate": "run_by", "target": "financial_services:ai:agent", "cardinality": "one" },
+        { "predicate": "uses", "target": "financial_services:ai:model", "cardinality": "one" },
+        { "predicate": "applies", "target": "financial_services:ai:prompt", "cardinality": "many" },
+        { "predicate": "calls", "target": "financial_services:ai:tool", "cardinality": "many" },
+        { "predicate": "records_to", "target": "financial_services:ai:memory", "cardinality": "one" },
+        { "predicate": "produces", "target": "financial_services:ai:execution", "cardinality": "many" }
+      ],
+      "lifecycle": {
+        "initial": "started",
+        "states": [
+          { "key": "started", "label": "Started" },
+          { "key": "tool_calls", "label": "Tool Calls" },
+          { "key": "completed", "label": "Completed", "terminal": true },
+          { "key": "failed", "label": "Failed", "terminal": true },
+          { "key": "escalated", "label": "Escalated", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "started", "to": "tool_calls", "on": "invokes_tool" },
+          { "from": "tool_calls", "to": "completed", "on": "answer_produced" },
+          { "from": "started", "to": "completed", "on": "answer_produced" },
+          { "from": "tool_calls", "to": "failed", "on": "unrecoverable_error" },
+          { "from": "tool_calls", "to": "escalated", "on": "confidence_below_threshold" }
+        ]
+      },
+      "kpis": [
+        { "key": "tokens_used", "label": "Tokens Used", "unit": "count" },
+        { "key": "session_cost", "label": "Session Cost", "unit": "$" },
+        { "key": "confidence", "label": "Output Confidence", "unit": "0-1" },
+        { "key": "grounding_rate", "label": "Grounded-Citation Rate", "unit": "%", "threshold": "conclusions cite sources, not weights" }
+      ],
+      "required_documents": [
+        { "key": "trace", "label": "Reasoning Trace / Transcript", "required": true },
+        { "key": "provenance", "label": "Provenance / Source Record", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:agent_runtime", "label": "Agent Runtime (traces)", "role": "system_of_record" },
+        { "key": "connector:cost_ledger", "label": "Cost & Usage Ledger", "role": "ingest" }
+      ]
+    },
+    {
+      "object": "financial_services:ai:execution",
+      "label": "Execution",
+      "notes": "The materialized effect of a reasoning session — a proposal, generated artifact, or a state change applied to a real object. Regulated executions pass the approval gate and carry model/human provenance (Operating Loop: propose->approve->execute->evidence).",
+      "relationships": [
+        { "predicate": "result_of", "target": "financial_services:ai:reasoning_session", "cardinality": "one" },
+        { "predicate": "gated_by", "target": "financial_services:operations:approval", "cardinality": "one" },
+        { "predicate": "realized_as", "target": "financial_services:operations:execution", "cardinality": "one" },
+        { "predicate": "acts_on", "target": "financial_services:operations:task", "cardinality": "many" },
+        { "predicate": "evidenced_by", "target": "financial_services:documents:policy", "cardinality": "many", "description": "Persisted evidence/source for the action, never weights alone." }
+      ],
+      "lifecycle": {
+        "initial": "proposed",
+        "states": [
+          { "key": "proposed", "label": "Proposed" },
+          { "key": "approved", "label": "Approved" },
+          { "key": "executed", "label": "Executed" },
+          { "key": "evidenced", "label": "Evidenced", "terminal": true },
+          { "key": "rejected", "label": "Rejected", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "proposed", "to": "approved", "on": "human_or_policy_approval" },
+          { "from": "proposed", "to": "rejected", "on": "declined" },
+          { "from": "approved", "to": "executed", "on": "action_applied" },
+          { "from": "executed", "to": "evidenced", "on": "outcome_recorded" }
+        ]
+      },
+      "kpis": [
+        { "key": "approval_rate", "label": "Approval Rate", "unit": "%" },
+        { "key": "auto_vs_human", "label": "Automated vs Human-Gated Share", "unit": "%" },
+        { "key": "rollback_rate", "label": "Rollback Rate", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "decision_record", "label": "Decision Record (model + human provenance)", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:agent_runtime", "label": "Execution Runtime", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:ai:tool",
+      "label": "Tool",
+      "notes": "A callable capability exposed to an agent (a function, retrieval, calculation, or a bound connector). Tools are the safe, permissioned surface through which agents affect the world.",
+      "relationships": [
+        { "predicate": "invoked_by", "target": "financial_services:ai:agent", "cardinality": "many" },
+        { "predicate": "wraps", "target": "financial_services:technology:connector", "cardinality": "one" },
+        { "predicate": "wraps", "target": "financial_services:technology:api", "cardinality": "one" },
+        { "predicate": "scoped_by", "target": "financial_services:ai:capability", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "registered",
+        "states": [
+          { "key": "registered", "label": "Registered" },
+          { "key": "permissioned", "label": "Permissioned" },
+          { "key": "available", "label": "Available" },
+          { "key": "disabled", "label": "Disabled", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "registered", "to": "permissioned", "on": "scopes_assigned" },
+          { "from": "permissioned", "to": "available", "on": "enabled" },
+          { "from": "available", "to": "disabled", "on": "revoked" }
+        ]
+      },
+      "kpis": [
+        { "key": "call_volume", "label": "Call Volume", "unit": "count" },
+        { "key": "success_rate", "label": "Tool Success Rate", "unit": "%" },
+        { "key": "avg_latency", "label": "Avg Latency", "unit": "ms" }
+      ],
+      "required_documents": [
+        { "key": "tool_schema", "label": "Tool Schema / Contract", "required": true },
+        { "key": "permission_scope", "label": "Permission Scope", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:tool_registry", "label": "Tool Registry", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:ai:memory",
+      "label": "Memory",
+      "notes": "The agent/session memory store (kernel RFC-2012): short-term context and long-term, provenance-tagged knowledge. Memory is scoped to plane/visibility so public, verified, and private tenant facts are never conflated.",
+      "relationships": [
+        { "predicate": "used_by", "target": "financial_services:ai:agent", "cardinality": "many" },
+        { "predicate": "records", "target": "financial_services:ai:reasoning_session", "cardinality": "many" },
+        { "predicate": "draws_from", "target": "financial_services:ai:knowledge_pack", "cardinality": "many" },
+        { "predicate": "protected_by", "target": "financial_services:compliance:privacy", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "empty",
+        "states": [
+          { "key": "empty", "label": "Empty" },
+          { "key": "populated", "label": "Populated" },
+          { "key": "consolidated", "label": "Consolidated" },
+          { "key": "expired", "label": "Expired / Purged", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "empty", "to": "populated", "on": "writes_occur" },
+          { "from": "populated", "to": "consolidated", "on": "summarization" },
+          { "from": "consolidated", "to": "expired", "on": "retention_policy" }
+        ]
+      },
+      "kpis": [
+        { "key": "recall_precision", "label": "Recall Precision", "unit": "%" },
+        { "key": "staleness", "label": "Memory Staleness", "unit": "days" },
+        { "key": "provenance_coverage", "label": "Provenance Coverage", "unit": "%", "threshold": "100% of retained facts" }
+      ],
+      "required_documents": [
+        { "key": "retention_policy", "label": "Memory Retention Policy", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:memory_store", "label": "Memory Service", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:ai:knowledge_pack",
+      "label": "Knowledge Pack",
+      "notes": "A curated, sourced knowledge bundle (retrieval corpus + rules + citations) that grounds agents in domain truth — e.g. NCUA rules, compliance playbooks, or an institution profile. Seeds the roadmap Knowledge-Pack library (Sprint 9). Every fact carries source and confidence.",
+      "relationships": [
+        { "predicate": "grounds", "target": "financial_services:ai:agent", "cardinality": "many" },
+        { "predicate": "referenced_by", "target": "financial_services:ai:prompt", "cardinality": "many" },
+        { "predicate": "built_from", "target": "financial_services:technology:data_warehouse", "cardinality": "one" },
+        { "predicate": "sources", "target": "financial_services:documents:policy", "cardinality": "many" },
+        { "predicate": "encodes", "target": "financial_services:regulation:ncua", "cardinality": "many", "description": "Regulatory/knowledge content as sourced facts, not weights." }
+      ],
+      "lifecycle": {
+        "initial": "assembled",
+        "states": [
+          { "key": "assembled", "label": "Assembled" },
+          { "key": "verified", "label": "Verified" },
+          { "key": "published", "label": "Published" },
+          { "key": "stale", "label": "Stale / Needs Refresh" },
+          { "key": "archived", "label": "Archived", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "assembled", "to": "verified", "on": "source_review" },
+          { "from": "verified", "to": "published", "on": "released" },
+          { "from": "published", "to": "stale", "on": "freshness_lapses" },
+          { "from": "stale", "to": "verified", "on": "refreshed" },
+          { "from": "published", "to": "archived", "on": "superseded" }
+        ]
+      },
+      "kpis": [
+        { "key": "freshness", "label": "Content Freshness", "unit": "days" },
+        { "key": "citation_coverage", "label": "Citation Coverage", "unit": "%", "threshold": "every claim sourced" },
+        { "key": "retrieval_hit_rate", "label": "Retrieval Hit Rate", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "source_manifest", "label": "Source Manifest / Provenance", "required": true },
+        { "key": "verification_log", "label": "Verification Log", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:knowledge_registry", "label": "Dispatch Knowledge Registry", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:ai:capability",
+      "label": "Capability",
+      "notes": "A named, packaged AI capability (e.g. call-report analysis, KYC assist, deal screening) composed of prompts, tools, models, and knowledge packs — the unit a cartridge or marketplace package delivers.",
+      "relationships": [
+        { "predicate": "composes", "target": "financial_services:ai:agent", "cardinality": "many" },
+        { "predicate": "bundles", "target": "financial_services:ai:tool", "cardinality": "many" },
+        { "predicate": "delivered_by", "target": "financial_services:technology:marketplace_package", "cardinality": "one" },
+        { "predicate": "maps_to", "target": "financial_services:innovation_ecosystem:capability", "cardinality": "one" },
+        { "predicate": "serves", "target": "financial_services:institutions:federal_credit_union", "cardinality": "many" }
+      ],
+      "lifecycle": {
+        "initial": "defined",
+        "states": [
+          { "key": "defined", "label": "Defined" },
+          { "key": "piloted", "label": "Piloted" },
+          { "key": "generally_available", "label": "Generally Available" },
+          { "key": "sunset", "label": "Sunset", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "defined", "to": "piloted", "on": "limited_release" },
+          { "from": "piloted", "to": "generally_available", "on": "ga_release" },
+          { "from": "generally_available", "to": "sunset", "on": "deprecated" }
+        ]
+      },
+      "kpis": [
+        { "key": "adoption", "label": "Adoption", "unit": "institutions" },
+        { "key": "value_delivered", "label": "Value Delivered", "unit": "$" },
+        { "key": "quality_score", "label": "Quality Score", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "capability_spec", "label": "Capability Specification", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:agent_runtime", "label": "Capability Runtime", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:ai:workflow",
+      "label": "AI Workflow",
+      "notes": "A multi-step, possibly multi-agent orchestration (kernel RFC-2005/Vol VIII Execution Engine) with human-in-the-loop checkpoints. Distinct from operations:workflow (the business process); this is the AI orchestration that may drive it.",
+      "relationships": [
+        { "predicate": "orchestrates", "target": "financial_services:ai:agent", "cardinality": "many" },
+        { "predicate": "chains", "target": "financial_services:ai:reasoning_session", "cardinality": "many" },
+        { "predicate": "checkpoints_at", "target": "financial_services:operations:approval", "cardinality": "many" },
+        { "predicate": "drives", "target": "financial_services:operations:workflow", "cardinality": "one" },
+        { "predicate": "escalates_to", "target": "financial_services:people:employee", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "designed",
+        "states": [
+          { "key": "designed", "label": "Designed" },
+          { "key": "active", "label": "Active" },
+          { "key": "paused", "label": "Paused" },
+          { "key": "completed", "label": "Completed", "terminal": true },
+          { "key": "failed", "label": "Failed / Compensated", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "designed", "to": "active", "on": "deployed" },
+          { "from": "active", "to": "paused", "on": "checkpoint_awaits_human" },
+          { "from": "paused", "to": "active", "on": "approved" },
+          { "from": "active", "to": "completed", "on": "goal_reached" },
+          { "from": "active", "to": "failed", "on": "unrecoverable_or_rolled_back" }
+        ]
+      },
+      "kpis": [
+        { "key": "completion_rate", "label": "Completion Rate", "unit": "%" },
+        { "key": "cycle_time", "label": "End-to-End Cycle Time", "unit": "hours" },
+        { "key": "human_touch_rate", "label": "Human-Touch Rate", "unit": "%" },
+        { "key": "cost_per_run", "label": "Cost per Run", "unit": "$" }
+      ],
+      "required_documents": [
+        { "key": "workflow_definition", "label": "Workflow Definition / DAG", "required": true },
+        { "key": "checkpoint_policy", "label": "Human-in-Loop Checkpoint Policy", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:agent_runtime", "label": "Orchestration Engine", "role": "system_of_record" }
+      ]
+    }
+  ]
+}

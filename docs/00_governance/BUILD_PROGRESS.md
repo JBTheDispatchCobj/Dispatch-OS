@@ -1,6 +1,6 @@
 # Build Progress Tracker
 
-**Current build completion: ~13%** &nbsp;·&nbsp; Last updated: 2026-07-20 (Volume XI ontology: +3 packs — Lending & Deposits, Capital Markets & Institutions, Innovation Ecosystem)
+**Current build completion: ~22%** &nbsp;·&nbsp; Last updated: 2026-07-20 (MONSTER BATCH — 7 new subsystem modules across 5 near-zero layers: kernel event bus + cost ledger, truth confidence engine, harness 9-rung router, Auric publication engine, P4 settlement, 5300 ingestion; + Terminal HTML surface + Olympic sprint plan. All 25 files tsc-clean together.)
 
 > Note: this table tracks the **platform** build. Knowledge-content sprints (Volume XI
 > Canonical Ontology and the roadmap's Truth Models / Rule / Workflow / Agent / Connector /
@@ -22,15 +22,20 @@ service (types + in-memory store; no service/API/engine/UI layer yet).
 | Layer | Weight | Built | Contribution |
 |---|---:|---:|---:|
 | Data contracts + schema (migrations `0001`–`0017`, `core/` types) | 15% | 82% | 12.3 |
-| Kernel services (identity/permissions, event bus, object registry, cost ledger, contracts/API) | 20% | 3% | 0.6 |
-| Truth/graph engines (resolver, confidence, entity resolution, assembly, query) | 15% | 2% | 0.30 |
-| Agent Harness + Execution Engine (router, planner, runtime, evaluation) | 15% | 1% | 0.15 |
-| Publication (Auric) engine | 8% | 1% | 0.08 |
-| Connector implementations + ingestion | 7% | 3% | 0.21 |
-| Cooperative Markets cartridge (first product) | 8% | 0% | 0.0 |
-| Terminal (customer-facing product) | 7% | 0% | 0.0 |
-| Tests / observability / productionization | 5% | 1% | 0.05 |
-| **Total** | **100%** | — | **~14 → 13%** |
+| Kernel services (identity/permissions, event bus, object registry, cost ledger, contracts/API) | 20% | 10% | 2.0 |
+| Truth/graph engines (resolver, confidence, entity resolution, assembly, query) | 15% | 8% | 1.2 |
+| Agent Harness + Execution Engine (router, planner, runtime, evaluation) | 15% | 7% | 1.05 |
+| Publication (Auric) engine | 8% | 14% | 1.12 |
+| Connector implementations + ingestion | 7% | 8% | 0.56 |
+| Cooperative Markets cartridge (first product) | 8% | 52% | 4.16 |
+| Terminal (customer-facing product) | 7% | 2% | 0.14 |
+| Tests / observability / productionization | 5% | 8% | 0.4 |
+| **Total** | **100%** | — | **~22%** |
+
+> The monster-batch modules (kernel/truth/harness/auric/ingestion/settlement) are real,
+> strict-`tsc`-clean, integration-tested code but **not yet wired into a running pipeline** — that
+> wiring is Sprint Wave 1 (`docs/00_governance/SPRINT_PLAN.md`). The % reflects code that exists +
+> compiles + integrates, not a running system.
 
 ## What "built" means per layer (so estimates stay honest)
 - **Data contracts + schema** — 82%: the foundation (`0011`–`0016`: truth family,
@@ -47,13 +52,48 @@ service (types + in-memory store; no service/API/engine/UI layer yet).
   query engine and no automated resolution service populating candidates yet.
 - **Harness + Execution Engine** — 1%: only deterministic `GenerationRule` (rung 1) + the
   proposal/approval gate; no router/planner/runtime/scheduler.
-- **Publication engine** — 1%: IO/ContentVariant tables exist; no intake/render/feed engine.
+- **Publication engine** — 4%: IO/ContentVariant tables exist, and now a concrete, typed
+  Auric lens fixture (`cartridges/cooperative_markets/auric_lens.ts`) + a rendered demo
+  (`auric_lens_demo.html`) prove the CEO≠CLO mechanic end-to-end on one sourced insight
+  (base + role variants sharing identical `source_refs`). Still no running intake/render/feed
+  engine — the mechanic is demonstrated, not yet automated.
 - **Connectors** — 3%: registry contract + discovery pipeline + ~5 real sources; ~93
   placeholder connectors unqualified; no connector runtime/SDK.
-- **Cooperative Markets cartridge** — 0%: not authored (`cartridges/cooperative_markets/`
-  does not exist).
+- **Cooperative Markets cartridge** — 45%: the product definition + seed + the P1–P3 deal
+  engine. (1) The product *definition* —
+  `cartridges/cooperative_markets/cartridge.ts` (registered, strict `tsc` clean): 10 vertical
+  entities (9 + reserved vendor) mapped to canonical FS `schema_ref`s, 11 workflows on the
+  discovery→…→investment ladder, rules + executable generationRules, evidence/approval rules,
+  metrics (readiness/opportunity/innovation as sourced inferences), outcomes, agent
+  instructions, reports, dashboards, knowledge. (2) A runnable operating-loop **seed**
+  (`seed.ts` — a CU, a fintech, a CUSO, CEO/CLO executives, a 5300 intake → agent flag → match
+  proposal → approved pilot with checklist/evidence/decision/approval → metrics/outcomes/
+  dashboard) so it's demoable in the app. (3) **VC Deal Engine P1** (`deal_engine.ts`) — a
+  vehicle-agnostic, deterministic scoring engine (Innovation / Startup Readiness / Institution
+  Readiness / Dispatch Readiness / Opportunity), every score a sourced inference with per-factor
+  lineage, the recommendation compliance-gated + human-gated downstream (`scripts/
+  deal-engine-demo.ts`: ADVANCE at opportunity 77.9 / 21 sourced facts; BLOCKED at compliance
+  0.3 even with opportunity 95). (4) **VC Deal Engine P2** (`ic_memo.ts`) — the IC-memo
+  assembler: consumes the P1 scorecard + diligence findings and emits an
+  `investment_committee_memo` **from approved evidence only** (unapproved evidence is excluded +
+  listed), DD-coverage-gated over a required category set, role-lensed (CEO/CRO/CFO), with the
+  recommendation a `draft` proposal (`scripts/ic-memo-demo.ts`: RECOMMEND-WITH-CONDITIONS,
+  5/5 DD covered, 1 unapproved item excluded; BLOCKED on a compliance DD blocker). (5) **VC
+  Deal Engine P3** (`allocation.ts`) — routes an approved deal to CU + LP subscribers through
+  eligibility gates (sanctions/OFAC, KYC/KYB, LP accreditation), pro-rata to capacity, emitting
+  `capital_markets:participation`/`:syndication` allocations (each citing its gating facts) +
+  the `deal_flow_access` outcome; allocation is a proposal, settlement is P4
+  (`scripts/allocation-demo.ts`: $1.75M of $2M allocated across 2 subscribers, 1 non-accredited
+  LP rejected). Not higher because no live ingestion feeds it, no engine *executes* the
+  workflows end-to-end, and no Terminal UI renders them — engine + fixtures, not a live running
+  product.
 - **Terminal** — 0%: no UI/runtime (deliberately UI-last).
-- **Tests/observability/productionization** — 1%: `tsc` strict only; no test harness/CI.
+- **Tests/observability/productionization** — 8%: `scripts/debug-loop.mjs` — a repeatable
+  debug harness (there is no UI yet, so this is the review surface): full-app typecheck +
+  ontology closed-graph + cartridge canonical-map integrity + an **engine smoke that transpiles
+  and EXECUTES** P1/P2/P3 asserting the core invariants (advance/block, approved-evidence-only,
+  subscriber gates). Single PASS/FAIL, non-zero exit on any failure — run → fix → re-run. Still
+  no CI wiring or unit-test framework.
 
 ## Next bricks (each moves the number)
 1. Apply `0016` **and** `0017` in Supabase (data layer → live enforcement; tenant isolation
@@ -65,6 +105,128 @@ service (types + in-memory store; no service/API/engine/UI layer yet).
    now seedable from the Financial Services object catalog (`core/registry/data/`).
 
 ## Changelog
+- 2026-07-20 — **MONSTER BATCH: 7 subsystem modules (parallel agent fleet) + Terminal + sprint plan.**
+  Fanned out 6 agents; all landed integration-clean (**consolidated strict `tsc` over 25 files →
+  exit 0**). New: `core/kernel/event_bus.ts` (RFC-2004 — plane-aware correlated events, DLQ,
+  replay) + `core/kernel/cost_ledger.ts` (RFC-2008 — cost/usage by category + correlation);
+  `core/truth/confidence.ts` (RFC-3008 — decay/propagate/reinforce + tier-aware `combineSources`);
+  `core/harness/router.ts` (Art. 18 9-rung ladder + classify/route with the human gate forced on
+  regulated conclusions + tool router); `core/auric/engine.ts` (Vol VI — assembleIO / renderVariant
+  [enforces variant source_refs = IO refs] / buildFeed); `cartridges/cooperative_markets/
+  settlement.ts` (P4 — pluggable `SettlementVehicle`; advisory/syndication ship, fund/spv pending
+  the vehicle decision); `cartridges/cooperative_markets/ingest_call_report.ts` (5300 → sourced
+  facts + `InstitutionReadinessInput`, the live-intake seam). Plus `terminal_demo.html` (a real
+  product surface: institution scorecard + CEO/CLO lens toggle + P1 scorecard + P2 memo + P3
+  allocation, all computed numbers) and `docs/00_governance/SPRINT_PLAN.md` +
+  `SPRINT_KICKOFF_PROMPT.md` (the Olympic sprint + paste-ready first prompt). Layers off zero:
+  kernel 3→10%, truth 2→8%, harness 1→7%, Auric 4→14%, connectors 3→8%, cartridge 45→52%,
+  terminal 0→2%; headline **~18% → ~22%**. Additive; vehicle-agnostic; not yet wired into a
+  running pipeline (that's Sprint Wave 1).
+- 2026-07-20 — **VC Deal Engine P3 (allocation + subscriber tiers) + debug-loop harness.**
+  (1) `cartridges/cooperative_markets/allocation.ts` — routes an approved deal to the two paying
+  subscriber classes (CUs/FIs + LPs) through eligibility gates (sanctions/OFAC, KYC/KYB, LP
+  accreditation), pro-rata to capacity, emitting `capital_markets:participation`/`:syndication`
+  allocation objects (each citing its gating facts) + the `cooperative_markets:deal_flow_access`
+  outcome. Allocation is a **proposal**; settlement is P4 (vehicle-agnostic). No allocation to an
+  ungated subscriber; every rejection carries explicit reasons. (2) **`scripts/debug-loop.mjs`** —
+  a repeatable debug harness (there's no UI, so this is the review surface): full-app typecheck +
+  ontology closed-graph + cartridge canonical-map integrity + an **engine smoke that transpiles
+  and executes** P1/P2/P3 asserting the invariants; single PASS/FAIL + non-zero exit.
+  Validation: consolidated strict `tsc` over **all 18 session files** → exit 0; the P1→P2→P3
+  chain executed → ADVANCE → RECOMMEND-WITH-CONDITIONS → **2 allocated / 1 rejected**
+  ($1.75M of $2M; non-accredited LP rejected `not_accredited`), deterministic, unapproved
+  evidence never cited; harness ONTOLOGY (181/0/0) + CARTRIDGE (10 refs) green. Cartridge
+  **40→45%**, tests **1→8%**; headline **~17% → ~18%**. Additive; vehicle-agnostic.
+- 2026-07-20 — **VC Deal Engine P2 built — diligence + IC memo.**
+  `cartridges/cooperative_markets/ic_memo.ts` — a pure, deterministic assembler that consumes the
+  P1 `DealScorecard` + `DiligenceFinding[]` and emits the canonical
+  `financial_services:innovation_ecosystem:investment_committee_memo`. Truth discipline enforced
+  in code: **approved evidence only** (a finding is admissible only if it cites ≥1 approved
+  evidence item; unapproved evidence is excluded and surfaced in `excluded_unapproved`),
+  **DD-coverage gating** over a required category set (compliance_fit/regulatory/financial/
+  technology/cybersecurity), a **compliance/DD blocker gate**, and a recommendation that is a
+  `draft` **proposal** (`recommend` / `recommend_with_conditions` / `hold` / `pass` / `blocked`)
+  — the committee decision stays a separate human gate. Role **lenses** (CEO/CRO/CFO) restate the
+  same cited facts per reader. `scripts/ic-memo-demo.ts` runs it. Validation: strict `tsc --noEmit`
+  exit 0; transpiled + executed → **RECOMMEND-WITH-CONDITIONS** (regulatory concern → closing
+  condition), **5/5** required DD covered, **1 unapproved item excluded** (`ev:coi`), 6 approved
+  citations, **deterministic**; blocker path → **BLOCKED**. Cartridge **35→40%**; headline
+  **~16% → ~17%**. Additive; no core churn; vehicle-agnostic.
+- 2026-07-20 — **VC Deal Engine P1 built — intake + scoring (vehicle-agnostic).**
+  `cartridges/cooperative_markets/deal_engine.ts` — a pure, deterministic scoring engine
+  (Constitution routing ladder rung 1). Five scores — Innovation, Startup Readiness, Institution
+  Readiness, **Dispatch Readiness** (new), and Opportunity (geometric mean of strategic×
+  regulatory×timing) — each a **sourced inference**: every factor carries a `source_ref` +
+  `confidence`, and every `Score` exposes its full `lineage` and `tier: dispatch_inference`.
+  The screening recommendation (`advance`/`hold`/`decline`/`blocked`) is a **proposal**, with a
+  hard **compliance gate** (a company below the compliance-readiness threshold is `blocked`
+  regardless of opportunity). `scripts/deal-engine-demo.ts` runs the Halcyon Pay × Summit Ridge
+  scenario end-to-end. Validation: strict `tsc --noEmit` exit 0; transpiled + executed →
+  Opportunity **77.9** (matches the seed/lens's illustrative ~78), recommendation **ADVANCE**,
+  21 distinct sourced facts, **deterministic** (identical output on re-run); compliance-gate path
+  → **BLOCKED** at compliance 0.3 even with opportunity 95. Cartridge **30→35%**; headline
+  **~15% → ~16%**. Additive; no core/migration churn; vehicle-agnostic (no fund/SPV dependency).
+- 2026-07-20 — **VC Deal Engine spec (ADR-0016 + `docs/03_subsystems/VC_DEAL_ENGINE_SPEC.md`).**
+  Spec-before-build for the Cooperative Markets monetization arm: automated startup intake →
+  score-against-target-market → diligence → IC memo → committee decision → syndication/allocation
+  → monitoring. Decisions recorded (ADR-0016): **vehicle-agnostic, advisory/syndication-first**
+  (fund/SPV are pluggable settlement adapters; vehicle TBD), **subscribers = CUs/FIs + LPs**,
+  truth discipline load-bearing (scores are sourced inferences, IC memo from approved evidence,
+  recommendation is a committee-approved proposal). Grounded in Bryan's Institutional
+  Intelligence Library (FinTech Evaluation Framework, Startup Profile, the Innovation/Startup/
+  Institution/Dispatch readiness triad, the Deal Pipeline, IC + Due-Diligence objects, the Auric
+  Network deal flow). Maps entirely onto the existing ontology + cartridge — additive, no core/
+  migration churn. **Platform headline holds at ~15%** (design/spec is excluded from the build %
+  per this file's methodology); the build starts with P1 (intake + scoring) next.
+- 2026-07-20 — **Cooperative Markets seed + Auric executive-lens slice (CEO≠CLO proof).**
+  (1) `cartridges/cooperative_markets/seed.ts` — a full operating-loop demo fixture (Summit
+  Ridge FCU × Halcyon Pay): a 5300 call-report intake → dry-run agent flag → match proposal →
+  human-approved scoped pilot (checklist, evidence, decision, approval) → metrics/outcomes/
+  dashboard. Wired into the cartridge's `seed`. Validated against the REAL core record types
+  via a faithful `SeedBundle` shim → strict `tsc` clean. (2) `cartridges/cooperative_markets/
+  auric_lens.ts` — the publication slice: one public `IntelligenceObject` assembled from sourced
+  truth refs, one `Relationship` on the ladder, and three `ContentVariant`s (base + CEO + CLO)
+  that share **identical `source_refs`** — same facts, different hook. `tsc` clean against
+  core/intelligence + core/relationships types. (3) `auric_lens_demo.html` — a self-contained
+  rendered demo (The Auric styling) showing the insight + shared evidence strip + the three
+  lenses side by side, for the Alloya GTM conversation. Cartridge **20→30%**, publication (Auric)
+  **1→4%**; headline **~14% → ~15%**. Additive only; truth discipline held (scores are sourced
+  inferences, variants restate facts and never invent them, the pilot exists via an approved
+  decision recorded separately from completion).
+- 2026-07-20 — **Cooperative Markets cartridge authored (first product vertical).**
+  `cartridges/cooperative_markets/cartridge.ts` — a full config-as-data `PackagedConfiguration`
+  installed on the `financial_services` taxonomy base and the Volume XI ontology. **10 vertical
+  entities** (credit_union, call_report, executive, innovation_company, cuso, fund, investment,
+  regulation, product + reserved vendor), each mapped to a canonical FS `schema_ref` so
+  lifecycle/KPIs/relationships come from the ontology, not a fork. **11 workflows** on the
+  discovery→evaluation→pilot→integration→partnership→investment→monitoring ladder + call-report
+  ingestion + regulatory-impact review; 6 interpretation rules + 3 executable `generationRules`;
+  evidence/approval rules; 6 metrics (institution/company readiness, innovation & opportunity
+  scores as **sourced Dispatch inferences**, portfolio IRR, pipeline velocity); 4 outcomes;
+  3 agent instructions (report drafts IC memos from **approved evidence only**, lensed by
+  executive role); 5 reports; 3 dashboards; 3 knowledge objects (thesis, CEO≠CLO lenses, scoring
+  methodology). Registered in `cartridges/index.ts`; strict `tsc --noEmit` clean over the config
+  cone; all internal references (workflow kinds, checklist keys, metric keys) resolve. Cartridge
+  layer **0→20%**; headline **~13% → ~14%**. Additive only. Truth discipline held: scores are
+  calculations over sourced facts, recommendations are human-approved proposals with lineage —
+  nothing regulated in weights.
+- 2026-07-20 — **Volume XI ontology Sprint 1 COMPLETE (+4 packs, 68 objects).** Authored
+  the four remaining finance-native packs on the existing `core/registry/ontology.ts`
+  schema: `ontology/compliance.json` (**19** — KYC/KYB/CDD/EDD, AML/OFAC/SAR/CTR,
+  TILA/RESPA/TRID/HMDA/CRA/GLBA/UDAAP, privacy/consent/audit/compliance_review; bsa stays
+  in the CU anchor pack), `ontology/regulation.json` (**15** — FDIC/Federal Reserve/OCC/CFPB/
+  SEC/FINRA, FHA/VA/USDA/FHFA + Fannie/Freddie/Ginnie GSEs, state regulators, consent_orders;
+  ncua/call_reports/examinations stay in the CU pack), `ontology/technology_vendor.json`
+  (**24** — core/LOS/CRM/ERP/accounting/warehouse/IdP, API/connector/webhook/marketplace/SDK/
+  ai_model, and the vendor lifecycle vendor/partner/MSA/SLA/contract/implementation/renewal/
+  support_ticket/api/connector/risk_assessment), and `ontology/ai.json` (**10** — agent/prompt/
+  model/reasoning_session/execution/tool/memory/knowledge_pack/capability/workflow, encoding
+  the routing ladder + propose→approve→execute→evidence gate; no regulated conclusion in
+  weights alone). Ontology now enriches **181 objects across 8 packs**; closed graph **0
+  unresolved** (256 distinct referenced objects), **0 cross-pack collisions**, strict `tsc
+  --noEmit` clean over the ontology cone. All Sprint-1 in-scope domains (ADR-0015) are now
+  authored. Knowledge encoding (roadmap Sprint 1), tracked in the roadmap's own %; platform
+  headline holds at ~13%.
 - 2026-07-20 — **Volume XI ontology packs +3 (Sprint 1 continued).** Authored three
   finance-native packs on the existing `core/registry/ontology.ts` schema:
   `ontology/lending_deposits.json` (**30** objects — full lending-products +

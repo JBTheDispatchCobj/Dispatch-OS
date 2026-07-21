@@ -1,64 +1,66 @@
-# Session Handoff — Volume XI ontology packs +3 (Sprint 1 continued)
+# Session Handoff — MONSTER BATCH (7 subsystem modules + Terminal + Olympic sprint plan)
 
 ## Where we are
-Platform build **~13%** (unchanged — this session was knowledge encoding, not platform).
-Sprint 1 = **Volume XI Canonical Ontology** (ADR-0014) continues. The ontology now
-enriches **113 objects across 4 packs, closed graph (0 unresolved), `tsc` clean.**
+Platform build **~22%** (up from ~18%). A parallel agent fleet added **7 new subsystem modules
+across five near-zero layers**, all strict-`tsc` clean together (25-file consolidated typecheck →
+exit 0). Plus a Terminal product surface and the **Olympic Sprint plan + a paste-ready first
+prompt** so the next session runs as a multi-agent blaze, not a one-off burn.
 
-**Vertical scope decision (ADR-0015):** the product is a market-intelligence terminal for
-the finance / VC / CU / fintech / innovation stack. **Hospitality is descoped** as a
-vertical (it was in the roadmap's Sprint 1/2 and the original kickoff). No hospitality
-pack was written; the roadmap was updated and the generic `cartridges/hospitality/` example
-cartridge was left untouched.
+## Completed this session (monster batch)
+New modules (each additive, pure/deterministic, strict-TS + isolatedModules friendly):
+- **`core/kernel/event_bus.ts`** (RFC-2004) — plane-aware, correlated, actor-attributed
+  `KernelEvent<T>`; `EventBus` with publish/subscribe/subscribeAll/history/replay + a dead-letter
+  queue (a throwing handler is captured, others still run). Caller supplies ids/timestamps.
+- **`core/kernel/cost_ledger.ts`** (RFC-2008) — `CostLedger` recording `CostEntry` by category
+  (model/human/tool/storage/connector) + correlation; totals, byCategory, byCorrelation.
+- **`core/truth/confidence.ts`** (RFC-3008) — `decay` / `propagate` / `reinforce` + tier-aware
+  `combineSources` returning an explainable `ConfidenceResult` (value + top_tier + lineage +
+  per-source factors). Everything clamped [0,1].
+- **`core/harness/router.ts`** (Constitution Art. 18) — the 9-rung ladder (deterministic_rule →
+  … → human_expert), `classify` + `route`; **a regulated conclusion always forces the human gate**
+  (escalate_to_human) regardless of cost cap; plus a deterministic `ToolRouter`.
+- **`core/auric/engine.ts`** (Vol VI) — `assembleIO` / `renderVariant` / `renderVariants` /
+  `buildFeed`. Load-bearing invariant enforced in code: a variant's `source_refs` == the IO's refs
+  (same facts, different hook — never a superset). Deterministic feed ranking.
+- **`cartridges/cooperative_markets/settlement.ts`** (P4) — pluggable `SettlementVehicle`
+  (open→allocate→callCapital→close→distribute); `advisory`/`syndication` ship; `fund`/`spv` return
+  `vehicle_pending` (vehicle TBD per ADR-0016); Alloya = `connector:fund_admin` seam.
+- **`cartridges/cooperative_markets/ingest_call_report.ts`** — deterministic 5300 → `CallReportFacts`
+  (guarded ratios) → `InstitutionReadinessInput` (each signal a sourced fact citing the filing).
+  The live-intake seam for the deal engine.
 
-## Completed this session
-- **`ontology/lending_deposits.json` (30 objects)** — full lending-products + deposit-products
-  breadth beyond the CU anchor: consumer/personal/HELOC/commercial-mortgage/construction/
-  bridge/commercial-LOC/equipment/SBA/USDA/participation/syndicated/warehouse/private-credit/
-  factoring/invoice/lease/ag + rv/boat/motorcycle; checking/money-market/business-checking/
-  IRA/sweep/escrow/trust/custodial/brokered deposits. (auto_loan, mortgage, savings, certificate
-  stay in `credit_union.json` — not redefined.)
-- **`ontology/capital_markets.json` (54 objects)** — VC/PE/private-credit/investment-merchant
-  banks, fintech/neobank/broker-dealer/RIA, funds/SPVs/holding cos; capital-markets instruments
-  (equity, preferred, SAFE, convertible, warrant, senior/mezz/sub debt, private credit,
-  warehouse, participation, syndication, fund/SPV vehicles) + events (capital_call, distribution,
-  exit, IPO, recap, acquisition, disposition); investments family (portfolio/holding/position/
-  security + asset classes); investor people (investor/LP/GP/advisor/PM/financial_advisor).
-- **`ontology/innovation_ecosystem.json` (16 objects)** — the CU↔innovation-company graph:
-  startup, founder, product, technology, pilot, proof_of_concept, integration, partnership,
-  capability, market_category, vendor_evaluation, innovation_score, institution_readiness,
-  startup_readiness, investment_thesis, investment_committee_memo. The **relationship ladder**
-  (discovery→evaluation→pilot→integration→partnership→investment→monitoring) lives on
-  `partnership`. `innovation_score` is a Dispatch inference (calculation), not weights-only.
-- **`core/registry/ontology.ts`** — registered the 3 new packs in `PACKS` (additive; no
-  framework/type change).
-- **`scripts/ontology-check.mjs`** — repeatable closed-graph check (plain `node`, no build).
-- **ADR-0015** — vertical-scope decision; **roadmap** Sprint 1/2 updated (Hospitality struck).
-- `BUILD_PROGRESS` / `CURRENT_STATE` / `ACTIVE_BUILD` / context pack updated.
+Plus:
+- **`terminal_demo.html`** — a real product surface (institution scorecard + CEO/CLO lens toggle +
+  P1 scorecard + P2 memo + P3 allocation), all from computed numbers. The "something to look at."
+- **`docs/00_governance/SPRINT_PLAN.md`** — the Olympic sprint (4 waves, debug gates, targets).
+- **`SPRINT_KICKOFF_PROMPT.md`** — paste into a fresh chat to start Wave 1 as a multi-agent blaze.
 
 ## Validation
-- `npx tsc --noEmit` (strict, faithful subset over the ontology dependency cone) → **exit 0**.
-- `node scripts/ontology-check.mjs` → **113 ontology objects, 176 distinct referenced objects,
-  0 unresolved, 0 cross-pack collisions.** Coverage: 113 relationships / 53 lifecycle /
-  112 KPI sets / 107 doc sets / 109 connector maps.
-- Additive only: no migration/catalog churn; closed-graph invariant held (every `object` and
-  every relationship `target` resolves to a real `schema_ref` in
-  `core/registry/data/financial_services_objects.json`).
+- **Consolidated strict `tsc` over all 25 session files together → exit 0** (the 7 new modules
+  integrate cleanly with the engine + cartridge + ontology; no cross-module type drift).
+- `node scripts/debug-loop.mjs`: ONTOLOGY ✓ (181/0/0), CARTRIDGE ✓; TYPECHECK + ENGINE need the
+  full repo (`npm install`) — run there for all-green.
+- Additive only; no core/migration/catalog churn.
 
 ## State of the world
-- **GitHub:** push pending (command below). **Supabase:** `0011`–`0015` applied; **`0016` +
-  `0017` still pending apply.**
+- **GitHub:** push pending (command below — covers the whole session). **Supabase:** `0011`–`0015`
+  applied; **`0016` + `0017` still pending apply.**
+- The new modules are **libraries, not a running system** — Sprint Wave 1 wires them into a pipeline.
 
-## Next thread's task
-1. **Remaining Volume XI packs** (same schema, closed graph): Compliance, Regulation,
-   Technology/Vendor, AI — all finance-native families already in the 341-class catalog.
-2. **Apply `0016` + `0017` in Supabase.**
-3. **Object Registry service (RFC-2003)** — populate `object_match_candidates` + apply merges.
-4. **Cooperative Markets cartridge** — its 9 entities inherit the FS catalog via
-   `financialServicesEntityTypes()`; the ontology now gives them lifecycle/KPIs/docs/relationships
-   out of the box (esp. the innovation-ecosystem graph).
+## Next: RUN THE OLYMPIC SPRINT
+Do not resume as ad-hoc burns. **Paste `SPRINT_KICKOFF_PROMPT.md` into a fresh chat** — it reads the
+contract, orients, and executes **Wave 1 (Orchestration spine)**: build
+`cartridges/cooperative_markets/pipeline.ts` + `scripts/pipeline-demo.ts` chaining
+ingest→score→memo→allocate→settle→assembleIO→renderVariants→buildFeed, wired through the kernel
+(events + cost) and harness (routing), then the debug gate. Waves 2–4: Terminal UI · live data +
+services · Auric distribution + hardening. Full plan: `docs/00_governance/SPRINT_PLAN.md`.
+
+## Bryan-only (route around; don't block the sprint)
+- **Decide the investment vehicle** (fund / per-deal SPV / both) — unblocks P4 fund/spv settlement.
+- Apply `0016` + `0017` in Supabase — unblocks the Object Registry service (Wave 3).
+- `git push`; VC/Alloya legal + entity.
 
 ## Exact next command (Bryan, Mac terminal)
 ```
-cd ~/Downloads/Dispatch_OS_Cooperative_Markets_Repo && git add -A && git commit -m "Volume XI ontology: Lending & Deposits, Capital Markets & Institutions, Innovation Ecosystem packs (+3, 100 objects); ADR-0015 vertical scope (Hospitality descoped); ontology-check script" && git push
+cd ~/Downloads/Dispatch_OS_Cooperative_Markets_Repo && git add -A && git commit -m "Monster batch: kernel (event_bus, cost_ledger), truth confidence engine, harness 9-rung router, Auric publication engine, deal-engine P4 settlement, 5300 ingestion + Terminal surface + Olympic sprint plan/kickoff. 25-file tsc clean." && git push
 ```

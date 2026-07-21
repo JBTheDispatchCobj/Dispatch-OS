@@ -1,0 +1,393 @@
+{
+  "key": "ontology:regulation",
+  "label": "Regulation Ontology",
+  "version": 1,
+  "domain": "financial_services",
+  "notes": "Volume XI Sprint-1 pack (ADR-0014/0015). Operational ontology for the U.S. financial-regulator graph and its supervisory artifacts: prudential regulators (NCUA/FDIC/Federal Reserve/OCC), the consumer bureau (CFPB), markets regulators (SEC/FINRA), housing/mortgage agencies and GSEs (FHA/VA/USDA/FHFA/Fannie Mae/Freddie Mac/Ginnie Mae), state regulators, and the supervisory cycle (call_reports/examinations/consent_orders). ncua, call_reports, and examinations are defined in the credit_union anchor pack and are referenced here as closed targets, not redefined. Relationship targets are catalog schema_refs (closed graph). Supervisory conclusions (ratings, findings, enforcement) persist evidence, source, confidence, and lineage — never weights alone (DOCTRINE; ADR-0005). Connector keys are forward references into the Connector Registry (Volume IX).",
+  "ontologies": [
+    {
+      "object": "financial_services:regulation:fdic",
+      "label": "FDIC (Federal Deposit Insurance Corporation)",
+      "notes": "Insures deposits at banks/thrifts (DIF), is the primary federal regulator of state non-member banks, and resolves failed depositories.",
+      "relationships": [
+        { "predicate": "regulates", "target": "financial_services:institutions:community_bank", "cardinality": "many" },
+        { "predicate": "regulates", "target": "financial_services:institutions:savings_bank", "cardinality": "many" },
+        { "predicate": "regulates", "target": "financial_services:institutions:industrial_bank", "cardinality": "many" },
+        { "predicate": "insures", "target": "financial_services:deposit_products:checking", "cardinality": "many", "description": "DIF deposit insurance (the bank analogue of the NCUSIF)." },
+        { "predicate": "conducts", "target": "financial_services:regulation:examinations", "cardinality": "many" },
+        { "predicate": "assesses", "target": "financial_services:compliance:cra", "cardinality": "many" },
+        { "predicate": "issues", "target": "financial_services:regulation:consent_orders", "cardinality": "many" }
+      ],
+      "kpis": [
+        { "key": "camels_composite", "label": "CAMELS Composite (supervised)", "unit": "1-5" },
+        { "key": "dif_reserve_ratio", "label": "DIF Reserve Ratio", "unit": "%", "threshold": ">= 1.35% statutory minimum" }
+      ],
+      "required_documents": [
+        { "key": "call_report_ffiec", "label": "FFIEC Call Report (031/041)", "required": false },
+        { "key": "consent_orders", "label": "Published Enforcement Actions", "required": false }
+      ],
+      "connectors": [
+        { "key": "connector:regulatory_filing", "label": "FDIC / FFIEC Filing", "role": "ingest" }
+      ]
+    },
+    {
+      "object": "financial_services:regulation:federal_reserve",
+      "label": "Federal Reserve (FRB)",
+      "notes": "Central bank and supervisor of state member banks, bank/financial holding companies, and systemically important firms; monetary policy, payments, and discount-window liquidity.",
+      "relationships": [
+        { "predicate": "regulates", "target": "financial_services:institutions:regional_bank", "cardinality": "many" },
+        { "predicate": "regulates", "target": "financial_services:institutions:money_center_bank", "cardinality": "many" },
+        { "predicate": "regulates", "target": "financial_services:institutions:holding_company", "cardinality": "many", "description": "Bank/financial holding companies." },
+        { "predicate": "conducts", "target": "financial_services:regulation:examinations", "cardinality": "many" },
+        { "predicate": "issues", "target": "financial_services:regulation:consent_orders", "cardinality": "many" }
+      ],
+      "kpis": [
+        { "key": "cet1_ratio", "label": "CET1 Capital Ratio (supervised)", "unit": "%", "threshold": ">= 4.5% + buffers" },
+        { "key": "stress_capital_buffer", "label": "Stress Capital Buffer", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "fry9c", "label": "FR Y-9C Holding-Company Report", "required": false },
+        { "key": "ccar_dfast", "label": "CCAR / DFAST Stress-Test Submission", "required": false }
+      ],
+      "connectors": [
+        { "key": "connector:regulatory_filing", "label": "Federal Reserve Reporting", "role": "ingest" }
+      ]
+    },
+    {
+      "object": "financial_services:regulation:occ",
+      "label": "OCC (Office of the Comptroller of the Currency)",
+      "notes": "Charters and supervises national banks, federal savings associations, and federal branches of foreign banks.",
+      "relationships": [
+        { "predicate": "regulates", "target": "financial_services:institutions:money_center_bank", "cardinality": "many" },
+        { "predicate": "regulates", "target": "financial_services:institutions:community_bank", "cardinality": "many", "description": "Nationally chartered community banks." },
+        { "predicate": "regulates", "target": "financial_services:institutions:trust_company", "cardinality": "many" },
+        { "predicate": "conducts", "target": "financial_services:regulation:examinations", "cardinality": "many" },
+        { "predicate": "assesses", "target": "financial_services:compliance:cra", "cardinality": "many" },
+        { "predicate": "issues", "target": "financial_services:regulation:consent_orders", "cardinality": "many" }
+      ],
+      "kpis": [
+        { "key": "camels_composite", "label": "CAMELS Composite (supervised)", "unit": "1-5" },
+        { "key": "matters_requiring_attention", "label": "Matters Requiring Attention (MRA)", "unit": "count" }
+      ],
+      "required_documents": [
+        { "key": "call_report_ffiec", "label": "FFIEC Call Report", "required": false },
+        { "key": "consent_orders", "label": "Published Enforcement Actions", "required": false }
+      ],
+      "connectors": [
+        { "key": "connector:regulatory_filing", "label": "OCC / FFIEC Filing", "role": "ingest" }
+      ]
+    },
+    {
+      "object": "financial_services:regulation:cfpb",
+      "label": "CFPB (Consumer Financial Protection Bureau)",
+      "notes": "Writes and enforces federal consumer-financial rules (TILA/RESPA/TRID/HMDA/EFTA/FCRA-implementing regs) and supervises larger participants; primary UDAAP enforcer.",
+      "relationships": [
+        { "predicate": "enforces", "target": "financial_services:compliance:tila", "cardinality": "one" },
+        { "predicate": "enforces", "target": "financial_services:compliance:respa", "cardinality": "one" },
+        { "predicate": "enforces", "target": "financial_services:compliance:trid", "cardinality": "one" },
+        { "predicate": "enforces", "target": "financial_services:compliance:hmda", "cardinality": "one" },
+        { "predicate": "enforces", "target": "financial_services:compliance:udaap", "cardinality": "one" },
+        { "predicate": "regulates", "target": "financial_services:institutions:mortgage_company", "cardinality": "many" },
+        { "predicate": "issues", "target": "financial_services:regulation:consent_orders", "cardinality": "many" }
+      ],
+      "kpis": [
+        { "key": "complaint_volume", "label": "Consumer Complaint Volume (portal)", "unit": "count" },
+        { "key": "enforcement_actions", "label": "Enforcement Actions", "unit": "count" }
+      ],
+      "required_documents": [
+        { "key": "hmda_submission", "label": "HMDA Submission", "required": false },
+        { "key": "supervisory_highlights", "label": "Supervisory Highlights / Exam Findings", "required": false }
+      ],
+      "connectors": [
+        { "key": "connector:regulatory_filing", "label": "CFPB Filing / Complaint Portal", "role": "ingest" }
+      ]
+    },
+    {
+      "object": "financial_services:regulation:sec",
+      "label": "SEC (Securities and Exchange Commission)",
+      "notes": "Regulates securities offerings, exchanges, broker-dealers, investment advisers (Advisers Act), and investment companies; administers exemptions (Reg D) relevant to private funds and startup financings.",
+      "relationships": [
+        { "predicate": "regulates", "target": "financial_services:institutions:broker_dealer", "cardinality": "many" },
+        { "predicate": "regulates", "target": "financial_services:institutions:registered_investment_advisor_ria", "cardinality": "many" },
+        { "predicate": "regulates", "target": "financial_services:institutions:investment_bank", "cardinality": "many" },
+        { "predicate": "oversees", "target": "financial_services:capital_markets:ipo", "cardinality": "many" },
+        { "predicate": "oversees", "target": "financial_services:capital_markets:equity", "cardinality": "many", "description": "Registration/exemption of securities issuances (incl. Reg D private placements)." },
+        { "predicate": "issues", "target": "financial_services:regulation:consent_orders", "cardinality": "many" }
+      ],
+      "kpis": [
+        { "key": "form_adv_current", "label": "Form ADV Currency (advisers)", "unit": "%" },
+        { "key": "enforcement_actions", "label": "Enforcement Actions", "unit": "count" }
+      ],
+      "required_documents": [
+        { "key": "form_adv", "label": "Form ADV (investment advisers)", "required": false },
+        { "key": "form_d", "label": "Form D (Reg D exempt offerings)", "required": false },
+        { "key": "registration_statement", "label": "Registration Statement (S-1)", "required": false }
+      ],
+      "connectors": [
+        { "key": "connector:regulatory_filing", "label": "SEC EDGAR / IARD", "role": "ingest" }
+      ]
+    },
+    {
+      "object": "financial_services:regulation:finra",
+      "label": "FINRA (Financial Industry Regulatory Authority)",
+      "notes": "Self-regulatory organization overseeing broker-dealers and registered representatives (licensing, conduct, market integrity) under SEC oversight.",
+      "relationships": [
+        { "predicate": "regulates", "target": "financial_services:institutions:broker_dealer", "cardinality": "many" },
+        { "predicate": "licenses", "target": "financial_services:people:financial_advisor", "cardinality": "many", "description": "Registered representatives (Series 7/63, etc.)." },
+        { "predicate": "reports_to_regulator", "target": "financial_services:regulation:sec", "cardinality": "one" },
+        { "predicate": "conducts", "target": "financial_services:regulation:examinations", "cardinality": "many" },
+        { "predicate": "issues", "target": "financial_services:regulation:consent_orders", "cardinality": "many" }
+      ],
+      "kpis": [
+        { "key": "rep_registration_current", "label": "Registered-Rep Currency", "unit": "%" },
+        { "key": "disclosure_events", "label": "BrokerCheck Disclosure Events", "unit": "count" }
+      ],
+      "required_documents": [
+        { "key": "form_bd", "label": "Form BD (broker-dealer registration)", "required": false },
+        { "key": "form_u4", "label": "Form U4 (rep registration)", "required": false }
+      ],
+      "connectors": [
+        { "key": "connector:regulatory_filing", "label": "FINRA Gateway / BrokerCheck", "role": "ingest" }
+      ]
+    },
+    {
+      "object": "financial_services:regulation:fha",
+      "label": "FHA (Federal Housing Administration)",
+      "notes": "Within HUD; insures single-family and multifamily mortgages made by approved lenders, expanding access for higher-LTV and first-time borrowers.",
+      "relationships": [
+        { "predicate": "insures", "target": "financial_services:lending_products:mortgage", "cardinality": "many" },
+        { "predicate": "approves", "target": "financial_services:institutions:mortgage_company", "cardinality": "many" },
+        { "predicate": "securitized_through", "target": "financial_services:regulation:ginnie_mae", "cardinality": "one", "description": "FHA-insured loans are pooled into Ginnie Mae MBS." }
+      ],
+      "kpis": [
+        { "key": "fha_insured_volume", "label": "FHA-Insured Origination Volume", "unit": "$" },
+        { "key": "early_payment_default", "label": "Early Payment Default (FHA)", "unit": "%" },
+        { "key": "compare_ratio", "label": "Neighborhood Watch Compare Ratio", "threshold": "<= 150% peer" }
+      ],
+      "required_documents": [
+        { "key": "fha_case_binder", "label": "FHA Case Binder", "required": true },
+        { "key": "mip_disclosure", "label": "Mortgage Insurance Premium Disclosure", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:agency_delivery", "label": "FHA Connection", "role": "ingest" }
+      ]
+    },
+    {
+      "object": "financial_services:regulation:va",
+      "label": "VA (Dept. of Veterans Affairs Loan Guaranty)",
+      "notes": "Guarantees home loans to eligible veterans and service members, enabling low/no-down-payment mortgages without PMI.",
+      "relationships": [
+        { "predicate": "guarantees", "target": "financial_services:lending_products:mortgage", "cardinality": "many" },
+        { "predicate": "approves", "target": "financial_services:institutions:mortgage_company", "cardinality": "many" },
+        { "predicate": "securitized_through", "target": "financial_services:regulation:ginnie_mae", "cardinality": "one" }
+      ],
+      "kpis": [
+        { "key": "va_guaranteed_volume", "label": "VA-Guaranteed Volume", "unit": "$" },
+        { "key": "residual_income_compliance", "label": "Residual-Income Test Compliance", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "coe", "label": "Certificate of Eligibility (COE)", "required": true },
+        { "key": "va_appraisal", "label": "VA Notice of Value / Appraisal", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:agency_delivery", "label": "VA WebLGY", "role": "ingest" }
+      ]
+    },
+    {
+      "object": "financial_services:regulation:usda",
+      "label": "USDA (Rural Development Guaranteed Loans)",
+      "notes": "USDA Rural Development guarantees Section 502 single-family and business/industry loans in eligible rural areas; also the guarantor behind USDA business lending.",
+      "relationships": [
+        { "predicate": "guarantees", "target": "financial_services:lending_products:mortgage", "cardinality": "many" },
+        { "predicate": "guarantees", "target": "financial_services:lending_products:usda_loan", "cardinality": "many" },
+        { "predicate": "guarantees", "target": "financial_services:lending_products:agricultural_loan", "cardinality": "many" },
+        { "predicate": "approves", "target": "financial_services:institutions:community_bank", "cardinality": "many" }
+      ],
+      "kpis": [
+        { "key": "usda_guaranteed_volume", "label": "USDA-Guaranteed Volume", "unit": "$" },
+        { "key": "eligibility_pass_rate", "label": "Rural-Area Eligibility Pass Rate", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "conditional_commitment", "label": "Conditional Commitment", "required": true },
+        { "key": "loan_note_guarantee", "label": "Loan Note Guarantee", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:agency_delivery", "label": "USDA LINC / GUS", "role": "ingest" }
+      ]
+    },
+    {
+      "object": "financial_services:regulation:fhfa",
+      "label": "FHFA (Federal Housing Finance Agency)",
+      "notes": "Regulator and conservator of Fannie Mae and Freddie Mac and regulator of the Federal Home Loan Banks; sets conforming loan limits and GSE capital rules.",
+      "relationships": [
+        { "predicate": "regulates", "target": "financial_services:regulation:fannie_mae", "cardinality": "one" },
+        { "predicate": "regulates", "target": "financial_services:regulation:freddie_mac", "cardinality": "one" },
+        { "predicate": "conducts", "target": "financial_services:regulation:examinations", "cardinality": "many" },
+        { "predicate": "issues", "target": "financial_services:regulation:consent_orders", "cardinality": "many" }
+      ],
+      "kpis": [
+        { "key": "conforming_loan_limit", "label": "Conforming Loan Limit", "unit": "$" },
+        { "key": "gse_capital_adequacy", "label": "GSE Capital Adequacy (ERCF)", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "conservatorship_scorecard", "label": "Conservatorship Scorecard", "required": false },
+        { "key": "gse_capital_rule", "label": "Enterprise Regulatory Capital Framework", "required": false }
+      ],
+      "connectors": [
+        { "key": "connector:regulatory_filing", "label": "FHFA Reporting", "role": "ingest" }
+      ]
+    },
+    {
+      "object": "financial_services:regulation:fannie_mae",
+      "label": "Fannie Mae (FNMA)",
+      "notes": "Government-sponsored enterprise that purchases conventional conforming mortgages, sets underwriting standards (Selling Guide / DU), and issues mortgage-backed securities. In FHFA conservatorship.",
+      "relationships": [
+        { "predicate": "purchases", "target": "financial_services:lending_products:mortgage", "cardinality": "many" },
+        { "predicate": "securitizes", "target": "financial_services:investments:security", "cardinality": "many", "description": "Conventional MBS." },
+        { "predicate": "sets_standards_for", "target": "financial_services:institutions:mortgage_company", "cardinality": "many" },
+        { "predicate": "regulated_by", "target": "financial_services:regulation:fhfa", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "eligible",
+        "states": [
+          { "key": "eligible", "label": "Eligible for Sale" },
+          { "key": "committed", "label": "Committed / Locked" },
+          { "key": "delivered", "label": "Delivered" },
+          { "key": "purchased", "label": "Purchased" },
+          { "key": "securitized", "label": "Securitized", "terminal": true },
+          { "key": "repurchased", "label": "Repurchased (Rep & Warrant)", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "eligible", "to": "committed", "on": "commitment_taken" },
+          { "from": "committed", "to": "delivered", "on": "loan_delivered" },
+          { "from": "delivered", "to": "purchased", "on": "funded_by_gse" },
+          { "from": "purchased", "to": "securitized", "on": "pooled_into_mbs" },
+          { "from": "purchased", "to": "repurchased", "on": "rep_warrant_breach" }
+        ]
+      },
+      "kpis": [
+        { "key": "du_approve_eligible_rate", "label": "DU Approve/Eligible Rate", "unit": "%" },
+        { "key": "repurchase_rate", "label": "Repurchase Request Rate", "unit": "%", "threshold": "minimize" },
+        { "key": "delivery_g_fee", "label": "Guarantee Fee (g-fee)", "unit": "bps" }
+      ],
+      "required_documents": [
+        { "key": "selling_guide", "label": "Selling Guide Compliance File", "required": true },
+        { "key": "loan_delivery_data", "label": "ULDD Loan Delivery Data", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:agency_delivery", "label": "Fannie Mae (DU / Loan Delivery)", "role": "system_of_record" },
+        { "key": "connector:secondary_market", "label": "Secondary Market / Pooling", "role": "enrichment" }
+      ]
+    },
+    {
+      "object": "financial_services:regulation:freddie_mac",
+      "label": "Freddie Mac (FHLMC)",
+      "notes": "Government-sponsored enterprise that purchases conventional conforming mortgages (Loan Product Advisor underwriting) and issues MBS. In FHFA conservatorship.",
+      "relationships": [
+        { "predicate": "purchases", "target": "financial_services:lending_products:mortgage", "cardinality": "many" },
+        { "predicate": "securitizes", "target": "financial_services:investments:security", "cardinality": "many" },
+        { "predicate": "sets_standards_for", "target": "financial_services:institutions:mortgage_company", "cardinality": "many" },
+        { "predicate": "regulated_by", "target": "financial_services:regulation:fhfa", "cardinality": "one" }
+      ],
+      "kpis": [
+        { "key": "lpa_accept_rate", "label": "Loan Product Advisor Accept Rate", "unit": "%" },
+        { "key": "repurchase_rate", "label": "Repurchase Request Rate", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "seller_servicer_guide", "label": "Seller/Servicer Guide Compliance File", "required": true },
+        { "key": "loan_delivery_data", "label": "ULDD Loan Delivery Data", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:agency_delivery", "label": "Freddie Mac (LPA / Loan Selling Advisor)", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:regulation:ginnie_mae",
+      "label": "Ginnie Mae (GNMA)",
+      "notes": "Government corporation that guarantees the timely payment of MBS backed by federally insured/guaranteed loans (FHA/VA/USDA). It guarantees the security, not the underlying loans.",
+      "relationships": [
+        { "predicate": "guarantees", "target": "financial_services:investments:security", "cardinality": "many", "description": "Ginnie Mae MBS (pools of FHA/VA/USDA loans)." },
+        { "predicate": "pools", "target": "financial_services:lending_products:mortgage", "cardinality": "many" },
+        { "predicate": "backed_by", "target": "financial_services:regulation:fha", "cardinality": "one" },
+        { "predicate": "backed_by", "target": "financial_services:regulation:va", "cardinality": "one" }
+      ],
+      "kpis": [
+        { "key": "issuer_pool_volume", "label": "Issued Pool Volume", "unit": "$" },
+        { "key": "delinquency_rate_pool", "label": "Pool Delinquency Rate", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "pool_certification", "label": "Pool Certification (Form 11706)", "required": true },
+        { "key": "issuer_guaranty_agreement", "label": "Guaranty Agreement", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:secondary_market", "label": "Ginnie Mae (GinnieNET / MyGinnieMae)", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:regulation:state_regulators",
+      "label": "State Regulators",
+      "notes": "State financial regulators: state CU/banking departments, state securities administrators, and (via NMLS) mortgage licensing. Also the umbrella for state money-transmitter and consumer-lending supervision. Referenced as the filing endpoint for FinCEN reports pending a dedicated FinCEN object.",
+      "relationships": [
+        { "predicate": "regulates", "target": "financial_services:institutions:state_credit_union", "cardinality": "many" },
+        { "predicate": "regulates", "target": "financial_services:institutions:fintech", "cardinality": "many", "description": "Money-transmitter and lending licensing." },
+        { "predicate": "licenses", "target": "financial_services:institutions:mortgage_company", "cardinality": "many", "description": "State/NMLS mortgage licensing." },
+        { "predicate": "coordinates_with", "target": "financial_services:regulation:ncua", "cardinality": "one" },
+        { "predicate": "conducts", "target": "financial_services:regulation:examinations", "cardinality": "many" },
+        { "predicate": "issues", "target": "financial_services:regulation:consent_orders", "cardinality": "many" }
+      ],
+      "kpis": [
+        { "key": "license_current_rate", "label": "License Currency Rate", "unit": "%", "threshold": "100% active" },
+        { "key": "state_exam_findings", "label": "State Exam Findings", "unit": "count" }
+      ],
+      "required_documents": [
+        { "key": "state_license", "label": "State License(s) / NMLS Record", "required": true },
+        { "key": "state_call_report", "label": "State Regulatory Report", "required": false }
+      ],
+      "connectors": [
+        { "key": "connector:nmls", "label": "NMLS / State Licensing", "role": "ingest" },
+        { "key": "connector:regulatory_filing", "label": "State Regulatory Filing", "role": "ingest" }
+      ]
+    },
+    {
+      "object": "financial_services:regulation:consent_orders",
+      "label": "Consent Order / Enforcement Action",
+      "notes": "A formal enforcement action (consent order, LUA, C&D, civil money penalty) resolving supervisory findings. Public actions are a market-intelligence signal; each links to its issuing regulator, subject institution, and remediation obligations.",
+      "relationships": [
+        { "predicate": "issued_by", "target": "financial_services:regulation:cfpb", "cardinality": "one" },
+        { "predicate": "issued_by", "target": "financial_services:regulation:ncua", "cardinality": "one" },
+        { "predicate": "subject", "target": "financial_services:institutions:federal_credit_union", "cardinality": "one" },
+        { "predicate": "results_from", "target": "financial_services:regulation:examinations", "cardinality": "one" },
+        { "predicate": "requires", "target": "financial_services:operations:exception", "cardinality": "many", "description": "Remediation obligations tracked as owned corrective actions." },
+        { "predicate": "informs", "target": "financial_services:risk:compliance_risk", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "issued",
+        "states": [
+          { "key": "issued", "label": "Issued" },
+          { "key": "remediation", "label": "Remediation" },
+          { "key": "compliance_validated", "label": "Compliance Validated" },
+          { "key": "terminated", "label": "Terminated", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "issued", "to": "remediation", "on": "action_plan_accepted" },
+          { "from": "remediation", "to": "compliance_validated", "on": "obligations_met" },
+          { "from": "compliance_validated", "to": "terminated", "on": "order_lifted" }
+        ]
+      },
+      "kpis": [
+        { "key": "days_to_termination", "label": "Days to Termination", "unit": "days" },
+        { "key": "obligation_completion", "label": "Obligation Completion", "formula": "completed / total_obligations", "unit": "%" },
+        { "key": "cmp_amount", "label": "Civil Money Penalty", "unit": "$" }
+      ],
+      "required_documents": [
+        { "key": "order_document", "label": "Consent Order / Enforcement Document", "required": true },
+        { "key": "remediation_plan", "label": "Remediation / Compliance Plan", "required": true },
+        { "key": "validation_report", "label": "Independent Validation Report", "required": false }
+      ],
+      "connectors": [
+        { "key": "connector:regulatory_filing", "label": "Regulator Enforcement Feed", "role": "ingest" },
+        { "key": "connector:grc", "label": "GRC (obligation tracking)", "role": "enrichment" }
+      ]
+    }
+  ]
+}

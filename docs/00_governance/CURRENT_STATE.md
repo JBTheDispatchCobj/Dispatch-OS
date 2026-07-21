@@ -9,6 +9,14 @@
   **plus a `financial_services` base package installing 341 canonical object classes as
   entity_types** (config-as-data: `core/registry/data/financial_services_objects.json` +
   `core/registry/objects.ts`).
+- **First product vertical: the `cooperative_markets` cartridge**
+  (`cartridges/cooperative_markets/cartridge.ts`) — a full config-as-data
+  `PackagedConfiguration` on the FS base + Volume XI ontology: 10 vertical entities (9 +
+  reserved vendor) mapped to canonical `schema_ref`s; 11 workflows on the discovery→…→
+  investment ladder + call-report ingestion + regulatory-impact review; rules/generationRules,
+  evidence/approval, metrics (sourced inferences), outcomes, agent instructions, reports,
+  dashboards, knowledge. Registered; strict `tsc` clean. It is the installed product
+  *definition* — no ingestion/seed/engine/UI runs the loop yet.
 - **Vertical scope (ADR-0015):** the finance / VC / CU / fintech / innovation stack.
   Hospitality descoped as a product vertical.
 
@@ -33,9 +41,12 @@ Truth (`core/truth` + `0011`), Relationships (`0012`), Intelligence (`0013`),
 Personal profiles (`0014`), DKR registry (`0015`). RLS (`0016`) + Object Registry identity
 index (`0017`) written + validated (full `0001`–`0017` chain applies on Postgres 16), not yet
 applied. Object Registry catalog + loader live in code; **Volume XI ontology** framework
-(`core/registry/ontology.ts`) + **4 packs / 113 enriched objects, closed graph** (0
-unresolved): Credit Union (13), Lending & Deposits (30), Capital Markets & Institutions
-(54), Innovation Ecosystem (16). `scripts/ontology-check.mjs` runs the closed-graph check.
+(`core/registry/ontology.ts`) + **8 packs / 181 enriched objects, closed graph** (0
+unresolved, 0 collisions): Credit Union (13), Lending & Deposits (30), Capital Markets &
+Institutions (54), Innovation Ecosystem (16), Compliance (19), Regulation (15),
+Technology/Vendor (24), AI (10). `scripts/ontology-check.mjs` runs the closed-graph check
+(strict `tsc` clean over the ontology cone). **Sprint-1 ontology is complete** across the
+ADR-0015 in-scope finance/VC/CU/fintech/innovation domains.
 
 ## Key reconciliation outcomes
 - No code/migration churn from Vol adoption; all volume work is additive-forward.
@@ -54,8 +65,16 @@ unresolved): Credit Union (13), Lending & Deposits (30), Capital Markets & Insti
 
 ## Current priority
 Apply `0016` + `0017` in Supabase (pending). Canonical Entity Model / Object Registry index
-is now built (`0017` + catalog + loader). Active thread: **Volume XI Canonical Ontology
-(roadmap Sprint 1)** — Credit Union, Lending & Deposits, Capital Markets & Institutions,
-and Innovation Ecosystem packs done; remaining packs: Compliance, Regulation,
-Technology/Vendor, AI (all finance-native catalog families). Then Object Registry service
-(RFC-2003), Identity & Tenancy (RFC-2002), Cooperative Markets cartridge.
+is now built (`0017` + catalog + loader). **Volume XI Canonical Ontology (roadmap Sprint 1)
+is complete** — all 8 in-scope packs authored (Credit Union, Lending & Deposits, Capital
+Markets & Institutions, Innovation Ecosystem, Compliance, Regulation, Technology/Vendor, AI;
+181 objects, closed graph). **The Cooperative Markets cartridge (first product vertical) is
+authored, seeded, and demoable**, and the **Auric executive-lens slice is proven**:
+`cartridges/cooperative_markets/seed.ts` runs a full operating loop (5300 intake → agent flag
+→ approved pilot), and `auric_lens.ts` + `auric_lens_demo.html` show one sourced insight
+rendered base/CEO/CLO from identical `source_refs` (the CEO≠CLO thesis). All `tsc` clean.
+Next thread, in order: (1) the **VC deal engine** (automated startup intake → score-against-
+market → IC memo) — spec then build on the cartridge's diligence/investment workflows;
+(2) wire a **live intake path** (call-report/startup ingestion) so the loop runs on real data,
+not seed data; (3) apply `0016` + `0017` in Supabase, then the **Object Registry service**
+(RFC-2003) and Identity & Tenancy (RFC-2002).

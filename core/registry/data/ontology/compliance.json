@@ -1,0 +1,754 @@
+{
+  "key": "ontology:compliance",
+  "label": "Compliance Ontology",
+  "version": 1,
+  "domain": "financial_services",
+  "notes": "Volume XI Sprint-1 pack (ADR-0014/0015). Operational ontology for the financial-services compliance program — customer due diligence (KYC/KYB/CDD/EDD), BSA/AML sanctions and reporting (OFAC/SAR/CTR), consumer-lending disclosure and fair-lending regimes (TILA/RESPA/TRID/HMDA/CRA/UDAAP), privacy/consent (GLBA/privacy/consent), and the audit/review controls that evidence them. Enriches Object Registry classes by schema_ref with relationships, lifecycle, KPIs, required documents, and connectors. bsa is defined in the credit_union anchor pack and is not redefined here; it is referenced as a closed target. Relationship targets are catalog schema_refs (closed graph). Never place a compliance conclusion in weights alone: each finding persists evidence, source, confidence, and lineage (DOCTRINE truth hierarchy; ADR-0005). Connector keys are forward references into the Connector Registry (Volume IX).",
+  "ontologies": [
+    {
+      "object": "financial_services:compliance:kyc",
+      "label": "KYC (Know Your Customer / CIP)",
+      "notes": "Customer Identification Program under the BSA (31 CFR 1020.220): collect, verify, and retain identifying information for natural-person members/customers, and screen against sanctions/PEP lists at onboarding.",
+      "relationships": [
+        { "predicate": "verifies", "target": "financial_services:people:member", "cardinality": "many", "description": "Identity proofing of natural-person members." },
+        { "predicate": "verifies", "target": "financial_services:people:customer", "cardinality": "many" },
+        { "predicate": "verifies", "target": "financial_services:people:prospect", "cardinality": "many", "description": "Run at application before an account is opened." },
+        { "predicate": "part_of", "target": "financial_services:compliance:cdd", "cardinality": "one", "description": "CIP is the identification leg of Customer Due Diligence." },
+        { "predicate": "screened_by", "target": "financial_services:compliance:ofac", "cardinality": "one" },
+        { "predicate": "feeds", "target": "financial_services:compliance:bsa", "cardinality": "one" },
+        { "predicate": "applies_to", "target": "financial_services:institutions:federal_credit_union", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "initiated",
+        "states": [
+          { "key": "initiated", "label": "Initiated" },
+          { "key": "documents_collected", "label": "Documents Collected" },
+          { "key": "verified", "label": "Verified" },
+          { "key": "manual_review", "label": "Manual Review / Non-Documentary" },
+          { "key": "cleared", "label": "Cleared", "terminal": true },
+          { "key": "rejected", "label": "Rejected / SAR Referral", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "initiated", "to": "documents_collected", "on": "applicant_submits_id" },
+          { "from": "documents_collected", "to": "verified", "on": "documentary_verification_pass" },
+          { "from": "documents_collected", "to": "manual_review", "on": "verification_exception_or_watchlist_hit" },
+          { "from": "manual_review", "to": "cleared", "on": "resolved_true_no_match" },
+          { "from": "manual_review", "to": "rejected", "on": "confirmed_match_or_unresolved" },
+          { "from": "verified", "to": "cleared", "on": "cip_complete" }
+        ]
+      },
+      "kpis": [
+        { "key": "auto_verification_rate", "label": "Straight-Through Verification Rate", "formula": "auto_verified / total_applications", "unit": "%" },
+        { "key": "kyc_cycle_time", "label": "KYC Cycle Time", "unit": "hours" },
+        { "key": "manual_review_rate", "label": "Manual Review Rate", "formula": "manual_reviews / total_applications", "unit": "%" },
+        { "key": "false_positive_rate", "label": "Screening False-Positive Rate", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "cip_record", "label": "CIP Identity Record (name, DOB, address, TIN)", "required": true },
+        { "key": "government_id", "label": "Government-Issued Photo ID", "required": true },
+        { "key": "cip_policy", "label": "CIP Policy", "required": true },
+        { "key": "beneficial_owner_cert", "label": "Beneficial Ownership Certification (where applicable)", "required": false }
+      ],
+      "connectors": [
+        { "key": "connector:identity_verification", "label": "Identity Verification / IDV Provider", "role": "system_of_record" },
+        { "key": "connector:sanctions_screening", "label": "Sanctions / PEP Screening", "role": "enrichment" },
+        { "key": "connector:core_banking", "label": "Core Banking (account open)", "role": "ingest" }
+      ]
+    },
+    {
+      "object": "financial_services:compliance:kyb",
+      "label": "KYB (Know Your Business)",
+      "notes": "Business/entity due diligence and beneficial-ownership identification under the FinCEN CDD Rule (31 CFR 1010.230): identify and verify each beneficial owner (>=25%) and one control person.",
+      "relationships": [
+        { "predicate": "verifies", "target": "financial_services:institutions:fintech", "cardinality": "many", "description": "Legal-entity customers (business members, CUSOs, fintech partners)." },
+        { "predicate": "verifies", "target": "financial_services:institutions:credit_union_service_organization_cuso", "cardinality": "many" },
+        { "predicate": "identifies", "target": "financial_services:people:executive", "cardinality": "many", "description": "Beneficial owners and control persons." },
+        { "predicate": "part_of", "target": "financial_services:compliance:cdd", "cardinality": "one" },
+        { "predicate": "screened_by", "target": "financial_services:compliance:ofac", "cardinality": "one" },
+        { "predicate": "feeds", "target": "financial_services:compliance:bsa", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "initiated",
+        "states": [
+          { "key": "initiated", "label": "Initiated" },
+          { "key": "entity_verified", "label": "Entity Verified" },
+          { "key": "ubo_identified", "label": "Beneficial Owners Identified" },
+          { "key": "cleared", "label": "Cleared", "terminal": true },
+          { "key": "rejected", "label": "Rejected", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "initiated", "to": "entity_verified", "on": "formation_docs_verified" },
+          { "from": "entity_verified", "to": "ubo_identified", "on": "beneficial_ownership_certified" },
+          { "from": "ubo_identified", "to": "cleared", "on": "all_parties_screened_clear" },
+          { "from": "ubo_identified", "to": "rejected", "on": "unresolved_screening_or_shell_risk" }
+        ]
+      },
+      "kpis": [
+        { "key": "ubo_coverage", "label": "Beneficial-Owner Coverage", "formula": "entities_with_full_ubo / total_business_entities", "unit": "%", "threshold": "100% for >=25% owners + 1 control person" },
+        { "key": "kyb_cycle_time", "label": "KYB Cycle Time", "unit": "days" }
+      ],
+      "required_documents": [
+        { "key": "formation_documents", "label": "Articles / Formation Documents", "required": true },
+        { "key": "beneficial_owner_cert", "label": "Beneficial Ownership Certification", "required": true },
+        { "key": "ein_verification", "label": "EIN / TIN Verification", "required": true },
+        { "key": "good_standing", "label": "Certificate of Good Standing", "required": false }
+      ],
+      "connectors": [
+        { "key": "connector:business_verification", "label": "Business Entity / Registry Verification", "role": "system_of_record" },
+        { "key": "connector:sanctions_screening", "label": "Sanctions / Adverse-Media Screening", "role": "enrichment" }
+      ]
+    },
+    {
+      "object": "financial_services:compliance:aml",
+      "label": "AML (Anti-Money-Laundering Program)",
+      "notes": "The four-pillar-plus AML program required under the BSA: internal controls, designated BSA officer, training, independent testing, and risk-based CDD. Detects and reports suspicious activity via transaction monitoring.",
+      "relationships": [
+        { "predicate": "part_of", "target": "financial_services:compliance:bsa", "cardinality": "one" },
+        { "predicate": "monitors", "target": "financial_services:people:member", "cardinality": "many", "description": "Ongoing transaction monitoring of member activity." },
+        { "predicate": "generates", "target": "financial_services:compliance:sar", "cardinality": "many" },
+        { "predicate": "references", "target": "financial_services:compliance:ofac", "cardinality": "one" },
+        { "predicate": "informs", "target": "financial_services:risk:compliance_risk", "cardinality": "one" },
+        { "predicate": "raises", "target": "financial_services:operations:case", "cardinality": "many", "description": "Alerts become investigation cases; evidence + lineage persist per assertion, not weights." }
+      ],
+      "lifecycle": {
+        "initial": "monitoring",
+        "states": [
+          { "key": "monitoring", "label": "Monitoring" },
+          { "key": "alert", "label": "Alert Generated" },
+          { "key": "investigation", "label": "Investigation" },
+          { "key": "sar_filed", "label": "SAR Filed", "terminal": true },
+          { "key": "cleared", "label": "Cleared / No Action", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "monitoring", "to": "alert", "on": "rule_or_model_trigger" },
+          { "from": "alert", "to": "investigation", "on": "analyst_escalates" },
+          { "from": "investigation", "to": "sar_filed", "on": "suspicion_confirmed" },
+          { "from": "investigation", "to": "cleared", "on": "no_suspicion" }
+        ]
+      },
+      "kpis": [
+        { "key": "alert_to_sar_conversion", "label": "Alert-to-SAR Conversion", "formula": "sars_filed / alerts", "unit": "%" },
+        { "key": "alert_clearance_time", "label": "Alert Clearance Time", "unit": "days" },
+        { "key": "investigation_backlog", "label": "Open Investigation Backlog", "unit": "count" },
+        { "key": "model_tuning_freshness", "label": "Monitoring Rule/Model Tuning Freshness", "unit": "days since last review" }
+      ],
+      "required_documents": [
+        { "key": "aml_program", "label": "Written AML Program", "required": true },
+        { "key": "bsa_risk_assessment", "label": "BSA/AML Risk Assessment", "required": true },
+        { "key": "independent_test", "label": "Independent Testing Report", "required": true },
+        { "key": "training_records", "label": "AML Training Records", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:transaction_monitoring", "label": "Transaction Monitoring System", "role": "system_of_record" },
+        { "key": "connector:bsa_aml", "label": "BSA/AML Case Manager", "role": "enrichment" },
+        { "key": "connector:core_banking", "label": "Core Banking (transaction feed)", "role": "ingest" }
+      ]
+    },
+    {
+      "object": "financial_services:compliance:ofac",
+      "label": "OFAC (Sanctions Screening)",
+      "notes": "Office of Foreign Assets Control sanctions compliance: screen parties/transactions against SDN and consolidated sanctions lists; block or reject and report to OFAC. Strict-liability regime.",
+      "relationships": [
+        { "predicate": "screens", "target": "financial_services:people:member", "cardinality": "many" },
+        { "predicate": "screens", "target": "financial_services:institutions:fintech", "cardinality": "many" },
+        { "predicate": "referenced_by", "target": "financial_services:compliance:aml", "cardinality": "one" },
+        { "predicate": "part_of", "target": "financial_services:compliance:bsa", "cardinality": "one" },
+        { "predicate": "raises", "target": "financial_services:operations:case", "cardinality": "many", "description": "Potential matches become investigation cases before any block/reject decision." }
+      ],
+      "lifecycle": {
+        "initial": "screened",
+        "states": [
+          { "key": "screened", "label": "Screened" },
+          { "key": "potential_match", "label": "Potential Match" },
+          { "key": "false_positive", "label": "False Positive", "terminal": true },
+          { "key": "blocked", "label": "Blocked / Rejected" },
+          { "key": "reported", "label": "Reported to OFAC", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "screened", "to": "potential_match", "on": "list_hit" },
+          { "from": "potential_match", "to": "false_positive", "on": "analyst_clears" },
+          { "from": "potential_match", "to": "blocked", "on": "true_match_confirmed" },
+          { "from": "blocked", "to": "reported", "on": "ofac_report_filed_within_10_days" }
+        ]
+      },
+      "kpis": [
+        { "key": "screening_coverage", "label": "Screening Coverage", "formula": "parties_screened / parties_onboarded", "unit": "%", "threshold": "100%" },
+        { "key": "list_refresh_lag", "label": "Sanctions List Refresh Lag", "unit": "hours", "threshold": "same-day update" },
+        { "key": "false_positive_rate", "label": "False-Positive Rate", "unit": "%" },
+        { "key": "blocked_reporting_timeliness", "label": "Blocked/Rejected Report Timeliness", "unit": "days", "threshold": "<= 10 business days" }
+      ],
+      "required_documents": [
+        { "key": "ofac_policy", "label": "OFAC Sanctions Policy", "required": true },
+        { "key": "screening_log", "label": "OFAC Screening Log", "required": true },
+        { "key": "blocked_property_report", "label": "Blocked/Rejected Property Report", "required": false }
+      ],
+      "connectors": [
+        { "key": "connector:sanctions_screening", "label": "Sanctions Screening Engine", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:compliance:cdd",
+      "label": "CDD (Customer Due Diligence)",
+      "notes": "Risk-based customer due diligence under the FinCEN CDD Rule: understand the nature/purpose of the relationship, develop a risk profile, and conduct ongoing monitoring. EDD applies to higher-risk relationships.",
+      "relationships": [
+        { "predicate": "profiles", "target": "financial_services:people:member", "cardinality": "many" },
+        { "predicate": "includes", "target": "financial_services:compliance:kyc", "cardinality": "one" },
+        { "predicate": "includes", "target": "financial_services:compliance:kyb", "cardinality": "one" },
+        { "predicate": "escalates_to", "target": "financial_services:compliance:edd", "cardinality": "one" },
+        { "predicate": "part_of", "target": "financial_services:compliance:bsa", "cardinality": "one" },
+        { "predicate": "informs", "target": "financial_services:risk:compliance_risk", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "onboarding",
+        "states": [
+          { "key": "onboarding", "label": "Onboarding CDD" },
+          { "key": "risk_rated", "label": "Risk Rated" },
+          { "key": "ongoing", "label": "Ongoing Monitoring" },
+          { "key": "escalated", "label": "Escalated to EDD" },
+          { "key": "offboarded", "label": "Offboarded", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "onboarding", "to": "risk_rated", "on": "risk_profile_assigned" },
+          { "from": "risk_rated", "to": "ongoing", "on": "relationship_active" },
+          { "from": "risk_rated", "to": "escalated", "on": "high_risk_determination" },
+          { "from": "ongoing", "to": "escalated", "on": "risk_reassessment_upgrade" },
+          { "from": "ongoing", "to": "offboarded", "on": "relationship_exit" }
+        ]
+      },
+      "kpis": [
+        { "key": "risk_rating_coverage", "label": "Risk-Rating Coverage", "formula": "rated_customers / total_customers", "unit": "%", "threshold": "100%" },
+        { "key": "periodic_review_current", "label": "Periodic Review Currency", "formula": "reviews_current / reviews_due", "unit": "%" },
+        { "key": "high_risk_share", "label": "High-Risk Customer Share", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "cdd_policy", "label": "CDD Policy", "required": true },
+        { "key": "customer_risk_rating", "label": "Customer Risk Rating Record", "required": true },
+        { "key": "periodic_review", "label": "Periodic Review File", "required": false }
+      ],
+      "connectors": [
+        { "key": "connector:kyc_provider", "label": "CDD / Risk-Rating Platform", "role": "system_of_record" },
+        { "key": "connector:transaction_monitoring", "label": "Transaction Monitoring (ongoing)", "role": "enrichment" }
+      ]
+    },
+    {
+      "object": "financial_services:compliance:edd",
+      "label": "EDD (Enhanced Due Diligence)",
+      "notes": "Enhanced due diligence for higher-risk relationships (PEPs, high-risk geographies, MSBs, correspondent relationships, cash-intensive businesses): additional information, senior approval, and heightened ongoing monitoring.",
+      "relationships": [
+        { "predicate": "escalated_from", "target": "financial_services:compliance:cdd", "cardinality": "one" },
+        { "predicate": "profiles", "target": "financial_services:people:member", "cardinality": "many" },
+        { "predicate": "requires_approval_by", "target": "financial_services:people:executive", "cardinality": "one", "description": "Senior management sign-off for high-risk relationships." },
+        { "predicate": "part_of", "target": "financial_services:compliance:bsa", "cardinality": "one" },
+        { "predicate": "informs", "target": "financial_services:compliance:aml", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "triggered",
+        "states": [
+          { "key": "triggered", "label": "Triggered" },
+          { "key": "information_gathering", "label": "Information Gathering" },
+          { "key": "senior_review", "label": "Senior Review" },
+          { "key": "approved_heightened", "label": "Approved (Heightened Monitoring)" },
+          { "key": "declined", "label": "Declined / Exited", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "triggered", "to": "information_gathering", "on": "edd_questionnaire_issued" },
+          { "from": "information_gathering", "to": "senior_review", "on": "package_complete" },
+          { "from": "senior_review", "to": "approved_heightened", "on": "senior_management_approves" },
+          { "from": "senior_review", "to": "declined", "on": "risk_unacceptable" }
+        ]
+      },
+      "kpis": [
+        { "key": "edd_completion_time", "label": "EDD Completion Time", "unit": "days" },
+        { "key": "edd_review_frequency", "label": "EDD Review Frequency", "unit": "months", "threshold": "at least annually" },
+        { "key": "senior_approval_rate", "label": "Senior-Approved Retention Rate", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "edd_questionnaire", "label": "EDD Questionnaire / Source-of-Funds", "required": true },
+        { "key": "senior_approval", "label": "Senior Management Approval", "required": true },
+        { "key": "enhanced_monitoring_plan", "label": "Enhanced Monitoring Plan", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:kyc_provider", "label": "EDD Case Platform", "role": "system_of_record" },
+        { "key": "connector:sanctions_screening", "label": "Adverse-Media / PEP Screening", "role": "enrichment" }
+      ]
+    },
+    {
+      "object": "financial_services:compliance:sar",
+      "label": "SAR (Suspicious Activity Report)",
+      "notes": "FinCEN Suspicious Activity Report: file within 30 days of initial detection (60 with no identified suspect). Confidential — unlawful to disclose. Persist detection evidence and lineage; the filing decision is human-approved, not weights-only.",
+      "relationships": [
+        { "predicate": "generated_by", "target": "financial_services:compliance:aml", "cardinality": "one" },
+        { "predicate": "about", "target": "financial_services:people:member", "cardinality": "one" },
+        { "predicate": "filed_with_regulator", "target": "financial_services:regulation:state_regulators", "cardinality": "one", "description": "Filed to FinCEN via BSA E-Filing; examined by the prudential regulator (NCUA/FDIC/OCC)." },
+        { "predicate": "approved_by", "target": "financial_services:people:executive", "cardinality": "one" },
+        { "predicate": "documented_in", "target": "financial_services:operations:case", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "drafted",
+        "states": [
+          { "key": "drafted", "label": "Drafted" },
+          { "key": "reviewed", "label": "Reviewed" },
+          { "key": "filed", "label": "Filed" },
+          { "key": "continuing_activity", "label": "Continuing-Activity Review" },
+          { "key": "closed", "label": "Closed", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "drafted", "to": "reviewed", "on": "bsa_officer_review" },
+          { "from": "reviewed", "to": "filed", "on": "efiled_within_30_days" },
+          { "from": "filed", "to": "continuing_activity", "on": "90_day_review" },
+          { "from": "continuing_activity", "to": "filed", "on": "continuing_sar_filed" },
+          { "from": "filed", "to": "closed", "on": "no_further_activity" }
+        ]
+      },
+      "kpis": [
+        { "key": "filing_timeliness", "label": "Filing Timeliness", "unit": "days", "threshold": "<= 30 days from detection" },
+        { "key": "sars_filed", "label": "SARs Filed", "unit": "count" },
+        { "key": "continuing_review_current", "label": "Continuing-Activity Review Currency", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "sar_form", "label": "FinCEN SAR (BSA E-Filing)", "required": true },
+        { "key": "sar_narrative", "label": "SAR Narrative + Supporting Evidence", "required": true },
+        { "key": "sar_decision_memo", "label": "File/No-File Decision Memo", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:regulatory_filing", "label": "BSA E-Filing", "role": "system_of_record" },
+        { "key": "connector:bsa_aml", "label": "BSA/AML Case Manager", "role": "ingest" }
+      ]
+    },
+    {
+      "object": "financial_services:compliance:ctr",
+      "label": "CTR (Currency Transaction Report)",
+      "notes": "FinCEN Currency Transaction Report: file for cash transactions aggregating more than $10,000 by or on behalf of one person in a business day. File within 15 days. Non-discretionary once the threshold is met.",
+      "relationships": [
+        { "predicate": "about", "target": "financial_services:people:member", "cardinality": "one" },
+        { "predicate": "part_of", "target": "financial_services:compliance:bsa", "cardinality": "one" },
+        { "predicate": "filed_with_regulator", "target": "financial_services:regulation:state_regulators", "cardinality": "one", "description": "Filed to FinCEN via BSA E-Filing." },
+        { "predicate": "sourced_via", "target": "financial_services:operations:batch_job", "cardinality": "one", "description": "Aggregation of same-day cash activity." }
+      ],
+      "lifecycle": {
+        "initial": "detected",
+        "states": [
+          { "key": "detected", "label": "Threshold Detected" },
+          { "key": "aggregated", "label": "Aggregated / Reviewed" },
+          { "key": "filed", "label": "Filed", "terminal": true },
+          { "key": "exempted", "label": "Exempt Person", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "detected", "to": "aggregated", "on": "same_day_cash_over_10k" },
+          { "from": "aggregated", "to": "filed", "on": "efiled_within_15_days" },
+          { "from": "aggregated", "to": "exempted", "on": "phase_i_or_ii_exemption" }
+        ]
+      },
+      "kpis": [
+        { "key": "ctr_timeliness", "label": "CTR Filing Timeliness", "unit": "days", "threshold": "<= 15 days" },
+        { "key": "ctrs_filed", "label": "CTRs Filed", "unit": "count" },
+        { "key": "exemption_coverage", "label": "Exempt-Person Coverage", "unit": "%" },
+        { "key": "structuring_alerts", "label": "Structuring Alerts (sub-threshold)", "unit": "count" }
+      ],
+      "required_documents": [
+        { "key": "ctr_form", "label": "FinCEN CTR (BSA E-Filing)", "required": true },
+        { "key": "exemption_designation", "label": "DOEP / Exempt-Person Designation", "required": false }
+      ],
+      "connectors": [
+        { "key": "connector:regulatory_filing", "label": "BSA E-Filing", "role": "system_of_record" },
+        { "key": "connector:core_banking", "label": "Core Banking (cash activity)", "role": "ingest" }
+      ]
+    },
+    {
+      "object": "financial_services:compliance:trid",
+      "label": "TRID (TILA-RESPA Integrated Disclosure)",
+      "notes": "TILA-RESPA Integrated Disclosure rule (Reg Z / Reg X): the Loan Estimate within 3 business days of application and the Closing Disclosure at least 3 business days before consummation, with tolerance rules on fee changes.",
+      "relationships": [
+        { "predicate": "applies_to", "target": "financial_services:lending_products:mortgage", "cardinality": "many" },
+        { "predicate": "implements", "target": "financial_services:compliance:tila", "cardinality": "one" },
+        { "predicate": "implements", "target": "financial_services:compliance:respa", "cardinality": "one" },
+        { "predicate": "enforced_by", "target": "financial_services:regulation:cfpb", "cardinality": "one" },
+        { "predicate": "produces", "target": "financial_services:documents:disclosure", "cardinality": "many" }
+      ],
+      "lifecycle": {
+        "initial": "application",
+        "states": [
+          { "key": "application", "label": "Application Received" },
+          { "key": "le_issued", "label": "Loan Estimate Issued" },
+          { "key": "cd_issued", "label": "Closing Disclosure Issued" },
+          { "key": "consummated", "label": "Consummated", "terminal": true },
+          { "key": "cured", "label": "Tolerance Cure", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "application", "to": "le_issued", "on": "le_within_3_business_days" },
+          { "from": "le_issued", "to": "cd_issued", "on": "cd_at_least_3_days_before_closing" },
+          { "from": "cd_issued", "to": "consummated", "on": "closing" },
+          { "from": "cd_issued", "to": "cured", "on": "tolerance_violation_cured" }
+        ]
+      },
+      "kpis": [
+        { "key": "le_timeliness", "label": "Loan Estimate Timeliness", "unit": "%", "threshold": "100% within 3 business days" },
+        { "key": "cd_timeliness", "label": "Closing Disclosure Timeliness", "unit": "%", "threshold": ">= 3 business days pre-close" },
+        { "key": "tolerance_cure_rate", "label": "Tolerance Cure Rate", "formula": "cures / closings", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "loan_estimate", "label": "Loan Estimate", "required": true },
+        { "key": "closing_disclosure", "label": "Closing Disclosure", "required": true },
+        { "key": "changed_circumstance", "label": "Changed Circumstance Documentation", "required": false }
+      ],
+      "connectors": [
+        { "key": "connector:los", "label": "Loan Origination System", "role": "system_of_record" },
+        { "key": "connector:doc_prep", "label": "Disclosure / Doc-Prep Engine", "role": "enrichment" }
+      ]
+    },
+    {
+      "object": "financial_services:compliance:respa",
+      "label": "RESPA (Real Estate Settlement Procedures Act)",
+      "notes": "Reg X: settlement-cost disclosure, prohibition on kickbacks/referral fees (Section 8), escrow-account limits, and mortgage-servicing/loss-mitigation requirements.",
+      "relationships": [
+        { "predicate": "applies_to", "target": "financial_services:lending_products:mortgage", "cardinality": "many" },
+        { "predicate": "enforced_by", "target": "financial_services:regulation:cfpb", "cardinality": "one" },
+        { "predicate": "implemented_by", "target": "financial_services:compliance:trid", "cardinality": "one" },
+        { "predicate": "governs", "target": "financial_services:deposit_products:escrow", "cardinality": "many" }
+      ],
+      "kpis": [
+        { "key": "escrow_analysis_timeliness", "label": "Annual Escrow Analysis Timeliness", "unit": "%" },
+        { "key": "section8_findings", "label": "Section 8 (RESPA) Findings", "unit": "count", "threshold": "0" },
+        { "key": "loss_mit_ack_timeliness", "label": "Loss-Mitigation Acknowledgment Timeliness", "unit": "days", "threshold": "<= 5 business days" }
+      ],
+      "required_documents": [
+        { "key": "settlement_statement", "label": "Settlement Statement / Closing Disclosure", "required": true },
+        { "key": "escrow_disclosure", "label": "Initial/Annual Escrow Disclosure", "required": true },
+        { "key": "servicing_transfer_notice", "label": "Servicing Transfer Notice", "required": false },
+        { "key": "affiliated_business_disclosure", "label": "Affiliated Business Arrangement Disclosure", "required": false }
+      ],
+      "connectors": [
+        { "key": "connector:los", "label": "Loan Origination System", "role": "system_of_record" },
+        { "key": "connector:loan_servicing", "label": "Mortgage Servicing", "role": "enrichment" }
+      ]
+    },
+    {
+      "object": "financial_services:compliance:tila",
+      "label": "TILA (Truth in Lending Act)",
+      "notes": "Reg Z: uniform disclosure of the cost of consumer credit (APR, finance charge, amount financed), ability-to-repay/QM for mortgages, right of rescission, and advertising rules.",
+      "relationships": [
+        { "predicate": "applies_to", "target": "financial_services:lending_products:consumer_loan", "cardinality": "many" },
+        { "predicate": "applies_to", "target": "financial_services:lending_products:mortgage", "cardinality": "many" },
+        { "predicate": "applies_to", "target": "financial_services:lending_products:heloc", "cardinality": "many" },
+        { "predicate": "enforced_by", "target": "financial_services:regulation:cfpb", "cardinality": "one" },
+        { "predicate": "implemented_by", "target": "financial_services:compliance:trid", "cardinality": "one" },
+        { "predicate": "produces", "target": "financial_services:documents:disclosure", "cardinality": "many" }
+      ],
+      "kpis": [
+        { "key": "apr_accuracy", "label": "APR/Finance-Charge Accuracy", "unit": "%", "threshold": "within tolerance (0.125% reg / 0.25% irregular)" },
+        { "key": "rescission_compliance", "label": "Right-of-Rescission Compliance", "unit": "%", "threshold": "3-business-day window honored" },
+        { "key": "atr_qm_coverage", "label": "ATR/QM Documentation Coverage", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "tila_disclosure", "label": "TILA Disclosure Statement", "required": true },
+        { "key": "rescission_notice", "label": "Notice of Right to Rescind", "required": false },
+        { "key": "atr_qm_worksheet", "label": "ATR/QM Determination Worksheet", "required": false }
+      ],
+      "connectors": [
+        { "key": "connector:los", "label": "Loan Origination System", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:compliance:hmda",
+      "label": "HMDA (Home Mortgage Disclosure Act)",
+      "notes": "Reg C: collect and report loan-level mortgage application data (the LAR) to the CFPB/FFIEC to identify fair-lending and community-credit patterns. Annual submission by March 1.",
+      "relationships": [
+        { "predicate": "applies_to", "target": "financial_services:lending_products:mortgage", "cardinality": "many" },
+        { "predicate": "reported_to", "target": "financial_services:regulation:cfpb", "cardinality": "one" },
+        { "predicate": "informs", "target": "financial_services:compliance:cra", "cardinality": "one", "description": "HMDA data supports fair-lending and CRA analysis." },
+        { "predicate": "informs", "target": "financial_services:compliance:udaap", "cardinality": "one" },
+        { "predicate": "produces", "target": "financial_services:documents:statement", "cardinality": "one", "description": "The Loan/Application Register (LAR)." }
+      ],
+      "lifecycle": {
+        "initial": "collecting",
+        "states": [
+          { "key": "collecting", "label": "Collecting (LAR)" },
+          { "key": "scrubbed", "label": "Scrubbed / Edit-Checked" },
+          { "key": "submitted", "label": "Submitted" },
+          { "key": "accepted", "label": "Accepted", "terminal": true },
+          { "key": "resubmitted", "label": "Resubmitted (Corrections)" }
+        ],
+        "transitions": [
+          { "from": "collecting", "to": "scrubbed", "on": "quarterly_edit_check" },
+          { "from": "scrubbed", "to": "submitted", "on": "annual_filing_by_march_1" },
+          { "from": "submitted", "to": "accepted", "on": "ffiec_validation_pass" },
+          { "from": "accepted", "to": "resubmitted", "on": "material_error_found" }
+        ]
+      },
+      "kpis": [
+        { "key": "lar_error_rate", "label": "LAR Field Error Rate", "formula": "errored_fields / total_fields", "unit": "%", "threshold": "below resubmission threshold" },
+        { "key": "submission_timeliness", "label": "Submission Timeliness", "unit": "%", "threshold": "by March 1" },
+        { "key": "denial_disparity_index", "label": "Denial Disparity Index (monitoring)", "threshold": "flag statistically significant disparities" }
+      ],
+      "required_documents": [
+        { "key": "hmda_lar", "label": "HMDA Loan/Application Register", "required": true },
+        { "key": "hmda_policy", "label": "HMDA Data-Collection Policy", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:los", "label": "Loan Origination System (LAR source)", "role": "system_of_record" },
+        { "key": "connector:hmda_reporting", "label": "HMDA Platform / FFIEC Filing", "role": "ingest" }
+      ]
+    },
+    {
+      "object": "financial_services:compliance:cra",
+      "label": "CRA (Community Reinvestment Act)",
+      "notes": "For banks/thrifts (FDIC/OCC/FRB): assess how the institution meets the credit needs of its entire community, including LMI areas. Credit unions are not subject to federal CRA but many states impose analogous obligations.",
+      "relationships": [
+        { "predicate": "applies_to", "target": "financial_services:institutions:community_bank", "cardinality": "many" },
+        { "predicate": "applies_to", "target": "financial_services:institutions:savings_bank", "cardinality": "many" },
+        { "predicate": "assessed_by", "target": "financial_services:regulation:fdic", "cardinality": "one" },
+        { "predicate": "assessed_by", "target": "financial_services:regulation:occ", "cardinality": "one" },
+        { "predicate": "informed_by", "target": "financial_services:compliance:hmda", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "assessment_period",
+        "states": [
+          { "key": "assessment_period", "label": "Assessment Period" },
+          { "key": "exam", "label": "CRA Examination" },
+          { "key": "rated", "label": "Rated" },
+          { "key": "improvement_plan", "label": "Improvement Plan", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "assessment_period", "to": "exam", "on": "examination_begins" },
+          { "from": "exam", "to": "rated", "on": "performance_evaluation_issued" },
+          { "from": "rated", "to": "improvement_plan", "on": "needs_to_improve_or_noncompliant" }
+        ]
+      },
+      "kpis": [
+        { "key": "cra_rating", "label": "CRA Rating", "threshold": "Outstanding / Satisfactory / Needs to Improve / Substantial Noncompliance" },
+        { "key": "lmi_lending_share", "label": "LMI Lending Share", "unit": "%" },
+        { "key": "community_development_investment", "label": "Community Development Investment", "unit": "$" }
+      ],
+      "required_documents": [
+        { "key": "cra_public_file", "label": "CRA Public File", "required": true },
+        { "key": "performance_evaluation", "label": "CRA Performance Evaluation", "required": true },
+        { "key": "assessment_area_map", "label": "Assessment Area Delineation", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:core_banking", "label": "Core Banking (lending geo data)", "role": "ingest" },
+        { "key": "connector:hmda_reporting", "label": "HMDA/CRA Analytics", "role": "enrichment" }
+      ]
+    },
+    {
+      "object": "financial_services:compliance:glba",
+      "label": "GLBA (Gramm-Leach-Bliley Act)",
+      "notes": "Consumer financial privacy: the Privacy Rule (initial/annual notices, opt-out of sharing with nonaffiliated third parties) and the Safeguards Rule (information security program to protect nonpublic personal information).",
+      "relationships": [
+        { "predicate": "applies_to", "target": "financial_services:institutions:federal_credit_union", "cardinality": "one" },
+        { "predicate": "governs", "target": "financial_services:compliance:privacy", "cardinality": "one" },
+        { "predicate": "protects", "target": "financial_services:people:member", "cardinality": "many" },
+        { "predicate": "mitigates", "target": "financial_services:risk:cyber_risk", "cardinality": "one" },
+        { "predicate": "enforced_by", "target": "financial_services:regulation:cfpb", "cardinality": "one" }
+      ],
+      "kpis": [
+        { "key": "privacy_notice_delivery", "label": "Privacy Notice Delivery", "unit": "%", "threshold": "100% initial + annual" },
+        { "key": "safeguards_control_coverage", "label": "Safeguards Rule Control Coverage", "unit": "%" },
+        { "key": "vendor_safeguards_attestation", "label": "Service-Provider Safeguards Attestation", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "privacy_notice", "label": "GLBA Privacy Notice", "required": true },
+        { "key": "information_security_program", "label": "Information Security Program (Safeguards)", "required": true },
+        { "key": "risk_assessment_security", "label": "Security Risk Assessment", "required": true },
+        { "key": "incident_response_plan", "label": "Incident Response Plan", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:grc", "label": "GRC / Security Program", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:compliance:udaap",
+      "label": "UDAAP (Unfair, Deceptive, or Abusive Acts or Practices)",
+      "notes": "Dodd-Frank Section 1031/1036 (and FTC Act UDAP): prohibits unfair, deceptive, or abusive acts across marketing, servicing, fees, and complaint handling. Enforced principally by the CFPB.",
+      "relationships": [
+        { "predicate": "applies_to", "target": "financial_services:institutions:federal_credit_union", "cardinality": "one" },
+        { "predicate": "enforced_by", "target": "financial_services:regulation:cfpb", "cardinality": "one" },
+        { "predicate": "monitors", "target": "financial_services:lending_products:consumer_loan", "cardinality": "many" },
+        { "predicate": "informed_by", "target": "financial_services:compliance:hmda", "cardinality": "one" },
+        { "predicate": "raises", "target": "financial_services:operations:case", "cardinality": "many", "description": "Complaint patterns become review cases; findings persist with evidence + lineage." }
+      ],
+      "kpis": [
+        { "key": "complaint_rate", "label": "Complaint Rate", "formula": "complaints / active_accounts", "unit": "per 1,000" },
+        { "key": "complaint_resolution_time", "label": "Complaint Resolution Time", "unit": "days" },
+        { "key": "marketing_review_coverage", "label": "Marketing/Disclosure Review Coverage", "unit": "%" },
+        { "key": "fee_reversal_rate", "label": "Fee Reversal Rate (fairness signal)", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "complaint_log", "label": "Complaint Management Log", "required": true },
+        { "key": "marketing_review", "label": "Advertising/Marketing Review Records", "required": true },
+        { "key": "udaap_policy", "label": "UDAAP Policy", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:complaint_management", "label": "Complaint Management System", "role": "system_of_record" },
+        { "key": "connector:crm", "label": "CRM (interaction history)", "role": "enrichment" }
+      ]
+    },
+    {
+      "object": "financial_services:compliance:privacy",
+      "label": "Privacy (Data Privacy Program)",
+      "notes": "The institution's consumer-data privacy program spanning GLBA, state privacy laws (CCPA/CPRA and successors), data-subject requests, data mapping, and retention. Distinct from the GLBA statutory object: this is the operating program.",
+      "relationships": [
+        { "predicate": "governed_by", "target": "financial_services:compliance:glba", "cardinality": "one" },
+        { "predicate": "manages", "target": "financial_services:compliance:consent", "cardinality": "one" },
+        { "predicate": "protects", "target": "financial_services:people:member", "cardinality": "many" },
+        { "predicate": "mitigates", "target": "financial_services:risk:cyber_risk", "cardinality": "one" },
+        { "predicate": "raises", "target": "financial_services:operations:case", "cardinality": "many", "description": "Data-subject/access requests handled as cases." }
+      ],
+      "lifecycle": {
+        "initial": "request_received",
+        "states": [
+          { "key": "request_received", "label": "DSAR Received" },
+          { "key": "identity_verified", "label": "Identity Verified" },
+          { "key": "fulfilling", "label": "Fulfilling" },
+          { "key": "fulfilled", "label": "Fulfilled", "terminal": true },
+          { "key": "denied", "label": "Denied (Exemption)", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "request_received", "to": "identity_verified", "on": "requester_verified" },
+          { "from": "identity_verified", "to": "fulfilling", "on": "scope_determined" },
+          { "from": "fulfilling", "to": "fulfilled", "on": "response_delivered_within_sla" },
+          { "from": "fulfilling", "to": "denied", "on": "statutory_exemption_applies" }
+        ]
+      },
+      "kpis": [
+        { "key": "dsar_sla", "label": "Data-Subject-Request SLA", "unit": "days", "threshold": "<= 45 days (CCPA)" },
+        { "key": "data_map_freshness", "label": "Data Map Freshness", "unit": "days" },
+        { "key": "retention_compliance", "label": "Retention-Schedule Compliance", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "privacy_policy", "label": "Privacy Policy / Notice at Collection", "required": true },
+        { "key": "data_inventory", "label": "Data Inventory / Records of Processing", "required": true },
+        { "key": "retention_schedule", "label": "Data Retention Schedule", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:privacy_dsar", "label": "Privacy / DSAR Platform", "role": "system_of_record" },
+        { "key": "connector:consent_management", "label": "Consent Management", "role": "enrichment" }
+      ]
+    },
+    {
+      "object": "financial_services:compliance:consent",
+      "label": "Consent (Consent & Authorization Management)",
+      "notes": "Capture, evidence, and honor consumer consents and authorizations: E-SIGN electronic-records consent, Reg E EFT authorizations, TCPA marketing consent, GLBA opt-outs, and Reg DD/Z e-disclosure consent. Every consent persists with source, timestamp, and lineage.",
+      "relationships": [
+        { "predicate": "granted_by", "target": "financial_services:people:member", "cardinality": "many" },
+        { "predicate": "managed_by", "target": "financial_services:compliance:privacy", "cardinality": "one" },
+        { "predicate": "authorizes", "target": "financial_services:documents:disclosure", "cardinality": "many", "description": "E-SIGN consent gates electronic delivery of disclosures." },
+        { "predicate": "supports", "target": "financial_services:compliance:udaap", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "requested",
+        "states": [
+          { "key": "requested", "label": "Requested" },
+          { "key": "granted", "label": "Granted" },
+          { "key": "active", "label": "Active" },
+          { "key": "withdrawn", "label": "Withdrawn", "terminal": true },
+          { "key": "expired", "label": "Expired", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "requested", "to": "granted", "on": "consumer_affirms" },
+          { "from": "granted", "to": "active", "on": "recorded_with_evidence" },
+          { "from": "active", "to": "withdrawn", "on": "consumer_opts_out" },
+          { "from": "active", "to": "expired", "on": "consent_term_ends" }
+        ]
+      },
+      "kpis": [
+        { "key": "consent_coverage", "label": "Consent Coverage", "formula": "actions_with_valid_consent / actions_requiring_consent", "unit": "%", "threshold": "100%" },
+        { "key": "esign_adoption", "label": "E-SIGN Consent Adoption", "unit": "%" },
+        { "key": "opt_out_honor_time", "label": "Opt-Out Honor Time", "unit": "days" }
+      ],
+      "required_documents": [
+        { "key": "consent_record", "label": "Consent Record (evidence + timestamp)", "required": true },
+        { "key": "esign_disclosure", "label": "E-SIGN Consumer Disclosure", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:consent_management", "label": "Consent Management Platform", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:compliance:audit",
+      "label": "Audit (Independent / Internal Audit)",
+      "notes": "The independent audit function providing assurance over controls: internal audit plan, external financial-statement audit (NCUA supervisory-committee audit for CUs), and independent BSA/AML testing. Findings drive remediation.",
+      "relationships": [
+        { "predicate": "audits", "target": "financial_services:institutions:federal_credit_union", "cardinality": "one" },
+        { "predicate": "tests", "target": "financial_services:compliance:compliance_review", "cardinality": "one" },
+        { "predicate": "tests", "target": "financial_services:compliance:aml", "cardinality": "one", "description": "Independent BSA/AML testing." },
+        { "predicate": "reports_to", "target": "financial_services:organizational_structure:audit_committee", "cardinality": "one" },
+        { "predicate": "produces", "target": "financial_services:operations:exception", "cardinality": "many", "description": "Findings become tracked remediation items with owners." }
+      ],
+      "lifecycle": {
+        "initial": "planned",
+        "states": [
+          { "key": "planned", "label": "Planned" },
+          { "key": "fieldwork", "label": "Fieldwork" },
+          { "key": "findings", "label": "Findings Issued" },
+          { "key": "remediation", "label": "Remediation" },
+          { "key": "closed", "label": "Closed", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "planned", "to": "fieldwork", "on": "engagement_starts" },
+          { "from": "fieldwork", "to": "findings", "on": "report_issued" },
+          { "from": "findings", "to": "remediation", "on": "management_action_plan" },
+          { "from": "remediation", "to": "closed", "on": "findings_validated_closed" }
+        ]
+      },
+      "kpis": [
+        { "key": "audit_plan_completion", "label": "Audit Plan Completion", "formula": "completed_audits / planned_audits", "unit": "%" },
+        { "key": "open_findings", "label": "Open Audit Findings", "unit": "count" },
+        { "key": "past_due_remediation", "label": "Past-Due Remediation", "unit": "count", "threshold": "0" },
+        { "key": "repeat_finding_rate", "label": "Repeat Finding Rate", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "audit_plan", "label": "Risk-Based Audit Plan", "required": true },
+        { "key": "audit_report", "label": "Audit Report", "required": true },
+        { "key": "supervisory_committee_audit", "label": "Supervisory Committee / External Audit", "required": true },
+        { "key": "remediation_tracker", "label": "Findings Remediation Tracker", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:audit_management", "label": "Audit Management System", "role": "system_of_record" },
+        { "key": "connector:grc", "label": "GRC (findings/issues)", "role": "enrichment" }
+      ]
+    },
+    {
+      "object": "financial_services:compliance:compliance_review",
+      "label": "Compliance Review (Compliance Management System)",
+      "notes": "The compliance management system's monitoring/review cycle: risk assessment, control monitoring, transaction/file testing, issue management, and board/committee reporting across the consumer-compliance and BSA regimes.",
+      "relationships": [
+        { "predicate": "covers", "target": "financial_services:compliance:tila", "cardinality": "many" },
+        { "predicate": "covers", "target": "financial_services:compliance:respa", "cardinality": "many" },
+        { "predicate": "covers", "target": "financial_services:compliance:udaap", "cardinality": "many" },
+        { "predicate": "tested_by", "target": "financial_services:compliance:audit", "cardinality": "one" },
+        { "predicate": "reports_to", "target": "financial_services:organizational_structure:risk_committee", "cardinality": "one" },
+        { "predicate": "informs", "target": "financial_services:risk:compliance_risk", "cardinality": "one" },
+        { "predicate": "produces", "target": "financial_services:operations:review", "cardinality": "many" }
+      ],
+      "lifecycle": {
+        "initial": "scoped",
+        "states": [
+          { "key": "scoped", "label": "Scoped" },
+          { "key": "testing", "label": "Testing" },
+          { "key": "findings", "label": "Findings" },
+          { "key": "remediation", "label": "Remediation" },
+          { "key": "closed", "label": "Closed", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "scoped", "to": "testing", "on": "monitoring_cycle_begins" },
+          { "from": "testing", "to": "findings", "on": "exceptions_identified" },
+          { "from": "findings", "to": "remediation", "on": "corrective_action_assigned" },
+          { "from": "remediation", "to": "closed", "on": "validated" }
+        ]
+      },
+      "kpis": [
+        { "key": "monitoring_coverage", "label": "Regulatory Coverage", "formula": "regs_monitored / applicable_regs", "unit": "%", "threshold": "100%" },
+        { "key": "exception_rate", "label": "File-Testing Exception Rate", "unit": "%" },
+        { "key": "issue_aging", "label": "Open Issue Aging", "unit": "days" }
+      ],
+      "required_documents": [
+        { "key": "compliance_risk_assessment", "label": "Compliance Risk Assessment", "required": true },
+        { "key": "monitoring_schedule", "label": "Monitoring & Testing Schedule", "required": true },
+        { "key": "board_compliance_report", "label": "Board/Committee Compliance Report", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:grc", "label": "GRC / Compliance Management", "role": "system_of_record" }
+      ]
+    }
+  ]
+}

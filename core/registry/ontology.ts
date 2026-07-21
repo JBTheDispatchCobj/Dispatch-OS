@@ -16,6 +16,10 @@ import creditUnion from "@/core/registry/data/ontology/credit_union.json";
 import lendingDeposits from "@/core/registry/data/ontology/lending_deposits.json";
 import capitalMarkets from "@/core/registry/data/ontology/capital_markets.json";
 import innovationEcosystem from "@/core/registry/data/ontology/innovation_ecosystem.json";
+import compliance from "@/core/registry/data/ontology/compliance.json";
+import regulation from "@/core/registry/data/ontology/regulation.json";
+import technologyVendor from "@/core/registry/data/ontology/technology_vendor.json";
+import ai from "@/core/registry/data/ontology/ai.json";
 
 // ---------------------------------------------------------------------------
 // Ontology shape (the per-object knowledge record)
@@ -99,6 +103,10 @@ const PACKS: OntologyPack[] = [
   lendingDeposits as unknown as OntologyPack,
   capitalMarkets as unknown as OntologyPack,
   innovationEcosystem as unknown as OntologyPack,
+  compliance as unknown as OntologyPack,
+  regulation as unknown as OntologyPack,
+  technologyVendor as unknown as OntologyPack,
+  ai as unknown as OntologyPack,
 ];
 
 const BY_OBJECT = new Map<string, ObjectOntology>();

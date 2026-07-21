@@ -3,3 +3,4 @@ import "@/cartridges/financial_services/cartridge";
 import "@/cartridges/hospitality/cartridge";
 import "@/cartridges/wealth/cartridge";
 import "@/cartridges/field_service/cartridge";
+import "@/cartridges/cooperative_markets/cartridge";

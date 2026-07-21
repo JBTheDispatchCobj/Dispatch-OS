@@ -9,13 +9,17 @@ Plan of record: `DISPATCH_OS_REMAINING_ROADMAP.md` — Sprints 1–10 encode bus
 knowledge (ontology, truth models, rule/workflow/agent/connector/KPI/knowledge-pack
 libraries, reports, institution graph). **Vertical scope: the finance / VC / CU / fintech /
 innovation stack (ADR-0015); Hospitality descoped.** **Sprint 1 = Volume XI Canonical
-Ontology (ADR-0014), IN PROGRESS:** framework (`core/registry/ontology.ts`) + **4 packs /
-113 objects, closed graph (0 unresolved)** done — Credit Union (`ontology/credit_union.json`,
-13), Lending & Deposits (`ontology/lending_deposits.json`, 30), Capital Markets & Institutions
-(`ontology/capital_markets.json`, 54), Innovation Ecosystem (`ontology/innovation_ecosystem.json`,
-16). Closed-graph check: `scripts/ontology-check.mjs`. Remaining ontology packs: Compliance,
-Regulation, Technology/Vendor, AI. Substrate done: Object Registry index (`0017`) + the
-341-class FS catalog + loader + `financial_services` base package.
+Ontology (ADR-0014), COMPLETE:** framework (`core/registry/ontology.ts`) + **8 packs /
+181 objects, closed graph (0 unresolved, 0 collisions), strict `tsc` clean** — Credit Union
+(`ontology/credit_union.json`, 13), Lending & Deposits (`ontology/lending_deposits.json`, 30),
+Capital Markets & Institutions (`ontology/capital_markets.json`, 54), Innovation Ecosystem
+(`ontology/innovation_ecosystem.json`, 16), Compliance (`ontology/compliance.json`, 19),
+Regulation (`ontology/regulation.json`, 15), Technology/Vendor (`ontology/technology_vendor.json`,
+24), AI (`ontology/ai.json`, 10). Closed-graph check: `scripts/ontology-check.mjs`. All
+ADR-0015 in-scope domains authored — no ontology packs remain for Sprint 1. Substrate done:
+Object Registry index (`0017`) + the 341-class FS catalog + loader + `financial_services`
+base package. Next roadmap sprints (truth models, rule/workflow/agent/KPI/knowledge-pack
+libraries) hang off this ontology spine.
 
 ## Current context pack
 `docs/context/packs/cooperative-markets-foundation.md`
@@ -38,14 +42,68 @@ Regulation, Technology/Vendor, AI. Substrate done: Object Registry index (`0017`
     identity index over typed tables (ADR-0004 kept). Whole program now reconciled.
 
 ## Immediate next (build)
-1. **Canonical Entity Model + entity resolution (RFC-3002 / kernel Object Registry).**
-   The highest-leverage bridge item: `entities` canonical naming + `entity_aliases` +
-   external ids + dedup/merge/split; **relax `entities.workspace_id` to nullable + add
-   `plane`/`visibility`** (mirrors `0011` sources; additive) so canonical shared-market
-   entities exist. Unblocks truth graph, profiles, and the coop-markets cartridge.
-2. **Identity & Tenancy (RFC-2002)** — `identities`/`memberships` (title + function
-   category + org-defined open role) + permissions engine; RLS hardening on `0016`.
-3. Cooperative Markets cartridge (`cartridges/cooperative_markets/`) — first cartridge.
+**DONE (burns 1–2 this session):**
+- **Cooperative Markets cartridge** (`cartridges/cooperative_markets/cartridge.ts`) — first
+  product vertical: full config-as-data `PackagedConfiguration` on the FS base + Volume XI
+  ontology (10 entities, 11 ladder workflows, rules/generationRules, inference metrics,
+  outcomes, agent instructions, reports, dashboards, knowledge). Registered; `tsc` clean.
+- **Operating-loop seed** (`seed.ts`) — Summit Ridge FCU × Halcyon Pay: 5300 intake → dry-run
+  agent flag → match proposal → human-approved scoped pilot → evidence/decision/approval →
+  metrics/outcomes/dashboard. Wired into the cartridge `seed`; `tsc` clean vs real record types.
+- **Auric executive-lens slice** (`auric_lens.ts` + `auric_lens_demo.html`) — one public
+  IntelligenceObject + a Relationship + three ContentVariants (base/CEO/CLO) sharing identical
+  `source_refs`. The CEO≠CLO thesis, proven and rendered for the Alloya demo. `tsc` clean.
+
+- **VC Deal Engine spec** (ADR-0016 + `docs/03_subsystems/VC_DEAL_ENGINE_SPEC.md`) — the
+  monetization arm: vehicle-agnostic, advisory/syndication-first (fund/SPV as pluggable
+  settlement adapters, vehicle TBD per Bryan); subscribers = CUs/FIs + LPs. Grounded in Bryan's
+  Institutional Intelligence Library (FinTech Evaluation Framework, readiness triad, Deal
+  Pipeline, IC/DD objects). Maps entirely to the existing ontology + cartridge — no core churn.
+
+- **VC Deal Engine P1 — intake + scoring (DONE).** `cartridges/cooperative_markets/deal_engine.ts`
+  — vehicle-agnostic, deterministic scoring (Innovation / Startup Readiness / Institution
+  Readiness / Dispatch Readiness / Opportunity), every score a sourced inference with per-factor
+  lineage; compliance-gated, human-gated recommendation. `scripts/deal-engine-demo.ts` runs it;
+  strict `tsc` clean; deterministic; both ADVANCE and BLOCKED paths verified.
+
+- **VC Deal Engine P2 — diligence + IC memo (DONE).** `ic_memo.ts` — emits
+  `investment_committee_memo` from **approved evidence only**, DD-coverage-gated, role-lensed
+  (CEO/CRO/CFO), recommendation a `draft` proposal. `scripts/ic-memo-demo.ts` runs it.
+- **VC Deal Engine P3 — allocation + subscriber tiers (DONE).** `allocation.ts` — routes an
+  approved deal to CU + LP subscribers through sanctions/KYC-KYB/accreditation gates, pro-rata to
+  capacity, emitting `participation`/`:syndication` allocations + the `deal_flow_access` outcome;
+  allocation is a proposal, settlement is P4. `scripts/allocation-demo.ts` runs it.
+- **Debug-loop harness (DONE).** `scripts/debug-loop.mjs` — the review surface (no UI yet):
+  full-app typecheck + ontology closed-graph + cartridge canonical-map + an engine smoke that
+  transpiles + executes P1/P2/P3. Single PASS/FAIL; run → fix → re-run. Validated: consolidated
+  `tsc` over all 18 session files exit 0; the P1→P2→P3 chain executes correctly + deterministic.
+
+- **MONSTER BATCH (DONE) — 7 subsystem modules via a parallel agent fleet.** `core/kernel/
+  {event_bus,cost_ledger}.ts`, `core/truth/confidence.ts`, `core/harness/router.ts`,
+  `core/auric/engine.ts`, `cartridges/cooperative_markets/{settlement.ts (P4), ingest_call_report.ts}`
+  — all strict-`tsc` clean together (25-file consolidated check, exit 0). Plus `terminal_demo.html`
+  (product surface) + `docs/00_governance/SPRINT_PLAN.md` + `SPRINT_KICKOFF_PROMPT.md`.
+
+## NOW: the Olympic Sprint (see `docs/00_governance/SPRINT_PLAN.md`)
+The next work is the **sprint**, not another one-off burn. It's a multi-agent blaze that wires the
+built modules into a **running, demoable vertical slice + real Terminal UI**, with the debug loop
+gating each wave. **To start a fresh session, paste `SPRINT_KICKOFF_PROMPT.md`** — it runs Wave 1
+(Orchestration spine: ingest → score → memo → allocate → settle → IO → feed, wired through the
+kernel + harness). Waves: 1 spine · 2 Terminal UI · 3 live data + services · 4 Auric distribution +
+hardening. Debug cadence: log to `DEBUG_LOG.md`, fix blockers, `node scripts/debug-loop.mjs` green
+at each wave gate.
+2. **Live intake path** — call-report/startup ingestion so the loop runs on real data, not the
+   seed (a real connector over the `ncua_call_reports` / `startup_intake` source types).
+3. **Canonical Entity Model + entity resolution (RFC-3002)** and **Identity & Tenancy
+   (RFC-2002)** — gated on Bryan applying `0016` + `0017`; then the Object Registry service
+   populates `object_match_candidates` + applies merges.
+
+**Also open (Bryan's library):** fold the Institutional Intelligence Library
+("fintech venture vendor side," ~22k lines) into the docs set + cross-check vs the ontology;
+reconcile its "Volume XI — Agent Intelligence" label against the repo's Volume XI = Canonical
+Ontology (ADR-0014).
+
+**Bryan-only (unblock me):** apply `0016` + `0017` in Supabase; `git push`; VC/Alloya legal.
 
 ## Kernel build backlog — Volume II (ADR-0011)
 Spec: `volumes/kernel/`. Additive-forward.

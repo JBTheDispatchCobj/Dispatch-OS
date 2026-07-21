@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Summit Ridge FCU — Terminal (Dispatch / Auric)</title>
+<style>
+  :root{--bg:#0b0f14;--panel:#141b24;--panel2:#1b2430;--ink:#e6edf3;--muted:#93a1b0;--line:#28323f;
+    --gold:#e8b64c;--cyan:#4cc2e8;--violet:#a98cf0;--green:#57c98a;--red:#e8736b;--sh:0 10px 30px rgba(0,0,0,.35)}
+  *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Arial,sans-serif;padding:26px 20px 60px}
+  .wrap{max-width:1180px;margin:0 auto}
+  .top{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:20px}
+  .top .mark{color:var(--gold);font-weight:800;letter-spacing:1px}
+  .top h1{font-size:18px;margin:0;font-weight:600}.top .env{margin-left:auto;color:var(--muted);font-size:12px}
+  .grid{display:grid;grid-template-columns:1.1fr 1fr;gap:16px}@media(max-width:920px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;box-shadow:var(--sh);margin-bottom:16px}
+  .card h2{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin:0 0 12px;font-weight:700}
+  .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .kpi{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+  .kpi .v{font-size:20px;font-weight:700}.kpi .l{font-size:11px;color:var(--muted)}
+  .flag{color:var(--gold)} .good{color:var(--green)} .bad{color:var(--red)}
+  .bars .row{display:flex;align-items:center;gap:10px;margin:7px 0;font-size:12.5px}
+  .bars .lab{width:150px;color:#c7d1db}.bars .track{flex:1;height:8px;background:#0e141b;border-radius:6px;overflow:hidden}
+  .bars .fill{height:100%;background:linear-gradient(90deg,#4cc2e8,#57c98a)}.bars .num{width:42px;text-align:right;color:var(--muted)}
+  .rec{display:inline-block;font-weight:700;font-size:12px;padding:4px 10px;border-radius:999px}
+  .rec.cond{background:#2a2410;color:var(--gold);border:1px solid #6b551f}
+  .rec.adv{background:#11241a;color:var(--green);border:1px solid #245234}
+  .lensbtns{display:flex;gap:6px;margin:2px 0 10px}
+  .lensbtns button{background:#0e141b;color:var(--muted);border:1px solid var(--line);border-radius:7px;padding:5px 11px;font-size:12px;cursor:pointer}
+  .lensbtns button.on{background:var(--cyan);color:#08131a;border-color:var(--cyan);font-weight:700}
+  .lensbtns button.on.clo{background:var(--violet);border-color:var(--violet)}
+  .hook{font-size:11px;color:var(--muted);margin-bottom:6px}.body{font-size:13px;color:#cdd7e1;min-height:78px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}td,th{text-align:left;padding:6px 4px;border-bottom:1px solid var(--line)}
+  th{color:var(--muted);font-weight:600}.tag{font-size:11px;color:var(--muted)}
+  .foot{color:var(--muted);font-size:11.5px;margin-top:8px}
+  .cond-line{font-size:12px;color:var(--gold);margin-top:8px}
+  .excl{font-size:11.5px;color:var(--muted);margin-top:6px}
+</style></head>
+<body><div class="wrap">
+  <div class="top"><span class="mark">DISPATCH</span><h1>Summit Ridge FCU · Terminal</h1><span class="env">powered by The Auric · demo surface (computed from the deal engine)</span></div>
+
+  <div class="grid">
+    <div>
+      <div class="card">
+        <h2>Institution Scorecard</h2>
+        <div class="kpis">
+          <div class="kpi"><div class="v">$842M</div><div class="l">Assets</div></div>
+          <div class="kpi"><div class="v flag">6.8%</div><div class="l">Net worth (PCA-sensitive)</div></div>
+          <div class="kpi"><div class="v good">+7.2%</div><div class="l">Member growth YoY</div></div>
+          <div class="kpi"><div class="v">72</div><div class="l">Innovation readiness</div></div>
+          <div class="kpi"><div class="v">0.71</div><div class="l">Digital adoption</div></div>
+          <div class="kpi"><div class="v">Symitar</div><div class="l">Core</div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Opportunity Feed — Halcyon Pay (real-time payments)</h2>
+        <div class="lensbtns">
+          <button id="bceo" class="on" onclick="setLens('ceo')">CEO lens</button>
+          <button id="bclo" class="clo" onclick="setLens('clo')">CLO lens</button>
+        </div>
+        <div class="hook" id="hook"></div>
+        <div class="body" id="body"></div>
+        <div class="foot">Same sourced facts, different hook — a cartridge lens over one Intelligence Object.</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <h2>Deal Scorecard <span class="tag">(P1 · sourced inferences)</span></h2>
+        <div class="bars">
+          <div class="row"><span class="lab">Innovation</span><span class="track"><span class="fill" style="width:77.7%"></span></span><span class="num">77.7</span></div>
+          <div class="row"><span class="lab">Startup readiness</span><span class="track"><span class="fill" style="width:76.3%"></span></span><span class="num">76.3</span></div>
+          <div class="row"><span class="lab">Institution readiness</span><span class="track"><span class="fill" style="width:71.5%"></span></span><span class="num">71.5</span></div>
+          <div class="row"><span class="lab">Dispatch readiness</span><span class="track"><span class="fill" style="width:70.5%"></span></span><span class="num">70.5</span></div>
+          <div class="row"><span class="lab">Opportunity</span><span class="track"><span class="fill" style="width:77.9%"></span></span><span class="num">77.9</span></div>
+        </div>
+        <div class="foot">21 distinct sourced facts · every factor cites a source · tier: dispatch_inference</div>
+      </div>
+
+      <div class="card">
+        <h2>Investment Committee Memo <span class="tag">(P2 · draft proposal)</span></h2>
+        <span class="rec cond">RECOMMEND WITH CONDITIONS</span>
+        <div class="cond-line">condition: attach the real-time OFAC + Reg E control checklist</div>
+        <div class="excl">Diligence coverage 5/5 · approved-evidence only · 1 unapproved item excluded (COI draft) · role-lensed CEO/CRO/CFO</div>
+      </div>
+
+      <div class="card">
+        <h2>Deal-Flow Allocation <span class="tag">(P3 · $1.75M of $2M)</span></h2>
+        <table>
+          <tr><th>Subscriber</th><th>Type</th><th>Allocated</th><th>Vehicle</th></tr>
+          <tr><td>Summit Ridge FCU</td><td>credit_union</td><td class="good">$750,000</td><td>participation</td></tr>
+          <tr><td>Meridian Family Office</td><td>lp</td><td class="good">$1,000,000</td><td>syndication</td></tr>
+          <tr><td>Harbor Point CU</td><td>credit_union</td><td class="bad">rejected</td><td>kyb_incomplete</td></tr>
+          <tr><td>Novus Angels</td><td>lp</td><td class="bad">rejected</td><td>not_accredited</td></tr>
+        </table>
+        <div class="foot">Gates: sanctions/OFAC · KYC-KYB · LP accreditation. Settlement (P4) advisory/syndication — vehicle-agnostic.</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot" style="text-align:center;margin-top:14px">Scores are Dispatch inferences over sourced facts; recommendations are human-approved proposals with lineage. No conclusion lives in weights.</div>
+</div>
+<script>
+  var L={ceo:{hook:"Hook: growth · franchise value · positioning",body:"Real-time payments is becoming table stakes for member retention and deposit growth. Summit Ridge is already winning members (+7.2%) and digital — convert that into the primary-payments relationship and lead your field of membership. Capital-light, so it doesn't touch your net-worth story. The window is now."},
+        clo:{hook:"Hook: risk · compliance · defensibility",body:"Instant settlement raises BSA/AML, OFAC, and Reg E exposure — the question is whether it's defensible. Halcyon carries SOC 2 Type II and 14 CU integrations; the pilot is scoped with real-time OFAC screening and documented Reg E windows, so it's exam-ready. At 6.8% net worth, capital-light matters. Same opportunity the CEO sees — here's why it holds up."}};
+  function setLens(k){document.getElementById('hook').textContent=L[k].hook;document.getElementById('body').textContent=L[k].body;
+    document.getElementById('bceo').className=k==='ceo'?'on':'';document.getElementById('bclo').className=k==='clo'?'on clo':'clo';}
+  setLens('ceo');
+</script>
+</body></html>

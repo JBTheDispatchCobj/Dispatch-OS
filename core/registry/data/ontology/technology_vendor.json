@@ -1,0 +1,752 @@
+{
+  "key": "ontology:technology_vendor",
+  "label": "Technology & Vendor Ontology",
+  "version": 1,
+  "domain": "financial_services",
+  "notes": "Volume XI Sprint-1 pack (ADR-0014/0015). Operational ontology for the institution's technology stack and third-party ecosystem: systems of record (core processor, LOS, CRM, ERP, accounting, data warehouse, IdP), integration primitives (API, connector, webhook, marketplace package, SDK), deployed AI models, and the vendor lifecycle (vendor/partner, MSA/SLA/contract, implementation, renewal, support tickets, third-party risk assessment). This is the substrate the Cooperative Markets innovation graph (startup/product/integration/vendor_evaluation) hooks into. The technology and vendors_partners families both define api and connector under distinct schema_refs; both are enriched here without collision. Relationship targets are catalog schema_refs (closed graph). Third-party risk conclusions persist evidence, source, confidence, and lineage — never weights alone (NCUA third-party due-diligence guidance; DOCTRINE). Connector keys are forward references into the Connector Registry (Volume IX).",
+  "ontologies": [
+    {
+      "object": "financial_services:technology:core_processor",
+      "label": "Core Processor (Core Banking System)",
+      "notes": "The system of record for accounts, members, and transactions — the institution's most critical vendor relationship (e.g. Symitar/Episys, DNA, Keystone, Corelation).",
+      "relationships": [
+        { "predicate": "system_of_record_for", "target": "financial_services:institutions:federal_credit_union", "cardinality": "one" },
+        { "predicate": "provided_by", "target": "financial_services:vendors_partners:vendor", "cardinality": "one" },
+        { "predicate": "exposes", "target": "financial_services:technology:api", "cardinality": "many" },
+        { "predicate": "assessed_by", "target": "financial_services:vendors_partners:risk_assessment", "cardinality": "one" },
+        { "predicate": "governed_by", "target": "financial_services:vendors_partners:msa", "cardinality": "one" },
+        { "predicate": "poses", "target": "financial_services:risk:vendor_risk", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "evaluation",
+        "states": [
+          { "key": "evaluation", "label": "Evaluation" },
+          { "key": "contracted", "label": "Contracted" },
+          { "key": "implementation", "label": "Implementation / Conversion" },
+          { "key": "live", "label": "Live" },
+          { "key": "sunset", "label": "Sunset / Migration", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "evaluation", "to": "contracted", "on": "vendor_selected" },
+          { "from": "contracted", "to": "implementation", "on": "conversion_kickoff" },
+          { "from": "implementation", "to": "live", "on": "core_conversion_go_live" },
+          { "from": "live", "to": "sunset", "on": "replacement_decision" }
+        ]
+      },
+      "kpis": [
+        { "key": "uptime", "label": "Core Uptime", "unit": "%", "threshold": ">= 99.9%" },
+        { "key": "transaction_throughput", "label": "Transaction Throughput", "unit": "tps" },
+        { "key": "batch_completion", "label": "Nightly Batch Completion", "unit": "% on-time" },
+        { "key": "incident_count", "label": "Sev-1 Incidents", "unit": "count" }
+      ],
+      "required_documents": [
+        { "key": "core_msa", "label": "Core Processing MSA", "required": true },
+        { "key": "core_sla", "label": "Core SLA", "required": true },
+        { "key": "soc2", "label": "SOC 2 Type II Report", "required": true },
+        { "key": "bcp_dr", "label": "BCP / DR Plan", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:core_banking", "label": "Core Banking", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:technology:los",
+      "label": "LOS (Loan Origination System)",
+      "notes": "Originates and decisions loans across consumer, mortgage, and commercial; source of TRID/HMDA/ATR data.",
+      "relationships": [
+        { "predicate": "originates", "target": "financial_services:lending_products:mortgage", "cardinality": "many" },
+        { "predicate": "originates", "target": "financial_services:lending_products:auto_loan", "cardinality": "many" },
+        { "predicate": "provided_by", "target": "financial_services:vendors_partners:vendor", "cardinality": "one" },
+        { "predicate": "exposes", "target": "financial_services:technology:api", "cardinality": "many" },
+        { "predicate": "feeds", "target": "financial_services:compliance:hmda", "cardinality": "one" },
+        { "predicate": "assessed_by", "target": "financial_services:vendors_partners:risk_assessment", "cardinality": "one" }
+      ],
+      "kpis": [
+        { "key": "pull_through_rate", "label": "Application Pull-Through Rate", "unit": "%" },
+        { "key": "avg_cycle_time", "label": "Avg Origination Cycle Time", "unit": "days" },
+        { "key": "uptime", "label": "Uptime", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "los_contract", "label": "LOS Contract / SOW", "required": true },
+        { "key": "soc2", "label": "SOC 2 Report", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:los", "label": "Loan Origination System", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:technology:crm",
+      "label": "CRM (Member/Customer Relationship Management)",
+      "notes": "Manages member/prospect interactions, pipeline, and marketing; a key enrichment source for profiles and the relationship graph.",
+      "relationships": [
+        { "predicate": "manages", "target": "financial_services:people:member", "cardinality": "many" },
+        { "predicate": "manages", "target": "financial_services:people:prospect", "cardinality": "many" },
+        { "predicate": "provided_by", "target": "financial_services:vendors_partners:vendor", "cardinality": "one" },
+        { "predicate": "exposes", "target": "financial_services:technology:api", "cardinality": "many" }
+      ],
+      "kpis": [
+        { "key": "data_completeness", "label": "Contact Data Completeness", "unit": "%" },
+        { "key": "pipeline_conversion", "label": "Pipeline Conversion", "unit": "%" },
+        { "key": "adoption_rate", "label": "Staff Adoption Rate", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "crm_contract", "label": "CRM Subscription Agreement", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:crm", "label": "CRM", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:technology:erp",
+      "label": "ERP (Enterprise Resource Planning)",
+      "notes": "Back-office resource planning (HR, procurement, finance operations) integrating with the accounting and GL layers.",
+      "relationships": [
+        { "predicate": "supports", "target": "financial_services:organizational_structure:department", "cardinality": "many" },
+        { "predicate": "integrates_with", "target": "financial_services:technology:accounting", "cardinality": "one" },
+        { "predicate": "provided_by", "target": "financial_services:vendors_partners:vendor", "cardinality": "one" },
+        { "predicate": "exposes", "target": "financial_services:technology:api", "cardinality": "many" }
+      ],
+      "kpis": [
+        { "key": "process_cycle_time", "label": "Procure-to-Pay Cycle Time", "unit": "days" },
+        { "key": "uptime", "label": "Uptime", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "erp_contract", "label": "ERP License / SaaS Agreement", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:erp", "label": "ERP", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:technology:accounting",
+      "label": "Accounting System (GL)",
+      "notes": "General-ledger and financial-accounting platform; system of record for journal entries, balances, and financial statements.",
+      "relationships": [
+        { "predicate": "system_of_record_for", "target": "financial_services:finance_accounting:gl_account", "cardinality": "many" },
+        { "predicate": "produces", "target": "financial_services:finance_accounting:income_statement", "cardinality": "many" },
+        { "predicate": "reconciles_with", "target": "financial_services:technology:core_processor", "cardinality": "one" },
+        { "predicate": "provided_by", "target": "financial_services:vendors_partners:vendor", "cardinality": "one" }
+      ],
+      "kpis": [
+        { "key": "close_cycle_time", "label": "Month-End Close Cycle Time", "unit": "days" },
+        { "key": "reconciliation_exceptions", "label": "Reconciliation Exceptions", "unit": "count" }
+      ],
+      "required_documents": [
+        { "key": "accounting_contract", "label": "Accounting System Agreement", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:erp", "label": "Accounting / GL", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:technology:data_warehouse",
+      "label": "Data Warehouse / Analytics Store",
+      "notes": "Consolidated analytics store aggregating core, LOS, CRM, and third-party data for reporting, KPIs, and the knowledge graph.",
+      "relationships": [
+        { "predicate": "aggregates", "target": "financial_services:technology:core_processor", "cardinality": "one" },
+        { "predicate": "aggregates", "target": "financial_services:technology:los", "cardinality": "one" },
+        { "predicate": "feeds", "target": "financial_services:ai:knowledge_pack", "cardinality": "many" },
+        { "predicate": "provided_by", "target": "financial_services:vendors_partners:vendor", "cardinality": "one" }
+      ],
+      "kpis": [
+        { "key": "pipeline_freshness", "label": "Data Pipeline Freshness", "unit": "hours" },
+        { "key": "data_quality_score", "label": "Data Quality Score", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "data_processing_agreement", "label": "Data Processing Agreement", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:data_warehouse", "label": "Data Warehouse", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:technology:identity_provider",
+      "label": "Identity Provider (IdP / IAM)",
+      "notes": "SSO and identity/access management for staff and, increasingly, members; a GLBA Safeguards control and a primary defense against account-takeover.",
+      "relationships": [
+        { "predicate": "authenticates", "target": "financial_services:people:employee", "cardinality": "many" },
+        { "predicate": "authenticates", "target": "financial_services:people:member", "cardinality": "many" },
+        { "predicate": "supports", "target": "financial_services:compliance:glba", "cardinality": "one" },
+        { "predicate": "mitigates", "target": "financial_services:risk:cyber_risk", "cardinality": "one" },
+        { "predicate": "provided_by", "target": "financial_services:vendors_partners:vendor", "cardinality": "one" }
+      ],
+      "kpis": [
+        { "key": "mfa_coverage", "label": "MFA Coverage", "unit": "%", "threshold": "100% privileged access" },
+        { "key": "provisioning_time", "label": "Access Provisioning/Deprovisioning Time", "unit": "hours" }
+      ],
+      "required_documents": [
+        { "key": "iam_policy", "label": "Access Management Policy", "required": true },
+        { "key": "soc2", "label": "SOC 2 Report", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:identity_provider", "label": "Identity Provider", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:technology:api",
+      "label": "API",
+      "notes": "A programmatic interface exposed by a system of record or partner; the technical substrate a connector binds to. Distinct from the vendors_partners:api object (a partner-published API product).",
+      "relationships": [
+        { "predicate": "exposed_by", "target": "financial_services:technology:core_processor", "cardinality": "one" },
+        { "predicate": "consumed_by", "target": "financial_services:technology:connector", "cardinality": "many" },
+        { "predicate": "documented_in", "target": "financial_services:technology:sdk", "cardinality": "one" },
+        { "predicate": "governed_by", "target": "financial_services:vendors_partners:sla", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "draft",
+        "states": [
+          { "key": "draft", "label": "Draft" },
+          { "key": "published", "label": "Published" },
+          { "key": "deprecated", "label": "Deprecated" },
+          { "key": "retired", "label": "Retired", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "draft", "to": "published", "on": "version_released" },
+          { "from": "published", "to": "deprecated", "on": "successor_version" },
+          { "from": "deprecated", "to": "retired", "on": "sunset_date" }
+        ]
+      },
+      "kpis": [
+        { "key": "availability", "label": "API Availability", "unit": "%", "threshold": ">= 99.9%" },
+        { "key": "p95_latency", "label": "p95 Latency", "unit": "ms" },
+        { "key": "error_rate", "label": "Error Rate", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "api_spec", "label": "API Specification (OpenAPI)", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:api_gateway", "label": "API Gateway", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:technology:connector",
+      "label": "Connector",
+      "notes": "A configured integration binding a source system to Dispatch; the runtime realization of a Connector Registry (Volume IX) entry. Distinct from vendors_partners:connector (a partner-delivered integration).",
+      "relationships": [
+        { "predicate": "binds_to", "target": "financial_services:technology:api", "cardinality": "one" },
+        { "predicate": "consumes", "target": "financial_services:technology:webhook", "cardinality": "many" },
+        { "predicate": "ingests_into", "target": "financial_services:technology:data_warehouse", "cardinality": "one" },
+        { "predicate": "assessed_by", "target": "financial_services:vendors_partners:risk_assessment", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "registered",
+        "states": [
+          { "key": "registered", "label": "Registered" },
+          { "key": "authorized", "label": "Authorized" },
+          { "key": "active", "label": "Active" },
+          { "key": "degraded", "label": "Degraded" },
+          { "key": "disabled", "label": "Disabled", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "registered", "to": "authorized", "on": "credentials_granted" },
+          { "from": "authorized", "to": "active", "on": "first_successful_sync" },
+          { "from": "active", "to": "degraded", "on": "health_check_fails" },
+          { "from": "degraded", "to": "active", "on": "recovered" },
+          { "from": "degraded", "to": "disabled", "on": "revoked_or_deprecated" }
+        ]
+      },
+      "kpis": [
+        { "key": "sync_success_rate", "label": "Sync Success Rate", "unit": "%" },
+        { "key": "connector_health", "label": "Connector Health", "threshold": "green/amber/red" },
+        { "key": "data_freshness", "label": "Data Freshness", "unit": "minutes" }
+      ],
+      "required_documents": [
+        { "key": "connector_manifest", "label": "Connector Manifest", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:api_gateway", "label": "Integration Runtime", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:technology:webhook",
+      "label": "Webhook",
+      "notes": "Event-driven push delivery from a source system into Dispatch; the change-event transport for near-real-time ingestion.",
+      "relationships": [
+        { "predicate": "emitted_by", "target": "financial_services:technology:core_processor", "cardinality": "one" },
+        { "predicate": "consumed_by", "target": "financial_services:technology:connector", "cardinality": "one" },
+        { "predicate": "triggers", "target": "financial_services:operations:automation", "cardinality": "many" }
+      ],
+      "kpis": [
+        { "key": "delivery_success_rate", "label": "Delivery Success Rate", "unit": "%" },
+        { "key": "retry_rate", "label": "Retry Rate", "unit": "%" },
+        { "key": "delivery_latency", "label": "Delivery Latency", "unit": "ms" }
+      ],
+      "required_documents": [
+        { "key": "webhook_contract", "label": "Event/Payload Contract", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:api_gateway", "label": "Event Ingress", "role": "ingest" }
+      ]
+    },
+    {
+      "object": "financial_services:technology:marketplace_package",
+      "label": "Marketplace Package",
+      "notes": "An installable capability package (cartridge/app/integration bundle) distributed through the Dispatch marketplace; installs configuration, rules, workflows, and connectors — not a vertical fork.",
+      "relationships": [
+        { "predicate": "installs", "target": "financial_services:technology:connector", "cardinality": "many" },
+        { "predicate": "delivers", "target": "financial_services:ai:capability", "cardinality": "many" },
+        { "predicate": "published_by", "target": "financial_services:vendors_partners:partner", "cardinality": "one" },
+        { "predicate": "adopted_by", "target": "financial_services:institutions:federal_credit_union", "cardinality": "many" }
+      ],
+      "lifecycle": {
+        "initial": "submitted",
+        "states": [
+          { "key": "submitted", "label": "Submitted" },
+          { "key": "certified", "label": "Certified" },
+          { "key": "listed", "label": "Listed" },
+          { "key": "installed", "label": "Installed" },
+          { "key": "delisted", "label": "Delisted", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "submitted", "to": "certified", "on": "review_passed" },
+          { "from": "certified", "to": "listed", "on": "published" },
+          { "from": "listed", "to": "installed", "on": "institution_installs" },
+          { "from": "listed", "to": "delisted", "on": "removed" }
+        ]
+      },
+      "kpis": [
+        { "key": "install_count", "label": "Install Count", "unit": "count" },
+        { "key": "activation_rate", "label": "Activation Rate", "unit": "%" },
+        { "key": "rating", "label": "Marketplace Rating", "unit": "1-5" }
+      ],
+      "required_documents": [
+        { "key": "package_manifest", "label": "Package Manifest", "required": true },
+        { "key": "security_review", "label": "Security Review / Certification", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:marketplace", "label": "Marketplace", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:technology:sdk",
+      "label": "SDK (Software Development Kit)",
+      "notes": "Developer toolkit for building on Dispatch APIs, connectors, and cartridges — the Connector/Cartridge SDK surface (Volume IX/kernel RFC-2010).",
+      "relationships": [
+        { "predicate": "targets", "target": "financial_services:technology:api", "cardinality": "many" },
+        { "predicate": "builds", "target": "financial_services:technology:connector", "cardinality": "many" },
+        { "predicate": "used_by", "target": "financial_services:institutions:fintech", "cardinality": "many" },
+        { "predicate": "published_by", "target": "financial_services:vendors_partners:partner", "cardinality": "one" }
+      ],
+      "kpis": [
+        { "key": "adoption", "label": "Developer Adoption", "unit": "count" },
+        { "key": "version_currency", "label": "Version Currency", "unit": "% on latest" }
+      ],
+      "required_documents": [
+        { "key": "sdk_docs", "label": "SDK Documentation", "required": true },
+        { "key": "license", "label": "SDK License", "required": true }
+      ],
+      "connectors": []
+    },
+    {
+      "object": "financial_services:technology:ai_model",
+      "label": "AI Model (Deployed)",
+      "notes": "An AI/ML model deployed into the technology stack (underwriting assist, fraud scoring, document extraction). Bridges to the AI family: governance lives on ai:model; model risk is tracked and never the sole basis for a regulated decision.",
+      "relationships": [
+        { "predicate": "instance_of", "target": "financial_services:ai:model", "cardinality": "one" },
+        { "predicate": "invoked_by", "target": "financial_services:ai:agent", "cardinality": "many" },
+        { "predicate": "assessed_by", "target": "financial_services:risk:model_risk", "cardinality": "one" },
+        { "predicate": "provided_by", "target": "financial_services:vendors_partners:vendor", "cardinality": "one" },
+        { "predicate": "governed_by", "target": "financial_services:compliance:compliance_review", "cardinality": "one", "description": "Fair-lending/UDAAP review of any consumer-impacting model." }
+      ],
+      "lifecycle": {
+        "initial": "candidate",
+        "states": [
+          { "key": "candidate", "label": "Candidate" },
+          { "key": "validated", "label": "Validated (Model Risk)" },
+          { "key": "deployed", "label": "Deployed" },
+          { "key": "monitored", "label": "Monitored" },
+          { "key": "retired", "label": "Retired", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "candidate", "to": "validated", "on": "independent_validation_pass" },
+          { "from": "validated", "to": "deployed", "on": "production_release" },
+          { "from": "deployed", "to": "monitored", "on": "monitoring_enabled" },
+          { "from": "monitored", "to": "retired", "on": "drift_or_replacement" }
+        ]
+      },
+      "kpis": [
+        { "key": "auc", "label": "Model AUC / Accuracy", "unit": "score" },
+        { "key": "drift", "label": "Population/Feature Drift", "unit": "PSI" },
+        { "key": "disparate_impact", "label": "Disparate-Impact Ratio", "threshold": ">= 0.80 (four-fifths)" }
+      ],
+      "required_documents": [
+        { "key": "model_card", "label": "Model Card / Documentation", "required": true },
+        { "key": "validation_report", "label": "Model Validation Report", "required": true },
+        { "key": "monitoring_plan", "label": "Ongoing Monitoring Plan", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:model_serving", "label": "Model Serving / MLOps", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:vendors_partners:vendor",
+      "label": "Vendor (Third Party)",
+      "notes": "A third-party supplier of technology or services. NCUA third-party due-diligence and the interagency guidance frame the risk lifecycle: planning, due diligence, contracting, ongoing monitoring, and termination.",
+      "relationships": [
+        { "predicate": "provides", "target": "financial_services:technology:core_processor", "cardinality": "many" },
+        { "predicate": "contracts_with", "target": "financial_services:institutions:federal_credit_union", "cardinality": "many" },
+        { "predicate": "governed_by", "target": "financial_services:vendors_partners:msa", "cardinality": "one" },
+        { "predicate": "assessed_by", "target": "financial_services:vendors_partners:risk_assessment", "cardinality": "one" },
+        { "predicate": "poses", "target": "financial_services:risk:vendor_risk", "cardinality": "one" },
+        { "predicate": "contact", "target": "financial_services:people:vendor_contact", "cardinality": "many" }
+      ],
+      "lifecycle": {
+        "initial": "prospective",
+        "states": [
+          { "key": "prospective", "label": "Prospective" },
+          { "key": "due_diligence", "label": "Due Diligence" },
+          { "key": "contracted", "label": "Contracted" },
+          { "key": "active", "label": "Active / Monitored" },
+          { "key": "terminated", "label": "Terminated", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "prospective", "to": "due_diligence", "on": "risk_review_initiated" },
+          { "from": "due_diligence", "to": "contracted", "on": "approved_and_signed" },
+          { "from": "contracted", "to": "active", "on": "onboarded" },
+          { "from": "active", "to": "terminated", "on": "offboarding_complete" }
+        ]
+      },
+      "kpis": [
+        { "key": "criticality_tier", "label": "Vendor Criticality Tier", "threshold": "critical / significant / standard" },
+        { "key": "assessment_currency", "label": "Risk Assessment Currency", "unit": "% current" },
+        { "key": "sla_attainment", "label": "SLA Attainment", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "due_diligence_file", "label": "Vendor Due-Diligence File", "required": true },
+        { "key": "soc2", "label": "SOC 2 / Financials", "required": true },
+        { "key": "coi", "label": "Certificate of Insurance", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:grc", "label": "Third-Party Risk Management", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:vendors_partners:partner",
+      "label": "Partner",
+      "notes": "A strategic partner (fintech, CUSO, distribution, or referral) — distinct from a pure supplier: a two-directional relationship that can lead through the pilot→integration→partnership ladder.",
+      "relationships": [
+        { "predicate": "partners_with", "target": "financial_services:institutions:federal_credit_union", "cardinality": "many" },
+        { "predicate": "formalized_by", "target": "financial_services:innovation_ecosystem:partnership", "cardinality": "one" },
+        { "predicate": "delivers", "target": "financial_services:innovation_ecosystem:integration", "cardinality": "many" },
+        { "predicate": "publishes", "target": "financial_services:technology:marketplace_package", "cardinality": "many" },
+        { "predicate": "governed_by", "target": "financial_services:vendors_partners:contract", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "prospect",
+        "states": [
+          { "key": "prospect", "label": "Prospect" },
+          { "key": "evaluating", "label": "Evaluating" },
+          { "key": "active", "label": "Active" },
+          { "key": "strategic", "label": "Strategic" },
+          { "key": "wound_down", "label": "Wound Down", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "prospect", "to": "evaluating", "on": "mutual_interest" },
+          { "from": "evaluating", "to": "active", "on": "agreement_signed" },
+          { "from": "active", "to": "strategic", "on": "deep_integration" },
+          { "from": "active", "to": "wound_down", "on": "termination" }
+        ]
+      },
+      "kpis": [
+        { "key": "joint_value", "label": "Joint Value Delivered", "unit": "$" },
+        { "key": "integration_count", "label": "Live Integrations", "unit": "count" }
+      ],
+      "required_documents": [
+        { "key": "partnership_agreement", "label": "Partnership Agreement", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:crm", "label": "Partner CRM", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:vendors_partners:msa",
+      "label": "MSA (Master Service Agreement)",
+      "notes": "The master legal framework governing a vendor relationship; individual SOWs, SLAs, and DPAs attach to it.",
+      "relationships": [
+        { "predicate": "governs", "target": "financial_services:vendors_partners:vendor", "cardinality": "one" },
+        { "predicate": "parent_of", "target": "financial_services:vendors_partners:sla", "cardinality": "many" },
+        { "predicate": "parent_of", "target": "financial_services:vendors_partners:contract", "cardinality": "many" },
+        { "predicate": "renewed_via", "target": "financial_services:vendors_partners:renewal", "cardinality": "many" }
+      ],
+      "lifecycle": {
+        "initial": "drafting",
+        "states": [
+          { "key": "drafting", "label": "Drafting / Negotiation" },
+          { "key": "executed", "label": "Executed" },
+          { "key": "amended", "label": "Amended" },
+          { "key": "expired", "label": "Expired / Terminated", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "drafting", "to": "executed", "on": "signed" },
+          { "from": "executed", "to": "amended", "on": "amendment" },
+          { "from": "executed", "to": "expired", "on": "term_ends" }
+        ]
+      },
+      "kpis": [
+        { "key": "term_remaining", "label": "Term Remaining", "unit": "months" },
+        { "key": "auto_renew_flag", "label": "Auto-Renew Provision", "threshold": "tracked for notice window" }
+      ],
+      "required_documents": [
+        { "key": "signed_msa", "label": "Executed MSA", "required": true },
+        { "key": "dpa", "label": "Data Processing Addendum", "required": false }
+      ],
+      "connectors": [
+        { "key": "connector:contract_management", "label": "Contract Lifecycle Management", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:vendors_partners:sla",
+      "label": "SLA (Service Level Agreement)",
+      "notes": "Defines service-level commitments (availability, latency, support response, remedies) attached to an MSA/contract; the basis for SLA-attainment monitoring.",
+      "relationships": [
+        { "predicate": "part_of", "target": "financial_services:vendors_partners:msa", "cardinality": "one" },
+        { "predicate": "commits", "target": "financial_services:vendors_partners:vendor", "cardinality": "one" },
+        { "predicate": "measures", "target": "financial_services:technology:api", "cardinality": "many" },
+        { "predicate": "governs", "target": "financial_services:vendors_partners:support_ticket", "cardinality": "many" }
+      ],
+      "kpis": [
+        { "key": "attainment", "label": "SLA Attainment", "unit": "%", "threshold": ">= committed target" },
+        { "key": "credits_earned", "label": "Service Credits Earned", "unit": "$" },
+        { "key": "response_time", "label": "Support Response Time", "unit": "hours" }
+      ],
+      "required_documents": [
+        { "key": "sla_schedule", "label": "SLA Schedule / Exhibit", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:contract_management", "label": "Contract Lifecycle Management", "role": "enrichment" }
+      ]
+    },
+    {
+      "object": "financial_services:vendors_partners:contract",
+      "label": "Contract",
+      "notes": "An individual vendor contract, SOW, or order form under an MSA; carries pricing, term, renewal, and termination provisions.",
+      "relationships": [
+        { "predicate": "under", "target": "financial_services:vendors_partners:msa", "cardinality": "one" },
+        { "predicate": "with", "target": "financial_services:vendors_partners:vendor", "cardinality": "one" },
+        { "predicate": "renewed_via", "target": "financial_services:vendors_partners:renewal", "cardinality": "many" },
+        { "predicate": "recorded_as", "target": "financial_services:finance_accounting:expense", "cardinality": "many" }
+      ],
+      "lifecycle": {
+        "initial": "draft",
+        "states": [
+          { "key": "draft", "label": "Draft" },
+          { "key": "active", "label": "Active" },
+          { "key": "renewal_window", "label": "Renewal Window" },
+          { "key": "expired", "label": "Expired", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "draft", "to": "active", "on": "executed" },
+          { "from": "active", "to": "renewal_window", "on": "notice_period_reached" },
+          { "from": "renewal_window", "to": "active", "on": "renewed" },
+          { "from": "renewal_window", "to": "expired", "on": "not_renewed" }
+        ]
+      },
+      "kpis": [
+        { "key": "annual_spend", "label": "Annual Contract Value", "unit": "$" },
+        { "key": "days_to_renewal", "label": "Days to Renewal", "unit": "days" }
+      ],
+      "required_documents": [
+        { "key": "signed_contract", "label": "Executed Contract / SOW", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:contract_management", "label": "Contract Lifecycle Management", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:vendors_partners:implementation",
+      "label": "Implementation",
+      "notes": "A vendor/partner implementation project — onboarding, integration, and go-live; the delivery arc that a pilot or purchase kicks off.",
+      "relationships": [
+        { "predicate": "delivers", "target": "financial_services:technology:core_processor", "cardinality": "one" },
+        { "predicate": "for", "target": "financial_services:institutions:federal_credit_union", "cardinality": "one" },
+        { "predicate": "led_by", "target": "financial_services:people:vendor_contact", "cardinality": "one" },
+        { "predicate": "produces", "target": "financial_services:innovation_ecosystem:integration", "cardinality": "one" },
+        { "predicate": "tracked_as", "target": "financial_services:operations:workflow", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "kickoff",
+        "states": [
+          { "key": "kickoff", "label": "Kickoff" },
+          { "key": "build", "label": "Build / Configure" },
+          { "key": "testing", "label": "Testing / UAT" },
+          { "key": "go_live", "label": "Go-Live" },
+          { "key": "stabilized", "label": "Stabilized", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "kickoff", "to": "build", "on": "requirements_signed_off" },
+          { "from": "build", "to": "testing", "on": "config_complete" },
+          { "from": "testing", "to": "go_live", "on": "uat_passed" },
+          { "from": "go_live", "to": "stabilized", "on": "hypercare_complete" }
+        ]
+      },
+      "kpis": [
+        { "key": "on_time", "label": "On-Time Delivery", "unit": "%" },
+        { "key": "budget_variance", "label": "Budget Variance", "unit": "%" },
+        { "key": "defect_density", "label": "UAT Defect Density", "unit": "count" }
+      ],
+      "required_documents": [
+        { "key": "sow", "label": "Statement of Work", "required": true },
+        { "key": "project_plan", "label": "Implementation Project Plan", "required": true },
+        { "key": "uat_signoff", "label": "UAT Sign-Off", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:project_management", "label": "Project Management", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:vendors_partners:renewal",
+      "label": "Renewal",
+      "notes": "A contract renewal event with its notice window, repricing, and re-assessment of vendor risk; a recurring decision point in the vendor lifecycle.",
+      "relationships": [
+        { "predicate": "renews", "target": "financial_services:vendors_partners:contract", "cardinality": "one" },
+        { "predicate": "reassesses", "target": "financial_services:vendors_partners:risk_assessment", "cardinality": "one" },
+        { "predicate": "requires_approval_by", "target": "financial_services:operations:approval", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "upcoming",
+        "states": [
+          { "key": "upcoming", "label": "Upcoming" },
+          { "key": "under_review", "label": "Under Review" },
+          { "key": "negotiating", "label": "Negotiating" },
+          { "key": "renewed", "label": "Renewed", "terminal": true },
+          { "key": "non_renewed", "label": "Non-Renewed", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "upcoming", "to": "under_review", "on": "notice_window_opens" },
+          { "from": "under_review", "to": "negotiating", "on": "terms_in_play" },
+          { "from": "negotiating", "to": "renewed", "on": "signed" },
+          { "from": "under_review", "to": "non_renewed", "on": "exit_decision" }
+        ]
+      },
+      "kpis": [
+        { "key": "price_change", "label": "Renewal Price Change", "unit": "%" },
+        { "key": "notice_lead_time", "label": "Notice Lead Time", "unit": "days", "threshold": "beat auto-renew deadline" }
+      ],
+      "required_documents": [
+        { "key": "renewal_notice", "label": "Renewal / Non-Renewal Notice", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:contract_management", "label": "Contract Lifecycle Management", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:vendors_partners:support_ticket",
+      "label": "Support Ticket",
+      "notes": "A support/incident request raised to a vendor; SLA-governed and a leading indicator of vendor health.",
+      "relationships": [
+        { "predicate": "raised_to", "target": "financial_services:vendors_partners:vendor", "cardinality": "one" },
+        { "predicate": "governed_by", "target": "financial_services:vendors_partners:sla", "cardinality": "one" },
+        { "predicate": "relates_to", "target": "financial_services:operations:incident", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "open",
+        "states": [
+          { "key": "open", "label": "Open" },
+          { "key": "in_progress", "label": "In Progress" },
+          { "key": "resolved", "label": "Resolved" },
+          { "key": "closed", "label": "Closed", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "open", "to": "in_progress", "on": "vendor_ack" },
+          { "from": "in_progress", "to": "resolved", "on": "fix_delivered" },
+          { "from": "resolved", "to": "closed", "on": "confirmed" }
+        ]
+      },
+      "kpis": [
+        { "key": "time_to_resolve", "label": "Time to Resolve", "unit": "hours" },
+        { "key": "sla_breach_rate", "label": "SLA Breach Rate", "unit": "%" },
+        { "key": "reopen_rate", "label": "Reopen Rate", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "ticket_record", "label": "Ticket Record", "required": false }
+      ],
+      "connectors": [
+        { "key": "connector:service_desk", "label": "Service Desk / ITSM", "role": "system_of_record" }
+      ]
+    },
+    {
+      "object": "financial_services:vendors_partners:api",
+      "label": "Partner API",
+      "notes": "An API product published by a partner/vendor and consumed by the institution; the commercial/relationship view of an integration surface (distinct from technology:api, the technical interface).",
+      "relationships": [
+        { "predicate": "published_by", "target": "financial_services:vendors_partners:partner", "cardinality": "one" },
+        { "predicate": "realized_as", "target": "financial_services:technology:api", "cardinality": "one" },
+        { "predicate": "governed_by", "target": "financial_services:vendors_partners:sla", "cardinality": "one" },
+        { "predicate": "enables", "target": "financial_services:innovation_ecosystem:integration", "cardinality": "many" }
+      ],
+      "kpis": [
+        { "key": "consumption_volume", "label": "API Consumption Volume", "unit": "calls" },
+        { "key": "cost_per_call", "label": "Cost per Call", "unit": "$" }
+      ],
+      "required_documents": [
+        { "key": "api_terms", "label": "API Terms of Use", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:api_gateway", "label": "API Gateway", "role": "enrichment" }
+      ]
+    },
+    {
+      "object": "financial_services:vendors_partners:connector",
+      "label": "Partner Connector",
+      "notes": "A partner-delivered, pre-built integration (a marketplace or vendor-supplied connector) the institution installs — the commercial counterpart to the technology:connector runtime object.",
+      "relationships": [
+        { "predicate": "delivered_by", "target": "financial_services:vendors_partners:partner", "cardinality": "one" },
+        { "predicate": "realized_as", "target": "financial_services:technology:connector", "cardinality": "one" },
+        { "predicate": "distributed_via", "target": "financial_services:technology:marketplace_package", "cardinality": "one" },
+        { "predicate": "assessed_by", "target": "financial_services:vendors_partners:risk_assessment", "cardinality": "one" }
+      ],
+      "kpis": [
+        { "key": "install_base", "label": "Install Base", "unit": "count" },
+        { "key": "reliability", "label": "Reliability", "unit": "%" }
+      ],
+      "required_documents": [
+        { "key": "integration_guide", "label": "Integration Guide", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:marketplace", "label": "Marketplace", "role": "enrichment" }
+      ]
+    },
+    {
+      "object": "financial_services:vendors_partners:risk_assessment",
+      "label": "Third-Party Risk Assessment",
+      "notes": "The vendor/third-party risk assessment: inherent-risk tiering, control review (SOC 2, financials, BCP, security, concentration), residual-risk rating, and periodic re-assessment. Ratings persist evidence, source, and lineage — never a weights-only conclusion (NCUA due-diligence guidance).",
+      "relationships": [
+        { "predicate": "assesses", "target": "financial_services:vendors_partners:vendor", "cardinality": "one" },
+        { "predicate": "evaluates", "target": "financial_services:risk:vendor_risk", "cardinality": "one" },
+        { "predicate": "evaluates", "target": "financial_services:risk:cyber_risk", "cardinality": "one" },
+        { "predicate": "reviews", "target": "financial_services:technology:core_processor", "cardinality": "many" },
+        { "predicate": "reports_to", "target": "financial_services:organizational_structure:risk_committee", "cardinality": "one" }
+      ],
+      "lifecycle": {
+        "initial": "scoping",
+        "states": [
+          { "key": "scoping", "label": "Scoping / Tiering" },
+          { "key": "collecting", "label": "Collecting Evidence" },
+          { "key": "rated", "label": "Rated" },
+          { "key": "accepted", "label": "Accepted / Monitored" },
+          { "key": "reassessment_due", "label": "Reassessment Due", "terminal": true }
+        ],
+        "transitions": [
+          { "from": "scoping", "to": "collecting", "on": "questionnaire_issued" },
+          { "from": "collecting", "to": "rated", "on": "evidence_complete" },
+          { "from": "rated", "to": "accepted", "on": "residual_risk_accepted" },
+          { "from": "accepted", "to": "reassessment_due", "on": "review_cycle_elapses" }
+        ]
+      },
+      "kpis": [
+        { "key": "residual_risk_rating", "label": "Residual Risk Rating", "threshold": "low / moderate / high" },
+        { "key": "control_gaps", "label": "Open Control Gaps", "unit": "count" },
+        { "key": "reassessment_currency", "label": "Reassessment Currency", "unit": "% current", "threshold": "annual for critical vendors" }
+      ],
+      "required_documents": [
+        { "key": "risk_questionnaire", "label": "Vendor Risk Questionnaire", "required": true },
+        { "key": "soc2", "label": "SOC 2 Type II", "required": true },
+        { "key": "financial_review", "label": "Vendor Financial Review", "required": true },
+        { "key": "residual_risk_memo", "label": "Residual Risk Memo", "required": true }
+      ],
+      "connectors": [
+        { "key": "connector:grc", "label": "Third-Party Risk Management", "role": "system_of_record" }
+      ]
+    }
+  ]
+}
