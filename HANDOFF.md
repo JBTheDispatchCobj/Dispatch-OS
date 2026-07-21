@@ -1,66 +1,68 @@
-# Session Handoff — MONSTER BATCH (7 subsystem modules + Terminal + Olympic sprint plan)
+# Session Handoff — OLYMPIC SPRINT WAVE 1 (Orchestration spine, end-to-end)
 
 ## Where we are
-Platform build **~22%** (up from ~18%). A parallel agent fleet added **7 new subsystem modules
-across five near-zero layers**, all strict-`tsc` clean together (25-file consolidated typecheck →
-exit 0). Plus a Terminal product surface and the **Olympic Sprint plan + a paste-ready first
-prompt** so the next session runs as a multi-agent blaze, not a one-off burn.
+Platform build **~26%** (up from ~22%). Wave 1 of the Olympic Sprint is **DONE**: the first product
+vertical now **RUNS end-to-end**. `cartridges/cooperative_markets/pipeline.ts` chains the built
+modules into one deterministic `DealRun`, routed through the harness, emitting kernel events + cost
+entries, with a **real human gate** on the regulated conclusion. The debug loop gained a PIPELINE
+step and is **ALL GREEN (5/5)**; full-app `tsc --noEmit` is clean.
 
-## Completed this session (monster batch)
-New modules (each additive, pure/deterministic, strict-TS + isolatedModules friendly):
-- **`core/kernel/event_bus.ts`** (RFC-2004) — plane-aware, correlated, actor-attributed
-  `KernelEvent<T>`; `EventBus` with publish/subscribe/subscribeAll/history/replay + a dead-letter
-  queue (a throwing handler is captured, others still run). Caller supplies ids/timestamps.
-- **`core/kernel/cost_ledger.ts`** (RFC-2008) — `CostLedger` recording `CostEntry` by category
-  (model/human/tool/storage/connector) + correlation; totals, byCategory, byCorrelation.
-- **`core/truth/confidence.ts`** (RFC-3008) — `decay` / `propagate` / `reinforce` + tier-aware
-  `combineSources` returning an explainable `ConfidenceResult` (value + top_tier + lineage +
-  per-source factors). Everything clamped [0,1].
-- **`core/harness/router.ts`** (Constitution Art. 18) — the 9-rung ladder (deterministic_rule →
-  … → human_expert), `classify` + `route`; **a regulated conclusion always forces the human gate**
-  (escalate_to_human) regardless of cost cap; plus a deterministic `ToolRouter`.
-- **`core/auric/engine.ts`** (Vol VI) — `assembleIO` / `renderVariant` / `renderVariants` /
-  `buildFeed`. Load-bearing invariant enforced in code: a variant's `source_refs` == the IO's refs
-  (same facts, different hook — never a superset). Deterministic feed ranking.
-- **`cartridges/cooperative_markets/settlement.ts`** (P4) — pluggable `SettlementVehicle`
-  (open→allocate→callCapital→close→distribute); `advisory`/`syndication` ship; `fund`/`spv` return
-  `vehicle_pending` (vehicle TBD per ADR-0016); Alloya = `connector:fund_admin` seam.
-- **`cartridges/cooperative_markets/ingest_call_report.ts`** — deterministic 5300 → `CallReportFacts`
-  (guarded ratios) → `InstitutionReadinessInput` (each signal a sourced fact citing the filing).
-  The live-intake seam for the deal engine.
-
-Plus:
-- **`terminal_demo.html`** — a real product surface (institution scorecard + CEO/CLO lens toggle +
-  P1 scorecard + P2 memo + P3 allocation), all from computed numbers. The "something to look at."
-- **`docs/00_governance/SPRINT_PLAN.md`** — the Olympic sprint (4 waves, debug gates, targets).
-- **`SPRINT_KICKOFF_PROMPT.md`** — paste into a fresh chat to start Wave 1 as a multi-agent blaze.
+## Completed this session (Wave 1)
+New files (additive; pure/deterministic; strict-TS; erasable-only so `node file.ts` runs them):
+- **`cartridges/cooperative_markets/pipeline.ts`** — `runDealPipeline(input, ctx)`:
+  ingest(5300) → score (P1) → IC memo (P2) → **[human gate]** → allocate (P3) → settle (P4) →
+  assembleIO → renderVariants → buildFeed, returning a typed `DealRun` (stage outputs + routes +
+  events + cost roll-up). Every stage routed through `core/harness/router` (deterministic stages =
+  rung 1; the memo = regulated conclusion → `escalate_to_human`), each emitting a correlated
+  `KernelEvent` and a `CostEntry`. **Load-bearing human gate:** a caller-supplied `ICApproval`
+  (`disposition` + human `by` + `decision_ref`) must be `approved` before allocate/settle/publish;
+  otherwise the run halts `awaiting_approval` / `declined` and publishes nothing. On approval the IO
+  is lifted to `human_approved_conclusion` and the decision_ref enters the evidence set. IO evidence
+  refs are partitioned by tier (fact/claim/inference); variants restate the IO's refs exactly.
+- **`cartridges/cooperative_markets/pipeline_fixtures.ts`** — Halcyon × Summit golden fixtures:
+  `halcyonSummitRun()` (approved → settles), `unapprovedRun()` (no approval → awaiting_approval),
+  `blockedRun()` (compliance-gated → blocked). One source of truth for the demo AND the gate.
+- **`scripts/pipeline-demo.ts`** — `node scripts/pipeline-demo.ts` runs the golden path end-to-end
+  and prints stages/routes/scores/memo/gate/allocation/settlement/feed + the kernel spine.
+- **`scripts/alias-hook.mjs`** — a Node resolve hook mapping the `@/*` tsconfig alias at runtime, so
+  the demo + gate run on plain Node type-stripping (no build step). scripts/-only shim.
+- **`scripts/debug-loop.mjs`** (edited — lead-owned harness) — added a **PIPELINE** step: runs the
+  golden (determinism via byte-identical re-run), asserts the full kernel spine + costed human gate,
+  proves the **gate has teeth** (unapproved → no allocate/settle/publish, `deal.awaiting_approval`),
+  the approved IO tier, truth discipline (variants == IO refs; claim_refs populated), and the blocked
+  halt.
 
 ## Validation
-- **Consolidated strict `tsc` over all 25 session files together → exit 0** (the 7 new modules
-  integrate cleanly with the engine + cartridge + ontology; no cross-module type drift).
-- `node scripts/debug-loop.mjs`: ONTOLOGY ✓ (181/0/0), CARTRIDGE ✓; TYPECHECK + ENGINE need the
-  full repo (`npm install`) — run there for all-green.
-- Additive only; no core/migration/catalog churn.
+- **`npx tsc --noEmit -p tsconfig.json` → exit 0** (full app, strict).
+- **`node scripts/debug-loop.mjs` → ALL GREEN (5/5)**: TYPECHECK · ONTOLOGY (181/0/0) · CARTRIDGE
+  (10 refs) · ENGINE (P1/P2/P3) · **PIPELINE** (approved→settled, 9 events, $2.77 incl. human gate;
+  unapproved→awaiting_approval; blocked→halt; deterministic).
+- **Adversarially verified** by a 4-lens agent fleet (truth-discipline · determinism/purity ·
+  architecture/additive · gate-integrity). One **blocker** (the human gate was decorative) was found
+  and **fixed** before commit; two non-blocking truth items folded into the same change; nits cleaned.
+  Re-verified clean (no regression; fixtures don't leak shared state). See `DEBUG_LOG.md` Wave 1.
 
 ## State of the world
-- **GitHub:** push pending (command below — covers the whole session). **Supabase:** `0011`–`0015`
-  applied; **`0016` + `0017` still pending apply.**
-- The new modules are **libraries, not a running system** — Sprint Wave 1 wires them into a pipeline.
+- **GitHub:** push pending (command below). **Supabase:** `0011`–`0015` applied; **`0016`+`0017`
+  still pending apply** (Bryan-only; blocks Wave 3 Object Registry service, not Wave 2).
+- The spine is a **running library** (no persistence, no UI yet). Inputs are injected fixtures — live
+  NCUA ingestion at scale is Wave 3.
 
-## Next: RUN THE OLYMPIC SPRINT
-Do not resume as ad-hoc burns. **Paste `SPRINT_KICKOFF_PROMPT.md` into a fresh chat** — it reads the
-contract, orients, and executes **Wave 1 (Orchestration spine)**: build
-`cartridges/cooperative_markets/pipeline.ts` + `scripts/pipeline-demo.ts` chaining
-ingest→score→memo→allocate→settle→assembleIO→renderVariants→buildFeed, wired through the kernel
-(events + cost) and harness (routing), then the debug gate. Waves 2–4: Terminal UI · live data +
-services · Auric distribution + hardening. Full plan: `docs/00_governance/SPRINT_PLAN.md`.
+## Next: WAVE 2 — Terminal UI (see `docs/00_governance/SPRINT_PLAN.md`)
+Replace `terminal_demo.html` with the real Next.js surface reading `runDealPipeline` output:
+runtime shell + nav; **opportunity feed** with the executive-lens toggle (CEO/CRO/CFO) over
+`buildFeed`; **institution + deal scorecards** (P1); **IC memo** view (P2, approved-evidence +
+citations + role lenses); **allocation** view (P3); **portfolio/monitoring** (P4). New files under
+`app/terminal/*` (new files only; the lead owns indexes). Gate: `npm run build` (Next) + debug-loop
+green. Then Wave 3 (live data + services), Wave 4 (Auric distribution + hardening).
 
 ## Bryan-only (route around; don't block the sprint)
-- **Decide the investment vehicle** (fund / per-deal SPV / both) — unblocks P4 fund/spv settlement.
+- **Decide the investment vehicle** (fund / per-deal SPV / both) — unblocks P4 fund/spv settlement
+  (advisory/syndication ship now; the pipeline is vehicle-agnostic).
 - Apply `0016` + `0017` in Supabase — unblocks the Object Registry service (Wave 3).
 - `git push`; VC/Alloya legal + entity.
 
 ## Exact next command (Bryan, Mac terminal)
 ```
-cd ~/Downloads/Dispatch_OS_Cooperative_Markets_Repo && git add -A && git commit -m "Monster batch: kernel (event_bus, cost_ledger), truth confidence engine, harness 9-rung router, Auric publication engine, deal-engine P4 settlement, 5300 ingestion + Terminal surface + Olympic sprint plan/kickoff. 25-file tsc clean." && git push
+cd ~/Downloads/Dispatch_OS_Cooperative_Markets_Repo && git add -A && git commit -m "Olympic Sprint Wave 1: orchestration spine — pipeline.ts chains ingest→score→IC memo→[human gate]→allocate→settle→assembleIO→renderVariants→buildFeed into a deterministic DealRun (kernel events + cost ledger + harness routing); real human gate on the regulated conclusion; fixtures + runnable demo + @/ alias hook; debug-loop PIPELINE step. tsc clean; debug-loop ALL GREEN (5/5)." && git push
 ```

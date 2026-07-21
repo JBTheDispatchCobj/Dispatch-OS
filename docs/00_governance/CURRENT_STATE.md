@@ -1,5 +1,17 @@
 # Current State
 
+## Running now (Olympic Sprint — Wave 1, 2026-07-21)
+The first product vertical **RUNS end-to-end.** `cartridges/cooperative_markets/pipeline.ts`
+(`runDealPipeline`) chains **ingest(5300) → score → IC memo → allocate → settle → assembleIO →
+renderVariants → buildFeed** into one deterministic `DealRun`: every stage is routed through the
+harness, emits a correlated `KernelEvent`, and records a `CostEntry`. The **human gate is real** —
+a regulated conclusion (the IC memo) may not allocate/settle/publish until a caller-supplied
+`ICApproval` disposes it `approved`; otherwise the run halts `awaiting_approval` (proven: unapproved
+golden input publishes nothing; approved → settled, IO lifted to `human_approved_conclusion`).
+`node scripts/pipeline-demo.ts` runs Halcyon × Summit end-to-end; the debug loop gained a PIPELINE
+step and is **ALL GREEN (5/5)** with full-app `tsc` clean. Next: **Wave 2 — the Terminal UI** reading
+the pipeline output (see `SPRINT_PLAN.md`).
+
 ## Existing foundation
 - Next.js app; Supabase/Postgres adapter + migrations (`0001`–`0015` applied;
   **`0016_market_rls.sql` and `0017_object_registry.sql` written + validated, pending apply**).

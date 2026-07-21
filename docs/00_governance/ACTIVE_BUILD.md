@@ -85,13 +85,26 @@ libraries) hang off this ontology spine.
   (product surface) + `docs/00_governance/SPRINT_PLAN.md` + `SPRINT_KICKOFF_PROMPT.md`.
 
 ## NOW: the Olympic Sprint (see `docs/00_governance/SPRINT_PLAN.md`)
-The next work is the **sprint**, not another one-off burn. It's a multi-agent blaze that wires the
-built modules into a **running, demoable vertical slice + real Terminal UI**, with the debug loop
-gating each wave. **To start a fresh session, paste `SPRINT_KICKOFF_PROMPT.md`** — it runs Wave 1
-(Orchestration spine: ingest → score → memo → allocate → settle → IO → feed, wired through the
-kernel + harness). Waves: 1 spine · 2 Terminal UI · 3 live data + services · 4 Auric distribution +
-hardening. Debug cadence: log to `DEBUG_LOG.md`, fix blockers, `node scripts/debug-loop.mjs` green
-at each wave gate.
+The work is the **sprint**, not another one-off burn — a multi-agent blaze that wires the built
+modules into a **running, demoable vertical slice + real Terminal UI**, debug loop gating each wave.
+Waves: 1 spine · 2 Terminal UI · 3 live data + services · 4 Auric distribution + hardening.
+
+- **✅ WAVE 1 — Orchestration spine (DONE, 2026-07-21).** `cartridges/cooperative_markets/pipeline.ts`
+  (`runDealPipeline`) chains ingest(5300) → score → IC memo → allocate → settle → assembleIO →
+  renderVariants → buildFeed into a deterministic `DealRun`, routing every stage through the harness
+  and emitting kernel events + cost entries. **Real human gate** on the regulated conclusion
+  (`ICApproval` input; unapproved → `awaiting_approval`, publishes nothing; approved → settled).
+  `scripts/pipeline-demo.ts` + `pipeline_fixtures.ts` + `scripts/alias-hook.mjs`; debug loop extended
+  with a PIPELINE step. **`node scripts/debug-loop.mjs` ALL GREEN (5/5)**, full-app `tsc` clean.
+  Adversarially verified (one blocker — decorative gate — found + fixed before commit).
+- **▶ WAVE 2 — Terminal UI (NEXT).** Replace `terminal_demo.html` with the real Next.js product
+  surface reading `runDealPipeline` output: runtime shell + nav; opportunity feed with the
+  executive-lens toggle (CEO/CRO/CFO) over `buildFeed`; institution/deal scorecards (P1); IC memo
+  view (P2); allocation (P3); portfolio/monitoring (P4). New files under `app/terminal/*`. Gate:
+  `npm run build` (Next) + debug-loop green.
+- Waves 3–4: live NCUA ingestion at scale + kernel/truth services (post `0016`/`0017`); Auric
+  distribution + tests/CI/observability. Debug cadence: log to `DEBUG_LOG.md`, fix blockers,
+  `node scripts/debug-loop.mjs` green at each wave gate.
 2. **Live intake path** — call-report/startup ingestion so the loop runs on real data, not the
    seed (a real connector over the `ncua_call_reports` / `startup_intake` source types).
 3. **Canonical Entity Model + entity resolution (RFC-3002)** and **Identity & Tenancy

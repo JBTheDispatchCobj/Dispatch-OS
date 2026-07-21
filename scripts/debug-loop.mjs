@@ -155,6 +155,90 @@ function mkOpp(sf = 0.82, rf = 0.74, tm = 0.78) {
   return { strategic_fit: s(sf), regulatory_fit: s(rf), timing: s(tm) };
 }
 
+// --- 5. Pipeline spine (Wave 1: run the whole vertical end-to-end) -----------
+await step("PIPELINE   (spine: ingest→…→feed)", async () => {
+  // Native TS type-stripping + the "@/*" alias hook — run the real modules, no
+  // transpile. Register the hook, then import the pipeline + golden fixtures.
+  const { register } = await import("node:module");
+  register("./alias-hook.mjs", import.meta.url);
+  const { runDealPipeline, variantsRestateIO } = await import(
+    "@/cartridges/cooperative_markets/pipeline"
+  );
+  const { halcyonSummitRun, unapprovedRun, blockedRun } = await import(
+    "@/cartridges/cooperative_markets/pipeline_fixtures"
+  );
+
+  // Golden advancing run: Halcyon × Summit → all the way to a lensed feed.
+  const g = halcyonSummitRun();
+  const run = runDealPipeline(g.input, g.ctx);
+
+  // DETERMINISM: identical input → byte-identical run (ids/timestamps injected).
+  const run2 = runDealPipeline(g.input, g.ctx);
+  assert(JSON.stringify(run) === JSON.stringify(run2), "pipeline must be deterministic");
+
+  assert(run.status === "settled", `golden run expected settled, got ${run.status}`);
+  assert(run.scorecard.recommendation === "advance", "golden P1 must advance");
+  assert(
+    ["recommend", "recommend_with_conditions"].includes(run.memo.recommendation),
+    "golden memo must be allocatable",
+  );
+
+  // KERNEL SPINE: every stage emitted a correlated event; spend was ledgered.
+  const types = run.events.map((e) => e.type);
+  for (const t of [
+    "deal.ingested", "deal.scored", "deal.memo_drafted", "deal.allocated",
+    "deal.settled", "io.assembled", "variants.rendered", "feed.built",
+  ]) {
+    assert(types.includes(t), `missing kernel event ${t}`);
+  }
+  assert(run.events.every((e) => e.correlation_id === run.run_id), "events must correlate to the run id");
+  assert(run.cost.entries.length > 0 && run.cost.total_usd > 0, "cost ledger must record spend");
+  assert(run.cost.by_category.human > 0, "the human review gate must be costed");
+
+  // HARNESS: the IC memo (regulated conclusion) carries the human gate; the
+  // deterministic stages route to rung 1 (deterministic_rule).
+  const memoRoute = run.routes.find((r) => r.stage === "memo");
+  assert(memoRoute && memoRoute.decision.escalate_to_human === true, "IC memo must carry the human gate");
+  const detStages = run.routes.filter((r) => ["ingest", "score", "allocate", "settle", "feed"].includes(r.stage));
+  assert(detStages.length === 5, `expected 5 deterministic stages, got ${detStages.length} (stage renamed?)`);
+  assert(detStages.every((r) => r.decision.rung === "deterministic_rule"), "deterministic stages must route to rung 1");
+
+  // HUMAN GATE HAS TEETH (the load-bearing invariant): the SAME advancing deal with
+  // NO human approval must NOT allocate, settle, or publish — it halts awaiting approval.
+  const u = unapprovedRun();
+  const urun = runDealPipeline(u.input, u.ctx);
+  assert(urun.status === "awaiting_approval", `unapproved run must await approval, got ${urun.status}`);
+  assert(
+    urun.allocation === null && urun.settlement === null && urun.io === null && urun.feed.length === 0,
+    "unapproved regulated conclusion must not allocate/settle/publish",
+  );
+  assert(urun.events.some((e) => e.type === "deal.awaiting_approval"), "unapproved run must emit deal.awaiting_approval");
+  assert(
+    !urun.events.some((e) => ["deal.allocated", "deal.settled", "io.assembled", "feed.built"].includes(e.type)),
+    "unapproved run must emit no downstream (allocate/settle/publish) events",
+  );
+  // The APPROVED golden run recorded the human act and lifted the IO to the human tier.
+  assert(run.approval && run.approval.disposition === "approved", "golden run must carry the human approval");
+  assert(run.events.some((e) => e.type === "deal.approved"), "approved run must emit deal.approved");
+  assert(run.io.top_tier === "human_approved_conclusion", "approved IO top tier must be human_approved_conclusion");
+
+  // TRUTH DISCIPLINE: variants restate the IO's refs exactly (no superset); the memo
+  // is a draft proposal; claim-tier evidence is filed under claim_refs, not fact_refs.
+  assert(variantsRestateIO(run.io, run.variants), "variants must restate IO refs exactly");
+  assert(run.memo.status === "draft", "IC memo object must stay a draft proposal");
+  assert((run.io.claim_refs ?? []).length > 0, "claim-tier evidence must be filed under claim_refs");
+  assert(run.feed.length > 0, "golden feed must be non-empty");
+
+  // BLOCKED PATH: compliance-gated deal never reaches the human gate; it halts.
+  const b = blockedRun();
+  const brun = runDealPipeline(b.input, b.ctx);
+  assert(brun.status === "blocked", `blocked run expected blocked, got ${brun.status}`);
+  assert(brun.allocation === null && brun.settlement === null, "blocked run must not allocate/settle");
+  assert(brun.events.some((e) => e.type === "deal.halted"), "blocked run must emit deal.halted");
+
+  return `approved→settled (${run.events.length} evt · $${run.cost.total_usd.toFixed(2)}) · unapproved→awaiting_approval (gate has teeth) · blocked→halt · truth-clean · deterministic`;
+});
+
 // --- Summary -----------------------------------------------------------------
 const failed = results.filter((r) => !r.ok);
 console.log(`\n${"═".repeat(52)}`);

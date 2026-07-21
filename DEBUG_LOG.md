@@ -25,6 +25,36 @@ any time with `node scripts/debug-loop.mjs` (after `npm install`).
 - **[DEFERRED] Migrations `0016` + `0017` pending Supabase apply.** Blocks the Object Registry
   service (RFC-2003) + live RLS/identity enforcement. Bryan-only.
 
+## Wave 1 — Orchestration spine (2026-07-21)
+
+- **[was BLOCKER → FIXED] Human gate was decorative.** The first cut of `pipeline.ts`
+  routed the IC memo with `needs_regulated_conclusion` (router returns `escalate_to_human`),
+  but the flag only added a cost entry — the pipeline auto-advanced to allocate/settle/publish
+  on the DRAFT memo. That is an autonomous decision on a regulated/financial conclusion (violates
+  DOCTRINE/ADR-0005). **Fix:** `ICApproval` is now a caller-supplied INPUT on `DealRunInput`
+  (disposition + human `by` + `decision_ref`); GATE 2 halts the run `awaiting_approval` (or
+  `declined`) and allocates/settles/publishes NOTHING unless a human disposition is `approved`.
+  On approval the IO's `top_tier` becomes `human_approved_conclusion` and the decision_ref enters
+  the evidence set. Proven in the debug loop: unapproved golden input → `awaiting_approval`, no
+  downstream events; approved → settled. (Found by the Wave-1 adversarial verification fleet.)
+- **[was NON-BLOCKING → FIXED] IO ref-partition conflation.** IO `fact_refs` had been built from
+  memo-local `ev:*` handles (so claim-tier evidence masqueraded as fact) and `inference_refs` from
+  raw score inputs. **Fix:** `partitionRefs()` buckets the real truth-object ids (memo `source_ref`,
+  the 5300 filing, score lineage, the human decision) by tier prefix (`claim:`→claim_refs,
+  `inference:`/`inf:`→inference_refs, else fact_refs); `claim_refs` is now populated and passed to
+  `assembleIO`.
+- **[DEFERRED] Per-variant visibility override.** Role-lens variants (CEO/CRO/CFO) inherit the IO's
+  `network` visibility from the Auric engine (`renderVariant` copies `io.visibility`). Publication
+  now only happens on the APPROVED path (so nothing unapproved is ever published), but a future
+  engine enhancement should let a Terminal-channel role variant carry a narrower visibility than the
+  market IO. Wave 2/4; engine-side, additive. No truth leak today (variants restate the IO's refs
+  exactly — no superset).
+- **[NON-BLOCKING] `node file.ts` alias resolution.** Node 22 strips TS types natively but does not
+  read tsconfig `paths`, so bare `node scripts/pipeline-demo.ts` needs `@/*` mapped at runtime.
+  `scripts/alias-hook.mjs` (a resolve hook, registered before the dynamic import) handles it; it is a
+  scripts/ runtime shim only, never imported by `app/` or `core/`, and does not affect `next build`.
+  Also: the pipeline avoids TS parameter-properties/enums (erasable-only) so type-stripping runs it.
+
 ## Notes / design choices (not issues)
 
 - Opportunity Score uses a **geometric mean** of strategic × regulatory × timing (keeps 0–100 scale

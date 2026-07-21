@@ -1,6 +1,6 @@
 # Build Progress Tracker
 
-**Current build completion: ~22%** &nbsp;·&nbsp; Last updated: 2026-07-20 (MONSTER BATCH — 7 new subsystem modules across 5 near-zero layers: kernel event bus + cost ledger, truth confidence engine, harness 9-rung router, Auric publication engine, P4 settlement, 5300 ingestion; + Terminal HTML surface + Olympic sprint plan. All 25 files tsc-clean together.)
+**Current build completion: ~26%** &nbsp;·&nbsp; Last updated: 2026-07-21 (OLYMPIC SPRINT WAVE 1 — the orchestration spine: `cartridges/cooperative_markets/pipeline.ts` wires ingest(5300) → score → IC memo → allocate → settle → assembleIO → renderVariants → buildFeed into one deterministic `DealRun`, emitting kernel events + cost entries and routing every stage through the harness, with a REAL human gate on the regulated conclusion. Debug loop ALL GREEN incl. a new PIPELINE step; full-app `tsc` clean.)
 
 > Note: this table tracks the **platform** build. Knowledge-content sprints (Volume XI
 > Canonical Ontology and the roadmap's Truth Models / Rule / Workflow / Agent / Connector /
@@ -22,20 +22,22 @@ service (types + in-memory store; no service/API/engine/UI layer yet).
 | Layer | Weight | Built | Contribution |
 |---|---:|---:|---:|
 | Data contracts + schema (migrations `0001`–`0017`, `core/` types) | 15% | 82% | 12.3 |
-| Kernel services (identity/permissions, event bus, object registry, cost ledger, contracts/API) | 20% | 10% | 2.0 |
-| Truth/graph engines (resolver, confidence, entity resolution, assembly, query) | 15% | 8% | 1.2 |
-| Agent Harness + Execution Engine (router, planner, runtime, evaluation) | 15% | 7% | 1.05 |
-| Publication (Auric) engine | 8% | 14% | 1.12 |
-| Connector implementations + ingestion | 7% | 8% | 0.56 |
-| Cooperative Markets cartridge (first product) | 8% | 52% | 4.16 |
+| Kernel services (identity/permissions, event bus, object registry, cost ledger, contracts/API) | 20% | 14% | 2.8 |
+| Truth/graph engines (resolver, confidence, entity resolution, assembly, query) | 15% | 9% | 1.35 |
+| Agent Harness + Execution Engine (router, planner, runtime, evaluation) | 15% | 13% | 1.95 |
+| Publication (Auric) engine | 8% | 20% | 1.6 |
+| Connector implementations + ingestion | 7% | 10% | 0.7 |
+| Cooperative Markets cartridge (first product) | 8% | 62% | 4.96 |
 | Terminal (customer-facing product) | 7% | 2% | 0.14 |
-| Tests / observability / productionization | 5% | 8% | 0.4 |
-| **Total** | **100%** | — | **~22%** |
+| Tests / observability / productionization | 5% | 14% | 0.7 |
+| **Total** | **100%** | — | **~26%** |
 
-> The monster-batch modules (kernel/truth/harness/auric/ingestion/settlement) are real,
-> strict-`tsc`-clean, integration-tested code but **not yet wired into a running pipeline** — that
-> wiring is Sprint Wave 1 (`docs/00_governance/SPRINT_PLAN.md`). The % reflects code that exists +
-> compiles + integrates, not a running system.
+> Wave 1 turned the monster-batch libraries into a **running system**: the pipeline spine executes
+> the whole vertical end-to-end on injected inputs, the event bus + cost ledger now emit/record on a
+> live run, the harness router routes each stage (with a real human gate), and the Auric engine
+> assembles + renders + ranks the published feed. The % now reflects code that exists + compiles +
+> integrates + **RUNS end-to-end under the debug gate** — still library-grade (no persistence, no UI:
+> Waves 2–3), not a hosted service.
 
 ## What "built" means per layer (so estimates stay honest)
 - **Data contracts + schema** — 82%: the foundation (`0011`–`0016`: truth family,
@@ -105,6 +107,29 @@ service (types + in-memory store; no service/API/engine/UI layer yet).
    now seedable from the Financial Services object catalog (`core/registry/data/`).
 
 ## Changelog
+- 2026-07-21 — **OLYMPIC SPRINT WAVE 1 — orchestration spine (the parts become a system).**
+  New: `cartridges/cooperative_markets/pipeline.ts` — `runDealPipeline(input, ctx)` chains
+  **ingest(5300) → score (P1) → IC memo (P2) → allocate (P3) → settle (P4) → assembleIO →
+  renderVariants → buildFeed** into one typed, deterministic `DealRun`. Each stage is **routed
+  through the harness** (`core/harness/router`: deterministic stages land on rung 1; the IC memo is
+  a regulated conclusion → human gate), **emits a correlated `KernelEvent`** (RFC-2004, correlation
+  = run id) and **records a `CostEntry`** (RFC-2008: model/human/tool/connector). Plus
+  `pipeline_fixtures.ts` (Halcyon × Summit golden + unapproved + blocked fixtures), `scripts/
+  pipeline-demo.ts` (runnable end-to-end demo — `node scripts/pipeline-demo.ts`), and `scripts/
+  alias-hook.mjs` (a runtime `@/*` resolver so the demo/gate run on plain Node type-stripping).
+  **Real human gate (load-bearing, ADR-0005):** a regulated conclusion may not allocate/settle/
+  publish until a caller-supplied `ICApproval` disposes the memo `approved` — otherwise the run halts
+  `awaiting_approval` and publishes nothing; on approval the IO is lifted to `human_approved_conclusion`
+  and the decision_ref enters the evidence set. **Truth discipline:** IO evidence refs partitioned by
+  tier (fact/claim/inference); variants restate the IO's refs exactly (no superset). The debug loop
+  gained a **PIPELINE step** asserting determinism (byte-identical re-run), the full kernel spine, the
+  human gate has teeth (unapproved → no downstream), and the blocked halt. Validation: **`node
+  scripts/debug-loop.mjs` ALL GREEN (5/5)** + full-app **`tsc --noEmit` exit 0**; golden run settles
+  with 9 correlated events, $2.77 ledgered incl. the human-review gate. **Verified by a 4-lens
+  adversarial agent fleet** (one blocker — a decorative gate — found and fixed before commit).
+  Layers off the monster-batch baseline: kernel 10→14%, truth 8→9%, harness 7→13%, Auric 14→20%,
+  connectors 8→10%, cartridge 52→62%, tests 8→14%; headline **~22% → ~26%**. Additive; vehicle-
+  agnostic; no core vertical leak.
 - 2026-07-20 — **MONSTER BATCH: 7 subsystem modules (parallel agent fleet) + Terminal + sprint plan.**
   Fanned out 6 agents; all landed integration-clean (**consolidated strict `tsc` over 25 files →
   exit 0**). New: `core/kernel/event_bus.ts` (RFC-2004 — plane-aware correlated events, DLQ,
