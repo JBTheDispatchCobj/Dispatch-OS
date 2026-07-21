@@ -392,7 +392,64 @@ await step("EDITORIAL  (publication gate has teeth)", async () => {
   return `held/rejected→0 deliveries (gate has teeth) · approved→${pub.deliveries.length} deliveries across ${pub.channels.length} channels · sourced + restates IO · deterministic`;
 });
 
-// --- 8. Unit tests (Wave 4: the engines have teeth) --------------------------
+// --- 8. Permission engine (Sprint II: authorization mirrors the RLS predicates) ---
+await step("PERMISSIONS(RFC-2002: authz == 0016/0017 RLS)", async () => {
+  const { register } = await import("node:module");
+  register("./alias-hook.mjs", import.meta.url);
+  const id = await import("@/core/kernel/identity");
+  const perm = await import("@/core/kernel/permissions");
+
+  const mem = (ws, role) => ({ workspace_id: ws, organization_id: "org", role });
+  const owner = id.userPrincipal("u_owner", [mem("ws1", "owner")]);
+  const operator = id.userPrincipal("u_op", [mem("ws1", "operator")]);
+  const reviewer = id.userPrincipal("u_rev", [mem("ws1", "reviewer")]);
+  const outsider = id.userPrincipal("u_out", [mem("ws2", "owner")]);
+  const service = id.systemPrincipal();
+  const agent = id.agentPrincipal("run1", []);
+  const R = (plane, visibility, ws) => ({ plane, visibility, workspace_id: ws });
+
+  // app_can_read_plane: public / shared_market+network / tenant-member / fail-closed.
+  assert(perm.canReadPlane(operator, R("private_terminal", "public", null)), "public must be readable by any user");
+  assert(perm.canReadPlane(reviewer, R("shared_market", "network", null)), "shared_market+network must be readable");
+  assert(!perm.canReadPlane(reviewer, R("private_terminal", "network", null)), "network off the shared plane is NOT the market path");
+  assert(perm.canReadPlane(operator, R("private_terminal", "tenant_private", "ws1")), "member reads own tenant row");
+  assert(!perm.canReadPlane(outsider, R("private_terminal", "tenant_private", "ws1")), "non-member must be denied");
+  assert(perm.readPlaneDecision(operator, R("private_terminal", "tenant_private", null)).reason === "no_tenant", "tenant row with no workspace is fail-closed");
+  assert(perm.readPlaneDecision(agent, R("shared_market", "public", null)).reason === "unauthenticated", "an agent has no auth.uid()");
+  // Consistency: an agent WITH a membership is denied write too (no write-without-read principal).
+  const agentMember = id.agentPrincipal("run2", [mem("ws1", "owner")]);
+  assert(!perm.can(agentMember, "write", R("private_terminal", "tenant_private", "ws1")), "an agent must not gain a write it cannot pair with a read");
+
+  // Service role bypasses RLS everywhere (the shared-market ingestion path).
+  assert(perm.authorize(service, "read", R("private_terminal", "tenant_private", "wsX")).reason === "service_role_bypass", "service bypass reason");
+  assert(perm.can(service, "update", R("private_terminal", "tenant_private", "ws1")), "service bypasses tenant update");
+
+  // app_can_write_tenant: insert = owner/admin/operator; update/admin = owner/admin.
+  assert(perm.can(operator, "write", R("private_terminal", "tenant_private", "ws1")), "operator may INSERT tenant rows");
+  assert(!perm.can(reviewer, "write", R("private_terminal", "tenant_private", "ws1")), "reviewer may not write");
+  assert(!perm.can(operator, "update", R("private_terminal", "tenant_private", "ws1")), "operator may NOT update (owner/admin only)");
+  assert(perm.can(owner, "update", R("private_terminal", "tenant_private", "ws1")), "owner may update");
+  assert(perm.writeTenantDecision(owner, null, perm.TENANT_WRITE_ROLES).reason === "no_tenant", "shared-market write falls to the service role");
+
+  // Governed merge (0017 §8): owner/admin on a tenant object; a SHARED-MARKET object
+  // is governable by NO authenticated user — only the platform service role.
+  const tenantObj = { plane: "private_terminal", visibility: "tenant_private", workspace_id: "ws1" };
+  const sharedObj = { plane: "shared_market", visibility: "public", workspace_id: null };
+  assert(perm.canAdminObject(owner, tenantObj), "owner governs a tenant object");
+  assert(!perm.canAdminObject(operator, tenantObj), "operator does NOT govern (merge/split is owner/admin)");
+  assert(!perm.authorizeMerge(owner, sharedObj).allowed, "a shared-market merge is NOT authorizable by a tenant owner");
+  assert(perm.authorizeMerge(service, sharedObj).allowed, "only the platform service role governs shared-market identity");
+
+  // Purity/determinism: repeated calls are byte-identical (no clock/IO/randomness).
+  const d1 = perm.authorize(operator, "read", R("private_terminal", "tenant_private", "ws1"));
+  const d2 = perm.authorize(operator, "read", R("private_terminal", "tenant_private", "ws1"));
+  assert(JSON.stringify(d1) === JSON.stringify(d2), "authorization must be deterministic");
+  assert(typeof d1.reason === "string" && d1.reason.length > 0, "every decision carries an auditable reason");
+
+  return "read plane-aware · write owner/admin/operator vs update owner/admin · service bypass · shared-market merge = service-only · deterministic";
+});
+
+// --- 9. Unit tests (Wave 4: the engines have teeth) --------------------------
 await step("TESTS      (node --test: engine unit suite)", () => {
   if (!fs.existsSync(path.join(root, "node_modules"))) {
     throw new Error("node_modules missing — run `npm install`, then re-run this loop (env, not code)");

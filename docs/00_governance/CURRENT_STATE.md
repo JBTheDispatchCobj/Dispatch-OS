@@ -57,12 +57,35 @@ deal gate; held/rejected/absent → nothing published; deliveries carry the edit
 Gate: debug loop **ALL GREEN (8/8)** (adds **TESTS 92/92**) + `tsc` clean + `npm run build` exit 0. There are
 now four real Terminal surfaces: `/terminal`, `/market`, `/distribution`, `/observability`. Adversarially
 verified (3 workstream agents + an independent verifier; no blockers; one test-coverage gap surfaced by the
-verifier was closed with a mutation-proven test). 0016+0017 remain pending Bryan's Supabase apply — registry
-persistence stays in-memory behind the seam.
+verifier was closed with a mutation-proven test).
+
+## Running now (Olympic Sprint II — Wave 1, ~41%, 2026-07-21)
+**Sprint II opened (Kernel & Truth platform, target ~55%).** Migrations `0016`+`0017` are now **applied**
+(Bryan, 2026-07-21) — the Object Registry live-persistence path is UNBLOCKED. Wave 1 built the deterministic
+**Identity & Tenancy + permission substrate (RFC-2002)** and the **live-persistence adapter** for the registry
+seam:
+- **`core/kernel/identity.ts`** — portable cross-org identity: a `Principal` holds membership across many
+  orgs/workspaces with a per-workspace `role`; `isMember`/`roleIn`/`hasRole`/`actorString` are the in-process
+  mirror of `auth.uid()`/`app_is_member`/`app_has_role`. Pure/deterministic, generic (no vertical nouns).
+- **`core/kernel/permissions.ts`** — a deterministic, plane+visibility-aware authorization core that is a
+  FAITHFUL, line-for-line mirror of the `0016`/`0017` RLS predicates (`app_can_read_plane`,
+  `app_can_write_tenant`, `app_can_admin_object`) — so a surface gets the SAME answer in-process as RLS gives
+  at the database boundary. Service-role bypass modeled explicitly (shared-market ingestion). Every decision
+  carries a machine-readable `reason` (lineage, not a bare boolean). The load-bearing invariant is reproduced:
+  a **shared-market registry merge is governable by NO authenticated user — only the platform service role**.
+- **`core/registry/supabase-store.ts`** — a Supabase adapter implementing the EXISTING `RegistryPersistencePort`
+  seam against the `0017` tables (`object_registry`/`object_match_candidates`/`object_merges`), hybrid
+  hydrate/write-through (mirrors `core/data/supabase-adapter.ts`), with PURE row mappers + the same deterministic
+  id→uuid bridge. **Default stays in-memory** (`registryStore()` → InMemory unless a client is supplied) so the
+  gate is green with no creds; no change to `ObjectRegistryService`.
+Gate: **debug-loop ALL GREEN (9/9)** (adds a **PERMISSIONS** step asserting authz == the RLS truth table) +
+`tsc` clean + `npm run build` exit 0 + **123 unit tests** (was 92; +31 across identity/permissions/adapter).
+Adversarially verified. Registry persistence stays in-memory by default behind the seam; the Supabase adapter
+drops in when a client is configured.
 
 ## Existing foundation
-- Next.js app; Supabase/Postgres adapter + migrations (`0001`–`0015` applied;
-  **`0016_market_rls.sql` and `0017_object_registry.sql` written + validated, pending apply**).
+- Next.js app; Supabase/Postgres adapter + migrations (`0001`–`0017` **applied 2026-07-21**;
+  the full `0001`–`0017` chain is live — all 14 registry-table RLS policies confirmed).
 - Org/workspace scaffolding; generic (now plane-aware) entities; work items, evidence,
   proposals, approvals, reports, metrics, outcomes; rules; agent runs; widgets.
 - Wealth, field-service, and (generic, non-vertical) hospitality example cartridges,
@@ -121,11 +144,14 @@ ADR-0015 in-scope finance/VC/CU/fintech/innovation domains.
 
 ## Repos / backends
 - GitHub: `JBTheDispatchCobj/Dispatch-OS` and `-Knowledge-Registry`, both `main`.
-- Supabase: `0011`–`0015` applied (16 tables). Apply `0016` (RLS) next.
+- Supabase: `0001`–`0017` **applied 2026-07-21** (truth/relationship/intelligence/profile/
+  registry-ops + `0016` RLS + `0017` object-registry identity index; all 14 registry-table
+  RLS policies live). The Object Registry live-persistence path is UNBLOCKED.
 
 ## Current priority
-Apply `0016` + `0017` in Supabase (pending). Canonical Entity Model / Object Registry index
-is now built (`0017` + catalog + loader). **Volume XI Canonical Ontology (roadmap Sprint 1)
+`0016` + `0017` are **applied** (2026-07-21) — no longer a blocker. Canonical Entity Model / Object Registry index
+is built (`0017` + catalog + loader) and the live-persistence adapter (`core/registry/supabase-store.ts`) is
+authored behind the seam. **Volume XI Canonical Ontology (roadmap Sprint 1)
 is complete** — all 8 in-scope packs authored (Credit Union, Lending & Deposits, Capital
 Markets & Institutions, Innovation Ecosystem, Compliance, Regulation, Technology/Vendor, AI;
 181 objects, closed graph). **The Cooperative Markets cartridge (first product vertical) is

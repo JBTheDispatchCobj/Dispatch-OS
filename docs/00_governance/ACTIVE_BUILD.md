@@ -144,10 +144,32 @@ Waves: 1 spine · 2 Terminal UI · 3 live data + services · 4 Auric distributio
     (closed graph holds).
   - **Gate:** debug-loop **ALL GREEN (8/8)** (TYPECHECK · ONTOLOGY · CARTRIDGE · ENGINE · PIPELINE · DATA ·
     EDITORIAL · **TESTS 92/92**) + `tsc` clean + `npm run build` exit 0. Adversarially verified (no blockers).
-  - **Still Bryan-only / deferred (route around):** apply `0016`+`0017` in Supabase, then wire the Object
-    Registry service to the supabase adapter behind the seam (persistence is in-memory now). Remaining
-    NON-BLOCKING `DEBUG_LOG` items: FR per-rule SourceDocument attribution; Volume XI label reconciliation;
-    an allocation LP-identity reason-label nicety; the transitive re-merge edge (conservatively throws).
+  - **Now unblocked:** `0016`+`0017` are **applied** (Bryan, 2026-07-21). Sprint II Wave 1 authored the
+    Supabase `RegistryPersistencePort` adapter behind the seam (default in-memory; drops in with a client).
+    Remaining NON-BLOCKING `DEBUG_LOG` items: FR per-rule SourceDocument attribution; Volume XI label
+    reconciliation; an allocation LP-identity reason-label nicety; the transitive re-merge edge (throws).
+
+## Sprint II — Wave 1 (Kernel & Truth platform; target ~55%)
+**✅ WAVE 1 — Identity & Tenancy (RFC-2002) + permission engine + registry live-persistence adapter (DONE,
+2026-07-21).** `0016`+`0017` applied → the Object Registry live-persistence path is UNBLOCKED. Additive,
+new-files-only, pure/deterministic, no vertical nouns in `core/`:
+- **`core/kernel/identity.ts`** — portable cross-org identity: `Principal` + per-workspace `Membership`;
+  `isMember`/`roleIn`/`hasRole`/`actorString`/`organizationsOf`/`workspacesOf` — the in-process mirror of
+  `auth.uid()`/`app_is_member`/`app_has_role`. `service`/`user`/`agent` principal kinds.
+- **`core/kernel/permissions.ts`** — a deterministic, plane+visibility-aware authorization core that is a
+  faithful mirror of the `0016`/`0017` RLS predicates (`app_can_read_plane`, `app_can_write_tenant`,
+  `app_can_admin_object`); `authorize(principal, action, resource)` is the single call a surface makes;
+  service-role bypass modeled; every decision carries a machine-readable `reason` (lineage, not a weight).
+  Load-bearing invariant reproduced: a shared-market registry merge is service-role-only.
+- **`core/registry/supabase-store.ts`** — Supabase adapter for the EXISTING `RegistryPersistencePort` seam
+  over the `0017` tables (hybrid hydrate/write-through; PURE row mappers + deterministic id→uuid bridge;
+  `registryStore()` defaults to in-memory so the gate is green with no creds). No change to
+  `ObjectRegistryService`.
+- **Gate:** debug-loop **ALL GREEN (9/9)** (new **PERMISSIONS** step) + `tsc` clean + `npm run build` exit 0 +
+  **123 unit tests** (+31). Adversarially verified.
+- **Remaining Sprint II waves:** confidence engine driving LIVE profile assembly + query; kernel request
+  envelope + contracts/API layer (RFC-2001/2014); wire the Supabase registry adapter onto a real client on a
+  write-chain; surfaces call through `authorize()` instead of `canReview`.
 2. **Live intake path** — call-report/startup ingestion so the loop runs on real data, not the
    seed (a real connector over the `ncua_call_reports` / `startup_intake` source types).
 3. **Canonical Entity Model + entity resolution (RFC-3002)** and **Identity & Tenancy
@@ -159,7 +181,8 @@ Waves: 1 spine · 2 Terminal UI · 3 live data + services · 4 Auric distributio
 reconcile its "Volume XI — Agent Intelligence" label against the repo's Volume XI = Canonical
 Ontology (ADR-0014).
 
-**Bryan-only (unblock me):** apply `0016` + `0017` in Supabase; `git push`; VC/Alloya legal.
+**Bryan-only (unblock me):** ~~apply `0016` + `0017` in Supabase~~ (**done 2026-07-21**); `git push`; the
+investment-vehicle decision; VC/Alloya legal.
 
 ## Kernel build backlog — Volume II (ADR-0011)
 Spec: `volumes/kernel/`. Additive-forward.

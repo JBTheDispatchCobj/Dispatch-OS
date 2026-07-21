@@ -1,6 +1,6 @@
 # Build Progress Tracker
 
-**Current build completion: ~38%** &nbsp;·&nbsp; Last updated: 2026-07-21 (OLYMPIC SPRINT WAVE 4 COMPLETE — Sprint I closed: Auric distribution + hardening. Engine **unit-test suite** (92 tests across deal_engine/ic_memo/allocation/settlement/auric engine + distribution/confidence/profile-assemble/ingest_regulations/registry-service/harness-router) wired into the debug loop as a **TESTS** step + a **GitHub Actions CI** workflow running the whole debug loop as the commit gate; **observability** (`core/kernel/observability.ts` cost-dashboard + event-replay projection) with an **`/observability`** Terminal surface; a **`/distribution`** Terminal surface rendering the editorial-gated channel deliveries; the **`brief` channel** now carries a delivery (a channel-lens variant); registry `is_identifier` + merge-liveness/transitive-survivor guards; a router confidence-escalation FP fix; a **FinCEN** regulation object (SAR/CTR repointed). Gate: `npm run build` exit 0 (`/distribution` + `/observability` prerender) + debug-loop **ALL GREEN (8/8)** + full-app `tsc` clean. Adversarially verified (no blockers).)
+**Current build completion: ~41%** &nbsp;·&nbsp; Last updated: 2026-07-21 (OLYMPIC SPRINT II — WAVE 1: **Kernel & Truth platform opens.** Migrations `0016`+`0017` **applied** (Bryan) → the Object Registry live-persistence path is UNBLOCKED. Built the deterministic **Identity & Tenancy + permission substrate (RFC-2002)** — `core/kernel/identity.ts` (portable cross-org identity: `Principal` + per-workspace `Membership`; the in-process mirror of `auth.uid()`/`app_is_member`/`app_has_role`) and `core/kernel/permissions.ts` (a plane+visibility-aware authorization core that is a FAITHFUL mirror of the `0016`/`0017` RLS predicates — same answer in-process as RLS at the DB boundary; service-role bypass; decisions carry a machine-readable reason; shared-market registry merges are service-role-only) — plus `core/registry/supabase-store.ts` (a Supabase adapter for the EXISTING `RegistryPersistencePort` seam over the `0017` tables; hybrid hydrate/write-through; PURE row mappers; `registryStore()` defaults to in-memory so the gate is green with no creds; no change to `ObjectRegistryService`). Gate: debug-loop **ALL GREEN (9/9)** (new **PERMISSIONS** step: authz == the RLS truth table) + `tsc` clean + `npm run build` exit 0 + **123 unit tests** (was 92; +31 across identity/permissions/adapter). Adversarially verified — one blocker fixed (an agent principal could write a row it could not read) + two non-blocking (a missing `Object.freeze`; the IO write-set exception documented). Previous: OLYMPIC SPRINT WAVE 4 COMPLETE — Sprint I closed: Auric distribution + hardening. Engine **unit-test suite** (92 tests across deal_engine/ic_memo/allocation/settlement/auric engine + distribution/confidence/profile-assemble/ingest_regulations/registry-service/harness-router) wired into the debug loop as a **TESTS** step + a **GitHub Actions CI** workflow running the whole debug loop as the commit gate; **observability** (`core/kernel/observability.ts` cost-dashboard + event-replay projection) with an **`/observability`** Terminal surface; a **`/distribution`** Terminal surface rendering the editorial-gated channel deliveries; the **`brief` channel** now carries a delivery (a channel-lens variant); registry `is_identifier` + merge-liveness/transitive-survivor guards; a router confidence-escalation FP fix; a **FinCEN** regulation object (SAR/CTR repointed). Gate: `npm run build` exit 0 (`/distribution` + `/observability` prerender) + debug-loop **ALL GREEN (8/8)** + full-app `tsc` clean. Adversarially verified (no blockers).)
 
 > Note: this table tracks the **platform** build. Knowledge-content sprints (Volume XI
 > Canonical Ontology and the roadmap's Truth Models / Rule / Workflow / Agent / Connector /
@@ -21,16 +21,16 @@ service (types + in-memory store; no service/API/engine/UI layer yet).
 
 | Layer | Weight | Built | Contribution |
 |---|---:|---:|---:|
-| Data contracts + schema (migrations `0001`–`0017`, `core/` types) | 15% | 83% | 12.45 |
-| Kernel services (identity/permissions, event bus, object registry, cost ledger, **observability**, contracts/API) | 20% | 26% | 5.2 |
-| Truth/graph engines (resolver, confidence, entity resolution, assembly, query) | 15% | 19% | 2.85 |
+| Data contracts + schema (migrations `0001`–`0017`, `core/` types) | 15% | 87% | 13.05 |
+| Kernel services (**identity/permissions**, event bus, object registry, cost ledger, observability, contracts/API) | 20% | 34% | 6.8 |
+| Truth/graph engines (resolver, confidence, entity resolution, assembly, query) | 15% | 22% | 3.3 |
 | Agent Harness + Execution Engine (router, planner, runtime, evaluation) | 15% | 18% | 2.7 |
 | Publication (Auric) engine | 8% | 36% | 2.88 |
 | Connector implementations + ingestion | 7% | 20% | 1.4 |
 | Cooperative Markets cartridge (first product) | 8% | 75% | 6.0 |
 | Terminal (customer-facing product) | 7% | 40% | 2.8 |
-| Tests / observability / productionization | 5% | 42% | 2.1 |
-| **Total** | **100%** | — | **~38%** |
+| Tests / observability / productionization | 5% | 46% | 2.3 |
+| **Total** | **100%** | — | **~41%** |
 
 > Wave 4 closed Sprint I. The vertical's engines are now UNIT-TESTED (92 tests) with the
 > whole debug loop wired into a CI commit gate, the kernel emits observability (cost
@@ -123,6 +123,39 @@ service (types + in-memory store; no service/API/engine/UI layer yet).
    now seedable from the Financial Services object catalog (`core/registry/data/`).
 
 ## Changelog
+- 2026-07-21 — **OLYMPIC SPRINT II — WAVE 1: Identity & Tenancy + permission engine + registry live-persistence
+  adapter (Kernel & Truth platform opens).** Migrations `0016`+`0017` **applied** by Bryan → the Object Registry
+  live-persistence path is unblocked (governance docs flipped from "pending"). Additive, new-files-only, pure/
+  deterministic, no vertical nouns in `core/`. New:
+  (1) **`core/kernel/identity.ts`** — RFC-2002 portable cross-org identity: a `Principal` (`user`/`agent`/
+  `service`) holds membership across many orgs/workspaces with a per-workspace `RoleKey`; `isMember`/`roleIn`/
+  `hasRole`/`actorString`/`organizationsOf`/`workspacesOf` are the in-process mirror of `auth.uid()`/
+  `app_is_member`/`app_has_role`. `SERVICE_PRINCIPAL` frozen.
+  (2) **`core/kernel/permissions.ts`** — a deterministic, plane+visibility-aware authorization core that is a
+  FAITHFUL, line-for-line mirror of the `0016`/`0017` RLS predicates (`app_can_read_plane`, `app_can_write_tenant`,
+  `app_can_admin_object`), so a surface gets the SAME answer in-process as RLS gives at the database boundary.
+  `authorize(principal, action, resource)` is the single call; the Supabase service role is modeled as an explicit
+  bypass (shared-market ingestion); every `PermissionDecision` carries a machine-readable `reason` (lineage, not a
+  weight). Load-bearing invariant reproduced: a **shared-market registry merge is governable by NO authenticated
+  user — only the platform service role**.
+  (3) **`core/registry/supabase-store.ts`** — a Supabase adapter implementing the EXISTING `RegistryPersistencePort`
+  seam over the `0017` tables (`object_registry`/`object_match_candidates`/`object_merges`); hybrid hydrate/write-
+  through (mirrors `core/data/supabase-adapter.ts`) with PURE, unit-tested row mappers + the same deterministic
+  id→uuid bridge; `registryStore()` defaults to in-memory (gate green with no creds); NO change to
+  `ObjectRegistryService`.
+  (4) **Debug loop gained a PERMISSIONS step** (step 8 of 9) asserting authz == the RLS truth table (read plane-
+  aware; insert owner/admin/operator vs update owner/admin; service bypass; shared-market merge = service-only;
+  deterministic). **+31 unit tests** (`tests/identity.test.mjs`, `permissions.test.mjs`,
+  `registry_supabase_store.test.mjs`) → **120** total.
+  **Adversarially verified** (4-lens skeptic fleet): one **blocker** fixed (an `agent` principal could WRITE a row
+  it could not READ — `writeTenantDecision` now requires an authenticated user, consistent with the read path) +
+  two non-blocking (a missing `Object.freeze` on `SERVICE_PRINCIPAL`; the intelligence-object write-set exception
+  documented with an `IO_WRITE_ROLES` constant + test).
+  **Gate:** `node scripts/debug-loop.mjs` **ALL GREEN (9/9)**, `tsc` clean, `npm run build` exit 0, **123/123**
+  unit tests. Layers: **data 83→87** (`0016`+`0017` applied — schema now live/enforced), **kernel 26→34**
+  (identity + permission engine + registry persistence adapter), **truth 19→22** (entity-resolution persistence),
+  **tests 42→46** (permissions suite + PERMISSIONS gate step); headline **~38% → ~41%**. Additive; config-as-data;
+  no regulated conclusion in weights; no core vertical leak.
 - 2026-07-21 — **OLYMPIC SPRINT WAVE 4 COMPLETE — Auric distribution + hardening (Sprint I closed).**
   Built on the Wave-4 editorial-gate slice. Fanned out 3 workstream agents (new files only), integrated +
   gated by the lead, then adversarially verified (no blockers; one test-coverage gap the verifier surfaced

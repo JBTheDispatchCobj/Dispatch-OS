@@ -22,8 +22,11 @@ any time with `node scripts/debug-loop.mjs` (after `npm install`).
   derivation is the "live intake path" task (before/with P4).
 - **[DEFERRED] Investment vehicle TBD (ADR-0016).** P4 settlement `fund`/`spv` adapters wait on
   Bryan's vehicle decision; `advisory`/`syndication` adapters are buildable now (vehicle-agnostic).
-- **[DEFERRED] Migrations `0016` + `0017` pending Supabase apply.** Blocks the Object Registry
-  service (RFC-2003) + live RLS/identity enforcement. Bryan-only.
+- **[RESOLVED 2026-07-21] Migrations `0016` + `0017` APPLIED in Supabase (Bryan).** The full `0001`–`0017`
+  chain is live; all 14 registry-table RLS policies confirmed. Unblocks the Object Registry live-persistence
+  path + RLS/identity enforcement. Sprint II Wave 1 built the `RegistryPersistencePort` Supabase adapter
+  behind the existing seam (default in-memory; drops in when a client is configured) + the RFC-2002
+  identity/permission substrate that mirrors the now-live RLS predicates.
 
 ## Wave 1 — Orchestration spine (2026-07-21)
 
@@ -54,6 +57,73 @@ any time with `node scripts/debug-loop.mjs` (after `npm install`).
   `scripts/alias-hook.mjs` (a resolve hook, registered before the dynamic import) handles it; it is a
   scripts/ runtime shim only, never imported by `app/` or `core/`, and does not affect `next build`.
   Also: the pipeline avoids TS parameter-properties/enums (erasable-only) so type-stripping runs it.
+
+## Sprint II — Wave 1: Identity & Tenancy + permission engine + registry live-persistence adapter (2026-07-21)
+
+- **[was BLOCKER → FIXED] Agent principal could WRITE a row it could not READ.** The adversarial fleet found
+  `readPlaneDecision` gated on `isAuthenticated` (agent → denied) but `writeTenantDecision` did not, so an
+  `agent` principal holding a membership was granted writes while denied all reads — an inconsistent,
+  half-authenticated citizen the SQL (which knows only `auth.uid()` + service role) has no equivalent for.
+  **Fix:** `writeTenantDecision` now returns `deny("unauthenticated")` for a non-user principal first, exactly
+  mirroring that `app_can_write_tenant` is evaluated in the invoker (auth.uid) context; the service role bypasses
+  ABOVE the predicate in `authorize()`. Agents needing platform reach run as the service role; agents acting for
+  a user carry that user's Principal. Covered by a new `tests/permissions.test.mjs` case + the debug-loop
+  PERMISSIONS step (agent-with-membership denied write).
+- **[was NON-BLOCKING → FIXED] `SERVICE_PRINCIPAL` "Frozen" comment had no `Object.freeze`.** The singleton
+  returned by `systemPrincipal()` was a shared mutable reference — `systemPrincipal().memberships.push(...)`
+  would have mutated the platform identity globally. **Fix:** `Object.freeze` on both the object and its
+  memberships array (a push now throws in strict mode / no-ops otherwise). Service never uses memberships
+  anyway (isMember short-circuits), so this is purely defensive — but the comment is now true.
+- **[was NON-BLOCKING → CLARIFIED] Generic `authorize("write")` set vs the intelligence-object exception.** The
+  fleet noted the generic "write" verb maps to owner/admin/operator (matches `app_can_write_object` + the truth/
+  relationship/registry insert policies), but 0016 §5 `io_write` gates intelligence-object INSERTS on owner/admin
+  only. No caller routes an IO insert through the generic verb today, so this is latent, not live. **Resolution:**
+  added an explicit `IO_WRITE_ROLES = ["owner","admin"]` constant + a doc comment on `authorize` documenting that
+  an IO insert must use that set (or action "update"), with a test asserting operator is excluded from it. The
+  generic verb stays correct for the common tables + the registry path this wave targets.
+- **[RESOLVED] Permission engine is a faithful mirror of the RLS predicates.** `core/kernel/permissions.ts`
+  reproduces `app_can_read_plane` / `app_can_write_tenant` (0016 §0) + `app_can_admin_object` (0017 §8)
+  line-for-line: public read, shared_market+network read, tenant-member read, fail-closed on a tenant-visibility
+  row with a null workspace; insert = owner/admin/operator, update/IO/admin = owner/admin. Verified against the
+  SQL by the adversarial fleet + a debug-loop **PERMISSIONS** step (authz == the RLS truth table) + 
+  `tests/permissions.test.mjs` (mutation-probed: operator-insert-not-update, shared-market-merge-service-only,
+  agent-unauthenticated, fail-closed null workspace).
+- **[DESIGN NOTE — not a defect] `agent` principals are unauthenticated in the RLS mirror.** `isAuthenticated`
+  is true only for `kind:"user"` (the `auth.uid()` invoker). An automation that needs platform reach runs as the
+  **service** principal (RLS bypass, matching how shared-market ingestion is written per 0016 §0); an agent acting
+  for a user carries that user's Principal. This keeps the mirror exact rather than inventing an auth path the SQL
+  does not have.
+- **[DESIGN NOTE — not a defect] Registry adapter carries `external_ids`/`aliases` in `metadata`.** The
+  identity-index round-trip (`objectToRow`/`rowToObject`) preserves provider ids + aliases in the
+  `object_registry.metadata` jsonb rather than the dedicated `object_external_ids`/`entity_aliases` child tables.
+  Nothing is lost (round-trip proven by `tests/registry_supabase_store.test.mjs`); normalizing into the child
+  tables is a documented follow-on when the resolver writes those tables directly.
+- **[was NON-BLOCKING → FIXED] Hydrate order was DB-order-dependent (non-deterministic).** The fleet noted
+  `selectAll` has no ORDER BY and a batch shares `created_at`, so `resolve()`'s candidate array was not
+  reproducible across a restart. **Fix:** `hydrate()` now imposes a STABLE total order before loading (objects
+  by `(created_at, id)`, candidates by the unordered pair, merges by `(created_at, survivor|merged)`), so the
+  port's insertion-ordered/deterministic contract holds regardless of DB return order. Covered by a new
+  reversed-row-order test.
+- **[was NIT → FIXED] Non-uuid `object_ref` did not round-trip.** `objectToRow` remaps a non-uuid `object_ref`
+  to a uuid; the original is now also preserved in `metadata.object_ref` and restored by `rowToObject`
+  (typed-table PKs are uuids in practice, so this only bit a synthetic ref — closed anyway for no-data-loss).
+  Covered by a new round-trip test.
+- **[was TEST GAP → FIXED] Merged-object row fidelity was untested.** The fleet mutation-verified that
+  `objectToRow` could drop `status`/`merged_into_id` and stay green (a merged object would resurrect as active
+  on hydrate). `objectToRow` was already correct; the gap was coverage. **Fix:** added a merged-object
+  round-trip test asserting `status=merged` + the survivor pointer survive.
+- **[DEFERRED — resolver-level, not adapter] Re-proposal does not respect a prior human review status.**
+  `ObjectRegistryService.resolve()` re-proposes a still-active pair every run (the in-memory store resets it to
+  `proposed` on re-put); persisting a candidate then re-flushing would reset a DB row's status from
+  `rejected`/`confirmed` back to `pending`. This is a property of the EXISTING resolver (identical in the
+  in-memory store — the adapter mirrors it faithfully, not a regression), and fixing it means the resolver
+  skipping already-reviewed pairs — a `service.ts` change for when the review/merge workflow lands. Left to that
+  wave to respect the additive/new-files-only rule; noted so persistence wiring gates candidate upserts on it.
+- **[NON-BLOCKING] Registry adapter port is sync; live persistence is hybrid.** `RegistryPersistencePort` is
+  synchronous, so `SupabaseRegistryStore` serves reads/writes from an insertion-ordered in-memory snapshot and
+  queues writes; the async edges are `hydrateFromSupabase(client)` + `flush(client)` (mirrors
+  `core/data/supabase-adapter.ts`). A thin runner that constructs the `@supabase/supabase-js` client and calls
+  `flush` on a write-chain is the remaining wiring (Sprint II follow-on) — the adapter + mappers are done + tested.
 
 ## Wave 4 — Auric distribution + hardening (2026-07-21, COMPLETE — Sprint I closed)
 

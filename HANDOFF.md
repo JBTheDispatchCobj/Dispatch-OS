@@ -1,77 +1,72 @@
-# Session Handoff — OLYMPIC SPRINT WAVE 4 COMPLETE (Sprint I closed, ~38%)
+# Session Handoff — OLYMPIC SPRINT II · WAVE 1 COMPLETE (Kernel & Truth platform opens, ~41%)
 
 ## Where we are
-Platform build **~38%**. **Sprint I is CLOSED.** Waves 1–4 are all DONE. The Cooperative Markets vertical
-runs end-to-end on real data, publishes to lensed channels behind two human gates (IC + editorial), and is
-now **unit-tested (92 tests) with the whole debug loop wired into a CI commit gate**, **observable** (cost
-dashboards + event replay at `/observability`), and its editorial-gated distribution is **rendered** at
-`/distribution`. Gate is green on all checks: `npm run build` (exit 0; `/terminal`, `/market`,
-`/distribution`, `/observability` all prerender), full-app `tsc --noEmit` clean, and
-`node scripts/debug-loop.mjs` **ALL GREEN (8/8)**.
+Platform build **~41%**. **Sprint II is OPEN** (target ~55%). Migrations `0016`+`0017` are **applied** in
+Supabase (Bryan, 2026-07-21) — the full `0001`–`0017` chain is live and the Object Registry live-persistence
+path is UNBLOCKED. Wave 1 built the deterministic **Identity & Tenancy + permission substrate (RFC-2002)** and
+the **Supabase live-persistence adapter** for the Object Registry seam. All checks green:
+`node scripts/debug-loop.mjs` **ALL GREEN (9/9)**, `npx tsc --noEmit` clean, `npm run build` exit 0,
+`npm test` **123/123**.
 
-## Wave 4 completed this session (Auric distribution + hardening)
-- **`tests/*.test.mjs` (92 tests)** — deal_engine · ic_memo (approved-evidence-only, proven to gate DD
-  COVERAGE not just citations, via `ic_memo_approved_only.test.mjs`) · allocation · settlement · auric engine
-  + distribution · confidence · profile-assemble · ingest_regulations · registry-service (+ `registry_guards`)
-  · harness-router. Each self-registers the `@/*` alias hook + dynamically imports its target (native TS
-  type-stripping). `npm test` runs them.
-- **`scripts/debug-loop.mjs`** — new **TESTS** step (step 8) runs `node --test tests/*.test.mjs`; the loop is
-  now 8 steps.
-- **`.github/workflows/ci.yml`** — CI runs the debug loop + `next build` on every push/PR to `main` (the
-  commit gate).
-- **`core/kernel/observability.ts`** (NEW, pure/generic) — `costDashboard` · `eventTimeline` · `replayFrom`
-  · `runHealth`. Surfaced at **`/observability`** (`app/observability/page.tsx` +
-  `components/terminal/ObservabilityView.tsx`).
-- **`/distribution`** (`app/distribution/page.tsx` + `components/terminal/DistributionView.tsx`) — renders the
-  HELD-vs-APPROVED editorial-gate story + every channel delivery's lineage / restated refs / visibility.
-- **`cartridges/cooperative_markets/pipeline.ts`** — appended a `brief` **channel-lens** variant (pre-existing
-  variant ids unchanged; dropped by `buildFeed` so the ranked feed is unchanged) → an approved publication
-  delivers **5 across 3 channels**.
-- **`core/registry/service.ts`** — `is_identifier` guard (non-identifying shared external id no longer
-  proposes a spurious duplicate) + `applyMerge` liveness / `ultimateSurvivor` transitive-survivor guards.
-- **`core/harness/router.ts`** — confidence-escalation floating-point fix (`ceil(shortfall/0.2 - 1e-9)`).
-- **`core/registry/data/financial_services_objects.json` + `.../ontology/compliance.json`** — added a FinCEN
-  regulation object; repointed SAR/CTR `filed_with_regulator` to it (closed graph holds).
-- **Governance:** BUILD_PROGRESS (recomputed ~33%→~38%), CURRENT_STATE, ACTIVE_BUILD, DEBUG_LOG updated.
+## Wave 1 completed this session (Identity & Tenancy + permission engine + registry adapter)
+New files (additive, new-files-only, pure/deterministic, no vertical nouns in `core/`):
+- **`core/kernel/identity.ts`** — RFC-2002 portable cross-org identity. A `Principal` (`user`/`agent`/`service`)
+  holds membership across many orgs/workspaces with a per-workspace `RoleKey`. `isMember`/`roleIn`/`hasRole`/
+  `actorString`/`organizationsOf`/`workspacesOf` are the in-process mirror of `auth.uid()`/`app_is_member`/
+  `app_has_role`. `SERVICE_PRINCIPAL` is frozen.
+- **`core/kernel/permissions.ts`** — a deterministic, plane+visibility-aware authorization core that is a
+  FAITHFUL mirror of the `0016`/`0017` RLS predicates (`app_can_read_plane`, `app_can_write_tenant`,
+  `app_can_admin_object`). `authorize(principal, action, resource)` is the one call a surface makes; the
+  service role is an explicit RLS bypass; every `PermissionDecision` carries a machine-readable `reason`
+  (lineage, not a weight). Load-bearing invariant reproduced: a shared-market registry merge is service-role-only.
+- **`core/registry/supabase-store.ts`** — Supabase adapter for the EXISTING `RegistryPersistencePort` seam over
+  the `0017` tables; hybrid hydrate/write-through; PURE row mappers + the same deterministic id→uuid bridge as
+  `core/data/supabase-adapter.ts`; `registryStore()` defaults to in-memory (gate green with no creds); NO change
+  to `ObjectRegistryService`.
+- **`scripts/debug-loop.mjs`** — new **PERMISSIONS** step (now 9 steps): asserts authz == the RLS truth table.
+- **`tests/identity.test.mjs`, `tests/permissions.test.mjs`, `tests/registry_supabase_store.test.mjs`** — +31
+  tests (→ 123), mutation-probed for teeth.
+- **Governance flipped:** CURRENT_STATE / ACTIVE_BUILD / DEBUG_LOG "0016/0017 pending apply" → **applied
+  2026-07-21**; BUILD_PROGRESS recomputed (~38% → ~41%).
 
 ## Validation
-- **`node scripts/debug-loop.mjs` → ALL GREEN (8/8)**: TYPECHECK · ONTOLOGY (181/0/0) · CARTRIDGE (10 refs) ·
-  ENGINE · PIPELINE (approved→settled, gate has teeth, deterministic) · DATA (675 in-force + profiles
-  reconcile) · EDITORIAL (held/rejected→0; approved→5 deliveries across 3 channels) · **TESTS (92/92)**.
-- **`npx tsc --noEmit` → 0 errors.**  **`npm run build` → exit 0**, 4 surfaces prerender static.
-- **Adversarially verified** — 3 workstream agents (new files only) + an independent verifier. No blockers.
-  The verifier surfaced a real test-coverage gap (approved-evidence-only didn't cover the COVERAGE path); it
-  was closed with a mutation-proven test. Two non-blocking notes (a positional variant-id shift — fixed by
-  appending the brief lens; a conservative transitive-re-merge throw — documented) logged in `DEBUG_LOG.md`.
+- **`node scripts/debug-loop.mjs` → ALL GREEN (9/9)**: TYPECHECK · ONTOLOGY (181/0/0) · CARTRIDGE · ENGINE ·
+  PIPELINE · DATA · EDITORIAL · **PERMISSIONS** (authz == RLS truth table) · **TESTS (123/123)**.
+- **`npx tsc --noEmit` → 0 errors.**  **`npm run build` → exit 0** (all surfaces prerender).
+- **Adversarially verified** — a 4-lens skeptic fleet (RLS fidelity · purity/vertical/erasable · adapter
+  fidelity · test teeth). One **blocker** fixed (an `agent` principal could WRITE a row it could not READ —
+  `writeTenantDecision` now requires an authenticated user); two non-blocking fixed (a missing `Object.freeze`
+  on `SERVICE_PRINCIPAL`; the intelligence-object write-set exception documented with `IO_WRITE_ROLES` + a test).
+  All logged in `DEBUG_LOG.md`.
 
 ## State of the world
-- **GitHub:** Wave 4 editorial-gate slice pushed at `73ce032`; **this Wave-4-complete commit is pending**
-  (command below). **Supabase:** `0011`–`0015` applied; **`0016`+`0017` still pending apply** (Bryan-only) —
-  gates the Object Registry service's *live persistence* + shared-market resolution + RLS, NOT the logic,
-  which runs in-memory now. All four Terminal surfaces read computed output server-side (no persistence yet).
+- **GitHub:** the Wave-4-complete commit `1834e29` is the last pushed commit; **this Wave-1 commit is pending**
+  (command below).
+- **Supabase:** `0001`–`0017` **applied** (2026-07-21). The registry adapter is authored behind the seam;
+  wiring it onto a live `@supabase/supabase-js` client on a write-chain is a short Sprint-II follow-on (the
+  adapter + mappers + hydrate/flush are done and tested).
 
-## Next: SPRINT II — Kernel & Truth platform (target ~55%)
-Paste **`SPRINT_II_KICKOFF_PROMPT.md`** as the first message of the new chat. Scope: Identity & Tenancy
-(RFC-2002) + permission engine; the Object Registry service maturing the match-candidate → merge pipeline
-across the shared-market plane (and wired to the supabase adapter once `0016`+`0017` are applied); the
-confidence engine driving live profile assembly + query; the kernel request envelope + contracts/API layer
-(RFC-2001/2014). **Prereq:** `0016`+`0017` applied (Bryan).
+## Next: SPRINT II — Wave 2 (see `SPRINT_II_WAVE2_KICKOFF_PROMPT.md`)
+Paste `SPRINT_II_WAVE2_KICKOFF_PROMPT.md` as the first message of the new chat. Remaining Sprint II scope:
+the **confidence engine driving LIVE profile assembly + query** (decay/propagate/outcome-feedback over real
+sourced facts, not fixtures; a query surface over assembled profiles); the **kernel request envelope +
+contracts/API layer (RFC-2001/2014)** (a typed envelope + service contracts the surfaces call through — and
+route authorization through `authorize()` instead of `core/auth/session.ts::canReview`); wire the Supabase
+registry adapter onto a real client on a write-chain.
 
 ## Bryan-only (route around; don't block)
-- **Apply `0016` + `0017` in Supabase** — unblocks the Object Registry service's live persistence + shared-
-  market resolution + RLS. Wave 3 built the service behind the seam; wiring the supabase adapter is a short
-  follow-up after the apply (Sprint II).
+- `git push` (command below).
 - **Decide the investment vehicle** (fund / per-deal SPV / both) — unblocks P4 fund/spv settlement.
-- `git push`; VC/Alloya legal + entity.
+- VC/Alloya legal + entity.
+- (`0016`+`0017` apply is **DONE** — no longer blocking.)
 
 ## Exact next command (Bryan, Mac terminal)
 The Dispatch cloud sandbox cannot `git commit`/`git push` (its git VM blocks `.git` writes and has no
-identity). The Wave-4 files were written to your repo on disk via a staging tarball extracted in the repo.
-The Wave-4 files were staged onto your disk as `_wave4_incoming.tgz` in the repo root. Run this in your Mac
-terminal — it clears the git lock + strays, EXTRACTS the tarball over the repo, removes the staging tarballs,
-`git status` to confirm no lost updates, then commits + pushes:
+identity). The Wave-1 files were staged onto your disk as `_wave1_sprint2_incoming.tgz` in the repo root. Run
+this in your Mac terminal — it clears the git lock + strays, EXTRACTS the tarball over the repo, removes the
+staging tarballs, `git status` to confirm no lost updates, then commits + pushes:
 ```
-cd ~/Downloads/Dispatch_OS_Cooperative_Markets_Repo && rm -f .git/index.lock && rm -rf _to_delete && tar xzf _wave4_incoming.tgz && rm -f _wave4_incoming.tgz _cloudsync_out.tgz && git status && git add -A && git commit -m "Olympic Sprint Wave 4 COMPLETE — Auric distribution + hardening (Sprint I closed, ~38%): engine unit-test suite (92 tests) wired into the debug loop (TESTS step) + GitHub Actions CI as the commit gate; core/kernel/observability.ts (cost dashboards + event replay) surfaced at /observability; /distribution surface renders the editorial-gated channel deliveries; brief channel now delivers (5 across 3 channels); registry is_identifier + merge-liveness/transitive-survivor guards; router confidence-escalation FP fix; FinCEN regulation object (SAR/CTR repointed). debug-loop ALL GREEN (8/8) incl TESTS 92/92; tsc clean; npm run build exit 0. Adversarially verified, no blockers." && git push
+cd ~/Downloads/Dispatch_OS_Cooperative_Markets_Repo && rm -f .git/index.lock && rm -rf _to_delete && rm -f _cloudsync_in.tgz _wtest && tar xzf _wave1_sprint2_incoming.tgz && rm -f _wave1_sprint2_incoming.tgz _cloudsync_out.tgz && git status && git add -A && git commit -m "Olympic Sprint II Wave 1 — Identity & Tenancy (RFC-2002) + permission engine + registry live-persistence adapter (~41%): core/kernel/identity.ts (portable cross-org identity mirroring auth.uid/app_is_member/app_has_role) + core/kernel/permissions.ts (a deterministic plane+visibility-aware authorization core that faithfully mirrors the 0016/0017 RLS predicates; service-role bypass; decisions carry a reason; shared-market registry merges are service-role-only) + core/registry/supabase-store.ts (Supabase adapter for the existing RegistryPersistencePort seam over the 0017 tables; hybrid hydrate/write-through; pure row mappers; default in-memory; no change to ObjectRegistryService). 0016+0017 applied (governance flipped). debug-loop ALL GREEN (9/9, new PERMISSIONS step); tsc clean; npm run build exit 0; 123/123 unit tests. Adversarially verified — 1 blocker fixed (agent could write what it could not read), 2 non-blocking." && git push
 ```
 Always `git status` first (the command above does) to confirm no lost updates before you commit. (`tar xzf`
 runs in your native terminal, so it overwrites the changed files in place — the cloud mount can't.)
