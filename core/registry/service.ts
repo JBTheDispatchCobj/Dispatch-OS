@@ -39,6 +39,20 @@ import type { Plane, Visibility } from "@/core/truth/types";
 export interface ExternalId {
   system: string;
   value: string;
+  /**
+   * Whether this external id actually IDENTIFIES the object (a true key like an
+   * NCUA charter), vs. a merely-shared, non-identifying attribute (e.g.
+   * { system: "state", value: "CA" }). Defaults to true when omitted — existing
+   * callers are unaffected. A non-identifying id ({@link ExternalId} with
+   * `is_identifier: false`) never contributes a `shared_external_id` match signal,
+   * so it cannot propose a spurious duplicate. (DEBUG_LOG resolver guard.)
+   */
+  is_identifier?: boolean;
+}
+
+/** An external id counts for identity matching unless explicitly flagged otherwise. */
+function isIdentifying(e: ExternalId): boolean {
+  return e.is_identifier !== false;
 }
 
 /** The input to register a canonical object. Identity is assigned by the service. */
@@ -183,11 +197,12 @@ export function scoreMatch(
   const reasons: string[] = [];
   let score = 0;
 
-  // Shared external ids — strong signal. Deterministic order: scan a's ids and
-  // emit one reason per matching system (sorted by system for stable output).
-  const bIds = b.external_ids ?? [];
+  // Shared external ids — strong signal, but ONLY for IDENTIFYING ids (a shared
+  // non-identifying attribute like {system:"state"} must not propose a duplicate).
+  // Deterministic order: scan a's ids and emit one reason per matching system.
+  const bIds = (b.external_ids ?? []).filter(isIdentifying);
   const sharedSystems: string[] = [];
-  for (const ext of a.external_ids ?? []) {
+  for (const ext of (a.external_ids ?? []).filter(isIdentifying)) {
     const hit = bIds.some(
       (o) => o.system === ext.system && o.value === ext.value,
     );
@@ -356,27 +371,49 @@ export class ObjectRegistryService {
       throw new Error("applyMerge: unknown merged object " + mergedId);
     }
 
+    // LIVENESS GUARD (DEBUG_LOG): the append-only lineage must stay consistent.
+    //  (a) A survivor that is ITSELF merged is not a live root — resolve to its
+    //      ultimate active survivor so a chain never records a stale survivor.
+    //  (b) A merged object may not be re-merged into a DIFFERENT survivor
+    //      (contradictory), which would fork its lineage. (Re-merging into the
+    //      SAME survivor is idempotent — handled below.)
+    const root = this.ultimateSurvivor(survivingId);
+    if (root.id === mergedId) {
+      throw new Error("applyMerge: cannot merge an object into itself (transitively)");
+    }
+    if (
+      merged.status === "merged" &&
+      merged.merged_into_id !== null &&
+      merged.merged_into_id !== root.id
+    ) {
+      throw new Error(
+        "applyMerge: " + mergedId + " is already merged into " + merged.merged_into_id +
+          "; refusing a contradictory re-merge into " + root.id,
+      );
+    }
+    const effectiveSurvivorId = root.id;
+
     // Idempotent-safe: if this exact lineage edge already exists, return it.
     const existing = this.store
       .merges()
       .find(
         (m) =>
-          m.surviving_object_id === survivingId &&
+          m.surviving_object_id === effectiveSurvivorId &&
           m.merged_object_id === mergedId,
       );
     if (existing) return existing;
 
-    if (merged.status !== "merged" || merged.merged_into_id !== survivingId) {
+    if (merged.status !== "merged" || merged.merged_into_id !== effectiveSurvivorId) {
       const updated: CanonicalObject = {
         ...merged,
         status: "merged",
-        merged_into_id: survivingId,
+        merged_into_id: effectiveSurvivorId,
       };
       this.store.put(updated);
     }
 
     const record: MergeRecord = {
-      surviving_object_id: survivingId,
+      surviving_object_id: effectiveSurvivorId,
       merged_object_id: mergedId,
       by,
       decision_ref: decisionRef,
@@ -384,6 +421,28 @@ export class ObjectRegistryService {
     };
     this.store.putMerge(record);
     return record;
+  }
+
+  /**
+   * Walk an object's merge chain to its ultimate ACTIVE survivor (the live root).
+   * Returns the object itself when it is active. Guards against a cycle in the
+   * append-only lineage (which the contradictory-re-merge guard prevents, but we
+   * fail loudly rather than loop if the store is ever inconsistent).
+   */
+  private ultimateSurvivor(id: string): CanonicalObject {
+    const seen = new Set<string>();
+    let cur = this.store.get(id);
+    if (!cur) throw new Error("ultimateSurvivor: unknown object " + id);
+    while (cur.status === "merged" && cur.merged_into_id !== null) {
+      if (seen.has(cur.id)) {
+        throw new Error("ultimateSurvivor: merge cycle detected at " + cur.id);
+      }
+      seen.add(cur.id);
+      const next = this.store.get(cur.merged_into_id);
+      if (!next) break;
+      cur = next;
+    }
+    return cur;
   }
 
   objects(): CanonicalObject[] {
@@ -404,8 +463,9 @@ export class ObjectRegistryService {
 // ---------------------------------------------------------------------------
 
 function sharesExternalId(a: CanonicalObject, b: CanonicalObject): boolean {
-  const bIds = b.external_ids ?? [];
-  for (const ext of a.external_ids ?? []) {
+  // Only IDENTIFYING external ids block a pair for scoring (mirrors scoreMatch).
+  const bIds = (b.external_ids ?? []).filter(isIdentifying);
+  for (const ext of (a.external_ids ?? []).filter(isIdentifying)) {
     if (bIds.some((o) => o.system === ext.system && o.value === ext.value)) {
       return true;
     }

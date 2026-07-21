@@ -1,6 +1,6 @@
 # Build Progress Tracker
 
-**Current build completion: ~33%** &nbsp;·&nbsp; Last updated: 2026-07-21 (OLYMPIC SPRINT WAVE 3 — live data + kernel/truth services: real NCUA **regulatory** ingestion at scale (675 in-force 12 CFR sections + 10 pending amendments → sourced, bi-temporal `public_fact` truth objects), the **Profile Assembly Engine** (RFC-3012) over the confidence engine, the institution **5300 batch path** → assembled profiles (labeled fixture batch, real connector deferred), the **Object Registry service** (RFC-2003) + entity resolution behind the persistence seam (gated on 0016+0017), and a **`/market`** Terminal surface. Debug loop gained a **DATA-INTEGRITY** step (pinned source counts + independent ratio oracle + reconciliation). Gate: `npm run build` exit 0 (/market prerenders) + debug-loop ALL GREEN (6/6) + full-app `tsc` clean.)
+**Current build completion: ~38%** &nbsp;·&nbsp; Last updated: 2026-07-21 (OLYMPIC SPRINT WAVE 4 COMPLETE — Sprint I closed: Auric distribution + hardening. Engine **unit-test suite** (92 tests across deal_engine/ic_memo/allocation/settlement/auric engine + distribution/confidence/profile-assemble/ingest_regulations/registry-service/harness-router) wired into the debug loop as a **TESTS** step + a **GitHub Actions CI** workflow running the whole debug loop as the commit gate; **observability** (`core/kernel/observability.ts` cost-dashboard + event-replay projection) with an **`/observability`** Terminal surface; a **`/distribution`** Terminal surface rendering the editorial-gated channel deliveries; the **`brief` channel** now carries a delivery (a channel-lens variant); registry `is_identifier` + merge-liveness/transitive-survivor guards; a router confidence-escalation FP fix; a **FinCEN** regulation object (SAR/CTR repointed). Gate: `npm run build` exit 0 (`/distribution` + `/observability` prerender) + debug-loop **ALL GREEN (8/8)** + full-app `tsc` clean. Adversarially verified (no blockers).)
 
 > Note: this table tracks the **platform** build. Knowledge-content sprints (Volume XI
 > Canonical Ontology and the roadmap's Truth Models / Rule / Workflow / Agent / Connector /
@@ -21,16 +21,27 @@ service (types + in-memory store; no service/API/engine/UI layer yet).
 
 | Layer | Weight | Built | Contribution |
 |---|---:|---:|---:|
-| Data contracts + schema (migrations `0001`–`0017`, `core/` types) | 15% | 82% | 12.3 |
-| Kernel services (identity/permissions, event bus, object registry, cost ledger, contracts/API) | 20% | 20% | 4.0 |
-| Truth/graph engines (resolver, confidence, entity resolution, assembly, query) | 15% | 17% | 2.55 |
-| Agent Harness + Execution Engine (router, planner, runtime, evaluation) | 15% | 13% | 1.95 |
-| Publication (Auric) engine | 8% | 26% | 2.08 |
-| Connector implementations + ingestion | 7% | 19% | 1.33 |
-| Cooperative Markets cartridge (first product) | 8% | 72% | 5.76 |
-| Terminal (customer-facing product) | 7% | 30% | 2.1 |
-| Tests / observability / productionization | 5% | 22% | 1.1 |
-| **Total** | **100%** | — | **~33%** |
+| Data contracts + schema (migrations `0001`–`0017`, `core/` types) | 15% | 83% | 12.45 |
+| Kernel services (identity/permissions, event bus, object registry, cost ledger, **observability**, contracts/API) | 20% | 26% | 5.2 |
+| Truth/graph engines (resolver, confidence, entity resolution, assembly, query) | 15% | 19% | 2.85 |
+| Agent Harness + Execution Engine (router, planner, runtime, evaluation) | 15% | 18% | 2.7 |
+| Publication (Auric) engine | 8% | 36% | 2.88 |
+| Connector implementations + ingestion | 7% | 20% | 1.4 |
+| Cooperative Markets cartridge (first product) | 8% | 75% | 6.0 |
+| Terminal (customer-facing product) | 7% | 40% | 2.8 |
+| Tests / observability / productionization | 5% | 42% | 2.1 |
+| **Total** | **100%** | — | **~38%** |
+
+> Wave 4 closed Sprint I. The vertical's engines are now UNIT-TESTED (92 tests) with the
+> whole debug loop wired into a CI commit gate, the kernel emits observability (cost
+> dashboards + event replay) surfaced at `/observability`, and the editorial-gated
+> publication loop is rendered at `/distribution` (with the `brief` channel now carrying a
+> delivery). ~38% lands just under the roadmap's ~40% Sprint-I target; the residual gap is
+> kernel identity/permissions + the Execution Engine, both Sprint II. Layers moved: kernel
+> 20→26 (observability service + event replay), truth 17→19 (registry guards; profile/
+> confidence under test), harness 13→18 (router tested + FP fix + ToolRouter), Auric 26→36
+> (distribution surface + brief channel + fully-tested editorial gate), terminal 30→40 (two
+> new real surfaces), tests 22→42 (unit suite + TESTS gate step + CI), data 82→83 (FinCEN).
 
 > Wave 1 turned the monster-batch libraries into a **running system**: the pipeline spine executes
 > the whole vertical end-to-end on injected inputs, the event bus + cost ledger now emit/record on a
@@ -112,7 +123,45 @@ service (types + in-memory store; no service/API/engine/UI layer yet).
    now seedable from the Financial Services object catalog (`core/registry/data/`).
 
 ## Changelog
-- 2026-07-21 — **OLYMPIC SPRINT WAVE 4 (in progress) — Auric distribution + the editorial verification gate.**
+- 2026-07-21 — **OLYMPIC SPRINT WAVE 4 COMPLETE — Auric distribution + hardening (Sprint I closed).**
+  Built on the Wave-4 editorial-gate slice. Fanned out 3 workstream agents (new files only), integrated +
+  gated by the lead, then adversarially verified (no blockers; one test-coverage gap the verifier surfaced
+  was closed with a mutation-proven test). New:
+  (1) **Engine unit-test suite** — `tests/*.test.mjs` (**92 tests**) covering deal_engine (thresholds +
+  compliance gate + geometric-mean opportunity + sourced-inference lineage + determinism), ic_memo
+  (**approved-evidence-only, now proven to gate COVERAGE not just citations** — mutation-tested), allocation
+  (accreditation/sanctions/KYC-KYB gates + pro-rata + citations), settlement (advisory/syndication closed;
+  fund/spv vehicle_pending), auric engine (variant `source_refs` == IO refs, feed filter/stale/rank),
+  distribution (**editorial gate has teeth** — held/rejected/absent → 0 deliveries), confidence (decay/
+  propagate/reinforce/topTier/combineSources), profile-assemble, ingest_regulations (bi-temporal, held
+  claims), registry-service (propose-not-merge; **new is_identifier + merge-liveness guards**), harness
+  router. Run: `npm test` (or the debug loop's new TESTS step). Each test self-registers the `@/*` alias
+  hook + dynamically imports its target (native TS type-stripping) — no build step.
+  (2) **CI commit gate** — `.github/workflows/ci.yml` runs `node scripts/debug-loop.mjs` (now 8 steps incl.
+  TESTS) + `npm run build` on every push/PR to main. The green Bryan sees locally is the green that gates a push.
+  (3) **Observability** — `core/kernel/observability.ts` (pure, generic, no vertical nouns): `costDashboard`
+  (by category/correlation/label), `eventTimeline` + `replayFrom` (event replay over the append-only log),
+  `runHealth`. Surfaced at **`/observability`** (`app/observability/page.tsx` + `components/terminal/
+  ObservabilityView.tsx`): cost-by-category bars + a correlated event-replay timeline over the golden run's
+  kernel spine.
+  (4) **Distribution surface** — **`/distribution`** (`app/distribution/page.tsx` + `components/terminal/
+  DistributionView.tsx`): renders the editorial gate's HELD-vs-APPROVED contrast and every channel delivery
+  with its lineage (editorial `decision_ref` + `approved_by`), restated `source_refs`, and visibility
+  (terminal_feed=network, market_feed/brief=public).
+  (5) **`brief` channel now delivers** — the pipeline renders a `brief` channel-lens variant (appended, so
+  pre-existing variant ids are byte-identical), so an approved publication yields **5 deliveries across 3
+  channels**. A channel lens is dropped by `buildFeed` (matchesContext), so the ranked feed is unchanged.
+  (6) **Cleanup** — registry `is_identifier` (a non-identifying shared external id no longer proposes a
+  spurious duplicate) + merge-liveness/transitive-survivor guards; a router confidence-escalation
+  floating-point fix (a "round" shortfall escalates the intuitive rung count); a **FinCEN** regulation object
+  added to the catalog with SAR/CTR `filed_with_regulator` repointed (closed graph holds).
+  **Gate:** `node scripts/debug-loop.mjs` **ALL GREEN (8/8)** (TYPECHECK · ONTOLOGY · CARTRIDGE · ENGINE ·
+  PIPELINE · DATA · EDITORIAL · **TESTS 92/92**), full-app **`tsc` clean**, **`npm run build` exit 0**
+  (`/distribution` + `/observability` prerender static). Layers: kernel 20→26, truth 17→19, harness 13→18,
+  Auric 26→36, connectors 19→20, cartridge 72→75, terminal 30→40, tests 22→42, data 82→83; headline
+  **~33% → ~38%**. Additive; vehicle-agnostic; no regulated conclusion in weights; no core vertical leak.
+  0016+0017 still pending Bryan's Supabase apply — registry persistence stays in-memory behind the seam.
+- 2026-07-21 — **OLYMPIC SPRINT WAVE 4 (slice) — Auric distribution + the editorial verification gate.**
   New: `core/auric/distribution.ts` — channel variants (brief / market-feed / terminal-feed) + the **editorial
   verification gate**: an assembled + rendered IntelligenceObject reaches a channel ONLY on an approved HUMAN
   editorial disposition (`EditorialDisposition`, mirroring the pipeline's `ICApproval` pattern) — a SECOND, distinct

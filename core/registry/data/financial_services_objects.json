@@ -6307,6 +6307,31 @@
       }
     },
     {
+      "key": "object:regulation:fincen",
+      "label": "FinCEN",
+      "version": 1,
+      "status": "active",
+      "domain": "Regulation",
+      "object_class": "cartridge_entity",
+      "schema_ref": "financial_services:regulation:fincen",
+      "cartridge_key": "financial_services",
+      "metadata": {
+        "family_code": "2000",
+        "family_key": "fs:regulation",
+        "registry_object_class": "entity:financial_services:regulation:fincen",
+        "notes": "Financial Crimes Enforcement Network — the BSA/AML filing authority. SAR/CTR filings are submitted to FinCEN via BSA E-Filing (the prudential regulator — NCUA/FDIC/OCC — examines for BSA compliance).",
+        "attributes": [
+          "Citation",
+          "Jurisdiction",
+          "Applicability",
+          "Requirements",
+          "Deadlines",
+          "Controls",
+          "Findings"
+        ]
+      }
+    },
+    {
       "key": "object:regulation:call_reports",
       "label": "Call Reports",
       "version": 1,

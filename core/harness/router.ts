@@ -244,8 +244,11 @@ export function route(
   if (minC !== undefined && obs !== undefined && obs < minC) {
     confidenceShortfall = true;
     const shortfall = minC - obs;
-    // Deterministic: one rung per 0.2 of shortfall, at least one rung.
-    const steps = Math.max(1, Math.ceil(shortfall / 0.2));
+    // Deterministic: one rung per 0.2 of shortfall, at least one rung. The tiny
+    // epsilon absorbs floating-point drift (e.g. 0.9 - 0.3 = 0.6000000000000001,
+    // which would otherwise ceil to 4 rungs instead of the intended 3) so a
+    // "round" shortfall escalates the number of rungs a reader expects.
+    const steps = Math.max(1, Math.ceil(shortfall / 0.2 - 1e-9));
     const before = RUNG_LADDER[idx];
     idx = Math.min(idx + steps, RUNG_LADDER.length - 1);
     reasons.push(

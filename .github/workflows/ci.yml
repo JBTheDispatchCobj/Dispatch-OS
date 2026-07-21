@@ -1,0 +1,34 @@
+# Dispatch OS — commit gate (Olympic Sprint, Wave 4).
+#
+# The debug loop IS the gate. `node scripts/debug-loop.mjs` runs, in one command:
+#   TYPECHECK (full-app tsc) · ONTOLOGY (closed graph) · CARTRIDGE (canonical map)
+#   · ENGINE (P1/P2/P3 smoke) · PIPELINE (spine) · DATA (reconcile to source)
+#   · EDITORIAL (publication gate has teeth) · TESTS (node --test engine unit suite)
+# and exits non-zero on any failure. We additionally run `next build` so a broken
+# product surface (a page that fails to prerender) also fails the gate.
+#
+# This makes the exact green Bryan sees locally the green that gates every push/PR.
+
+name: CI (debug gate)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  debug-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Debug loop (typecheck · ontology · cartridge · engine · pipeline · data · editorial · tests)
+        run: node scripts/debug-loop.mjs
+      - name: Next build (product surfaces prerender)
+        run: npm run build

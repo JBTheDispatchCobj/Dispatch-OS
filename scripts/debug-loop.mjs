@@ -392,6 +392,31 @@ await step("EDITORIAL  (publication gate has teeth)", async () => {
   return `held/rejected→0 deliveries (gate has teeth) · approved→${pub.deliveries.length} deliveries across ${pub.channels.length} channels · sourced + restates IO · deterministic`;
 });
 
+// --- 8. Unit tests (Wave 4: the engines have teeth) --------------------------
+await step("TESTS      (node --test: engine unit suite)", () => {
+  if (!fs.existsSync(path.join(root, "node_modules"))) {
+    throw new Error("node_modules missing — run `npm install`, then re-run this loop (env, not code)");
+  }
+  // node --test discovers each tests/*.test.mjs; each self-registers the @/* alias
+  // hook and dynamically imports its target module (native TS type-stripping). This
+  // Node build rejects the bare-directory form, so we pass the explicit glob.
+  try {
+    const out = execSync("node --test tests/*.test.mjs", { cwd: root, stdio: "pipe" }).toString();
+    const pass = out.match(/#\s*pass\s+(\d+)/);
+    const fail = out.match(/#\s*fail\s+(\d+)/);
+    const total = out.match(/#\s*tests\s+(\d+)/);
+    if (fail && Number(fail[1]) > 0) throw new Error(`${fail[1]} unit test(s) failing`);
+    return `${total ? total[1] : "?"} unit tests across the engines, ${pass ? pass[1] : "?"} pass, 0 fail`;
+  } catch (e) {
+    if (e.stdout || e.stderr) {
+      const out = `${e.stdout ?? ""}${e.stderr ?? ""}`;
+      const fails = [...out.matchAll(/^not ok .*$/gm)].map((m) => m[0]).slice(0, 8);
+      throw new Error(`unit tests failed:\n     ${fails.join("\n     ") || out.slice(-400)}`);
+    }
+    throw e;
+  }
+});
+
 // --- Summary -----------------------------------------------------------------
 const failed = results.filter((r) => !r.ok);
 console.log(`\n${"═".repeat(52)}`);

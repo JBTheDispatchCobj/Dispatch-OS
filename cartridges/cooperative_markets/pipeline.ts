@@ -552,6 +552,21 @@ export function runDealPipeline(input: DealRunInput, ctx: RunContext): DealRun {
       hook: "Returns & capital path.",
       body: memo.lens_summaries.cfo,
     },
+    {
+      // The Auric — Bi-daily Brief digest. A CHANNEL lens (not role/cartridge): it
+      // is a broadcast publication surface, so it carries a distribution delivery on
+      // the `brief` channel but is intentionally NOT a personalized feed card
+      // (buildFeed's matchesContext drops channel lenses) — the ranked feed is
+      // unchanged. Appended LAST so the pre-existing market/role variant ids are
+      // byte-identical to the prior wave (positional ids in renderVariants). Restates
+      // the IO's refs exactly, like every variant.
+      lens_type: "channel",
+      lens_ref: "brief",
+      channel: "brief",
+      title: `Brief — ${memo.company} × ${memo.institution}`,
+      hook: "The bi-daily brief digest.",
+      body: `${labelRec(memo.recommendation)} (opportunity ${scorecard.scores.opportunity.value}). ${io.summary ?? io.headline}`,
+    },
   ];
   const variants = renderVariants(io, lenses, `${ctx.runId}:variant`, ctx.startedAt);
   rec.spend("variants");

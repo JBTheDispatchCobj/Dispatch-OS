@@ -279,7 +279,7 @@
       "relationships": [
         { "predicate": "generated_by", "target": "financial_services:compliance:aml", "cardinality": "one" },
         { "predicate": "about", "target": "financial_services:people:member", "cardinality": "one" },
-        { "predicate": "filed_with_regulator", "target": "financial_services:regulation:state_regulators", "cardinality": "one", "description": "Filed to FinCEN via BSA E-Filing; examined by the prudential regulator (NCUA/FDIC/OCC)." },
+        { "predicate": "filed_with_regulator", "target": "financial_services:regulation:fincen", "cardinality": "one", "description": "Filed to FinCEN via BSA E-Filing; examined by the prudential regulator (NCUA/FDIC/OCC)." },
         { "predicate": "approved_by", "target": "financial_services:people:executive", "cardinality": "one" },
         { "predicate": "documented_in", "target": "financial_services:operations:case", "cardinality": "one" }
       ],
@@ -322,7 +322,7 @@
       "relationships": [
         { "predicate": "about", "target": "financial_services:people:member", "cardinality": "one" },
         { "predicate": "part_of", "target": "financial_services:compliance:bsa", "cardinality": "one" },
-        { "predicate": "filed_with_regulator", "target": "financial_services:regulation:state_regulators", "cardinality": "one", "description": "Filed to FinCEN via BSA E-Filing." },
+        { "predicate": "filed_with_regulator", "target": "financial_services:regulation:fincen", "cardinality": "one", "description": "Filed to FinCEN via BSA E-Filing." },
         { "predicate": "sourced_via", "target": "financial_services:operations:batch_job", "cardinality": "one", "description": "Aggregation of same-day cash activity." }
       ],
       "lifecycle": {

@@ -1,88 +1,77 @@
-# Session Handoff — OLYMPIC SPRINT WAVE 3 (done) + WAVE 4 slice (editorial gate)
+# Session Handoff — OLYMPIC SPRINT WAVE 4 COMPLETE (Sprint I closed, ~38%)
 
 ## Where we are
-Platform build **~33%**. Waves 1, 2, 3 are **DONE**, and the **first slice of Wave 4** (Auric distribution +
-the editorial verification gate) is done. The Cooperative Markets vertical runs **on real data at scale**, has
-its first kernel/truth services, and now publishes to lensed channels behind a human editorial gate. Gate is
-green on all three checks: `npm run build` (exit 0, `/market` + `/terminal` prerender), full-app `tsc --noEmit`
-clean, and `node scripts/debug-loop.mjs` **ALL GREEN (7/7)**.
+Platform build **~38%**. **Sprint I is CLOSED.** Waves 1–4 are all DONE. The Cooperative Markets vertical
+runs end-to-end on real data, publishes to lensed channels behind two human gates (IC + editorial), and is
+now **unit-tested (92 tests) with the whole debug loop wired into a CI commit gate**, **observable** (cost
+dashboards + event replay at `/observability`), and its editorial-gated distribution is **rendered** at
+`/distribution`. Gate is green on all checks: `npm run build` (exit 0; `/terminal`, `/market`,
+`/distribution`, `/observability` all prerender), full-app `tsc --noEmit` clean, and
+`node scripts/debug-loop.mjs` **ALL GREEN (8/8)**.
 
-## Wave 4 slice completed this session (editorial gate + channel distribution)
-- **`core/auric/distribution.ts`** (NEW) — channel variants (brief / market-feed / terminal-feed) + the
-  **editorial verification gate**: `distribute(io, variants, channels, editorial, ctx)` publishes to a channel
-  ONLY on an approved HUMAN `EditorialDisposition` (a SECOND human gate, distinct from the IC deal gate). Held /
-  rejected / absent → nothing delivered; every `ChannelDelivery` carries the editorial `decision_ref` +
-  `approved_by` (lineage) and restates the IO refs exactly (`deliveriesRestateIO`). Pure/deterministic.
-- **`scripts/debug-loop.mjs`** — new **EDITORIAL** step (step 7): gate has teeth (held/rejected→0 deliveries;
-  approved→sourced deliveries that restate the IO; deterministic). ALL GREEN (7/7).
-- **Remaining Wave 4** (next chat): unit tests for the engines + wire debug-loop into CI; observability
-  (cost-ledger dashboards / event replay); a channel/distribution Terminal surface; `DEBUG_LOG` cleanup; wire the
-  Object Registry service to the supabase adapter IF `0016`+`0017` are applied. Wave 4 closes Sprint I (~40%).
-
-## The reality-check that shaped Wave 3 (read this)
-The kickoff said to wire `ingest_call_report` to "the real 5300 data in `docs/04_sources/ncua/`." That
-folder actually holds real NCUA **regulatory** data — **675 in-force 12 CFR sections + 10 pending
-amendments + the FCU Act** — **not** institution-level 5300 financials (which are nowhere in the repo).
-Per truth discipline I did **not** fabricate CU financials or fetch external data. So "live NCUA data at
-scale" was executed honestly as **real regulatory ingestion at scale**, and the institution 5300 path runs
-on a **clearly-labeled fixture batch** with the real per-CU connector deferred (a Sprint-III / Bryan-only task).
-
-## Completed this session (Wave 3) — all NEW files except two lead-owned edits
-- **`cartridges/cooperative_markets/ingest_regulations.ts`** + **`ingest_regulations_data.ts`** — pure/
-  deterministic batch ingestion of the REAL corpus into sourced, **bi-temporal** truth objects: in-force
-  sections → `Observation`/`public_fact`/`valid_from`=2026-07-15; pending amendments **with full text** →
-  future-dated `Observation` (flagged not-yet-in-force); amendatory **instructions** (no rewrite) → `Claim`
-  **held pending human/deterministic merge** (never auto-applied to legal text). Loader split so the pure
-  module stays importable under bare Node.
-- **`core/profile/assemble.ts`** — Profile Assembly Engine (RFC-3012): generic, pure, core (no vertical
-  nouns); rolls sourced fields up through `combineSources` (the confidence engine) → profile with
-  confidence / top_tier / lineage / completeness / a data-quality health band.
-- **`cartridges/cooperative_markets/ingest_batch.ts`** + **`batch_fixtures.ts`** — the 5300 batch path →
-  facts (`deterministic_calculation`, each citing its filing) + an assembled institution profile each, over
-  a labeled 7-CU illustrative fixture batch.
-- **`core/registry/service.ts`** — Object Registry service (RFC-2003) + entity resolution (blocking keys →
-  scored match candidates → append-only merge lineage) behind a `RegistryPersistencePort` seam with an
-  in-memory adapter. Duplicates are **proposed, never auto-merged**. Gated on `0016`+`0017` for live persistence.
-- **`app/market/page.tsx`** (server, wires the real ingestion + profiles + registry into a VM) +
-  **`components/terminal/MarketView.tsx`** (client surface) — the **`/market`** Terminal surface: institution
-  profile list + real regulatory environment + registry status.
-- **`scripts/wave3-demo.ts`** — `node scripts/wave3-demo.ts` runs all three paths on the real data and prints a summary.
-- **Lead-owned edits:** `app/layout.tsx` (one `Market` nav link); `scripts/debug-loop.mjs` (new **DATA-INTEGRITY** step).
+## Wave 4 completed this session (Auric distribution + hardening)
+- **`tests/*.test.mjs` (92 tests)** — deal_engine · ic_memo (approved-evidence-only, proven to gate DD
+  COVERAGE not just citations, via `ic_memo_approved_only.test.mjs`) · allocation · settlement · auric engine
+  + distribution · confidence · profile-assemble · ingest_regulations · registry-service (+ `registry_guards`)
+  · harness-router. Each self-registers the `@/*` alias hook + dynamically imports its target (native TS
+  type-stripping). `npm test` runs them.
+- **`scripts/debug-loop.mjs`** — new **TESTS** step (step 8) runs `node --test tests/*.test.mjs`; the loop is
+  now 8 steps.
+- **`.github/workflows/ci.yml`** — CI runs the debug loop + `next build` on every push/PR to `main` (the
+  commit gate).
+- **`core/kernel/observability.ts`** (NEW, pure/generic) — `costDashboard` · `eventTimeline` · `replayFrom`
+  · `runHealth`. Surfaced at **`/observability`** (`app/observability/page.tsx` +
+  `components/terminal/ObservabilityView.tsx`).
+- **`/distribution`** (`app/distribution/page.tsx` + `components/terminal/DistributionView.tsx`) — renders the
+  HELD-vs-APPROVED editorial-gate story + every channel delivery's lineage / restated refs / visibility.
+- **`cartridges/cooperative_markets/pipeline.ts`** — appended a `brief` **channel-lens** variant (pre-existing
+  variant ids unchanged; dropped by `buildFeed` so the ranked feed is unchanged) → an approved publication
+  delivers **5 across 3 channels**.
+- **`core/registry/service.ts`** — `is_identifier` guard (non-identifying shared external id no longer
+  proposes a spurious duplicate) + `applyMerge` liveness / `ultimateSurvivor` transitive-survivor guards.
+- **`core/harness/router.ts`** — confidence-escalation floating-point fix (`ceil(shortfall/0.2 - 1e-9)`).
+- **`core/registry/data/financial_services_objects.json` + `.../ontology/compliance.json`** — added a FinCEN
+  regulation object; repointed SAR/CTR `filed_with_regulator` to it (closed graph holds).
+- **Governance:** BUILD_PROGRESS (recomputed ~33%→~38%), CURRENT_STATE, ACTIVE_BUILD, DEBUG_LOG updated.
 
 ## Validation
-- **`node scripts/debug-loop.mjs` → ALL GREEN (6/6)**: TYPECHECK · ONTOLOGY · CARTRIDGE · ENGINE · PIPELINE ·
-  **DATA** (regulatory 675 in-force + 2 pending + 8 held, bi-temporal + deterministic · 7 profiles reconcile to
-  source via an independent ratio oracle · registry resolves+merges proposed→gated).
-- **`npx tsc --noEmit` → 0 errors.**  **`npm run build` → exit 0**, `/market` prerenders static (○).
-- **Adversarially verified by a 3-lens agent fleet** (truth discipline · resolver/purity/gate · integration/
-  client-server). **No blockers.** The DATA gate was hardened in response (pinned source counts + an independent
-  ratio oracle) so silent source-corpus shrinkage can no longer pass green. NON-BLOCKING items logged in `DEBUG_LOG.md`.
+- **`node scripts/debug-loop.mjs` → ALL GREEN (8/8)**: TYPECHECK · ONTOLOGY (181/0/0) · CARTRIDGE (10 refs) ·
+  ENGINE · PIPELINE (approved→settled, gate has teeth, deterministic) · DATA (675 in-force + profiles
+  reconcile) · EDITORIAL (held/rejected→0; approved→5 deliveries across 3 channels) · **TESTS (92/92)**.
+- **`npx tsc --noEmit` → 0 errors.**  **`npm run build` → exit 0**, 4 surfaces prerender static.
+- **Adversarially verified** — 3 workstream agents (new files only) + an independent verifier. No blockers.
+  The verifier surfaced a real test-coverage gap (approved-evidence-only didn't cover the COVERAGE path); it
+  was closed with a mutation-proven test. Two non-blocking notes (a positional variant-id shift — fixed by
+  appending the brief lens; a conservative transitive-re-merge throw — documented) logged in `DEBUG_LOG.md`.
 
 ## State of the world
-- **GitHub:** Wave 2 pushed (`a6073f3`); **Wave 3 push pending** (command below). **Supabase:** `0011`–`0015`
-  applied; **`0016`+`0017` still pending apply** (Bryan-only) — gates the Object Registry service's *live
-  persistence* + shared-market resolution + RLS, NOT the ingestion/profile/resolution logic, which runs in-memory now.
-- Both Terminal surfaces read computed output server-side (no persistence yet) — persistence is post-`0016`/`0017`.
+- **GitHub:** Wave 4 editorial-gate slice pushed at `73ce032`; **this Wave-4-complete commit is pending**
+  (command below). **Supabase:** `0011`–`0015` applied; **`0016`+`0017` still pending apply** (Bryan-only) —
+  gates the Object Registry service's *live persistence* + shared-market resolution + RLS, NOT the logic,
+  which runs in-memory now. All four Terminal surfaces read computed output server-side (no persistence yet).
 
-## Next: WAVE 4 — Auric distribution + hardening
-Paste **`WAVE_4_KICKOFF_PROMPT.md`** as the first message of the new chat. Scope: channel variants
-(brief / market-feed / terminal-feed) over the Auric engine + the editorial verification gate (human-approved
-before publish); unit tests for the engines; wire `scripts/debug-loop.mjs` into CI as the gate; cost-ledger
-dashboards + event replay; burn down `DEBUG_LOG` [DEFERRED]/[NON-BLOCKING] items.
+## Next: SPRINT II — Kernel & Truth platform (target ~55%)
+Paste **`SPRINT_II_KICKOFF_PROMPT.md`** as the first message of the new chat. Scope: Identity & Tenancy
+(RFC-2002) + permission engine; the Object Registry service maturing the match-candidate → merge pipeline
+across the shared-market plane (and wired to the supabase adapter once `0016`+`0017` are applied); the
+confidence engine driving live profile assembly + query; the kernel request envelope + contracts/API layer
+(RFC-2001/2014). **Prereq:** `0016`+`0017` applied (Bryan).
 
-## Bryan-only (route around; don't block the sprint)
-- **Apply `0016` + `0017` in Supabase** — unblocks the Object Registry service's live persistence + shared-market
-  resolution + RLS (Wave 3 built the service behind the seam; wiring is a short follow-up after the apply).
+## Bryan-only (route around; don't block)
+- **Apply `0016` + `0017` in Supabase** — unblocks the Object Registry service's live persistence + shared-
+  market resolution + RLS. Wave 3 built the service behind the seam; wiring the supabase adapter is a short
+  follow-up after the apply (Sprint II).
 - **Decide the investment vehicle** (fund / per-deal SPV / both) — unblocks P4 fund/spv settlement.
 - `git push`; VC/Alloya legal + entity.
 
 ## Exact next command (Bryan, Mac terminal)
 The Dispatch cloud sandbox cannot `git commit`/`git push` (its git VM blocks `.git` writes and has no
-identity). The Wave-3 files were written to your repo on disk. Run this in your Mac terminal (it first removes
-the two staging tarballs the cloud session used to move files, then commits):
+identity). The Wave-4 files were written to your repo on disk via a staging tarball extracted in the repo.
+The Wave-4 files were staged onto your disk as `_wave4_incoming.tgz` in the repo root. Run this in your Mac
+terminal — it clears the git lock + strays, EXTRACTS the tarball over the repo, removes the staging tarballs,
+`git status` to confirm no lost updates, then commits + pushes:
 ```
-cd ~/Downloads/Dispatch_OS_Cooperative_Markets_Repo && rm -f .git/index.lock && rm -rf _to_delete && git status && git add -A && git commit -m "Olympic Sprint Wave 4 (slice): Auric distribution + editorial verification gate — core/auric/distribution.ts publishes an IO's rendered variants to channels (brief/market-feed/terminal-feed) ONLY on an approved human EditorialDisposition (a second human gate, distinct from the IC deal gate); held/rejected/absent -> nothing published; deliveries carry the editorial decision_ref + approved_by and restate the IO refs exactly. Debug loop gains an EDITORIAL step (gate has teeth). npm run build exit 0; tsc clean; debug-loop ALL GREEN (7/7)." && git push
+cd ~/Downloads/Dispatch_OS_Cooperative_Markets_Repo && rm -f .git/index.lock && rm -rf _to_delete && tar xzf _wave4_incoming.tgz && rm -f _wave4_incoming.tgz _cloudsync_out.tgz && git status && git add -A && git commit -m "Olympic Sprint Wave 4 COMPLETE — Auric distribution + hardening (Sprint I closed, ~38%): engine unit-test suite (92 tests) wired into the debug loop (TESTS step) + GitHub Actions CI as the commit gate; core/kernel/observability.ts (cost dashboards + event replay) surfaced at /observability; /distribution surface renders the editorial-gated channel deliveries; brief channel now delivers (5 across 3 channels); registry is_identifier + merge-liveness/transitive-survivor guards; router confidence-escalation FP fix; FinCEN regulation object (SAR/CTR repointed). debug-loop ALL GREEN (8/8) incl TESTS 92/92; tsc clean; npm run build exit 0. Adversarially verified, no blockers." && git push
 ```
-Always `git status` first (the command above does) to confirm no lost updates before you commit. (Wave 3 is
-already pushed at `eed2490`; this commit is the Wave-4 editorial-gate slice: `core/auric/distribution.ts` +
-the debug-loop EDITORIAL step + the governance docs.)
+Always `git status` first (the command above does) to confirm no lost updates before you commit. (`tar xzf`
+runs in your native terminal, so it overwrites the changed files in place — the cloud mount can't.)

@@ -120,18 +120,34 @@ Waves: 1 spine · 2 Terminal UI · 3 live data + services · 4 Auric distributio
   ALL GREEN (6/6)** + `tsc` clean + `npm run build` exit 0 (`/market` prerenders). Adversarially verified
   (3 lenses; no blockers; the DATA gate was hardened — pinned source counts + independent ratio oracle —
   in response to the verification).
-- **◑ WAVE 4 — Auric distribution + hardening (IN PROGRESS).**
-  - **✅ Done (2026-07-21):** `core/auric/distribution.ts` — channel variants (brief / market-feed /
+- **✅ WAVE 4 — Auric distribution + hardening (DONE, 2026-07-21) — Sprint I CLOSED (~38%).**
+  - **Editorial gate + distribution:** `core/auric/distribution.ts` — channel variants (brief / market-feed /
     terminal-feed) + the **editorial verification gate**: an IO publishes to a channel ONLY on an approved
     HUMAN `EditorialDisposition` (a second human gate, distinct from the IC deal gate); held/rejected/absent →
     nothing delivered; deliveries carry the editorial `decision_ref` + `approved_by` and restate the IO refs
-    exactly. Debug loop gained an **EDITORIAL** step (gate has teeth). **debug-loop ALL GREEN (7/7)** + `tsc`
-    clean + `npm run build` exit 0.
-  - **▶ Remaining (next chat):** unit tests for the engines (deal engine, ic_memo, allocation, settlement,
-    auric engine + distribution, confidence, profile/assemble, ingest_regulations, registry/service); wire
-    `scripts/debug-loop.mjs` into CI as the commit gate; cost-ledger dashboards + event replay (observability);
-    a channel/distribution Terminal surface; burn down `DEBUG_LOG` [NON-BLOCKING]/[DEFERRED] items; wire the
-    Object Registry service to the supabase adapter IF Bryan has applied `0016`+`0017`. Wave 4 closes Sprint I (~40%).
+    exactly. Debug loop **EDITORIAL** step (gate has teeth).
+  - **Unit tests + CI:** `tests/*.test.mjs` — **92 tests** across deal_engine / ic_memo (approved-evidence-only
+    proven to gate coverage, not just citations) / allocation / settlement / auric engine + distribution /
+    confidence / profile-assemble / ingest_regulations / registry-service / harness-router; wired into the
+    debug loop as a **TESTS** step and into **GitHub Actions CI** (`.github/workflows/ci.yml`) as the commit
+    gate (debug loop + `next build`). `npm test` runs the suite.
+  - **Observability:** `core/kernel/observability.ts` (pure, generic — no vertical nouns): cost dashboard
+    (category/correlation/label) + event replay over the append-only kernel log + `runHealth`; **`/observability`**
+    Terminal surface (cost bars + correlated event-replay timeline).
+  - **Distribution surface:** **`/distribution`** renders the HELD-vs-APPROVED gate story + every channel
+    delivery with lineage / restated refs / visibility. The **`brief` channel** now delivers (a channel-lens
+    variant, appended so pre-existing variant ids are unchanged; dropped by `buildFeed` so the ranked feed is
+    unchanged) → an approved publication yields **5 deliveries across 3 channels**.
+  - **Cleanup:** registry `is_identifier` (non-identifying shared external id no longer proposes a spurious
+    duplicate) + merge-liveness/transitive-survivor guards; a router confidence-escalation floating-point fix;
+    a **FinCEN** regulation object added to the catalog with SAR/CTR `filed_with_regulator` repointed
+    (closed graph holds).
+  - **Gate:** debug-loop **ALL GREEN (8/8)** (TYPECHECK · ONTOLOGY · CARTRIDGE · ENGINE · PIPELINE · DATA ·
+    EDITORIAL · **TESTS 92/92**) + `tsc` clean + `npm run build` exit 0. Adversarially verified (no blockers).
+  - **Still Bryan-only / deferred (route around):** apply `0016`+`0017` in Supabase, then wire the Object
+    Registry service to the supabase adapter behind the seam (persistence is in-memory now). Remaining
+    NON-BLOCKING `DEBUG_LOG` items: FR per-rule SourceDocument attribution; Volume XI label reconciliation;
+    an allocation LP-identity reason-label nicety; the transitive re-merge edge (conservatively throws).
 2. **Live intake path** — call-report/startup ingestion so the loop runs on real data, not the
    seed (a real connector over the `ncua_call_reports` / `startup_intake` source types).
 3. **Canonical Entity Model + entity resolution (RFC-3002)** and **Identity & Tenancy

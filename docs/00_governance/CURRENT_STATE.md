@@ -1,6 +1,6 @@
 # Current State
 
-## Running now (Olympic Sprint — Wave 1, 2026-07-21)
+## Running now (Olympic Sprint — Sprint I CLOSED at Wave 4, ~38%, 2026-07-21)
 The first product vertical **RUNS end-to-end.** `cartridges/cooperative_markets/pipeline.ts`
 (`runDealPipeline`) chains **ingest(5300) → score → IC memo → allocate → settle → assembleIO →
 renderVariants → buildFeed** into one deterministic `DealRun`: every stage is routed through the
@@ -35,13 +35,30 @@ registry status. The debug loop gained a **DATA-INTEGRITY** step (pinned source 
 ratio oracle + profile→source reconciliation). Gate: `npm run build` exit 0 (`/market` prerenders) +
 debug-loop **ALL GREEN (6/6)** + `tsc` clean.
 
-**Wave 4 (IN PROGRESS, 2026-07-21):** the **Auric distribution + editorial verification gate** slice is
-done — `core/auric/distribution.ts` publishes an IO's rendered variants to channels (brief / market-feed /
+**Wave 4 (DONE, 2026-07-21) — Sprint I closed (~38%):** the **Auric distribution + editorial verification
+gate** (`core/auric/distribution.ts`) publishes an IO's rendered variants to channels (brief / market-feed /
 terminal-feed) ONLY on an approved HUMAN `EditorialDisposition` (a second human gate, distinct from the IC
 deal gate; held/rejected/absent → nothing published; deliveries carry the editorial `decision_ref` +
-`approved_by` and restate the IO refs exactly). Debug loop gained an **EDITORIAL** step; **ALL GREEN (7/7)** +
-`tsc` clean + `npm run build` exit 0. Remaining Wave 4: unit tests + CI, observability (cost dashboards / event
-replay), a channel Terminal surface, and `DEBUG_LOG` cleanup. Wave 4 closes Sprint I (~40%).
+`approved_by` and restate the IO refs exactly). Wave 4 then HARDENED the whole vertical:
+- **Engine unit-test suite** — `tests/*.test.mjs` (**92 tests**) over deal_engine / ic_memo (approved-
+  evidence-only, proven to gate COVERAGE) / allocation / settlement / auric engine + distribution /
+  confidence / profile-assemble / ingest_regulations / registry-service / harness-router — each self-registers
+  the `@/*` alias hook + dynamically imports its target (native TS type-stripping, no build step). Wired into
+  the debug loop as a **TESTS** step and into **GitHub Actions CI** (`.github/workflows/ci.yml`) as the commit
+  gate (debug loop + `next build` on every push/PR).
+- **Observability** — `core/kernel/observability.ts` (pure, generic): cost dashboard (by category/
+  correlation/label) + event replay over the kernel's append-only log + `runHealth`; surfaced at
+  **`/observability`**.
+- **Distribution Terminal surface** — **`/distribution`** renders the HELD-vs-APPROVED editorial-gate story
+  and every channel delivery with its lineage, restated refs, and visibility. The **`brief` channel** now
+  carries a delivery (a channel-lens variant), so an approved publication delivers **5 across 3 channels**.
+- **Cleanup** — registry `is_identifier` + merge-liveness/transitive-survivor guards; a router confidence-
+  escalation floating-point fix; a **FinCEN** regulation object (SAR/CTR repointed; closed graph holds).
+Gate: debug loop **ALL GREEN (8/8)** (adds **TESTS 92/92**) + `tsc` clean + `npm run build` exit 0. There are
+now four real Terminal surfaces: `/terminal`, `/market`, `/distribution`, `/observability`. Adversarially
+verified (3 workstream agents + an independent verifier; no blockers; one test-coverage gap surfaced by the
+verifier was closed with a mutation-proven test). 0016+0017 remain pending Bryan's Supabase apply — registry
+persistence stays in-memory behind the seam.
 
 ## Existing foundation
 - Next.js app; Supabase/Postgres adapter + migrations (`0001`–`0015` applied;

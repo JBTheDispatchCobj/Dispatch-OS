@@ -55,13 +55,48 @@ any time with `node scripts/debug-loop.mjs` (after `npm install`).
   scripts/ runtime shim only, never imported by `app/` or `core/`, and does not affect `next build`.
   Also: the pipeline avoids TS parameter-properties/enums (erasable-only) so type-stripping runs it.
 
-## Wave 4 — Auric distribution + editorial gate (2026-07-21, in progress)
+## Wave 4 — Auric distribution + hardening (2026-07-21, COMPLETE — Sprint I closed)
 
-- **[NON-BLOCKING] `brief` channel has no rendered variant yet.** `DEFAULT_CHANNELS` includes `brief`, but the
-  pipeline renders variants only on `market_feed` (cartridge lens) + `terminal_feed` (role lenses), so an approved
-  publication yields 4 deliveries across 2 channels (brief = 0). `distribute()` is channel-agnostic and correct;
-  it just needs a brief-lensed variant upstream. Action (Wave 4 cont.): add a `brief` LensSpec to the pipeline's
-  `renderVariants` (or a digest synthesis) so the bi-daily brief carries a delivery. Additive.
+- **[RESOLVED] `brief` channel now carries a delivery.** The pipeline renders a `brief` **channel-lens**
+  variant (appended LAST so the pre-existing market/role variant ids stay byte-identical). A `channel` lens is
+  dropped by `buildFeed` (`matchesContext`), so the ranked feed is unchanged, but `distribute()` filters by
+  `v.channel` so the brief variant lands on the `brief` channel — an approved publication now delivers **5
+  across 3 channels** (brief/market_feed public, terminal_feed network). Verified by the debug-loop EDITORIAL
+  step + `tests/distribution.test.mjs`.
+- **[RESOLVED] Engine unit tests + CI.** `tests/*.test.mjs` (92 tests) wired into the debug loop (TESTS step)
+  + GitHub Actions (`.github/workflows/ci.yml`). Mutation-tested for teeth: breaking the editorial gate → 2
+  failures; breaking approved-evidence-only → caught by `tests/ic_memo_approved_only.test.mjs` (added after the
+  first probe found the original citation/excluded assertions did NOT cover the COVERAGE path).
+- **[RESOLVED] Registry resolver + merge guards.** `is_identifier` on `ExternalId` (default true — a
+  non-identifying shared external id like `{system:"state"}` no longer proposes a spurious duplicate) +
+  `applyMerge` liveness (contradictory re-merge into a different survivor throws) + `ultimateSurvivor`
+  transitive-survivor resolution (with a cycle guard). Covered by `tests/registry_guards.test.mjs`. This burns
+  down the Wave-3 "[NON-BLOCKING / DEFERRED] Object Registry resolver + merge lack defensive guards" item.
+- **[RESOLVED] FinCEN object.** Added `financial_services:regulation:fincen` to the 341-class catalog and
+  repointed the compliance ontology's SAR + CTR `filed_with_regulator` targets from `state_regulators` to it.
+  Closed graph holds (181 objects, 0 unresolved). Burns down the Wave-0 "[DEFERRED] No FinCEN object" item.
+- **[was NON-BLOCKING → FIXED] Router confidence-escalation floating-point drift.** `route()` computed
+  `steps = ceil(shortfall / 0.2)`; a "round" shortfall like `0.9 - 0.3 = 0.6000000000000001` ceils to 4 rungs
+  instead of the intended 3. **Fix:** `ceil(shortfall / 0.2 - 1e-9)`. Deterministic; the router unit tests
+  (0.1→1 rung, 0.8→4 rungs) still hold. (Found by the unit-test agent.)
+- **[DEFERRED] Distribution not yet surfaced → RESOLVED.** `/distribution` (`app/distribution/page.tsx` +
+  `components/terminal/DistributionView.tsx`) renders the HELD-vs-APPROVED gate story + every delivery's
+  lineage. Observability likewise surfaced at `/observability`.
+- **[NON-BLOCKING] Allocation LP-identity reason label.** `allocation.ts:122` — for an LP missing BOTH KYC
+  and KYB, the reason is always `kyc_incomplete` (the `kyb_incomplete` arm of the ternary is unreachable inside
+  `!kycOk`). Harmless (identity is correctly gated; only the label is imprecise). Action: report both missing
+  identity docs, or the kind-appropriate one. Left untouched to avoid churn on a heavily-tested engine.
+- **[NON-BLOCKING] Transitive re-merge conservatively throws.** Re-applying `applyMerge(A,B)` AFTER A has
+  itself been merged into C resolves the survivor to C and the liveness guard throws (B still points at A).
+  This is intentional-conservative: it refuses an ambiguous re-merge rather than silently forking/flattening
+  the append-only lineage. Real-world merges are single-level today (the DATA step + tests exercise only direct
+  merges). Action (post 0016+0017): if path-compression is wanted, treat B→A→C as consistent and no-op.
+- **[DEFERRED] FR per-rule SourceDocument attribution (carried from Wave 3).** Amendment truth objects still
+  cite the eCFR bulk corpus `source_document_id`, not a per-FR-rule SourceDocument (full FR provenance is
+  retained in `provenance_metadata` + `claimant_ref`, so nothing is lost — the indexed chain is imprecise).
+  Cheap-but-not-trivial (touches provenance + would shift byte output); deferred to the real FR connector.
+- **[DEFERRED] Volume XI label collision (carried).** Doc reconciliation pending Bryan folding his
+  Institutional Intelligence Library into the docs set; not a code change.
 - **[NON-BLOCKING] Per-delivery visibility is the channel default.** `distribute()` sets each delivery's
   visibility from its `ChannelSpec` (terminal_feed→network, market_feed/brief→public). A future policy step could
   narrow an individual variant below its channel default (the Wave-1 per-variant-visibility carry-over). No leak
