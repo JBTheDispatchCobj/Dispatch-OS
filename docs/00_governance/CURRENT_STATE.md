@@ -9,8 +9,15 @@ a regulated conclusion (the IC memo) may not allocate/settle/publish until a cal
 `ICApproval` disposes it `approved`; otherwise the run halts `awaiting_approval` (proven: unapproved
 golden input publishes nothing; approved → settled, IO lifted to `human_approved_conclusion`).
 `node scripts/pipeline-demo.ts` runs Halcyon × Summit end-to-end; the debug loop gained a PIPELINE
-step and is **ALL GREEN (5/5)** with full-app `tsc` clean. Next: **Wave 2 — the Terminal UI** reading
-the pipeline output (see `SPRINT_PLAN.md`).
+step and is **ALL GREEN (5/5)** with full-app `tsc` clean.
+
+**Wave 2 (DONE):** the real **Terminal UI** is live at `/terminal` (`app/terminal/page.tsx` +
+`components/terminal/TerminalView.tsx`) — it renders the live `runDealPipeline` output as a product
+surface: harness stage rail with the human gate, institution + deal scorecards, the CEO/CRO/CFO
+executive-lens toggle over `buildFeed`, IC memo, allocation, settlement/monitoring, and the kernel
+spine. Gate: `npm run build` exit 0 (`/terminal` prerenders) + debug-loop green + `tsc` clean.
+Next: **Wave 3 — live NCUA data at scale + kernel/truth services** (Object Registry service gated on
+Bryan applying `0016`+`0017`; the ingestion + profile-assembly path proceeds now).
 
 ## Existing foundation
 - Next.js app; Supabase/Postgres adapter + migrations (`0001`–`0015` applied;

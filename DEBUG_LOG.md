@@ -55,6 +55,19 @@ any time with `node scripts/debug-loop.mjs` (after `npm install`).
   scripts/ runtime shim only, never imported by `app/` or `core/`, and does not affect `next build`.
   Also: the pipeline avoids TS parameter-properties/enums (erasable-only) so type-stripping runs it.
 
+## Wave 2 — Terminal UI (2026-07-21)
+
+- **[was BUG → FIXED] IO `relevance` is `Record<string, unknown>`.** The Terminal view-model read
+  `run.io.relevance?.score` / `.evidence_count`, which typed as `unknown` and failed the Next build's
+  TypeScript pass. **Fix:** coerce with `typeof x === "number" ? x : fallback` in `app/terminal/page.tsx`.
+  (Caught by `npm run build`'s type step, not `tsc --noEmit` alone — both are now part of the Wave 2 gate.)
+- **[NON-BLOCKING] Terminal reads the golden fixture, not persisted/live data.** `app/terminal/page.tsx`
+  runs `runDealPipeline(halcyonSummitRun())` server-side each render. Live NCUA data at scale +
+  persistence is Wave 3 (gated on `0016`/`0017` for the registry service).
+- **[DEFERRED] Per-variant visibility (carried from Wave 1).** Role-lens variants still inherit the IO's
+  `network` visibility; the Terminal renders them on the `terminal_feed` channel, which is correct for
+  the institution surface, but the engine-level per-variant visibility override remains a Wave 2/4 item.
+
 ## Notes / design choices (not issues)
 
 - Opportunity Score uses a **geometric mean** of strategic × regulatory × timing (keeps 0–100 scale

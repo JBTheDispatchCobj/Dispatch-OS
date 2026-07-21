@@ -97,14 +97,22 @@ Waves: 1 spine · 2 Terminal UI · 3 live data + services · 4 Auric distributio
   `scripts/pipeline-demo.ts` + `pipeline_fixtures.ts` + `scripts/alias-hook.mjs`; debug loop extended
   with a PIPELINE step. **`node scripts/debug-loop.mjs` ALL GREEN (5/5)**, full-app `tsc` clean.
   Adversarially verified (one blocker — decorative gate — found + fixed before commit).
-- **▶ WAVE 2 — Terminal UI (NEXT).** Replace `terminal_demo.html` with the real Next.js product
-  surface reading `runDealPipeline` output: runtime shell + nav; opportunity feed with the
-  executive-lens toggle (CEO/CRO/CFO) over `buildFeed`; institution/deal scorecards (P1); IC memo
-  view (P2); allocation (P3); portfolio/monitoring (P4). New files under `app/terminal/*`. Gate:
-  `npm run build` (Next) + debug-loop green.
-- Waves 3–4: live NCUA ingestion at scale + kernel/truth services (post `0016`/`0017`); Auric
-  distribution + tests/CI/observability. Debug cadence: log to `DEBUG_LOG.md`, fix blockers,
-  `node scripts/debug-loop.mjs` green at each wave gate.
+- **✅ WAVE 2 — Terminal UI (DONE, 2026-07-21).** The real Next.js product surface at `/terminal`
+  (`app/terminal/page.tsx` server + `components/terminal/TerminalView.tsx` client) reads the live
+  `runDealPipeline` output: run header + harness stage rail (human gate flagged); institution + deal
+  scorecards (P1); opportunity feed with the **CEO/CRO/CFO executive-lens toggle** over `buildFeed`
+  + the role-lensed memo summary; IC memo (P2); allocation (P3); settlement/monitoring (P4); kernel
+  spine (events + cost). One-line `Terminal` nav link added (lead-owned). Gate: **`npm run build`
+  exit 0** (`/terminal` prerenders) + **debug-loop green** + **`tsc` clean**; screenshot verified.
+- **▶ WAVE 3 — Live data + kernel/truth services (NEXT).** Wire `ingest_call_report` to the real
+  NCUA 5300 data in `docs/04_sources/ncua/` at scale (batch → institution profiles); profile
+  assembly (RFC-3012) using the confidence engine. **Object Registry service (RFC-2003) + entity
+  resolution + persistence are gated on Bryan applying `0016`+`0017`** — route around: build the
+  ingestion + profile path now, wire persistence/registry after the apply. Gate: debug-loop green +
+  a data-integrity check (profiles reconcile to source).
+- **Wave 4 — Auric distribution + hardening.** Channel variants + editorial gate; tests/CI/
+  observability. Debug cadence: log to `DEBUG_LOG.md`, fix blockers, `node scripts/debug-loop.mjs`
+  green at each wave gate.
 2. **Live intake path** — call-report/startup ingestion so the loop runs on real data, not the
    seed (a real connector over the `ncua_call_reports` / `startup_intake` source types).
 3. **Canonical Entity Model + entity resolution (RFC-3002)** and **Identity & Tenancy

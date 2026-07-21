@@ -1,6 +1,6 @@
 # Build Progress Tracker
 
-**Current build completion: ~26%** &nbsp;·&nbsp; Last updated: 2026-07-21 (OLYMPIC SPRINT WAVE 1 — the orchestration spine: `cartridges/cooperative_markets/pipeline.ts` wires ingest(5300) → score → IC memo → allocate → settle → assembleIO → renderVariants → buildFeed into one deterministic `DealRun`, emitting kernel events + cost entries and routing every stage through the harness, with a REAL human gate on the regulated conclusion. Debug loop ALL GREEN incl. a new PIPELINE step; full-app `tsc` clean.)
+**Current build completion: ~28%** &nbsp;·&nbsp; Last updated: 2026-07-21 (OLYMPIC SPRINT WAVE 2 — the real Terminal UI: `app/terminal` + `components/terminal/TerminalView.tsx` render the live `runDealPipeline` output as a product surface — harness stage rail with the human gate, institution + deal scorecards, the CEO/CRO/CFO executive-lens toggle over `buildFeed`, IC memo, allocation, settlement/monitoring, and the kernel spine. Gate: `npm run build` exit 0 (/terminal prerenders) + debug-loop ALL GREEN (5/5) + full-app `tsc` clean.)
 
 > Note: this table tracks the **platform** build. Knowledge-content sprints (Volume XI
 > Canonical Ontology and the roadmap's Truth Models / Rule / Workflow / Agent / Connector /
@@ -27,10 +27,10 @@ service (types + in-memory store; no service/API/engine/UI layer yet).
 | Agent Harness + Execution Engine (router, planner, runtime, evaluation) | 15% | 13% | 1.95 |
 | Publication (Auric) engine | 8% | 20% | 1.6 |
 | Connector implementations + ingestion | 7% | 10% | 0.7 |
-| Cooperative Markets cartridge (first product) | 8% | 62% | 4.96 |
-| Terminal (customer-facing product) | 7% | 2% | 0.14 |
+| Cooperative Markets cartridge (first product) | 8% | 66% | 5.28 |
+| Terminal (customer-facing product) | 7% | 22% | 1.54 |
 | Tests / observability / productionization | 5% | 14% | 0.7 |
-| **Total** | **100%** | — | **~26%** |
+| **Total** | **100%** | — | **~28%** |
 
 > Wave 1 turned the monster-batch libraries into a **running system**: the pipeline spine executes
 > the whole vertical end-to-end on injected inputs, the event bus + cost ledger now emit/record on a
@@ -107,6 +107,24 @@ service (types + in-memory store; no service/API/engine/UI layer yet).
    now seedable from the Financial Services object catalog (`core/registry/data/`).
 
 ## Changelog
+- 2026-07-21 — **OLYMPIC SPRINT WAVE 2 — the real Terminal UI (something to click).**
+  New: `app/terminal/page.tsx` (server — runs `runDealPipeline` on the Halcyon × Summit golden
+  fixture, precomputes the per-role feeds, shapes a serializable view-model) +
+  `components/terminal/TerminalView.tsx` (client — the product surface). It renders the live run:
+  a **run header** (status badge + the human-approval line), the **harness stage rail** (rung per
+  stage, the IC-memo human gate visibly flagged), the **institution scorecard** (5300 facts) and
+  **deal scorecard** (P1 score bars), the **opportunity feed** with a working **CEO/CRO/CFO
+  executive-lens toggle** over `buildFeed` output + the role-lensed memo summary, the **IC memo**
+  (P2 — coverage/citations/excluded/risks/conditions), **allocation** (P3 — capacity bar +
+  allocations + gated rejections), **settlement/monitoring** (P4 — committed/called/distributed +
+  the published IO tier `human_approved_conclusion`), and the **kernel spine** (9 correlated events
+  + cost by category). Reuses the app design tokens; self-contained VM types so no server module
+  enters the client bundle; a one-line `Terminal` nav link added to the root layout (lead-owned).
+  Validation: **`npm run build` exit 0** (`/terminal` prerenders static) + full-app **`tsc` clean**
+  + **debug-loop ALL GREEN (5/5)**; screenshot captured of the rendered Halcyon × Summit run with a
+  working lens toggle and nothing regulated shown without lineage. Layers: Terminal **2→22%**,
+  cartridge **62→66%**; headline **~26% → ~28%**. Additive (only the root nav link edited); no
+  core/pipeline churn. Next: Wave 3 (live NCUA data + kernel/truth services).
 - 2026-07-21 — **OLYMPIC SPRINT WAVE 1 — orchestration spine (the parts become a system).**
   New: `cartridges/cooperative_markets/pipeline.ts` — `runDealPipeline(input, ctx)` chains
   **ingest(5300) → score (P1) → IC memo (P2) → allocate (P3) → settle (P4) → assembleIO →
