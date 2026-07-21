@@ -1,71 +1,73 @@
-# Session Handoff — OLYMPIC SPRINT WAVE 2 (Terminal UI, live over the pipeline)
+# Session Handoff — OLYMPIC SPRINT WAVE 3 (live data + kernel/truth services)
 
 ## Where we are
-Platform build **~28%** (up from ~26%). Waves 1 **and** 2 of the Olympic Sprint are **DONE**. The
-first product vertical runs end-to-end (Wave 1 spine) **and now has a real UI**: `/terminal` renders
-the live `runDealPipeline` output as a product surface. Gate is green on all three checks:
-`npm run build` (exit 0, `/terminal` prerenders), full-app `tsc --noEmit` clean, and
-`node scripts/debug-loop.mjs` **ALL GREEN (5/5)**.
+Platform build **~33%** (up from ~28%). Waves 1, 2 **and** 3 of the Olympic Sprint are **DONE**. The
+Cooperative Markets vertical now runs **on real data at scale** and has its first kernel/truth services.
+Gate is green on all three checks: `npm run build` (exit 0, `/market` **and** `/terminal` prerender),
+full-app `tsc --noEmit` clean, and `node scripts/debug-loop.mjs` **ALL GREEN (6/6)**.
 
-## Completed this session
-**Wave 1 — Orchestration spine** (committed + pushed earlier: `6ac6be5..1233d04`): `pipeline.ts`
-chains ingest→score→IC memo→[human gate]→allocate→settle→assembleIO→renderVariants→buildFeed into a
-deterministic `DealRun`; kernel events + cost ledger + harness routing; real human gate; fixtures +
-runnable demo + `@/` alias hook; debug-loop PIPELINE step.
+## The reality-check that shaped Wave 3 (read this)
+The kickoff said to wire `ingest_call_report` to "the real 5300 data in `docs/04_sources/ncua/`." That
+folder actually holds real NCUA **regulatory** data — **675 in-force 12 CFR sections + 10 pending
+amendments + the FCU Act** — **not** institution-level 5300 financials (which are nowhere in the repo).
+Per truth discipline I did **not** fabricate CU financials or fetch external data. So "live NCUA data at
+scale" was executed honestly as **real regulatory ingestion at scale**, and the institution 5300 path runs
+on a **clearly-labeled fixture batch** with the real per-CU connector deferred (a Sprint-III / Bryan-only task).
 
-**Wave 2 — Terminal UI** (this commit):
-- **`app/terminal/page.tsx`** (server) — runs `runDealPipeline(halcyonSummitRun())`, precomputes the
-  per-role feeds via `buildFeed`, and shapes a serializable view-model.
-- **`components/terminal/TerminalView.tsx`** (client) — the product surface: run header + status +
-  approval line; harness **stage rail** with the IC-memo **human gate flagged**; **institution
-  scorecard** (5300 facts) + **deal scorecard** (P1 bars); **opportunity feed** with a working
-  **CEO/CRO/CFO lens toggle** over `buildFeed` + the role-lensed memo summary; **IC memo** (P2);
-  **allocation** (P3, capacity bar + gated rejections); **settlement/monitoring** (P4 + published IO
-  tier); **kernel spine** (events + cost by category). Self-contained VM types (no server module in
-  the client bundle); reuses the app design tokens.
-- **`app/layout.tsx`** — one-line `Terminal` nav link (lead-owned index edit).
-- **`docs/00_governance/OLYMPIC_SPRINT_ROADMAP.md`** — the wave-by-wave 26%→~100% roadmap.
+## Completed this session (Wave 3) — all NEW files except two lead-owned edits
+- **`cartridges/cooperative_markets/ingest_regulations.ts`** + **`ingest_regulations_data.ts`** — pure/
+  deterministic batch ingestion of the REAL corpus into sourced, **bi-temporal** truth objects: in-force
+  sections → `Observation`/`public_fact`/`valid_from`=2026-07-15; pending amendments **with full text** →
+  future-dated `Observation` (flagged not-yet-in-force); amendatory **instructions** (no rewrite) → `Claim`
+  **held pending human/deterministic merge** (never auto-applied to legal text). Loader split so the pure
+  module stays importable under bare Node.
+- **`core/profile/assemble.ts`** — Profile Assembly Engine (RFC-3012): generic, pure, core (no vertical
+  nouns); rolls sourced fields up through `combineSources` (the confidence engine) → profile with
+  confidence / top_tier / lineage / completeness / a data-quality health band.
+- **`cartridges/cooperative_markets/ingest_batch.ts`** + **`batch_fixtures.ts`** — the 5300 batch path →
+  facts (`deterministic_calculation`, each citing its filing) + an assembled institution profile each, over
+  a labeled 7-CU illustrative fixture batch.
+- **`core/registry/service.ts`** — Object Registry service (RFC-2003) + entity resolution (blocking keys →
+  scored match candidates → append-only merge lineage) behind a `RegistryPersistencePort` seam with an
+  in-memory adapter. Duplicates are **proposed, never auto-merged**. Gated on `0016`+`0017` for live persistence.
+- **`app/market/page.tsx`** (server, wires the real ingestion + profiles + registry into a VM) +
+  **`components/terminal/MarketView.tsx`** (client surface) — the **`/market`** Terminal surface: institution
+  profile list + real regulatory environment + registry status.
+- **`scripts/wave3-demo.ts`** — `node scripts/wave3-demo.ts` runs all three paths on the real data and prints a summary.
+- **Lead-owned edits:** `app/layout.tsx` (one `Market` nav link); `scripts/debug-loop.mjs` (new **DATA-INTEGRITY** step).
 
 ## Validation
-- **`npm run build` → exit 0**; `/terminal` prerenders static (○). Full-app **`tsc --noEmit` → 0 errors**.
-- **`node scripts/debug-loop.mjs` → ALL GREEN (5/5)** (unchanged by Wave 2 — additive).
-- Screenshot captured of the rendered Halcyon × Summit run: SETTLED, lens toggle working, human gate
-  visible, nothing regulated shown without lineage.
+- **`node scripts/debug-loop.mjs` → ALL GREEN (6/6)**: TYPECHECK · ONTOLOGY · CARTRIDGE · ENGINE · PIPELINE ·
+  **DATA** (regulatory 675 in-force + 2 pending + 8 held, bi-temporal + deterministic · 7 profiles reconcile to
+  source via an independent ratio oracle · registry resolves+merges proposed→gated).
+- **`npx tsc --noEmit` → 0 errors.**  **`npm run build` → exit 0**, `/market` prerenders static (○).
+- **Adversarially verified by a 3-lens agent fleet** (truth discipline · resolver/purity/gate · integration/
+  client-server). **No blockers.** The DATA gate was hardened in response (pinned source counts + an independent
+  ratio oracle) so silent source-corpus shrinkage can no longer pass green. NON-BLOCKING items logged in `DEBUG_LOG.md`.
 
 ## State of the world
-- **GitHub:** Wave 1 pushed (`1233d04`); **Wave 2 push pending** (command below). **Supabase:**
-  `0011`–`0015` applied; **`0016`+`0017` still pending apply** (Bryan-only; gates Wave 3's Object
-  Registry service + persistence, not the ingestion path).
-- The Terminal reads the golden fixture server-side (no persistence yet) — live NCUA data is Wave 3.
+- **GitHub:** Wave 2 pushed (`a6073f3`); **Wave 3 push pending** (command below). **Supabase:** `0011`–`0015`
+  applied; **`0016`+`0017` still pending apply** (Bryan-only) — gates the Object Registry service's *live
+  persistence* + shared-market resolution + RLS, NOT the ingestion/profile/resolution logic, which runs in-memory now.
+- Both Terminal surfaces read computed output server-side (no persistence yet) — persistence is post-`0016`/`0017`.
 
-## Next: WAVE 3 — Live data + kernel/truth services
-- **Live NCUA ingestion** — wire `cartridges/cooperative_markets/ingest_call_report.ts` to the real
-  5300 data in `docs/04_sources/ncua/` at scale (batch → institution profiles). **Proceeds now.**
-- **Profile assembly (RFC-3012)** using the confidence engine (`core/truth/confidence.ts`) —
-  institution/company profiles from sourced facts. Proceeds now.
-- **Object Registry service (RFC-2003) + entity resolution + persistence** — **gated on Bryan
-  applying `0016`+`0017`**; build behind the seam, wire after the apply (route around, don't block).
-- Gate: debug-loop green + a data-integrity check (profiles reconcile to source). Then Wave 4
-  (Auric distribution + tests/CI/observability).
+## Next: WAVE 4 — Auric distribution + hardening
+Paste **`WAVE_4_KICKOFF_PROMPT.md`** as the first message of the new chat. Scope: channel variants
+(brief / market-feed / terminal-feed) over the Auric engine + the editorial verification gate (human-approved
+before publish); unit tests for the engines; wire `scripts/debug-loop.mjs` into CI as the gate; cost-ledger
+dashboards + event replay; burn down `DEBUG_LOG` [DEFERRED]/[NON-BLOCKING] items.
 
 ## Bryan-only (route around; don't block the sprint)
+- **Apply `0016` + `0017` in Supabase** — unblocks the Object Registry service's live persistence + shared-market
+  resolution + RLS (Wave 3 built the service behind the seam; wiring is a short follow-up after the apply).
 - **Decide the investment vehicle** (fund / per-deal SPV / both) — unblocks P4 fund/spv settlement.
-- **Apply `0016` + `0017` in Supabase** — unblocks the Object Registry service + persistence (Wave 3).
 - `git push`; VC/Alloya legal + entity.
 
 ## Exact next command (Bryan, Mac terminal)
+The Dispatch cloud sandbox cannot `git commit`/`git push` (its git VM blocks `.git` writes and has no
+identity). The Wave-3 files were written to your repo on disk. Run this in your Mac terminal (it first removes
+the two staging tarballs the cloud session used to move files, then commits):
 ```
-cd ~/Downloads/Dispatch_OS_Cooperative_Markets_Repo && git add -A && git commit -m "Olympic Sprint Wave 2: real Terminal UI at /terminal — app/terminal/page.tsx (server: runs the pipeline, shapes a view-model) + components/terminal/TerminalView.tsx (client: harness rail with the human gate, institution+deal scorecards, CEO/CRO/CFO lens toggle over buildFeed, IC memo, allocation, settlement, kernel spine); Terminal nav link; wave-by-wave roadmap doc. npm run build exit 0 (/terminal prerenders); tsc clean; debug-loop ALL GREEN (5/5)." && git push
+cd ~/Downloads/Dispatch_OS_Cooperative_Markets_Repo && rm -f .git/index.lock && rm -rf _to_delete && git status && git add -A && git commit -m "Olympic Sprint Wave 3: live data + kernel/truth services — real NCUA regulatory ingestion at scale (ingest_regulations.ts: 675 in-force 12 CFR sections + 10 pending amendments -> sourced bi-temporal public_fact truth objects; instructions held pending human merge), Profile Assembly Engine (core/profile/assemble.ts, RFC-3012) over the confidence engine, 5300 batch path -> assembled institution profiles (labeled fixture batch), Object Registry service (core/registry/service.ts, RFC-2003) + entity resolution behind the 0016/0017 seam, and a /market Terminal surface. Debug loop gains a DATA-INTEGRITY step (pinned source counts + independent ratio oracle + reconciliation). npm run build exit 0 (/market prerenders); tsc clean; debug-loop ALL GREEN (6/6)." && git push
 ```
-
-## To resume in a fresh chat (Wave 3)
-Paste the block in **`WAVE_3_KICKOFF_PROMPT.md`** as the first message of the new chat. It orients
-the next session on the operating contract, sets the checkpoint + context-budget discipline
-(checkpoint every wave; stop at ~80% context and hand off; never sprint waves without checkpoints),
-and scopes Wave 3 (live NCUA data + profile assembly now; Object Registry service + persistence
-after Bryan applies 0016+0017).
-
-## Note on committing (read before expecting a push)
-The Dispatch cloud sandbox cannot `git commit`/`git push` — its git VM blocks `.git` writes
-(permission) and has no identity. Wave 2's files are written to disk and **staged**; run the git
-command above yourself in your Mac terminal. Always `git status` first to confirm no lost updates.
+Always `git status` first (the command above does) to confirm no lost updates before you commit.

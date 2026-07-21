@@ -15,9 +15,26 @@ step and is **ALL GREEN (5/5)** with full-app `tsc` clean.
 `components/terminal/TerminalView.tsx`) — it renders the live `runDealPipeline` output as a product
 surface: harness stage rail with the human gate, institution + deal scorecards, the CEO/CRO/CFO
 executive-lens toggle over `buildFeed`, IC memo, allocation, settlement/monitoring, and the kernel
-spine. Gate: `npm run build` exit 0 (`/terminal` prerenders) + debug-loop green + `tsc` clean.
-Next: **Wave 3 — live NCUA data at scale + kernel/truth services** (Object Registry service gated on
-Bryan applying `0016`+`0017`; the ingestion + profile-assembly path proceeds now).
+spine.
+
+**Wave 3 (DONE, 2026-07-21):** the vertical now runs on **REAL data at scale** + the first kernel/truth
+services. The data staged in `docs/04_sources/ncua/` is real NCUA **regulatory** text (675 in-force 12
+CFR sections + 10 pending amendments), **not** 5300 financials, so "live NCUA data at scale" was executed
+honestly against it. `cartridges/cooperative_markets/ingest_regulations.ts` ingests the real corpus into
+sourced, **bi-temporal** truth objects (in-force → `public_fact` at the issue date; pending full-text →
+future-dated observations; amendatory **instructions** → claims **held pending human merge**, never
+auto-applied). `core/profile/assemble.ts` is the **Profile Assembly Engine (RFC-3012)** — generic/core,
+rolling sourced fields up through the confidence engine into a profile with confidence/top_tier/lineage/
+completeness/health. `cartridges/cooperative_markets/ingest_batch.ts` runs the **5300 batch path** → facts
+(`deterministic_calculation`, each citing its filing) + an assembled institution profile each, over a
+clearly-labeled fixture batch (real per-CU 5300 connector deferred). `core/registry/service.ts` is the
+**Object Registry service (RFC-2003)** + entity resolution behind a persistence seam (in-memory now;
+duplicates **proposed, never auto-merged**; live persistence gated on `0016`+`0017`). A second Terminal
+surface, **`/market`**, renders the institution-profile list + the real regulatory environment + the
+registry status. The debug loop gained a **DATA-INTEGRITY** step (pinned source counts + an independent
+ratio oracle + profile→source reconciliation). Gate: `npm run build` exit 0 (`/market` prerenders) +
+debug-loop **ALL GREEN (6/6)** + `tsc` clean. Next: **Wave 4 — Auric distribution + hardening**
+(channel variants + editorial gate; unit tests; debug loop → CI; cost-ledger dashboards / event replay).
 
 ## Existing foundation
 - Next.js app; Supabase/Postgres adapter + migrations (`0001`–`0015` applied;

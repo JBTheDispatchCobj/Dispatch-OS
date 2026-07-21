@@ -55,6 +55,42 @@ any time with `node scripts/debug-loop.mjs` (after `npm install`).
   scripts/ runtime shim only, never imported by `app/` or `core/`, and does not affect `next build`.
   Also: the pipeline avoids TS parameter-properties/enums (erasable-only) so type-stripping runs it.
 
+## Wave 3 — Live data + kernel/truth services (2026-07-21)
+
+- **[was ENV RISK → RESOLVED] JSON import under bare-Node type-stripping.** `ingest_regulations.ts`
+  originally `import`ed the 2.7 MB corpus JSON at module top level; the debug loop imports the module
+  under Node native type-stripping, where a bare `import x from "*.json"` throws (missing import
+  attribute). **Fix:** split the loader into `ingest_regulations_data.ts` (static JSON import — Next/webpack
+  inlines it) so the pure ingestion module stays side-effect-free; the debug loop reads the JSON via `fs`
+  and passes parsed records in. tsc + build + debug-loop all green after the split.
+- **[was WEAK-GATE → FIXED] DATA-INTEGRITY step had too many construction-identity asserts.** The Wave-3
+  adversarial fleet flagged that several DATA-step assertions restated module constants and no source count
+  was pinned, so silent source-corpus shrinkage could pass green. **Fix:** pinned the source shape
+  (`records.length === 675`, `amendments.length === 10`), added a unique-truth-object-id check, a
+  one-object-per-source-record check, and an **independent ratio oracle** (raw 5300 figures worked out
+  longhand vs the assembled profile — a real cross-check, not `computeCallReportFacts` compared to itself).
+  Re-ran: ALL GREEN (6/6).
+- **[NON-BLOCKING] FR-amendment truth objects cite the eCFR-corpus SourceDocument, not a per-rule one.**
+  Amendment observations/claims set `source_document_ids: [ctx.source_document_id]` (the eCFR bulk corpus),
+  though the governing Federal Register rule is their real raw source. Full FR provenance is retained in
+  `provenance_metadata` (`fr_url` / `fr_document_number` / `fr_citation` / `fr_rule_title`) and the claim's
+  `claimant_ref`, so nothing is lost — but the indexed `source_document_ids` chain is imprecise. Action:
+  when the real FR connector lands, emit a dedicated `source_documents` row per FR rule XML (`fr_rules/*.xml`)
+  and repoint. Additive.
+- **[NON-BLOCKING / DEFERRED] Object Registry resolver + merge lack defensive guards (behind the seam).**
+  (a) `resolve()` trusts every `external_id` to be a true identifier — a shared *non-identifying* external id
+  (e.g. `{system:"state"}`) would propose a spurious candidate. (b) `applyMerge()` has no liveness guard:
+  contradictory caller merges (re-merge to a different survivor; merge into an already-merged object) can make
+  the append-only lineage self-inconsistent. Neither affects the gate or the `/market` surface (the batch uses
+  `ncua_charter` as the sole external id, and the service is exercised only with well-formed merges). Action:
+  add an `is_identifier` flag on external-id systems + transitive-survivor resolution + already-merged guards
+  when the service is wired to live persistence (post `0016`+`0017`, RFC-2003). Registry runs in-memory until then.
+- **[DEFERRED] Institution 5300 batch is a labeled fixture batch, not real filings.** The real NCUA data
+  present is regulatory, not per-institution 5300 financials, and none were fabricated/fetched.
+  `batch_fixtures.ts` is explicitly labeled illustrative. The real per-CU 5300 connector (bulk NCUA Call
+  Report data → institution profiles at scale) is a Sprint-III / Bryan-only connector task. The regulatory
+  ingestion IS real and at scale (675 + 10).
+
 ## Wave 2 — Terminal UI (2026-07-21)
 
 - **[was BUG → FIXED] IO `relevance` is `Record<string, unknown>`.** The Terminal view-model read

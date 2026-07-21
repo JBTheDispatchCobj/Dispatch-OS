@@ -1,6 +1,6 @@
 # Build Progress Tracker
 
-**Current build completion: ~28%** &nbsp;·&nbsp; Last updated: 2026-07-21 (OLYMPIC SPRINT WAVE 2 — the real Terminal UI: `app/terminal` + `components/terminal/TerminalView.tsx` render the live `runDealPipeline` output as a product surface — harness stage rail with the human gate, institution + deal scorecards, the CEO/CRO/CFO executive-lens toggle over `buildFeed`, IC memo, allocation, settlement/monitoring, and the kernel spine. Gate: `npm run build` exit 0 (/terminal prerenders) + debug-loop ALL GREEN (5/5) + full-app `tsc` clean.)
+**Current build completion: ~33%** &nbsp;·&nbsp; Last updated: 2026-07-21 (OLYMPIC SPRINT WAVE 3 — live data + kernel/truth services: real NCUA **regulatory** ingestion at scale (675 in-force 12 CFR sections + 10 pending amendments → sourced, bi-temporal `public_fact` truth objects), the **Profile Assembly Engine** (RFC-3012) over the confidence engine, the institution **5300 batch path** → assembled profiles (labeled fixture batch, real connector deferred), the **Object Registry service** (RFC-2003) + entity resolution behind the persistence seam (gated on 0016+0017), and a **`/market`** Terminal surface. Debug loop gained a **DATA-INTEGRITY** step (pinned source counts + independent ratio oracle + reconciliation). Gate: `npm run build` exit 0 (/market prerenders) + debug-loop ALL GREEN (6/6) + full-app `tsc` clean.)
 
 > Note: this table tracks the **platform** build. Knowledge-content sprints (Volume XI
 > Canonical Ontology and the roadmap's Truth Models / Rule / Workflow / Agent / Connector /
@@ -22,15 +22,15 @@ service (types + in-memory store; no service/API/engine/UI layer yet).
 | Layer | Weight | Built | Contribution |
 |---|---:|---:|---:|
 | Data contracts + schema (migrations `0001`–`0017`, `core/` types) | 15% | 82% | 12.3 |
-| Kernel services (identity/permissions, event bus, object registry, cost ledger, contracts/API) | 20% | 14% | 2.8 |
-| Truth/graph engines (resolver, confidence, entity resolution, assembly, query) | 15% | 9% | 1.35 |
+| Kernel services (identity/permissions, event bus, object registry, cost ledger, contracts/API) | 20% | 20% | 4.0 |
+| Truth/graph engines (resolver, confidence, entity resolution, assembly, query) | 15% | 17% | 2.55 |
 | Agent Harness + Execution Engine (router, planner, runtime, evaluation) | 15% | 13% | 1.95 |
 | Publication (Auric) engine | 8% | 20% | 1.6 |
-| Connector implementations + ingestion | 7% | 10% | 0.7 |
-| Cooperative Markets cartridge (first product) | 8% | 66% | 5.28 |
-| Terminal (customer-facing product) | 7% | 22% | 1.54 |
-| Tests / observability / productionization | 5% | 14% | 0.7 |
-| **Total** | **100%** | — | **~28%** |
+| Connector implementations + ingestion | 7% | 19% | 1.33 |
+| Cooperative Markets cartridge (first product) | 8% | 72% | 5.76 |
+| Terminal (customer-facing product) | 7% | 30% | 2.1 |
+| Tests / observability / productionization | 5% | 20% | 1.0 |
+| **Total** | **100%** | — | **~33%** |
 
 > Wave 1 turned the monster-batch libraries into a **running system**: the pipeline spine executes
 > the whole vertical end-to-end on injected inputs, the event bus + cost ledger now emit/record on a
@@ -89,7 +89,12 @@ service (types + in-memory store; no service/API/engine/UI layer yet).
   LP rejected). Not higher because no live ingestion feeds it, no engine *executes* the
   workflows end-to-end, and no Terminal UI renders them — engine + fixtures, not a live running
   product.
-- **Terminal** — 0%: no UI/runtime (deliberately UI-last).
+- **Terminal** — 30%: two real Next.js product surfaces over live pipeline/ingestion output —
+  `/terminal` (Wave 2: the deal run, harness rail, scorecards, CEO/CRO/CFO lens toggle, IC memo,
+  allocation, settlement, kernel spine) and `/market` (Wave 3: the institution-profile list over the
+  5300 batch + the real NCUA regulatory environment + Object-Registry status). Not higher because the
+  Terminal runtime (window/layout, command palette, universal search, notification/task centers — Vol
+  VII) is still Sprint IV, and both surfaces read computed output, not persisted state.
 - **Tests/observability/productionization** — 8%: `scripts/debug-loop.mjs` — a repeatable
   debug harness (there is no UI yet, so this is the review surface): full-app typecheck +
   ontology closed-graph + cartridge canonical-map integrity + an **engine smoke that transpiles
@@ -107,6 +112,40 @@ service (types + in-memory store; no service/API/engine/UI layer yet).
    now seedable from the Financial Services object catalog (`core/registry/data/`).
 
 ## Changelog
+- 2026-07-21 — **OLYMPIC SPRINT WAVE 3 — live data + kernel/truth services (the vertical runs on REAL data at scale).**
+  Fanned out 5 workstream agents (new files only), integrated + gated by the lead; 3-lens adversarial
+  verification before commit. **Reality-check that shaped the wave:** the data staged in
+  `docs/04_sources/ncua/` is real NCUA **regulatory** text (675 in-force 12 CFR sections + 10 pending
+  amendments + the FCU Act), **not** institution-level 5300 financials — so "live NCUA data at scale" was
+  executed honestly against what is real. New:
+  (1) **`cartridges/cooperative_markets/ingest_regulations.ts`** (+ `ingest_regulations_data.ts` loader split) —
+  pure/deterministic batch ingestion of the REAL corpus into sourced truth objects: in-force sections →
+  `Observation`/`public_fact`/`valid_from`=issue date; pending amendments **with full text** → future-dated
+  `Observation` (bi-temporal, flagged not-yet-in-force); amendatory **instructions** (no rewrite) → `Claim`
+  **held pending human/deterministic merge** (never auto-applied to legal text).
+  (2) **`core/profile/assemble.ts`** — the Profile Assembly Engine (RFC-3012): generic, pure, core (no vertical
+  nouns); rolls sourced fields up through `combineSources` (confidence engine) into a profile with
+  confidence / top_tier / lineage / completeness / a data-quality health band.
+  (3) **`cartridges/cooperative_markets/{ingest_batch,batch_fixtures}.ts`** — the 5300 batch path → call-report
+  facts (`deterministic_calculation`, each citing its filing) + an assembled institution profile each, over a
+  clearly-labeled 7-CU illustrative fixture batch (real per-CU 5300 connector deferred, Bryan-only).
+  (4) **`core/registry/service.ts`** — the Object Registry service (RFC-2003): entity resolution (blocking keys →
+  scored match candidates → append-only merge lineage) behind a `RegistryPersistencePort` seam with an in-memory
+  adapter; duplicates are **proposed, never auto-merged**. Live persistence + shared-market resolution gated on
+  Bryan applying `0016`+`0017`.
+  (5) **`app/market/page.tsx` + `components/terminal/MarketView.tsx`** — a second real Terminal surface at
+  **`/market`**: the institution-profile list (over the batch) + the real regulatory environment (part counts,
+  pending amendments, held instructions) + the Object-Registry status. One lead-owned nav link.
+  **Debug gate:** extended `scripts/debug-loop.mjs` with a **DATA-INTEGRITY** step — pins the source shape
+  (675/10), asserts unique truth-object ids, bi-temporal correctness, an **independent ratio oracle** (raw figures
+  worked out longhand vs the profile), profile→source reconciliation, and registry propose/merge invariants; plus
+  determinism re-runs. Validation: **`node scripts/debug-loop.mjs` ALL GREEN (6/6)**, full-app **`tsc` clean**,
+  **`npm run build` exit 0** (`/market` prerenders static). Layers: kernel **14→20** (registry service behind seam,
+  gated), truth **9→17** (profile assembly on the confidence engine), connectors **10→19** (real regulatory
+  ingestion at scale + batch path), cartridge **66→72**, terminal **22→30** (`/market`), tests **14→20**
+  (data-integrity gate); headline **~28% → ~33%**. Additive (only the root nav link + the debug loop edited);
+  no core/pipeline churn; vehicle-agnostic; no regulated conclusion in weights. Next: Wave 4 (Auric distribution +
+  tests/CI/observability).
 - 2026-07-21 — **OLYMPIC SPRINT WAVE 2 — the real Terminal UI (something to click).**
   New: `app/terminal/page.tsx` (server — runs `runDealPipeline` on the Halcyon × Summit golden
   fixture, precomputes the per-role feeds, shapes a serializable view-model) +

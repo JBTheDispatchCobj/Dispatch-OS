@@ -239,6 +239,118 @@ await step("PIPELINE   (spine: ingest→…→feed)", async () => {
   return `approved→settled (${run.events.length} evt · $${run.cost.total_usd.toFixed(2)}) · unapproved→awaiting_approval (gate has teeth) · blocked→halt · truth-clean · deterministic`;
 });
 
+// --- 6. Data integrity (Wave 3: profiles/regulatory facts reconcile to source) ---
+await step("DATA       (regulatory + profiles reconcile to source)", async () => {
+  const { register } = await import("node:module");
+  register("./alias-hook.mjs", import.meta.url);
+
+  // Real staged NCUA corpus, read via fs (the pure ingestion modules take the
+  // parsed records so they stay side-effect-free / importable under Node).
+  const readJson = (rel) => JSON.parse(fs.readFileSync(path.join(root, rel), "utf8"));
+  const records = readJson("docs/04_sources/ncua/ncua_regulations_clean.json");
+  const amendments = readJson("docs/04_sources/ncua/ncua_regulations_future_amendments.json");
+
+  const { ingestRegulatoryCorpus } = await import("@/cartridges/cooperative_markets/ingest_regulations");
+  const { institutionBatchFixtures } = await import("@/cartridges/cooperative_markets/batch_fixtures");
+  const { ingestInstitutionBatch, factsToProfileFields } = await import("@/cartridges/cooperative_markets/ingest_batch");
+  const { computeCallReportFacts } = await import("@/cartridges/cooperative_markets/ingest_call_report");
+  const { ObjectRegistryService, InMemoryRegistryStore } = await import("@/core/registry/service");
+
+  // ---- REGULATORY: real corpus → bi-temporal sourced facts -----------------
+  const ISSUE = "2026-07-15";
+  const regCtx = {
+    issue_date: ISSUE, observed_at: "2026-07-21T17:00:00.000Z",
+    source_id: "source:ncua_regulations", source_document_id: "sourcedoc:ncua:regulations:2026-07-15",
+    id_prefix: "ncua:reg",
+  };
+  const corpus = ingestRegulatoryCorpus(records, amendments, regCtx);
+
+  // Pin the source shape to the 2026-07-15 eCFR issue (update on a deliberate refresh):
+  // catches SILENT source shrinkage/growth that a self-consistency check would miss.
+  assert(records.length === 675, `NCUA in-force corpus must have 675 records (2026-07-15 issue), got ${records.length}`);
+  assert(amendments.length === 10, `NCUA pending-amendment set must have 10 nodes, got ${amendments.length}`);
+  // Every derived truth-object id must be unique (no collision silently dropping a fact).
+  const allIds = corpus.observations.map((o) => o.id).concat(corpus.claims.map((c) => c.id));
+  assert(new Set(allIds).size === allIds.length, `truth-object ids must be unique; ${allIds.length - new Set(allIds).size} collision(s)`);
+  assert(corpus.observations.length + corpus.claims.length === records.length + amendments.length, "one truth object per source record (in-force + amendment)");
+  assert(corpus.total_sections === records.length, `regulatory in-force count ${corpus.total_sections} != source records ${records.length}`);
+  const inForce = corpus.observations.filter((o) => o.temporal.valid_from === ISSUE);
+  assert(inForce.length === corpus.total_sections, "in-force observation count must equal total_sections");
+  assert(inForce.every((o) => o.truth_kind === "observation" && o.tier === "public_fact" && o.plane === "shared_market" && o.visibility === "public"),
+    "in-force regulatory facts must be public_fact observations on the shared-market plane");
+  // Pending amendments with full text are FUTURE-dated observations (bi-temporal).
+  const future = corpus.observations.filter((o) => o.temporal.valid_from !== ISSUE);
+  assert(future.length === corpus.pending_full_text, "future-amendment observation count must equal pending_full_text");
+  assert(future.every((o) => typeof o.temporal.valid_from === "string" && o.temporal.valid_from > ISSUE),
+    "pending-amendment observations must carry a FUTURE valid_from (bi-temporal)");
+  // Amendatory instructions (no rewrite) are HELD as claims — never auto-merged into in-force text.
+  assert(corpus.claims.every((c) => c.truth_kind === "claim" && c.tier === "public_fact"), "held instructions must be public_fact claims");
+  assert(corpus.claims.length === corpus.held_instructions, "held_instructions must equal the claim count");
+  assert(corpus.pending_full_text + corpus.held_instructions === amendments.length,
+    `amendments split ${corpus.pending_full_text}+${corpus.held_instructions} must equal ${amendments.length}`);
+  // Determinism: same records + ctx → byte-identical corpus.
+  assert(JSON.stringify(ingestRegulatoryCorpus(records, amendments, regCtx)) === JSON.stringify(corpus), "regulatory ingestion must be deterministic");
+
+  // ---- INSTITUTIONS: batch profiles reconcile to their source 5300 ----------
+  const batchCtx = { observed_at: "2026-07-21T17:00:00.000Z", id_prefix: "coop:batch" };
+  const fixtures = institutionBatchFixtures();
+  const batch = ingestInstitutionBatch(fixtures, batchCtx);
+  assert(batch.length === fixtures.length && batch.length >= 5, `batch size ${batch.length} unexpected`);
+  const RATIOS = ["net_worth_ratio", "roa", "loan_to_share", "delinquency_ratio", "member_growth"];
+  for (let i = 0; i < batch.length; i++) {
+    const raw = fixtures[i].raw;
+    const recomputed = computeCallReportFacts(raw);
+    // Facts reconcile EXACTLY to a fresh recompute from the raw filing (deterministic calc).
+    assert(JSON.stringify(recomputed) === JSON.stringify(batch[i].facts), `facts for ${raw.institution} must reconcile to a recompute from source`);
+    // INDEPENDENT oracle (not via computeCallReportFacts): the ratios must equal the raw
+    // figures worked out longhand — a real cross-check that the math is right, not just self-consistent.
+    const f = batch[i].facts;
+    const near = (a, b) => Math.abs(a - b) < 1e-6;
+    const priorOk = raw.members_prior === undefined || raw.members_prior === 0;
+    assert(near(f.net_worth_ratio, (raw.net_worth / raw.total_assets) * 100), `net_worth_ratio oracle mismatch for ${raw.institution}`);
+    assert(near(f.roa, (raw.net_income / raw.average_assets) * 100), `roa oracle mismatch for ${raw.institution}`);
+    assert(near(f.loan_to_share, (raw.total_loans / raw.total_shares) * 100), `loan_to_share oracle mismatch for ${raw.institution}`);
+    assert(near(f.delinquency_ratio, (raw.delinquent_loans / raw.total_loans) * 100), `delinquency_ratio oracle mismatch for ${raw.institution}`);
+    assert(priorOk ? f.member_growth === 0 : near(f.member_growth, ((raw.members - raw.members_prior) / raw.members_prior) * 100), `member_growth oracle mismatch for ${raw.institution}`);
+    const prof = batch[i].profile;
+    for (const key of RATIOS) {
+      const field = prof.fields.find((f) => f.key === key);
+      assert(field, `profile ${raw.institution} missing field ${key}`);
+      assert(field.value === batch[i].facts[key], `profile field ${key} (${field.value}) must equal the source ratio (${batch[i].facts[key]})`);
+      assert(field.tier === "deterministic_calculation", `ratio ${key} must be tier deterministic_calculation, got ${field.tier}`);
+      assert(field.source_ref === batch[i].facts.source_ref, `ratio ${key} must cite the filing source_ref`);
+    }
+    assert(prof.lineage.every((r) => r === batch[i].facts.source_ref), "every profile field must trace to the one 5300 filing");
+    assert(prof.confidence >= 0 && prof.confidence <= 1, "profile confidence must be in [0,1]");
+    assert(["strong", "adequate", "thin"].includes(prof.health), "profile health must be a known band");
+  }
+  // factsToProfileFields is the mapping the reconciliation rests on — must cover all 5 ratios.
+  assert(factsToProfileFields(batch[0].facts).length === RATIOS.length, "factsToProfileFields must emit all 5 ratio fields");
+  // Determinism: same batch → byte-identical.
+  assert(JSON.stringify(ingestInstitutionBatch(fixtures, batchCtx)) === JSON.stringify(batch), "institution batch must be deterministic");
+
+  // ---- REGISTRY: entity resolution proposes, never auto-merges --------------
+  let n = 0;
+  const svc = new ObjectRegistryService(new InMemoryRegistryStore(), { idGen: () => `reg:obj:${n++}`, now: "2026-07-21T17:00:00.000Z" });
+  const cls = "entity:coop_markets:credit_union";
+  const a = svc.register({ object_class: cls, canonical_slug: "summit_ridge_fcu", display_name: "Summit Ridge FCU", plane: "shared_market", visibility: "public", external_ids: [{ system: "ncua_charter", value: "60441" }], aliases: ["Summit Ridge FCU"] });
+  const b = svc.register({ object_class: cls, canonical_slug: "summit_ridge_federal_credit_union", display_name: "Summit Ridge Federal Credit Union", plane: "shared_market", visibility: "public", external_ids: [{ system: "ncua_charter", value: "60441" }], aliases: ["Summit Ridge Federal Credit Union"] });
+  svc.register({ object_class: cls, canonical_slug: "harbor_point_cu", display_name: "Harbor Point CU", plane: "shared_market", visibility: "public", external_ids: [{ system: "ncua_charter", value: "12007" }], aliases: ["Harbor Point CU"] });
+  const cands = svc.resolve();
+  assert(cands.length === 1, `resolver must propose exactly 1 duplicate candidate (charter-matched), got ${cands.length}`);
+  const c0 = cands[0];
+  assert([c0.left_id, c0.right_id].sort().join("|") === [a.id, b.id].sort().join("|"), "candidate must pair the two charter-60441 objects");
+  assert(c0.reasons.some((r) => r.startsWith("shared_external_id")), "candidate must cite the shared external id");
+  assert(c0.status === "proposed", "resolver must only PROPOSE (never auto-merge)");
+  assert(svc.objects().every((o) => o.status === "active"), "no object may be merged before an explicit applyMerge");
+  const merge = svc.applyMerge(a.id, b.id, "user:test", "decision:test:merge");
+  assert(merge && svc.objects().find((o) => o.id === b.id).status === "merged", "applyMerge must mark the merged object");
+  assert(svc.objects().find((o) => o.id === b.id).merged_into_id === a.id, "merged object must point at the survivor");
+  assert(svc.merges().length >= 1, "merge must be recorded (append-only lineage)");
+
+  return `regulatory ${corpus.total_sections} in-force + ${corpus.pending_full_text} pending + ${corpus.held_instructions} held (bi-temporal, deterministic) · ${batch.length} profiles reconcile to source · registry resolves+merges (proposed→gated)`;
+});
+
 // --- Summary -----------------------------------------------------------------
 const failed = results.filter((r) => !r.ok);
 console.log(`\n${"═".repeat(52)}`);

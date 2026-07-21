@@ -104,15 +104,27 @@ Waves: 1 spine · 2 Terminal UI · 3 live data + services · 4 Auric distributio
   + the role-lensed memo summary; IC memo (P2); allocation (P3); settlement/monitoring (P4); kernel
   spine (events + cost). One-line `Terminal` nav link added (lead-owned). Gate: **`npm run build`
   exit 0** (`/terminal` prerenders) + **debug-loop green** + **`tsc` clean**; screenshot verified.
-- **▶ WAVE 3 — Live data + kernel/truth services (NEXT).** Wire `ingest_call_report` to the real
-  NCUA 5300 data in `docs/04_sources/ncua/` at scale (batch → institution profiles); profile
-  assembly (RFC-3012) using the confidence engine. **Object Registry service (RFC-2003) + entity
-  resolution + persistence are gated on Bryan applying `0016`+`0017`** — route around: build the
-  ingestion + profile path now, wire persistence/registry after the apply. Gate: debug-loop green +
-  a data-integrity check (profiles reconcile to source).
-- **Wave 4 — Auric distribution + hardening.** Channel variants + editorial gate; tests/CI/
-  observability. Debug cadence: log to `DEBUG_LOG.md`, fix blockers, `node scripts/debug-loop.mjs`
-  green at each wave gate.
+- **✅ WAVE 3 — Live data + kernel/truth services (DONE, 2026-07-21).** The staged NCUA data is real
+  **regulatory** text (675 in-force 12 CFR sections + 10 pending amendments), **not** 5300 financials,
+  so "live NCUA data at scale" landed as **real regulatory ingestion at scale**:
+  `cartridges/cooperative_markets/ingest_regulations.ts` (+ `ingest_regulations_data.ts`) → sourced,
+  **bi-temporal** truth objects (in-force `public_fact` at the issue date; pending full-text future-dated
+  observations; amendatory **instructions** → claims **held pending human merge**). **Profile Assembly
+  Engine (RFC-3012)** `core/profile/assemble.ts` over the confidence engine. The **5300 batch path**
+  `cartridges/cooperative_markets/{ingest_batch,batch_fixtures}.ts` → facts (`deterministic_calculation`,
+  each citing its filing) + assembled institution profiles over a labeled fixture batch (real per-CU 5300
+  connector deferred, Bryan-only). **Object Registry service (RFC-2003)** `core/registry/service.ts` +
+  entity resolution behind a persistence seam (in-memory; **proposed, never auto-merged**; live persistence
+  gated on `0016`+`0017`). Second Terminal surface **`/market`** (`app/market/page.tsx` +
+  `components/terminal/MarketView.tsx`). Debug loop gained a **DATA-INTEGRITY** step. Gate: **debug-loop
+  ALL GREEN (6/6)** + `tsc` clean + `npm run build` exit 0 (`/market` prerenders). Adversarially verified
+  (3 lenses; no blockers; the DATA gate was hardened — pinned source counts + independent ratio oracle —
+  in response to the verification).
+- **▶ WAVE 4 — Auric distribution + hardening (NEXT).** Channel variants (brief / market-feed /
+  terminal-feed) over the Auric engine + the editorial verification gate (human-approved before publish);
+  unit tests for the engines; wire `scripts/debug-loop.mjs` into CI as the gate; cost-ledger dashboards +
+  event replay; burn down `DEBUG_LOG` [DEFERRED] items. Debug cadence: log to `DEBUG_LOG.md`, fix blockers,
+  `node scripts/debug-loop.mjs` green at the wave gate.
 2. **Live intake path** — call-report/startup ingestion so the loop runs on real data, not the
    seed (a real connector over the `ncua_call_reports` / `startup_intake` source types).
 3. **Canonical Entity Model + entity resolution (RFC-3002)** and **Identity & Tenancy
