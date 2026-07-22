@@ -186,11 +186,23 @@ now DRIVES profile assembly instead of a fixed 0.9:
 - **Gate:** debug-loop **ALL GREEN (10/10)** (new **PROFILES** step) + `tsc` clean + `npm run build` exit 0 +
   **162 unit tests** (+39). Adversarially verified (4-lens fleet; **0 blockers**; outcome-evidence lineage +
   3 query edge cases + 3 test-teeth gaps fixed). Layers: truth 22→40, cartridge 75→77, tests 46→49.
-- **Remaining Sprint II waves:** (Wave 3) kernel request envelope + contracts/API layer (RFC-2001/2014) — surfaces
-  call THROUGH typed service contracts and route authorization through `core/kernel/permissions::authorize`,
-  retiring `core/auth/session::canReview` at the call sites; (Wave 4) wire the Supabase registry adapter onto a
+- **Sprint II Wave 3 — DONE (2026-07-22, ~47%): kernel request envelope + contracts/API layer (RFC-2001/2014).**
+  `core/kernel/envelope.ts` (typed **RequestEnvelope**: principal + correlation_id + plane + caller-injected
+  occurred_at/request_id/idempotency_key; pure — mints nothing; `deriveEnvelope` keeps the chain correlation id) +
+  `core/kernel/contracts.ts` (the **service contracts** surfaces call THROUGH: `authorizeThrough` maps the domain
+  verbs review/approve/promote/decide to the permission engine's `app_has_role` predicate; `guard` authorizes FIRST
+  and, on deny, returns a typed **Refusal** with the machine-readable reason while the delegate NEVER runs). The
+  ad-hoc `core/auth/session::canReview` is **RETIRED at the call sites**: `core/auth/principal.ts` maps the demo
+  session → a `Principal`, `app/contracts.ts` + `app/actions.ts` + `components/ReviewQueue.tsx` route the human-gate
+  actions through the contract, and `canReview` survives only as a shim whose boolean comes from the engine.
+  `cartridges/cooperative_markets/deal_service.ts` wraps the UNCHANGED `runDealPipeline` behind the contract
+  (authorize "promote" FIRST; seed `ctx.runId` from the envelope so the run correlates). Human gates (ICApproval +
+  EditorialDisposition) untouched. Gate: debug-loop **ALL GREEN (11/11)** (new **CONTRACTS** step) + `tsc` clean +
+  `npm run build` exit 0 + **182 unit tests** (+20). Adversarially verified (4-lens; 0 blockers; evidence-review
+  wiring gap + 2 test-teeth gaps fixed). Layers: kernel 34→46, harness 18→22, tests 49→51.
+- **Remaining Sprint II wave:** (Wave 4) wire the Supabase registry adapter onto a
   real `@supabase/supabase-js` client on a serialized write-chain (respect the DEFERRED resolver re-proposal note)
-  + the matured entity-resolution/match-candidate pipeline + profile PERSISTENCE (moves truth 40→45).
+  + the matured entity-resolution/match-candidate pipeline + profile PERSISTENCE (moves truth 40→45, kernel 46→55).
 2. **Live intake path** — call-report/startup ingestion so the loop runs on real data, not the
    seed (a real connector over the `ncua_call_reports` / `startup_intake` source types).
 3. **Canonical Entity Model + entity resolution (RFC-3002)** and **Identity & Tenancy

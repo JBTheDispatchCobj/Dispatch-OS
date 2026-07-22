@@ -28,6 +28,35 @@ any time with `node scripts/debug-loop.mjs` (after `npm install`).
   behind the existing seam (default in-memory; drops in when a client is configured) + the RFC-2002
   identity/permission substrate that mirrors the now-live RLS predicates.
 
+## Sprint II Wave 3 — Kernel request envelope + contracts/API (2026-07-22)
+
+- **[was NON-BLOCKING → FIXED] Evidence review bypassed the contract.** The first cut wired the
+  proposal/approval/review-queue human gates through `app/contracts.ts` but left
+  `reviewEvidenceAction` calling `store.reviewEvidence` DIRECTLY — the adapter's own header claimed
+  evidence review was gated, so the claim was false and the authorize-first invariant did not hold for
+  that action (harmless in the owner-only demo; a real regression once real auth lands). Surfaced by the
+  correctness verifier. **Fix:** `contracts.reviewEvidence(evidenceId, decision)` resolves the evidence's
+  workspace via `store.getEvidence(id).work_item_id → getWorkItem`, authorizes "review", then delegates;
+  `reviewEvidenceAction` now routes through it (no UI change — the existing form already carries the ids).
+- **[was NON-BLOCKING → FIXED] Two test-teeth gaps.** The test-teeth (mutation) verifier confirmed all 8
+  probed mutations were caught but found `deriveEnvelope`'s `idempotency_key` threading and the `agent:`
+  branch of `envelopeActor` unasserted. **Fix:** added both assertions to `tests/envelope.test.mjs`.
+- **[NON-BLOCKING] `MODULE_TYPELESS_PACKAGE_JSON` warning on the PIPELINE/CONTRACTS steps.** Node prints a
+  perf warning when it reparses `pipeline.ts` as ESM (no `"type": "module"` in package.json). Pre-existing
+  (present since Wave 1's PIPELINE step); cosmetic, does not affect the gate. Action: could add
+  `"type": "module"` later, but it risks the Next build's CJS assumptions — left as-is deliberately.
+- **[DEFERRED] Demo-session authorization is a tautology by construction.** `app/contracts.ts::envFor`
+  synthesizes the principal's membership from the resolved resource workspace with the demo session's role
+  (owner), so the live surfaces ALWAYS allow — there is no real membership backend to deny against yet. The
+  authorize-first PLUMBING is real and the engine has teeth (proven by `tests/contracts.test.mjs` +
+  the CONTRACTS debug step, which exercise reviewer/operator/outsider/agent principals that ARE denied).
+  Action: when real Supabase auth + `workspace_memberships` land (Wave 5+/productionization), `sessionPrincipal`
+  carries the session's ACTUAL memberships and `envFor` stops fabricating one — the contracts + surfaces
+  do not change. Flagged by the correctness verifier as the load-bearing seam to get right later.
+- **Gate:** debug-loop **ALL GREEN (11/11)** (new **CONTRACTS** step) · `tsc --noEmit` exit 0 ·
+  `npm run build` exit 0 · **182/182** unit tests. Adversarially verified — 4-lens fleet (correctness ·
+  doctrine · purity/determinism · test-teeth), 0 blockers.
+
 ## Wave 1 — Orchestration spine (2026-07-21)
 
 - **[was BLOCKER → FIXED] Human gate was decorative.** The first cut of `pipeline.ts`

@@ -1,6 +1,9 @@
 // components/ReviewQueue.tsx — human review of work items awaiting sign-off.
+// The approve/send-back sign-off routes through reviewWorkItemAction, which
+// authorizes the request through the kernel permission engine (retiring the
+// ad-hoc canReview check) before applying the status transition.
 import Link from "next/link";
-import { setStatusAction } from "@/app/actions";
+import { reviewWorkItemAction } from "@/app/actions";
 import type { WorkItem } from "@/core/types";
 import { KindChip } from "@/components/ui";
 
@@ -15,11 +18,11 @@ export default function ReviewQueue({ items }: { items: WorkItem[] }) {
             <KindChip kind={w.kind} />
           </div>
           <div className="btnrow" style={{ marginTop: 10 }}>
-            <form action={setStatusAction} className="inlineform">
+            <form action={reviewWorkItemAction} className="inlineform">
               <input type="hidden" name="id" value={w.id} /><input type="hidden" name="status" value="completed" />
               <button className="btn btn--good" type="submit">Approve & complete</button>
             </form>
-            <form action={setStatusAction} className="inlineform">
+            <form action={reviewWorkItemAction} className="inlineform">
               <input type="hidden" name="id" value={w.id} /><input type="hidden" name="status" value="in_progress" />
               <button className="btn" type="submit">Send back</button>
             </form>

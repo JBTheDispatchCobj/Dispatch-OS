@@ -12,6 +12,11 @@
 //                       (P2, approved-evidence-only), and allocation (P3, subscriber
 //                       gates); assert the core invariants actually hold at runtime.
 //
+//   ... plus the Sprint-II service steps: PERMISSIONS (authz == the 0016/0017 RLS
+//   truth table), PROFILES (live decay + outcome-feedback + query), CONTRACTS
+//   (RFC-2001/2014 request envelope + authorize-FIRST service contracts), and the
+//   engine unit-test suite (TESTS).
+//
 // Steps are independent: a failure in one does not stop the others, so one run shows
 // every problem. Requires only `node` + the repo's `typescript` dep.
 
@@ -526,6 +531,80 @@ await step("PROFILES   (live decay + outcome-feedback + query)", async () => {
   assert(JSON.stringify(queryProfiles(set.all, { rank_by: "confidence", dir: "desc", limit: 3 })) === JSON.stringify(queryProfiles(set.all, { rank_by: "confidence", dir: "desc", limit: 3 })), "query must be deterministic");
 
   return `live decay (stale 0.9→0.45) · outcome-feedback (±) · reg-env over REAL ${corpus.total_sections} sections · ${set.institutions.length} institution profiles live-aged · query filter/rank/lookup · deterministic`;
+});
+
+// --- 9c. Contracts + request envelope (Sprint II Wave 3: authorize-FIRST) -----
+await step("CONTRACTS  (RFC-2001/2014: envelope + authorize-first)", async () => {
+  const { register } = await import("node:module");
+  register("./alias-hook.mjs", import.meta.url);
+  const id = await import("@/core/kernel/identity");
+  const env = await import("@/core/kernel/envelope");
+  const con = await import("@/core/kernel/contracts");
+  const session = await import("@/core/auth/session");
+  const dealsvc = await import("@/cartridges/cooperative_markets/deal_service");
+  const { halcyonSummitRun } = await import("@/cartridges/cooperative_markets/pipeline_fixtures");
+
+  const mem = (ws, role) => ({ workspace_id: ws, organization_id: "org", role });
+  const owner = id.userPrincipal("u_owner", [mem("ws1", "owner")]);
+  const operator = id.userPrincipal("u_op", [mem("ws1", "operator")]);
+  const reviewer = id.userPrincipal("u_rev", [mem("ws1", "reviewer")]);
+  const outsider = id.userPrincipal("u_out", [mem("ws2", "owner")]);
+  const service = id.systemPrincipal();
+
+  const mk = (principal, cid) =>
+    env.makeEnvelope({ principal, correlation_id: cid ?? "corr:1", plane: "private_terminal", occurred_at: "2026-07-22T00:00:00.000Z", request_id: "req:1" });
+  const res = con.tenantResource("ws1");
+
+  // ---- ENVELOPE: pure/deterministic; a derived child keeps the correlation id.
+  const e1 = mk(owner);
+  const e2 = mk(owner);
+  assert(JSON.stringify(e1) === JSON.stringify(e2), "makeEnvelope must be deterministic (no clock/id minting inside)");
+  assert(env.envelopeActor(e1) === "user:u_owner", "envelopeActor mirrors the principal actor string");
+  const child = env.deriveEnvelope(e1, { request_id: "req:2", occurred_at: "2026-07-22T00:00:01.000Z" });
+  assert(child.correlation_id === e1.correlation_id, "a derived child envelope KEEPS the parent correlation id");
+  assert(child.request_id === "req:2" && child.request_id !== e1.request_id, "the child takes a fresh injected request id");
+
+  // ---- AUTHORIZE-FIRST: on deny the delegate NEVER runs; on allow it runs once.
+  let ran = 0;
+  const denied = con.guard(mk(reviewer), "promote", res, () => { ran++; return "did"; });
+  assert(denied.ok === false, "reviewer must be REFUSED 'promote' (not in owner/admin/operator)");
+  assert(denied.refusal.reason === "missing_role" && denied.refusal.action === "promote", "refusal carries the machine-readable engine reason + action");
+  assert(denied.refusal.correlation_id === "corr:1", "refusal carries the request correlation id (auditable lineage)");
+  assert(ran === 0, "authorize-FIRST: a denied delegate must NOT run");
+  const allowed = con.guard(mk(operator), "promote", res, () => { ran++; return "did"; });
+  assert(allowed.ok === true && allowed.value === "did" && ran === 1, "an allowed 'promote' reaches the engine exactly once");
+
+  // ---- VERB TRUTH TABLE: review = owner/admin/reviewer; approve = owner/admin.
+  assert(con.authorizeThrough(mk(reviewer), "review", res).allowed, "reviewer may REVIEW");
+  assert(!con.authorizeThrough(mk(reviewer), "approve", res).allowed, "reviewer may NOT approve (owner/admin gate)");
+  assert(con.authorizeThrough(mk(owner), "approve", res).allowed, "owner may approve");
+  assert(!con.authorizeThrough(mk(operator), "approve", res).allowed, "operator may NOT approve");
+  assert(!con.authorizeThrough(mk(outsider), "review", res).allowed, "a non-member is refused (not_member)");
+  assert(con.authorizeThrough(mk(outsider), "review", res).reason === "not_member", "refusal reason names the predicate");
+
+  // ---- SERVICE BYPASS: the platform service role bypasses, exactly like RLS.
+  assert(con.authorizeThrough(mk(service), "approve", res).reason === "service_role_bypass", "service role bypasses the contract too");
+
+  // ---- DETERMINISM: repeated authorization is byte-identical.
+  assert(JSON.stringify(con.authorizeThrough(mk(operator), "promote", res)) === JSON.stringify(con.authorizeThrough(mk(operator), "promote", res)), "authorization must be deterministic");
+
+  // ---- canReview SHIM: its boolean now COMES FROM the engine (retired as source of truth).
+  assert(session.canReview("reviewer") === true && session.canReview("owner") === true, "shim: owner/reviewer review");
+  assert(session.canReview("operator") === false && session.canReview("viewer") === false, "shim: operator/viewer do NOT review (engine decision)");
+
+  // ---- HARNESS: the envelope carried through the deal pipeline correlates the whole run.
+  const g = halcyonSummitRun();
+  const denyRun = dealsvc.runDealThroughContract(mk(reviewer, "corr:deal"), res, g.input);
+  assert(denyRun.ok === false && denyRun.refusal.reason === "missing_role", "a denied principal gets a typed refusal, NOT a deal run");
+  const okRun = dealsvc.runDealThroughContract(mk(operator, "corr:deal"), res, g.input);
+  assert(okRun.ok === true, "an authorized operator runs the deal through the contract");
+  const run = okRun.value;
+  assert(run.run_id === "corr:deal", "the run id is seeded from the envelope correlation id");
+  assert(run.events.length > 0 && run.events.every((ev) => ev.correlation_id === "corr:deal"), "every kernel event correlates to the envelope");
+  assert(run.cost.entries.every((c) => c.correlation_id === "corr:deal"), "every cost entry correlates to the envelope");
+  assert(run.status === "settled", "the human-gated golden run still settles (contract wraps, does not rewrite, the engine)");
+
+  return "envelope pure+derives · authorize-FIRST (deny→refusal, delegate unrun) · review/approve/promote truth table · service bypass · canReview shim = engine · deal run correlates to the envelope";
 });
 
 // --- 10. Unit tests (Wave 4: the engines have teeth) -------------------------

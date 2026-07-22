@@ -9,6 +9,7 @@ import { revalidatePath } from "next/cache";
 import { store } from "@/core/data";
 import { getConfiguration } from "@/core/cartridge";
 import { getDemoSession } from "@/core/auth/session";
+import * as contracts from "@/app/contracts";
 import type { EvidenceKind, InputStatus, ReportRunStatus, WorkItemStatus } from "@/core/types";
 
 export async function setStatusAction(formData: FormData) {
@@ -16,6 +17,22 @@ export async function setStatusAction(formData: FormData) {
   const status = String(formData.get("status")) as WorkItemStatus;
   const me = getDemoSession();
   store.setStatus(id, status, `user:${me.id}`);
+  revalidatePath(`/work/${id}`);
+  revalidatePath("/work");
+  revalidatePath("/review");
+  revalidatePath("/dashboard");
+}
+
+/**
+ * review_queue · approve/send-back — the human review sign-off. RETIRES the ad-hoc
+ * `canReview`: authorization now routes through the kernel contract
+ * (authorize "review" via core/kernel/permissions), not a boolean at the call
+ * site. Delegates to the same store.setStatus on allow.
+ */
+export async function reviewWorkItemAction(formData: FormData) {
+  const id = String(formData.get("id"));
+  const status = String(formData.get("status")) as WorkItemStatus;
+  contracts.reviewWorkItem(id, status);
   revalidatePath(`/work/${id}`);
   revalidatePath("/work");
   revalidatePath("/review");
@@ -73,12 +90,15 @@ export async function addEvidenceAction(formData: FormData) {
   revalidatePath(`/work/${workItemId}`);
 }
 
-/** evidence_panel · approve|reject — human review of proof, separate from capture. */
+/**
+ * evidence_panel · approve|reject — human review of proof, separate from capture.
+ * Routes through the kernel contract (authorize "review") so evidence sign-off is
+ * permission-gated like the other human-review surfaces.
+ */
 export async function reviewEvidenceAction(formData: FormData) {
   const evidenceId = String(formData.get("evidenceId"));
   const decision = String(formData.get("decision")) as "approved" | "rejected";
-  const me = getDemoSession();
-  store.reviewEvidence(evidenceId, decision, `user:${me.id}`);
+  contracts.reviewEvidence(evidenceId, decision);
   revalidatePath("/dashboard");
 }
 
@@ -141,13 +161,16 @@ export async function archiveReportAction(formData: FormData) {
   revalidatePath("/dashboard");
 }
 
-/** approval_queue · approve/reject/request_changes — the human authorization gate (§3.21). */
+/**
+ * approval_queue · approve/reject/request_changes — the human authorization gate
+ * (§3.21). Routes through the kernel contract (authorize "approve") so the human
+ * approval gate is gated by the permission engine, not an ad-hoc check.
+ */
 export async function decideApprovalAction(formData: FormData) {
   const approvalId = String(formData.get("approvalId"));
   const decision = String(formData.get("decision")) as "approved" | "rejected" | "changes_requested";
   const notes = String(formData.get("notes") ?? "").trim() || undefined;
-  const me = getDemoSession();
-  store.decideApproval(approvalId, decision, `user:${me.id}`, notes);
+  contracts.decideApproval(approvalId, decision, notes);
   revalidatePath("/dashboard");
 }
 
@@ -208,16 +231,19 @@ export async function dismissExceptionAction(formData: FormData) {
 export async function decideProposalAction(formData: FormData) {
   const id = String(formData.get("id"));
   const decision = String(formData.get("decision")) as "approved" | "rejected";
-  const me = getDemoSession();
-  store.decideProposal(id, decision, me.id);
+  // Routes through the kernel contract (authorize "decide") — the human-in-the-
+  // loop gate is now permission-gated, not ad-hoc.
+  contracts.decideProposal(id, decision);
   revalidatePath("/proposals");
   revalidatePath("/dashboard");
 }
 
 export async function promoteProposalAction(formData: FormData) {
   const id = String(formData.get("id"));
-  const me = getDemoSession();
-  const wi = store.promoteProposal(id, me.id);
+  // Routes through the kernel contract (authorize "promote"): promoting agent
+  // output into real work is a tenant-write the permission engine gates.
+  const res = contracts.promoteProposal(id);
+  const wi = res.ok ? res.value : undefined;
   revalidatePath("/proposals");
   revalidatePath("/work");
   revalidatePath("/dashboard");

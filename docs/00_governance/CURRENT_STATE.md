@@ -114,6 +114,44 @@ Gate: **debug-loop ALL GREEN (10/10)** (new **PROFILES** step: live decay + outc
 the matured entity-resolution pipeline remain (they land with the Supabase registry-client wave), so truth is at
 40, short of the Sprint-II-end 45 by design.
 
+## Running now (Olympic Sprint II — Wave 3, ~47%, 2026-07-22)
+**The kernel has a request envelope + a contracts/API layer, and authorization routes through it.**
+Wave 3 built the RFC-2001/2014 seam — additive, new-files in `core/`, plus call-site wiring at the
+surfaces (the sanctioned `canReview` retirement); the engines are UNCHANGED:
+- **`core/kernel/envelope.ts`** — a typed **RequestEnvelope** `{ principal, correlation_id, plane,
+  occurred_at, request_id, idempotency_key? }` carried THROUGH a call so authorization has a principal
+  and every event/cost the call emits correlates to the originating request. Pure/deterministic:
+  `makeEnvelope` copies + freezes and mints NOTHING (the caller injects ids/timestamps); `deriveEnvelope`
+  keeps the parent `correlation_id` for a child sub-step while taking a fresh injected `request_id`.
+- **`core/kernel/contracts.ts`** — the **service contracts** a surface calls THROUGH. `authorizeThrough`
+  is the one authorization call: a `service` principal bypasses (like RLS); the domain verbs
+  (review/approve/promote/decide) map to the SAME `app_has_role` predicate the permission engine mirrors
+  from the 0016/0017 policies, against a verb-specific role set (review = owner/admin/reviewer; approve =
+  owner/admin; promote = owner/admin/operator); plain verbs (read/write/update/admin) pass straight to
+  `authorize()`. `guard(env, action, resource, delegate)` is the authorize-FIRST combinator: on deny it
+  returns a typed **Refusal** carrying the machine-readable engine `reason` (never a throw) and the
+  delegate NEVER runs; on allow it runs the delegate exactly once. Generic — no vertical noun.
+- **`core/auth/principal.ts`** — maps the demo `SessionUser` → a `Principal` (single membership in the
+  acting workspace with the session's role) + a `sessionEnvelope`, so the surfaces authorize through the
+  engine with NO backend. When real Supabase auth + membership lands, only this mapping changes.
+- **`core/auth/session.ts::canReview`** — RETIRED as a source of truth to a thin back-compat shim whose
+  boolean now COMES FROM the permission engine (`writeTenantDecision(..., REVIEW_ROLES)`), not an ad-hoc OR.
+- **`app/contracts.ts` + `app/actions.ts` + `components/ReviewQueue.tsx`** — the human-gate server actions
+  (review sign-off, decide/promote a proposal, decide an approval, review evidence) now route THROUGH the
+  contract adapter (authorize-FIRST, then the existing `store` mutation). The demo session is a workspace
+  owner, so every check ALLOWS and the surfaces behave exactly as before — but the plumbing is real and a
+  non-authorized principal gets a typed refusal (proven by the tests + the debug step).
+- **`cartridges/cooperative_markets/deal_service.ts`** — the **DealService** contract wraps the UNCHANGED
+  `runDealPipeline`: authorize "promote" FIRST, then seed the RunContext from the envelope
+  (`ctx.runId = env.correlation_id`) so the whole run correlates to the request. The human gates
+  (ICApproval on the memo, EditorialDisposition on publication) are untouched.
+Gate: **debug-loop ALL GREEN (11/11)** (new **CONTRACTS** step) + `tsc` clean + `npm run build` exit 0 +
+**182 unit tests** (was 162; +20 across envelope/contracts). Adversarially verified (4-lens fleet:
+correctness · doctrine · purity/determinism · test-teeth) — 0 blockers; 1 wiring gap fixed (evidence
+review now actually routes through the contract) + 2 test-teeth gaps closed. Kernel 34→46, harness 18→22,
+tests 49→51. Profile PERSISTENCE + the matured entity-resolution pipeline + the live Supabase registry
+client remain (Wave 4 — moves kernel 46→55, truth 40→45).
+
 ## Existing foundation
 - Next.js app; Supabase/Postgres adapter + migrations (`0001`–`0017` **applied 2026-07-21**;
   the full `0001`–`0017` chain is live — all 14 registry-table RLS policies confirmed).
