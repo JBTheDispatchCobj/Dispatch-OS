@@ -1,71 +1,71 @@
-# HANDOFF — Olympic Sprint IV, Wave 1 (2026-07-22)
+# HANDOFF — Olympic Sprint IV, Wave 2 (2026-07-22)
 
-**Build: ~61%** (honest recompute; was ~60% at Sprint III Wave 5). Sprint IV opens (**Terminal & product surface
-complete, target ~80%**). Wave 1 promoted three of the highest-value FRAMED scaffolds into REAL surfaces over live
-run output. Additive; no vertical noun in `core/`; connector runtime + engines + the human-gate contract layer
-UNCHANGED; default in-memory; look/feel deferred (reused the existing design tokens).
+**Build: ~62%** (honest recompute; was ~61% after Wave 1). Sprint IV continues (**Terminal & product surface complete,
+target ~80%**). Wave 2 built THE TERMINAL RUNTIME (Vol VII) and promoted three more of the highest-value FRAMED scaffolds
+into REAL surfaces over live run output. Additive; **no vertical noun in `core/`** (new pure builders in `app/_surfaces/`,
+the runner in `cartridges/`; only `ui_surfaces.json` config-as-data + `app/layout.tsx` + `app/globals.css` changed);
+connector runtime + engines + the human-gate contract layer UNCHANGED; default in-memory; look/feel deferred.
 
-## What shipped (3 scaffolds → real surfaces, `ui_surfaces.json` the contract → 13 live / 10 scaffold)
-1. **`/institutions` — a REAL directory over the full market.** `cartridges/cooperative_markets/run_institutions_directory.ts`
-   (pure/deterministic/erasable-only) itemizes the whole synthetic market into browse rows: the five 5300 ratios as
-   deterministic calcs each citing its filing; asset-size + PCA readiness bands; profile confidence marked **inferred**;
-   **region surfaced as `missing`** (not sourced from a 5300 → shown, NEVER faked); a `buildDirectoryVM` seam +
-   `unlabeled` provenance label so an unknown-provenance row is flagged untrusted row-by-row (not defaulted benign).
-   `components/terminal/InstitutionsDirectoryView.tsx` renders search / filter (readiness · asset-band · label) /
-   total-order sort (charter tiebreak); each row → that institution's `/terminal`. Scales one→thousands. LABELED
-   synthetic (`all_labeled` computed from data); real bulk 5300 is Bryan-only.
-2. **`/approvals` — the LIVE human approval gate.** `app/_surfaces/approvals_view.ts` (pure, store-free) buckets the
-   store's `Approval` objects **awaiting vs decided** with lineage + states pending_approval / **restricted** / current.
-   `restricted` prefers a PERSISTED classification (`metadata.restricted`/`risk_class`) and falls back to an INJECTED
-   marker set (`DEFAULT_RESTRICTED_MARKERS`, caller-overridable) — no vertical hardcoded in the builder body.
-   `components/terminal/ApprovalsView.tsx` renders the queue; approve / request-changes / reject post to the EXISTING
-   `decideApprovalAction` → `app/contracts.decideApproval` → `core/kernel/permissions` (authorize-FIRST). The builder
-   NEVER decides — only a `requested` approval is `decidable`.
-3. **`/evidence` — LIVE provenance with drill-through.** `app/_surfaces/evidence_view.ts` (pure) projects evidence
-   across work items into lineage rows with states current / **stale** / **inferred** / pending_approval / **restricted**
-   distinct (rejected is never mislabeled "current"). `components/terminal/EvidenceView.tsx` groups by object / by
-   source / unreviewed; review routes THROUGH `reviewEvidenceAction` → `contracts.reviewEvidence`. NEVER auto-reviews.
+## What shipped
+1. **THE TERMINAL RUNTIME — a registry-driven command palette + universal search.** `app/_surfaces/universal_search.ts`
+   (pure, deterministic, erasable-only) is a universal-search INDEX + total-order MATCHER over three live collections —
+   the `/institutions` directory rows, the UI surface registry, and the external-canon aliases — with the doctrine states
+   kept visibly distinct (institution=**synthetic** · live surface=**current** · scaffold surface / proposed alias=**restricted**
+   · no-match=**missing**). `components/terminal/TerminalShell.tsx` mounts a global **command palette** (⌘K / Ctrl-K) once
+   in `app/layout.tsx`, driven ENTIRELY from `ui_surfaces.json` (every surface a keyboard-navigable jump target; a new
+   surface appears with NO code change; a free-text query hands off to `/search`). Pure navigation — never mutates/decides.
+2. **`/search` (scaffold→live)** — the universal-search surface. `app/search/page.tsx` builds the index server-side;
+   `components/terminal/SearchView.tsx` ranks with `searchUniverse` and reads `?q=` client-side (page stays static).
+3. **`/opportunities` (scaffold→live)** — `app/_surfaces/opportunities_view.ts` (pure) + `cartridges/cooperative_markets/
+   run_opportunities.ts` (runs the UNCHANGED intake → deal engine over labeled intake fixtures). Every score is a
+   **Dispatch inference** (never a fact, never a regulated conclusion in a weight); the engine only RECOMMENDS —
+   advancing requires the **ICApproval** human gate, so a recommended-advance opportunity is **pending_approval**, NEVER
+   auto-advanced to **current**; a blocked deal is **conflicted**. A triage surface with NO auto-advance control.
+4. **`/workflows` (scaffold→live)** — `app/_surfaces/workflows_view.ts` (pure) groups the LIVE `WorkItem` objects by
+   workflow `kind`, joins each to its cartridge WORKFLOW DEFINITION (config-as-data), rolls up status, and
+   cross-references the live `Approval` objects (by `related_work_item_id`). States distinct: **pending_approval** /
+   **conflicted** / **current**; an unmapped kind is flagged; the builder NEVER decides a gate.
 
-Additive coop-seed fixtures (1 pending high-risk approval `appr_alloc` + 1 unreviewed/old/agent-captured evidence
-`ev_delinquency`) so the live gates render their full state legend over REAL store data (no test pins seed counts).
-`app/actions.ts` gained `revalidatePath('/approvals')` + `('/evidence')`.
+`ui_surfaces.json` flipped the three surfaces scaffold→live (13→**16 live / 7 scaffold**; `/search` states gained
+`synthetic`). `app/globals.css` gained a command-palette overlay. Look/feel deferred (Terminal polish sprint).
 
-## Design note (why the builders are pure/store-free)
-The in-memory `store` uses TS **parameter properties**, which `node`'s strip-only mode rejects — so `node --test` +
-the debug loop cannot import the store. The view-model builders are therefore pure, erasable-only, store-free (tests +
-debug steps drive them with fixture arrays); the server pages read the store and hand arrays to the builder; the Next
-build compiles the store fully so the pages render. See DEBUG_LOG.
+## Design notes
+- **Strip-safety.** The pure builders + `run_opportunities.ts` are erasable-only (no enums / parameter properties),
+  import-type only, no clock/random — so `node --test` + the debug loop import them directly. The store (`@/core/data`)
+  is read ONLY in the server `page.tsx` files (Wave-1 seam). `/opportunities` is async only because the connector
+  runtime is async; deterministic given `as_of`.
+- **The ICApproval gate on `/opportunities` is read-only** (it is a pipeline INPUT, not a store `Approval` + action). The
+  step/test prove the state machine (approved→current, rejected→conflicted, advance+no-gate→pending_approval). Nothing
+  auto-advances.
+- **Cross-workspace read scope** on `/workflows` is single-tenant-demo-scoped (same [DEFERRED] as `/approvals`/`/evidence`).
 
-## Adversarially verified (4-lens fleet) — all findings fixed
-- **purity/determinism: 0 findings.** **correctness: "wave is correct"** (gate wiring reaches `core/kernel/permissions`;
-  `queryDirectory` non-mutating total order; batch↔raw order-preserving; seed consistent) — one rejected→"current" nit, fixed.
-- **doctrine (1 major + 1 minor + 1 deferred nit):** restricted-classifier de-hardcoded (persisted-supersedes + injected
-  markers); `unlabeled` provenance label added; cross-workspace read-authorize noted [DEFERRED] (safe in the single-tenant
-  demo; needs principal-scoping on a real multi-tenant store).
-- **test-teeth (2 major + 2 minor):** the total-order tiebreak + the `all_labeled=false` branch are now driven through the
-  real code (constructed equal-key fixture + `buildDirectoryVM` negative case); tautological assertions replaced with
-  meaningful directions; non-empty filter guards added. Mirrored in the debug steps.
+## Adversarially self-reviewed (4-lens) — 0 blockers
+correctness · truth-doctrine/no-core-vertical-leak · purity/determinism/strip-safety · test-teeth. Verified: no
+clock/random, no enums/parameter-properties, no `@/core/data` import in any gate-imported module, no `core/*.ts` changed;
+states distinct; human gates never auto-decide; every new step/test has negative-control teeth.
 
 ## Gate (all green in the cloud)
-- `node scripts/debug-loop.mjs` → **ALL GREEN 19/19** (new **INSTITUTIONS · APPROVALS · EVIDENCE** steps: renders over
-  real data · human-gate-intact/never-auto-decide · missing/stale/inferred/synthetic/pending states distinct · deterministic)
+- `node scripts/debug-loop.mjs` → **ALL GREEN 22/22** (new **SEARCH · OPPORTUNITIES · WORKFLOWS** steps)
 - `npx tsc --noEmit` → clean · `npm run build` → exit 0 (26/26 routes prerender; the 3 promoted surfaces STATIC `○`)
-- `npm test` → **332 pass, 0 fail** (+24)
+- `npm test` → **348 pass, 0 fail** (+16)
 
 ## New / changed files
-- NEW: `cartridges/cooperative_markets/run_institutions_directory.ts`, `app/_surfaces/approvals_view.ts`,
-  `app/_surfaces/evidence_view.ts`, `components/terminal/{InstitutionsDirectoryView,ApprovalsView,EvidenceView}.tsx`,
-  `tests/{institutions_directory,approvals_view,evidence_view}.test.mjs`
-- EDITED: `app/{institutions,approvals,evidence}/page.tsx` (scaffold → real server pages), `app/actions.ts` (revalidate),
-  `core/registry/data/ui_surfaces.json` (3 flips scaffold→live + tabs/states), `cartridges/cooperative_markets/seed.ts`
-  (2 additive fixtures), `components/terminal/InstitutionsDirectoryView.tsx` (unlabeled chip), `scripts/debug-loop.mjs`
-  (3 steps), docs (`CURRENT_STATE`, `ACTIVE_BUILD`, `BUILD_PROGRESS`, `DEBUG_LOG`, `HANDOFF`)
+- NEW: `app/_surfaces/{universal_search,opportunities_view,workflows_view}.ts`,
+  `cartridges/cooperative_markets/run_opportunities.ts`,
+  `components/terminal/{TerminalShell,SearchView,OpportunitiesView,WorkflowsView}.tsx`,
+  `tests/{universal_search,opportunities_view,workflows_view}.test.mjs`
+- EDITED: `app/{search,opportunities,workflows}/page.tsx` (scaffold → real server pages), `app/layout.tsx` (mount the
+  command palette), `app/globals.css` (palette overlay), `core/registry/data/ui_surfaces.json` (3 flips + `/search`
+  states), `scripts/debug-loop.mjs` (3 steps + UI-SURFACES count), `tests/ui_surfaces.test.mjs` (count),
+  docs (`CURRENT_STATE`, `ACTIVE_BUILD`, `BUILD_PROGRESS`, `DEBUG_LOG`, `HANDOFF`)
 
-## NEXT — Wave 2 (toward the ~80% Sprint-IV target)
-The Terminal RUNTIME (Vol VII): window/layout shell, command palette, universal search over the directory + registry,
-notification/task centers. Promote more scaffolds (`/opportunities`, `/workflows`, `/relationships`, `/executives`,
-`/search`). Optionally a real bulk 5300 feed (Bryan) → moves the market off labeled-synthetic. The UI surface registry
-is the map; look/feel still deferred.
+## NEXT — Wave 3 (toward the ~80% Sprint-IV target)
+The rest of the Terminal runtime: **notification + task centers** over the live approval/work-item queues, a
+**window/layout shell**, and generalizing the **dashboard runtime**. Promote more scaffolds — `/reports`,
+`/collaboration`, `/cartridges`, `/administration` (each has a live-ish data source); `/executives` + `/relationships`
+need a store read + seed first (no `Relationship`/`PersonalProfile` list accessor or seed exists yet — biggest gap).
+Optionally a real bulk 5300 feed (Bryan) to move the market off labeled-synthetic. The UI surface registry is the map;
+look/feel still deferred.
 
 ## Bryan-only (route around, don't block)
 git push · apply 0018 · a REAL bulk 5300 feed · investment-vehicle decision · VC/Alloya legal.

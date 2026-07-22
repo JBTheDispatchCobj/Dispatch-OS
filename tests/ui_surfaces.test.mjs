@@ -21,8 +21,8 @@ const pagePath = (route) => (route === "/" ? "app/page.tsx" : `app${route}/page.
 test("the ui surface registry is a closed graph; the whole product is framed", () => {
   const v = ui.validateUiSurfaceRegistry(REG);
   assert.ok(v.ok, "closed graph: " + v.errors.join("; "));
-  assert.ok(v.live_count >= 6, "a set of live surfaces exists");
-  assert.ok(v.scaffold_count >= 8, "a breadth of scaffolds frames the rest of the product");
+  assert.ok(v.live_count >= 13, "a set of live surfaces exists");
+  assert.ok(v.scaffold_count >= 5, "a breadth of scaffolds frames the rest of the product");
   assert.equal(v.surface_count, v.live_count + v.scaffold_count, "every surface is live or scaffold");
 });
 

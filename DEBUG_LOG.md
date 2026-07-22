@@ -4,6 +4,35 @@ Convention: **[BLOCKER]** stops production → fix immediately · **[NON-BLOCKIN
 when convenient · **[DEFERRED]** intentional, needs a decision/later phase. Run the review harness
 any time with `node scripts/debug-loop.mjs` (after `npm install`).
 
+## 2026-07-22 — Olympic Sprint IV Wave 2 (the Terminal runtime + promote 3 more scaffolds)
+- **Wave scope.** Built THE TERMINAL RUNTIME (Vol VII): a registry-driven **command palette** (`components/terminal/
+  TerminalShell.tsx`, ⌘K, mounted in `app/layout.tsx`) + **universal search** (`app/_surfaces/universal_search.ts` —
+  pure index + total-order matcher over the /institutions directory rows + the UI surface registry + the canon aliases).
+  Promoted `/search`, `/opportunities`, `/workflows` scaffold→live in `ui_surfaces.json` (16 live / 7 scaffold now).
+  Look/feel deferred; reused the existing tokens + added a command-palette overlay to `globals.css`.
+- **[NON-BLOCKING — HANDLED] strip-safety kept.** The 3 new pure builders (`app/_surfaces/{universal_search,
+  opportunities_view,workflows_view}.ts`) + the `run_opportunities.ts` runner are erasable-only (no enums / parameter
+  properties), import-type only, and take no clock/random — so the debug loop + `node --test` import them directly.
+  `/opportunities` runs the UNCHANGED intake→deal-engine path (async, deterministic given `as_of`); the store is read
+  ONLY in the server `page.tsx` (never in a gate-imported module), same seam Wave 1 established.
+- **[NON-BLOCKING — teeth] the ICApproval gate is read-only on `/opportunities`.** The deal-engine opportunity gate is a
+  PIPELINE INPUT (`ICApproval`), not a store `Approval` with a server action — so `/opportunities` renders it as a
+  read-only doctrine state (pending_approval) and exposes NO auto-advance control. The debug step + unit test PROVE the
+  state machine: an approved gate → `current`, a rejected gate → `conflicted`, an advance with no gate → `pending_approval`
+  (never `current`). Nothing auto-advances; the committee decision remains the pipeline's human gate.
+- **[DEFERRED — carried from Wave 1] cross-workspace read scope.** `/workflows` (like `/approvals`, `/evidence`)
+  composites work items/approvals across the demo workspaces (single-tenant demo, session is a workspace owner). A real
+  MULTI-TENANT store must scope the READ to the principal's workspaces (or route it through the same permission-engine
+  guard as the write path). The WRITE paths are already authorize-gated. Safe in the demo; noted on the page.
+- **[NON-BLOCKING] `/search` payload.** The `/search` page inlines a bounded institution slice (250 rows) into the static
+  index so it prerenders without a dynamic read; the command palette carries only the 23 surface entries (tiny) on every
+  page. If the index grows large, move `/search` to a client-fetched index or a search service (future).
+- **Gate:** debug-loop **ALL GREEN 22/22** (SEARCH · OPPORTUNITIES · WORKFLOWS added) · `tsc` clean · `npm run build`
+  exit 0 (26/26 prerender; 3 promoted surfaces static) · **348** tests (+16). Adversarially self-reviewed (4-lens:
+  correctness · truth-doctrine/no-core-vertical-leak · purity/determinism/strip-safety · test-teeth) — 0 blockers
+  (verified: no clock/random, no enums/param-properties, no `@/core/data` import in a gate-imported module, no
+  `core/*.ts` changed).
+
 ## 2026-07-22 — Olympic Sprint IV Wave 1 (promote 3 scaffolds → real surfaces over live data)
 - **Wave scope.** Promoted `/institutions` (a real directory over the full-market profiles — search/filter/
   sort, each row → `/terminal`), `/approvals`, and `/evidence` (real surfaces over the LIVE human gates, routed

@@ -990,7 +990,7 @@ await step("UI-SURFACES(registry closed-graph · whole product framed · live ro
   // ---- CLOSED GRAPH: unique routes · sections resolve · state vocab enforced.
   const v = ui.validateUiSurfaceRegistry(REG);
   assert(v.ok, "ui surface registry is a closed graph: " + v.errors.join("; "));
-  assert(v.live_count >= 6 && v.scaffold_count >= 8, "the whole product is FRAMED (live surfaces + a breadth of scaffolds)");
+  assert(v.live_count >= 13 && v.scaffold_count >= 5, "the whole product is FRAMED (live surfaces + a breadth of scaffolds)");
 
   // teeth: a surface pointing at a non-existent section MUST fail validation (non-vacuous).
   const brokenSection = JSON.parse(JSON.stringify(REG));
@@ -1191,6 +1191,154 @@ await step("EVIDENCE   (live provenance: lineage · inferred/stale/restricted/pe
   assert(vm.rows[0].id === "e_pending", "the unreviewed item sinks to the top (a review is owed)");
 
   return `${vm.counts.total} evidence (${vm.counts.unreviewed} unreviewed · ${vm.counts.inferred} inferred · ${vm.counts.stale} stale · ${vm.counts.restricted} restricted) · states distinct · NEVER auto-review · deterministic`;
+});
+
+await step("SEARCH     (Terminal runtime: universal index · states distinct · palette registry-driven)", async () => {
+  const { register } = await import("node:module");
+  register("./alias-hook.mjs", import.meta.url);
+  const us = await import("@/app/_surfaces/universal_search");
+  const dir = await import("@/cartridges/cooperative_markets/run_institutions_directory");
+  const ui = await import("@/core/registry/ui_surfaces");
+  const canon = await import("@/core/registry/canon");
+  const AS_OF = "2026-07-22T00:00:00.000Z";
+
+  const directory = dir.runInstitutionsDirectory({ as_of: AS_OF, market_size: 20 });
+  const surfaces = ui.uiSurfaces();
+  const aliases = canon.canonAliases();
+  const index = us.buildSearchIndex({ institutions: directory.rows, surfaces, canon: aliases }, { as_of: AS_OF });
+
+  // ---- INDEX over the LIVE collections (institutions + surfaces + canon).
+  assert(index.counts.institution === 20 && index.counts.surface === surfaces.length && index.counts.canon === aliases.length, "the index covers every institution row + surface + canon alias");
+  assert(index.counts.total === index.items.length && index.items.length === 20 + surfaces.length + aliases.length, "index total == the union of the three collections");
+
+  // ---- STATES VISIBLY DISTINCT: institution=synthetic, live surface=current, scaffold=restricted.
+  const anInst = index.items.find((i) => i.kind === "institution");
+  assert(anInst.state === "synthetic" && anInst.synthetic === true, "an institution row is SYNTHETIC (its figures are never presentable as real)");
+  const liveSurface = index.items.find((i) => i.kind === "surface" && i.href === "/approvals");
+  assert(liveSurface && liveSurface.state === "current", "a LIVE surface indexes as current");
+  const scaffoldSurface = index.items.find((i) => i.kind === "surface" && i.href === "/executives");
+  assert(scaffoldSurface && scaffoldSurface.state === "restricted", "a SCAFFOLD surface indexes as restricted (framed, not built)");
+  const confirmedAlias = index.items.find((i) => i.kind === "canon" && i.subtitle.includes("confirmed"));
+  const proposedAlias = index.items.find((i) => i.kind === "canon" && i.subtitle.includes("proposed"));
+  assert(confirmedAlias && confirmedAlias.state === "current", "a CONFIRMED canon alias is current (a live identity)");
+  assert(proposedAlias && proposedAlias.state === "restricted", "a PROPOSED canon alias is restricted (identity-not-authority — not yet confirmed)");
+
+  // ---- MATCHER: ranked, deterministic, honest empty state.
+  const bySurface = us.searchUniverse(index, "approvals");
+  assert(bySurface.groups.some((g) => g.kind === "surface" && g.items.some((i) => i.title === "Approvals")), "a surface query finds the surface");
+  const byCharter = us.searchUniverse(index, directory.rows[0].charter);
+  assert(byCharter.total >= 1 && byCharter.groups[0].kind === "institution" && byCharter.groups[0].items.every((i) => i.kind === "institution"), "a charter query finds only institutions");
+  const empty = us.searchUniverse(index, "zzz_no_such_object_zzz");
+  assert(empty.total === 0 && empty.missing === true && empty.groups.length === 0, "an unmatched query is MISSING (honest empty state, never a fabricated hit)");
+  const blank = us.searchUniverse(index, "   ");
+  assert(blank.missing === false && blank.total === index.items.length, "a blank query returns everything, never 'missing'");
+  // teeth: a title/prefix match outranks a keyword-only match (deterministic scoring).
+  assert(us.scoreItem({ title: "Approvals", keywords: "approvals evidence", state: "current", synthetic: false, id: "x", kind: "surface", subtitle: "", href: "/x" }, "approvals") > us.scoreItem({ title: "Evidence & Provenance", keywords: "approvals", state: "current", synthetic: false, id: "y", kind: "surface", subtitle: "", href: "/y" }, "approvals"), "a title match outranks a keyword-only match");
+
+  // ---- PALETTE registry-driven: every surface is a jump target; filter has teeth.
+  const pal = us.paletteSurfaces(surfaces);
+  assert(pal.length === surfaces.length && pal.every((p) => typeof p.route === "string" && p.route.startsWith("/")), "the palette is derived from the registry (every surface a jump target)");
+  assert(us.filterPalette(pal, "approvals").some((p) => p.route === "/approvals"), "the palette filter finds a surface by title/command");
+  assert(us.filterPalette(pal, "   ").length === pal.length, "a blank palette query returns all surfaces");
+
+  // ---- DETERMINISTIC.
+  const index2 = us.buildSearchIndex({ institutions: directory.rows, surfaces, canon: aliases }, { as_of: AS_OF });
+  assert(JSON.stringify(index) === JSON.stringify(index2), "the search index is deterministic");
+  assert(JSON.stringify(us.searchUniverse(index, "cu")) === JSON.stringify(us.searchUniverse(index, "cu")), "the matcher is deterministic");
+
+  return `index ${index.counts.total} objects (${index.counts.institution} institutions · ${index.counts.surface} surfaces · ${index.counts.canon} canon) · states distinct (synthetic/current/restricted) · missing on no-match (honest) · palette registry-driven (${pal.length}) · deterministic`;
+});
+
+await step("OPPORTUNITIES(deal engine: scored · inferred · ICApproval gate never auto-advances)", async () => {
+  const { register } = await import("node:module");
+  register("./alias-hook.mjs", import.meta.url);
+  const ro = await import("@/cartridges/cooperative_markets/run_opportunities");
+  const ov = await import("@/app/_surfaces/opportunities_view");
+  const AS_OF = "2026-07-22T00:00:00.000Z";
+
+  const vm = await ro.runOpportunities({ as_of: AS_OF });
+
+  // ---- RENDERS over the real deal-engine run (3 labeled applicants: advance/block/hold).
+  assert(vm.counts.total === 3, "every scored applicant is an opportunity row");
+  assert(vm.counts.advancing === 1 && vm.counts.blocked === 1, "the advance/hold/decline/blocked recommendations are exercised");
+
+  // ---- HUMAN GATE INTACT: nothing auto-advances. A recommended-advance opp is
+  //      pending_approval (owes the ICApproval gate), NEVER current, and none are approved.
+  assert(vm.counts.approved === 0, "NO opportunity is advanced (current) — the engine only recommends; approval is a human act");
+  const adv = vm.open.find((r) => r.recommendation === "advance");
+  assert(adv && adv.awaitingApproval === true && adv.gate === null, "a recommended-advance opportunity awaits the ICApproval gate (not advanced)");
+  assert(adv.states.includes("inferred") && adv.states.includes("pending_approval") && !adv.states.includes("current"), "advance → inferred + pending_approval, NEVER current");
+  const blk = vm.blocked.find((r) => r.recommendation === "blocked");
+  assert(blk && blk.states.includes("conflicted"), "a blocked opportunity is conflicted");
+
+  // ---- SOURCED: every score is a Dispatch inference citing the intake submission.
+  assert([...vm.open, ...vm.blocked].every((r) => r.inferred && r.hasLineage && r.scores.length >= 1), "every opportunity is a sourced Dispatch inference with lineage");
+
+  // ---- STATE-MACHINE TEETH (via the pure builder): an APPROVED gate → current;
+  //      a REJECTED gate → conflicted; an advance with NO gate → pending_approval (never current).
+  const base = { id: "o", company: "C", institution: "I", category: "x", opportunityScore: 80, confidence: 0.8, tier: "dispatch_inference", rationale: "r", lineage: ["fact:1"], scores: [{ key: "opportunity", label: "Opportunity", value: 80, confidence: 0.8 }] };
+  const approved = ov.buildOpportunitiesView([{ ...base, recommendation: "advance", gate: { disposition: "approved", by: "user:ic", decision_ref: "dec:1" } }], { as_of: AS_OF });
+  assert(approved.open[0].states.includes("current") && !approved.open[0].states.includes("pending_approval") && approved.counts.approved === 1, "an APPROVED ICApproval → current (the state machine can reach current, but only via a human act)");
+  const rejected = ov.buildOpportunitiesView([{ ...base, recommendation: "advance", gate: { disposition: "rejected", by: "user:ic", decision_ref: "dec:2" } }], { as_of: AS_OF });
+  assert(rejected.open[0].states.includes("conflicted"), "a REJECTED ICApproval → conflicted");
+  const pending = ov.buildOpportunitiesView([{ ...base, recommendation: "advance", gate: null }], { as_of: AS_OF });
+  assert(pending.open[0].states.includes("pending_approval") && !pending.open[0].states.includes("current"), "advance + no gate → pending_approval, NEVER auto-advanced to current");
+
+  // ---- DETERMINISTIC.
+  const vm2 = await ro.runOpportunities({ as_of: AS_OF });
+  assert(JSON.stringify(vm) === JSON.stringify(vm2), "the opportunities surface is deterministic");
+
+  return `${vm.counts.total} opportunities (${vm.counts.advancing} advance · ${vm.counts.blocked} blocked) · ${vm.counts.awaitingApproval} awaiting ICApproval · 0 auto-advanced · sourced inferences · deterministic`;
+});
+
+await step("WORKFLOWS  (live work items grouped by workflow · gate/conflict distinct · never auto-decide)", async () => {
+  const { register } = await import("node:module");
+  register("./alias-hook.mjs", import.meta.url);
+  const wf = await import("@/app/_surfaces/workflows_view");
+  const AS_OF = "2026-07-22T00:00:00.000Z";
+
+  const items = [
+    { id: "wi1", workspace_id: "ws1", kind: "cooperative_markets:pilot_management", title: "Halcyon pilot", status: "in_progress", priority: "high", source: "manual", entity_id: null, assignee_id: "u1", assignee_name: "Ops", context: {}, created_at: "2026-06-01T00:00:00.000Z", started_at: null, completed_at: null },
+    { id: "wi2", workspace_id: "ws1", kind: "cooperative_markets:diligence", title: "Cobalt diligence", status: "awaiting_review", priority: "high", source: "manual", entity_id: null, assignee_id: null, assignee_name: null, context: {}, created_at: "2026-06-02T00:00:00.000Z", started_at: null, completed_at: null },
+    { id: "wi3", workspace_id: "ws1", kind: "cooperative_markets:pilot_management", title: "Aurora pilot", status: "blocked", priority: "medium", source: "manual", entity_id: null, assignee_id: null, assignee_name: null, context: {}, created_at: "2026-06-03T00:00:00.000Z", started_at: null, completed_at: null },
+    { id: "wi4", workspace_id: "ws1", kind: "unknown:mystery", title: "Orphan task", status: "open", priority: "low", source: "manual", entity_id: null, assignee_id: null, assignee_name: null, context: {}, created_at: "2026-06-04T00:00:00.000Z", started_at: null, completed_at: null },
+  ];
+  const defs = [
+    { kind: "cooperative_markets:pilot_management", label: "Pilot Management", description: "run a pilot", defaultOwnerRole: "operator", defaultPriority: "high", approvalRequired: false },
+    { kind: "cooperative_markets:diligence", label: "Investment Diligence", description: "diligence", defaultOwnerRole: "reviewer", defaultPriority: "high", approvalRequired: true },
+  ];
+  const approvals = [
+    { id: "appr1", workspace_id: "ws1", approval_type: "capital_allocation", status: "requested", related_work_item_id: "wi1", created_at: "2026-06-05T00:00:00.000Z" },
+  ];
+  const checklist = { wi1: { done: 2, total: 5 } };
+  const vm = wf.buildWorkflowsView({ items, defs, approvals, checklist, workspaceLabels: { ws1: "Demo WS" } }, { as_of: AS_OF });
+
+  // ---- GROUPED by workflow + joined to the cartridge DEFINITION.
+  assert(vm.counts.workflows === 3 && vm.counts.items === 4, "items grouped by workflow kind (pilot × 2, diligence × 1, unknown × 1)");
+  const pilot = vm.groups.find((g) => g.kind === "cooperative_markets:pilot_management");
+  const dil = vm.groups.find((g) => g.kind === "cooperative_markets:diligence");
+  const orphan = vm.groups.find((g) => g.kind === "unknown:mystery");
+  assert(pilot.label === "Pilot Management" && dil.approvalRequired === true, "a group carries its cartridge definition (label, approvalRequired)");
+  assert(orphan.unmapped === true && orphan.label === "unknown:mystery", "a kind with NO definition is flagged unmapped (never silently mis-attached)");
+
+  // ---- STATES VISIBLY DISTINCT: pending_approval (gate owed) · conflicted (blocked) · current.
+  const wi1 = pilot.items.find((r) => r.id === "wi1");
+  const wi3 = pilot.items.find((r) => r.id === "wi3");
+  const wi2 = dil.items.find((r) => r.id === "wi2");
+  assert(wi1.pendingApproval === true && wi1.linkedApprovalId === "appr1" && wi1.states.includes("pending_approval"), "a work item with a linked REQUESTED approval owes a human gate (pending_approval)");
+  assert(wi2.states.includes("pending_approval"), "an awaiting_review item owes a review gate");
+  assert(wi3.states.includes("conflicted") && !wi3.states.includes("current"), "a blocked item is conflicted, never current");
+  assert(wf.workItemStates("completed", false).includes("current") && !wf.workItemStates("blocked", false).includes("current"), "workItemStates: completed→current, blocked→never current (teeth)");
+  assert(pilot.pendingApprovals === 1 && pilot.blocked === 1 && pilot.states.includes("pending_approval") && pilot.states.includes("conflicted"), "the group rolls up its gate + conflict states");
+
+  // ---- NEVER AUTO-DECIDE: the builder only projects — the requested approval stays owed.
+  assert(vm.counts.pendingApprovals === 1 && vm.counts.awaiting >= 2, "the builder surfaces owed gates; it never decides one");
+
+  // ---- ORDERING: attention (gate/conflict) items sink to the top; deterministic.
+  assert(pilot.items[0].states.some((s) => s === "pending_approval" || s === "conflicted"), "attention items sort to the top of a group");
+  assert(JSON.stringify(vm) === JSON.stringify(wf.buildWorkflowsView({ items, defs, approvals, checklist, workspaceLabels: { ws1: "Demo WS" } }, { as_of: AS_OF })), "the workflows view is deterministic");
+
+  return `${vm.counts.workflows} workflows · ${vm.counts.items} items · ${vm.counts.awaiting} awaiting a gate · ${vm.counts.blocked} conflicted · unmapped flagged · NEVER auto-decide · deterministic`;
 });
 
 await step("TESTS      (node --test: engine unit suite)", () => {

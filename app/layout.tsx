@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
 import { surfacesBySection } from "@/core/registry/ui_surfaces";
+import { paletteSurfaces } from "@/app/_surfaces/universal_search";
+import { TerminalShell } from "@/components/terminal/TerminalShell";
 
 export const metadata: Metadata = {
   title: "Dispatch OS",
@@ -15,6 +17,10 @@ export const metadata: Metadata = {
 // map, not the final chrome.
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const groups = surfacesBySection();
+  // The command palette (Terminal runtime, Vol VII) is driven from the SAME registry as
+  // the nav — every surface is a jump target, in section order. Registry-driven: a new
+  // surface appears in the palette with no code change.
+  const palette = paletteSurfaces(groups.flatMap((g) => g.surfaces));
   return (
     <html lang="en">
       <body>
@@ -41,6 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </span>
             ))}
           </nav>
+          <TerminalShell surfaces={palette} />
         </div>
         <main className="shell">{children}</main>
       </body>

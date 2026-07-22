@@ -1,5 +1,44 @@
 # Current State
 
+## Running now (Olympic Sprint IV — Wave 2, ~62%, 2026-07-22) — THE TERMINAL RUNTIME + 3 more scaffolds PROMOTED to REAL surfaces
+**Sprint IV continues (Terminal & product surface complete, target ~80%).** Wave 2 builds the operating-environment
+shell the product was missing (Vol VII) and promotes three more of the highest-value FRAMED scaffolds to real surfaces
+over live run output. Additive; **no vertical noun in `core/`** (the new pure builders live in `app/_surfaces/`, the
+runner in `cartridges/`; only `ui_surfaces.json` config-as-data + `app/layout.tsx` + `app/globals.css` changed); the
+connector runtime + engines + human-gate contract layer are UNCHANGED; default in-memory; look/feel deferred. Shipped:
+
+- **THE TERMINAL RUNTIME — a registry-driven COMMAND PALETTE + UNIVERSAL SEARCH.** `app/_surfaces/universal_search.ts`
+  (pure, deterministic, erasable-only) builds a universal-search INDEX + a total-order MATCHER over three live
+  collections — the `/institutions` directory rows, the UI surface registry, and the external-canon aliases — with the
+  doctrine states kept **visibly distinct**: an institution row is **synthetic** (figures never presentable as real), a
+  LIVE surface is **current**, a SCAFFOLD surface / a PROPOSED (unconfirmed) canon alias is **restricted** (framed /
+  not authoritative), and a no-match query is **missing** (an honest empty state, never a fabricated hit).
+  `components/terminal/TerminalShell.tsx` mounts a global **command palette** (⌘K / Ctrl-K) once in `app/layout.tsx`,
+  driven ENTIRELY from `ui_surfaces.json` — every surface is a keyboard-navigable jump target, and a new surface appears
+  in the palette with NO code change; a free-text query hands off to `/search`. Pure navigation — never mutates/decides.
+- **`/search` — the universal-search surface (scaffold→live).** `app/search/page.tsx` builds the index server-side from
+  the live collections; `SearchView.tsx` ranks with `searchUniverse` and reads `?q=` client-side so the page stays
+  statically prerenderable. Ranked, deterministic; the state legend is intact on every result row.
+- **`/opportunities` — REAL over the deal engine (scaffold→live).** `app/_surfaces/opportunities_view.ts` (pure) +
+  `cartridges/cooperative_markets/run_opportunities.ts` run the UNCHANGED intake → deal-engine path over labeled intake
+  fixtures. Every score is a **Dispatch inference** (tier `dispatch_inference`), NEVER a fact and never a regulated
+  conclusion in a weight; the engine only RECOMMENDS — advancing an opportunity to allocation requires the **ICApproval
+  human gate** (proven by the pipeline: an unapproved deal halts `awaiting_approval`, allocating/settling/publishing
+  nothing), so a recommended-advance opportunity is **pending_approval**, NEVER auto-advanced to **current**; a blocked
+  deal is **conflicted**. A triage surface with NO auto-advance control (the decision is the committee's).
+- **`/workflows` — REAL over the live work-item queue (scaffold→live).** `app/_surfaces/workflows_view.ts` (pure)
+  groups the store's `WorkItem` objects by workflow `kind`, joins each group to its cartridge WORKFLOW DEFINITION
+  (config-as-data — label / owner / whether it requires an approval), rolls up status, and cross-references the live
+  `Approval` objects by `related_work_item_id`. States distinct: **pending_approval** (a human gate owed) /
+  **conflicted** (blocked/rejected) / **current**; a kind with NO definition is flagged **unmapped** (never silently
+  mis-attached); the builder NEVER decides a gate — decisions route through the existing permission-engine surfaces.
+- **Gate**: `node scripts/debug-loop.mjs` **ALL GREEN 22/22** (new **SEARCH · OPPORTUNITIES · WORKFLOWS** steps — each
+  asserts renders-over-real-data · states distinct · human-gate-never-auto-decide · deterministic, with negative-control
+  teeth) · `tsc --noEmit` clean · `npm run build` exit 0 (26/26 routes prerender; the 3 promoted surfaces STATIC) ·
+  **348 unit tests** (+16). Adversarially self-reviewed (4-lens; 0 blockers). There are now **16 REAL Terminal surfaces**
+  (adds `/search`, `/opportunities`, `/workflows`) + a registry-driven command palette + **7 framed scaffolds**.
+**Bryan-only (route around):** git push · apply 0018 · a real bulk 5300 feed · investment-vehicle decision · VC/Alloya legal.
+
 ## Running now (Olympic Sprint IV — Wave 1, ~61%, 2026-07-22) — 3 scaffolds PROMOTED to REAL surfaces over live data
 **Sprint IV opens (Terminal & product surface complete, target ~80%).** Wave 1 turns three of the highest-value
 FRAMED scaffolds into REAL surfaces over live run output, using `ui_surfaces.json` as the contract. Additive,

@@ -1,25 +1,26 @@
-// app/opportunities/page.tsx — SCAFFOLD (framed placeholder; Olympic Sprint III Wave 5)
+// app/opportunities/page.tsx
 //
-// A wireframe for the "Opportunities" surface. Its full contract — primary
-// object, planned tabs/commands, human gates, and the doctrine state legend —
-// is declared in the UI surface registry (core/registry/data/ui_surfaces.json)
-// and rendered through the shared ScaffoldView. Look/feel/flow is deferred to
-// the Terminal polish sprint; this exists so the whole product is FRAMED and
-// every route is reachable and reviewable against one map.
+// Olympic Sprint IV — Wave 2. The "Opportunities" surface, PROMOTED from a scaffold to a
+// REAL surface over the deal-engine output. This SERVER component runs the EXISTING intake
+// → deal-engine path (`runOpportunities`, deterministic) and renders the client
+// `OpportunitiesView`. The engine only RECOMMENDS; advancing an opportunity to allocation
+// requires the ICApproval human gate — this triage surface exposes no auto-advance control.
 //
-// Server component: reads its surface entry from the registry (config-as-data)
-// and prerenders statically. No engine work, no client bundle.
+// Deterministic read: a fixed `as_of` stamp (no clock) so the page prerenders statically;
+// the run is a pure function of the labeled intake fixtures.
 
-import { surfaceByRoute } from "@/core/registry/ui_surfaces";
-import { ScaffoldView } from "@/components/terminal/ScaffoldView";
+import { runOpportunities } from "@/cartridges/cooperative_markets/run_opportunities";
+import { OpportunitiesView } from "@/components/terminal/OpportunitiesView";
 
 export const metadata = {
   title: "Opportunities",
-  description: "Sourced opportunities across the network: each links to a workflow and an owner, drills to evidence, and routes regulated conclusions to a human gate.",
+  description:
+    "Sourced opportunities from the deal engine: each carries a score, a recommendation, its lineage, and the ICApproval human gate. Nothing advances automatically.",
 };
 
-export default function Page() {
-  const surface = surfaceByRoute("/opportunities");
-  if (!surface) throw new Error("ui surface not registered: /opportunities");
-  return <ScaffoldView surface={surface} />;
+const AS_OF = "2026-07-22T00:00:00.000Z";
+
+export default async function OpportunitiesPage() {
+  const vm = await runOpportunities({ as_of: AS_OF });
+  return <OpportunitiesView vm={vm} />;
 }

@@ -1,25 +1,36 @@
-// app/search/page.tsx — SCAFFOLD (framed placeholder; Olympic Sprint III Wave 5)
+// app/search/page.tsx
 //
-// A wireframe for the "Network Search & Discovery" surface. Its full contract — primary
-// object, planned tabs/commands, human gates, and the doctrine state legend —
-// is declared in the UI surface registry (core/registry/data/ui_surfaces.json)
-// and rendered through the shared ScaffoldView. Look/feel/flow is deferred to
-// the Terminal polish sprint; this exists so the whole product is FRAMED and
-// every route is reachable and reviewable against one map.
+// Olympic Sprint IV — Wave 2. The "Search" surface, PROMOTED from a scaffold to a REAL
+// universal-search surface over the live objects. This SERVER component builds ONE search
+// index from the live collections — the `/institutions` directory rows, the UI surface
+// registry, and the external-canon alias registry — with the pure `buildSearchIndex`, and
+// renders the client `SearchView` (which ranks with `searchUniverse` and reads `?q=`
+// client-side, so the page stays statically prerenderable).
 //
-// Server component: reads its surface entry from the registry (config-as-data)
-// and prerenders statically. No engine work, no client bundle.
+// Deterministic read: a fixed `as_of` stamp (no clock) + an index-seeded directory, so the
+// index is a pure function of the registries and prerenders statically.
 
-import { surfaceByRoute } from "@/core/registry/ui_surfaces";
-import { ScaffoldView } from "@/components/terminal/ScaffoldView";
+import { runInstitutionsDirectory } from "@/cartridges/cooperative_markets/run_institutions_directory";
+import { uiSurfaces } from "@/core/registry/ui_surfaces";
+import { canonAliases } from "@/core/registry/canon";
+import { buildSearchIndex } from "@/app/_surfaces/universal_search";
+import { SearchView } from "@/components/terminal/SearchView";
 
 export const metadata = {
-  title: "Network Search & Discovery",
-  description: "Universal search + command over every canonical object (institutions, people, companies, opportunities). Search and command coexist with structured…",
+  title: "Search",
+  description:
+    "Universal search over the live objects — the institution directory, every product surface, and the external-canon aliases. Search and command coexist with structured navigation.",
 };
 
-export default function Page() {
-  const surface = surfaceByRoute("/search");
-  if (!surface) throw new Error("ui surface not registered: /search");
-  return <ScaffoldView surface={surface} />;
+const AS_OF = "2026-07-22T00:00:00.000Z";
+/** A bounded institution slice keeps the indexed page payload reasonable at build. */
+const SEARCH_MARKET_SIZE = 250;
+
+export default function SearchPage() {
+  const directory = runInstitutionsDirectory({ as_of: AS_OF, market_size: SEARCH_MARKET_SIZE });
+  const index = buildSearchIndex(
+    { institutions: directory.rows, surfaces: uiSurfaces(), canon: canonAliases() },
+    { as_of: AS_OF },
+  );
+  return <SearchView index={index} />;
 }

@@ -4,8 +4,27 @@
 Cooperative Markets foundation on Dispatch OS. The full Specification Program (Vols
 I–X) is reconciled/adopted; forward work is BUILD.
 
-**Olympic Sprint IV (Terminal & product surface complete, target ~80%) — IN PROGRESS, ~61% after Wave 1.**
-**Wave 1 (DONE, 2026-07-22) — PROMOTE 3 scaffolds → REAL surfaces over live data.** Turned three of the
+**Olympic Sprint IV (Terminal & product surface complete, target ~80%) — IN PROGRESS, ~62% after Wave 2.**
+**Wave 2 (DONE, 2026-07-22) — THE TERMINAL RUNTIME (Vol VII) + promote 3 more scaffolds → REAL surfaces.** Built the
+operating-environment shell the product was missing: a **registry-driven command palette** (⌘K, mounted globally in
+`app/layout.tsx`, driven from `ui_surfaces.json` so a new surface appears with no code change) + **universal search**
+(`app/_surfaces/universal_search.ts` — a pure/deterministic index + total-order matcher over the /institutions directory
+rows + the UI surface registry + the canon aliases; states distinct: institution=synthetic · live surface=current ·
+scaffold/proposed-alias=restricted · no-match=missing). Promoted 3 more scaffolds → real (13→**16 live / 7 scaffold**):
+(1) **`/search`** — the universal-search surface (`SearchView.tsx` ranks with `searchUniverse`, reads `?q=` client-side
+so the page stays static). (2) **`/opportunities`** — `app/_surfaces/opportunities_view.ts` + `run_opportunities.ts`
+over the UNCHANGED intake→deal-engine path: every score a **Dispatch inference**, the **ICApproval** gate rendered as
+pending_approval, NEVER auto-advanced to current (a triage surface, no auto-advance control); blocked→conflicted.
+(3) **`/workflows`** — `app/_surfaces/workflows_view.ts` over the LIVE work-item queue grouped by cartridge workflow
+definition + cross-referenced approvals: pending_approval/conflicted/current distinct, unmapped kinds flagged, NEVER
+auto-decides. Additive, **no vertical noun in `core/`** (builders in `app/_surfaces/`, runner in `cartridges/`).
+Gate: debug-loop **22/22** (new SEARCH · OPPORTUNITIES · WORKFLOWS steps), `tsc` clean, build exit 0 (26/26 prerender;
+the 3 promoted surfaces static), **348** tests (+16). Adversarially self-reviewed (4-lens; 0 blockers). **Next (Wave 3):**
+the rest of the Terminal runtime — notification/task centers over the live approval/work-item queues, a window/layout
+shell, dashboard-runtime generalization; promote more scaffolds (`/executives`, `/relationships` need a store read/seed
+first; `/reports`, `/collaboration`, `/cartridges`, `/administration`); optionally a real bulk 5300 feed (Bryan).
+
+**Prior — Olympic Sprint IV Wave 1 (DONE, 2026-07-22, ~61%) — PROMOTE 3 scaffolds → REAL surfaces over live data.** Turned three of the
 highest-value FRAMED scaffolds into real surfaces over live run output, using `ui_surfaces.json` as the contract
 (now 13 live / 10 scaffold). Additive; no vertical noun in `core/`; the connector runtime + engines + human-gate
 contract layer UNCHANGED; default in-memory; look/feel deferred (reused existing tokens). (1) **`/institutions`** —
