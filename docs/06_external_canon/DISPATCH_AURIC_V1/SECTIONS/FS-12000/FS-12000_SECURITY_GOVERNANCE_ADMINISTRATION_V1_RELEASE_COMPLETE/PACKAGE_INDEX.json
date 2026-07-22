@@ -1,0 +1,342 @@
+{
+  "section": "FS-12000",
+  "canonical_name": "Security, Governance and Administration",
+  "version": "V1_RELEASE_COMPLETE",
+  "generated_at": "2026-07-22T09:10:36.500339+00:00",
+  "checksum_algorithm": "SHA-256",
+  "index_policy": {
+    "PACKAGE_INDEX.json": "self-describing index; self-checksum intentionally omitted to avoid recursive mutation",
+    "INTEGRITY_INDEX.csv": "final size and SHA-256 included below",
+    "coverage": "all other package files have final size and SHA-256"
+  },
+  "files": [
+    {
+      "filename": "12001_SECURITY_ARCHITECTURE_V1_RELEASE.md",
+      "file_size_bytes": 8527,
+      "sha256": "020a89857bcb996cb5e0d6cb0c6e3bbf3f0ea67e3d5b72a777c1fc9d03ed27f6",
+      "artifact_type": "narrative_specification",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "12002_IDENTITY_ACCESS_MANAGEMENT_V1_RELEASE.md",
+      "file_size_bytes": 7972,
+      "sha256": "92dcb2f3152dc7a78dfede30560509f64226bffd01e044a8c592cecfedcd5f1e",
+      "artifact_type": "narrative_specification",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "12003_TENANT_ISOLATION_V1_RELEASE.md",
+      "file_size_bytes": 9265,
+      "sha256": "2721bdda5b8ac8f52f9f2a0fc321d89a3e97d4c6c54bafdb52dc44cca04731bd",
+      "artifact_type": "narrative_specification",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "12004_DATA_SECURITY_ENCRYPTION_V1_RELEASE.md",
+      "file_size_bytes": 7419,
+      "sha256": "eb9ac80a64466120602f9aa3a2d53414e89a40f8a258ea6756b10fe5980eef06",
+      "artifact_type": "narrative_specification",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "12005_SECRETS_CONNECTOR_SECURITY_V1_RELEASE.md",
+      "file_size_bytes": 7527,
+      "sha256": "9f47ba5adc5a1ac5ea5ee09d0fbc7f5fa62c8bcc5efd1eb0a3fd9f10c645747e",
+      "artifact_type": "narrative_specification",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "12006_APPLICATION_INFRASTRUCTURE_SECURITY_V1_RELEASE.md",
+      "file_size_bytes": 7455,
+      "sha256": "ceae2b93f2ed4c8d4c94279776f6f8877cba244df27813a15f90955036aded21",
+      "artifact_type": "narrative_specification",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "12007_AI_MODEL_GOVERNANCE_V1_RELEASE.md",
+      "file_size_bytes": 9366,
+      "sha256": "8e18db23dc9301df72cf72276ac7454790f65d5d563316496184c72da1b387a5",
+      "artifact_type": "narrative_specification",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "12008_POLICY_CONTROL_COMPLIANCE_GOVERNANCE_V1_RELEASE.md",
+      "file_size_bytes": 7466,
+      "sha256": "ead8ab7c3d0514dc5e1e98fcf3d2d80f0c6284c64b4c226897f0c3d5da151afa",
+      "artifact_type": "narrative_specification",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "12009_VENDOR_RISK_THIRD_PARTY_GOVERNANCE_V1_RELEASE.md",
+      "file_size_bytes": 9024,
+      "sha256": "401b5c032f1e77219c5ecb8804d87ca582fac6afa700d624b79f1b174bc721f2",
+      "artifact_type": "narrative_specification",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "12010_INCIDENT_RESPONSE_V1_RELEASE.md",
+      "file_size_bytes": 8814,
+      "sha256": "bbb9fdf0bbcf584eeb9f650df0e4bd97aa4ba2dfe56a4658de73d475d08ffe94",
+      "artifact_type": "narrative_specification",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "12011_BUSINESS_CONTINUITY_DISASTER_RECOVERY_V1_RELEASE.md",
+      "file_size_bytes": 8731,
+      "sha256": "49c35bfd3dc0ee16c1e85d1df36c9cfec8fe70211cbad5ac3d88c569f6b87322",
+      "artifact_type": "narrative_specification",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "12012_AUDIT_ASSURANCE_EXAM_READINESS_V1_RELEASE.md",
+      "file_size_bytes": 7475,
+      "sha256": "321bdf7843512985c59ee46cfd8c74f8b0a199c5ea8d5146fd08f3ccd13eb403",
+      "artifact_type": "narrative_specification",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "12013_ADMIN_CHANGE_CONFIGURATION_GOVERNANCE_V1_RELEASE.md",
+      "file_size_bytes": 8735,
+      "sha256": "997331ecd79c8e2243e9fd9ae02b92cb19faffbc78a4eb01cd1cd3da1ec0b4ce",
+      "artifact_type": "narrative_specification",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "12014_SECURITY_MONITORING_REPORTING_V1_RELEASE.md",
+      "file_size_bytes": 7665,
+      "sha256": "d116956c4e3589d306573276a025e528be53a4816b3b54ebab773036b9bcb2d5",
+      "artifact_type": "narrative_specification",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "12015_MASTER_SECURITY_INTEGRATION_INDEX_V1_RELEASE.md",
+      "file_size_bytes": 8349,
+      "sha256": "69b7f27eeb731d4dbf726fcf294e1673c5dde3ca03c471bea8b21dce0b133b71",
+      "artifact_type": "narrative_specification",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "AI_MODEL_RISK_MATRIX.csv",
+      "file_size_bytes": 622,
+      "sha256": "634ff3cf7e9206704016b244966f194c160fcf64d10ca226b09398448f0618a7",
+      "artifact_type": "registry_or_matrix",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "BCP_DR_SERVICE_TIERS.csv",
+      "file_size_bytes": 470,
+      "sha256": "cf0e402f977968f5ff4ad0ab71b2002289d03ade2b0c25c3c6b3b5f26db90d3c",
+      "artifact_type": "registry_or_matrix",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "CHANGE_APPROVAL_MATRIX.csv",
+      "file_size_bytes": 566,
+      "sha256": "34b40d1f6c5b3d8f4ad41949e263d882c93c4c44f4164277e17126dafdbef809",
+      "artifact_type": "registry_or_matrix",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "FIXTURE_AI_USE_CASE.json",
+      "file_size_bytes": 837,
+      "sha256": "eeafec7954c19eda45e456f242467fa11e51e03eb88106d7986ce13d627a82cd",
+      "artifact_type": "schema_or_machine_readable",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "FIXTURE_INCIDENT.json",
+      "file_size_bytes": 612,
+      "sha256": "69ca9d57bc357213ccc2b12b5a3e7aad446e65fd444d93eaacff971ab2033987",
+      "artifact_type": "schema_or_machine_readable",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "FIXTURE_SECURITY_CONTROL.json",
+      "file_size_bytes": 627,
+      "sha256": "038a479378ed3afbd44c79f3adc18ba6bcb3329e7aee4db7c3c72d97eca59550",
+      "artifact_type": "schema_or_machine_readable",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "FS12000_ACCEPTANCE_TESTS.md",
+      "file_size_bytes": 1348,
+      "sha256": "ed632fdc0421439e8d9cf66455d040eadaaa1b98628265dba5a520668843ba52",
+      "artifact_type": "narrative_specification",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "FS12000_IMPLEMENTATION_OPERATIONS_RUNBOOK.md",
+      "file_size_bytes": 1885,
+      "sha256": "022d1340f0dd14de342a4d714f7f678f2a70122c31d380604efe1bdfb4480f0c",
+      "artifact_type": "narrative_specification",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "FS12000_SECURITY_THREAT_MODEL.md",
+      "file_size_bytes": 2361,
+      "sha256": "97b47919fcc2ba542a95ef524b9f180ac79995d2fd9c83d9066e952d9b0770da",
+      "artifact_type": "narrative_specification",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "IAM_PERMISSION_MATRIX.csv",
+      "file_size_bytes": 676,
+      "sha256": "00fd405b79c035ad8d83ddf61037a78bc48b6d61287354bd3d9ed934796aa299",
+      "artifact_type": "registry_or_matrix",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "INCIDENT_SEVERITY_MATRIX.csv",
+      "file_size_bytes": 780,
+      "sha256": "5e64447e566b68d81258f44d81e3be6a07a917f753c9a125dfb6ea525e1dd702",
+      "artifact_type": "registry_or_matrix",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "INTEGRITY_INDEX.csv",
+      "file_size_bytes": 6671,
+      "sha256": "454f6c0671ba057aa735dcdbae03f897d3471b1c234318305a27ee6782f86b17",
+      "artifact_type": "registry_or_matrix",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "README_FS_12000_V1_RELEASE_COMPLETE.md",
+      "file_size_bytes": 1627,
+      "sha256": "54c74ff9d5e86d84d158d894d92c1ef260c4f59faf7ea1345689c559e0d245d9",
+      "artifact_type": "narrative_specification",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "RELEASE_MANIFEST.json",
+      "file_size_bytes": 11043,
+      "sha256": "389dedb636b6ed4bdf9db88a0b4ed3494e04a49ed1179d37546a70762e4f26dc",
+      "artifact_type": "schema_or_machine_readable",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "SECURITY_CONTROL_LIBRARY.csv",
+      "file_size_bytes": 1184,
+      "sha256": "828b65565935e5eaf277576217dbb86291d6a421b4e2a11a1a44ab01c3b2c716",
+      "artifact_type": "registry_or_matrix",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "SECURITY_METRICS_CATALOG.csv",
+      "file_size_bytes": 910,
+      "sha256": "3b0ab745c887628557c3667e587f185dafaaf3b9fc720ada8f7348ee0787ffb2",
+      "artifact_type": "registry_or_matrix",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "VALIDATION_REPORT.csv",
+      "file_size_bytes": 1031,
+      "sha256": "bc71399698132a6878cdd853d7435c140ba2b7a52c4f61fd1f14b86fb9781462",
+      "artifact_type": "registry_or_matrix",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "VALIDATION_REPORT.json",
+      "file_size_bytes": 6947,
+      "sha256": "1e13e3cd0dfd4b14bf1fc3a8890edb2300357052b553d16582dff5aa8aa1d4e2",
+      "artifact_type": "schema_or_machine_readable",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "VENDOR_RISK_DUE_DILIGENCE_MATRIX.csv",
+      "file_size_bytes": 751,
+      "sha256": "f95534490dc0f4da59d69519fff0baa8af8259a512b58c8ca1d4c47b81d33ac0",
+      "artifact_type": "registry_or_matrix",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "ai_use_case.schema.json",
+      "file_size_bytes": 1884,
+      "sha256": "9f8a91afd80107935acf0d840743951f63387731c2a91b472904f9ce3b2f05f8",
+      "artifact_type": "schema_or_machine_readable",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "change_request.schema.json",
+      "file_size_bytes": 1912,
+      "sha256": "9ee208b326f7d1ecdf2b3db0a7c7c87b564ccb5e9828f99c32a7df18872c15df",
+      "artifact_type": "schema_or_machine_readable",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "identity_entitlement.schema.json",
+      "file_size_bytes": 1600,
+      "sha256": "7eb38ab2007293396523942c4bac24adbad074cebfd7c890d79be89c650190a2",
+      "artifact_type": "schema_or_machine_readable",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "incident.schema.json",
+      "file_size_bytes": 1776,
+      "sha256": "0d526ce7fd8742b55aceb0c3d0a362a57ae414c9067587dcbc735167dd6347cd",
+      "artifact_type": "schema_or_machine_readable",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "security_control.schema.json",
+      "file_size_bytes": 1815,
+      "sha256": "d600ee28f10df4c8e161edfbab4cda1cc7076c4fb1f22631eb3ce889eff75234",
+      "artifact_type": "schema_or_machine_readable",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "tenant_boundary.schema.json",
+      "file_size_bytes": 1611,
+      "sha256": "3ff435be8bbac29fa0ae08437b53228c06091bcb73337e392cdfe3b51205acdf",
+      "artifact_type": "schema_or_machine_readable",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    },
+    {
+      "filename": "vendor_risk_assessment.schema.json",
+      "file_size_bytes": 1923,
+      "sha256": "5e43caca0b2815916c8191e4bb82e39c0b3f653fc2f5ade726ab4f886354d5ba",
+      "artifact_type": "schema_or_machine_readable",
+      "section": "FS-12000",
+      "version": "V1_RELEASE_COMPLETE"
+    }
+  ]
+}

@@ -1,0 +1,732 @@
+{
+  "section_id": "FS-5100",
+  "manifest_class": "relationship",
+  "count": 71,
+  "entries": [
+    {
+      "id": "REL.OFFERS",
+      "name": "OFFERS",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "REL.OWNS",
+      "name": "OWNS",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001",
+        "FS-4009",
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "REL.BORROWS_FROM",
+      "name": "BORROWS_FROM",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001",
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "REL.SECURED_BY",
+      "name": "SECURED_BY",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001",
+        "FS-4003",
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "REL.SUPPORTS",
+      "name": "SUPPORTS",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001",
+        "FS-4003",
+        "FS-4009",
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "REL.CREATES",
+      "name": "CREATES",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "REL.SERVES",
+      "name": "SERVES",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002",
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "REL.QUALIFIES_UNDER",
+      "name": "QUALIFIES_UNDER",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "REL.OWNS_OR_PARTICIPATES_IN",
+      "name": "OWNS_OR_PARTICIPATES_IN",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "REL.USES",
+      "name": "USES",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "REL.REQUIRES",
+      "name": "REQUIRES",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "REL.APPROVES",
+      "name": "APPROVES",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "REL.HAS",
+      "name": "HAS",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "REL.ROUTES_TO",
+      "name": "ROUTES_TO",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "REL.GOVERNS",
+      "name": "GOVERNS",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003",
+        "FS-4004",
+        "FS-4009",
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "REL.UPDATES",
+      "name": "UPDATES",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "REL.REMEDIATES",
+      "name": "REMEDIATES",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "REL.APPLIES_FOR",
+      "name": "APPLIES_FOR",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "REL.BLOCKS_OR_CLEARS",
+      "name": "BLOCKS_OR_CLEARS",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "REL.SATISFIES",
+      "name": "SATISFIES",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "REL.FUNDS",
+      "name": "FUNDS",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004",
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "REL.FUND_INVESTS_IN_STARTUP",
+      "name": "Fund INVESTS_IN Startup",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "REL.FOUNDER_FOUNDED_STARTUP",
+      "name": "Founder FOUNDED Startup",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "REL.STARTUP_RAISES_ROUND",
+      "name": "Startup RAISES Round",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "REL.PILOT_VALIDATES_STARTUP",
+      "name": "Pilot VALIDATES Startup",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "REL.INSTITUTION_PILOTS_PRODUCT",
+      "name": "Institution PILOTS Product",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "REL.MEMBER_OF",
+      "name": "MEMBER_OF",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "REL.HOLDS",
+      "name": "HOLDS",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "REL.IMPLEMENTS",
+      "name": "IMPLEMENTS",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "REL.SOURCED_BY",
+      "name": "SOURCED_BY",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009",
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "REL.HELD_IN",
+      "name": "HELD_IN",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "REL.CHARGES",
+      "name": "CHARGES",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "REL.ISSUES",
+      "name": "ISSUES",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "REL.SELLS",
+      "name": "SELLS",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "REL.CONTRACTS_WITH",
+      "name": "CONTRACTS_WITH",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "REL.COVERED_BY",
+      "name": "COVERED_BY",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "REL.FILED_UNDER",
+      "name": "FILED_UNDER",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "REL.PAID_FOR",
+      "name": "PAID_FOR",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "REL.GENERATED_BY",
+      "name": "GENERATED_BY",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "REL.AUTHORIZES",
+      "name": "AUTHORIZES",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010",
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "REL.SPONSORS",
+      "name": "SPONSORS",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "REL.OWNS_OR_CONTROLS",
+      "name": "OWNS_OR_CONTROLS",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "REL.BUILDS",
+      "name": "BUILDS",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "REL.PERFORMS_WORK_ON",
+      "name": "PERFORMS_WORK_ON",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "REL.FINANCES",
+      "name": "FINANCES",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "REL.VERIFIES",
+      "name": "VERIFIES",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "REL.CLEARS_OR_BLOCKS",
+      "name": "CLEARS_OR_BLOCKS",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "REL.MODIFIES",
+      "name": "MODIFIES",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "REL.COVERS",
+      "name": "COVERS",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "REL.SECURES_PERFORMANCE_OR_PAYMENT",
+      "name": "SECURES_PERFORMANCE_OR_PAYMENT",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "REL.PROVES",
+      "name": "PROVES",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "REL.RETIRES_OR_CONVERTS",
+      "name": "RETIRES_OR_CONVERTS",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "REL.CONTROLS",
+      "name": "CONTROLS",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "REL.MANUFACTURER_OWNS_PLANT",
+      "name": "Manufacturer OWNS Plant",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "REL.PLANT_OPERATES_PRODUCTIONLINE",
+      "name": "Plant OPERATES ProductionLine",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "REL.PRODUCTIONLINE_PRODUCES_WORKORDER",
+      "name": "ProductionLine PRODUCES WorkOrder",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "REL.INVENTORY_SUPPORTS_BORROWINGBASE",
+      "name": "Inventory SUPPORTS BorrowingBase",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "REL.SUPPLIER_SUPPLIES_MANUFACTURER",
+      "name": "Supplier SUPPLIES Manufacturer",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "REL.CUSTOMER_PURCHASES_SALESORDER",
+      "name": "Customer PURCHASES SalesOrder",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "REL.EQUIPMENTASSET_LOCATED_AT_PLANT",
+      "name": "EquipmentAsset LOCATED_AT Plant",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "REL.TREASURYRELATIONSHIP_SERVES_MANUFACTURER",
+      "name": "TreasuryRelationship SERVES Manufacturer",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "REL.PROVIDER_WORKS_AT_HEALTHCAREPRACTICE",
+      "name": "Provider WORKS_AT HealthcarePractice",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "REL.HEALTHCAREPRACTICE_BILLS_PAYER",
+      "name": "HealthcarePractice BILLS Payer",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "REL.PAYER_REIMBURSES_CLAIM",
+      "name": "Payer REIMBURSES Claim",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "REL.CLAIM_CREATES_RECEIVABLE",
+      "name": "Claim CREATES Receivable",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "REL.DENIAL_IMPACTS_REVENUECYCLE",
+      "name": "Denial IMPACTS RevenueCycle",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "REL.EQUIPMENTASSET_SUPPORTS_PROCEDURE",
+      "name": "EquipmentAsset SUPPORTS Procedure",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "REL.HEALTHCARELOAN_FINANCES_HEALTHCAREPRACTICE",
+      "name": "HealthcareLoan FINANCES HealthcarePractice",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "REL.TREASURYSERVICE_SUPPORTS_PAYMENTFLOW",
+      "name": "TreasuryService SUPPORTS PaymentFlow",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "REL.LICENSE_AUTHORIZES_PROVIDER",
+      "name": "License AUTHORIZES Provider",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "REL.INSURANCEPOLICY_COVERS_MALPRACTICERISK",
+      "name": "InsurancePolicy COVERS MalpracticeRisk",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    }
+  ]
+}

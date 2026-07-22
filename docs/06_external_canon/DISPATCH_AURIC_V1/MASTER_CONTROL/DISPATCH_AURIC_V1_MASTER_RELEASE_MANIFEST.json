@@ -1,0 +1,174 @@
+{
+  "release_id": "DISPATCH_AURIC_V1_MASTER_RELEASE_COMPLETE",
+  "version": "1.0",
+  "generated_at_utc": "2026-07-22T09:39:33.130611+00:00",
+  "status": "PASS",
+  "canonical_registry_section": "FS-5100",
+  "aliases": {
+    "FS-5000": "FS-5100"
+  },
+  "section_packages": [
+    {
+      "section_id": "FS-10000",
+      "approved_zip_filename": "FS-10000_TERMINAL_UI_USER_WORKSPACES_V1_RELEASE_COMPLETE.zip",
+      "size_bytes": 71268,
+      "sha256": "fab8e7ad97f30b5e619647611ce1578b3faa4a32518d50d47224c7969d969845",
+      "zip_opens": "true",
+      "zip_crc_status": "pass",
+      "json_parse_status": "pass",
+      "csv_header_status": "pass",
+      "file_count": 37,
+      "canonical_status": "current_release"
+    },
+    {
+      "section_id": "FS-11000",
+      "approved_zip_filename": "FS-11000_RUNTIME_AGENTS_ORCHESTRATION_V1_RELEASE_COMPLETE.zip",
+      "size_bytes": 99170,
+      "sha256": "c871361f297e84f362bc1ab1ad245417fed91bf5e22393cb8e80d6cbab4d5266",
+      "zip_opens": "true",
+      "zip_crc_status": "pass",
+      "json_parse_status": "pass",
+      "csv_header_status": "pass",
+      "file_count": 48,
+      "canonical_status": "current_release"
+    },
+    {
+      "section_id": "FS-12000",
+      "approved_zip_filename": "FS-12000_SECURITY_GOVERNANCE_ADMINISTRATION_V1_RELEASE_COMPLETE.zip",
+      "size_bytes": 84101,
+      "sha256": "5bf21f2e37729732db352efc849a4e7235cab74b2b0e02270cfa22d3629da179",
+      "zip_opens": "true",
+      "zip_crc_status": "pass",
+      "json_parse_status": "pass",
+      "csv_header_status": "pass",
+      "file_count": 42,
+      "canonical_status": "current_release"
+    },
+    {
+      "section_id": "FS-13000",
+      "approved_zip_filename": "FS-13000_DEPLOYMENT_PILOTS_COMMERCIALIZATION_V1_RELEASE_COMPLETE.zip",
+      "size_bytes": 126571,
+      "sha256": "c82c29a822d70c1510a3efd9a7c19b019983faab1a9af24250b4a21f2383f1ff",
+      "zip_opens": "true",
+      "zip_crc_status": "pass",
+      "json_parse_status": "pass",
+      "csv_header_status": "pass",
+      "file_count": 70,
+      "canonical_status": "current_release"
+    },
+    {
+      "section_id": "FS-14000",
+      "approved_zip_filename": "FS-14000_MASTER_V1_INTEGRATION_TESTING_RELEASE_V1_RELEASE_COMPLETE.zip",
+      "size_bytes": 105305,
+      "sha256": "fb95278cdb1fcbe40748ed3a578d1aa95b63941ef7e2928415f443c687f3cdde",
+      "zip_opens": "true",
+      "zip_crc_status": "pass",
+      "json_parse_status": "pass",
+      "csv_header_status": "pass",
+      "file_count": 77,
+      "canonical_status": "current_release"
+    },
+    {
+      "section_id": "FS-4000",
+      "approved_zip_filename": "FS-4000_DOMAIN_OPERATING_FRAMEWORKS_V1_RELEASE_COMPLETE.zip",
+      "size_bytes": 435836,
+      "sha256": "cb2dbda6b39b0ce4a9108ba653d480d54e736c99bb2436115b11d7be80c5c30a",
+      "zip_opens": "true",
+      "zip_crc_status": "pass",
+      "json_parse_status": "pass",
+      "csv_header_status": "pass",
+      "file_count": 22,
+      "canonical_status": "current_release"
+    },
+    {
+      "section_id": "FS-5100",
+      "approved_zip_filename": "FS-5100_MASTER_REGISTRIES_CARTRIDGE_MANIFESTS_V1_RELEASE_COMPLETE.zip",
+      "size_bytes": 160368,
+      "sha256": "4fc5e654dc17a7a44f430d483abfaeb7881e473d88d6145ca000583b31cb0eac",
+      "zip_opens": "true",
+      "zip_crc_status": "pass",
+      "json_parse_status": "pass",
+      "csv_header_status": "pass",
+      "file_count": 51,
+      "canonical_status": "current_release"
+    },
+    {
+      "section_id": "FS-6000",
+      "approved_zip_filename": "FS-6000_INSTITUTIONAL_KERNEL_V1_RELEASE_COMPLETE.zip",
+      "size_bytes": 47260,
+      "sha256": "95637b31752e476268ceec46fbec066bf0dd6d0af7e291b2a5c8e5076e9d18cd",
+      "zip_opens": "true",
+      "zip_crc_status": "pass",
+      "json_parse_status": "pass",
+      "csv_header_status": "pass",
+      "file_count": 39,
+      "canonical_status": "current_release"
+    },
+    {
+      "section_id": "FS-7000",
+      "approved_zip_filename": "FS-7000_DEMO_ENVIRONMENT_PRODUCTIZATION_V1_RELEASE_COMPLETE.zip",
+      "size_bytes": 46999,
+      "sha256": "214f38da17b7625c80108ec355f10528560d6d10a3a7c13eca735e8b6e9af392",
+      "zip_opens": "true",
+      "zip_crc_status": "pass",
+      "json_parse_status": "pass",
+      "csv_header_status": "pass",
+      "file_count": 39,
+      "canonical_status": "current_release"
+    },
+    {
+      "section_id": "FS-8000",
+      "approved_zip_filename": "FS-8000_DATA_CONNECTORS_INGESTION_V1_RELEASE_COMPLETE.zip",
+      "size_bytes": 60390,
+      "sha256": "1d5f816f52fdeefdafaaf52a778d364da86631e2da4abc84744f39c265517119",
+      "zip_opens": "true",
+      "zip_crc_status": "pass",
+      "json_parse_status": "pass",
+      "csv_header_status": "pass",
+      "file_count": 46,
+      "canonical_status": "current_release"
+    },
+    {
+      "section_id": "FS-9000",
+      "approved_zip_filename": "FS-9000_KNOWLEDGE_GRAPH_INSTITUTION_POPULATION_V1_RELEASE_COMPLETE.zip",
+      "size_bytes": 63077,
+      "sha256": "ab1a928b9fe63c0cd0d801edcf5a49e00342bf7122e0d3ce5deb032acb73e2db",
+      "zip_opens": "true",
+      "zip_crc_status": "pass",
+      "json_parse_status": "pass",
+      "csv_header_status": "pass",
+      "file_count": 39,
+      "canonical_status": "current_release"
+    },
+    {
+      "section_id": "POST_VOLUME_10",
+      "approved_zip_filename": "POST_VOLUME_10_DOCUMENT_CONTROL_PACKAGE_FS4000_RECONCILED.zip",
+      "size_bytes": 177354,
+      "sha256": "60eed88a2cd74b94642f08930cd331c53b5132a4ca25941eb650ef544a1d41b4",
+      "zip_opens": "true",
+      "zip_crc_status": "pass",
+      "json_parse_status": "pass",
+      "csv_header_status": "pass",
+      "file_count": 126,
+      "canonical_status": "supporting_document_control"
+    }
+  ],
+  "master_control_artifacts": [
+    "DISPATCH_AURIC_V1_CROSS_SECTION_RECONCILIATION.csv",
+    "DISPATCH_AURIC_V1_DOCUMENTATION_VALIDATION_REPORT.json",
+    "DISPATCH_AURIC_V1_KNOWN_ISSUES.md",
+    "DISPATCH_AURIC_V1_MASTER_ARTIFACT_REGISTER.csv",
+    "DISPATCH_AURIC_V1_MASTER_CHECKSUM_REGISTRY.csv",
+    "DISPATCH_AURIC_V1_RELEASE_NOTES.md"
+  ],
+  "supporting_document_control": [
+    "ADDENDUM.md",
+    "DISPATCH _ AURIC V1.md",
+    "POST_VOLUME_10_DOCUMENT_CONTROL_PACKAGE_FS4000_RECONCILED.zip"
+  ],
+  "release_decisions": {
+    "content_release_decision": "APPROVE",
+    "implementation_readiness_decision": "NOT_ASSESSED",
+    "production_readiness_decision": "NOT_APPROVED"
+  }
+}

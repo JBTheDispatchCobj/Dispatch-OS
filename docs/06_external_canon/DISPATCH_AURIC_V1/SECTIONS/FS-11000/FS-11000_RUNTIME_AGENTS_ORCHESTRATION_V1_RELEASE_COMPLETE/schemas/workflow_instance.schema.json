@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WorkflowInstance",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "execution_id",
+    "tenant_id",
+    "workflow_id",
+    "workflow_version",
+    "state",
+    "created_at",
+    "correlation_id"
+  ],
+  "properties": {
+    "execution_id": {
+      "type": "string",
+      "pattern": "^EXEC-"
+    },
+    "tenant_id": {
+      "type": "string"
+    },
+    "workflow_id": {
+      "type": "string"
+    },
+    "workflow_version": {
+      "type": "string"
+    },
+    "state": {
+      "enum": [
+        "created",
+        "queued",
+        "initializing",
+        "running",
+        "waiting_input",
+        "waiting_evidence",
+        "waiting_approval",
+        "paused",
+        "retrying",
+        "blocked",
+        "completed",
+        "completed_with_exceptions",
+        "failed",
+        "cancelled",
+        "archived"
+      ]
+    },
+    "current_steps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "correlation_id": {
+      "type": "string"
+    },
+    "primary_object_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "checkpoint": {
+      "type": "integer",
+      "minimum": 0
+    }
+  }
+}

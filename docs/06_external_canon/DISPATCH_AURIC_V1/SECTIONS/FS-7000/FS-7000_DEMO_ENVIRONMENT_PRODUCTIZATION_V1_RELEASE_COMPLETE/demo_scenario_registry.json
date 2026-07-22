@@ -1,0 +1,111 @@
+{
+  "version": "1.0.0",
+  "scenarios": [
+    {
+      "scenario_id": "DEMO-CU-TERMINAL",
+      "name": "Credit Union Terminal",
+      "primary_goal": "Demonstrate institutional digital twin, readiness, opportunity queue, executive graph, vendor stack, and board outputs.",
+      "fixture_pack": "FIX-CU-TERMINAL-001",
+      "primary_workflow": "WF-INSTITUTION-PROFILE-REFRESH",
+      "required_outputs": [
+        "Institution Terminal",
+        "Executive Brief",
+        "Opportunity Dashboard",
+        "Board Brief"
+      ],
+      "approval_gates": [
+        "board_release_if_exported"
+      ]
+    },
+    {
+      "scenario_id": "DEMO-FINTECH-PILOT",
+      "name": "Fintech Pilot Readiness",
+      "primary_goal": "Convert a fintech pitch into a governed institution-specific pilot plan.",
+      "fixture_pack": "FIX-FINTECH-PILOT-001",
+      "primary_workflow": "WF-FINTECH-PILOT",
+      "required_outputs": [
+        "Startup Profile",
+        "Readiness Score",
+        "Vendor Risk Package",
+        "Pilot Plan",
+        "Board Brief"
+      ],
+      "approval_gates": [
+        "business",
+        "security",
+        "vendor_risk",
+        "compliance"
+      ]
+    },
+    {
+      "scenario_id": "DEMO-EXAM-BINDER",
+      "name": "Exam Response and Evidence Binder",
+      "primary_goal": "Parse an exam request, retrieve evidence, draft responses, manage gaps, and lock the final binder.",
+      "fixture_pack": "FIX-EXAM-001",
+      "primary_workflow": "WF-EXAM-RESPONSE",
+      "required_outputs": [
+        "Request Tracker",
+        "Evidence Gap Report",
+        "Response Drafts",
+        "Locked Binder",
+        "Board Status"
+      ],
+      "approval_gates": [
+        "compliance",
+        "legal_if_needed",
+        "executive_release"
+      ]
+    },
+    {
+      "scenario_id": "DEMO-LOAN-PARTICIPATION",
+      "name": "Loan Participation Opportunity",
+      "primary_goal": "Standardize a package, assess risk, match buyers, allocate, and prepare closing.",
+      "fixture_pack": "FIX-PARTICIPATION-001",
+      "primary_workflow": "WF-LOAN-PARTICIPATION",
+      "required_outputs": [
+        "Completeness Score",
+        "Risk Memo",
+        "Buyer Ranking",
+        "Allocation",
+        "Settlement Checklist"
+      ],
+      "approval_gates": [
+        "originator_credit",
+        "buyer_credit_or_investment",
+        "legal",
+        "settlement"
+      ]
+    },
+    {
+      "scenario_id": "DEMO-WEALTH",
+      "name": "Wealth Opportunity Engine",
+      "primary_goal": "Convert permitted relationship signals into a consented referral opportunity.",
+      "fixture_pack": "FIX-WEALTH-001",
+      "primary_workflow": "WF-WEALTH-REFERRAL",
+      "required_outputs": [
+        "Qualified Opportunities",
+        "Consent Checklist",
+        "Advisor Routing",
+        "Pipeline Dashboard"
+      ],
+      "approval_gates": [
+        "consent",
+        "licensed_advisor"
+      ]
+    },
+    {
+      "scenario_id": "DEMO-INTELLIGENCE-SEARCH",
+      "name": "Institutional Intelligence Search",
+      "primary_goal": "Run multi-criteria graph search with explainable ranking and relationship paths.",
+      "fixture_pack": "FIX-SEARCH-001",
+      "primary_workflow": "WF-INSTITUTIONAL-SEARCH",
+      "required_outputs": [
+        "Ranked Results",
+        "Comparison Matrix",
+        "Executive Targets",
+        "Outreach Brief"
+      ],
+      "approval_gates": []
+    }
+  ]
+}

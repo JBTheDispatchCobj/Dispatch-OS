@@ -1,0 +1,7 @@
+error_code,class,retryable,workflow_state,operator_action,audit_severity
+RT-VALIDATION-001,validation,false,blocked,correct input or schema mapping,warning
+RT-PERMISSION-001,permission,false,blocked,security review,high
+RT-PROVIDER-001,provider_unavailable,true,retrying,automatic retry then failover,warning
+RT-EVIDENCE-001,insufficient_evidence,false,waiting_evidence,request evidence,info
+RT-SCHEMA-001,schema,false,blocked,repair output or route,warning
+RT-SECURITY-001,security,false,failed,isolate and invoke incident response,critical

@@ -1,0 +1,62 @@
+[
+  {
+    "population_manifest_id": "POP-CU-US-V1",
+    "name": "United States Credit Union Universe",
+    "entity_scope": [
+      "Institution",
+      "Branch",
+      "Person",
+      "Board",
+      "Vendor",
+      "System",
+      "Regulator",
+      "Obligation"
+    ],
+    "source_ids": [
+      "SRC-NCUA-CUA",
+      "SRC-NCUA-CALL",
+      "SRC-WEBSITE"
+    ],
+    "identity_strategy": "charter_number_then_legal_name_address",
+    "refresh": "quarterly_with_event_overrides",
+    "quarantine_threshold": 0.82
+  },
+  {
+    "population_manifest_id": "POP-BANK-US-V1",
+    "name": "United States Bank Universe",
+    "entity_scope": [
+      "Institution",
+      "Branch",
+      "Person",
+      "Vendor",
+      "System"
+    ],
+    "source_ids": [
+      "SRC-FDIC-CERT",
+      "SRC-FDIC-SOD",
+      "SRC-WEBSITE"
+    ],
+    "identity_strategy": "fdic_certificate_then_legal_name_address",
+    "refresh": "quarterly",
+    "quarantine_threshold": 0.85
+  },
+  {
+    "population_manifest_id": "POP-FINTECH-VENDOR-V1",
+    "name": "Fintech and Vendor Universe",
+    "entity_scope": [
+      "Vendor",
+      "Startup",
+      "Product",
+      "System",
+      "Person",
+      "Investment"
+    ],
+    "source_ids": [
+      "SRC-SEC-EDGAR",
+      "SRC-WEBSITE"
+    ],
+    "identity_strategy": "legal_entity_identifier_domain_and_registration",
+    "refresh": "weekly",
+    "quarantine_threshold": 0.88
+  }
+]

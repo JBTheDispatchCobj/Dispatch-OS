@@ -1,0 +1,12 @@
+section_id,name,authority_status,primary_role,release_dependency
+FS-4000,Domain Operating Frameworks,canonical,V1 product specification family,required
+FS-5100,Master Registries and Cartridge Manifests,canonical,V1 product specification family,required
+FS-6000,Institutional Kernel,content_complete,V1 product specification family,required
+FS-7000,Demo Environment and Productization,content_complete,V1 product specification family,required
+FS-8000,"Data, Connectors and Ingestion",content_complete,V1 product specification family,required
+FS-9000,Knowledge Graph and Institution Population,content_complete,V1 product specification family,required
+FS-10000,Terminal UI and User Workspaces,content_complete,V1 product specification family,required
+FS-11000,"Runtime, Agents and Orchestration",content_complete,V1 product specification family,required
+FS-12000,"Security, Governance and Administration",content_complete,V1 product specification family,required
+FS-13000,"Deployment, Pilots and Commercialization",content_complete,V1 product specification family,required
+FS-14000,"Master V1 Integration, Testing and Release",content_complete,V1 product specification family,required

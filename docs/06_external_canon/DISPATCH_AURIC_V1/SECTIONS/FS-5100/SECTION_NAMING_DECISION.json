@@ -1,0 +1,9 @@
+{
+  "canonical_section_id": "FS-5100",
+  "canonical_section_name": "Registries and Cartridge Manifests",
+  "historical_aliases": [
+    "FS-5000"
+  ],
+  "decision_rationale": "FS-5100 is retained because the uploaded package and final release instruction explicitly identify this manifest family as FS-5100. FS-5000 remains a searchable alias for prior documentation continuity.",
+  "effective_version": "1.0.0"
+}

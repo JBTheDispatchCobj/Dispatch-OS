@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "states": {
+    "uninitialized": [
+      "loading"
+    ],
+    "loading": [
+      "ready",
+      "empty",
+      "partial",
+      "stale",
+      "restricted",
+      "conflicted",
+      "failed"
+    ],
+    "ready": [
+      "submitting",
+      "refreshing",
+      "exporting",
+      "awaiting_approval",
+      "offline_degraded"
+    ],
+    "submitting": [
+      "ready",
+      "awaiting_approval",
+      "failed"
+    ],
+    "refreshing": [
+      "ready",
+      "partial",
+      "stale",
+      "failed"
+    ],
+    "exporting": [
+      "ready",
+      "failed"
+    ],
+    "awaiting_approval": [
+      "ready",
+      "failed"
+    ],
+    "offline_degraded": [
+      "refreshing",
+      "failed"
+    ],
+    "partial": [
+      "refreshing",
+      "ready",
+      "failed"
+    ],
+    "stale": [
+      "refreshing",
+      "ready",
+      "failed"
+    ],
+    "conflicted": [
+      "refreshing",
+      "ready",
+      "failed"
+    ],
+    "failed": [
+      "loading"
+    ]
+  },
+  "terminal_states": []
+}

@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fs14000.value_acceptance.v1",
+  "type": "object",
+  "required": [
+    "decision_id",
+    "pilot_id",
+    "metrics",
+    "decision"
+  ],
+  "properties": {
+    "decision_id": {
+      "type": "string"
+    },
+    "pilot_id": {
+      "type": "string"
+    },
+    "metrics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "metric_id",
+          "baseline",
+          "target",
+          "actual",
+          "evidence"
+        ],
+        "properties": {
+          "metric_id": {
+            "type": "string"
+          },
+          "baseline": {},
+          "target": {},
+          "actual": {},
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "decision": {
+      "enum": [
+        "proceed",
+        "proceed_with_conditions",
+        "extend",
+        "narrow",
+        "pause",
+        "stop_rebuild"
+      ]
+    },
+    "conditions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

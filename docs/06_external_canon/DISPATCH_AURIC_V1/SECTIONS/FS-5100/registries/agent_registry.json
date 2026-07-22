@@ -1,0 +1,893 @@
+{
+  "section_id": "FS-5100",
+  "manifest_class": "agent",
+  "count": 88,
+  "entries": [
+    {
+      "id": "AGENT.CUSTOMER_RELATIONSHIP_AGENT",
+      "name": "Customer Relationship Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "AGENT.DEPOSIT_PRODUCT_AGENT",
+      "name": "Deposit Product Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "AGENT.LOAN_ORIGINATION_AGENT",
+      "name": "Loan Origination Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "AGENT.TREASURY_SERVICES_AGENT",
+      "name": "Treasury Services Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "AGENT.BRANCH_PERFORMANCE_AGENT",
+      "name": "Branch Performance Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "AGENT.DIGITAL_CHANNEL_AGENT",
+      "name": "Digital Channel Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "AGENT.COMPLAINT_MANAGEMENT_AGENT",
+      "name": "Complaint Management Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "AGENT.BOARD_REPORTING_AGENT",
+      "name": "Board Reporting Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "AGENT.MEMBER_INTELLIGENCE_AGENT",
+      "name": "Member Intelligence Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "AGENT.CREDIT_UNION_READINESS_AGENT",
+      "name": "Credit Union Readiness Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "AGENT.CUSO_REVIEW_AGENT",
+      "name": "CUSO Review Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "AGENT.FINTECH_PILOT_AGENT",
+      "name": "Fintech Pilot Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "AGENT.VENDOR_STACK_AGENT",
+      "name": "Vendor Stack Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "AGENT.BOARD_GOVERNANCE_AGENT",
+      "name": "Board Governance Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "AGENT.REGULATORY_READINESS_AGENT",
+      "name": "Regulatory Readiness Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "AGENT.MEMBER_OPPORTUNITY_AGENT",
+      "name": "Member Opportunity Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "AGENT.COMMERCIAL_CREDIT_ANALYST",
+      "name": "Commercial Credit Analyst",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "AGENT.CREDIT_MEMO_WRITER",
+      "name": "Credit Memo Writer",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "AGENT.COVENANT_MONITOR",
+      "name": "Covenant Monitor",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "AGENT.TREASURY_OPPORTUNITY_AGENT",
+      "name": "Treasury Opportunity Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003",
+        "FS-4011",
+        "FS-4012",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "AGENT.PORTFOLIO_WATCHLIST_AGENT",
+      "name": "Portfolio Watchlist Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "AGENT.COLLATERAL_ANALYST",
+      "name": "Collateral Analyst",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "AGENT.ANNUAL_REVIEW_AGENT",
+      "name": "Annual Review Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "AGENT.WORKOUT_STRATEGY_AGENT",
+      "name": "Workout Strategy Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "AGENT.MORTGAGE_FILE_INTAKE_AGENT",
+      "name": "Mortgage File Intake Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "AGENT.DOCUMENT_COLLECTION_AGENT",
+      "name": "Document Collection Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "AGENT.CONDITION_CLEARING_AGENT",
+      "name": "Condition Clearing Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "AGENT.DISCLOSURE_TIMING_AGENT",
+      "name": "Disclosure Timing Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "AGENT.UNDERWRITING_SUPPORT_AGENT",
+      "name": "Underwriting Support Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "AGENT.RATE_LOCK_MONITOR",
+      "name": "Rate Lock Monitor",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "AGENT.CLOSING_CHECKLIST_AGENT",
+      "name": "Closing Checklist Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "AGENT.POST_CLOSE_QC_AGENT",
+      "name": "Post-Close QC Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "AGENT.DEAL_SCOUT",
+      "name": "Deal Scout",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "AGENT.FOUNDER_RESEARCH_AGENT",
+      "name": "Founder Research Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "AGENT.MARKET_ANALYST",
+      "name": "Market Analyst",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007",
+        "FS-4008"
+      ]
+    },
+    {
+      "id": "AGENT.INVESTMENT_MEMO_WRITER",
+      "name": "Investment Memo Writer",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "AGENT.STRATEGIC_PILOT_MANAGER",
+      "name": "Strategic Pilot Manager",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "AGENT.LP_REPORTING_AGENT",
+      "name": "LP Reporting Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "AGENT.INVESTOR_MATCHING_AGENT",
+      "name": "Investor Matching Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4008"
+      ]
+    },
+    {
+      "id": "AGENT.OFFERING_COORDINATOR",
+      "name": "Offering Coordinator",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4008"
+      ]
+    },
+    {
+      "id": "AGENT.PARTICIPATION_PACKAGE_AGENT",
+      "name": "Participation Package Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4008"
+      ]
+    },
+    {
+      "id": "AGENT.VALUATION_ANALYST",
+      "name": "Valuation Analyst",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4008"
+      ]
+    },
+    {
+      "id": "AGENT.SETTLEMENT_AGENT",
+      "name": "Settlement Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4008"
+      ]
+    },
+    {
+      "id": "AGENT.COMPLIANCE_REVIEW_AGENT",
+      "name": "Compliance Review Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4008"
+      ]
+    },
+    {
+      "id": "AGENT.ADVISOR_ASSISTANT",
+      "name": "Advisor Assistant",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "AGENT.HOUSEHOLD_SUMMARY_AGENT",
+      "name": "Household Summary Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "AGENT.CLIENT_REVIEW_PREP_AGENT",
+      "name": "Client Review Prep Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "AGENT.FINANCIAL_PLANNING_ASSISTANT",
+      "name": "Financial Planning Assistant",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "AGENT.PORTFOLIO_ANALYST",
+      "name": "Portfolio Analyst",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "AGENT.BILLING_REVIEW_AGENT",
+      "name": "Billing Review Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "AGENT.SUITABILITY_REVIEW_AGENT",
+      "name": "Suitability Review Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009",
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "AGENT.CREDIT_UNION_WEALTH_OPPORTUNITY_AGENT",
+      "name": "Credit Union Wealth Opportunity Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "AGENT.ESTATE_COORDINATION_AGENT",
+      "name": "Estate Coordination Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "AGENT.ALTERNATIVE_INVESTMENT_REVIEW_AGENT",
+      "name": "Alternative Investment Review Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "AGENT.INSURANCE_OPPORTUNITY_AGENT",
+      "name": "Insurance Opportunity Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "AGENT.COVERAGE_GAP_AGENT",
+      "name": "Coverage Gap Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "AGENT.QUOTE_PREP_AGENT",
+      "name": "Quote Prep Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "AGENT.RENEWAL_REVIEW_AGENT",
+      "name": "Renewal Review Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "AGENT.CLAIM_INTAKE_AGENT",
+      "name": "Claim Intake Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "AGENT.COMMISSION_RECONCILIATION_AGENT",
+      "name": "Commission Reconciliation Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "AGENT.LICENSING_MONITOR",
+      "name": "Licensing Monitor",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "AGENT.CONTRACTOR_RELATIONSHIP_AGENT",
+      "name": "Contractor Relationship Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "AGENT.PROJECT_UNDERWRITING_AGENT",
+      "name": "Project Underwriting Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "AGENT.BUDGET_REVIEW_AGENT",
+      "name": "Budget Review Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "AGENT.DRAW_PACKAGE_REVIEWER",
+      "name": "Draw Package Reviewer",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "AGENT.INSPECTION_SUMMARY_AGENT",
+      "name": "Inspection Summary Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "AGENT.LIEN_WAIVER_AGENT",
+      "name": "Lien Waiver Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "AGENT.TITLE_UPDATE_AGENT",
+      "name": "Title Update Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "AGENT.COMPLETION_RISK_AGENT",
+      "name": "Completion Risk Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "AGENT.CHANGE_ORDER_AGENT",
+      "name": "Change Order Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "AGENT.INSURANCE_BOND_MONITOR",
+      "name": "Insurance / Bond Monitor",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "AGENT.TAKEOUT_READINESS_AGENT",
+      "name": "Takeout Readiness Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "AGENT.MANUFACTURING_ANALYST",
+      "name": "Manufacturing Analyst",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "AGENT.ERP_INTAKE_AGENT",
+      "name": "ERP Intake Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "AGENT.INVENTORY_ANALYST",
+      "name": "Inventory Analyst",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "AGENT.BORROWING_BASE_AGENT",
+      "name": "Borrowing Base Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "AGENT.PRODUCTION_INTELLIGENCE_AGENT",
+      "name": "Production Intelligence Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "AGENT.SUPPLIER_RISK_AGENT",
+      "name": "Supplier Risk Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "AGENT.CUSTOMER_CONCENTRATION_AGENT",
+      "name": "Customer Concentration Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "AGENT.EQUIPMENT_FINANCE_AGENT",
+      "name": "Equipment Finance Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "AGENT.PORTFOLIO_MONITOR",
+      "name": "Portfolio Monitor",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "AGENT.HEALTHCARE_RELATIONSHIP_AGENT",
+      "name": "Healthcare Relationship Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "AGENT.REVENUE_CYCLE_ANALYST",
+      "name": "Revenue Cycle Analyst",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "AGENT.PAYER_MIX_ANALYST",
+      "name": "Payer Mix Analyst",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "AGENT.PROVIDER_PRODUCTIVITY_ANALYST",
+      "name": "Provider Productivity Analyst",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "AGENT.PRACTICE_VALUATION_AGENT",
+      "name": "Practice Valuation Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "AGENT.LICENSE_MONITOR",
+      "name": "License Monitor",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "AGENT.EARLY_WARNING_AGENT",
+      "name": "Early Warning Agent",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+threat_id,threat,asset,control,test,residual_risk
+TH-11000-001,cross-tenant retrieval,tenant data,authorization before query plus tenant-scoped indexes,RT-002,low
+TH-11000-002,prompt injection,permissions and tool control,instruction/source separation plus gateway validation,RT-005,medium
+TH-11000-003,duplicate side effect,external systems,idempotency key and receipt,RT-004,low
+TH-11000-004,secret exfiltration,credentials,secret broker redaction and no prompt exposure,security suite,low
+TH-11000-005,model fallback leakage,classified data,classification-aware provider policy,RT-006,low
+TH-11000-006,audit tampering,audit history,append-only store hashes and restricted admin access,RT-010,low

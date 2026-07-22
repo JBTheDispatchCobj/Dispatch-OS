@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.dispatch.local/fs12000/identity_entitlement.schema.json",
+  "title": "IdentityEntitlement",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "tenant_id",
+    "subject_id",
+    "role_id",
+    "resource_scope",
+    "actions",
+    "status",
+    "approved_by",
+    "expires_at",
+    "version"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tenant_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "classification": {
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "restricted"
+      ]
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "approval_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "subject_id": {
+      "type": "string"
+    },
+    "role_id": {
+      "type": "string"
+    },
+    "resource_scope": {
+      "type": "object"
+    },
+    "actions": {
+      "type": "array"
+    },
+    "approved_by": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "active",
+        "under_review",
+        "approved",
+        "suspended",
+        "retired"
+      ]
+    }
+  }
+}

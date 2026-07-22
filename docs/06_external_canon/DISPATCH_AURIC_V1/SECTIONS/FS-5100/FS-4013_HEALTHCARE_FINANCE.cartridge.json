@@ -1,0 +1,800 @@
+{
+  "manifest_name": "FS-4013_HEALTHCARE_FINANCE.cartridge.json",
+  "version": "1.0",
+  "owner": "Auric Works",
+  "product": "Dispatch / Auric Institutional Intelligence Network",
+  "created_at": "2026-07-22T03:06:45.805646",
+  "domain_id": "FS-4013",
+  "domain_name": "Healthcare Finance",
+  "source_volume": "FS-4013_HEALTHCARE_FINANCE_OPERATING_FRAMEWORK_V1.zip",
+  "purpose": "Deployable cartridge manifest for healthcare provider banking, reimbursement intelligence, revenue cycle monitoring, practice acquisition, equipment finance, treasury, compliance, and owner succession.",
+  "cartridge_type": "domain_operating_cartridge",
+  "status": "production_manifest",
+  "strategic_lens": "Healthcare finance is specialized relationship finance where provider productivity, patient volume, reimbursement, payer mix, claims quality, staffing, licensure, equipment, facilities, and owner continuity determine financial performance and credit quality.",
+  "primary_objects": [
+    {
+      "object": "HealthcarePractice",
+      "role": "Root provider business object.",
+      "required_fields": [
+        "practice_id",
+        "legal_name",
+        "specialty",
+        "ownership",
+        "providers",
+        "locations",
+        "patient_volume",
+        "payer_mix",
+        "revenue",
+        "EBITDA",
+        "revenue_cycle",
+        "licenses",
+        "risk_rating"
+      ]
+    },
+    {
+      "object": "Provider",
+      "role": "Licensed care provider and production driver.",
+      "required_fields": [
+        "provider_id",
+        "name",
+        "specialty",
+        "license",
+        "board_certification",
+        "ownership_percentage",
+        "productivity",
+        "compensation",
+        "malpractice_coverage",
+        "succession_status"
+      ]
+    },
+    {
+      "object": "Payer",
+      "role": "Reimbursement source and concentration object.",
+      "required_fields": [
+        "payer_id",
+        "payer_name",
+        "type",
+        "contract_terms",
+        "reimbursement_rates",
+        "claims_volume",
+        "denial_rate",
+        "days_to_pay",
+        "concentration_percentage"
+      ]
+    },
+    {
+      "object": "PayerContract",
+      "role": "Contractual reimbursement and authorization object.",
+      "required_fields": [
+        "contract_id",
+        "practice",
+        "payer",
+        "effective_date",
+        "expiration_date",
+        "rates",
+        "covered_services",
+        "authorization_rules",
+        "payment_terms",
+        "renewal_status"
+      ]
+    },
+    {
+      "object": "Claim",
+      "role": "Healthcare billing claim.",
+      "required_fields": [
+        "claim_id",
+        "practice",
+        "provider",
+        "payer",
+        "service_date",
+        "billed_amount",
+        "allowed_amount",
+        "paid_amount",
+        "denial_status",
+        "aging",
+        "status"
+      ]
+    },
+    {
+      "object": "Denial",
+      "role": "Denied or underpaid claim requiring resolution.",
+      "required_fields": [
+        "denial_id",
+        "claim",
+        "payer",
+        "reason",
+        "amount",
+        "appeal_status",
+        "owner",
+        "age",
+        "resolution_status"
+      ]
+    },
+    {
+      "object": "RevenueCycle",
+      "role": "Claims, collections, AR, denials, and payment conversion object.",
+      "required_fields": [
+        "revenue_cycle_id",
+        "practice",
+        "period",
+        "gross_charges",
+        "net_collections",
+        "AR",
+        "AR_days",
+        "payer_mix",
+        "denial_rate",
+        "clean_claim_rate",
+        "days_to_pay"
+      ]
+    },
+    {
+      "object": "PatientVolume",
+      "role": "Care demand and capacity object.",
+      "required_fields": [
+        "volume_id",
+        "practice",
+        "period",
+        "visits",
+        "procedures",
+        "new_patients",
+        "no_shows",
+        "referrals",
+        "provider_days",
+        "capacity",
+        "utilization"
+      ]
+    },
+    {
+      "object": "EquipmentAsset",
+      "role": "Medical equipment and collateral object.",
+      "required_fields": [
+        "equipment_id",
+        "practice",
+        "equipment_type",
+        "vendor",
+        "purchase_price",
+        "current_value",
+        "useful_life",
+        "utilization",
+        "revenue_supported",
+        "maintenance",
+        "lien_status"
+      ]
+    },
+    {
+      "object": "Facility",
+      "role": "Practice location and expansion object.",
+      "required_fields": [
+        "facility_id",
+        "practice",
+        "address",
+        "ownership_status",
+        "lease",
+        "square_feet",
+        "exam_or_treatment_rooms",
+        "licenses",
+        "rent",
+        "expansion_capacity"
+      ]
+    },
+    {
+      "object": "PracticeAcquisition",
+      "role": "Practice purchase, diligence, financing, and transition object.",
+      "required_fields": [
+        "acquisition_id",
+        "practice",
+        "buyer",
+        "seller",
+        "purchase_price",
+        "valuation",
+        "financing",
+        "seller_note",
+        "transition_plan",
+        "status"
+      ]
+    },
+    {
+      "object": "PartnerBuyIn",
+      "role": "Ownership transition financing object.",
+      "required_fields": [
+        "buyin_id",
+        "practice",
+        "incoming_partner",
+        "selling_partner",
+        "ownership_percentage",
+        "purchase_price",
+        "financing",
+        "governance_rights",
+        "status"
+      ]
+    },
+    {
+      "object": "HealthcareLoan",
+      "role": "Practice, equipment, acquisition, or real estate credit exposure.",
+      "required_fields": [
+        "loan_id",
+        "practice",
+        "provider_owner",
+        "product_type",
+        "amount",
+        "purpose",
+        "repayment_source",
+        "collateral",
+        "guarantees",
+        "payer_mix",
+        "risk_rating",
+        "monitoring"
+      ]
+    },
+    {
+      "object": "License",
+      "role": "Provider or facility legal authority.",
+      "required_fields": [
+        "license_id",
+        "provider_or_facility",
+        "type",
+        "jurisdiction",
+        "issue_date",
+        "expiration_date",
+        "status",
+        "restrictions"
+      ]
+    }
+  ],
+  "supported_workflows": [
+    {
+      "workflow": "Provider Relationship Onboarding",
+      "description": "Profile practice, owners, providers, payers, revenue cycle, treasury, facilities, equipment, compliance, and credit needs.",
+      "required_objects": [
+        "HealthcarePractice",
+        "Provider",
+        "Payer",
+        "RevenueCycle",
+        "Facility"
+      ],
+      "outputs": [
+        "Practice relationship profile",
+        "Needs assessment",
+        "Relationship plan"
+      ],
+      "approval_gates": [
+        "relationship_manager_review",
+        "compliance_review_if_exception"
+      ]
+    },
+    {
+      "workflow": "Healthcare Credit Underwriting",
+      "description": "Analyze practice cash flow, reimbursement, payer mix, provider productivity, revenue cycle, collateral, and structure.",
+      "required_objects": [
+        "HealthcarePractice",
+        "HealthcareLoan",
+        "RevenueCycle",
+        "Provider",
+        "Payer"
+      ],
+      "outputs": [
+        "Healthcare credit memo",
+        "Risk summary",
+        "Structure recommendation",
+        "Missing evidence list"
+      ],
+      "approval_gates": [
+        "credit_authority_approval",
+        "policy_exception_review_if_needed"
+      ]
+    },
+    {
+      "workflow": "Practice Acquisition",
+      "description": "Review valuation, diligence, financing, purchase agreement, seller note, transition, and continuity.",
+      "required_objects": [
+        "PracticeAcquisition",
+        "HealthcarePractice",
+        "Provider",
+        "Valuation",
+        "HealthcareLoan"
+      ],
+      "outputs": [
+        "Acquisition memo",
+        "Diligence checklist",
+        "Transition risk plan",
+        "Financing package"
+      ],
+      "approval_gates": [
+        "credit_authority_approval",
+        "legal_review",
+        "buyer_acceptance"
+      ]
+    },
+    {
+      "workflow": "Partner Buy-In",
+      "description": "Structure provider ownership transition, buy-in financing, compensation impact, and governance rights.",
+      "required_objects": [
+        "PartnerBuyIn",
+        "HealthcarePractice",
+        "Provider",
+        "Valuation",
+        "HealthcareLoan"
+      ],
+      "outputs": [
+        "Buy-in structure",
+        "Credit package",
+        "Governance checklist",
+        "Transition plan"
+      ],
+      "approval_gates": [
+        "credit_authority_approval",
+        "legal_review"
+      ]
+    },
+    {
+      "workflow": "Equipment Finance",
+      "description": "Evaluate medical equipment value, revenue impact, utilization, reimbursement support, useful life, and collateral.",
+      "required_objects": [
+        "EquipmentAsset",
+        "HealthcarePractice",
+        "VendorQuote",
+        "HealthcareLoan"
+      ],
+      "outputs": [
+        "Equipment finance memo",
+        "ROI summary",
+        "Collateral review",
+        "Funding checklist"
+      ],
+      "approval_gates": [
+        "credit_authority_approval",
+        "operations_review"
+      ]
+    },
+    {
+      "workflow": "Revenue Cycle Monitoring",
+      "description": "Analyze AR, claims, denials, payer mix, clean claim rate, collections, and reimbursement risk.",
+      "required_objects": [
+        "RevenueCycle",
+        "Claim",
+        "Denial",
+        "Payer",
+        "HealthcarePractice"
+      ],
+      "outputs": [
+        "RCM report",
+        "Early warning alerts",
+        "Cash forecast",
+        "Credit monitoring update"
+      ],
+      "approval_gates": [
+        "credit_or_risk_owner_review"
+      ]
+    },
+    {
+      "workflow": "Treasury Assessment",
+      "description": "Map patient payments, payer reimbursements, payroll, vendor payments, fraud controls, and account structure.",
+      "required_objects": [
+        "HealthcarePractice",
+        "PaymentFlow",
+        "TreasuryService"
+      ],
+      "outputs": [
+        "Treasury proposal",
+        "Account structure",
+        "Implementation checklist"
+      ],
+      "approval_gates": [
+        "treasury_operations_approval",
+        "security_review_if_integration"
+      ]
+    },
+    {
+      "workflow": "Annual Review",
+      "description": "Review financials, revenue cycle, payer mix, provider productivity, licenses, insurance, covenants, and risk rating.",
+      "required_objects": [
+        "HealthcarePractice",
+        "HealthcareLoan",
+        "RevenueCycle",
+        "Provider",
+        "License"
+      ],
+      "outputs": [
+        "Annual review memo",
+        "Risk rating recommendation",
+        "Relationship action plan"
+      ],
+      "approval_gates": [
+        "credit_review_approval"
+      ]
+    },
+    {
+      "workflow": "License / Insurance Monitoring",
+      "description": "Track provider/facility licenses, credentialing, certifications, malpractice coverage, and expiration risk.",
+      "required_objects": [
+        "Provider",
+        "License",
+        "InsurancePolicy",
+        "CredentialingRecord"
+      ],
+      "outputs": [
+        "Compliance status",
+        "Expiration tasks",
+        "Exception report"
+      ],
+      "approval_gates": [
+        "compliance_owner_review"
+      ]
+    },
+    {
+      "workflow": "Distressed Practice Review",
+      "description": "Assess liquidity, revenue cycle deterioration, provider departure, payer issues, staffing, collateral, and workout options.",
+      "required_objects": [
+        "HealthcarePractice",
+        "HealthcareLoan",
+        "RevenueCycle",
+        "Risk",
+        "WorkoutPlan"
+      ],
+      "outputs": [
+        "Distress memo",
+        "Liquidity plan",
+        "Workout options",
+        "Recovery milestones"
+      ],
+      "approval_gates": [
+        "credit_authority_approval",
+        "legal_review_if_needed"
+      ]
+    }
+  ],
+  "allowed_agents": [
+    "Healthcare Relationship Agent",
+    "Revenue Cycle Analyst",
+    "Payer Mix Analyst",
+    "Provider Productivity Analyst",
+    "Practice Valuation Agent",
+    "Credit Memo Writer",
+    "Treasury Opportunity Agent",
+    "License Monitor",
+    "Early Warning Agent"
+  ],
+  "required_evidence": {
+    "relationship_onboarding": [
+      "practice_profile",
+      "ownership_documents",
+      "provider_roster",
+      "payer_mix",
+      "RCM_summary",
+      "facility_and_equipment_list"
+    ],
+    "credit_underwriting": [
+      "financial_statements",
+      "tax_returns",
+      "AR_aging",
+      "payer_mix",
+      "provider_productivity",
+      "debt_schedule",
+      "licenses",
+      "malpractice_insurance",
+      "credit_memo"
+    ],
+    "practice_acquisition": [
+      "purchase_agreement",
+      "practice_valuation",
+      "financials",
+      "production_by_provider",
+      "payer_mix",
+      "patient_retention_data",
+      "lease",
+      "equipment_list",
+      "transition_plan"
+    ],
+    "partner_buyin": [
+      "ownership_agreement",
+      "valuation",
+      "provider_production",
+      "compensation_terms",
+      "governance_terms",
+      "financing_request"
+    ],
+    "equipment_finance": [
+      "vendor_quote",
+      "equipment_description",
+      "revenue_or_capacity_impact",
+      "valuation",
+      "insurance",
+      "installation_plan"
+    ],
+    "revenue_cycle": [
+      "RCM_report",
+      "AR_aging",
+      "claims_report",
+      "denial_report",
+      "payer_mix",
+      "deposit_reconciliation"
+    ],
+    "treasury": [
+      "payment_flow_map",
+      "merchant_data",
+      "payer_deposit_data",
+      "payroll_and_vendor_flows",
+      "fraud_control_review"
+    ],
+    "annual_review": [
+      "financials",
+      "RCM_report",
+      "payer_mix",
+      "provider_productivity",
+      "covenant_evidence",
+      "license_and_insurance_status"
+    ],
+    "license_monitoring": [
+      "provider_license",
+      "facility_license",
+      "credentialing_evidence",
+      "malpractice_certificate",
+      "expiration_dates"
+    ],
+    "distress": [
+      "cash_position",
+      "AR_aging",
+      "denial_trend",
+      "provider_status",
+      "payer_issues",
+      "collateral",
+      "legal_review"
+    ]
+  },
+  "approval_gates": {
+    "credit_approval": [
+      "credit_authority"
+    ],
+    "practice_acquisition_or_buyin": [
+      "credit_authority",
+      "legal_counsel"
+    ],
+    "equipment_funding": [
+      "credit_authority",
+      "operations_owner"
+    ],
+    "risk_rating_change": [
+      "credit_risk_owner"
+    ],
+    "workout_or_forbearance": [
+      "credit_authority",
+      "legal_counsel",
+      "executive_owner_if_material"
+    ],
+    "treasury_implementation": [
+      "treasury_operations_owner",
+      "security_owner_if_integration"
+    ],
+    "license_or_compliance_exception": [
+      "compliance_owner"
+    ],
+    "external_healthcare_data_use": [
+      "business_owner",
+      "security_owner",
+      "privacy_or_compliance_owner"
+    ]
+  },
+  "dashboards": [
+    "Healthcare Finance Executive Dashboard",
+    "Practice Relationship Dashboard",
+    "Revenue Cycle Dashboard",
+    "Payer Mix Dashboard",
+    "Provider Productivity Dashboard",
+    "Equipment Dashboard",
+    "Treasury Dashboard",
+    "Acquisition / Buy-In Dashboard",
+    "Healthcare Compliance Dashboard",
+    "Portfolio Risk Dashboard"
+  ],
+  "kpis": [
+    "healthcare_relationships",
+    "deposit_balances",
+    "treasury_revenue",
+    "loan_exposure",
+    "equipment_finance_volume",
+    "acquisition_loans",
+    "buyin_loans",
+    "relationship_profitability",
+    "revenue",
+    "EBITDA",
+    "EBITDA_margin",
+    "gross_charges",
+    "net_collections",
+    "collection_rate",
+    "DSCR",
+    "leverage",
+    "liquidity",
+    "payroll_to_revenue",
+    "rent_to_revenue",
+    "AR_days",
+    "AR_over_90",
+    "denial_rate",
+    "clean_claim_rate",
+    "net_collection_rate",
+    "days_to_bill",
+    "days_to_pay",
+    "write_offs",
+    "patient_collections",
+    "payer_concentration",
+    "patient_visits",
+    "procedures",
+    "new_patients",
+    "provider_productivity",
+    "schedule_utilization",
+    "no_show_rate",
+    "revenue_per_provider",
+    "staffing_ratio",
+    "provider_turnover",
+    "license_exceptions",
+    "malpractice_insurance_exceptions",
+    "credentialing_exceptions",
+    "patient_volume_decline",
+    "AR_deterioration",
+    "risk_rating_migration"
+  ],
+  "relationships": [
+    [
+      "Provider",
+      "WORKS_AT",
+      "HealthcarePractice"
+    ],
+    [
+      "HealthcarePractice",
+      "BILLS",
+      "Payer"
+    ],
+    [
+      "Payer",
+      "REIMBURSES",
+      "Claim"
+    ],
+    [
+      "Claim",
+      "CREATES",
+      "Receivable"
+    ],
+    [
+      "Denial",
+      "IMPACTS",
+      "RevenueCycle"
+    ],
+    [
+      "EquipmentAsset",
+      "SUPPORTS",
+      "Procedure"
+    ],
+    [
+      "HealthcareLoan",
+      "FINANCES",
+      "HealthcarePractice"
+    ],
+    [
+      "TreasuryService",
+      "SUPPORTS",
+      "PaymentFlow"
+    ],
+    [
+      "License",
+      "AUTHORIZES",
+      "Provider"
+    ],
+    [
+      "InsurancePolicy",
+      "COVERS",
+      "MalpracticeRisk"
+    ]
+  ],
+  "router_examples": [
+    {
+      "user_request": "Review this medical practice for credit.",
+      "route_to_workflow": "Healthcare Credit Underwriting",
+      "required_objects": [
+        "HealthcarePractice",
+        "HealthcareLoan",
+        "RevenueCycle",
+        "Provider",
+        "Payer"
+      ],
+      "agents": [
+        "Healthcare Relationship Agent",
+        "Revenue Cycle Analyst",
+        "Payer Mix Analyst",
+        "Provider Productivity Analyst",
+        "Credit Memo Writer"
+      ],
+      "outputs": [
+        "Healthcare credit memo",
+        "Risk summary",
+        "Missing evidence list",
+        "Approval package"
+      ]
+    },
+    {
+      "user_request": "Why are collections slowing down?",
+      "route_to_workflow": "Revenue Cycle Monitoring",
+      "required_objects": [
+        "RevenueCycle",
+        "Claim",
+        "Denial",
+        "Payer"
+      ],
+      "agents": [
+        "Revenue Cycle Analyst",
+        "Payer Mix Analyst",
+        "Early Warning Agent"
+      ],
+      "outputs": [
+        "RCM diagnosis",
+        "Denial trend",
+        "Cash impact",
+        "Recommended actions"
+      ]
+    },
+    {
+      "user_request": "Finance this practice acquisition.",
+      "route_to_workflow": "Practice Acquisition",
+      "required_objects": [
+        "PracticeAcquisition",
+        "HealthcarePractice",
+        "Valuation",
+        "HealthcareLoan"
+      ],
+      "agents": [
+        "Practice Valuation Agent",
+        "Revenue Cycle Analyst",
+        "Provider Productivity Analyst",
+        "Credit Memo Writer"
+      ],
+      "outputs": [
+        "Acquisition memo",
+        "Diligence checklist",
+        "Financing structure",
+        "Transition risk plan"
+      ]
+    },
+    {
+      "user_request": "Check licenses and malpractice coverage.",
+      "route_to_workflow": "License / Insurance Monitoring",
+      "required_objects": [
+        "Provider",
+        "License",
+        "InsurancePolicy",
+        "CredentialingRecord"
+      ],
+      "agents": [
+        "License Monitor"
+      ],
+      "outputs": [
+        "Compliance status",
+        "Expiration tasks",
+        "Exception report"
+      ]
+    }
+  ],
+  "integration_dependencies": [
+    "objects.registry.json",
+    "workflows.registry.json",
+    "agents.registry.json",
+    "kpis.registry.json",
+    "dashboards.registry.json",
+    "relationships.registry.json",
+    "evidence.registry.json",
+    "approvals.registry.json"
+  ],
+  "acceptance_tests": [
+    "Can create practice, provider, payer, payer contract, claim, denial, revenue cycle, patient volume, equipment, facility, acquisition, buy-in, loan, and license objects.",
+    "Can profile a healthcare relationship without exposing or inventing patient-level data.",
+    "Can draft a healthcare credit memo using financial, payer, provider, and revenue cycle evidence.",
+    "Can detect AR, denial, payer concentration, provider productivity, payroll, and liquidity risks.",
+    "Can evaluate practice acquisitions and partner buy-ins with valuation and transition evidence.",
+    "Can analyze medical equipment finance using utilization, revenue impact, useful life, and collateral.",
+    "Can route treasury opportunities from patient, payer, payroll, and vendor payment flows.",
+    "Can monitor licenses, credentialing, malpractice coverage, and expirations.",
+    "Can enforce human approval for credit, acquisition, workout, compliance, and external use.",
+    "Can link all board, credit, and compliance outputs to source evidence and audit trail."
+  ],
+  "section_id": "FS-5100",
+  "section_aliases": [
+    "FS-5000"
+  ]
+}

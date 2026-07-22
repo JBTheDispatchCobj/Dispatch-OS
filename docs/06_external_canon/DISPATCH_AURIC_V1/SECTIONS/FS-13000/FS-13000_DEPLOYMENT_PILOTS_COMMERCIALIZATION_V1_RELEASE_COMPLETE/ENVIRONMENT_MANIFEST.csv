@@ -1,0 +1,2 @@
+environment_id,type,region,tenant_scope,allowed_data,connectors_enabled,models_enabled,release_version,owner,status,rollback_ref
+env-syn-demo,synthetic_demo,us-central,synthetic,synthetic,stubs,approved-demo,v1.0.0,platform-ops,active,rollback-v1

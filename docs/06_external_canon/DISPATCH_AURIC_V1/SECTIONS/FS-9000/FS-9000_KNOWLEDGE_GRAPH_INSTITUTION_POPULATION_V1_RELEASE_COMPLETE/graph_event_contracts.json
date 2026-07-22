@@ -1,0 +1,85 @@
+{
+  "version": "1.0.0",
+  "events": [
+    {
+      "name": "graph.node.upserted",
+      "producer": "node-service",
+      "consumers": [
+        "search-index",
+        "opportunity-engine",
+        "terminal-cache"
+      ]
+    },
+    {
+      "name": "graph.edge.upserted",
+      "producer": "edge-service",
+      "consumers": [
+        "path-service",
+        "search-index",
+        "audit"
+      ]
+    },
+    {
+      "name": "graph.identity.quarantined",
+      "producer": "identity-resolver",
+      "consumers": [
+        "research-workbench",
+        "task-router"
+      ]
+    },
+    {
+      "name": "graph.population.completed",
+      "producer": "population-service",
+      "consumers": [
+        "quality-service",
+        "reporting",
+        "audit"
+      ]
+    },
+    {
+      "name": "graph.conflict.detected",
+      "producer": "reconciliation-service",
+      "consumers": [
+        "research-workbench",
+        "task-router"
+      ]
+    },
+    {
+      "name": "graph.inference.proposed",
+      "producer": "inference-service",
+      "consumers": [
+        "review-queue",
+        "terminal"
+      ]
+    },
+    {
+      "name": "graph.data.stale",
+      "producer": "refresh-monitor",
+      "consumers": [
+        "population-service",
+        "terminal",
+        "opportunity-engine"
+      ]
+    },
+    {
+      "name": "graph.visibility.changed",
+      "producer": "governance-service",
+      "consumers": [
+        "query-service",
+        "search-index",
+        "audit"
+      ]
+    }
+  ],
+  "envelope_required": [
+    "event_id",
+    "event_name",
+    "occurred_at",
+    "tenant_id",
+    "actor",
+    "object_refs",
+    "source_state",
+    "schema_version",
+    "correlation_id"
+  ]
+}

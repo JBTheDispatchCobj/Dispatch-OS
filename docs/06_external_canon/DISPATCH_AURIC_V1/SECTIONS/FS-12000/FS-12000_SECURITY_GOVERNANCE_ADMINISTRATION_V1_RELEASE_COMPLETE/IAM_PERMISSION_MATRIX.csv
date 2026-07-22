@@ -1,0 +1,7 @@
+role,resource,read,create,update,approve,export,delete,conditions
+tenant_user,permitted tenant objects,yes,scoped,own/scoped,no,no,no,field and workflow policy
+tenant_admin,tenant configuration,yes,yes,yes,scoped,approved,scoped,no platform-control changes
+security_admin,security controls and incidents,yes,yes,yes,dual-control,approved,dual-control,MFA and privileged session
+platform_operator,platform operations,scoped,scoped,scoped,no,break-glass,no,no tenant content by default
+auditor,evidence and audit,read-only,no,no,no,approved,no,immutable access log
+service_agent,assigned workflow context,scoped,draft-only,draft-only,no,no,no,tool and purpose limitation

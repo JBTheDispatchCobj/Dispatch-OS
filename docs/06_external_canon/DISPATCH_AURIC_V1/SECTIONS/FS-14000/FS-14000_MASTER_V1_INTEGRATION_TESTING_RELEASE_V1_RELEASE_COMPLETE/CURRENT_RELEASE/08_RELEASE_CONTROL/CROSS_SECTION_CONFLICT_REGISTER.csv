@@ -1,0 +1,2 @@
+conflict_id,severity,artifact_a,artifact_b,concept,resolution,status
+CONFLICT-001,high,master_section_registry.csv,FS-5100 release,FS-5000 vs FS-5100,normalize current release to FS-5100; preserve FS-5000 as alias,resolved

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ModelRouteDecision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "route_decision_id",
+    "tenant_id",
+    "execution_id",
+    "policy_version",
+    "selected_route",
+    "rationale",
+    "created_at"
+  ],
+  "properties": {
+    "route_decision_id": {
+      "type": "string",
+      "pattern": "^MRD-"
+    },
+    "tenant_id": {
+      "type": "string"
+    },
+    "execution_id": {
+      "type": "string"
+    },
+    "policy_version": {
+      "type": "string"
+    },
+    "selected_route": {
+      "type": "string"
+    },
+    "fallback_routes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "rationale": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "data_classification": {
+      "type": "string"
+    },
+    "estimated_cost": {
+      "type": "number"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

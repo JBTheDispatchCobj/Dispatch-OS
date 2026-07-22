@@ -1,0 +1,29 @@
+{
+  "section": "FS-14000",
+  "name": "Master V1 Integration, Testing & Release",
+  "version": "1.0.0",
+  "status": "V1 content-complete documentation",
+  "generated_at": "2026-07-22T08:25:04.114098+00:00",
+  "source_baseline": "FS-14000_MASTER_V1_INTEGRATION_TESTING_RELEASE_BASELINE_V1(1).zip",
+  "artifact_count": 45,
+  "validation_scope": [
+    "JSON parsing",
+    "CSV header checks",
+    "fixture required-field checks",
+    "manifest path checks",
+    "checksum generation"
+  ],
+  "software_execution_claimed": false,
+  "baseline_source": {
+    "path": "00_BASELINE_SOURCE/",
+    "status": "historical_superseded_noncanonical",
+    "included_for": [
+      "provenance",
+      "audit history",
+      "before-and-after comparison"
+    ],
+    "implementation_use_allowed": false
+  },
+  "canonical_release_path": "CURRENT_RELEASE/",
+  "canonical_release_only": true
+}

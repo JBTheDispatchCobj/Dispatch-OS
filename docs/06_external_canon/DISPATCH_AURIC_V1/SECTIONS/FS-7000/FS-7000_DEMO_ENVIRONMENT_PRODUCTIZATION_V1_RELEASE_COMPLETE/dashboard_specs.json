@@ -1,0 +1,158 @@
+{
+  "version": "1.0.0",
+  "dashboards": [
+    {
+      "dashboard_id": "DB-CU-EXEC",
+      "title": "Credit Union Executive Terminal",
+      "persona": "CEO",
+      "institution_id": "CU-DEMO-001",
+      "visibility": "public_demo",
+      "widgets": [
+        {
+          "widget_id": "W-1",
+          "widget_type": "kpi",
+          "title": "Assets",
+          "data_contract": "InstitutionMetric.assets",
+          "drillthrough_target": "institution.financials",
+          "source_required": true,
+          "freshness_required": true
+        },
+        {
+          "widget_id": "W-2",
+          "widget_type": "queue",
+          "title": "Top Opportunities",
+          "data_contract": "Opportunity[]",
+          "drillthrough_target": "opportunities",
+          "source_required": true,
+          "freshness_required": true
+        },
+        {
+          "widget_id": "W-3",
+          "widget_type": "scorecard",
+          "title": "Institution Readiness",
+          "data_contract": "ReadinessScore[]",
+          "drillthrough_target": "readiness",
+          "source_required": true,
+          "freshness_required": true
+        },
+        {
+          "widget_id": "W-4",
+          "widget_type": "alert_list",
+          "title": "Vendor and Exam Alerts",
+          "data_contract": "Alert[]",
+          "drillthrough_target": "alerts",
+          "source_required": true,
+          "freshness_required": true
+        }
+      ]
+    },
+    {
+      "dashboard_id": "DB-PILOT",
+      "title": "Fintech Pilot Readiness",
+      "persona": "CIO",
+      "institution_id": "CU-DEMO-001",
+      "visibility": "public_demo",
+      "widgets": [
+        {
+          "widget_id": "W-P1",
+          "widget_type": "scorecard",
+          "title": "Readiness by Dimension",
+          "data_contract": "ReadinessScore[]",
+          "drillthrough_target": "readiness",
+          "source_required": true,
+          "freshness_required": true
+        },
+        {
+          "widget_id": "W-P2",
+          "widget_type": "table",
+          "title": "Open Blockers",
+          "data_contract": "Blocker[]",
+          "drillthrough_target": "workflow.tasks",
+          "source_required": true,
+          "freshness_required": true
+        },
+        {
+          "widget_id": "W-P3",
+          "widget_type": "timeline",
+          "title": "Pilot Plan",
+          "data_contract": "WorkflowStage[]",
+          "drillthrough_target": "workflow",
+          "source_required": true,
+          "freshness_required": false
+        }
+      ]
+    },
+    {
+      "dashboard_id": "DB-EXAM",
+      "title": "Exam Response Status",
+      "persona": "Compliance Officer",
+      "institution_id": "CU-DEMO-001",
+      "visibility": "public_demo",
+      "widgets": [
+        {
+          "widget_id": "W-E1",
+          "widget_type": "kpi",
+          "title": "Requests Complete",
+          "data_contract": "ExamRequestCompletion",
+          "drillthrough_target": "exam.requests",
+          "source_required": true,
+          "freshness_required": true
+        },
+        {
+          "widget_id": "W-E2",
+          "widget_type": "queue",
+          "title": "Evidence Gaps",
+          "data_contract": "EvidenceGap[]",
+          "drillthrough_target": "evidence.gaps",
+          "source_required": true,
+          "freshness_required": true
+        },
+        {
+          "widget_id": "W-E3",
+          "widget_type": "timeline",
+          "title": "Response Timeline",
+          "data_contract": "ExamTimeline",
+          "drillthrough_target": "exam.workflow",
+          "source_required": true,
+          "freshness_required": true
+        }
+      ]
+    },
+    {
+      "dashboard_id": "DB-PARTICIPATION",
+      "title": "Loan Participation Opportunity",
+      "persona": "Chief Lending Officer",
+      "institution_id": "CU-ORIGINATOR-001",
+      "visibility": "public_demo",
+      "widgets": [
+        {
+          "widget_id": "W-L1",
+          "widget_type": "kpi",
+          "title": "Offering Amount",
+          "data_contract": "ParticipationOffering.amount",
+          "drillthrough_target": "offering",
+          "source_required": true,
+          "freshness_required": true
+        },
+        {
+          "widget_id": "W-L2",
+          "widget_type": "table",
+          "title": "Buyer Ranking",
+          "data_contract": "BuyerMatch[]",
+          "drillthrough_target": "buyers",
+          "source_required": true,
+          "freshness_required": true
+        },
+        {
+          "widget_id": "W-L3",
+          "widget_type": "queue",
+          "title": "Closing Conditions",
+          "data_contract": "ClosingCondition[]",
+          "drillthrough_target": "settlement",
+          "source_required": true,
+          "freshness_required": true
+        }
+      ]
+    }
+  ]
+}

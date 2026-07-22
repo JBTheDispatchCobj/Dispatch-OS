@@ -1,0 +1,45 @@
+{
+  "section": "FS-4000",
+  "status": "PASS_WITH_EXTERNAL_DEPENDENCY",
+  "checks": {
+    "every_expected_domain_file_exists": {
+      "status": "PASS",
+      "missing": [],
+      "extra": []
+    },
+    "json_artifacts_parse": {
+      "status": "PASS",
+      "checked": 18
+    },
+    "csv_artifacts_parse": {
+      "status": "PASS",
+      "checked": 1
+    },
+    "domain_ids_unique": {
+      "status": "PASS",
+      "domain_ids": [
+        "FS-4001",
+        "FS-4002",
+        "FS-4003",
+        "FS-4004",
+        "FS-4005",
+        "FS-4006",
+        "FS-4007",
+        "FS-4008",
+        "FS-4009",
+        "FS-4010",
+        "FS-4011",
+        "FS-4012",
+        "FS-4013",
+        "FS-4014",
+        "FS-4015"
+      ]
+    },
+    "fs5100_referential_integrity": {
+      "status": "EXTERNAL_DEPENDENCY_NOT_SUPPLIED",
+      "objects_workflows_agents_evidence_approvals_kpis_connectors": "Reconciliation register created; exact existence validation requires the FS-5100 canonical registry package."
+    }
+  },
+  "certification": "FS-4000 is certified as the domain-intelligence and operating-framework layer. Runtime and UI artifacts are intentionally out of scope.",
+  "generated_at": "2026-07-22T08:50:17.574586+00:00"
+}

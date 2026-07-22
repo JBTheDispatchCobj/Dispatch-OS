@@ -1,0 +1,91 @@
+{
+  "version": "1.0.0",
+  "contracts": [
+    {
+      "id": "GQ-PROFILE-EXPAND",
+      "type": "profile_expand",
+      "inputs": [
+        "canonical_object_id",
+        "depth",
+        "include_inferred"
+      ],
+      "outputs": [
+        "nodes",
+        "edges",
+        "evidence",
+        "missing_fields",
+        "stale_fields",
+        "confidence_summary"
+      ],
+      "max_depth": 3
+    },
+    {
+      "id": "GQ-INSTITUTION-SEARCH",
+      "type": "search",
+      "inputs": [
+        "criteria",
+        "sort",
+        "limit"
+      ],
+      "outputs": [
+        "matches",
+        "matched_criteria",
+        "missing_criteria",
+        "confidence",
+        "evidence",
+        "relevant_people",
+        "relationship_paths",
+        "opportunities",
+        "next_actions"
+      ],
+      "max_limit": 500
+    },
+    {
+      "id": "GQ-WARM-PATH",
+      "type": "path",
+      "inputs": [
+        "from_person_or_institution",
+        "to_person_or_institution",
+        "allowed_relationships"
+      ],
+      "outputs": [
+        "permission_filtered_paths",
+        "path_confidence",
+        "evidence",
+        "restrictions"
+      ],
+      "max_depth": 6
+    },
+    {
+      "id": "GQ-PEER-SIMILARITY",
+      "type": "similarity",
+      "inputs": [
+        "institution_id",
+        "feature_set",
+        "cohort_constraints"
+      ],
+      "outputs": [
+        "peers",
+        "score_breakdown",
+        "missing_features",
+        "model_version"
+      ],
+      "max_limit": 100
+    },
+    {
+      "id": "GQ-IMPACT",
+      "type": "impact",
+      "inputs": [
+        "changed_node_or_edge",
+        "relationship_depth"
+      ],
+      "outputs": [
+        "affected_objects",
+        "affected_workflows",
+        "affected_outputs",
+        "recommended_reviews"
+      ],
+      "max_depth": 4
+    }
+  ]
+}

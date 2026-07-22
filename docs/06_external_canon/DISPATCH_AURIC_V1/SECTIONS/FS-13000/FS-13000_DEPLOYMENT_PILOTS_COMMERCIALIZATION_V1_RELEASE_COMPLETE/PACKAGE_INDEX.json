@@ -1,0 +1,493 @@
+{
+  "package_id": "FS-13000-DEPLOYMENT-PILOTS-COMMERCIALIZATION-V1-RELEASE-COMPLETE",
+  "section": "FS-13000",
+  "version": "1.0.0",
+  "generated_at": "2026-07-22T09:14:49.523100+00:00",
+  "integrity_policy": "PACKAGE_INDEX.json excludes itself. INTEGRITY_INDEX.csv is finalized first and included with final size and SHA-256.",
+  "artifact_count": 69,
+  "files": [
+    {
+      "filename": "13001_DEPLOYMENT_ARCHITECTURE_ENVIRONMENTS_V1_RELEASE.md",
+      "file_size_bytes": 12059,
+      "sha256_checksum": "74e29db7bd72b98e84080d5776bb757e093a9d1f1074ab0c19afe3b80aaf4ff5",
+      "artifact_type": "numbered_volume",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "13002_TENANT_PROVISIONING_ONBOARDING_V1_RELEASE.md",
+      "file_size_bytes": 11354,
+      "sha256_checksum": "3d4876d0aaeed1f21b7285f3488ed457267e553c809d74308ef70bb31eada500",
+      "artifact_type": "numbered_volume",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "13003_PILOT_QUALIFICATION_SCOPING_V1_RELEASE.md",
+      "file_size_bytes": 11257,
+      "sha256_checksum": "445195724ee8a3b7f557857dc25f0ddb6010ac077b29c258526ffcf77ca0bfae",
+      "artifact_type": "numbered_volume",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "13004_PILOT_IMPLEMENTATION_PLAYBOOK_V1_RELEASE.md",
+      "file_size_bytes": 11275,
+      "sha256_checksum": "b085fa78794f733024158fff0c44d12f429f98e440bae88460be10ac9ada92db",
+      "artifact_type": "numbered_volume",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "13005_INSTITUTION_SUCCESS_SUPPORT_OPERATIONS_V1_RELEASE.md",
+      "file_size_bytes": 10845,
+      "sha256_checksum": "581f0ce187a7436d8b3113b58de449655fdc3f9095acc7e99051696a60f57d4f",
+      "artifact_type": "numbered_volume",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "13006_COMMERCIAL_PACKAGING_PRICING_V1_RELEASE.md",
+      "file_size_bytes": 11537,
+      "sha256_checksum": "b034cb706a89e49dadb78072aedea45caaf46f5c8923069e28b6fec4fb2158fa",
+      "artifact_type": "numbered_volume",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "13007_CONTRACTING_PROCUREMENT_LEGAL_PATH_V1_RELEASE.md",
+      "file_size_bytes": 11087,
+      "sha256_checksum": "72787869a6a44f3564acaa4220c6a46758c372279b11de9ba24d5a866c254228",
+      "artifact_type": "numbered_volume",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "13008_PARTNER_CHANNEL_ECOSYSTEM_V1_RELEASE.md",
+      "file_size_bytes": 10701,
+      "sha256_checksum": "a5ced688f5f7a05b8ff1ab318c186fa877dc5cff276f1ce968ea77d410ead60c",
+      "artifact_type": "numbered_volume",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "13009_GO_TO_MARKET_INSTITUTION_SEGMENTATION_V1_RELEASE.md",
+      "file_size_bytes": 11190,
+      "sha256_checksum": "871610b62c66d785a0975cfb90716f2dd4932c129db14c2bfb79c808e9548861",
+      "artifact_type": "numbered_volume",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "13010_SALES_PIPELINE_DEAL_DESK_V1_RELEASE.md",
+      "file_size_bytes": 10924,
+      "sha256_checksum": "e0fe2dffa4531649ecafad83b55009bafe66a21d134121932357d8401408ad88",
+      "artifact_type": "numbered_volume",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "13011_MARKETING_PUBLICATION_DEMAND_ENGINE_V1_RELEASE.md",
+      "file_size_bytes": 10936,
+      "sha256_checksum": "bd170a693d2acd2940e89d5ed9cc11271d1ccfd1cf2ece0cb481999faa1bca48",
+      "artifact_type": "numbered_volume",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "13012_IMPLEMENTATION_PARTNER_CERTIFICATION_V1_RELEASE.md",
+      "file_size_bytes": 10878,
+      "sha256_checksum": "0215c5d9b143ed9289f6b777d07a6c1c6cea9130be7ef0b59f9c0bacb88def58",
+      "artifact_type": "numbered_volume",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "13013_RENEWAL_EXPANSION_LAND_AND_EXPAND_V1_RELEASE.md",
+      "file_size_bytes": 10725,
+      "sha256_checksum": "e3a93075371345c63b141bef39bdd300f783ba2b5c53e9a55d5cc9c849f5785b",
+      "artifact_type": "numbered_volume",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "13014_COMMERCIAL_METRICS_FORECAST_CAPACITY_V1_RELEASE.md",
+      "file_size_bytes": 11067,
+      "sha256_checksum": "977f1723cf10267f5dfc2309e21f164adcc66ddf64e175404b5bb2aae41842fd",
+      "artifact_type": "numbered_volume",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "13015_MASTER_DEPLOYMENT_COMMERCIALIZATION_INDEX_V1_RELEASE.md",
+      "file_size_bytes": 11904,
+      "sha256_checksum": "61d5d22beef4174d77ae7dccae2fad0c8a5d63548ab376003d83fd7f8cf3cf1a",
+      "artifact_type": "numbered_volume",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "COMMERCIAL_METRICS_CATALOG.csv",
+      "file_size_bytes": 790,
+      "sha256_checksum": "4fc974712024c62307051571d7fe0f7f28c35469809ab11ed45d64d0a78ba65e",
+      "artifact_type": "registry_or_matrix",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "CROSS_SECTION_RECONCILIATION_REPORT.json",
+      "file_size_bytes": 1096,
+      "sha256_checksum": "1a6cefe3b8cdd4ac56a1ca0dd61f3b97cabbc8eb8d9028c09fdcb8c3cfe797cb",
+      "artifact_type": "validation_report",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "DEAL_DESK_APPROVAL_MATRIX.csv",
+      "file_size_bytes": 608,
+      "sha256_checksum": "b785247a6cd4d42b124a0d7efdb02ca94080b0be97d8f96e699494a9a863890d",
+      "artifact_type": "registry_or_matrix",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "ENVIRONMENT_MANIFEST.csv",
+      "file_size_bytes": 249,
+      "sha256_checksum": "a590f6cafed2f71dd36dce089b1789c8b09d9b2f563b3d3de729debada5c2988",
+      "artifact_type": "registry_or_matrix",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FIXTURE_COMMERCIAL_METRIC_SNAPSHOT.json",
+      "file_size_bytes": 1332,
+      "sha256_checksum": "725271fbedaf78079fa0280a0709ca21d9dd15f1e5ef5fef464a729fa6f5b7ab",
+      "artifact_type": "synthetic_fixture",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FIXTURE_COMMERCIAL_OPPORTUNITY.json",
+      "file_size_bytes": 1321,
+      "sha256_checksum": "a6e765ee41dc4555cb9d04aa73466d52edda470e0f38282575a3d9dc17ad6ca9",
+      "artifact_type": "synthetic_fixture",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FIXTURE_COMMERCIAL_PACKAGE.json",
+      "file_size_bytes": 1312,
+      "sha256_checksum": "3694ca519b35c32eda988b9f8a1913cc439550d075895025b1841a42d2c660ae",
+      "artifact_type": "synthetic_fixture",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FIXTURE_COMMERCIAL_RELEASE_INDEX.json",
+      "file_size_bytes": 1328,
+      "sha256_checksum": "f4f486fff723b9ed7720e236e70bd828d7cd0334f814e8ed4a497f86772cfc64",
+      "artifact_type": "synthetic_fixture",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FIXTURE_CONTENT_ITEM.json",
+      "file_size_bytes": 1302,
+      "sha256_checksum": "d7ed290dea0ee91d69616d75aec3acce88348aa3e668d1b81e90fe06dd730c69",
+      "artifact_type": "synthetic_fixture",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FIXTURE_ENVIRONMENT.json",
+      "file_size_bytes": 1304,
+      "sha256_checksum": "d96c2193ed92c14f71991fa3448cf708477d33f3c541c0672a28a5ce21ad216b",
+      "artifact_type": "synthetic_fixture",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FIXTURE_MARKET_SEGMENT.json",
+      "file_size_bytes": 1308,
+      "sha256_checksum": "a4078a30d309d2644d7d164e620ef7be84799d7fcf0f8a22f27675b0bea1ce1c",
+      "artifact_type": "synthetic_fixture",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FIXTURE_PARTNER.json",
+      "file_size_bytes": 1293,
+      "sha256_checksum": "9eee236a63d566fbb82cd86358c8e968c2f6ba9e37af970f4d6939e53d0826b9",
+      "artifact_type": "synthetic_fixture",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FIXTURE_PARTNER_CERTIFICATION.json",
+      "file_size_bytes": 1320,
+      "sha256_checksum": "17bc93bda30d59880d70bed2f089a4aaae97f794562f67eb0d70bbec8ed944b0",
+      "artifact_type": "synthetic_fixture",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FIXTURE_PILOT_IMPLEMENTATION.json",
+      "file_size_bytes": 1319,
+      "sha256_checksum": "45e9d73f6dd8c38e0fe72d34a84d961ae9af4702345e78d9803766be6b676ca4",
+      "artifact_type": "synthetic_fixture",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FIXTURE_PILOT_SCOPE.json",
+      "file_size_bytes": 1301,
+      "sha256_checksum": "c89d7589774e99080ab0cd8bd198625fb36a41b011072df19ca8d5cd012418dc",
+      "artifact_type": "synthetic_fixture",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FIXTURE_PROCUREMENT_MATTER.json",
+      "file_size_bytes": 1315,
+      "sha256_checksum": "806cca0e249c30f64c5e03dbe0bb42aab7a7bffdc69dc6a7d600f5bd5063983c",
+      "artifact_type": "synthetic_fixture",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FIXTURE_RENEWAL.json",
+      "file_size_bytes": 1298,
+      "sha256_checksum": "a2185b44d8ed644a0921e895f2dd8e7f4f1336dd09243c7a5c886c36fcaa910d",
+      "artifact_type": "synthetic_fixture",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FIXTURE_SUPPORT_CASE.json",
+      "file_size_bytes": 1301,
+      "sha256_checksum": "a38aaa9072b7ab2f22a4d1e8724ac5a5f944f9ec2d29eea428bf725d7a9a1362",
+      "artifact_type": "synthetic_fixture",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FIXTURE_TENANT_PROVISIONING.json",
+      "file_size_bytes": 1316,
+      "sha256_checksum": "945ea1905d7b5a8c63120ae429e5314427896b860e064bf8176e5990df82bb43",
+      "artifact_type": "synthetic_fixture",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FS13000_ACCEPTANCE_TESTS.md",
+      "file_size_bytes": 1441,
+      "sha256_checksum": "934fa425459df86f0331392bd447348f78a47c4e8eb624fc898e0a14a1a92866",
+      "artifact_type": "documentation",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FS13000_COMMERCIAL_THREAT_MODEL.md",
+      "file_size_bytes": 2035,
+      "sha256_checksum": "3c6ee181f159757c4339a111fe6b770d227c67c2319bfdcb94084de2e1a23d91",
+      "artifact_type": "documentation",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FS13000_IMPLEMENTATION_OPERATIONS_RUNBOOK.md",
+      "file_size_bytes": 1648,
+      "sha256_checksum": "94a2df5e28bfc00352d5957a5d47e3b45b6adc657008156a9b48cc6efb9ae970",
+      "artifact_type": "documentation",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "IMPLEMENTATION_RACI.csv",
+      "file_size_bytes": 261,
+      "sha256_checksum": "48e641dcb21ff0ff68b011907286c4a7bd3d537125ac0ee613c4fb756c40302d",
+      "artifact_type": "registry_or_matrix",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "INTEGRITY_INDEX.csv",
+      "file_size_bytes": 8065,
+      "sha256_checksum": "a8ecbf4d64c7d7729ae6db2d2d7bef56235b791b9aaed2b3627daaa621539c00",
+      "artifact_type": "registry_or_matrix",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "KNOWN_ISSUES_REGISTER.csv",
+      "file_size_bytes": 202,
+      "sha256_checksum": "f34a9dfdb197b71a9ace5357e3da012b9ce13312f975c051212e5f0dda55867f",
+      "artifact_type": "registry_or_matrix",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "PARTNER_CERTIFICATION_MATRIX.csv",
+      "file_size_bytes": 486,
+      "sha256_checksum": "906d1d09262e4fd3e9a19729bffa1bdcb1a83bde364cbff169f2e3c2823253d3",
+      "artifact_type": "registry_or_matrix",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "PILOT_CHARTER_TEMPLATE.md",
+      "file_size_bytes": 1011,
+      "sha256_checksum": "96e5a6830d59276cd697de53a4ea2ac5ccfc1c76a4f6a9117dea756e48478290",
+      "artifact_type": "documentation",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "PILOT_QUALIFICATION_SCORECARD.csv",
+      "file_size_bytes": 542,
+      "sha256_checksum": "8f223a1914dac3662b9b25efa6b3418e4fd2d62268e26649ae5bea78af0c6eef",
+      "artifact_type": "registry_or_matrix",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "PILOT_SOW_TEMPLATE.md",
+      "file_size_bytes": 1104,
+      "sha256_checksum": "48e97d0923ebe269cf5e5c897cf85b3929ca6edd2083524dc3d487ffd9152f71",
+      "artifact_type": "documentation",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "PRICING_COST_MODEL.csv",
+      "file_size_bytes": 615,
+      "sha256_checksum": "d7537cff515e8178f9837ec76e30dfc23fa22fc2193c032d4bbfe285a27b48d0",
+      "artifact_type": "registry_or_matrix",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "PROCUREMENT_PACKET_INDEX.md",
+      "file_size_bytes": 655,
+      "sha256_checksum": "0900e88397a1279ba11d777c73fb7be2cef5b84e4ca8cf3f997c5076079c67b7",
+      "artifact_type": "documentation",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "QBR_VALUE_REPORT_TEMPLATE.md",
+      "file_size_bytes": 773,
+      "sha256_checksum": "541f849eb097b182d3a21cf81036d7385df1406d8d9a8e68445d982f4797d305",
+      "artifact_type": "documentation",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "README_FS_13000_V1_RELEASE_COMPLETE.md",
+      "file_size_bytes": 1250,
+      "sha256_checksum": "4ec108127ef27a4477c6fed1058741eb49bde802f6a6a2da2dab5b3b712029a0",
+      "artifact_type": "documentation",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "RELEASE_MANIFEST.json",
+      "file_size_bytes": 8712,
+      "sha256_checksum": "20371dfe59eb23752c0a0b53b2015a5f9f31fa2b947233e942f37e036958d9eb",
+      "artifact_type": "manifest_or_index",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "RENEWAL_TIMELINE.csv",
+      "file_size_bytes": 547,
+      "sha256_checksum": "1585d244c0c76ac295ff12c675f2139a40a93c3cae8fa00ed6600fc4b6cbb436",
+      "artifact_type": "registry_or_matrix",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "SALES_STAGE_EVIDENCE.csv",
+      "file_size_bytes": 702,
+      "sha256_checksum": "2ca708749452d6dc0d0d8227cfd340e1ddb091b4db08adcdccc2b49e77c74884",
+      "artifact_type": "registry_or_matrix",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "SUPPORT_SLA_MATRIX.csv",
+      "file_size_bytes": 546,
+      "sha256_checksum": "88bc575345af5b4bf31f214f98de522380c35332633c01623653c305cb497533",
+      "artifact_type": "registry_or_matrix",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "VALIDATION_REPORT.csv",
+      "file_size_bytes": 4232,
+      "sha256_checksum": "5d26c95350458992d4db0a83719b856078a8840236ff87148e6e93e757de8de6",
+      "artifact_type": "registry_or_matrix",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "VALIDATION_REPORT.json",
+      "file_size_bytes": 11054,
+      "sha256_checksum": "d6f3d11959e767dc08b99ef5d4f6d345408252b565445d1322d9e5be6c396f1e",
+      "artifact_type": "validation_report",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "commercial_metric_snapshot.schema.json",
+      "file_size_bytes": 3136,
+      "sha256_checksum": "40156f79927500b5b818229c4a4f06d2c051942b20a2430c7fb3df5aed4abc5d",
+      "artifact_type": "json_schema",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "commercial_opportunity.schema.json",
+      "file_size_bytes": 3259,
+      "sha256_checksum": "57a5bffdd33109483d2c2db43b2a82020176fc11f314ecdcd2eaf2321571d919",
+      "artifact_type": "json_schema",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "commercial_package.schema.json",
+      "file_size_bytes": 3120,
+      "sha256_checksum": "74c08f09bb0421c1168a811986ba94fdf031f1e98800b012618354c96151fe75",
+      "artifact_type": "json_schema",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "commercial_release_index.schema.json",
+      "file_size_bytes": 3130,
+      "sha256_checksum": "63e14d96758c46f1c63466503ce5c4f69bec23eed754b2a9a4bbbf95de565abc",
+      "artifact_type": "json_schema",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "content_item.schema.json",
+      "file_size_bytes": 3166,
+      "sha256_checksum": "8604ea721583d9d10a5d050cb3748c0ced195a47cfc81f6e8775a273553229c5",
+      "artifact_type": "json_schema",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "environment.schema.json",
+      "file_size_bytes": 3108,
+      "sha256_checksum": "542a12c6a330958df16e6f7a17c475b11679de33a093bc8a9232708c70bfa091",
+      "artifact_type": "json_schema",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "market_segment.schema.json",
+      "file_size_bytes": 3116,
+      "sha256_checksum": "3cb226e03a917f8d75a0e6c3c320a36ff3006dd04a21930a24542a2664a478ce",
+      "artifact_type": "json_schema",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "partner.schema.json",
+      "file_size_bytes": 3123,
+      "sha256_checksum": "a269fee4c9011133d066489bdc4fcf38b8f3eb5a8233bc7de26f3a6038b01c36",
+      "artifact_type": "json_schema",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "partner_certification.schema.json",
+      "file_size_bytes": 3179,
+      "sha256_checksum": "e8c0e57a694a4b3edd1009f542ea01472aeff8f55fb3cf2f86ef1fd335b61ac9",
+      "artifact_type": "json_schema",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "pilot_implementation.schema.json",
+      "file_size_bytes": 3183,
+      "sha256_checksum": "1f8eaa459f309554b3699ba0d95cff56974cd2938588b0bd4aaa6f032e4ecd7e",
+      "artifact_type": "json_schema",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "pilot_scope.schema.json",
+      "file_size_bytes": 3144,
+      "sha256_checksum": "0f8054f477fda56d09dd554a04f8c08bf3d8062afd52c576833ef859c53239f6",
+      "artifact_type": "json_schema",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "procurement_matter.schema.json",
+      "file_size_bytes": 3179,
+      "sha256_checksum": "d4d5e6b83feeb4872a408f9c9cee0f529cec2a7d4cc1a3710ba73c26a14dc3db",
+      "artifact_type": "json_schema",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "renewal.schema.json",
+      "file_size_bytes": 3148,
+      "sha256_checksum": "a70cea2b7da8c383dda225b359770380d03f086a0baa8c94b98a6f839f81eee8",
+      "artifact_type": "json_schema",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "support_case.schema.json",
+      "file_size_bytes": 3133,
+      "sha256_checksum": "498ac2e3f8fa889b9ae2bbd9bd7bad167c1aa0301d299d6f27b3ca38824e844c",
+      "artifact_type": "json_schema",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "tenant_provisioning.schema.json",
+      "file_size_bytes": 3173,
+      "sha256_checksum": "503d7a833abc5e1600c991e63cf29b0204957c20f7f9e271bcb0286f892aa263",
+      "artifact_type": "json_schema",
+      "version": "1.0.0"
+    }
+  ]
+}

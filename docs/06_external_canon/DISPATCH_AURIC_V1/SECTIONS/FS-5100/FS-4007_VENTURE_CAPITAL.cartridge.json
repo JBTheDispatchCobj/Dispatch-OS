@@ -1,0 +1,151 @@
+{
+  "manifest_name": "FS-4007_VENTURE_CAPITAL.cartridge.json",
+  "version": "1.0",
+  "owner": "Auric Works",
+  "product": "Dispatch / Auric Institutional Intelligence Network",
+  "created_at": "2026-07-21T20:43:39.676780",
+  "domain_id": "FS-4007",
+  "domain_name": "Venture Capital",
+  "source_volume": "FS-4007_VENTURE_CAPITAL_OPERATING_FRAMEWORK_V1.zip",
+  "purpose": "Deployable cartridge manifest for venture sourcing, diligence, portfolio support, strategic pilots, LP reporting, and institutional adoption.",
+  "cartridge_type": "domain_operating_cartridge",
+  "status": "production_manifest",
+  "primary_objects": [
+    "Fund",
+    "Startup",
+    "Founder",
+    "Investment",
+    "Round",
+    "Pilot",
+    "LP",
+    "PortfolioCompany"
+  ],
+  "supported_workflows": [
+    "Deal sourcing",
+    "Initial screening",
+    "Investment committee memo",
+    "Due diligence",
+    "Portfolio monitoring",
+    "Strategic pilot",
+    "Follow-on decision",
+    "LP reporting"
+  ],
+  "allowed_agents": [
+    "Deal Scout",
+    "Founder Research Agent",
+    "Market Analyst",
+    "Investment Memo Writer",
+    "Strategic Pilot Manager",
+    "LP Reporting Agent"
+  ],
+  "required_evidence": {
+    "screening": [
+      "pitch_deck",
+      "founder_profile",
+      "market_summary"
+    ],
+    "diligence": [
+      "financial_model",
+      "cap_table",
+      "customer_references",
+      "security_review"
+    ],
+    "investment": [
+      "IC_memo",
+      "term_sheet",
+      "approval_record"
+    ],
+    "portfolio": [
+      "board_updates",
+      "KPI_export",
+      "investor_update"
+    ],
+    "pilot": [
+      "pilot_plan",
+      "success_metrics",
+      "integration_review"
+    ]
+  },
+  "approval_gates": {
+    "investment_commitment": [
+      "investment_authority"
+    ],
+    "pilot_launch": [
+      "business_owner",
+      "compliance_owner"
+    ],
+    "LP_reporting": [
+      "executive_owner"
+    ]
+  },
+  "dashboards": [
+    "Venture Fund Dashboard",
+    "Deal Flow Dashboard",
+    "Startup Portfolio Dashboard",
+    "Strategic Adoption Dashboard"
+  ],
+  "kpis": [
+    "companies_sourced",
+    "decks_reviewed",
+    "IC_reviews",
+    "investments_closed",
+    "ARR",
+    "MRR",
+    "growth_rate",
+    "burn_rate",
+    "runway_months",
+    "TVPI",
+    "DPI",
+    "RVPI",
+    "gross_IRR",
+    "net_IRR"
+  ],
+  "relationships": [
+    [
+      "Fund",
+      "INVESTS_IN",
+      "Startup"
+    ],
+    [
+      "Founder",
+      "FOUNDED",
+      "Startup"
+    ],
+    [
+      "Startup",
+      "RAISES",
+      "Round"
+    ],
+    [
+      "Pilot",
+      "VALIDATES",
+      "Startup"
+    ],
+    [
+      "Institution",
+      "PILOTS",
+      "Product"
+    ]
+  ],
+  "integration_dependencies": [
+    "objects.registry.json",
+    "workflows.registry.json",
+    "agents.registry.json",
+    "kpis.registry.json",
+    "dashboards.registry.json",
+    "relationships.registry.json",
+    "evidence.registry.json",
+    "approvals.registry.json"
+  ],
+  "acceptance_tests": [
+    "Can manage deal pipeline.",
+    "Can generate IC memo.",
+    "Can monitor portfolio KPIs.",
+    "Can coordinate strategic pilots.",
+    "Can produce LP reporting with evidence."
+  ],
+  "section_id": "FS-5100",
+  "section_aliases": [
+    "FS-5000"
+  ]
+}

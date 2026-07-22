@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Lineage Edge",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "lineage_edge_id",
+    "tenant_id",
+    "from_type",
+    "from_id",
+    "to_type",
+    "to_id",
+    "relationship",
+    "created_at"
+  ],
+  "properties": {
+    "lineage_edge_id": {
+      "type": "string",
+      "pattern": "^LIN-[A-Z0-9-]+$"
+    },
+    "tenant_id": {
+      "type": "string"
+    },
+    "from_type": {
+      "type": "string"
+    },
+    "from_id": {
+      "type": "string"
+    },
+    "to_type": {
+      "type": "string"
+    },
+    "to_id": {
+      "type": "string"
+    },
+    "relationship": {
+      "type": "string",
+      "enum": [
+        "extracted_from",
+        "mapped_from",
+        "transformed_from",
+        "derived_from",
+        "inferred_from",
+        "approved_from",
+        "supersedes"
+      ]
+    },
+    "source_path": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "target_path": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "mapping_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "transformation_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "created_at": {
+      "$ref": "#/$defs/timestamp"
+    },
+    "append_only": {
+      "const": true
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "restricted",
+        "regulated"
+      ]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "unknown"
+      ]
+    },
+    "freshness": {
+      "type": "string",
+      "enum": [
+        "current",
+        "aging",
+        "stale",
+        "unknown"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

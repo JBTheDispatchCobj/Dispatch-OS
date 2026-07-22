@@ -1,0 +1,286 @@
+{
+  "section": "FS-11000",
+  "name": "Runtime, Agents and Orchestration",
+  "version": "1.0.0",
+  "status": "PASS",
+  "generated_at": "2026-07-22T09:05:19.353679+00:00",
+  "integrity_defect": "RESOLVED",
+  "summary": {
+    "checks": 44,
+    "passed": 44,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "check": "agent_manifest_schema_validation",
+      "status": "PASS",
+      "details": "1 agent manifests validated."
+    },
+    {
+      "check": "tool_manifest_schema_validation",
+      "status": "PASS",
+      "details": "3 tool manifests validated."
+    },
+    {
+      "check": "workflow_definition_schema_validation",
+      "status": "PASS",
+      "details": "1 workflow definitions validated."
+    },
+    {
+      "check": "synthetic_fixture_schema_validation",
+      "status": "PASS",
+      "details": "Workflow, instance, and context validated."
+    },
+    {
+      "check": "workflow_ids_unique",
+      "status": "PASS",
+      "details": "No duplicates."
+    },
+    {
+      "check": "agent_ids_unique",
+      "status": "PASS",
+      "details": "No duplicates."
+    },
+    {
+      "check": "tool_ids_unique",
+      "status": "PASS",
+      "details": "No duplicates."
+    },
+    {
+      "check": "event_types_unique",
+      "status": "PASS",
+      "details": "No duplicates."
+    },
+    {
+      "check": "model_route_ids_unique",
+      "status": "PASS",
+      "details": "No duplicates."
+    },
+    {
+      "check": "agent_tool_reference_validation",
+      "status": "PASS",
+      "details": "All agent tool references resolve.",
+      "evidence": []
+    },
+    {
+      "check": "fs6000_permission_mapping",
+      "status": "PASS",
+      "details": "Every agent maps to FS-6000 permission semantics.",
+      "evidence": [
+        {
+          "agent_id": "AGENT-EVIDENCE-ASSEMBLER",
+          "fs6000_role": "Evidence Collector",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "check": "fs5100_workflow_approval_mapping",
+      "status": "PASS",
+      "details": "Workflow and approval references resolve.",
+      "evidence": [
+        {
+          "workflow_id": "WF-EXAM-RESPONSE",
+          "type": "approval",
+          "reference": "compliance_owner",
+          "status": "PASS"
+        },
+        {
+          "workflow_id": "WF-EXAM-RESPONSE",
+          "type": "workflow",
+          "reference": "WF-EXAM-RESPONSE",
+          "status": "PASS",
+          "resolved_in": "FS-6000_INSTITUTIONAL_KERNEL_V1_RELEASE_COMPLETE/workflow_router_decision_table.csv"
+        }
+      ]
+    },
+    {
+      "check": "context_input_mapping",
+      "status": "PASS",
+      "details": "Context inputs map to FS-6000, FS-8000, and FS-9000.",
+      "evidence": [
+        {
+          "section": "FS-6000",
+          "status": "PASS"
+        },
+        {
+          "section": "FS-8000",
+          "status": "PASS"
+        },
+        {
+          "section": "FS-9000",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "check": "fs12000_route_alignment",
+      "status": "PASS",
+      "details": "Restricted model routes align with FS-12000 data-classification and AI-governance controls.",
+      "evidence": [
+        {
+          "rule": "MR-001",
+          "status": "PASS"
+        },
+        {
+          "rule": "MR-002",
+          "status": "PASS"
+        },
+        {
+          "rule": "MR-003",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "check": "synthetic_trace_validation",
+      "status": "PASS",
+      "details": "7 events validated."
+    },
+    {
+      "check": "json_parse:SYNTHETIC_EXECUTION_TRACE.json",
+      "status": "PASS",
+      "details": "Valid JSON."
+    },
+    {
+      "check": "json_parse:MODEL_ROUTING_POLICY.json",
+      "status": "PASS",
+      "details": "Valid JSON."
+    },
+    {
+      "check": "csv_structure:RUNTIME_ERROR_MATRIX.csv",
+      "status": "PASS",
+      "details": "6 rows."
+    },
+    {
+      "check": "csv_structure:VALIDATION_REPORT.csv",
+      "status": "PASS",
+      "details": "23 rows."
+    },
+    {
+      "check": "csv_structure:RUNTIME_ACCEPTANCE_TESTS.csv",
+      "status": "PASS",
+      "details": "10 rows."
+    },
+    {
+      "check": "json_parse:AGENT_MANIFEST_REGISTRY.json",
+      "status": "PASS",
+      "details": "Valid JSON."
+    },
+    {
+      "check": "json_parse:WORKFLOW_DEFINITION_REGISTRY.json",
+      "status": "PASS",
+      "details": "Valid JSON."
+    },
+    {
+      "check": "json_parse:TOOL_MANIFEST_REGISTRY.json",
+      "status": "PASS",
+      "details": "Valid JSON."
+    },
+    {
+      "check": "csv_structure:RUNTIME_METRIC_CATALOG.csv",
+      "status": "PASS",
+      "details": "6 rows."
+    },
+    {
+      "check": "csv_structure:ESCALATION_MATRIX.csv",
+      "status": "PASS",
+      "details": "5 rows."
+    },
+    {
+      "check": "csv_structure:RUNTIME_THREAT_REGISTER.csv",
+      "status": "PASS",
+      "details": "6 rows."
+    },
+    {
+      "check": "json_parse:SECTION_RELEASE_MANIFEST.json",
+      "status": "PASS",
+      "details": "Valid JSON."
+    },
+    {
+      "check": "csv_structure:AGENT_PERMISSION_MATRIX.csv",
+      "status": "PASS",
+      "details": "3 rows."
+    },
+    {
+      "check": "json_parse:EVENT_CATALOG.json",
+      "status": "PASS",
+      "details": "Valid JSON."
+    },
+    {
+      "check": "json_parse:RUNTIME_SLO_CATALOG.json",
+      "status": "PASS",
+      "details": "Valid JSON."
+    },
+    {
+      "check": "json_parse:PACKAGE_INDEX.json",
+      "status": "PASS",
+      "details": "Valid JSON."
+    },
+    {
+      "check": "json_parse:RUNTIME_SYNTHETIC_FIXTURE.json",
+      "status": "PASS",
+      "details": "Valid JSON."
+    },
+    {
+      "check": "csv_structure:INTEGRITY_INDEX.csv",
+      "status": "PASS",
+      "details": "45 rows."
+    },
+    {
+      "check": "json_parse:RETRY_POLICY_REGISTRY.json",
+      "status": "PASS",
+      "details": "Valid JSON."
+    },
+    {
+      "check": "json_parse:schemas/escalation.schema.json",
+      "status": "PASS",
+      "details": "Valid JSON."
+    },
+    {
+      "check": "json_parse:schemas/model_route_decision.schema.json",
+      "status": "PASS",
+      "details": "Valid JSON."
+    },
+    {
+      "check": "json_parse:schemas/context_package.schema.json",
+      "status": "PASS",
+      "details": "Valid JSON."
+    },
+    {
+      "check": "json_parse:schemas/step_definition.schema.json",
+      "status": "PASS",
+      "details": "Valid JSON."
+    },
+    {
+      "check": "json_parse:schemas/workflow_instance.schema.json",
+      "status": "PASS",
+      "details": "Valid JSON."
+    },
+    {
+      "check": "json_parse:schemas/runtime_event.schema.json",
+      "status": "PASS",
+      "details": "Valid JSON."
+    },
+    {
+      "check": "json_parse:schemas/agent_manifest.schema.json",
+      "status": "PASS",
+      "details": "Valid JSON."
+    },
+    {
+      "check": "json_parse:schemas/workflow_definition.schema.json",
+      "status": "PASS",
+      "details": "Valid JSON."
+    },
+    {
+      "check": "json_parse:schemas/tool_manifest.schema.json",
+      "status": "PASS",
+      "details": "Valid JSON."
+    },
+    {
+      "check": "integrity_mismatch_resolution",
+      "status": "PASS",
+      "details": "INTEGRITY_INDEX.csv regenerated before PACKAGE_INDEX.json; final integrity size and checksum recorded in package index."
+    }
+  ]
+}

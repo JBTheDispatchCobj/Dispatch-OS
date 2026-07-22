@@ -1,0 +1,9 @@
+workflow,evidence_type,freshness,acceptable_source,required,owner
+fintech_pilot,SOC2/security report,current or accepted review period,authoritative vendor document,required,security
+fintech_pilot,data flow,current pilot design,approved architecture artifact,required,technology/security
+fintech_pilot,use case and success metrics,current,institution sponsor attestation,required,business owner
+exam_response,regulator request,current exam,official regulator source,required,compliance
+exam_response,policy/control evidence,effective period covering request,approved institutional evidence,required,control owner
+loan_participation,credit memo and financials,current underwriting period,originator-approved package,required,credit
+vendor_replacement,contract and renewal terms,current contract,executed contract,required,legal/business owner
+wealth_referral,consent/disclosure record,current interaction,institutional system record,required,compliance

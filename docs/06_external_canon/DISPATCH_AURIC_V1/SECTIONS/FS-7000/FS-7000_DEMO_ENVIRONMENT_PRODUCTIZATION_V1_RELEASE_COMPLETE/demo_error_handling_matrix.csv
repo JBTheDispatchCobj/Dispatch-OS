@@ -1,0 +1,9 @@
+error_code,condition,severity,required_behavior
+DEMO-ERR-001,fixture_missing,high,Block load; show missing fixture; preserve run state; allow admin correction
+DEMO-ERR-002,schema_validation_failed,high,Quarantine fixture; report exact path; no partial activation
+DEMO-ERR-003,agent_permission_conflict,critical,Block agent; log event; route to demo admin
+DEMO-ERR-004,approval_missing,high,Pause workflow; display approval queue
+DEMO-ERR-005,evidence_mismatch,high,Flag output as unsupported; prevent board/exam release
+DEMO-ERR-006,reset_failed,critical,Freeze run; block next audience demo; restore from clean snapshot
+DEMO-ERR-007,dashboard_source_stale,medium,Show stale badge; lower confidence; allow drill-through
+DEMO-ERR-008,private_data_detected,critical,Quarantine data; stop run; notify security owner

@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dispatch://schemas/demo-run/1.0.0",
+  "title": "DemoRun",
+  "type": "object",
+  "required": [
+    "run_id",
+    "scenario_id",
+    "environment",
+    "state",
+    "started_at",
+    "presenter_id"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "pattern": "^DEMO-RUN-[0-9A-Z-]+$"
+    },
+    "scenario_id": {
+      "type": "string"
+    },
+    "environment": {
+      "type": "string",
+      "enum": [
+        "public_demo",
+        "synthetic_demo",
+        "institution_sandbox",
+        "controlled_pilot"
+      ]
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "not_loaded",
+        "loading",
+        "ready",
+        "active",
+        "paused",
+        "completed",
+        "failed",
+        "reset"
+      ]
+    },
+    "presenter_id": {
+      "type": "string"
+    },
+    "audience": {
+      "type": "string"
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completed_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "loaded_fixture_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "workflow_instance_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "approval_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "output_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "error_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

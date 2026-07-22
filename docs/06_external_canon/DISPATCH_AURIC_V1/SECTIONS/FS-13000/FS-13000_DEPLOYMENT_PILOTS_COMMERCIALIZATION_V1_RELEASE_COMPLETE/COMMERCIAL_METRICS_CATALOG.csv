@@ -1,0 +1,7 @@
+metric_id,name,definition,formula,cadence,owner
+M-001,gross_retention,retained recurring revenue excluding expansion,renewed_base / eligible_base,monthly,finance
+M-002,net_retention,retained recurring revenue including expansion,renewed_plus_expansion / eligible_base,monthly,finance
+M-003,pilot_conversion,pilots converted to paid scale,converted_pilots / completed_pilots,quarterly,commercial
+M-004,time_to_launch,days from approved scope to controlled launch,launch_date - scope_approval_date,monthly,delivery
+M-005,contribution_margin,"revenue less variable delivery, model, data and support cost",(revenue-variable_cost)/revenue,monthly,finance
+M-006,capacity_coverage,available implementation capacity against committed demand,available_hours / committed_hours,weekly,delivery

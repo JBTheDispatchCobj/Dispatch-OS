@@ -1,0 +1,105 @@
+{
+  "registry_version": "1.0.0",
+  "workflows": [
+    {
+      "workflow_id": "WF-EXAM-RESPONSE",
+      "version": "1.0.0",
+      "name": "Exam Response and Evidence Binder",
+      "status": "active",
+      "trigger_types": [
+        "user_request",
+        "regulatory_request_received"
+      ],
+      "steps": [
+        {
+          "step_id": "intake",
+          "type": "intake",
+          "entry_conditions": [],
+          "exit_conditions": [],
+          "next_steps": [
+            "classify_requests"
+          ]
+        },
+        {
+          "step_id": "classify_requests",
+          "type": "validate",
+          "entry_conditions": [],
+          "exit_conditions": [],
+          "next_steps": [
+            "retrieve_evidence"
+          ]
+        },
+        {
+          "step_id": "retrieve_evidence",
+          "type": "retrieve",
+          "entry_conditions": [],
+          "exit_conditions": [],
+          "next_steps": [
+            "validate_gaps"
+          ]
+        },
+        {
+          "step_id": "validate_gaps",
+          "type": "validate",
+          "entry_conditions": [],
+          "exit_conditions": [],
+          "next_steps": [
+            "draft_response"
+          ]
+        },
+        {
+          "step_id": "draft_response",
+          "type": "draft",
+          "entry_conditions": [],
+          "exit_conditions": [],
+          "next_steps": [
+            "human_review"
+          ]
+        },
+        {
+          "step_id": "human_review",
+          "type": "review",
+          "entry_conditions": [],
+          "exit_conditions": [],
+          "next_steps": [
+            "approve"
+          ]
+        },
+        {
+          "step_id": "approve",
+          "type": "approve",
+          "entry_conditions": [],
+          "exit_conditions": [],
+          "next_steps": [
+            "lock_binder"
+          ]
+        },
+        {
+          "step_id": "lock_binder",
+          "type": "intake",
+          "entry_conditions": [],
+          "exit_conditions": [],
+          "next_steps": [
+            "close"
+          ]
+        },
+        {
+          "step_id": "close",
+          "type": "close",
+          "entry_conditions": [],
+          "exit_conditions": [],
+          "next_steps": []
+        }
+      ],
+      "completion_policy": {
+        "required_approvals": [
+          "compliance_owner"
+        ],
+        "required_outputs": [
+          "approved_response",
+          "locked_evidence_binder"
+        ]
+      }
+    }
+  ]
+}

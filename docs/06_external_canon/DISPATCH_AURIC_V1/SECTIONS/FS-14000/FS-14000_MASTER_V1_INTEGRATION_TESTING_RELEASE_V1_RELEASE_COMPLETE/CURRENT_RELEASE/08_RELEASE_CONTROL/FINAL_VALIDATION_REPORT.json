@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-07-22T09:29:47.375644+00:00",
+  "documentation_validation": {
+    "status": "PASS_WITH_OPEN_ITEM",
+    "completed": true
+  },
+  "software_tests_executed": false,
+  "live_integrations_tested": false,
+  "penetration_testing_performed": false,
+  "production_migration_performed": false,
+  "critical_conflicts_open": 0,
+  "high_conflicts_open": 0,
+  "unresolved_high_references": 1,
+  "notes": [
+    "FS-7000 approved ZIP unavailable; checksum unresolved.",
+    "CURRENT_RELEASE and HISTORICAL_BASELINE separated.",
+    "FS-5100 canonical; FS-5000 alias."
+  ],
+  "baseline_source_control": {
+    "status": "PASS",
+    "path": "00_BASELINE_SOURCE/",
+    "control_file_exists": true,
+    "manifest_metadata_present": true,
+    "artifact_index_metadata_applied_to_all_baseline_files": true,
+    "readme_canonical_statement_present": true,
+    "implementation_use_allowed": false
+  },
+  "baseline_canonicality_issue_resolved": true
+}

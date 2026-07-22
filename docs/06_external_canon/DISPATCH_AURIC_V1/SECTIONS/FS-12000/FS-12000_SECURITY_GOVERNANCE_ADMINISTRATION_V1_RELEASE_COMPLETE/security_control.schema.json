@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.dispatch.local/fs12000/security_control.schema.json",
+  "title": "SecurityControl",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "tenant_id",
+    "control_id",
+    "name",
+    "domain",
+    "type",
+    "status",
+    "owner_id",
+    "evidence_requirements",
+    "test_procedure",
+    "classification",
+    "version"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tenant_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "classification": {
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "restricted"
+      ]
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "approval_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "control_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "domain": {
+      "type": "string"
+    },
+    "type": {
+      "enum": [
+        "preventive",
+        "detective",
+        "corrective",
+        "governance"
+      ]
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "active",
+        "under_review",
+        "approved",
+        "suspended",
+        "retired"
+      ]
+    },
+    "owner_id": {
+      "type": "string"
+    },
+    "evidence_requirements": {
+      "type": "array"
+    },
+    "test_procedure": {
+      "type": "string"
+    }
+  }
+}

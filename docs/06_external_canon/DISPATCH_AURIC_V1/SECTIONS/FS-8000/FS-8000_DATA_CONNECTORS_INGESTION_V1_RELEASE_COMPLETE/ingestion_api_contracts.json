@@ -1,0 +1,75 @@
+{
+  "version": "1.0.0",
+  "base_path": "/v1",
+  "authentication": "service identity or tenant-scoped OAuth2",
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/sources",
+      "operation_id": "registerSource",
+      "request_schema": "source.schema.json",
+      "responses": {
+        "201": "source.schema.json",
+        "400": "validation_error",
+        "403": "permission_denied"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/tenant-connectors",
+      "operation_id": "configureTenantConnector",
+      "request_schema": "tenant_connector.schema.json",
+      "responses": {
+        "201": "tenant_connector.schema.json",
+        "409": "scope_or_state_conflict"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/ingestion-jobs",
+      "operation_id": "createIngestionJob",
+      "request_schema": "ingestion_job.schema.json",
+      "headers": [
+        "Idempotency-Key"
+      ],
+      "responses": {
+        "202": "ingestion_job.schema.json",
+        "409": "idempotency_conflict"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/ingestion-jobs/{id}",
+      "operation_id": "getIngestionJob",
+      "responses": {
+        "200": "ingestion_job.schema.json",
+        "404": "not_found"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/ingestion-jobs/{id}/replay",
+      "operation_id": "replayIngestionJob",
+      "approval": "data_operator",
+      "responses": {
+        "202": "ingestion_job.schema.json",
+        "409": "not_replayable"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/exceptions/{id}/resolve",
+      "operation_id": "resolveException",
+      "approval": "assigned human owner",
+      "responses": {
+        "200": "ingestion_exception.schema.json"
+      }
+    }
+  ],
+  "global_rules": {
+    "tenant_isolation": "required",
+    "audit": "all writes",
+    "rate_limit": "tenant and connector specific",
+    "versioning": "path major version plus schema semantic version"
+  }
+}

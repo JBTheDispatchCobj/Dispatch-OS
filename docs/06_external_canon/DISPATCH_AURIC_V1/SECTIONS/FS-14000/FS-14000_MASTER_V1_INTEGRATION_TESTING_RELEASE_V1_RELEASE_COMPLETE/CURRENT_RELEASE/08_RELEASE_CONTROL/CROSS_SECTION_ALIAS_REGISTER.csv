@@ -1,0 +1,2 @@
+alias_id,canonical_id,alias,scope,status,rationale
+ALIAS-001,FS-5100,FS-5000,section,intentional,FS-5100 is canonical; FS-5000 retained as historical alias

@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.dispatch.local/fs12000/vendor_risk_assessment.schema.json",
+  "title": "VendorRiskAssessment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "tenant_id",
+    "vendor_id",
+    "inherent_risk",
+    "data_access",
+    "criticality",
+    "due_diligence",
+    "residual_risk",
+    "decision",
+    "approval_refs",
+    "status",
+    "version"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tenant_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "classification": {
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "restricted"
+      ]
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "approval_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "vendor_id": {
+      "type": "string"
+    },
+    "inherent_risk": {
+      "enum": [
+        "low",
+        "moderate",
+        "high",
+        "critical"
+      ]
+    },
+    "data_access": {
+      "type": "array"
+    },
+    "criticality": {
+      "type": "string"
+    },
+    "due_diligence": {
+      "type": "object"
+    },
+    "residual_risk": {
+      "type": "string"
+    },
+    "decision": {
+      "enum": [
+        "approve",
+        "approve_with_conditions",
+        "decline",
+        "suspend"
+      ]
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "active",
+        "under_review",
+        "approved",
+        "suspended",
+        "retired"
+      ]
+    }
+  }
+}

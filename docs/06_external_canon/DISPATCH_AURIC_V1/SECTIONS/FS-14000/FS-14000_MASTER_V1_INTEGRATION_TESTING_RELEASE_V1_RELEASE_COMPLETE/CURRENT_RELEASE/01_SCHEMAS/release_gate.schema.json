@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fs14000.release_gate.v1",
+  "type": "object",
+  "required": [
+    "gate_id",
+    "gate_type",
+    "decision",
+    "checks"
+  ],
+  "properties": {
+    "gate_id": {
+      "type": "string"
+    },
+    "gate_type": {
+      "type": "string"
+    },
+    "decision": {
+      "enum": [
+        "pending",
+        "pass",
+        "pass_with_conditions",
+        "fail"
+      ]
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "check_id",
+          "result"
+        ],
+        "properties": {
+          "check_id": {
+            "type": "string"
+          },
+          "result": {
+            "enum": [
+              "pending",
+              "pass",
+              "fail",
+              "not_applicable"
+            ]
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "owner": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "conditions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "condition": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string"
+          },
+          "due_date": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

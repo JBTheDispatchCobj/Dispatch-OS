@@ -1,0 +1,28 @@
+{
+  "report_id": "DISPATCH_AURIC_V1_DOCUMENTATION_VALIDATION_REPORT",
+  "generated_at_utc": "2026-07-22T09:39:33.130611+00:00",
+  "status": "PASS",
+  "scope": {
+    "section_release_packages": 11,
+    "supporting_document_control_packages": 1,
+    "artifacts_indexed": 636
+  },
+  "checks": {
+    "every_zip_opens": true,
+    "every_json_parses": true,
+    "every_csv_has_stable_headers": true,
+    "fs6000_metric_schema_reference_resolved": true,
+    "fs14000_baseline_status_control_present": true,
+    "fs14000_baseline_manifest_metadata_present": true,
+    "no_baseline_is_canonical": true,
+    "documentation_completion_distinguished_from_production_readiness": true
+  },
+  "known_issues": [],
+  "validation_boundary": {
+    "documentation_validation_completed": true,
+    "software_tests_executed": false,
+    "live_integrations_tested": false,
+    "penetration_testing_performed": false,
+    "production_migration_performed": false
+  }
+}

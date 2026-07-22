@@ -1,0 +1,445 @@
+{
+  "section_id": "FS-5100",
+  "manifest_class": "approval",
+  "count": 42,
+  "entries": [
+    {
+      "id": "APP.CREDIT_AUTHORITY",
+      "name": "credit_authority",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001",
+        "FS-4003",
+        "FS-4011",
+        "FS-4012",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "APP.CREDIT_AUTHORITY_OPERATIONS_OWNER",
+      "name": "credit_authority operations_owner",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001",
+        "FS-4003",
+        "FS-4011",
+        "FS-4012",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "APP.EXECUTIVE_OWNER",
+      "name": "executive_owner",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001",
+        "FS-4002",
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "APP.COMPLIANCE_OWNER_LEGAL_COUNSEL_IF_ESCALATED",
+      "name": "compliance_owner legal_counsel_if_escalated",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "APP.BUSINESS_OWNER_VENDOR_RISK_OWNER_SECURITY_OWNER",
+      "name": "business_owner vendor_risk_owner security_owner",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "APP.OPERATIONS_OWNER_COMPLIANCE_OWNER",
+      "name": "operations_owner compliance_owner",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "APP.EXECUTIVE_OWNER_COMPLIANCE_OWNER_LEGAL_COUNSEL_BOARD_OR_COMMITTEE_IF_MATERIAL",
+      "name": "executive_owner compliance_owner legal_counsel board_or_committee_if_material",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "APP.BUSINESS_OWNER_VENDOR_RISK_OWNER_SECURITY_OWNER_COMPLIANCE_OWNER_EXECUTIVE_OWNER",
+      "name": "business_owner vendor_risk_owner security_owner compliance_owner executive_owner",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "APP.REFERRAL_COMPLIANCE_OWNER_LICENSED_ADVISOR_OR_INSURANCE_OWNER_WHEN_NEEDED",
+      "name": "referral_compliance_owner licensed_advisor_or_insurance_owner_when_needed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "APP.COMPLIANCE_OWNER",
+      "name": "compliance_owner",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002",
+        "FS-4004",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "APP.CREDIT_AUTHORITY_LEGAL_COUNSEL_IF_MATERIAL",
+      "name": "credit_authority legal_counsel_if_material",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "APP.CREDIT_RISK_OWNER",
+      "name": "credit_risk_owner",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "APP.CREDIT_AUTHORITY_LEGAL_COUNSEL_EXECUTIVE_OWNER_IF_MATERIAL",
+      "name": "credit_authority legal_counsel executive_owner_if_material",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003",
+        "FS-4011",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "APP.TREASURY_OPERATIONS_OWNER_SECURITY_OWNER_IF_INTEGRATION",
+      "name": "treasury_operations_owner security_owner_if_integration",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003",
+        "FS-4011",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "APP.UNDERWRITER_CREDIT_AUTHORITY_IF_EXCEPTION",
+      "name": "underwriter credit_authority_if_exception",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "APP.UNDERWRITER_CLOSING_MANAGER",
+      "name": "underwriter closing_manager",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "APP.FUNDING_MANAGER_OPERATIONS_OWNER",
+      "name": "funding_manager operations_owner",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "APP.UNDERWRITER_COMPLIANCE_OWNER_IF_REGULATORY",
+      "name": "underwriter compliance_owner_if_regulatory",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "APP.QC_MANAGER_SECONDARY_MARKET_OWNER_IF_SALEABILITY_ISSUE",
+      "name": "QC_manager secondary_market_owner_if_saleability_issue",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "APP.INVESTMENT_AUTHORITY",
+      "name": "investment_authority",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "APP.BUSINESS_OWNER_COMPLIANCE_OWNER",
+      "name": "business_owner compliance_owner",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "APP.LICENSED_ADVISOR",
+      "name": "licensed_advisor",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "APP.LICENSED_ADVISOR_SUPERVISORY_PRINCIPAL_OR_COMPLIANCE_IF_REQUIRED",
+      "name": "licensed_advisor supervisory_principal_or_compliance_if_required",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "APP.LICENSED_ADVISOR_OR_TRADING_AUTHORITY_OPERATIONS_OWNER",
+      "name": "licensed_advisor_or_trading_authority operations_owner",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "APP.LICENSED_ADVISOR_OR_INVESTMENT_AUTHORITY_COMPLIANCE_OR_SUPERVISORY_OWNER",
+      "name": "licensed_advisor_or_investment_authority compliance_or_supervisory_owner",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "APP.BILLING_OPERATIONS_OWNER",
+      "name": "billing_operations_owner",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "APP.LICENSED_ADVISOR_LEGAL_OR_TAX_PROFESSIONAL_FOR_PROFESSIONAL_OPINION",
+      "name": "licensed_advisor legal_or_tax_professional_for_professional_opinion",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "APP.REFERRAL_COMPLIANCE_OWNER_LICENSED_ADVISOR",
+      "name": "referral_compliance_owner licensed_advisor",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "APP.LICENSED_INSURANCE_OWNER_COMPLIANCE_OWNER_IF_REQUIRED",
+      "name": "licensed_insurance_owner compliance_owner_if_required",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "APP.LICENSED_INSURANCE_OWNER_CARRIER_OR_AUTHORIZED_AGENCY",
+      "name": "licensed_insurance_owner carrier_or_authorized_agency",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "APP.LICENSED_INSURANCE_OWNER_SUPERVISORY_OR_COMPLIANCE_OWNER",
+      "name": "licensed_insurance_owner supervisory_or_compliance_owner",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "APP.AUTHORIZED_CLAIMS_OWNER_LEGAL_OR_COMPLIANCE_IF_DISPUTED",
+      "name": "authorized_claims_owner legal_or_compliance_if_disputed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "APP.FINANCE_OR_OPERATIONS_OWNER",
+      "name": "finance_or_operations_owner",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "APP.INSURANCE_COMPLIANCE_OWNER",
+      "name": "insurance_compliance_owner",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "APP.BUSINESS_OWNER_COMPLIANCE_OWNER_LICENSED_INSURANCE_OWNER",
+      "name": "business_owner compliance_owner licensed_insurance_owner",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "APP.CREDIT_AUTHORITY_LEGAL_COUNSEL_OPERATIONS_OWNER",
+      "name": "credit_authority legal_counsel operations_owner",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "APP.CREDIT_AUTHORITY_OR_DELEGATED_DRAW_AUTHORITY_OPERATIONS_OWNER",
+      "name": "credit_authority_or_delegated_draw_authority operations_owner",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "APP.PROJECT_OWNER_CREDIT_AUTHORITY_IF_MATERIAL",
+      "name": "project_owner credit_authority_if_material",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "APP.LEGAL_COUNSEL_CREDIT_AUTHORITY_IF_MATERIAL",
+      "name": "legal_counsel credit_authority_if_material",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "APP.CREDIT_AUTHORITY_EXECUTIVE_OWNER_IF_MATERIAL",
+      "name": "credit_authority executive_owner_if_material",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "APP.CREDIT_AUTHORITY_LEGAL_COUNSEL",
+      "name": "credit_authority legal_counsel",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "APP.BUSINESS_OWNER_SECURITY_OWNER_PRIVACY_OR_COMPLIANCE_OWNER",
+      "name": "business_owner security_owner privacy_or_compliance_owner",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    }
+  ]
+}

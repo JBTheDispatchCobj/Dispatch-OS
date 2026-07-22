@@ -1,0 +1,4 @@
+agent_id,action,object_scope,data_class,tool_operation,approval_required,decision
+AGENT-EVIDENCE-ASSEMBLER,retrieve,tenant_authorized,confidential,TOOL-DOCUMENT-RETRIEVAL.search,false,allow
+AGENT-EVIDENCE-ASSEMBLER,approve,any,any,none,n/a,deny
+AGENT-EVIDENCE-ASSEMBLER,communicate_with_regulator,any,any,TOOL-EMAIL-SEND.send,true,deny

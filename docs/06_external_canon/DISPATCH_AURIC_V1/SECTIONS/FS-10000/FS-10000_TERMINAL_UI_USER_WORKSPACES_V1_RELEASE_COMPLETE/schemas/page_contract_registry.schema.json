@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "page_contract_registry.schema.json",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "pages"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "pages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "page_contract_id",
+          "route_id",
+          "regions",
+          "loaders"
+        ]
+      }
+    }
+  }
+}

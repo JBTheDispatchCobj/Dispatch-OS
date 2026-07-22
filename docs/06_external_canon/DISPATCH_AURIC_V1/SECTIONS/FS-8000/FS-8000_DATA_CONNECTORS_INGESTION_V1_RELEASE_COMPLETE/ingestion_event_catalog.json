@@ -1,0 +1,95 @@
+{
+  "version": "1.0.0",
+  "envelope": {
+    "event_id": "EVT-*",
+    "event_type": "string",
+    "occurred_at": "date-time",
+    "tenant_id": "string",
+    "source_id": "string|null",
+    "object_id": "string|null",
+    "correlation_id": "string",
+    "schema_version": "string",
+    "classification": "enum",
+    "payload": "object"
+  },
+  "events": [
+    {
+      "event_type": "source.registered",
+      "producer": "source service",
+      "consumers": [
+        "audit",
+        "terminal"
+      ]
+    },
+    {
+      "event_type": "connector.activated",
+      "producer": "connector service",
+      "consumers": [
+        "scheduler",
+        "audit",
+        "terminal"
+      ]
+    },
+    {
+      "event_type": "source.snapshot.created",
+      "producer": "capture service",
+      "consumers": [
+        "parser",
+        "lineage",
+        "audit"
+      ]
+    },
+    {
+      "event_type": "ingestion.job.completed",
+      "producer": "ingestion service",
+      "consumers": [
+        "terminal",
+        "metrics",
+        "runtime"
+      ]
+    },
+    {
+      "event_type": "canonical.candidate.accepted",
+      "producer": "quality gate",
+      "consumers": [
+        "FS-6000",
+        "FS-9000",
+        "lineage"
+      ]
+    },
+    {
+      "event_type": "ingestion.exception.created",
+      "producer": "any ingestion service",
+      "consumers": [
+        "terminal",
+        "operations",
+        "security_when_applicable"
+      ]
+    },
+    {
+      "event_type": "data.freshness.changed",
+      "producer": "freshness service",
+      "consumers": [
+        "FS-6000",
+        "FS-9000",
+        "FS-10000",
+        "FS-11000"
+      ]
+    },
+    {
+      "event_type": "retention.disposition.completed",
+      "producer": "retention service",
+      "consumers": [
+        "audit",
+        "security",
+        "terminal"
+      ]
+    }
+  ],
+  "delivery": {
+    "semantics": "at_least_once",
+    "idempotency": "event_id",
+    "ordering": "declared partition only",
+    "dead_letter": "required"
+  }
+}

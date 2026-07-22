@@ -1,0 +1,122 @@
+{
+  "release_id": "FS14000-V1-FINAL",
+  "version": "1.0.0",
+  "canonical_section": "FS-14000",
+  "package_filename": "FS-14000_MASTER_V1_INTEGRATION_TESTING_RELEASE_V1_RELEASE_COMPLETE.zip",
+  "layout": {
+    "current_release": "CURRENT_RELEASE/",
+    "baseline_source": "00_BASELINE_SOURCE/"
+  },
+  "authority": {
+    "CURRENT_RELEASE": "canonical",
+    "00_BASELINE_SOURCE": "historical_superseded_noncanonical"
+  },
+  "section_packages": [
+    {
+      "section_id": "FS-4000",
+      "filename": "FS-4000_DOMAIN_OPERATING_FRAMEWORKS_V1_RELEASE_COMPLETE.zip",
+      "file_size": 435836,
+      "sha256": "cb2dbda6b39b0ce4a9108ba653d480d54e736c99bb2436115b11d7be80c5c30a",
+      "status": "approved_present"
+    },
+    {
+      "section_id": "FS-5100",
+      "filename": "FS-5100_MASTER_REGISTRIES_CARTRIDGE_MANIFESTS_V1_RELEASE_COMPLETE.zip",
+      "file_size": 160368,
+      "sha256": "4fc5e654dc17a7a44f430d483abfaeb7881e473d88d6145ca000583b31cb0eac",
+      "status": "approved_present"
+    },
+    {
+      "section_id": "FS-6000",
+      "filename": "FS-6000_INSTITUTIONAL_KERNEL_V1_RELEASE_COMPLETE(1).zip",
+      "file_size": 46582,
+      "sha256": "66c9cfb0c7edbed9ce678fdc8a4b38727f9a87d2a2e069add55a848346b386f6",
+      "status": "approved_present"
+    },
+    {
+      "section_id": "FS-7000",
+      "filename": "NOT_AVAILABLE",
+      "file_size": "",
+      "sha256": "",
+      "status": "unresolved_missing_package"
+    },
+    {
+      "section_id": "FS-8000",
+      "filename": "FS-8000_DATA_CONNECTORS_INGESTION_V1_RELEASE_COMPLETE.zip",
+      "file_size": 60390,
+      "sha256": "1d5f816f52fdeefdafaaf52a778d364da86631e2da4abc84744f39c265517119",
+      "status": "approved_present"
+    },
+    {
+      "section_id": "FS-9000",
+      "filename": "FS-9000_KNOWLEDGE_GRAPH_INSTITUTION_POPULATION_V1_RELEASE_COMPLETE.zip",
+      "file_size": 63077,
+      "sha256": "ab1a928b9fe63c0cd0d801edcf5a49e00342bf7122e0d3ce5deb032acb73e2db",
+      "status": "approved_present"
+    },
+    {
+      "section_id": "FS-10000",
+      "filename": "FS-10000_TERMINAL_UI_USER_WORKSPACES_V1_RELEASE_COMPLETE.zip",
+      "file_size": 71268,
+      "sha256": "fab8e7ad97f30b5e619647611ce1578b3faa4a32518d50d47224c7969d969845",
+      "status": "approved_present"
+    },
+    {
+      "section_id": "FS-11000",
+      "filename": "FS-11000_RUNTIME_AGENTS_ORCHESTRATION_V1_RELEASE_COMPLETE.zip",
+      "file_size": 99170,
+      "sha256": "c871361f297e84f362bc1ab1ad245417fed91bf5e22393cb8e80d6cbab4d5266",
+      "status": "approved_present"
+    },
+    {
+      "section_id": "FS-12000",
+      "filename": "FS-12000_SECURITY_GOVERNANCE_ADMINISTRATION_V1_RELEASE_COMPLETE.zip",
+      "file_size": 84101,
+      "sha256": "5bf21f2e37729732db352efc849a4e7235cab74b2b0e02270cfa22d3629da179",
+      "status": "approved_present"
+    },
+    {
+      "section_id": "FS-13000",
+      "filename": "FS-13000_DEPLOYMENT_PILOTS_COMMERCIALIZATION_V1_RELEASE_COMPLETE.zip",
+      "file_size": 122133,
+      "sha256": "66fded014d0ec2270e245bcc35fa21bb455d9c490ca95dea3dd4594a06881cae",
+      "status": "approved_present"
+    },
+    {
+      "section_id": "FS-14000",
+      "filename": "FS-14000_MASTER_V1_INTEGRATION_TESTING_RELEASE_V1_RELEASE_COMPLETE.zip",
+      "file_size": "",
+      "sha256": "",
+      "status": "self_checksum_available_after_package_creation"
+    }
+  ],
+  "validation_scope": {
+    "generated_at": "2026-07-22T09:18:15.545344+00:00",
+    "documentation_validation": {
+      "status": "PASS_WITH_OPEN_ITEM",
+      "completed": true
+    },
+    "software_tests_executed": false,
+    "live_integrations_tested": false,
+    "penetration_testing_performed": false,
+    "production_migration_performed": false,
+    "critical_conflicts_open": 0,
+    "high_conflicts_open": 0,
+    "unresolved_high_references": 1,
+    "notes": [
+      "FS-7000 approved ZIP unavailable; checksum unresolved.",
+      "FS-5100 canonical; FS-5000 alias.",
+      "Only CURRENT_RELEASE is canonical; 00_BASELINE_SOURCE is historical, superseded, noncanonical, and prohibited for implementation use."
+    ]
+  },
+  "baseline_source": {
+    "path": "00_BASELINE_SOURCE/",
+    "status": "historical_superseded_noncanonical",
+    "included_for": [
+      "provenance",
+      "audit history",
+      "before-and-after comparison"
+    ],
+    "implementation_use_allowed": false
+  }
+}

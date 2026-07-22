@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.dispatch.local/fs12000/tenant_boundary.schema.json",
+  "title": "TenantBoundary",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "tenant_id",
+    "boundary_type",
+    "enforcement_points",
+    "test_cases",
+    "status",
+    "owner_id",
+    "version"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tenant_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "classification": {
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "restricted"
+      ]
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "approval_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "boundary_type": {
+      "enum": [
+        "data",
+        "compute",
+        "network",
+        "identity",
+        "logging",
+        "backup",
+        "model_context"
+      ]
+    },
+    "enforcement_points": {
+      "type": "array"
+    },
+    "test_cases": {
+      "type": "array"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "active",
+        "under_review",
+        "approved",
+        "suspended",
+        "retired"
+      ]
+    }
+  }
+}

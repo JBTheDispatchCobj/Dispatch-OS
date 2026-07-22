@@ -1,0 +1,262 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dispatch://schemas/institution/1.0.0",
+  "title": "Institution",
+  "type": "object",
+  "required": [
+    "institution_id",
+    "legal_name",
+    "display_name",
+    "institution_type",
+    "operating_status",
+    "profile_status"
+  ],
+  "properties": {
+    "institution_id": {
+      "type": "string",
+      "pattern": "^(ORG|CU|BANK|CUSO|FINTECH|VENDOR)-[0-9A-Z-]+$"
+    },
+    "legal_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "display_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "institution_type": {
+      "type": "string",
+      "enum": [
+        "credit_union",
+        "corporate_credit_union",
+        "bank",
+        "bank_holding_company",
+        "CUSO",
+        "fintech",
+        "vendor",
+        "RIA",
+        "broker_dealer",
+        "insurance_agency",
+        "carrier",
+        "mortgage_lender",
+        "servicer",
+        "private_fund",
+        "venture_fund",
+        "private_credit_manager",
+        "private_equity_firm",
+        "capital_markets_intermediary",
+        "regulator",
+        "trade_association",
+        "government_agency",
+        "operating_company"
+      ]
+    },
+    "operating_status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive",
+        "merged",
+        "liquidated",
+        "prospect",
+        "archived"
+      ]
+    },
+    "profile_status": {
+      "type": "string",
+      "enum": [
+        "discovered",
+        "seeded",
+        "identity_verified",
+        "enriched",
+        "reviewed",
+        "active",
+        "stale",
+        "under_remediation",
+        "merged",
+        "archived"
+      ]
+    },
+    "official_identifiers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "identifier_type",
+          "value"
+        ],
+        "properties": {
+          "identifier_type": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "jurisdiction": {
+            "type": "string"
+          },
+          "effective_from": {
+            "type": "string",
+            "format": "date"
+          },
+          "effective_to": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date"
+          }
+        }
+      }
+    },
+    "headquarters": {
+      "type": "object",
+      "properties": {
+        "address1": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "postal_code": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        }
+      }
+    },
+    "website": {
+      "type": "string",
+      "format": "uri"
+    },
+    "financial_metrics": {
+      "type": "array",
+      "items": {
+        "$ref": "dispatch://schemas/metric/1.0.0"
+      }
+    },
+    "executive_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "board_member_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "product_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "vendor_relationship_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "system_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "strategic_priority_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "risk_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "readiness_score_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "opportunity_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "source_type": {
+          "type": "string",
+          "enum": [
+            "public",
+            "uploaded",
+            "connector",
+            "attested",
+            "inferred",
+            "system_generated",
+            "agent_generated",
+            "synthetic"
+          ]
+        },
+        "source_reference": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown"
+          ]
+        },
+        "freshness": {
+          "type": "string",
+          "enum": [
+            "current",
+            "aging",
+            "stale",
+            "expired",
+            "historical",
+            "unknown"
+          ]
+        },
+        "visibility": {
+          "type": "string",
+          "enum": [
+            "public",
+            "tenant_internal",
+            "confidential",
+            "restricted",
+            "privileged",
+            "board_only",
+            "audit_only",
+            "synthetic"
+          ]
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "owner_id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

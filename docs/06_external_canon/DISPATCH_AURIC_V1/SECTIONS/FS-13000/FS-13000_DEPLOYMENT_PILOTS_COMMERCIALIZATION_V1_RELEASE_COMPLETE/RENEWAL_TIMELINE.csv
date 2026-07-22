@@ -1,0 +1,7 @@
+days_before_renewal,activity,owner,required_output
+180,open renewal record and health review,success owner,risk and value baseline
+150,"usage, support and incident reconciliation",success + support,evidence-backed value report
+120,expansion design and capacity review,account + delivery,recommended scope
+90,"pricing, security and procurement refresh",commercial + security,approved proposal
+60,executive review and negotiation,executive sponsor,decision path
+30,signature or contingency plan,commercial owner,executed renewal or exit plan

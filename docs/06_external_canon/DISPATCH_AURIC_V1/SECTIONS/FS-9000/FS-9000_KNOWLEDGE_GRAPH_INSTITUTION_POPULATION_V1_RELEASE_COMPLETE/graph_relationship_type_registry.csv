@@ -1,0 +1,29 @@
+relationship_type,directional,allowed_source_states,requires_evidence,supports_inference,default_ttl_days,human_review_threshold,description
+OWNS,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Owns
+OPERATES,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Operates
+SERVES,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Serves
+REGULATED_BY,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Regulated By
+REPORTS_TO,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Reports To
+APPROVES,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Approves
+USES,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Uses
+VENDS_TO,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Vends To
+INTEGRATES_WITH,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Integrates With
+OFFERS,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Offers
+GOVERNS,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Governs
+SATISFIES,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Satisfies
+EVIDENCED_BY,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Evidenced By
+TRIGGERS,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Triggers
+PRODUCES,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Produces
+REQUIRES,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Requires
+BLOCKED_BY,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Blocked By
+SPONSORED_BY,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Sponsored By
+INVESTS_IN,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Invests In
+LENDS_TO,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Lends To
+PARTICIPATES_IN,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Participates In
+REFERRED_TO,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Referred To
+LOCATED_IN,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Located In
+SIMILAR_TO,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Similar To
+MATCHED_TO,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Matched To
+REPLACES,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Replaces
+COMPETES_WITH,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Competes With
+PARTNERS_WITH,true,public|private|attested|inferred|synthetic|derived,true,true,365,0.75,Partners With

@@ -1,0 +1,323 @@
+{
+  "generated_at": "2026-07-22T00:00:00Z",
+  "algorithm": "sha256",
+  "self_excluded": true,
+  "file_count": 45,
+  "files": [
+    {
+      "filename": "8001_DATA_INGESTION_ARCHITECTURE_V1_RELEASE.md",
+      "size_bytes": 6504,
+      "sha256": "5c19356d1079a55d543fd0c7b2a6f84a5463bb8e6b257b787c68b936360fa344",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "8002_CONNECTOR_REGISTRY_LIFECYCLE_V1_RELEASE.md",
+      "size_bytes": 4489,
+      "sha256": "44e64c4e26326addcffdb9aea6f2c8b61ec7711eb1327dc10be78bb52b5b706e",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "8003_PUBLIC_DATA_SOURCE_CATALOG_V1_RELEASE.md",
+      "size_bytes": 4353,
+      "sha256": "171b6262a9d3a1dcbc100b9492421000d021dd9d4e66c3c0ca22331134704e9a",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "8004_FILE_UPLOAD_DOCUMENT_INGESTION_V1_RELEASE.md",
+      "size_bytes": 3629,
+      "sha256": "52d42bb7b8097b1abd52255157582b166cf8c4e8e32d91a615cc42d56b3b0bfa",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "8005_EMAIL_CALENDAR_COMMUNICATION_INGESTION_V1_RELEASE.md",
+      "size_bytes": 3529,
+      "sha256": "f5a567ab310813e8e5f009e24d6264fc0e4be7c7fe07cae275766f2734693dda",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "8006_API_WEBHOOK_EVENT_INGESTION_V1_RELEASE.md",
+      "size_bytes": 2949,
+      "sha256": "938ca5361b0b8f2b7c00cbfeabde2fe525bb698f8fdda2d8d780f7f7c98ef573",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "8007_BATCH_SFTP_SCHEDULED_EXPORTS_V1_RELEASE.md",
+      "size_bytes": 2664,
+      "sha256": "98d3ef96cd049e913cb9039dfa36b7ac0d1e6325dd28c4edd2cb102bd80ab50a",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "8008_SCHEMA_MAPPING_TRANSFORMATION_ENGINE_V1_RELEASE.md",
+      "size_bytes": 2964,
+      "sha256": "7ce0b0cdf39f282603d8e924b530b72a0c3d09517753a31244067758971f5d20",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "8009_ENTITY_RESOLUTION_DEDUPLICATION_V1_RELEASE.md",
+      "size_bytes": 2830,
+      "sha256": "a8f9f7f7457a2d46ca34e5f4752605126d8b0026fc6d3268ec84c784aafc70bd",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "8010_DATA_QUALITY_VALIDATION_RECONCILIATION_V1_RELEASE.md",
+      "size_bytes": 2908,
+      "sha256": "c926797ac4ab51f6ddcbdd9b2647dc8aecf9847019a516fd23b82ce3640b3731",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "8011_DATA_LINEAGE_PROVENANCE_V1_RELEASE.md",
+      "size_bytes": 2523,
+      "sha256": "75058eec7177f89a32d4dce1bce3691c3e557ec9350b71f1a01a2990e930c778",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "8012_DATA_FRESHNESS_INCREMENTAL_SYNC_V1_RELEASE.md",
+      "size_bytes": 2586,
+      "sha256": "f0b036ab83a120a647af557fc0f4ea64d5d3e57176a74dc42d365ca849e1174b",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "8013_PRIVACY_CLASSIFICATION_RETENTION_V1_RELEASE.md",
+      "size_bytes": 2725,
+      "sha256": "c969f310f467a1ccb55ba316bd3514abea20c20bc10c58045b79e7a00c4fc3f2",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "8014_INGESTION_OBSERVABILITY_OPERATIONS_V1_RELEASE.md",
+      "size_bytes": 2968,
+      "sha256": "aedb148f2434ae5c17278b2afff811b82a9087db29a5dbb1a4c4a47c32b11083",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "8015_MASTER_DATA_CONNECTOR_INTEGRATION_INDEX_V1_RELEASE.md",
+      "size_bytes": 4393,
+      "sha256": "794c6b24425cf473b43bcfb8f5d12ee58e1da030fb2fcfe151f0693d2c17e97a",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "FS8000_IMPLEMENTATION_OPERATIONS_RUNBOOK.md",
+      "size_bytes": 3254,
+      "sha256": "f3fafe31f32feed2b185ea4c679a12ea220b5084ce7fc63dcf7fa9273e4820f8",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "FS8000_SECURITY_THREAT_MODEL.md",
+      "size_bytes": 2102,
+      "sha256": "0bb6abd305a7561e40600978e494bdd25c94ef513a46a6db73da4d8247052627",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "README_FS_8000_V1_RELEASE_COMPLETE.md",
+      "size_bytes": 586,
+      "sha256": "33dd8fbf657b97a707cd2994f60648e418010a7e801e930f486cf20de6004637",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "SECTION_RELEASE_MANIFEST.json",
+      "size_bytes": 2736,
+      "sha256": "3e49d9f30eff0e7f327b4ad37b6362b4c22674ad2be44e09d21debfd994031fd",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "VALIDATION_REPORT.json",
+      "size_bytes": 4384,
+      "sha256": "db52b657e7cea863553410d633cae72e96b7467e9e5ba1d8fef1dc3a9fe187c7",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "classification.schema.json",
+      "size_bytes": 2015,
+      "sha256": "e0af68b79e1801cd994564c824383a6a7465e8d0c4aee79eed46c7dcc885ae34",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "connector_manifest.schema.json",
+      "size_bytes": 3517,
+      "sha256": "d57825ac42396d924feb05e8d78725682764d0f8526ffed55cb579353b85ad2f",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "connector_permission_matrix.csv",
+      "size_bytes": 525,
+      "sha256": "1d59461d9a69f53b0d30a82c2b65aa33a9c082a61eeb5ad473d31783c9091cb5",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "connector_registry.csv",
+      "size_bytes": 841,
+      "sha256": "06662baedb577079338c8e0c0380cd1498f8cb9ff18935deba78c3b5eb292d1a",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "data_quality_result.schema.json",
+      "size_bytes": 2143,
+      "sha256": "0dcf8ff382943ec97a80e42552f2d2fd42f7cab71959e9f95f99ec41901830b8",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "data_quality_rules.csv",
+      "size_bytes": 668,
+      "sha256": "3ad766d243992c2f42092d64b42373b905c0d8a96869df6356efe9a550ae5365",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "document.schema.json",
+      "size_bytes": 2430,
+      "sha256": "fa358f51e5ceba8026180c7e5188993973f79255cb802eb01176d2aac1cf0b50",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "entity_resolution_record.schema.json",
+      "size_bytes": 2233,
+      "sha256": "74e851566e8a48167999269c86e2735260137e8f1d753dcb5a2ae93d71feeb50",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "error_exception_matrix.csv",
+      "size_bytes": 847,
+      "sha256": "a20e8955dbe3b55c096cd12161f1b99c59b854779618cf6153fe32091c76944d",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "freshness_policy.schema.json",
+      "size_bytes": 1741,
+      "sha256": "29351e971f81f7ee5a5ca44b4f3a94225d1fc024ba478fbd89de66ae388c388e",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "fs8000_acceptance_tests.json",
+      "size_bytes": 3781,
+      "sha256": "c0c8e8efff4b93bfd9536a245e6dbc97a742a26723fbceec575dd27e85117d22",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "ingestion_api_contracts.json",
+      "size_bytes": 1974,
+      "sha256": "fa0dc64bd5ba3b623cf09fbe8e5359b4ebd1b8aed86a633b9c3dcece5da1fccd",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "ingestion_event_catalog.json",
+      "size_bytes": 2010,
+      "sha256": "87c39126231d2ba133f31ad759145f61f518eb733f52f08577e7c22a9684c914",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "ingestion_exception.schema.json",
+      "size_bytes": 2033,
+      "sha256": "0a36cb278c55fc4230efb7e98183e48f08160c045aa434a0050b3a365258cb2e",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "ingestion_job.schema.json",
+      "size_bytes": 3127,
+      "sha256": "195f7599baf28a73bf4910da368e4f22f16673c49ddff984a0dbee08999a48f7",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "lineage_edge.schema.json",
+      "size_bytes": 2075,
+      "sha256": "6521948e95502fe4322261d3f658f94204bf0d4f82714b8a65f0eef45374bcbf",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "mapping_profile.schema.json",
+      "size_bytes": 2864,
+      "sha256": "7fec01dd4902007cba2daa43b347c10eed5d2235223f25f5853d65b493e08b1a",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "public_source_catalog.csv",
+      "size_bytes": 627,
+      "sha256": "1ecfa752f02013833c35c623a2fffd7f89afb787948876f7eaa7d50118eed4a5",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "retention_rule.schema.json",
+      "size_bytes": 1949,
+      "sha256": "1d02bcf5292b3a5ffeed29521939b5b277709694384343a7bc05273fb254266a",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "retention_schedule.csv",
+      "size_bytes": 351,
+      "sha256": "d1f44c2fd8d760f18c2e6d6815c2e38a3fa7c28df143b82c5e0822972b4023c1",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "source.schema.json",
+      "size_bytes": 2535,
+      "sha256": "b2b5469db454ebe979a81d4de8014d8ca45b0990c3c8068937177214f05c8870",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "source_snapshot.schema.json",
+      "size_bytes": 2061,
+      "sha256": "d878eea30671fd3c88e1c0102d122b501a7db8f26e40ad227d290c2d9b4a918a",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "synthetic_ingestion_fixture.json",
+      "size_bytes": 4601,
+      "sha256": "8df96cbd137af70786bd3c6c3fa97a2bbab353883da543fc209eb2271328caae",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "tenant_connector.schema.json",
+      "size_bytes": 2229,
+      "sha256": "13fadbc5054ef764196458bb1e9e3514c8379438b36535eeb43d3ca8bd9add97",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    },
+    {
+      "filename": "transformation_registry.csv",
+      "size_bytes": 541,
+      "sha256": "517351c640b70ac9cee754393136bfb366b376217147bf20957ad7adda22c50c",
+      "section": "FS-8000",
+      "validation_status": "pass"
+    }
+  ]
+}

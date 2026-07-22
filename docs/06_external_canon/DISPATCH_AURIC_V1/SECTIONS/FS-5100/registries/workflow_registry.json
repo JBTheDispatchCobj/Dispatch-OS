@@ -1,0 +1,923 @@
+{
+  "section_id": "FS-5100",
+  "manifest_class": "workflow",
+  "count": 91,
+  "entries": [
+    {
+      "id": "WF.CUSTOMER_ONBOARDING",
+      "name": "Customer Onboarding",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "WF.DEPOSIT_ACCOUNT_OPENING",
+      "name": "Deposit Account Opening",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "WF.LOAN_ORIGINATION",
+      "name": "Loan Origination",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "WF.TREASURY_IMPLEMENTATION",
+      "name": "Treasury Implementation",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001",
+        "FS-4011",
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "WF.COMPLAINT_MANAGEMENT",
+      "name": "Complaint Management",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "WF.BOARD_REPORTING",
+      "name": "Board Reporting",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "WF.MEMBER_ONBOARDING",
+      "name": "Member Onboarding",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "WF.CUSO_REVIEW",
+      "name": "CUSO Review",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "WF.FINTECH_PILOT_READINESS",
+      "name": "Fintech Pilot Readiness",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "WF.MEMBER_OPPORTUNITY_DETECTION",
+      "name": "Member Opportunity Detection",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "WF.BOARD_GOVERNANCE_REVIEW",
+      "name": "Board Governance Review",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "WF.REGULATORY_READINESS",
+      "name": "Regulatory Readiness",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "WF.COMMERCIAL_CREDIT_UNDERWRITING",
+      "name": "Commercial Credit Underwriting",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "WF.ANNUAL_REVIEW",
+      "name": "Annual Review",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "WF.COVENANT_MONITORING",
+      "name": "Covenant Monitoring",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "WF.TREASURY_ASSESSMENT",
+      "name": "Treasury Assessment",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "WF.PORTFOLIO_WATCHLIST",
+      "name": "Portfolio Watchlist",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "WF.WORKOUT_REVIEW",
+      "name": "Workout Review",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "WF.MORTGAGE_APPLICATION_INTAKE",
+      "name": "Mortgage Application Intake",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "WF.DOCUMENT_COLLECTION",
+      "name": "Document Collection",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "WF.PROCESSING_AND_UNDERWRITING",
+      "name": "Processing and Underwriting",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "WF.DISCLOSURE_TIMING_REVIEW",
+      "name": "Disclosure Timing Review",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "WF.CLOSING_AND_FUNDING",
+      "name": "Closing and Funding",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "WF.POST_CLOSE_QC",
+      "name": "Post-Close QC",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "WF.DEAL_SOURCING",
+      "name": "Deal sourcing",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "WF.INITIAL_SCREENING",
+      "name": "Initial screening",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "WF.INVESTMENT_COMMITTEE_MEMO",
+      "name": "Investment committee memo",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "WF.DUE_DILIGENCE",
+      "name": "Due diligence",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "WF.PORTFOLIO_MONITORING",
+      "name": "Portfolio monitoring",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "WF.STRATEGIC_PILOT",
+      "name": "Strategic pilot",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "WF.FOLLOW_ON_DECISION",
+      "name": "Follow-on decision",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "WF.LP_REPORTING",
+      "name": "LP reporting",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "WF.OFFERING_CREATION",
+      "name": "Offering creation",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4008"
+      ]
+    },
+    {
+      "id": "WF.INVESTOR_MATCHING",
+      "name": "Investor matching",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4008"
+      ]
+    },
+    {
+      "id": "WF.LOAN_PARTICIPATION_PACKAGING",
+      "name": "Loan participation packaging",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4008"
+      ]
+    },
+    {
+      "id": "WF.BOOK_BUILDING",
+      "name": "Book building",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4008"
+      ]
+    },
+    {
+      "id": "WF.TRADE_EXECUTION_REVIEW",
+      "name": "Trade execution review",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4008"
+      ]
+    },
+    {
+      "id": "WF.SETTLEMENT",
+      "name": "Settlement",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4008"
+      ]
+    },
+    {
+      "id": "WF.VALUATION_REVIEW",
+      "name": "Valuation review",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4008"
+      ]
+    },
+    {
+      "id": "WF.POST_TRADE_REPORTING",
+      "name": "Post-trade reporting",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4008"
+      ]
+    },
+    {
+      "id": "WF.PROSPECT_TO_CLIENT",
+      "name": "Prospect to Client",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "WF.HOUSEHOLD_DISCOVERY",
+      "name": "Household Discovery",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "WF.FINANCIAL_PLANNING",
+      "name": "Financial Planning",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "WF.IPS_CREATION_AND_REVIEW",
+      "name": "IPS Creation and Review",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "WF.PORTFOLIO_CONSTRUCTION",
+      "name": "Portfolio Construction",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "WF.PORTFOLIO_REVIEW",
+      "name": "Portfolio Review",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "WF.ACCOUNT_OPENING",
+      "name": "Account Opening",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "WF.ADVISORY_BILLING",
+      "name": "Advisory Billing",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "WF.ESTATE_AND_TRUST_COORDINATION",
+      "name": "Estate and Trust Coordination",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "WF.ALTERNATIVE_INVESTMENT_REVIEW",
+      "name": "Alternative Investment Review",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "WF.CREDIT_UNION_BANK_WEALTH_REFERRAL",
+      "name": "Credit Union / Bank Wealth Referral",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "WF.CLIENT_REVIEW_MEETING",
+      "name": "Client Review Meeting",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "WF.RISK_DISCOVERY",
+      "name": "Risk Discovery",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "WF.QUOTE_TO_BIND",
+      "name": "Quote-to-Bind",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "WF.POLICY_ISSUANCE",
+      "name": "Policy Issuance",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "WF.RENEWAL_REVIEW",
+      "name": "Renewal Review",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "WF.ENDORSEMENT",
+      "name": "Endorsement",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "WF.CLAIM",
+      "name": "Claim",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "WF.COMMISSION_RECONCILIATION",
+      "name": "Commission Reconciliation",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "WF.PRODUCER_LICENSING",
+      "name": "Producer Licensing",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "WF.CREDIT_UNION_BANK_INSURANCE_REFERRAL",
+      "name": "Credit Union / Bank Insurance Referral",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "WF.CONTRACTOR_DEVELOPER_ONBOARDING",
+      "name": "Contractor / Developer Onboarding",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "WF.PROJECT_UNDERWRITING",
+      "name": "Project Underwriting",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "WF.CONSTRUCTION_LOAN_CLOSING",
+      "name": "Construction Loan Closing",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "WF.DRAW_ADMINISTRATION",
+      "name": "Draw Administration",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "WF.CHANGE_ORDER_REVIEW",
+      "name": "Change Order Review",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "WF.LIEN_TITLE_CONTROL",
+      "name": "Lien / Title Control",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "WF.INSURANCE_BOND_MONITORING",
+      "name": "Insurance / Bond Monitoring",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "WF.PROJECT_MONITORING",
+      "name": "Project Monitoring",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "WF.COMPLETION_CLOSEOUT",
+      "name": "Completion / Closeout",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "WF.TAKEOUT_CONVERSION",
+      "name": "Takeout / Conversion",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "WF.EQUIPMENT_FINANCE",
+      "name": "Equipment Finance",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011",
+        "FS-4012",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "WF.MANUFACTURER_ONBOARDING",
+      "name": "Manufacturer onboarding",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "WF.CREDIT_UNDERWRITING",
+      "name": "Credit underwriting",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "WF.BORROWING_BASE_ADMINISTRATION",
+      "name": "Borrowing base administration",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "WF.INVENTORY_MONITORING",
+      "name": "Inventory monitoring",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "WF.PRODUCTION_ANALYSIS",
+      "name": "Production analysis",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "WF.SUPPLIER_CONCENTRATION_REVIEW",
+      "name": "Supplier concentration review",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "WF.CUSTOMER_CONCENTRATION_REVIEW",
+      "name": "Customer concentration review",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "WF.WORKING_CAPITAL_MONITORING",
+      "name": "Working capital monitoring",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "WF.COVENANT_REVIEW",
+      "name": "Covenant review",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "WF.ANNUAL_RELATIONSHIP_REVIEW",
+      "name": "Annual relationship review",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "WF.PROVIDER_RELATIONSHIP_ONBOARDING",
+      "name": "Provider Relationship Onboarding",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "WF.HEALTHCARE_CREDIT_UNDERWRITING",
+      "name": "Healthcare Credit Underwriting",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "WF.PRACTICE_ACQUISITION",
+      "name": "Practice Acquisition",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "WF.PARTNER_BUY_IN",
+      "name": "Partner Buy-In",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "WF.REVENUE_CYCLE_MONITORING",
+      "name": "Revenue Cycle Monitoring",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "WF.LICENSE_INSURANCE_MONITORING",
+      "name": "License / Insurance Monitoring",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "WF.DISTRESSED_PRACTICE_REVIEW",
+      "name": "Distressed Practice Review",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "WF.EQUIPMENT_FINANCE",
+      "name": "Equipment finance",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "WF.TREASURY_IMPLEMENTATION",
+      "name": "Treasury implementation",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    }
+  ]
+}

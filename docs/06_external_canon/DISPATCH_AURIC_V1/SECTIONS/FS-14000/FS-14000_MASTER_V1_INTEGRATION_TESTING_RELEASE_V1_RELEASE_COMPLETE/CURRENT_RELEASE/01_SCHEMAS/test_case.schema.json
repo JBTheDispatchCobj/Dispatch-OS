@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fs14000.test_case.v1",
+  "type": "object",
+  "required": [
+    "test_id",
+    "suite",
+    "scenario",
+    "steps",
+    "expected",
+    "status"
+  ],
+  "properties": {
+    "test_id": {
+      "type": "string"
+    },
+    "suite": {
+      "type": "string"
+    },
+    "scenario": {
+      "type": "string"
+    },
+    "fixture": {
+      "type": "string"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "expected": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "enum": [
+        "not_run",
+        "passed",
+        "failed",
+        "blocked"
+      ]
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,389 @@
+{
+  "package": "FS-11000_RUNTIME_AGENTS_ORCHESTRATION_V1_RELEASE_COMPLETE",
+  "section": "FS-11000",
+  "version": "1.0.0",
+  "generated_at": "2026-07-22T09:05:19.356560+00:00",
+  "file_count": 48,
+  "indexing_policy": {
+    "PACKAGE_INDEX.json": "self-checksum excluded",
+    "INTEGRITY_INDEX.csv": "final size and checksum included"
+  },
+  "files": [
+    {
+      "path": "11001_RUNTIME_ARCHITECTURE_V1_RELEASE.md",
+      "size": 11937,
+      "sha256": "a9ffae1d4f7cc5f3ed690e1284c5a6b277e809ca871020f6f7edd095bf2a761b",
+      "artifact_type": "narrative_or_runbook",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "11002_WORKFLOW_ENGINE_STATE_MACHINE_V1_RELEASE.md",
+      "size": 11026,
+      "sha256": "2d4ee5788462f64ba3b6885aad59dc36348bcacffc6cebd8449b056a34f579d8",
+      "artifact_type": "narrative_or_runbook",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "11003_AGENT_HARNESS_LIFECYCLE_V1_RELEASE.md",
+      "size": 11199,
+      "sha256": "6c008e308971b78a366360a9b21388638fdcfe353a807315c4189e60bf84d6d8",
+      "artifact_type": "narrative_or_runbook",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "11004_CONTEXT_ASSEMBLY_MANAGEMENT_V1_RELEASE.md",
+      "size": 11176,
+      "sha256": "722b2ffabf9a42f024d99d1e9d068e886488989ca84dccfd044ce5b14de9d3f2",
+      "artifact_type": "narrative_or_runbook",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "11005_TOOL_GATEWAY_EXECUTION_V1_RELEASE.md",
+      "size": 11002,
+      "sha256": "aaf8242a1a7eedab655cd6a4a4166d0991c589554fae96aa70a009a5fc04ec98",
+      "artifact_type": "narrative_or_runbook",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "11006_EVENT_BUS_TRIGGER_SYSTEM_V1_RELEASE.md",
+      "size": 10746,
+      "sha256": "7b7279d3560a5c496f470996574e7cc3ab067b94de15cbfe69ef6c3d69f3fa55",
+      "artifact_type": "narrative_or_runbook",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "11007_SCHEDULER_TIMERS_LONG_RUNNING_WORK_V1_RELEASE.md",
+      "size": 10490,
+      "sha256": "57e748bb43585d1e4f590bbb6b7d09c5f1533d2158c387d83fe6f682feced36e",
+      "artifact_type": "narrative_or_runbook",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "11008_MULTI_AGENT_ORCHESTRATION_V1_RELEASE.md",
+      "size": 10777,
+      "sha256": "834022d2893b10967aa4ffcedbdacf577a7d905dc2ffc1aabfe24dd81fb9a21d",
+      "artifact_type": "narrative_or_runbook",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "11009_MODEL_ROUTING_PROVIDER_ABSTRACTION_V1_RELEASE.md",
+      "size": 10806,
+      "sha256": "285d07f122ee8f7b9d656327659c41aaaadc597811e384ed7aadd100c979deae",
+      "artifact_type": "narrative_or_runbook",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "11010_HUMAN_IN_THE_LOOP_ESCALATION_V1_RELEASE.md",
+      "size": 10527,
+      "sha256": "4dc30210592cc2c0f5607a530c999395933daaef18c22d9cb2efec30d610ad7e",
+      "artifact_type": "narrative_or_runbook",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "11011_RETRY_FAILURE_COMPENSATION_V1_RELEASE.md",
+      "size": 10595,
+      "sha256": "46eaa9f12cb13f04642199f102d9acabcc1651727dec16829baf6683bf519ab0",
+      "artifact_type": "narrative_or_runbook",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "11012_RUNTIME_OBSERVABILITY_COST_CONTROL_V1_RELEASE.md",
+      "size": 10736,
+      "sha256": "5e738abcc850300d487b05352a3ecdb54432a2663726b57b8bd991e8fb21f990",
+      "artifact_type": "narrative_or_runbook",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "11013_AGENT_EVALUATION_QUALITY_ASSURANCE_V1_RELEASE.md",
+      "size": 10782,
+      "sha256": "8a9e1917166f15dc49d7fdea89c6258861297baed3ff7530274bb56f9e73b2b9",
+      "artifact_type": "narrative_or_runbook",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "11014_RUNTIME_SECURITY_ISOLATION_V1_RELEASE.md",
+      "size": 10841,
+      "sha256": "41d81c3f127c8a455ab99fda97109aea966b9eacac955013ee081ade8f62634f",
+      "artifact_type": "narrative_or_runbook",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "11015_MASTER_RUNTIME_ORCHESTRATION_INDEX_V1_RELEASE.md",
+      "size": 11629,
+      "sha256": "b26cb7666fd227b9d74c5e127100b4c29759e3003de995de0572eaea9cccd0e9",
+      "artifact_type": "narrative_or_runbook",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "AGENT_MANIFEST_REGISTRY.json",
+      "size": 981,
+      "sha256": "4097b02f00d1fa0546e7bfed5ed5499140abccc1a369ee5a97c611f7619199ac",
+      "artifact_type": "machine_readable",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "AGENT_PERMISSION_MATRIX.csv",
+      "size": 340,
+      "sha256": "cd29e294ed89b144c4926ee5d031bf3b7b0c6becad5224e8890c3c6d83475bc3",
+      "artifact_type": "matrix_or_index",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "ESCALATION_MATRIX.csv",
+      "size": 374,
+      "sha256": "51dae949e212b67edc5e53622481e9467c48c4f22df3f2393945fd9a5ea5b81d",
+      "artifact_type": "matrix_or_index",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "EVENT_CATALOG.json",
+      "size": 3416,
+      "sha256": "3e6a5de93bf399793417eb4ffedff6895e709f7c7ff00fbd33d58e0a054936fc",
+      "artifact_type": "machine_readable",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "FS11000_SECURITY_THREAT_MODEL.md",
+      "size": 1404,
+      "sha256": "2f4d2bd0449df0c1bab4e290a8f65d0b97c53e8b493d5d80e6d87900a0aae552",
+      "artifact_type": "narrative_or_runbook",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "INTEGRITY_INDEX.csv",
+      "size": 5648,
+      "sha256": "9ec8eaf0c37e6390cd15854ea4b7da6b27dd57e040b29efdd0d35b65ecf393cf",
+      "artifact_type": "matrix_or_index",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "MODEL_ROUTING_POLICY.json",
+      "size": 754,
+      "sha256": "5c40119ece7ef6fe5448e218c36bd4d3395b3d64cafd181b0489be62eaa83298",
+      "artifact_type": "machine_readable",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "README_FS_11000_V1_RELEASE_COMPLETE.md",
+      "size": 654,
+      "sha256": "b2a71fe17664c7dd4f0f298c91990f4981c7ca33c67948566bcb249a2fe3b612",
+      "artifact_type": "narrative_or_runbook",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "RETRY_POLICY_REGISTRY.json",
+      "size": 532,
+      "sha256": "fc4e8b6c6d42ee9a7a3ee04a68d36d49416e27175f9ee41bd8b3bd973358061d",
+      "artifact_type": "machine_readable",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "RUNTIME_ACCEPTANCE_TESTS.csv",
+      "size": 1095,
+      "sha256": "60293f1fca3c83ae518e4a0312f21ffbc7906bddbbfbf4818f6845b99b202f0c",
+      "artifact_type": "matrix_or_index",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "RUNTIME_API_CONTRACTS.md",
+      "size": 1544,
+      "sha256": "7293a675a59595741a979efdf5852b5f3adb1ee9f8cd277b5576890343685e1a",
+      "artifact_type": "narrative_or_runbook",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "RUNTIME_ERROR_MATRIX.csv",
+      "size": 549,
+      "sha256": "a83ce5789f3c44844a080e3fd84e6b001d4b7b2e4062eae6a446ad4406f79838",
+      "artifact_type": "matrix_or_index",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "RUNTIME_IMPLEMENTATION_RUNBOOK.md",
+      "size": 1900,
+      "sha256": "288adfd6468ee9045175a7bff620a79fa91478bee88f25577f40589b30bd4601",
+      "artifact_type": "narrative_or_runbook",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "RUNTIME_METRIC_CATALOG.csv",
+      "size": 516,
+      "sha256": "1868ba47878a3433d22e3840460df9e6251206abf7e825d57388fa0ec6765433",
+      "artifact_type": "matrix_or_index",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "RUNTIME_SLO_CATALOG.json",
+      "size": 459,
+      "sha256": "c78d0b5199b15995b1863e9e5de19f363ab50f61ea2b372e7a7b481bbecf672c",
+      "artifact_type": "machine_readable",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "RUNTIME_SYNTHETIC_FIXTURE.json",
+      "size": 3469,
+      "sha256": "5f08c92d82113e98fbf83e521d71c54ef043a8af8734172084c1df5829b8e9ff",
+      "artifact_type": "machine_readable",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "RUNTIME_THREAT_REGISTER.csv",
+      "size": 706,
+      "sha256": "e38cdc12b9b6f14a2d777e6751e4b419f811bb28e723127734ca3cac68dacca0",
+      "artifact_type": "matrix_or_index",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "SECTION_RELEASE_MANIFEST.json",
+      "size": 713,
+      "sha256": "92a55f4a5b83119a1ffd74fdeda1b82672cac2f1955f3af2ec65e8229e874100",
+      "artifact_type": "machine_readable",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "SYNTHETIC_EXECUTION_TRACE.json",
+      "size": 2918,
+      "sha256": "885ba2ecf725dfc865ec1065db71485f60ea30f82da576af922d0571d8b60f6b",
+      "artifact_type": "machine_readable",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "TOOL_MANIFEST_REGISTRY.json",
+      "size": 1354,
+      "sha256": "0df3bb8afaea348ddcef606a8ef483c9cfdaef1165c92fa21c3ee3493681e9c0",
+      "artifact_type": "machine_readable",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "VALIDATION_REPORT.csv",
+      "size": 1166,
+      "sha256": "b2064a33c445ff6aa4bab8ed166e0910ba615f8cd3eeac13f619f21cb9db3e2f",
+      "artifact_type": "matrix_or_index",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "VALIDATION_REPORT.json",
+      "size": 7254,
+      "sha256": "609489565b268afc9e018df5d70402f00f89e6a8ba90a1a83cf349d2cefc6c4c",
+      "artifact_type": "machine_readable",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "WORKFLOW_DEFINITION_REGISTRY.json",
+      "size": 2470,
+      "sha256": "260435b80937aa6abe0592e65714ccbfabcfddeb026604eabb02e8a06bca7644",
+      "artifact_type": "machine_readable",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "schemas/agent_manifest.schema.json",
+      "size": 1633,
+      "sha256": "0b8e8ec5cbe75a01ef2443e6df758260f1891d815ba16dd838c90b43b81d9b3d",
+      "artifact_type": "machine_readable",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "schemas/context_package.schema.json",
+      "size": 1728,
+      "sha256": "9696bb343f1cbc1a3beaed7eae65a2f00fe1214a0c049bc810bc2465f976280f",
+      "artifact_type": "machine_readable",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "schemas/escalation.schema.json",
+      "size": 1174,
+      "sha256": "5930f26fdafe0de2ae0345923564509eb5311c20572584825d7db06077eed883",
+      "artifact_type": "machine_readable",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "schemas/model_route_decision.schema.json",
+      "size": 1020,
+      "sha256": "b245e9ef33c6465858b453f24e17e729043adc022032772f21f30290b2f5eceb",
+      "artifact_type": "machine_readable",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "schemas/runtime_event.schema.json",
+      "size": 1096,
+      "sha256": "30dd6becc26a6b5a25c39f355756be77142b6add5cedb8c90e5c87af2907169f",
+      "artifact_type": "machine_readable",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "schemas/step_definition.schema.json",
+      "size": 1394,
+      "sha256": "0cd07fc3b3be4707c4d3aed282fd47a290dec60e99d43d2d5fea8a016f5ec017",
+      "artifact_type": "machine_readable",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "schemas/tool_manifest.schema.json",
+      "size": 1606,
+      "sha256": "b3995142d8e45c0f1977ca7e4638ec4edd1a88eca7da61f40693a6cb5e4fd873",
+      "artifact_type": "machine_readable",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "schemas/workflow_definition.schema.json",
+      "size": 1182,
+      "sha256": "465e247ae28a34b879feb6608a9da896e32107553857b0b563dcfdd43b07467c",
+      "artifact_type": "machine_readable",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    },
+    {
+      "path": "schemas/workflow_instance.schema.json",
+      "size": 1415,
+      "sha256": "f90e1b8bcc9ee970e673dcd7ef4c9903607196cf5e562f80c61f4be119cdd263",
+      "artifact_type": "machine_readable",
+      "section": "FS-11000",
+      "version": "1.0.0"
+    }
+  ]
+}

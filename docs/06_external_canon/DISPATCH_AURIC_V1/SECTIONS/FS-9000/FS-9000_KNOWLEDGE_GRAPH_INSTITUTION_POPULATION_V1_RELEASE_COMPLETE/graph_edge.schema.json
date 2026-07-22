@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Dispatch Graph Edge",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "edge_id",
+    "source_node_id",
+    "relationship_type",
+    "target_node_id",
+    "directional",
+    "source_state",
+    "visibility",
+    "status",
+    "confidence",
+    "version",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "edge_id": {
+      "type": "string",
+      "pattern": "^EDGE-[A-Z0-9_-]+$"
+    },
+    "source_node_id": {
+      "type": "string"
+    },
+    "relationship_type": {
+      "type": "string"
+    },
+    "target_node_id": {
+      "type": "string"
+    },
+    "directional": {
+      "type": "boolean"
+    },
+    "tenant_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_state": {
+      "enum": [
+        "public",
+        "private",
+        "attested",
+        "inferred",
+        "synthetic",
+        "derived"
+      ]
+    },
+    "visibility": {
+      "enum": [
+        "public",
+        "tenant_private",
+        "network_shared",
+        "restricted",
+        "derived_private"
+      ]
+    },
+    "status": {
+      "enum": [
+        "proposed",
+        "active",
+        "inactive",
+        "stale",
+        "superseded",
+        "quarantined",
+        "deleted"
+      ]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "method": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "method_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "valid_from": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "valid_to": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "review_due_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "attributes": {
+      "type": "object"
+    }
+  }
+}

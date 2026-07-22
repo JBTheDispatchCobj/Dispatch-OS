@@ -1,0 +1,634 @@
+{
+  "manifest_name": "FS-4002_CREDIT_UNIONS.cartridge.json",
+  "version": "1.0",
+  "owner": "Auric Works",
+  "product": "Dispatch / Auric Institutional Intelligence Network",
+  "created_at": "2026-07-21T20:18:33.018518",
+  "domain_id": "FS-4002",
+  "domain_name": "Credit Unions",
+  "source_volume": "FS-4002_CREDIT_UNION_OPERATING_FRAMEWORK_V1.zip",
+  "purpose": "Deployable cartridge manifest for credit union institutional intelligence across members, products, CUSOs, vendors, governance, regulation, fintech pilots, and cooperative capital opportunities.",
+  "cartridge_type": "domain_operating_cartridge",
+  "status": "production_manifest",
+  "strategic_lens": "Credit unions are member-owned financial institutions with a unique cooperative structure, regulatory profile, vendor ecosystem, CUSO optionality, and unrealized capacity to connect member needs, innovation, and institutional capital.",
+  "primary_objects": [
+    {
+      "object": "CreditUnion",
+      "role": "Root institution object for charter, field of membership, products, vendors, members, board, and regulatory context.",
+      "required_fields": [
+        "institution_id",
+        "name",
+        "charter",
+        "field_of_membership",
+        "assets",
+        "members",
+        "regulators",
+        "CUSOs",
+        "vendors",
+        "products"
+      ]
+    },
+    {
+      "object": "Member",
+      "role": "Member relationship object connecting eligibility, accounts, loans, needs, events, and opportunities.",
+      "required_fields": [
+        "member_id",
+        "household",
+        "accounts",
+        "loans",
+        "needs",
+        "life_events",
+        "eligibility",
+        "opportunities"
+      ]
+    },
+    {
+      "object": "FieldOfMembership",
+      "role": "Eligibility and membership boundary object.",
+      "required_fields": [
+        "fom_id",
+        "eligibility_rules",
+        "groups",
+        "geography",
+        "employer_links",
+        "constraints"
+      ]
+    },
+    {
+      "object": "CUSO",
+      "role": "Credit union service organization, investment, governance, and activity object.",
+      "required_fields": [
+        "cuso_id",
+        "owners",
+        "services",
+        "investments",
+        "governance",
+        "compliance_status",
+        "relationships"
+      ]
+    },
+    {
+      "object": "VendorStack",
+      "role": "Core, digital, lending, compliance, payment, wealth, insurance, and fintech vendor inventory.",
+      "required_fields": [
+        "vendor_stack_id",
+        "institution",
+        "vendors",
+        "systems",
+        "contracts",
+        "risk_tiers",
+        "renewals",
+        "integration_notes"
+      ]
+    },
+    {
+      "object": "MemberProduct",
+      "role": "Credit union product or service offered to members.",
+      "required_fields": [
+        "product_id",
+        "type",
+        "eligibility",
+        "pricing",
+        "risk",
+        "member_segment",
+        "regulatory_profile"
+      ]
+    },
+    {
+      "object": "Board",
+      "role": "Governance body for approvals, committees, minutes, policy oversight, and strategic priorities.",
+      "required_fields": [
+        "board_id",
+        "members",
+        "committees",
+        "approvals",
+        "minutes",
+        "strategic_priorities"
+      ]
+    },
+    {
+      "object": "FintechPilot",
+      "role": "Structured pilot opportunity connecting startup, CU, use case, vendor risk, compliance, success metrics, and board awareness.",
+      "required_fields": [
+        "pilot_id",
+        "startup",
+        "credit_union",
+        "use_case",
+        "data_flow",
+        "success_metrics",
+        "vendor_review",
+        "approval_status"
+      ]
+    }
+  ],
+  "supported_workflows": [
+    {
+      "workflow": "Member Onboarding",
+      "description": "Open and verify credit union member relationship.",
+      "required_objects": [
+        "Member",
+        "FieldOfMembership",
+        "Account"
+      ],
+      "outputs": [
+        "Member profile",
+        "Eligibility evidence"
+      ],
+      "approval_gates": [
+        "operations_review",
+        "compliance_review_if_exception"
+      ]
+    },
+    {
+      "workflow": "CUSO Review",
+      "description": "Evaluate CUSO activity, authority, investment, ownership, risk, and governance.",
+      "required_objects": [
+        "CUSO",
+        "Investment",
+        "Policy",
+        "Board"
+      ],
+      "outputs": [
+        "CUSO memo",
+        "Board evidence",
+        "Risk/authority summary"
+      ],
+      "approval_gates": [
+        "compliance_owner_approval",
+        "board_or_committee_approval_if_material"
+      ]
+    },
+    {
+      "workflow": "Fintech Pilot Readiness",
+      "description": "Assess fintech product fit, readiness, integration, vendor risk, compliance, and governance path for a CU pilot.",
+      "required_objects": [
+        "Startup",
+        "CreditUnion",
+        "VendorStack",
+        "UseCase",
+        "FintechPilot"
+      ],
+      "outputs": [
+        "Readiness score",
+        "Pilot plan",
+        "Vendor checklist",
+        "Board memo"
+      ],
+      "approval_gates": [
+        "business_owner_approval",
+        "vendor_risk_approval",
+        "security_review",
+        "compliance_review"
+      ]
+    },
+    {
+      "workflow": "Member Opportunity Detection",
+      "description": "Identify product, mortgage, commercial, wealth, insurance, and lending opportunities from member context.",
+      "required_objects": [
+        "Member",
+        "Household",
+        "Product",
+        "Opportunity"
+      ],
+      "outputs": [
+        "Opportunity list",
+        "Referral tasks",
+        "Consent/disclosure checklist"
+      ],
+      "approval_gates": [
+        "referral_compliance_review",
+        "licensed_owner_review_when_needed"
+      ]
+    },
+    {
+      "workflow": "Board Governance Review",
+      "description": "Prepare CU board/committee governance package for risks, policies, opportunities, and strategic actions.",
+      "required_objects": [
+        "Board",
+        "Policy",
+        "Risk",
+        "Report",
+        "KPI"
+      ],
+      "outputs": [
+        "Board package",
+        "Decision log",
+        "Action items"
+      ],
+      "approval_gates": [
+        "executive_owner_approval"
+      ]
+    },
+    {
+      "workflow": "Regulatory Readiness",
+      "description": "Map CU obligations, policies, controls, evidence, exam readiness, and remediation.",
+      "required_objects": [
+        "Obligation",
+        "Policy",
+        "Control",
+        "Evidence",
+        "Examination"
+      ],
+      "outputs": [
+        "Readiness report",
+        "Evidence map",
+        "Compliance dashboard"
+      ],
+      "approval_gates": [
+        "compliance_owner_approval"
+      ]
+    }
+  ],
+  "allowed_agents": [
+    {
+      "agent": "Member Intelligence Agent",
+      "allowed_actions": [
+        "profile_members",
+        "identify_product_gaps",
+        "summarize_member_context",
+        "detect_life_events"
+      ],
+      "prohibited_actions": [
+        "open_account",
+        "approve_credit",
+        "make_final_suitability_determination"
+      ]
+    },
+    {
+      "agent": "Credit Union Readiness Agent",
+      "allowed_actions": [
+        "score_readiness",
+        "identify_blockers",
+        "summarize_institutional_context",
+        "recommend_next_actions"
+      ],
+      "prohibited_actions": [
+        "approve_product_launch",
+        "approve_vendor",
+        "make_final_compliance_determination"
+      ]
+    },
+    {
+      "agent": "CUSO Review Agent",
+      "allowed_actions": [
+        "summarize_CUSO_activity",
+        "map_authority_and_governance",
+        "draft_CUSO_review_memo"
+      ],
+      "prohibited_actions": [
+        "approve_CUSO_investment",
+        "provide_final_legal_opinion"
+      ]
+    },
+    {
+      "agent": "Fintech Pilot Agent",
+      "allowed_actions": [
+        "draft_pilot_plan",
+        "map_use_case",
+        "identify_success_metrics",
+        "route_vendor_compliance_reviews"
+      ],
+      "prohibited_actions": [
+        "launch_pilot_without_approval",
+        "approve_data_access",
+        "commit_institution"
+      ]
+    },
+    {
+      "agent": "Vendor Stack Agent",
+      "allowed_actions": [
+        "inventory_vendors",
+        "map_system_dependencies",
+        "flag_renewals",
+        "identify_integration_constraints"
+      ],
+      "prohibited_actions": [
+        "approve_vendor",
+        "terminate_contract",
+        "change_system_access"
+      ]
+    },
+    {
+      "agent": "Board Governance Agent",
+      "allowed_actions": [
+        "draft_board_summary",
+        "track_decisions",
+        "summarize_risks",
+        "prepare_action_items"
+      ],
+      "prohibited_actions": [
+        "release_board_packet_without_approval",
+        "record_fake_minutes"
+      ]
+    },
+    {
+      "agent": "Regulatory Readiness Agent",
+      "allowed_actions": [
+        "map_obligations",
+        "identify_evidence_gaps",
+        "draft_readiness_summary",
+        "route_compliance_tasks"
+      ],
+      "prohibited_actions": [
+        "file_report",
+        "send_regulator_response",
+        "issue_final_compliance_conclusion"
+      ]
+    },
+    {
+      "agent": "Member Opportunity Agent",
+      "allowed_actions": [
+        "detect_wallet_expansion",
+        "route_referrals",
+        "generate_opportunity_brief",
+        "prepare_consent_checklist"
+      ],
+      "prohibited_actions": [
+        "provide_advice",
+        "bind_insurance",
+        "approve_loan",
+        "execute_referral_without_required_consent"
+      ]
+    }
+  ],
+  "required_evidence": {
+    "member_onboarding": [
+      "field_of_membership_evidence",
+      "identity_evidence",
+      "account_disclosures",
+      "member_application"
+    ],
+    "CUSO_review": [
+      "CUSO_documents",
+      "ownership_records",
+      "service_agreement",
+      "board_minutes",
+      "policy_authority",
+      "risk_review"
+    ],
+    "fintech_pilot": [
+      "startup_deck",
+      "use_case",
+      "integration_map",
+      "data_flow_diagram",
+      "security_questionnaire",
+      "vendor_review",
+      "pilot_plan",
+      "success_metrics"
+    ],
+    "member_opportunities": [
+      "member_profile",
+      "product_relationships",
+      "trigger_signal",
+      "consent_status",
+      "disclosure_requirements"
+    ],
+    "board_governance": [
+      "source_KPIs",
+      "risk_summary",
+      "policy_documents",
+      "decision_support",
+      "approval_record"
+    ],
+    "regulatory_readiness": [
+      "regulatory_profile",
+      "obligation_map",
+      "policy",
+      "procedure",
+      "control",
+      "evidence_item",
+      "exam_findings"
+    ]
+  },
+  "approval_gates": {
+    "member_account_exception": [
+      "operations_owner",
+      "compliance_owner"
+    ],
+    "CUSO_activity_or_investment": [
+      "executive_owner",
+      "compliance_owner",
+      "legal_counsel",
+      "board_or_committee_if_material"
+    ],
+    "fintech_pilot_launch": [
+      "business_owner",
+      "vendor_risk_owner",
+      "security_owner",
+      "compliance_owner",
+      "executive_owner"
+    ],
+    "member_referral": [
+      "referral_compliance_owner",
+      "licensed_advisor_or_insurance_owner_when_needed"
+    ],
+    "board_report_release": [
+      "executive_owner"
+    ],
+    "regulatory_readiness_output": [
+      "compliance_owner"
+    ]
+  },
+  "dashboards": [
+    {
+      "dashboard": "Credit Union Terminal Dashboard",
+      "primary_kpis": [
+        "assets",
+        "members",
+        "products_per_member",
+        "vendor_reviews",
+        "opportunities_detected",
+        "readiness_score"
+      ]
+    },
+    {
+      "dashboard": "Member Opportunity Dashboard",
+      "primary_kpis": [
+        "member_opportunities",
+        "products_per_member",
+        "wallet_share",
+        "referral_conversion"
+      ]
+    },
+    {
+      "dashboard": "CUSO / Innovation Dashboard",
+      "primary_kpis": [
+        "CUSO_opportunities",
+        "fintech_pilots",
+        "readiness_score",
+        "integration_readiness"
+      ]
+    },
+    {
+      "dashboard": "Vendor Stack Dashboard",
+      "primary_kpis": [
+        "vendor_reviews",
+        "reviews_overdue",
+        "contracts_expiring",
+        "SOC_reports_current"
+      ]
+    },
+    {
+      "dashboard": "CU Governance Dashboard",
+      "primary_kpis": [
+        "board_actions_open",
+        "policy_reviews_due",
+        "exam_findings_open",
+        "compliance_readiness_score"
+      ]
+    }
+  ],
+  "kpis": [
+    "members",
+    "member_growth",
+    "products_per_member",
+    "member_retention",
+    "wallet_share",
+    "member_opportunities",
+    "assets",
+    "net_worth_ratio",
+    "ROA",
+    "loan_growth",
+    "deposit_growth",
+    "fee_income",
+    "operating_expense_ratio",
+    "fintech_pilots",
+    "vendor_reviews",
+    "CUSO_opportunities",
+    "readiness_score",
+    "integration_readiness",
+    "board_actions_open",
+    "policy_reviews_due",
+    "exam_findings_open",
+    "compliance_readiness_score"
+  ],
+  "relationships": [
+    {
+      "source": "CreditUnion",
+      "relationship": "SERVES",
+      "target": "Member"
+    },
+    {
+      "source": "Member",
+      "relationship": "QUALIFIES_UNDER",
+      "target": "FieldOfMembership"
+    },
+    {
+      "source": "CreditUnion",
+      "relationship": "OWNS_OR_PARTICIPATES_IN",
+      "target": "CUSO"
+    },
+    {
+      "source": "CreditUnion",
+      "relationship": "USES",
+      "target": "Vendor"
+    },
+    {
+      "source": "FintechPilot",
+      "relationship": "REQUIRES",
+      "target": "VendorReview"
+    },
+    {
+      "source": "Board",
+      "relationship": "APPROVES",
+      "target": "PolicyOrStrategicAction"
+    },
+    {
+      "source": "Member",
+      "relationship": "HAS",
+      "target": "Opportunity"
+    },
+    {
+      "source": "Opportunity",
+      "relationship": "ROUTES_TO",
+      "target": "Workflow"
+    }
+  ],
+  "router_examples": [
+    {
+      "user_request": "Can this credit union pilot this fintech?",
+      "route_to_workflow": "Fintech Pilot Readiness",
+      "required_objects": [
+        "CreditUnion",
+        "Startup",
+        "VendorStack",
+        "UseCase",
+        "FintechPilot"
+      ],
+      "agents": [
+        "Credit Union Readiness Agent",
+        "Fintech Pilot Agent",
+        "Vendor Stack Agent",
+        "Regulatory Readiness Agent"
+      ],
+      "outputs": [
+        "Readiness score",
+        "Pilot plan",
+        "Vendor/compliance checklist",
+        "Board memo"
+      ]
+    },
+    {
+      "user_request": "Build the CU Terminal profile.",
+      "route_to_workflow": "Regulatory Readiness",
+      "required_objects": [
+        "CreditUnion",
+        "VendorStack",
+        "Board",
+        "Product",
+        "Obligation"
+      ],
+      "agents": [
+        "Credit Union Readiness Agent",
+        "Vendor Stack Agent",
+        "Board Governance Agent"
+      ],
+      "outputs": [
+        "CU terminal profile",
+        "Opportunity dashboard",
+        "Readiness dashboard"
+      ]
+    },
+    {
+      "user_request": "Find member wallet expansion opportunities.",
+      "route_to_workflow": "Member Opportunity Detection",
+      "required_objects": [
+        "Member",
+        "Product",
+        "Opportunity"
+      ],
+      "agents": [
+        "Member Intelligence Agent",
+        "Member Opportunity Agent"
+      ],
+      "outputs": [
+        "Member opportunity list",
+        "Referral tasks",
+        "Consent/disclosure checklist"
+      ]
+    }
+  ],
+  "integration_dependencies": [
+    "objects.registry.json",
+    "workflows.registry.json",
+    "agents.registry.json",
+    "kpis.registry.json",
+    "dashboards.registry.json",
+    "relationships.registry.json",
+    "evidence.registry.json",
+    "approvals.registry.json"
+  ],
+  "acceptance_tests": [
+    "Can create a credit union institution profile with charter, FOM, members, products, vendors, board, CUSOs, and regulatory profile.",
+    "Can route fintech pilot request to readiness, vendor, security, compliance, and board workflow components.",
+    "Can identify member product gaps and route to appropriate referral workflows.",
+    "Can produce CUSO activity review with governance and evidence requirements.",
+    "Can generate CU Terminal Dashboard inputs from institution profile.",
+    "Can enforce approval gates for fintech pilot, CUSO review, board reporting, and regulatory readiness.",
+    "Can link all board/exam-sensitive outputs to source evidence and audit trail."
+  ],
+  "section_id": "FS-5100",
+  "section_aliases": [
+    "FS-5000"
+  ]
+}

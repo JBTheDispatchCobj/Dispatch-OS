@@ -1,0 +1,690 @@
+{
+  "section_id": "FS-5100",
+  "manifest_class": "dashboard",
+  "count": 68,
+  "entries": [
+    {
+      "id": "DASH.BANKING_EXECUTIVE_DASHBOARD",
+      "name": "Banking Executive Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "DASH.RELATIONSHIP_DASHBOARD",
+      "name": "Relationship Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "DASH.DEPOSIT_DASHBOARD",
+      "name": "Deposit Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "DASH.LOAN_PORTFOLIO_DASHBOARD",
+      "name": "Loan Portfolio Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "DASH.CHANNEL_OPERATIONS_DASHBOARD",
+      "name": "Channel Operations Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "DASH.CREDIT_UNION_TERMINAL_DASHBOARD",
+      "name": "Credit Union Terminal Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "DASH.MEMBER_OPPORTUNITY_DASHBOARD",
+      "name": "Member Opportunity Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "DASH.CUSO_INNOVATION_DASHBOARD",
+      "name": "CUSO / Innovation Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "DASH.VENDOR_STACK_DASHBOARD",
+      "name": "Vendor Stack Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "DASH.CU_GOVERNANCE_DASHBOARD",
+      "name": "CU Governance Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "DASH.COMMERCIAL_BANKING_EXECUTIVE_DASHBOARD",
+      "name": "Commercial Banking Executive Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "DASH.COMMERCIAL_CREDIT_DASHBOARD",
+      "name": "Commercial Credit Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "DASH.TREASURY_MANAGEMENT_DASHBOARD",
+      "name": "Treasury Management Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "DASH.PORTFOLIO_WATCHLIST_DASHBOARD",
+      "name": "Portfolio Watchlist Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "DASH.MORTGAGE_PIPELINE_DASHBOARD",
+      "name": "Mortgage Pipeline Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "DASH.MORTGAGE_OPERATIONS_DASHBOARD",
+      "name": "Mortgage Operations Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "DASH.MORTGAGE_COMPLIANCE_DASHBOARD",
+      "name": "Mortgage Compliance Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "DASH.MORTGAGE_ECONOMICS_DASHBOARD",
+      "name": "Mortgage Economics Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "DASH.VENTURE_FUND_DASHBOARD",
+      "name": "Venture Fund Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "DASH.DEAL_FLOW_DASHBOARD",
+      "name": "Deal Flow Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "DASH.STARTUP_PORTFOLIO_DASHBOARD",
+      "name": "Startup Portfolio Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "DASH.STRATEGIC_ADOPTION_DASHBOARD",
+      "name": "Strategic Adoption Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "DASH.WEALTH_EXECUTIVE_DASHBOARD",
+      "name": "Wealth Executive Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "DASH.ADVISOR_DASHBOARD",
+      "name": "Advisor Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "DASH.HOUSEHOLD_DASHBOARD",
+      "name": "Household Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "DASH.FINANCIAL_PLANNING_DASHBOARD",
+      "name": "Financial Planning Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "DASH.PORTFOLIO_DASHBOARD",
+      "name": "Portfolio Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "DASH.IPS_DASHBOARD",
+      "name": "IPS Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "DASH.BILLING_DASHBOARD",
+      "name": "Billing Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "DASH.ESTATE_TRUST_DASHBOARD",
+      "name": "Estate / Trust Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "DASH.ALTERNATIVES_DASHBOARD",
+      "name": "Alternatives Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "DASH.WEALTH_COMPLIANCE_DASHBOARD",
+      "name": "Wealth Compliance Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "DASH.CREDIT_UNION_BANK_WEALTH_DASHBOARD",
+      "name": "Credit Union / Bank Wealth Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "DASH.INSURANCE_EXECUTIVE_DASHBOARD",
+      "name": "Insurance Executive Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "DASH.AGENCY_DASHBOARD",
+      "name": "Agency Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "DASH.PRODUCER_DASHBOARD",
+      "name": "Producer Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "DASH.REFERRAL_DASHBOARD",
+      "name": "Referral Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "DASH.POLICYHOLDER_DASHBOARD",
+      "name": "Policyholder Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "DASH.RENEWAL_DASHBOARD",
+      "name": "Renewal Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "DASH.CLAIMS_DASHBOARD",
+      "name": "Claims Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "DASH.COMMISSION_DASHBOARD",
+      "name": "Commission Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "DASH.INSURANCE_COMPLIANCE_DASHBOARD",
+      "name": "Insurance Compliance Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "DASH.CREDIT_UNION_BANK_INSURANCE_DASHBOARD",
+      "name": "Credit Union / Bank Insurance Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "DASH.CONSTRUCTION_FINANCE_EXECUTIVE_DASHBOARD",
+      "name": "Construction Finance Executive Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "DASH.PROJECT_DASHBOARD",
+      "name": "Project Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "DASH.DRAW_DASHBOARD",
+      "name": "Draw Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "DASH.BUDGET_SOV_DASHBOARD",
+      "name": "Budget / SOV Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "DASH.LIEN_TITLE_DASHBOARD",
+      "name": "Lien / Title Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "DASH.INSPECTION_DASHBOARD",
+      "name": "Inspection Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "DASH.INSURANCE_BOND_DASHBOARD",
+      "name": "Insurance / Bond Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "DASH.CONTRACTOR_DASHBOARD",
+      "name": "Contractor Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "DASH.TAKEOUT_READINESS_DASHBOARD",
+      "name": "Takeout Readiness Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "DASH.CONSTRUCTION_PORTFOLIO_RISK_DASHBOARD",
+      "name": "Construction Portfolio Risk Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "DASH.MANUFACTURING_EXECUTIVE_DASHBOARD",
+      "name": "Manufacturing Executive Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "DASH.WORKING_CAPITAL_DASHBOARD",
+      "name": "Working Capital Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "DASH.BORROWING_BASE_DASHBOARD",
+      "name": "Borrowing Base Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "DASH.PRODUCTION_DASHBOARD",
+      "name": "Production Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "DASH.INVENTORY_DASHBOARD",
+      "name": "Inventory Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "DASH.EQUIPMENT_DASHBOARD",
+      "name": "Equipment Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "DASH.TREASURY_DASHBOARD",
+      "name": "Treasury Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "DASH.PORTFOLIO_RISK_DASHBOARD",
+      "name": "Portfolio Risk Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "DASH.HEALTHCARE_FINANCE_EXECUTIVE_DASHBOARD",
+      "name": "Healthcare Finance Executive Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "DASH.PRACTICE_RELATIONSHIP_DASHBOARD",
+      "name": "Practice Relationship Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "DASH.REVENUE_CYCLE_DASHBOARD",
+      "name": "Revenue Cycle Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "DASH.PAYER_MIX_DASHBOARD",
+      "name": "Payer Mix Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "DASH.PROVIDER_PRODUCTIVITY_DASHBOARD",
+      "name": "Provider Productivity Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "DASH.ACQUISITION_BUY_IN_DASHBOARD",
+      "name": "Acquisition / Buy-In Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "DASH.HEALTHCARE_COMPLIANCE_DASHBOARD",
+      "name": "Healthcare Compliance Dashboard",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    }
+  ]
+}

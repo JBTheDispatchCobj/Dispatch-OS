@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.dispatch.local/fs12000/incident.schema.json",
+  "title": "SecurityIncident",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "tenant_id",
+    "severity",
+    "category",
+    "detected_at",
+    "status",
+    "incident_commander",
+    "affected_assets",
+    "containment_actions",
+    "evidence_refs",
+    "version"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tenant_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "classification": {
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "restricted"
+      ]
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "approval_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "severity": {
+      "enum": [
+        "SEV0",
+        "SEV1",
+        "SEV2",
+        "SEV3",
+        "SEV4"
+      ]
+    },
+    "category": {
+      "type": "string"
+    },
+    "detected_at": {
+      "type": "string"
+    },
+    "incident_commander": {
+      "type": "string"
+    },
+    "affected_assets": {
+      "type": "array"
+    },
+    "containment_actions": {
+      "type": "array"
+    },
+    "status": {
+      "enum": [
+        "declared",
+        "triage",
+        "contained",
+        "eradicated",
+        "recovered",
+        "closed"
+      ]
+    }
+  }
+}

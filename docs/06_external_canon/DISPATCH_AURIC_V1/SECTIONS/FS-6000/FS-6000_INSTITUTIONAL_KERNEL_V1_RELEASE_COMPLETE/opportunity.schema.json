@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dispatch://schemas/opportunity/1.0.0",
+  "title": "Opportunity",
+  "type": "object",
+  "required": [
+    "opportunity_id",
+    "institution_id",
+    "type",
+    "problem",
+    "status",
+    "score",
+    "confidence"
+  ],
+  "properties": {
+    "opportunity_id": {
+      "type": "string",
+      "pattern": "^OPP-[0-9A-Z-]+$"
+    },
+    "institution_id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "fintech_pilot",
+        "vendor_replacement",
+        "product_expansion",
+        "treasury",
+        "wealth_referral",
+        "insurance_referral",
+        "participation",
+        "CUSO_investment",
+        "venture_investment",
+        "private_credit",
+        "compliance_remediation",
+        "exam_readiness",
+        "AI_automation",
+        "operational_efficiency",
+        "strategic_partnership",
+        "M&A",
+        "board_education"
+      ]
+    },
+    "domains": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "source_signal_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "problem": {
+      "type": "string",
+      "minLength": 1
+    },
+    "proposed_solution": {
+      "type": "string"
+    },
+    "estimated_value": {
+      "type": "object",
+      "properties": {
+        "low": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "high": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "currency": {
+          "type": "string"
+        },
+        "period": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "readiness_score_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sponsor_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "workflow_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "required_evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "approval_type_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "unknown"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "detected",
+        "qualified",
+        "discovery",
+        "scored",
+        "pending_approval",
+        "approved",
+        "in_workflow",
+        "pilot",
+        "implemented",
+        "realized",
+        "rejected",
+        "deferred",
+        "expired"
+      ]
+    },
+    "next_action": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

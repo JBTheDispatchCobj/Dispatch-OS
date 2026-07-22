@@ -1,0 +1,34 @@
+{
+  "policy_version": "1.0.0",
+  "decision_order": [
+    "tenant_policy_eligibility",
+    "data_classification",
+    "required_capabilities",
+    "quality_threshold",
+    "latency_slo",
+    "cost_optimization"
+  ],
+  "rules": [
+    {
+      "id": "MR-001",
+      "when": "classification in [restricted,secret]",
+      "allow_routes": [
+        "private-approved"
+      ],
+      "fallback": "human_only"
+    },
+    {
+      "id": "MR-002",
+      "when": "material_regulated_conclusion == true",
+      "require": [
+        "evidence_grounding",
+        "human_review"
+      ]
+    },
+    {
+      "id": "MR-003",
+      "when": "primary_provider_unavailable",
+      "fallback_only_if": "fallback route is approved for equal or higher classification"
+    }
+  ]
+}

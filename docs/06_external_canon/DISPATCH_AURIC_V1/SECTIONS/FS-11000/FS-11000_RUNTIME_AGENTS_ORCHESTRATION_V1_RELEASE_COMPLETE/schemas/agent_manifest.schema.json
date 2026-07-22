@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AgentManifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "agent_id",
+    "version",
+    "purpose",
+    "status",
+    "allowed_actions",
+    "prohibited_actions",
+    "allowed_tools",
+    "input_schema_ref",
+    "output_schema_ref",
+    "evaluation_suite_id"
+  ],
+  "properties": {
+    "agent_id": {
+      "type": "string",
+      "pattern": "^AGENT-"
+    },
+    "version": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "proposed",
+        "designed",
+        "testing",
+        "approved",
+        "active",
+        "degraded",
+        "suspended",
+        "deprecated",
+        "retired"
+      ]
+    },
+    "allowed_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "prohibited_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allowed_tools": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allowed_data_classes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "input_schema_ref": {
+      "type": "string"
+    },
+    "output_schema_ref": {
+      "type": "string"
+    },
+    "confidence_threshold": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "evaluation_suite_id": {
+      "type": "string"
+    },
+    "persistent_memory_policy": {
+      "enum": [
+        "none",
+        "approved_facts_only",
+        "tenant_knowledge_reviewed"
+      ]
+    }
+  }
+}

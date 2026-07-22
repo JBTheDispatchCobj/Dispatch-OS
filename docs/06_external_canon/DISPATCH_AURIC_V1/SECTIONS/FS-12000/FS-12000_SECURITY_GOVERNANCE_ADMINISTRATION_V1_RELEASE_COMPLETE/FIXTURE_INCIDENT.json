@@ -1,0 +1,28 @@
+{
+  "id": "inc_demo_001",
+  "tenant_id": "tenant_demo",
+  "severity": "SEV2",
+  "category": "credential_exposure",
+  "detected_at": "2026-07-22T01:00:00Z",
+  "status": "contained",
+  "incident_commander": "security_lead_001",
+  "affected_assets": [
+    "connector_demo_001"
+  ],
+  "containment_actions": [
+    "suspend_connector",
+    "revoke_secret",
+    "rotate_secret"
+  ],
+  "evidence_refs": [
+    "audit_001"
+  ],
+  "version": 1,
+  "classification": "restricted",
+  "source_refs": [
+    "alert_001"
+  ],
+  "approval_refs": [],
+  "created_at": "2026-07-22T01:00:00Z",
+  "updated_at": "2026-07-22T01:20:00Z"
+}

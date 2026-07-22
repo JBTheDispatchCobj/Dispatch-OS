@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ToolManifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "tool_id",
+    "version",
+    "status",
+    "operations"
+  ],
+  "properties": {
+    "tool_id": {
+      "type": "string",
+      "pattern": "^TOOL-"
+    },
+    "version": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "approved",
+        "active",
+        "suspended",
+        "deprecated",
+        "retired"
+      ]
+    },
+    "operations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "operation_id",
+          "risk_class",
+          "input_schema_ref",
+          "output_schema_ref",
+          "idempotency"
+        ],
+        "properties": {
+          "operation_id": {
+            "type": "string"
+          },
+          "risk_class": {
+            "enum": [
+              "read_only",
+              "draft_producing",
+              "reversible_write",
+              "material_write",
+              "prohibited"
+            ]
+          },
+          "input_schema_ref": {
+            "type": "string"
+          },
+          "output_schema_ref": {
+            "type": "string"
+          },
+          "idempotency": {
+            "enum": [
+              "not_applicable",
+              "required",
+              "provider_supported",
+              "gateway_enforced"
+            ]
+          },
+          "approval_type": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

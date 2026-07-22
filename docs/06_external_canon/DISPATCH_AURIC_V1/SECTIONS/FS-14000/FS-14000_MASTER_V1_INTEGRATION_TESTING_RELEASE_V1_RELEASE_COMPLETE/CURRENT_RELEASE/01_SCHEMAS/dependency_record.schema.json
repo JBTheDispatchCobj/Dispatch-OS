@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fs14000.dependency_record.v1",
+  "type": "object",
+  "required": [
+    "dependency_id",
+    "source_artifact",
+    "target_artifact",
+    "dependency_type",
+    "required",
+    "status"
+  ],
+  "properties": {
+    "dependency_id": {
+      "type": "string"
+    },
+    "source_artifact": {
+      "type": "string"
+    },
+    "target_artifact": {
+      "type": "string"
+    },
+    "dependency_type": {
+      "type": "string"
+    },
+    "required": {
+      "type": "boolean"
+    },
+    "version_rule": {
+      "type": "string"
+    },
+    "test_id": {
+      "type": "string"
+    },
+    "owner": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "satisfied",
+        "unresolved",
+        "incompatible",
+        "waived"
+      ]
+    }
+  }
+}

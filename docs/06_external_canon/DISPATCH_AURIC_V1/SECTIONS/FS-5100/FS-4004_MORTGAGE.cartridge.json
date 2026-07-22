@@ -1,0 +1,588 @@
+{
+  "manifest_name": "FS-4004_MORTGAGE.cartridge.json",
+  "version": "1.0",
+  "owner": "Auric Works",
+  "product": "Dispatch / Auric Institutional Intelligence Network",
+  "created_at": "2026-07-21T20:21:37.102415",
+  "domain_id": "FS-4004",
+  "domain_name": "Mortgage",
+  "source_volume": "FS-4004_MORTGAGE_OPERATING_FRAMEWORK_V1.zip",
+  "purpose": "Deployable cartridge manifest for mortgage operating intelligence across borrower intake, document collection, underwriting support, disclosures, pipeline, closing, secondary readiness, compliance, and post-close quality control.",
+  "cartridge_type": "domain_operating_cartridge",
+  "status": "production_manifest",
+  "strategic_lens": "Mortgage is a document-heavy, milestone-driven, compliance-sensitive production system where the institution must convert borrower/property facts into a fundable, compliant, saleable loan file.",
+  "primary_objects": [
+    {
+      "object": "MortgageLoan",
+      "role": "Root mortgage file and production object.",
+      "required_fields": [
+        "loan_id",
+        "borrower",
+        "property",
+        "product_type",
+        "loan_amount",
+        "LTV",
+        "DTI",
+        "rate",
+        "milestone",
+        "status"
+      ]
+    },
+    {
+      "object": "Borrower",
+      "role": "Consumer borrower profile for credit, income, assets, liabilities, and eligibility.",
+      "required_fields": [
+        "borrower_id",
+        "name",
+        "income",
+        "assets",
+        "liabilities",
+        "credit_score",
+        "documents",
+        "risk_flags"
+      ]
+    },
+    {
+      "object": "Property",
+      "role": "Collateral object for value, title, insurance, location, and occupancy.",
+      "required_fields": [
+        "property_id",
+        "address",
+        "value",
+        "appraisal",
+        "title",
+        "insurance",
+        "collateral_status"
+      ]
+    },
+    {
+      "object": "Condition",
+      "role": "Underwriting, processing, closing, or post-close condition requiring evidence.",
+      "required_fields": [
+        "condition_id",
+        "loan",
+        "type",
+        "description",
+        "owner",
+        "due_date",
+        "status",
+        "evidence"
+      ]
+    },
+    {
+      "object": "Disclosure",
+      "role": "Mortgage disclosure timing and delivery evidence object.",
+      "required_fields": [
+        "disclosure_id",
+        "loan",
+        "type",
+        "delivery_date",
+        "timing_status",
+        "evidence"
+      ]
+    },
+    {
+      "object": "RateLock",
+      "role": "Pricing, lock expiration, extension, and fallout risk object.",
+      "required_fields": [
+        "lock_id",
+        "loan",
+        "rate",
+        "price",
+        "expiration",
+        "investor",
+        "fallout_risk"
+      ]
+    },
+    {
+      "object": "ClosingPackage",
+      "role": "Clear-to-close, closing disclosure, docs, funding, and boarding package.",
+      "required_fields": [
+        "closing_id",
+        "loan",
+        "clear_to_close_status",
+        "CD_status",
+        "docs",
+        "funding_status",
+        "post_close_status"
+      ]
+    },
+    {
+      "object": "PostCloseQC",
+      "role": "Post-close defect, compliance, salability, and investor readiness object.",
+      "required_fields": [
+        "qc_id",
+        "loan",
+        "review_date",
+        "defects",
+        "severity",
+        "corrections",
+        "saleability_status"
+      ]
+    }
+  ],
+  "supported_workflows": [
+    {
+      "workflow": "Mortgage Application Intake",
+      "description": "Create file and collect borrower/property data.",
+      "required_objects": [
+        "Borrower",
+        "MortgageLoan",
+        "Property"
+      ],
+      "outputs": [
+        "Application package",
+        "Initial missing document list"
+      ],
+      "approval_gates": [
+        "MLO_or_operations_review"
+      ]
+    },
+    {
+      "workflow": "Document Collection",
+      "description": "Collect, classify, validate, and clear borrower/property conditions.",
+      "required_objects": [
+        "Condition",
+        "Document",
+        "Evidence",
+        "Borrower",
+        "Property"
+      ],
+      "outputs": [
+        "Cleared conditions",
+        "Outstanding item list"
+      ],
+      "approval_gates": [
+        "processor_review",
+        "underwriter_review_if_condition_sensitive"
+      ]
+    },
+    {
+      "workflow": "Processing and Underwriting",
+      "description": "Validate credit, income, assets, property, eligibility, and investor/program requirements.",
+      "required_objects": [
+        "MortgageLoan",
+        "Borrower",
+        "Property",
+        "Condition"
+      ],
+      "outputs": [
+        "Underwriting decision support",
+        "Condition list",
+        "Risk flags"
+      ],
+      "approval_gates": [
+        "underwriter_approval",
+        "credit_or_policy_exception_review"
+      ]
+    },
+    {
+      "workflow": "Disclosure Timing Review",
+      "description": "Prepare and monitor mortgage disclosures and timing evidence.",
+      "required_objects": [
+        "Disclosure",
+        "LoanEstimate",
+        "ClosingDisclosure",
+        "MortgageLoan"
+      ],
+      "outputs": [
+        "Disclosure evidence",
+        "Timing exception report"
+      ],
+      "approval_gates": [
+        "compliance_review_if_exception"
+      ]
+    },
+    {
+      "workflow": "Closing and Funding",
+      "description": "Clear to close, prepare documents, fund, board, and archive the loan.",
+      "required_objects": [
+        "MortgageLoan",
+        "ClosingPackage",
+        "Disclosure",
+        "Condition"
+      ],
+      "outputs": [
+        "Funded loan",
+        "Closing package",
+        "Boarding evidence"
+      ],
+      "approval_gates": [
+        "clear_to_close_approval",
+        "funding_authorization",
+        "closing_review"
+      ]
+    },
+    {
+      "workflow": "Post-Close QC",
+      "description": "Review closed file for defects, compliance exceptions, and saleability.",
+      "required_objects": [
+        "MortgageLoan",
+        "PostCloseQC",
+        "Document",
+        "Evidence"
+      ],
+      "outputs": [
+        "QC report",
+        "Defect cure list",
+        "Saleability status"
+      ],
+      "approval_gates": [
+        "QC_manager_review",
+        "secondary_or_compliance_review_if_material"
+      ]
+    }
+  ],
+  "allowed_agents": [
+    {
+      "agent": "Mortgage File Intake Agent",
+      "allowed_actions": [
+        "create_file_summary",
+        "identify_required_fields",
+        "draft_intake_checklist",
+        "flag_missing_application_data"
+      ],
+      "prohibited_actions": [
+        "approve_application",
+        "issue_final_loan_terms",
+        "commit_to_borrower"
+      ]
+    },
+    {
+      "agent": "Document Collection Agent",
+      "allowed_actions": [
+        "classify_documents",
+        "match_documents_to_conditions",
+        "flag_missing_items",
+        "prepare_borrower_document_request"
+      ],
+      "prohibited_actions": [
+        "clear_sensitive_conditions_without_review",
+        "alter_source_documents"
+      ]
+    },
+    {
+      "agent": "Condition Clearing Agent",
+      "allowed_actions": [
+        "track_conditions",
+        "summarize_evidence",
+        "route_to_underwriter",
+        "identify_stale_documents"
+      ],
+      "prohibited_actions": [
+        "waive_conditions",
+        "approve_exceptions"
+      ]
+    },
+    {
+      "agent": "Disclosure Timing Agent",
+      "allowed_actions": [
+        "track_disclosure_dates",
+        "flag_timing_risks",
+        "prepare_exception_summary"
+      ],
+      "prohibited_actions": [
+        "issue_disclosures_without_approved_system",
+        "make_final_compliance_determination"
+      ]
+    },
+    {
+      "agent": "Underwriting Support Agent",
+      "allowed_actions": [
+        "summarize_credit_income_asset_property_evidence",
+        "identify_risk_flags",
+        "draft_underwriting_summary"
+      ],
+      "prohibited_actions": [
+        "approve_loan",
+        "deny_loan",
+        "override_investor_guidelines"
+      ]
+    },
+    {
+      "agent": "Rate Lock Monitor",
+      "allowed_actions": [
+        "track_lock_expiration",
+        "flag_extension_risk",
+        "summarize_pricing_or_fallout_risk"
+      ],
+      "prohibited_actions": [
+        "lock_rate",
+        "change_pricing",
+        "commit_terms"
+      ]
+    },
+    {
+      "agent": "Closing Checklist Agent",
+      "allowed_actions": [
+        "track_clear_to_close_items",
+        "prepare_closing_package_status",
+        "flag_funding_blockers"
+      ],
+      "prohibited_actions": [
+        "authorize_funding",
+        "release_docs_without_approval"
+      ]
+    },
+    {
+      "agent": "Post-Close QC Agent",
+      "allowed_actions": [
+        "classify_defects",
+        "draft_QC_summary",
+        "track_cures",
+        "flag_saleability_risk"
+      ],
+      "prohibited_actions": [
+        "finalize_QC_pass_fail_without_review",
+        "sell_loan"
+      ]
+    }
+  ],
+  "required_evidence": {
+    "application_intake": [
+      "loan_application",
+      "borrower_identity",
+      "property_information",
+      "initial_disclosures_if_applicable"
+    ],
+    "document_collection": [
+      "income_documents",
+      "asset_documents",
+      "credit_report",
+      "property_documents",
+      "condition_evidence"
+    ],
+    "underwriting": [
+      "credit_report",
+      "income_calculation",
+      "asset_verification",
+      "appraisal",
+      "title",
+      "insurance",
+      "program_eligibility"
+    ],
+    "disclosure_timing": [
+      "loan_estimate",
+      "closing_disclosure",
+      "delivery_confirmation",
+      "timing_calculation",
+      "change_of_circumstance_if_applicable"
+    ],
+    "closing_funding": [
+      "clear_to_close",
+      "closing_disclosure",
+      "closing_docs",
+      "funding_authorization",
+      "wire_confirmation",
+      "boarding_confirmation"
+    ],
+    "post_close_QC": [
+      "closed_loan_file",
+      "QC_checklist",
+      "defect_log",
+      "cure_evidence",
+      "investor_saleability_review"
+    ]
+  },
+  "approval_gates": {
+    "loan_approval_or_denial": [
+      "underwriter",
+      "credit_authority_if_exception"
+    ],
+    "disclosure_exception": [
+      "compliance_owner"
+    ],
+    "clear_to_close": [
+      "underwriter",
+      "closing_manager"
+    ],
+    "funding_authorization": [
+      "funding_manager",
+      "operations_owner"
+    ],
+    "condition_waiver": [
+      "underwriter",
+      "compliance_owner_if_regulatory"
+    ],
+    "post_close_defect_resolution": [
+      "QC_manager",
+      "secondary_market_owner_if_saleability_issue"
+    ]
+  },
+  "dashboards": [
+    {
+      "dashboard": "Mortgage Pipeline Dashboard",
+      "primary_kpis": [
+        "applications",
+        "locks",
+        "submissions",
+        "approvals",
+        "clear_to_close",
+        "funded_loans",
+        "pull_through_rate"
+      ]
+    },
+    {
+      "dashboard": "Mortgage Operations Dashboard",
+      "primary_kpis": [
+        "application_to_close_days",
+        "processing_cycle_time",
+        "underwriting_turn_time",
+        "condition_count"
+      ]
+    },
+    {
+      "dashboard": "Mortgage Compliance Dashboard",
+      "primary_kpis": [
+        "disclosure_exceptions",
+        "defect_rate",
+        "post_close_findings"
+      ]
+    },
+    {
+      "dashboard": "Mortgage Economics Dashboard",
+      "primary_kpis": [
+        "loan_volume",
+        "gain_on_sale",
+        "margin",
+        "fallout_rate",
+        "lock_extension_cost"
+      ]
+    }
+  ],
+  "kpis": [
+    "applications",
+    "locks",
+    "submissions",
+    "approvals",
+    "clear_to_close",
+    "funded_loans",
+    "pull_through_rate",
+    "application_to_close_days",
+    "processing_cycle_time",
+    "underwriting_turn_time",
+    "closing_cycle_time",
+    "condition_count",
+    "defect_rate",
+    "post_close_findings",
+    "disclosure_exceptions",
+    "fallout_rate",
+    "loan_volume",
+    "gain_on_sale",
+    "margin",
+    "lock_extension_cost",
+    "production_income"
+  ],
+  "relationships": [
+    {
+      "source": "Borrower",
+      "relationship": "APPLIES_FOR",
+      "target": "MortgageLoan"
+    },
+    {
+      "source": "MortgageLoan",
+      "relationship": "SECURED_BY",
+      "target": "Property"
+    },
+    {
+      "source": "Condition",
+      "relationship": "BLOCKS_OR_CLEARS",
+      "target": "LoanMilestone"
+    },
+    {
+      "source": "Disclosure",
+      "relationship": "SATISFIES",
+      "target": "ComplianceRequirement"
+    },
+    {
+      "source": "RateLock",
+      "relationship": "GOVERNS",
+      "target": "Pricing"
+    },
+    {
+      "source": "ClosingPackage",
+      "relationship": "FUNDS",
+      "target": "MortgageLoan"
+    }
+  ],
+  "router_examples": [
+    {
+      "user_request": "Tell me what is missing from this mortgage file.",
+      "route_to_workflow": "Document Collection",
+      "required_objects": [
+        "MortgageLoan",
+        "Borrower",
+        "Property",
+        "Condition",
+        "Evidence"
+      ],
+      "agents": [
+        "Document Collection Agent",
+        "Condition Clearing Agent"
+      ],
+      "outputs": [
+        "Outstanding document list",
+        "Condition status",
+        "Borrower request draft"
+      ]
+    },
+    {
+      "user_request": "Check if this file is ready for underwriting.",
+      "route_to_workflow": "Processing and Underwriting",
+      "required_objects": [
+        "MortgageLoan",
+        "Borrower",
+        "Property",
+        "Condition"
+      ],
+      "agents": [
+        "Underwriting Support Agent",
+        "Condition Clearing Agent"
+      ],
+      "outputs": [
+        "Underwriting summary",
+        "Risk flags",
+        "Missing evidence list"
+      ]
+    },
+    {
+      "user_request": "Review the loan for disclosure timing issues.",
+      "route_to_workflow": "Disclosure Timing Review",
+      "required_objects": [
+        "Disclosure",
+        "MortgageLoan"
+      ],
+      "agents": [
+        "Disclosure Timing Agent"
+      ],
+      "outputs": [
+        "Timing review",
+        "Exception summary",
+        "Evidence checklist"
+      ]
+    }
+  ],
+  "integration_dependencies": [
+    "objects.registry.json",
+    "workflows.registry.json",
+    "agents.registry.json",
+    "kpis.registry.json",
+    "dashboards.registry.json",
+    "relationships.registry.json",
+    "evidence.registry.json",
+    "approvals.registry.json"
+  ],
+  "acceptance_tests": [
+    "Can create a mortgage loan file with borrower, property, condition, disclosure, rate lock, closing, and QC objects.",
+    "Can classify uploaded mortgage documents and map them to open conditions.",
+    "Can flag disclosure timing issues and route to compliance review.",
+    "Can prepare an underwriting support summary without approving or denying the loan.",
+    "Can track clear-to-close and funding blockers.",
+    "Can create a post-close QC defect report with cure tasks.",
+    "Can preserve evidence and approval gates for compliance-sensitive mortgage outputs."
+  ],
+  "section_id": "FS-5100",
+  "section_aliases": [
+    "FS-5000"
+  ]
+}

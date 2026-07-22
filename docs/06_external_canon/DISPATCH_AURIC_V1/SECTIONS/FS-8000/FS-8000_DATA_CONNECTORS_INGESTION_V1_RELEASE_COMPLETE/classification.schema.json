@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Classification Assignment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "classification_id",
+    "tenant_id",
+    "scope_type",
+    "scope_id",
+    "level",
+    "assigned_at"
+  ],
+  "properties": {
+    "classification_id": {
+      "type": "string",
+      "pattern": "^CLASS-[A-Z0-9-]+$"
+    },
+    "tenant_id": {
+      "type": "string"
+    },
+    "scope_type": {
+      "type": "string",
+      "enum": [
+        "source",
+        "object",
+        "field",
+        "document",
+        "attachment"
+      ]
+    },
+    "scope_id": {
+      "type": "string"
+    },
+    "level": {
+      "$ref": "#/$defs/classification"
+    },
+    "sensitive_categories": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "pii",
+          "npi",
+          "phi",
+          "pci",
+          "credentials",
+          "legal_privilege",
+          "trade_secret",
+          "regulated_record",
+          "biometric"
+        ]
+      }
+    },
+    "model_use": {
+      "type": "string",
+      "enum": [
+        "allowed",
+        "restricted",
+        "prohibited"
+      ]
+    },
+    "assigned_at": {
+      "$ref": "#/$defs/timestamp"
+    },
+    "assigned_by": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "restricted",
+        "regulated"
+      ]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "unknown"
+      ]
+    },
+    "freshness": {
+      "type": "string",
+      "enum": [
+        "current",
+        "aging",
+        "stale",
+        "unknown"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

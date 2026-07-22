@@ -1,0 +1,5 @@
+issue_id,type,scope,severity,description,status,owner,release_impact,resolution
+KI-001,implementation,all sections,info,Live production credentials and integrations are not included in documentation release,open,Implementation,does not block content-complete documentation,configure during pilot
+KI-002,validation,golden journeys,high,End-to-end tests are defined but not executed against production software,open,QA,"blocks software release, not documentation completion",execute after implementation
+KI-003,legal,commercial,medium,Customer-specific legal and regulatory review remains external,open,Legal,conditional for pilot/production,complete per tenant and use case
+KI-004,performance,runtime,medium,Targets are defined; benchmark results require implemented environment,open,Engineering,blocks production performance approval,run benchmark suite

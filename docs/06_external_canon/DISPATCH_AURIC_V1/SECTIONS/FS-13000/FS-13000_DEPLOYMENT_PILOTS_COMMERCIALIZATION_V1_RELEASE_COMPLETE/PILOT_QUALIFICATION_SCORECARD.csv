@@ -1,0 +1,8 @@
+criterion,weight,required,evidence,pass_rule
+executive_sponsor,15,true,sponsor attestation,named accountable sponsor
+specific_problem,15,true,problem statement,bounded workflow pain
+available_data,15,true,source inventory,approved usable sources
+measurable_baseline,15,true,baseline report,numeric or observable baseline
+security_path,15,true,security feasibility,no unresolved critical blocker
+human_authority,15,true,approval map,binding decisions remain human
+delivery_capacity,10,true,capacity review,committed capacity available

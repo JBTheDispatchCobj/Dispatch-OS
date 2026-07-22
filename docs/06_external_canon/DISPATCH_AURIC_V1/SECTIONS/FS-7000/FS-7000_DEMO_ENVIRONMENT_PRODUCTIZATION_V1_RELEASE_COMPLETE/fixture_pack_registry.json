@@ -1,0 +1,690 @@
+{
+  "version": "1.0.0",
+  "fixture_packs": [
+    {
+      "fixture_pack_id": "FIX-CU-TERMINAL-001",
+      "scenario_id": "DEMO-CU-TERMINAL",
+      "version": "1.0.0",
+      "synthetic": true,
+      "institution": {
+        "institution_id": "CU-DEMO-001",
+        "name": "Heartland Cooperative Credit Union",
+        "institution_type": "credit_union",
+        "assets": 1450000000,
+        "members_or_customers": 103500
+      },
+      "executives": [
+        {
+          "executive_id": "PER-DEMO-CEO",
+          "name": "Jordan Hale",
+          "title": "President and CEO",
+          "authority": [
+            "strategic sponsorship",
+            "board reporting"
+          ]
+        },
+        {
+          "executive_id": "PER-DEMO-CIO",
+          "name": "Morgan Lee",
+          "title": "Chief Information Officer",
+          "authority": [
+            "technology roadmap",
+            "vendor sponsorship"
+          ]
+        },
+        {
+          "executive_id": "PER-DEMO-CCO",
+          "name": "Taylor Reed",
+          "title": "Chief Compliance Officer",
+          "authority": [
+            "compliance review",
+            "exam response"
+          ]
+        }
+      ],
+      "vendors": [
+        {
+          "vendor_id": "V-DEMO-CORE",
+          "name": "Prairie Core Systems",
+          "category": "core",
+          "criticality": "critical",
+          "renewal_date": "2027-04-30"
+        },
+        {
+          "vendor_id": "V-DEMO-DIGITAL",
+          "name": "River Digital Banking",
+          "category": "digital_banking",
+          "criticality": "high",
+          "renewal_date": "2026-12-31"
+        },
+        {
+          "vendor_id": "V-DEMO-CRM",
+          "name": "MemberPath CRM",
+          "category": "CRM",
+          "criticality": "medium",
+          "renewal_date": "2027-09-30"
+        }
+      ],
+      "products": [
+        {
+          "product_id": "P-DEMO-CONSUMER",
+          "category": "consumer_lending",
+          "status": "active"
+        },
+        {
+          "product_id": "P-DEMO-COMMERCIAL",
+          "category": "commercial_lending",
+          "status": "active"
+        },
+        {
+          "product_id": "P-DEMO-WEALTH",
+          "category": "wealth",
+          "status": "absent"
+        },
+        {
+          "product_id": "P-DEMO-INSURANCE",
+          "category": "insurance",
+          "status": "limited"
+        }
+      ],
+      "systems": [
+        {
+          "system_id": "SYS-DEMO-CORE",
+          "category": "core",
+          "vendor_id": "V-DEMO-CORE"
+        },
+        {
+          "system_id": "SYS-DEMO-DIGITAL",
+          "category": "digital_banking",
+          "vendor_id": "V-DEMO-DIGITAL"
+        }
+      ],
+      "documents": [
+        {
+          "document_id": "DOC-CU-STRATEGY",
+          "title": "2026 Strategic Plan",
+          "document_type": "strategic_plan",
+          "synthetic": true,
+          "content_reference": "fixtures/cu_terminal/2026_strategic_plan.md"
+        },
+        {
+          "document_id": "DOC-CU-VENDORS",
+          "title": "Vendor Inventory",
+          "document_type": "vendor_inventory",
+          "synthetic": true,
+          "content_reference": "fixtures/cu_terminal/vendor_inventory.csv"
+        },
+        {
+          "document_id": "DOC-CU-BOARD",
+          "title": "Board Minutes Excerpt",
+          "document_type": "board_minutes",
+          "synthetic": true,
+          "content_reference": "fixtures/cu_terminal/board_minutes.md"
+        }
+      ],
+      "expected_objects": [
+        "Institution",
+        "Executive",
+        "Vendor",
+        "System",
+        "Product",
+        "StrategicPriority",
+        "Risk",
+        "ReadinessScore",
+        "Opportunity"
+      ],
+      "expected_workflows": [
+        "WF-INSTITUTION-PROFILE-REFRESH",
+        "WF-OPPORTUNITY-DETECTION"
+      ],
+      "expected_agents": [
+        "Institution Profile Agent",
+        "Executive Graph Agent",
+        "Vendor Stack Agent",
+        "Opportunity Detection Agent",
+        "Board Report Agent"
+      ],
+      "expected_approvals": [
+        "board_release_if_exported"
+      ],
+      "expected_outputs": [
+        "Institution Terminal",
+        "Top 10 Opportunity Queue",
+        "Vendor Renewal Alert",
+        "Board Brief"
+      ],
+      "reset_profile": {
+        "reset_group": "CU_TERMINAL",
+        "deterministic_ids": true,
+        "seed_order": [
+          "institution",
+          "executives",
+          "vendors",
+          "systems",
+          "products",
+          "documents",
+          "scores",
+          "opportunities"
+        ]
+      }
+    },
+    {
+      "fixture_pack_id": "FIX-FINTECH-PILOT-001",
+      "scenario_id": "DEMO-FINTECH-PILOT",
+      "version": "1.0.0",
+      "synthetic": true,
+      "institution": {
+        "institution_id": "CU-DEMO-001",
+        "name": "Heartland Cooperative Credit Union",
+        "institution_type": "credit_union",
+        "assets": 1450000000,
+        "members_or_customers": 103500
+      },
+      "executives": [
+        {
+          "executive_id": "PER-DEMO-CIO",
+          "name": "Morgan Lee",
+          "title": "Chief Information Officer",
+          "authority": [
+            "technology sponsorship"
+          ]
+        },
+        {
+          "executive_id": "PER-DEMO-CCO",
+          "name": "Taylor Reed",
+          "title": "Chief Compliance Officer",
+          "authority": [
+            "compliance review"
+          ]
+        }
+      ],
+      "vendors": [
+        {
+          "vendor_id": "FINTECH-DEMO-001",
+          "name": "FlowPilot AI",
+          "category": "member_service_automation",
+          "criticality": "high"
+        }
+      ],
+      "products": [
+        {
+          "product_id": "FP-PROD-001",
+          "category": "AI_workflow_automation",
+          "status": "evaluating"
+        }
+      ],
+      "systems": [
+        {
+          "system_id": "SYS-DEMO-DIGITAL",
+          "category": "digital_banking",
+          "vendor_id": "V-DEMO-DIGITAL"
+        }
+      ],
+      "documents": [
+        {
+          "document_id": "DOC-FP-DECK",
+          "title": "FlowPilot Investor and Product Deck",
+          "document_type": "startup_deck",
+          "synthetic": true,
+          "content_reference": "fixtures/fintech_pilot/deck.md"
+        },
+        {
+          "document_id": "DOC-FP-SOC2",
+          "title": "SOC 2 Type II Summary",
+          "document_type": "security_report",
+          "synthetic": true,
+          "content_reference": "fixtures/fintech_pilot/soc2_summary.md"
+        },
+        {
+          "document_id": "DOC-FP-DATAFLOW",
+          "title": "Pilot Data Flow",
+          "document_type": "data_flow",
+          "synthetic": true,
+          "content_reference": "fixtures/fintech_pilot/data_flow.json"
+        },
+        {
+          "document_id": "DOC-FP-SOW",
+          "title": "Pilot Statement of Work",
+          "document_type": "SOW",
+          "synthetic": true,
+          "content_reference": "fixtures/fintech_pilot/pilot_sow.md"
+        }
+      ],
+      "expected_objects": [
+        "Startup",
+        "Product",
+        "UseCase",
+        "Integration",
+        "DataFlow",
+        "SecurityReview",
+        "Pilot",
+        "ReadinessScore",
+        "Approval"
+      ],
+      "expected_workflows": [
+        "WF-FINTECH-PILOT"
+      ],
+      "expected_agents": [
+        "Startup Profile Agent",
+        "CU Readiness Agent",
+        "Vendor Risk Agent",
+        "Integration Agent",
+        "Pilot Plan Agent",
+        "Board Report Agent"
+      ],
+      "expected_approvals": [
+        "business",
+        "security",
+        "vendor_risk",
+        "compliance"
+      ],
+      "expected_outputs": [
+        "Readiness Score",
+        "Blocker List",
+        "Pilot Plan",
+        "Vendor Risk Package",
+        "Board Brief"
+      ],
+      "reset_profile": {
+        "reset_group": "FINTECH_PILOT",
+        "deterministic_ids": true,
+        "seed_order": [
+          "institution",
+          "startup",
+          "documents",
+          "system_map",
+          "workflow",
+          "approvals"
+        ]
+      }
+    },
+    {
+      "fixture_pack_id": "FIX-EXAM-001",
+      "scenario_id": "DEMO-EXAM-BINDER",
+      "version": "1.0.0",
+      "synthetic": true,
+      "institution": {
+        "institution_id": "CU-DEMO-001",
+        "name": "Heartland Cooperative Credit Union",
+        "institution_type": "credit_union",
+        "assets": 1450000000,
+        "members_or_customers": 103500
+      },
+      "executives": [
+        {
+          "executive_id": "PER-DEMO-CCO",
+          "name": "Taylor Reed",
+          "title": "Chief Compliance Officer",
+          "authority": [
+            "exam response owner"
+          ]
+        }
+      ],
+      "vendors": [],
+      "products": [],
+      "systems": [
+        {
+          "system_id": "SYS-DEMO-GRC",
+          "category": "GRC",
+          "vendor_id": "V-DEMO-GRC"
+        }
+      ],
+      "documents": [
+        {
+          "document_id": "DOC-EXAM-REQUEST",
+          "title": "2026 Examination Request List",
+          "document_type": "exam_request",
+          "synthetic": true,
+          "content_reference": "fixtures/exam/request_list.csv"
+        },
+        {
+          "document_id": "DOC-EXAM-VENDOR-POLICY",
+          "title": "Vendor Management Policy",
+          "document_type": "policy",
+          "synthetic": true,
+          "content_reference": "fixtures/exam/vendor_policy.md"
+        },
+        {
+          "document_id": "DOC-EXAM-AI-POLICY",
+          "title": "AI Use Policy",
+          "document_type": "policy",
+          "synthetic": true,
+          "content_reference": "fixtures/exam/ai_policy.md"
+        },
+        {
+          "document_id": "DOC-EXAM-BCP",
+          "title": "Business Continuity Test Evidence",
+          "document_type": "control_evidence",
+          "synthetic": true,
+          "content_reference": "fixtures/exam/bcp_test.md"
+        }
+      ],
+      "expected_objects": [
+        "Examination",
+        "ExamRequest",
+        "Obligation",
+        "Policy",
+        "Control",
+        "Evidence",
+        "Finding",
+        "RemediationPlan",
+        "Approval"
+      ],
+      "expected_workflows": [
+        "WF-EXAM-RESPONSE"
+      ],
+      "expected_agents": [
+        "Exam Request Parser",
+        "Obligation Mapper",
+        "Evidence Collector",
+        "Response Drafter",
+        "Remediation Tracker"
+      ],
+      "expected_approvals": [
+        "compliance",
+        "legal_if_needed",
+        "executive_release"
+      ],
+      "expected_outputs": [
+        "Request Tracker",
+        "Evidence Gap Report",
+        "Response Drafts",
+        "Locked Binder",
+        "Board Status"
+      ],
+      "reset_profile": {
+        "reset_group": "EXAM_BINDER",
+        "deterministic_ids": true,
+        "seed_order": [
+          "institution",
+          "exam",
+          "requests",
+          "policies",
+          "controls",
+          "evidence",
+          "findings"
+        ]
+      }
+    },
+    {
+      "fixture_pack_id": "FIX-PARTICIPATION-001",
+      "scenario_id": "DEMO-LOAN-PARTICIPATION",
+      "version": "1.0.0",
+      "synthetic": true,
+      "institution": {
+        "institution_id": "CU-ORIGINATOR-001",
+        "name": "Gateway Business Credit Union",
+        "institution_type": "credit_union",
+        "assets": 2100000000,
+        "members_or_customers": 142000
+      },
+      "executives": [
+        {
+          "executive_id": "PER-ORIG-CLO",
+          "name": "Casey Morgan",
+          "title": "Chief Lending Officer",
+          "authority": [
+            "credit sponsorship",
+            "participation sale sponsorship"
+          ]
+        }
+      ],
+      "vendors": [],
+      "products": [
+        {
+          "product_id": "P-PARTICIPATION",
+          "category": "loan_participation",
+          "status": "active"
+        }
+      ],
+      "systems": [
+        {
+          "system_id": "SYS-LOAN-001",
+          "category": "commercial_LOS",
+          "vendor_id": "V-LOS-001"
+        }
+      ],
+      "documents": [
+        {
+          "document_id": "DOC-LOAN-CREDIT",
+          "title": "Commercial Credit Memo",
+          "document_type": "credit_memo",
+          "synthetic": true,
+          "content_reference": "fixtures/participation/credit_memo.md"
+        },
+        {
+          "document_id": "DOC-LOAN-FIN",
+          "title": "Borrower Financials",
+          "document_type": "financial_statements",
+          "synthetic": true,
+          "content_reference": "fixtures/participation/borrower_financials.csv"
+        },
+        {
+          "document_id": "DOC-LOAN-APPRAISAL",
+          "title": "Collateral Appraisal Summary",
+          "document_type": "appraisal",
+          "synthetic": true,
+          "content_reference": "fixtures/participation/appraisal.md"
+        },
+        {
+          "document_id": "DOC-LOAN-AGREEMENT",
+          "title": "Participation Agreement Draft",
+          "document_type": "legal_document",
+          "synthetic": true,
+          "content_reference": "fixtures/participation/agreement.md"
+        }
+      ],
+      "expected_objects": [
+        "Loan",
+        "Borrower",
+        "Guarantor",
+        "Collateral",
+        "Participation",
+        "Offering",
+        "BuyerInstitution",
+        "Allocation",
+        "Settlement"
+      ],
+      "expected_workflows": [
+        "WF-LOAN-PARTICIPATION"
+      ],
+      "expected_agents": [
+        "Participation Package Agent",
+        "Commercial Credit Analyst",
+        "Investor Matching Agent",
+        "Allocation Agent",
+        "Settlement Agent"
+      ],
+      "expected_approvals": [
+        "originator_credit",
+        "buyer_credit_or_investment",
+        "legal",
+        "settlement"
+      ],
+      "expected_outputs": [
+        "Completeness Score",
+        "Risk Memo",
+        "Buyer Ranking",
+        "Allocation",
+        "Settlement Checklist"
+      ],
+      "reset_profile": {
+        "reset_group": "PARTICIPATION",
+        "deterministic_ids": true,
+        "seed_order": [
+          "originator",
+          "loan",
+          "borrower",
+          "documents",
+          "buyers",
+          "offering",
+          "workflow"
+        ]
+      }
+    },
+    {
+      "fixture_pack_id": "FIX-WEALTH-001",
+      "scenario_id": "DEMO-WEALTH",
+      "version": "1.0.0",
+      "synthetic": true,
+      "institution": {
+        "institution_id": "CU-DEMO-001",
+        "name": "Heartland Cooperative Credit Union",
+        "institution_type": "credit_union",
+        "assets": 1450000000,
+        "members_or_customers": 103500
+      },
+      "executives": [
+        {
+          "executive_id": "PER-DEMO-RETAIL",
+          "name": "Riley Stone",
+          "title": "Chief Retail Officer",
+          "authority": [
+            "referral program sponsorship"
+          ]
+        }
+      ],
+      "vendors": [
+        {
+          "vendor_id": "V-WEALTH-PARTNER",
+          "name": "Prairie Advisory Partners",
+          "category": "RIA_referral_partner",
+          "criticality": "medium"
+        }
+      ],
+      "products": [
+        {
+          "product_id": "P-WEALTH-REF",
+          "category": "wealth_referral",
+          "status": "pilot"
+        }
+      ],
+      "systems": [
+        {
+          "system_id": "SYS-DEMO-CRM",
+          "category": "CRM",
+          "vendor_id": "V-DEMO-CRM"
+        }
+      ],
+      "documents": [
+        {
+          "document_id": "DOC-WEALTH-CONSENT",
+          "title": "Referral Consent Template",
+          "document_type": "consent",
+          "synthetic": true,
+          "content_reference": "fixtures/wealth/consent.md"
+        },
+        {
+          "document_id": "DOC-WEALTH-SIGNALS",
+          "title": "Synthetic Household Signals",
+          "document_type": "data_export",
+          "synthetic": true,
+          "content_reference": "fixtures/wealth/households.csv"
+        }
+      ],
+      "expected_objects": [
+        "Household",
+        "LifeEvent",
+        "WealthOpportunity",
+        "Consent",
+        "Referral",
+        "Advisor",
+        "Outcome"
+      ],
+      "expected_workflows": [
+        "WF-WEALTH-REFERRAL"
+      ],
+      "expected_agents": [
+        "Wealth Opportunity Agent",
+        "Consent Checker",
+        "Advisor Router",
+        "Attribution Agent"
+      ],
+      "expected_approvals": [
+        "consent",
+        "licensed_advisor"
+      ],
+      "expected_outputs": [
+        "Qualified Opportunity List",
+        "Consent Checklist",
+        "Advisor Routing",
+        "Referral Pipeline"
+      ],
+      "reset_profile": {
+        "reset_group": "WEALTH",
+        "deterministic_ids": true,
+        "seed_order": [
+          "institution",
+          "households",
+          "signals",
+          "consent",
+          "advisor",
+          "workflow"
+        ]
+      }
+    },
+    {
+      "fixture_pack_id": "FIX-SEARCH-001",
+      "scenario_id": "DEMO-INTELLIGENCE-SEARCH",
+      "version": "1.0.0",
+      "synthetic": true,
+      "institution": {
+        "institution_id": "NETWORK-DEMO",
+        "name": "Synthetic Institutional Network",
+        "institution_type": "network",
+        "assets": null,
+        "members_or_customers": null
+      },
+      "executives": [],
+      "vendors": [],
+      "products": [],
+      "systems": [],
+      "documents": [
+        {
+          "document_id": "DOC-SEARCH-NETWORK",
+          "title": "Synthetic Institution Network Dataset",
+          "document_type": "graph_fixture",
+          "synthetic": true,
+          "content_reference": "fixtures/search/network.json"
+        }
+      ],
+      "expected_objects": [
+        "Institution",
+        "Executive",
+        "Vendor",
+        "Product",
+        "ReadinessScore",
+        "Opportunity",
+        "Relationship"
+      ],
+      "expected_workflows": [
+        "WF-INSTITUTIONAL-SEARCH"
+      ],
+      "expected_agents": [
+        "Query Planner",
+        "Graph Search Agent",
+        "Ranking Agent",
+        "Executive Target Agent"
+      ],
+      "expected_approvals": [],
+      "expected_outputs": [
+        "Ranked Results",
+        "Comparison Matrix",
+        "Executive Targets",
+        "Outreach Brief"
+      ],
+      "reset_profile": {
+        "reset_group": "SEARCH",
+        "deterministic_ids": true,
+        "seed_order": [
+          "institutions",
+          "executives",
+          "vendors",
+          "scores",
+          "relationships",
+          "search_index"
+        ]
+      }
+    }
+  ]
+}

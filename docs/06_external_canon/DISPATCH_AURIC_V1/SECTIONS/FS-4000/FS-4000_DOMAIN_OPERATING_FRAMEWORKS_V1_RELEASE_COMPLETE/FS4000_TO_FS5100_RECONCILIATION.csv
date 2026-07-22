@@ -1,0 +1,230 @@
+fs4000_domain_id,domain,term_type,fs4000_term,fs5100_term,classification,notes
+FS-4001,Banking,object,Bank,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4001,Banking,object,Customer,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4001,Banking,object,Household,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4001,Banking,object,Business Customer,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4001,Banking,object,Account,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4001,Banking,object,Deposit,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4001,Banking,object,Loan,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4001,Banking,object,Payment,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4001,Banking,object,Transaction,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4001,Banking,object,Vendor,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4001,Banking,object,Policy,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4001,Banking,object,Control,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4001,Banking,object,Evidence,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4001,Banking,object,Workflow,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4001,Banking,object,Agent,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4001,Banking,object,KPI,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4001,Banking,object,Connector,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4001,Banking,domain,Institution Types,,extension,Domain taxonomy term; not expected to be a runtime/UI artifact.
+FS-4001,Banking,domain,Customer Operations,,extension,Domain taxonomy term; not expected to be a runtime/UI artifact.
+FS-4001,Banking,domain,Deposits,,extension,Domain taxonomy term; not expected to be a runtime/UI artifact.
+FS-4001,Banking,domain,Lending,,extension,Domain taxonomy term; not expected to be a runtime/UI artifact.
+FS-4001,Banking,domain,Payments,,extension,Domain taxonomy term; not expected to be a runtime/UI artifact.
+FS-4001,Banking,domain,Treasury & ALM,,extension,Domain taxonomy term; not expected to be a runtime/UI artifact.
+FS-4001,Banking,domain,Risk & Compliance,,extension,Domain taxonomy term; not expected to be a runtime/UI artifact.
+FS-4001,Banking,domain,Technology & Vendors,,extension,Domain taxonomy term; not expected to be a runtime/UI artifact.
+FS-4001,Banking,domain,Workflows,,extension,Domain taxonomy term; not expected to be a runtime/UI artifact.
+FS-4001,Banking,domain,Agents,,extension,Domain taxonomy term; not expected to be a runtime/UI artifact.
+FS-4001,Banking,domain,KPIs,,extension,Domain taxonomy term; not expected to be a runtime/UI artifact.
+FS-4001,Banking,domain,Knowledge Packs,,extension,Domain taxonomy term; not expected to be a runtime/UI artifact.
+FS-4002,Credit Unions,object,Credit Union,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4002,Credit Unions,object,Federal Credit Union,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4002,Credit Unions,object,State Chartered Credit Union,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4002,Credit Unions,object,Corporate Credit Union,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4002,Credit Unions,object,CUSO,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4002,Credit Unions,object,Member,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4002,Credit Unions,object,Household,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4002,Credit Unions,object,Business Member,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4002,Credit Unions,object,Loan,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4002,Credit Unions,object,Deposit,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4002,Credit Unions,object,Vendor,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4002,Credit Unions,object,Policy,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4002,Credit Unions,object,Control,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4002,Credit Unions,object,Evidence,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4002,Credit Unions,object,Board,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4002,Credit Unions,object,Committee,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4002,Credit Unions,object,Workflow,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4002,Credit Unions,object,Agent,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4002,Credit Unions,object,KPI,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4002,Credit Unions,object,Connector,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4003,Commercial Banking,object,Business Customer,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4003,Commercial Banking,object,Commercial Relationship,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4003,Commercial Banking,object,Relationship Plan,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4003,Commercial Banking,object,Commercial Deposit,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4003,Commercial Banking,object,Treasury Service,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4003,Commercial Banking,object,Commercial Loan,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4003,Commercial Banking,object,Credit Memo,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4003,Commercial Banking,object,Collateral,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4003,Commercial Banking,object,Covenant,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4003,Commercial Banking,object,Annual Review,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4003,Commercial Banking,object,Watchlist,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4003,Commercial Banking,object,Workout Plan,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4004,Mortgage,object,Borrower,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4004,Mortgage,object,Mortgage Application,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4004,Mortgage,object,Mortgage Loan,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4004,Mortgage,object,Property,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4004,Mortgage,object,Loan Estimate,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4004,Mortgage,object,Closing Disclosure,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4004,Mortgage,object,Condition,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4004,Mortgage,object,Appraisal,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4004,Mortgage,object,Title,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4004,Mortgage,object,Rate Lock,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4004,Mortgage,object,Closing Package,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4004,Mortgage,object,Funding Authorization,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4004,Mortgage,object,Servicing Transfer,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4004,Mortgage,object,QC Defect,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4005,Private Credit,object,Private Credit Fund,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4005,Private Credit,object,LP,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4005,Private Credit,object,GP,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4005,Private Credit,object,Sponsor,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4005,Private Credit,object,Borrower,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4005,Private Credit,object,Deal,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4005,Private Credit,object,Facility,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4005,Private Credit,object,Term Sheet,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4005,Private Credit,object,IC Memo,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4005,Private Credit,object,Covenant,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4005,Private Credit,object,Collateral,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4005,Private Credit,object,Borrowing Base,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4005,Private Credit,object,Valuation,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4005,Private Credit,object,LP Report,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4005,Private Credit,object,Workout Plan,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4006,Private Equity,object,Private Equity Firm,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4006,Private Equity,object,Fund,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4006,Private Equity,object,LP,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4006,Private Equity,object,Deal,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4006,Private Equity,object,Target,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4006,Private Equity,object,Investment Thesis,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4006,Private Equity,object,Diligence Item,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4006,Private Equity,object,IC Memo,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4006,Private Equity,object,Portfolio Company,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4006,Private Equity,object,Value Creation Plan,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4006,Private Equity,object,Board Packet,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4006,Private Equity,object,Exit Plan,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4007,Venture Capital,object,Venture Fund,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4007,Venture Capital,object,LP,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4007,Venture Capital,object,Startup,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4007,Venture Capital,object,Founder,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4007,Venture Capital,object,Deal,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4007,Venture Capital,object,Round,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4007,Venture Capital,object,SAFE,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4007,Venture Capital,object,Convertible Note,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4007,Venture Capital,object,Investment Memo,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4007,Venture Capital,object,Pilot,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4007,Venture Capital,object,Portfolio Company,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4007,Venture Capital,object,Follow-On Decision,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4007,Venture Capital,object,Exit,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4008,Capital Markets,object,Issuer,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4008,Capital Markets,object,Investor,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4008,Capital Markets,object,Intermediary,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4008,Capital Markets,object,Instrument,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4008,Capital Markets,object,Offering,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4008,Capital Markets,object,Trade,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4008,Capital Markets,object,Position,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4008,Capital Markets,object,Portfolio,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4008,Capital Markets,object,Valuation,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4008,Capital Markets,object,Settlement,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4008,Capital Markets,object,Participation,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4008,Capital Markets,object,Securitization,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4008,Capital Markets,object,Compliance Record,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4009,Wealth Management,object,Client,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4009,Wealth Management,object,Household,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4009,Wealth Management,object,Advisor,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4009,Wealth Management,object,Account,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4009,Wealth Management,object,Portfolio,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4009,Wealth Management,object,Financial Plan,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4009,Wealth Management,object,Goal,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4009,Wealth Management,object,Recommendation,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4009,Wealth Management,object,Insurance Policy,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4009,Wealth Management,object,Trust,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4009,Wealth Management,object,Referral,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4009,Wealth Management,object,Client Review,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4009,Wealth Management,object,Billing Event,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4009,Wealth Management,object,Compliance Review,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4010,Insurance,object,Carrier,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4010,Insurance,object,Agency,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4010,Insurance,object,Producer,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4010,Insurance,object,Policyholder,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4010,Insurance,object,Policy,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4010,Insurance,object,Coverage,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4010,Insurance,object,Premium,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4010,Insurance,object,Commission,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4010,Insurance,object,Claim,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4010,Insurance,object,Renewal,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4010,Insurance,object,Referral,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4010,Insurance,object,License,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4010,Insurance,object,Appointment,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4010,Insurance,object,Compliance Review,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4011,Construction Finance,object,Contractor,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4011,Construction Finance,object,Developer,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4011,Construction Finance,object,Project,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4011,Construction Finance,object,Construction Loan,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4011,Construction Finance,object,Budget,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4011,Construction Finance,object,Draw Request,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4011,Construction Finance,object,Inspection Report,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4011,Construction Finance,object,Lien Waiver,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4011,Construction Finance,object,Title Update,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4011,Construction Finance,object,Permit,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4011,Construction Finance,object,Change Order,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4011,Construction Finance,object,Equipment Asset,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4011,Construction Finance,object,Bond,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4011,Construction Finance,object,Insurance Certificate,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4012,Manufacturing Finance,object,Manufacturer,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4012,Manufacturing Finance,object,Plant,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4012,Manufacturing Finance,object,Production Line,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4012,Manufacturing Finance,object,SKU,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4012,Manufacturing Finance,object,Customer,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4012,Manufacturing Finance,object,Supplier,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4012,Manufacturing Finance,object,Inventory,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4012,Manufacturing Finance,object,WIP,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4012,Manufacturing Finance,object,Receivable,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4012,Manufacturing Finance,object,Payable,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4012,Manufacturing Finance,object,Equipment Asset,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4012,Manufacturing Finance,object,Borrowing Base,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4012,Manufacturing Finance,object,Working Capital Line,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4012,Manufacturing Finance,object,Treasury Service,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4012,Manufacturing Finance,object,Covenant,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4013,Healthcare Finance,object,Healthcare Provider Business,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4013,Healthcare Finance,object,Practice,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4013,Healthcare Finance,object,Provider Owner,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4013,Healthcare Finance,object,Payer,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4013,Healthcare Finance,object,Claim,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4013,Healthcare Finance,object,Denial,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4013,Healthcare Finance,object,Revenue Cycle,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4013,Healthcare Finance,object,AR Aging,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4013,Healthcare Finance,object,Equipment Asset,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4013,Healthcare Finance,object,Facility,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4013,Healthcare Finance,object,Practice Acquisition,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4013,Healthcare Finance,object,Partner Buy-In,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4013,Healthcare Finance,object,Healthcare Loan,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4013,Healthcare Finance,object,Treasury Service,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4013,Healthcare Finance,object,License,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4013,Healthcare Finance,object,Insurance,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4014,"Regulation, Reporting & Examination",object,Regulator,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4014,"Regulation, Reporting & Examination",object,Institution Regulatory Profile,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4014,"Regulation, Reporting & Examination",object,Rule,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4014,"Regulation, Reporting & Examination",object,Obligation,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4014,"Regulation, Reporting & Examination",object,Policy,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4014,"Regulation, Reporting & Examination",object,Procedure,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4014,"Regulation, Reporting & Examination",object,Control,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4014,"Regulation, Reporting & Examination",object,Evidence,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4014,"Regulation, Reporting & Examination",object,Filing,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4014,"Regulation, Reporting & Examination",object,Examination,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4014,"Regulation, Reporting & Examination",object,Exam Request,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4014,"Regulation, Reporting & Examination",object,Finding,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4014,"Regulation, Reporting & Examination",object,Remediation Plan,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4014,"Regulation, Reporting & Examination",object,Vendor Review,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4014,"Regulation, Reporting & Examination",object,Regulatory Change,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4014,"Regulation, Reporting & Examination",object,Board Report,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4015,Institutional Intelligence Integration & Deployment,object,Institution,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4015,Institutional Intelligence Integration & Deployment,object,Executive,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4015,Institutional Intelligence Integration & Deployment,object,Vendor,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4015,Institutional Intelligence Integration & Deployment,object,Product,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4015,Institutional Intelligence Integration & Deployment,object,Workflow,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4015,Institutional Intelligence Integration & Deployment,object,Opportunity,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4015,Institutional Intelligence Integration & Deployment,object,Risk,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4015,Institutional Intelligence Integration & Deployment,object,Evidence,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4015,Institutional Intelligence Integration & Deployment,object,Approval,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4015,Institutional Intelligence Integration & Deployment,object,Readiness Score,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4015,Institutional Intelligence Integration & Deployment,object,Agent,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.
+FS-4015,Institutional Intelligence Integration & Deployment,object,Board Report,,extension,FS-4000 domain-specific term; reconcile to FS-5100 canonical registry when available.

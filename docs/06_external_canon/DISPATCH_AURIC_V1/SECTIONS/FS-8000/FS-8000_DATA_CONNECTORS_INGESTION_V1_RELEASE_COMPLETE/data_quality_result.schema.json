@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Data Quality Result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "quality_result_id",
+    "tenant_id",
+    "rule_id",
+    "scope_type",
+    "scope_id",
+    "severity",
+    "outcome",
+    "measured_at"
+  ],
+  "properties": {
+    "quality_result_id": {
+      "type": "string",
+      "pattern": "^DQR-[A-Z0-9-]+$"
+    },
+    "tenant_id": {
+      "type": "string"
+    },
+    "rule_id": {
+      "type": "string"
+    },
+    "scope_type": {
+      "type": "string",
+      "enum": [
+        "source",
+        "file",
+        "record",
+        "field",
+        "relationship",
+        "aggregate"
+      ]
+    },
+    "scope_id": {
+      "type": "string"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "info",
+        "warning",
+        "error",
+        "critical"
+      ]
+    },
+    "outcome": {
+      "type": "string",
+      "enum": [
+        "pass",
+        "fail",
+        "waived",
+        "not_applicable"
+      ]
+    },
+    "measured_value": {},
+    "expected_value": {},
+    "variance": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "tolerance": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "measured_at": {
+      "$ref": "#/$defs/timestamp"
+    },
+    "waiver": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": true
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "restricted",
+        "regulated"
+      ]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "unknown"
+      ]
+    },
+    "freshness": {
+      "type": "string",
+      "enum": [
+        "current",
+        "aging",
+        "stale",
+        "unknown"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

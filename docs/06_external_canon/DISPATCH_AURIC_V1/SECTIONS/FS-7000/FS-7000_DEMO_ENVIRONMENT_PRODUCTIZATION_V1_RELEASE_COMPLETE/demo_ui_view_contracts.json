@@ -1,0 +1,114 @@
+{
+  "version": "1.0.0",
+  "views": [
+    {
+      "view_id": "VIEW-INSTITUTION-TERMINAL",
+      "route": "/institutions/{institution_id}",
+      "tabs": [
+        "overview",
+        "executives",
+        "board",
+        "financials",
+        "products",
+        "vendors",
+        "systems",
+        "regulatory",
+        "risk",
+        "readiness",
+        "opportunities",
+        "workflows",
+        "evidence",
+        "relationships",
+        "documents",
+        "activity"
+      ],
+      "required_permissions": [
+        "institution.read"
+      ],
+      "primary_data": [
+        "Institution",
+        "Executive[]",
+        "VendorRelationship[]",
+        "ReadinessScore[]",
+        "Opportunity[]"
+      ]
+    },
+    {
+      "view_id": "VIEW-PILOT",
+      "route": "/pilots/{pilot_id}",
+      "tabs": [
+        "summary",
+        "startup",
+        "use_case",
+        "integration",
+        "security",
+        "compliance",
+        "readiness",
+        "plan",
+        "approvals",
+        "evidence",
+        "activity"
+      ],
+      "required_permissions": [
+        "pilot.read"
+      ],
+      "primary_data": [
+        "Pilot",
+        "Startup",
+        "ReadinessScore[]",
+        "Evidence[]",
+        "Approval[]"
+      ]
+    },
+    {
+      "view_id": "VIEW-EXAM",
+      "route": "/examinations/{examination_id}",
+      "tabs": [
+        "requests",
+        "evidence",
+        "responses",
+        "findings",
+        "remediation",
+        "approvals",
+        "binder",
+        "activity"
+      ],
+      "required_permissions": [
+        "examination.read"
+      ],
+      "primary_data": [
+        "Examination",
+        "ExamRequest[]",
+        "EvidencePackage",
+        "Finding[]",
+        "Approval[]"
+      ]
+    },
+    {
+      "view_id": "VIEW-PARTICIPATION",
+      "route": "/participations/{participation_id}",
+      "tabs": [
+        "summary",
+        "borrower",
+        "credit",
+        "collateral",
+        "buyers",
+        "allocation",
+        "approvals",
+        "settlement",
+        "monitoring",
+        "activity"
+      ],
+      "required_permissions": [
+        "participation.read"
+      ],
+      "primary_data": [
+        "Participation",
+        "Loan",
+        "BuyerMatch[]",
+        "Allocation",
+        "Approval[]"
+      ]
+    }
+  ]
+}

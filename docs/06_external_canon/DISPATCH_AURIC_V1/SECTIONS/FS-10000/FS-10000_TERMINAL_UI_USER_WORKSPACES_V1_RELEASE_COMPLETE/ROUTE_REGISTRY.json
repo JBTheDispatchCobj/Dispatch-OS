@@ -1,0 +1,320 @@
+{
+  "schema_version": "1.0",
+  "routes": [
+    {
+      "route_id": "home",
+      "path": "/home",
+      "page_contract_id": "home_command_center",
+      "primary_persona": "institution.user",
+      "required_capability": "view_home",
+      "tenant_scoped": true,
+      "supports_deep_link": true,
+      "loader_timeout_ms": 3000,
+      "states": [
+        "loading",
+        "ready",
+        "empty",
+        "partial",
+        "stale",
+        "restricted",
+        "failed"
+      ],
+      "audit_view": false,
+      "version": "1.0"
+    },
+    {
+      "route_id": "institution.list",
+      "path": "/institutions",
+      "page_contract_id": "institution_directory",
+      "primary_persona": "institution.user",
+      "required_capability": "institution.read",
+      "tenant_scoped": true,
+      "supports_deep_link": true,
+      "loader_timeout_ms": 3000,
+      "states": [
+        "loading",
+        "ready",
+        "empty",
+        "partial",
+        "stale",
+        "restricted",
+        "failed"
+      ],
+      "audit_view": false,
+      "version": "1.0"
+    },
+    {
+      "route_id": "institution.detail",
+      "path": "/institutions/{institution_id}",
+      "page_contract_id": "institution_terminal",
+      "primary_persona": "institution.user",
+      "required_capability": "institution.read",
+      "tenant_scoped": true,
+      "supports_deep_link": true,
+      "loader_timeout_ms": 3000,
+      "states": [
+        "loading",
+        "ready",
+        "empty",
+        "partial",
+        "stale",
+        "restricted",
+        "failed"
+      ],
+      "audit_view": false,
+      "version": "1.0"
+    },
+    {
+      "route_id": "executive.list",
+      "path": "/executives",
+      "page_contract_id": "executive_directory",
+      "primary_persona": "institution.user",
+      "required_capability": "executive.read",
+      "tenant_scoped": true,
+      "supports_deep_link": true,
+      "loader_timeout_ms": 3000,
+      "states": [
+        "loading",
+        "ready",
+        "empty",
+        "partial",
+        "stale",
+        "restricted",
+        "failed"
+      ],
+      "audit_view": false,
+      "version": "1.0"
+    },
+    {
+      "route_id": "executive.detail",
+      "path": "/executives/{executive_id}",
+      "page_contract_id": "executive_workspace",
+      "primary_persona": "institution.user",
+      "required_capability": "executive.read",
+      "tenant_scoped": true,
+      "supports_deep_link": true,
+      "loader_timeout_ms": 3000,
+      "states": [
+        "loading",
+        "ready",
+        "empty",
+        "partial",
+        "stale",
+        "restricted",
+        "failed"
+      ],
+      "audit_view": false,
+      "version": "1.0"
+    },
+    {
+      "route_id": "opportunity.list",
+      "path": "/opportunities",
+      "page_contract_id": "opportunity_queue",
+      "primary_persona": "institution.user",
+      "required_capability": "opportunity.read",
+      "tenant_scoped": true,
+      "supports_deep_link": true,
+      "loader_timeout_ms": 3000,
+      "states": [
+        "loading",
+        "ready",
+        "empty",
+        "partial",
+        "stale",
+        "restricted",
+        "failed"
+      ],
+      "audit_view": false,
+      "version": "1.0"
+    },
+    {
+      "route_id": "opportunity.detail",
+      "path": "/opportunities/{opportunity_id}",
+      "page_contract_id": "opportunity_workspace",
+      "primary_persona": "institution.user",
+      "required_capability": "opportunity.read",
+      "tenant_scoped": true,
+      "supports_deep_link": true,
+      "loader_timeout_ms": 3000,
+      "states": [
+        "loading",
+        "ready",
+        "empty",
+        "partial",
+        "stale",
+        "restricted",
+        "failed"
+      ],
+      "audit_view": false,
+      "version": "1.0"
+    },
+    {
+      "route_id": "workflow.list",
+      "path": "/workflows",
+      "page_contract_id": "workflow_queue",
+      "primary_persona": "institution.user",
+      "required_capability": "workflow.read",
+      "tenant_scoped": true,
+      "supports_deep_link": true,
+      "loader_timeout_ms": 3000,
+      "states": [
+        "loading",
+        "ready",
+        "empty",
+        "partial",
+        "stale",
+        "restricted",
+        "failed"
+      ],
+      "audit_view": false,
+      "version": "1.0"
+    },
+    {
+      "route_id": "workflow.detail",
+      "path": "/workflows/{workflow_instance_id}",
+      "page_contract_id": "workflow_workspace",
+      "primary_persona": "institution.user",
+      "required_capability": "workflow.read",
+      "tenant_scoped": true,
+      "supports_deep_link": true,
+      "loader_timeout_ms": 3000,
+      "states": [
+        "loading",
+        "ready",
+        "empty",
+        "partial",
+        "stale",
+        "restricted",
+        "failed"
+      ],
+      "audit_view": false,
+      "version": "1.0"
+    },
+    {
+      "route_id": "evidence.list",
+      "path": "/evidence",
+      "page_contract_id": "evidence_library",
+      "primary_persona": "institution.user",
+      "required_capability": "evidence.read",
+      "tenant_scoped": true,
+      "supports_deep_link": true,
+      "loader_timeout_ms": 3000,
+      "states": [
+        "loading",
+        "ready",
+        "empty",
+        "partial",
+        "stale",
+        "restricted",
+        "failed"
+      ],
+      "audit_view": false,
+      "version": "1.0"
+    },
+    {
+      "route_id": "approval.list",
+      "path": "/approvals",
+      "page_contract_id": "approval_queue",
+      "primary_persona": "approver",
+      "required_capability": "approval.read",
+      "tenant_scoped": true,
+      "supports_deep_link": true,
+      "loader_timeout_ms": 3000,
+      "states": [
+        "loading",
+        "ready",
+        "empty",
+        "partial",
+        "stale",
+        "restricted",
+        "failed"
+      ],
+      "audit_view": true,
+      "version": "1.0"
+    },
+    {
+      "route_id": "network.search",
+      "path": "/network",
+      "page_contract_id": "network_discovery",
+      "primary_persona": "network.user",
+      "required_capability": "network.search",
+      "tenant_scoped": true,
+      "supports_deep_link": true,
+      "loader_timeout_ms": 3000,
+      "states": [
+        "loading",
+        "ready",
+        "empty",
+        "partial",
+        "stale",
+        "restricted",
+        "failed"
+      ],
+      "audit_view": false,
+      "version": "1.0"
+    },
+    {
+      "route_id": "dashboard.list",
+      "path": "/dashboards",
+      "page_contract_id": "dashboard_library",
+      "primary_persona": "institution.user",
+      "required_capability": "dashboard.read",
+      "tenant_scoped": true,
+      "supports_deep_link": true,
+      "loader_timeout_ms": 3000,
+      "states": [
+        "loading",
+        "ready",
+        "empty",
+        "partial",
+        "stale",
+        "restricted",
+        "failed"
+      ],
+      "audit_view": false,
+      "version": "1.0"
+    },
+    {
+      "route_id": "report.list",
+      "path": "/reports",
+      "page_contract_id": "report_library",
+      "primary_persona": "institution.user",
+      "required_capability": "report.read",
+      "tenant_scoped": true,
+      "supports_deep_link": true,
+      "loader_timeout_ms": 3000,
+      "states": [
+        "loading",
+        "ready",
+        "empty",
+        "partial",
+        "stale",
+        "restricted",
+        "failed"
+      ],
+      "audit_view": false,
+      "version": "1.0"
+    },
+    {
+      "route_id": "admin.home",
+      "path": "/admin",
+      "page_contract_id": "administration",
+      "primary_persona": "tenant.admin",
+      "required_capability": "tenant.admin",
+      "tenant_scoped": true,
+      "supports_deep_link": true,
+      "loader_timeout_ms": 3000,
+      "states": [
+        "loading",
+        "ready",
+        "empty",
+        "partial",
+        "stale",
+        "restricted",
+        "failed"
+      ],
+      "audit_view": true,
+      "version": "1.0"
+    }
+  ]
+}

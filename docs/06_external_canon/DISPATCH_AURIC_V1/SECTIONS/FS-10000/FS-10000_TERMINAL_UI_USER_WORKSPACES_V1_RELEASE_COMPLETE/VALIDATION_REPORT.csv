@@ -1,0 +1,14 @@
+artifact_or_check,status,detail
+PAGE_CONTRACT_REGISTRY.json,PASS,valid JSON
+SAMPLE_OPPORTUNITY_DECISION_MEMO.json,PASS,valid JSON
+UI_STATE_MACHINE.json,PASS,valid JSON
+ROUTE_REGISTRY.json,PASS,valid JSON
+TERMINAL_SYNTHETIC_FIXTURE.json,PASS,valid JSON
+DASHBOARD_DEFINITIONS.json,PASS,valid JSON
+REPORT_TEMPLATE_REGISTRY.json,PASS,valid JSON
+COMPONENT_CONTRACTS.json,PASS,valid JSON
+schemas/page_contract_registry.schema.json,PASS,valid JSON
+schemas/ui_state_machine.schema.json,PASS,valid JSON
+schemas/route_registry.schema.json,PASS,valid JSON
+cross_reference:route_to_page,PASS,all route page references resolve
+cross_reference:page_to_route,PASS,all page route references resolve

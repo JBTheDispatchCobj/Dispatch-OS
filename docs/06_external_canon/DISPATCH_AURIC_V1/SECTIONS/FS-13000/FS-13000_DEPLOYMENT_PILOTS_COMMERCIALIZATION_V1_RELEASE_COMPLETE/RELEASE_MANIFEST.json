@@ -1,0 +1,367 @@
+{
+  "section": "FS-13000",
+  "name": "Deployment, Pilots & Commercialization",
+  "version": "1.0.0",
+  "status": "V1_CONTENT_COMPLETE",
+  "generated_at": "2026-07-22T09:14:49.519675+00:00",
+  "authoritative_inputs": [
+    "DISPATCH / AURIC V1",
+    "FS-13000 baseline",
+    "FS-4000 through FS-12000 canonical dependencies"
+  ],
+  "release_gates": {
+    "json_parse": true,
+    "fixture_validation": true,
+    "csv_structure": true,
+    "human_authority_explicit": true,
+    "known_blockers": 0
+  },
+  "artifacts": [
+    {
+      "filename": "13001_DEPLOYMENT_ARCHITECTURE_ENVIRONMENTS_V1_RELEASE.md",
+      "category": "md",
+      "size_bytes": 11714
+    },
+    {
+      "filename": "13002_TENANT_PROVISIONING_ONBOARDING_V1_RELEASE.md",
+      "category": "md",
+      "size_bytes": 11354
+    },
+    {
+      "filename": "13003_PILOT_QUALIFICATION_SCOPING_V1_RELEASE.md",
+      "category": "md",
+      "size_bytes": 11257
+    },
+    {
+      "filename": "13004_PILOT_IMPLEMENTATION_PLAYBOOK_V1_RELEASE.md",
+      "category": "md",
+      "size_bytes": 11275
+    },
+    {
+      "filename": "13005_INSTITUTION_SUCCESS_SUPPORT_OPERATIONS_V1_RELEASE.md",
+      "category": "md",
+      "size_bytes": 10845
+    },
+    {
+      "filename": "13006_COMMERCIAL_PACKAGING_PRICING_V1_RELEASE.md",
+      "category": "md",
+      "size_bytes": 11537
+    },
+    {
+      "filename": "13007_CONTRACTING_PROCUREMENT_LEGAL_PATH_V1_RELEASE.md",
+      "category": "md",
+      "size_bytes": 11087
+    },
+    {
+      "filename": "13008_PARTNER_CHANNEL_ECOSYSTEM_V1_RELEASE.md",
+      "category": "md",
+      "size_bytes": 10701
+    },
+    {
+      "filename": "13009_GO_TO_MARKET_INSTITUTION_SEGMENTATION_V1_RELEASE.md",
+      "category": "md",
+      "size_bytes": 11190
+    },
+    {
+      "filename": "13010_SALES_PIPELINE_DEAL_DESK_V1_RELEASE.md",
+      "category": "md",
+      "size_bytes": 10924
+    },
+    {
+      "filename": "13011_MARKETING_PUBLICATION_DEMAND_ENGINE_V1_RELEASE.md",
+      "category": "md",
+      "size_bytes": 10936
+    },
+    {
+      "filename": "13012_IMPLEMENTATION_PARTNER_CERTIFICATION_V1_RELEASE.md",
+      "category": "md",
+      "size_bytes": 10878
+    },
+    {
+      "filename": "13013_RENEWAL_EXPANSION_LAND_AND_EXPAND_V1_RELEASE.md",
+      "category": "md",
+      "size_bytes": 10725
+    },
+    {
+      "filename": "13014_COMMERCIAL_METRICS_FORECAST_CAPACITY_V1_RELEASE.md",
+      "category": "md",
+      "size_bytes": 11067
+    },
+    {
+      "filename": "13015_MASTER_DEPLOYMENT_COMMERCIALIZATION_INDEX_V1_RELEASE.md",
+      "category": "md",
+      "size_bytes": 11904
+    },
+    {
+      "filename": "COMMERCIAL_METRICS_CATALOG.csv",
+      "category": "csv",
+      "size_bytes": 790
+    },
+    {
+      "filename": "DEAL_DESK_APPROVAL_MATRIX.csv",
+      "category": "csv",
+      "size_bytes": 608
+    },
+    {
+      "filename": "ENVIRONMENT_MANIFEST.csv",
+      "category": "csv",
+      "size_bytes": 249
+    },
+    {
+      "filename": "FIXTURE_COMMERCIAL_METRIC_SNAPSHOT.json",
+      "category": "json",
+      "size_bytes": 1332
+    },
+    {
+      "filename": "FIXTURE_COMMERCIAL_OPPORTUNITY.json",
+      "category": "json",
+      "size_bytes": 1321
+    },
+    {
+      "filename": "FIXTURE_COMMERCIAL_PACKAGE.json",
+      "category": "json",
+      "size_bytes": 1312
+    },
+    {
+      "filename": "FIXTURE_COMMERCIAL_RELEASE_INDEX.json",
+      "category": "json",
+      "size_bytes": 1328
+    },
+    {
+      "filename": "FIXTURE_CONTENT_ITEM.json",
+      "category": "json",
+      "size_bytes": 1302
+    },
+    {
+      "filename": "FIXTURE_ENVIRONMENT.json",
+      "category": "json",
+      "size_bytes": 1304
+    },
+    {
+      "filename": "FIXTURE_MARKET_SEGMENT.json",
+      "category": "json",
+      "size_bytes": 1308
+    },
+    {
+      "filename": "FIXTURE_PARTNER.json",
+      "category": "json",
+      "size_bytes": 1293
+    },
+    {
+      "filename": "FIXTURE_PARTNER_CERTIFICATION.json",
+      "category": "json",
+      "size_bytes": 1320
+    },
+    {
+      "filename": "FIXTURE_PILOT_IMPLEMENTATION.json",
+      "category": "json",
+      "size_bytes": 1319
+    },
+    {
+      "filename": "FIXTURE_PILOT_SCOPE.json",
+      "category": "json",
+      "size_bytes": 1301
+    },
+    {
+      "filename": "FIXTURE_PROCUREMENT_MATTER.json",
+      "category": "json",
+      "size_bytes": 1315
+    },
+    {
+      "filename": "FIXTURE_RENEWAL.json",
+      "category": "json",
+      "size_bytes": 1298
+    },
+    {
+      "filename": "FIXTURE_SUPPORT_CASE.json",
+      "category": "json",
+      "size_bytes": 1301
+    },
+    {
+      "filename": "FIXTURE_TENANT_PROVISIONING.json",
+      "category": "json",
+      "size_bytes": 1316
+    },
+    {
+      "filename": "FS13000_ACCEPTANCE_TESTS.md",
+      "category": "md",
+      "size_bytes": 1441
+    },
+    {
+      "filename": "FS13000_COMMERCIAL_THREAT_MODEL.md",
+      "category": "md",
+      "size_bytes": 2035
+    },
+    {
+      "filename": "FS13000_IMPLEMENTATION_OPERATIONS_RUNBOOK.md",
+      "category": "md",
+      "size_bytes": 1648
+    },
+    {
+      "filename": "IMPLEMENTATION_RACI.csv",
+      "category": "csv",
+      "size_bytes": 261
+    },
+    {
+      "filename": "KNOWN_ISSUES_REGISTER.csv",
+      "category": "csv",
+      "size_bytes": 202
+    },
+    {
+      "filename": "PARTNER_CERTIFICATION_MATRIX.csv",
+      "category": "csv",
+      "size_bytes": 486
+    },
+    {
+      "filename": "PILOT_CHARTER_TEMPLATE.md",
+      "category": "md",
+      "size_bytes": 1011
+    },
+    {
+      "filename": "PILOT_QUALIFICATION_SCORECARD.csv",
+      "category": "csv",
+      "size_bytes": 542
+    },
+    {
+      "filename": "PILOT_SOW_TEMPLATE.md",
+      "category": "md",
+      "size_bytes": 1104
+    },
+    {
+      "filename": "PRICING_COST_MODEL.csv",
+      "category": "csv",
+      "size_bytes": 615
+    },
+    {
+      "filename": "PROCUREMENT_PACKET_INDEX.md",
+      "category": "md",
+      "size_bytes": 655
+    },
+    {
+      "filename": "QBR_VALUE_REPORT_TEMPLATE.md",
+      "category": "md",
+      "size_bytes": 773
+    },
+    {
+      "filename": "README_FS_13000_V1_RELEASE_COMPLETE.md",
+      "category": "md",
+      "size_bytes": 1250
+    },
+    {
+      "filename": "RENEWAL_TIMELINE.csv",
+      "category": "csv",
+      "size_bytes": 547
+    },
+    {
+      "filename": "SALES_STAGE_EVIDENCE.csv",
+      "category": "csv",
+      "size_bytes": 702
+    },
+    {
+      "filename": "SUPPORT_SLA_MATRIX.csv",
+      "category": "csv",
+      "size_bytes": 546
+    },
+    {
+      "filename": "commercial_metric_snapshot.schema.json",
+      "category": "json",
+      "size_bytes": 3136
+    },
+    {
+      "filename": "commercial_opportunity.schema.json",
+      "category": "json",
+      "size_bytes": 3259
+    },
+    {
+      "filename": "commercial_package.schema.json",
+      "category": "json",
+      "size_bytes": 3120
+    },
+    {
+      "filename": "commercial_release_index.schema.json",
+      "category": "json",
+      "size_bytes": 3130
+    },
+    {
+      "filename": "content_item.schema.json",
+      "category": "json",
+      "size_bytes": 3166
+    },
+    {
+      "filename": "environment.schema.json",
+      "category": "json",
+      "size_bytes": 3108
+    },
+    {
+      "filename": "market_segment.schema.json",
+      "category": "json",
+      "size_bytes": 3116
+    },
+    {
+      "filename": "partner.schema.json",
+      "category": "json",
+      "size_bytes": 3123
+    },
+    {
+      "filename": "partner_certification.schema.json",
+      "category": "json",
+      "size_bytes": 3179
+    },
+    {
+      "filename": "pilot_implementation.schema.json",
+      "category": "json",
+      "size_bytes": 3183
+    },
+    {
+      "filename": "pilot_scope.schema.json",
+      "category": "json",
+      "size_bytes": 3144
+    },
+    {
+      "filename": "procurement_matter.schema.json",
+      "category": "json",
+      "size_bytes": 3179
+    },
+    {
+      "filename": "renewal.schema.json",
+      "category": "json",
+      "size_bytes": 3148
+    },
+    {
+      "filename": "support_case.schema.json",
+      "category": "json",
+      "size_bytes": 3133
+    },
+    {
+      "filename": "tenant_provisioning.schema.json",
+      "category": "json",
+      "size_bytes": 3173
+    }
+  ],
+  "dependencies": [
+    "FS-4000",
+    "FS-5000",
+    "FS-6000",
+    "FS-7000",
+    "FS-8000",
+    "FS-9000",
+    "FS-10000",
+    "FS-11000",
+    "FS-12000"
+  ],
+  "approval_required_for_software_release": true,
+  "canonical_name": "Deployment, Pilots and Commercialization",
+  "release_status": "pass",
+  "required_artifacts": [
+    "PACKAGE_INDEX.json",
+    "INTEGRITY_INDEX.csv",
+    "VALIDATION_REPORT.json",
+    "CROSS_SECTION_RECONCILIATION_REPORT.json"
+  ],
+  "cross_section_dependencies": [
+    "FS-7000",
+    "FS-11000",
+    "FS-12000",
+    "FS-14000"
+  ]
+}

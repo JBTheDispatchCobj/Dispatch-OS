@@ -1,0 +1,27 @@
+{
+  "id": "ctl_demo_001",
+  "tenant_id": "tenant_demo",
+  "control_id": "SEC-TEN-001",
+  "name": "Tenant-scoped authorization",
+  "domain": "Tenant Isolation",
+  "type": "preventive",
+  "status": "active",
+  "owner_id": "security_admin_001",
+  "evidence_requirements": [
+    "ev_test_001"
+  ],
+  "test_procedure": "Run positive and negative cross-tenant authorization suite",
+  "classification": "internal",
+  "version": 1,
+  "source_refs": [
+    "fs12000"
+  ],
+  "evidence_refs": [
+    "ev_test_001"
+  ],
+  "approval_refs": [
+    "appr_001"
+  ],
+  "created_at": "2026-07-22T00:00:00Z",
+  "updated_at": "2026-07-22T00:00:00Z"
+}

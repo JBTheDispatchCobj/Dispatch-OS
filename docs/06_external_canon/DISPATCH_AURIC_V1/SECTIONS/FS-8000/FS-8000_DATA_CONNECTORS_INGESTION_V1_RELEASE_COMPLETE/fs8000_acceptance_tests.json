@@ -1,0 +1,138 @@
+{
+  "suite_id": "FS8000-V1-ACCEPTANCE",
+  "version": "1.0.0",
+  "tests": [
+    {
+      "id": "FS8-001",
+      "name": "Public source to canonical candidate",
+      "given": "approved public source and active connector",
+      "when": "scheduled ingestion runs",
+      "then": [
+        "snapshot preserved",
+        "mapping version recorded",
+        "quality gates pass",
+        "field lineage exists",
+        "accepted event published"
+      ]
+    },
+    {
+      "id": "FS8-002",
+      "name": "Replay idempotency",
+      "given": "completed job and identical idempotency key/payload",
+      "when": "delivery repeats",
+      "then": [
+        "no duplicate canonical object",
+        "original result returned",
+        "replay audit event recorded"
+      ]
+    },
+    {
+      "id": "FS8-003",
+      "name": "Tenant isolation",
+      "given": "two tenants using same connector definition",
+      "when": "tenant A job executes",
+      "then": [
+        "tenant B credentials and data are inaccessible",
+        "tenant-scoped audit fields present"
+      ]
+    },
+    {
+      "id": "FS8-004",
+      "name": "Malicious upload quarantine",
+      "given": "file with malware or archive bomb",
+      "when": "upload pipeline scans",
+      "then": [
+        "file quarantined",
+        "no parsing or model use",
+        "security alert and audit event created"
+      ]
+    },
+    {
+      "id": "FS8-005",
+      "name": "Schema drift",
+      "given": "changed source field structure",
+      "when": "mapping executes",
+      "then": [
+        "affected records held",
+        "source preserved",
+        "mapping review exception created",
+        "unaffected partitions may complete"
+      ]
+    },
+    {
+      "id": "FS8-006",
+      "name": "Ambiguous entity resolution",
+      "given": "two plausible institution matches",
+      "when": "score falls in review band",
+      "then": [
+        "no automatic merge",
+        "parallel candidates preserved",
+        "human review required"
+      ]
+    },
+    {
+      "id": "FS8-007",
+      "name": "Reconciliation failure",
+      "given": "financial control total exceeds tolerance",
+      "when": "quality gate runs",
+      "then": [
+        "publication blocked",
+        "variance visible",
+        "authorized waiver path available"
+      ]
+    },
+    {
+      "id": "FS8-008",
+      "name": "Stale fact policy",
+      "given": "field exceeds stale threshold",
+      "when": "downstream score requested",
+      "then": [
+        "stale label visible",
+        "configured block or warning enforced",
+        "freshness event published"
+      ]
+    },
+    {
+      "id": "FS8-009",
+      "name": "Connector revocation",
+      "given": "active tenant connector",
+      "when": "authorized admin revokes",
+      "then": [
+        "new retrieval stops",
+        "credential destruction scheduled",
+        "audit event created"
+      ]
+    },
+    {
+      "id": "FS8-010",
+      "name": "Human authority",
+      "given": "attested or conflicting material fact",
+      "when": "automation stages candidate",
+      "then": [
+        "candidate not approved automatically",
+        "reviewer and evidence required"
+      ]
+    },
+    {
+      "id": "FS8-011",
+      "name": "Field lineage completeness",
+      "given": "accepted canonical write",
+      "when": "lineage queried",
+      "then": [
+        "source snapshot and source location are reachable",
+        "mapping and transformations are identified"
+      ]
+    },
+    {
+      "id": "FS8-012",
+      "name": "Retention execution",
+      "given": "expired record without legal hold",
+      "when": "retention job runs",
+      "then": [
+        "configured disposition occurs",
+        "tombstone and certificate remain",
+        "prohibited content is absent"
+      ]
+    }
+  ]
+}

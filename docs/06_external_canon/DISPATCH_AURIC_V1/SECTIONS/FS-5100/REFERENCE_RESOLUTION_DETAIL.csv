@@ -1,0 +1,993 @@
+cartridge_id,manifest_file,reference_class,source_field,source_term,resolved_id,status
+FS-4001,FS-4001_BANKING.cartridge.json,object,primary_objects,Institution,OBJ.INSTITUTION,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,object,primary_objects,CustomerRelationship,OBJ.CUSTOMERRELATIONSHIP,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,object,primary_objects,DepositAccount,OBJ.DEPOSITACCOUNT,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,object,primary_objects,Loan,OBJ.LOAN,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,object,primary_objects,TreasuryService,OBJ.TREASURYSERVICE,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,object,primary_objects,Branch,OBJ.BRANCH,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,object,primary_objects,DigitalChannel,OBJ.DIGITALCHANNEL,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,relationship,relationships,OFFERS,REL.OFFERS,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,relationship,relationships,OWNS,REL.OWNS,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,relationship,relationships,BORROWS_FROM,REL.BORROWS_FROM,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,relationship,relationships,SECURED_BY,REL.SECURED_BY,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,relationship,relationships,SUPPORTS,REL.SUPPORTS,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,relationship,relationships,CREATES,REL.CREATES,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,workflow,supported_workflows,Customer Onboarding,WF.CUSTOMER_ONBOARDING,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,workflow,supported_workflows,Deposit Account Opening,WF.DEPOSIT_ACCOUNT_OPENING,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,workflow,supported_workflows,Loan Origination,WF.LOAN_ORIGINATION,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,workflow,supported_workflows,Treasury Implementation,WF.TREASURY_IMPLEMENTATION,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,workflow,supported_workflows,Complaint Management,WF.COMPLAINT_MANAGEMENT,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,workflow,supported_workflows,Board Reporting,WF.BOARD_REPORTING,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,agent,allowed_agents,Customer Relationship Agent,AGENT.CUSTOMER_RELATIONSHIP_AGENT,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,agent,allowed_agents,Deposit Product Agent,AGENT.DEPOSIT_PRODUCT_AGENT,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,agent,allowed_agents,Loan Origination Agent,AGENT.LOAN_ORIGINATION_AGENT,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,agent,allowed_agents,Treasury Services Agent,AGENT.TREASURY_SERVICES_AGENT,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,agent,allowed_agents,Branch Performance Agent,AGENT.BRANCH_PERFORMANCE_AGENT,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,agent,allowed_agents,Digital Channel Agent,AGENT.DIGITAL_CHANNEL_AGENT,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,agent,allowed_agents,Complaint Management Agent,AGENT.COMPLAINT_MANAGEMENT_AGENT,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,agent,allowed_agents,Board Reporting Agent,AGENT.BOARD_REPORTING_AGENT,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,evidence,required_evidence,customer_identification KYC/KYB_evidence account_disclosures approval_or_exception_record,EVID.CUSTOMER_IDENTIFICATION_KYC_KYB_EVIDENCE_ACCOUNT_DISCLOSURES_APPROVAL_OR_EXCEPTION_RECORD,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,evidence,required_evidence,account_application disclosures signature_or_e_acceptance funding_confirmation,EVID.ACCOUNT_APPLICATION_DISCLOSURES_SIGNATURE_OR_E_ACCEPTANCE_FUNDING_CONFIRMATION,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,evidence,required_evidence,credit_application credit_memo financials collateral_evidence approval_record loan_documents,EVID.CREDIT_APPLICATION_CREDIT_MEMO_FINANCIALS_COLLATERAL_EVIDENCE_APPROVAL_RECORD_LOAN_DOCUMENTS,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,evidence,required_evidence,payment_flow_map service_agreement risk_control_setup implementation_confirmation,EVID.PAYMENT_FLOW_MAP_SERVICE_AGREEMENT_RISK_CONTROL_SETUP_IMPLEMENTATION_CONFIRMATION,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,evidence,required_evidence,complaint_record investigation_notes supporting_documents response_approval closure_evidence,EVID.COMPLAINT_RECORD_INVESTIGATION_NOTES_SUPPORTING_DOCUMENTS_RESPONSE_APPROVAL_CLOSURE_EVIDENCE,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,evidence,required_evidence,source_KPIs management_commentary risk_summary approval_record,EVID.SOURCE_KPIS_MANAGEMENT_COMMENTARY_RISK_SUMMARY_APPROVAL_RECORD,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,approval,approval_gates,credit_authority,APP.CREDIT_AUTHORITY,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,approval,approval_gates,credit_authority operations_owner,APP.CREDIT_AUTHORITY_OPERATIONS_OWNER,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,approval,approval_gates,executive_owner,APP.EXECUTIVE_OWNER,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,approval,approval_gates,compliance_owner legal_counsel_if_escalated,APP.COMPLIANCE_OWNER_LEGAL_COUNSEL_IF_ESCALATED,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,approval,approval_gates,business_owner vendor_risk_owner security_owner,APP.BUSINESS_OWNER_VENDOR_RISK_OWNER_SECURITY_OWNER,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,kpi,kpis,total_assets,KPI.TOTAL_ASSETS,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,kpi,kpis,loan_growth,KPI.LOAN_GROWTH,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,kpi,kpis,deposit_growth,KPI.DEPOSIT_GROWTH,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,kpi,kpis,loan_to_deposit_ratio,KPI.LOAN_TO_DEPOSIT_RATIO,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,kpi,kpis,cost_of_funds,KPI.COST_OF_FUNDS,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,kpi,kpis,net_interest_margin,KPI.NET_INTEREST_MARGIN,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,kpi,kpis,liquidity_ratio,KPI.LIQUIDITY_RATIO,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,kpi,kpis,customers,KPI.CUSTOMERS,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,kpi,kpis,active_relationships,KPI.ACTIVE_RELATIONSHIPS,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,kpi,kpis,products_per_customer,KPI.PRODUCTS_PER_CUSTOMER,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,kpi,kpis,relationship_profitability,KPI.RELATIONSHIP_PROFITABILITY,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,kpi,kpis,retention_rate,KPI.RETENTION_RATE,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,kpi,kpis,cross_sell_rate,KPI.CROSS_SELL_RATE,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,kpi,kpis,delinquency_rate,KPI.DELINQUENCY_RATE,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,kpi,kpis,charge_off_rate,KPI.CHARGE_OFF_RATE,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,kpi,kpis,criticized_assets,KPI.CRITICIZED_ASSETS,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,kpi,kpis,watchlist_exposure,KPI.WATCHLIST_EXPOSURE,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,kpi,kpis,complaints,KPI.COMPLAINTS,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,kpi,kpis,fraud_events,KPI.FRAUD_EVENTS,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,kpi,kpis,account_opening_cycle_time,KPI.ACCOUNT_OPENING_CYCLE_TIME,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,kpi,kpis,digital_active_users,KPI.DIGITAL_ACTIVE_USERS,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,kpi,kpis,branch_transactions,KPI.BRANCH_TRANSACTIONS,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,kpi,kpis,service_SLA,KPI.SERVICE_SLA,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,kpi,kpis,exception_rate,KPI.EXCEPTION_RATE,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,dashboard,dashboards,Banking Executive Dashboard,DASH.BANKING_EXECUTIVE_DASHBOARD,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,dashboard,dashboards,Relationship Dashboard,DASH.RELATIONSHIP_DASHBOARD,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,dashboard,dashboards,Deposit Dashboard,DASH.DEPOSIT_DASHBOARD,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,dashboard,dashboards,Loan Portfolio Dashboard,DASH.LOAN_PORTFOLIO_DASHBOARD,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,dashboard,dashboards,Channel Operations Dashboard,DASH.CHANNEL_OPERATIONS_DASHBOARD,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,connector,integration_dependencies,objects.registry.json,CONN.OBJECTS_REGISTRY_JSON,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,connector,integration_dependencies,workflows.registry.json,CONN.WORKFLOWS_REGISTRY_JSON,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,connector,integration_dependencies,agents.registry.json,CONN.AGENTS_REGISTRY_JSON,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,connector,integration_dependencies,kpis.registry.json,CONN.KPIS_REGISTRY_JSON,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,connector,integration_dependencies,dashboards.registry.json,CONN.DASHBOARDS_REGISTRY_JSON,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,connector,integration_dependencies,relationships.registry.json,CONN.RELATIONSHIPS_REGISTRY_JSON,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,connector,integration_dependencies,evidence.registry.json,CONN.EVIDENCE_REGISTRY_JSON,resolved
+FS-4001,FS-4001_BANKING.cartridge.json,connector,integration_dependencies,approvals.registry.json,CONN.APPROVALS_REGISTRY_JSON,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,object,primary_objects,CreditUnion,OBJ.CREDITUNION,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,object,primary_objects,Member,OBJ.MEMBER,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,object,primary_objects,FieldOfMembership,OBJ.FIELDOFMEMBERSHIP,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,object,primary_objects,CUSO,OBJ.CUSO,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,object,primary_objects,VendorStack,OBJ.VENDORSTACK,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,object,primary_objects,MemberProduct,OBJ.MEMBERPRODUCT,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,object,primary_objects,Board,OBJ.BOARD,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,object,primary_objects,FintechPilot,OBJ.FINTECHPILOT,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,relationship,relationships,SERVES,REL.SERVES,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,relationship,relationships,QUALIFIES_UNDER,REL.QUALIFIES_UNDER,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,relationship,relationships,OWNS_OR_PARTICIPATES_IN,REL.OWNS_OR_PARTICIPATES_IN,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,relationship,relationships,USES,REL.USES,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,relationship,relationships,REQUIRES,REL.REQUIRES,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,relationship,relationships,APPROVES,REL.APPROVES,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,relationship,relationships,HAS,REL.HAS,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,relationship,relationships,ROUTES_TO,REL.ROUTES_TO,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,workflow,supported_workflows,Member Onboarding,WF.MEMBER_ONBOARDING,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,workflow,supported_workflows,CUSO Review,WF.CUSO_REVIEW,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,workflow,supported_workflows,Fintech Pilot Readiness,WF.FINTECH_PILOT_READINESS,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,workflow,supported_workflows,Member Opportunity Detection,WF.MEMBER_OPPORTUNITY_DETECTION,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,workflow,supported_workflows,Board Governance Review,WF.BOARD_GOVERNANCE_REVIEW,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,workflow,supported_workflows,Regulatory Readiness,WF.REGULATORY_READINESS,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,agent,allowed_agents,Member Intelligence Agent,AGENT.MEMBER_INTELLIGENCE_AGENT,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,agent,allowed_agents,Credit Union Readiness Agent,AGENT.CREDIT_UNION_READINESS_AGENT,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,agent,allowed_agents,CUSO Review Agent,AGENT.CUSO_REVIEW_AGENT,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,agent,allowed_agents,Fintech Pilot Agent,AGENT.FINTECH_PILOT_AGENT,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,agent,allowed_agents,Vendor Stack Agent,AGENT.VENDOR_STACK_AGENT,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,agent,allowed_agents,Board Governance Agent,AGENT.BOARD_GOVERNANCE_AGENT,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,agent,allowed_agents,Regulatory Readiness Agent,AGENT.REGULATORY_READINESS_AGENT,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,agent,allowed_agents,Member Opportunity Agent,AGENT.MEMBER_OPPORTUNITY_AGENT,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,evidence,required_evidence,field_of_membership_evidence identity_evidence account_disclosures member_application,EVID.FIELD_OF_MEMBERSHIP_EVIDENCE_IDENTITY_EVIDENCE_ACCOUNT_DISCLOSURES_MEMBER_APPLICATION,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,evidence,required_evidence,CUSO_documents ownership_records service_agreement board_minutes policy_authority risk_review,EVID.CUSO_DOCUMENTS_OWNERSHIP_RECORDS_SERVICE_AGREEMENT_BOARD_MINUTES_POLICY_AUTHORITY_RISK_REVIEW,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,evidence,required_evidence,startup_deck use_case integration_map data_flow_diagram security_questionnaire vendor_review pilot_plan success_metrics,EVID.STARTUP_DECK_USE_CASE_INTEGRATION_MAP_DATA_FLOW_DIAGRAM_SECURITY_QUESTIONNAIRE_VENDOR_REVIEW_PILOT_PLAN_SUCCESS_METRICS,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,evidence,required_evidence,member_profile product_relationships trigger_signal consent_status disclosure_requirements,EVID.MEMBER_PROFILE_PRODUCT_RELATIONSHIPS_TRIGGER_SIGNAL_CONSENT_STATUS_DISCLOSURE_REQUIREMENTS,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,evidence,required_evidence,source_KPIs risk_summary policy_documents decision_support approval_record,EVID.SOURCE_KPIS_RISK_SUMMARY_POLICY_DOCUMENTS_DECISION_SUPPORT_APPROVAL_RECORD,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,evidence,required_evidence,regulatory_profile obligation_map policy procedure control evidence_item exam_findings,EVID.REGULATORY_PROFILE_OBLIGATION_MAP_POLICY_PROCEDURE_CONTROL_EVIDENCE_ITEM_EXAM_FINDINGS,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,approval,approval_gates,operations_owner compliance_owner,APP.OPERATIONS_OWNER_COMPLIANCE_OWNER,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,approval,approval_gates,executive_owner compliance_owner legal_counsel board_or_committee_if_material,APP.EXECUTIVE_OWNER_COMPLIANCE_OWNER_LEGAL_COUNSEL_BOARD_OR_COMMITTEE_IF_MATERIAL,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,approval,approval_gates,business_owner vendor_risk_owner security_owner compliance_owner executive_owner,APP.BUSINESS_OWNER_VENDOR_RISK_OWNER_SECURITY_OWNER_COMPLIANCE_OWNER_EXECUTIVE_OWNER,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,approval,approval_gates,referral_compliance_owner licensed_advisor_or_insurance_owner_when_needed,APP.REFERRAL_COMPLIANCE_OWNER_LICENSED_ADVISOR_OR_INSURANCE_OWNER_WHEN_NEEDED,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,approval,approval_gates,executive_owner,APP.EXECUTIVE_OWNER,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,approval,approval_gates,compliance_owner,APP.COMPLIANCE_OWNER,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,kpi,kpis,members,KPI.MEMBERS,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,kpi,kpis,member_growth,KPI.MEMBER_GROWTH,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,kpi,kpis,products_per_member,KPI.PRODUCTS_PER_MEMBER,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,kpi,kpis,member_retention,KPI.MEMBER_RETENTION,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,kpi,kpis,wallet_share,KPI.WALLET_SHARE,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,kpi,kpis,member_opportunities,KPI.MEMBER_OPPORTUNITIES,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,kpi,kpis,assets,KPI.ASSETS,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,kpi,kpis,net_worth_ratio,KPI.NET_WORTH_RATIO,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,kpi,kpis,ROA,KPI.ROA,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,kpi,kpis,loan_growth,KPI.LOAN_GROWTH,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,kpi,kpis,deposit_growth,KPI.DEPOSIT_GROWTH,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,kpi,kpis,fee_income,KPI.FEE_INCOME,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,kpi,kpis,operating_expense_ratio,KPI.OPERATING_EXPENSE_RATIO,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,kpi,kpis,fintech_pilots,KPI.FINTECH_PILOTS,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,kpi,kpis,vendor_reviews,KPI.VENDOR_REVIEWS,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,kpi,kpis,CUSO_opportunities,KPI.CUSO_OPPORTUNITIES,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,kpi,kpis,readiness_score,KPI.READINESS_SCORE,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,kpi,kpis,integration_readiness,KPI.INTEGRATION_READINESS,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,kpi,kpis,board_actions_open,KPI.BOARD_ACTIONS_OPEN,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,kpi,kpis,policy_reviews_due,KPI.POLICY_REVIEWS_DUE,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,kpi,kpis,exam_findings_open,KPI.EXAM_FINDINGS_OPEN,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,kpi,kpis,compliance_readiness_score,KPI.COMPLIANCE_READINESS_SCORE,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,dashboard,dashboards,Credit Union Terminal Dashboard,DASH.CREDIT_UNION_TERMINAL_DASHBOARD,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,dashboard,dashboards,Member Opportunity Dashboard,DASH.MEMBER_OPPORTUNITY_DASHBOARD,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,dashboard,dashboards,CUSO / Innovation Dashboard,DASH.CUSO_INNOVATION_DASHBOARD,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,dashboard,dashboards,Vendor Stack Dashboard,DASH.VENDOR_STACK_DASHBOARD,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,dashboard,dashboards,CU Governance Dashboard,DASH.CU_GOVERNANCE_DASHBOARD,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,connector,integration_dependencies,objects.registry.json,CONN.OBJECTS_REGISTRY_JSON,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,connector,integration_dependencies,workflows.registry.json,CONN.WORKFLOWS_REGISTRY_JSON,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,connector,integration_dependencies,agents.registry.json,CONN.AGENTS_REGISTRY_JSON,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,connector,integration_dependencies,kpis.registry.json,CONN.KPIS_REGISTRY_JSON,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,connector,integration_dependencies,dashboards.registry.json,CONN.DASHBOARDS_REGISTRY_JSON,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,connector,integration_dependencies,relationships.registry.json,CONN.RELATIONSHIPS_REGISTRY_JSON,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,connector,integration_dependencies,evidence.registry.json,CONN.EVIDENCE_REGISTRY_JSON,resolved
+FS-4002,FS-4002_CREDIT_UNIONS.cartridge.json,connector,integration_dependencies,approvals.registry.json,CONN.APPROVALS_REGISTRY_JSON,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,object,primary_objects,CommercialBorrower,OBJ.COMMERCIALBORROWER,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,object,primary_objects,CommercialLoan,OBJ.COMMERCIALLOAN,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,object,primary_objects,CreditMemo,OBJ.CREDITMEMO,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,object,primary_objects,Collateral,OBJ.COLLATERAL,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,object,primary_objects,Covenant,OBJ.COVENANT,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,object,primary_objects,TreasuryRelationship,OBJ.TREASURYRELATIONSHIP,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,object,primary_objects,AnnualReview,OBJ.ANNUALREVIEW,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,object,primary_objects,WorkoutPlan,OBJ.WORKOUTPLAN,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,relationship,relationships,BORROWS_FROM,REL.BORROWS_FROM,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,relationship,relationships,SECURED_BY,REL.SECURED_BY,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,relationship,relationships,GOVERNS,REL.GOVERNS,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,relationship,relationships,SUPPORTS,REL.SUPPORTS,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,relationship,relationships,UPDATES,REL.UPDATES,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,relationship,relationships,REMEDIATES,REL.REMEDIATES,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,workflow,supported_workflows,Commercial Credit Underwriting,WF.COMMERCIAL_CREDIT_UNDERWRITING,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,workflow,supported_workflows,Annual Review,WF.ANNUAL_REVIEW,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,workflow,supported_workflows,Covenant Monitoring,WF.COVENANT_MONITORING,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,workflow,supported_workflows,Treasury Assessment,WF.TREASURY_ASSESSMENT,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,workflow,supported_workflows,Portfolio Watchlist,WF.PORTFOLIO_WATCHLIST,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,workflow,supported_workflows,Workout Review,WF.WORKOUT_REVIEW,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,agent,allowed_agents,Commercial Credit Analyst,AGENT.COMMERCIAL_CREDIT_ANALYST,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,agent,allowed_agents,Credit Memo Writer,AGENT.CREDIT_MEMO_WRITER,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,agent,allowed_agents,Covenant Monitor,AGENT.COVENANT_MONITOR,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,agent,allowed_agents,Treasury Opportunity Agent,AGENT.TREASURY_OPPORTUNITY_AGENT,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,agent,allowed_agents,Portfolio Watchlist Agent,AGENT.PORTFOLIO_WATCHLIST_AGENT,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,agent,allowed_agents,Collateral Analyst,AGENT.COLLATERAL_ANALYST,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,agent,allowed_agents,Annual Review Agent,AGENT.ANNUAL_REVIEW_AGENT,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,agent,allowed_agents,Workout Strategy Agent,AGENT.WORKOUT_STRATEGY_AGENT,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,evidence,required_evidence,borrower_financials tax_returns debt_schedule collateral_evidence credit_memo approval_record,EVID.BORROWER_FINANCIALS_TAX_RETURNS_DEBT_SCHEDULE_COLLATERAL_EVIDENCE_CREDIT_MEMO_APPROVAL_RECORD,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,evidence,required_evidence,financial_statements covenant_certificate relationship_profitability risk_rating_support review_approval,EVID.FINANCIAL_STATEMENTS_COVENANT_CERTIFICATE_RELATIONSHIP_PROFITABILITY_RISK_RATING_SUPPORT_REVIEW_APPROVAL,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,evidence,required_evidence,compliance_certificate financials calculation_workpaper exception_log waiver_approval_if_needed,EVID.COMPLIANCE_CERTIFICATE_FINANCIALS_CALCULATION_WORKPAPER_EXCEPTION_LOG_WAIVER_APPROVAL_IF_NEEDED,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,evidence,required_evidence,payment_flow_map account_analysis service_pricing fraud_control_review implementation_confirmation,EVID.PAYMENT_FLOW_MAP_ACCOUNT_ANALYSIS_SERVICE_PRICING_FRAUD_CONTROL_REVIEW_IMPLEMENTATION_CONFIRMATION,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,evidence,required_evidence,payment_history financial_trends risk_rating_history watchlist_notes action_plan,EVID.PAYMENT_HISTORY_FINANCIAL_TRENDS_RISK_RATING_HISTORY_WATCHLIST_NOTES_ACTION_PLAN,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,evidence,required_evidence,default_notice forbearance_request collateral_value legal_review workout_memo approval_record,EVID.DEFAULT_NOTICE_FORBEARANCE_REQUEST_COLLATERAL_VALUE_LEGAL_REVIEW_WORKOUT_MEMO_APPROVAL_RECORD,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,approval,approval_gates,credit_authority,APP.CREDIT_AUTHORITY,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,approval,approval_gates,credit_authority operations_owner,APP.CREDIT_AUTHORITY_OPERATIONS_OWNER,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,approval,approval_gates,credit_authority legal_counsel_if_material,APP.CREDIT_AUTHORITY_LEGAL_COUNSEL_IF_MATERIAL,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,approval,approval_gates,credit_risk_owner,APP.CREDIT_RISK_OWNER,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,approval,approval_gates,credit_authority legal_counsel executive_owner_if_material,APP.CREDIT_AUTHORITY_LEGAL_COUNSEL_EXECUTIVE_OWNER_IF_MATERIAL,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,approval,approval_gates,treasury_operations_owner security_owner_if_integration,APP.TREASURY_OPERATIONS_OWNER_SECURITY_OWNER_IF_INTEGRATION,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,kpi,kpis,commercial_loan_exposure,KPI.COMMERCIAL_LOAN_EXPOSURE,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,kpi,kpis,DSCR,KPI.DSCR,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,kpi,kpis,leverage,KPI.LEVERAGE,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,kpi,kpis,risk_rating,KPI.RISK_RATING,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,kpi,kpis,covenant_breaches,KPI.COVENANT_BREACHES,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,kpi,kpis,delinquency_rate,KPI.DELINQUENCY_RATE,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,kpi,kpis,charge_off_rate,KPI.CHARGE_OFF_RATE,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,kpi,kpis,criticized_classified_loans,KPI.CRITICIZED_CLASSIFIED_LOANS,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,kpi,kpis,watchlist_loans,KPI.WATCHLIST_LOANS,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,kpi,kpis,annual_reviews_due,KPI.ANNUAL_REVIEWS_DUE,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,kpi,kpis,portfolio_yield,KPI.PORTFOLIO_YIELD,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,kpi,kpis,concentration_by_industry,KPI.CONCENTRATION_BY_INDUSTRY,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,kpi,kpis,deposit_balances,KPI.DEPOSIT_BALANCES,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,kpi,kpis,treasury_fee_income,KPI.TREASURY_FEE_INCOME,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,kpi,kpis,ACH_volume,KPI.ACH_VOLUME,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,kpi,kpis,wire_volume,KPI.WIRE_VOLUME,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,kpi,kpis,positive_pay_adoption,KPI.POSITIVE_PAY_ADOPTION,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,kpi,kpis,relationship_profitability,KPI.RELATIONSHIP_PROFITABILITY,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,kpi,kpis,cross_sell_ratio,KPI.CROSS_SELL_RATIO,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,kpi,kpis,new_relationships,KPI.NEW_RELATIONSHIPS,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,kpi,kpis,retention_rate,KPI.RETENTION_RATE,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,dashboard,dashboards,Commercial Banking Executive Dashboard,DASH.COMMERCIAL_BANKING_EXECUTIVE_DASHBOARD,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,dashboard,dashboards,Commercial Credit Dashboard,DASH.COMMERCIAL_CREDIT_DASHBOARD,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,dashboard,dashboards,Treasury Management Dashboard,DASH.TREASURY_MANAGEMENT_DASHBOARD,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,dashboard,dashboards,Portfolio Watchlist Dashboard,DASH.PORTFOLIO_WATCHLIST_DASHBOARD,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,connector,integration_dependencies,objects.registry.json,CONN.OBJECTS_REGISTRY_JSON,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,connector,integration_dependencies,workflows.registry.json,CONN.WORKFLOWS_REGISTRY_JSON,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,connector,integration_dependencies,agents.registry.json,CONN.AGENTS_REGISTRY_JSON,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,connector,integration_dependencies,kpis.registry.json,CONN.KPIS_REGISTRY_JSON,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,connector,integration_dependencies,dashboards.registry.json,CONN.DASHBOARDS_REGISTRY_JSON,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,connector,integration_dependencies,relationships.registry.json,CONN.RELATIONSHIPS_REGISTRY_JSON,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,connector,integration_dependencies,evidence.registry.json,CONN.EVIDENCE_REGISTRY_JSON,resolved
+FS-4003,FS-4003_COMMERCIAL_BANKING.cartridge.json,connector,integration_dependencies,approvals.registry.json,CONN.APPROVALS_REGISTRY_JSON,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,object,primary_objects,MortgageLoan,OBJ.MORTGAGELOAN,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,object,primary_objects,Borrower,OBJ.BORROWER,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,object,primary_objects,Property,OBJ.PROPERTY,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,object,primary_objects,Condition,OBJ.CONDITION,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,object,primary_objects,Disclosure,OBJ.DISCLOSURE,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,object,primary_objects,RateLock,OBJ.RATELOCK,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,object,primary_objects,ClosingPackage,OBJ.CLOSINGPACKAGE,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,object,primary_objects,PostCloseQC,OBJ.POSTCLOSEQC,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,relationship,relationships,APPLIES_FOR,REL.APPLIES_FOR,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,relationship,relationships,SECURED_BY,REL.SECURED_BY,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,relationship,relationships,BLOCKS_OR_CLEARS,REL.BLOCKS_OR_CLEARS,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,relationship,relationships,SATISFIES,REL.SATISFIES,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,relationship,relationships,GOVERNS,REL.GOVERNS,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,relationship,relationships,FUNDS,REL.FUNDS,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,workflow,supported_workflows,Mortgage Application Intake,WF.MORTGAGE_APPLICATION_INTAKE,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,workflow,supported_workflows,Document Collection,WF.DOCUMENT_COLLECTION,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,workflow,supported_workflows,Processing and Underwriting,WF.PROCESSING_AND_UNDERWRITING,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,workflow,supported_workflows,Disclosure Timing Review,WF.DISCLOSURE_TIMING_REVIEW,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,workflow,supported_workflows,Closing and Funding,WF.CLOSING_AND_FUNDING,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,workflow,supported_workflows,Post-Close QC,WF.POST_CLOSE_QC,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,agent,allowed_agents,Mortgage File Intake Agent,AGENT.MORTGAGE_FILE_INTAKE_AGENT,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,agent,allowed_agents,Document Collection Agent,AGENT.DOCUMENT_COLLECTION_AGENT,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,agent,allowed_agents,Condition Clearing Agent,AGENT.CONDITION_CLEARING_AGENT,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,agent,allowed_agents,Disclosure Timing Agent,AGENT.DISCLOSURE_TIMING_AGENT,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,agent,allowed_agents,Underwriting Support Agent,AGENT.UNDERWRITING_SUPPORT_AGENT,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,agent,allowed_agents,Rate Lock Monitor,AGENT.RATE_LOCK_MONITOR,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,agent,allowed_agents,Closing Checklist Agent,AGENT.CLOSING_CHECKLIST_AGENT,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,agent,allowed_agents,Post-Close QC Agent,AGENT.POST_CLOSE_QC_AGENT,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,evidence,required_evidence,loan_application borrower_identity property_information initial_disclosures_if_applicable,EVID.LOAN_APPLICATION_BORROWER_IDENTITY_PROPERTY_INFORMATION_INITIAL_DISCLOSURES_IF_APPLICABLE,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,evidence,required_evidence,income_documents asset_documents credit_report property_documents condition_evidence,EVID.INCOME_DOCUMENTS_ASSET_DOCUMENTS_CREDIT_REPORT_PROPERTY_DOCUMENTS_CONDITION_EVIDENCE,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,evidence,required_evidence,credit_report income_calculation asset_verification appraisal title insurance program_eligibility,EVID.CREDIT_REPORT_INCOME_CALCULATION_ASSET_VERIFICATION_APPRAISAL_TITLE_INSURANCE_PROGRAM_ELIGIBILITY,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,evidence,required_evidence,loan_estimate closing_disclosure delivery_confirmation timing_calculation change_of_circumstance_if_applicable,EVID.LOAN_ESTIMATE_CLOSING_DISCLOSURE_DELIVERY_CONFIRMATION_TIMING_CALCULATION_CHANGE_OF_CIRCUMSTANCE_IF_APPLICABLE,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,evidence,required_evidence,clear_to_close closing_disclosure closing_docs funding_authorization wire_confirmation boarding_confirmation,EVID.CLEAR_TO_CLOSE_CLOSING_DISCLOSURE_CLOSING_DOCS_FUNDING_AUTHORIZATION_WIRE_CONFIRMATION_BOARDING_CONFIRMATION,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,evidence,required_evidence,closed_loan_file QC_checklist defect_log cure_evidence investor_saleability_review,EVID.CLOSED_LOAN_FILE_QC_CHECKLIST_DEFECT_LOG_CURE_EVIDENCE_INVESTOR_SALEABILITY_REVIEW,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,approval,approval_gates,underwriter credit_authority_if_exception,APP.UNDERWRITER_CREDIT_AUTHORITY_IF_EXCEPTION,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,approval,approval_gates,compliance_owner,APP.COMPLIANCE_OWNER,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,approval,approval_gates,underwriter closing_manager,APP.UNDERWRITER_CLOSING_MANAGER,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,approval,approval_gates,funding_manager operations_owner,APP.FUNDING_MANAGER_OPERATIONS_OWNER,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,approval,approval_gates,underwriter compliance_owner_if_regulatory,APP.UNDERWRITER_COMPLIANCE_OWNER_IF_REGULATORY,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,approval,approval_gates,QC_manager secondary_market_owner_if_saleability_issue,APP.QC_MANAGER_SECONDARY_MARKET_OWNER_IF_SALEABILITY_ISSUE,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,kpi,kpis,applications,KPI.APPLICATIONS,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,kpi,kpis,locks,KPI.LOCKS,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,kpi,kpis,submissions,KPI.SUBMISSIONS,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,kpi,kpis,approvals,KPI.APPROVALS,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,kpi,kpis,clear_to_close,KPI.CLEAR_TO_CLOSE,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,kpi,kpis,funded_loans,KPI.FUNDED_LOANS,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,kpi,kpis,pull_through_rate,KPI.PULL_THROUGH_RATE,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,kpi,kpis,application_to_close_days,KPI.APPLICATION_TO_CLOSE_DAYS,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,kpi,kpis,processing_cycle_time,KPI.PROCESSING_CYCLE_TIME,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,kpi,kpis,underwriting_turn_time,KPI.UNDERWRITING_TURN_TIME,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,kpi,kpis,closing_cycle_time,KPI.CLOSING_CYCLE_TIME,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,kpi,kpis,condition_count,KPI.CONDITION_COUNT,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,kpi,kpis,defect_rate,KPI.DEFECT_RATE,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,kpi,kpis,post_close_findings,KPI.POST_CLOSE_FINDINGS,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,kpi,kpis,disclosure_exceptions,KPI.DISCLOSURE_EXCEPTIONS,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,kpi,kpis,fallout_rate,KPI.FALLOUT_RATE,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,kpi,kpis,loan_volume,KPI.LOAN_VOLUME,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,kpi,kpis,gain_on_sale,KPI.GAIN_ON_SALE,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,kpi,kpis,margin,KPI.MARGIN,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,kpi,kpis,lock_extension_cost,KPI.LOCK_EXTENSION_COST,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,kpi,kpis,production_income,KPI.PRODUCTION_INCOME,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,dashboard,dashboards,Mortgage Pipeline Dashboard,DASH.MORTGAGE_PIPELINE_DASHBOARD,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,dashboard,dashboards,Mortgage Operations Dashboard,DASH.MORTGAGE_OPERATIONS_DASHBOARD,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,dashboard,dashboards,Mortgage Compliance Dashboard,DASH.MORTGAGE_COMPLIANCE_DASHBOARD,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,dashboard,dashboards,Mortgage Economics Dashboard,DASH.MORTGAGE_ECONOMICS_DASHBOARD,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,connector,integration_dependencies,objects.registry.json,CONN.OBJECTS_REGISTRY_JSON,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,connector,integration_dependencies,workflows.registry.json,CONN.WORKFLOWS_REGISTRY_JSON,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,connector,integration_dependencies,agents.registry.json,CONN.AGENTS_REGISTRY_JSON,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,connector,integration_dependencies,kpis.registry.json,CONN.KPIS_REGISTRY_JSON,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,connector,integration_dependencies,dashboards.registry.json,CONN.DASHBOARDS_REGISTRY_JSON,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,connector,integration_dependencies,relationships.registry.json,CONN.RELATIONSHIPS_REGISTRY_JSON,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,connector,integration_dependencies,evidence.registry.json,CONN.EVIDENCE_REGISTRY_JSON,resolved
+FS-4004,FS-4004_MORTGAGE.cartridge.json,connector,integration_dependencies,approvals.registry.json,CONN.APPROVALS_REGISTRY_JSON,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,object,primary_objects,Fund,OBJ.FUND,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,object,primary_objects,Startup,OBJ.STARTUP,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,object,primary_objects,Founder,OBJ.FOUNDER,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,object,primary_objects,Investment,OBJ.INVESTMENT,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,object,primary_objects,Round,OBJ.ROUND,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,object,primary_objects,Pilot,OBJ.PILOT,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,object,primary_objects,LP,OBJ.LP,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,object,primary_objects,PortfolioCompany,OBJ.PORTFOLIOCOMPANY,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,relationship,relationships,Fund INVESTS_IN Startup,REL.FUND_INVESTS_IN_STARTUP,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,relationship,relationships,Founder FOUNDED Startup,REL.FOUNDER_FOUNDED_STARTUP,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,relationship,relationships,Startup RAISES Round,REL.STARTUP_RAISES_ROUND,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,relationship,relationships,Pilot VALIDATES Startup,REL.PILOT_VALIDATES_STARTUP,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,relationship,relationships,Institution PILOTS Product,REL.INSTITUTION_PILOTS_PRODUCT,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,workflow,supported_workflows,Deal sourcing,WF.DEAL_SOURCING,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,workflow,supported_workflows,Initial screening,WF.INITIAL_SCREENING,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,workflow,supported_workflows,Investment committee memo,WF.INVESTMENT_COMMITTEE_MEMO,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,workflow,supported_workflows,Due diligence,WF.DUE_DILIGENCE,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,workflow,supported_workflows,Portfolio monitoring,WF.PORTFOLIO_MONITORING,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,workflow,supported_workflows,Strategic pilot,WF.STRATEGIC_PILOT,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,workflow,supported_workflows,Follow-on decision,WF.FOLLOW_ON_DECISION,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,workflow,supported_workflows,LP reporting,WF.LP_REPORTING,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,agent,allowed_agents,Deal Scout,AGENT.DEAL_SCOUT,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,agent,allowed_agents,Founder Research Agent,AGENT.FOUNDER_RESEARCH_AGENT,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,agent,allowed_agents,Market Analyst,AGENT.MARKET_ANALYST,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,agent,allowed_agents,Investment Memo Writer,AGENT.INVESTMENT_MEMO_WRITER,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,agent,allowed_agents,Strategic Pilot Manager,AGENT.STRATEGIC_PILOT_MANAGER,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,agent,allowed_agents,LP Reporting Agent,AGENT.LP_REPORTING_AGENT,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,evidence,required_evidence,pitch_deck founder_profile market_summary,EVID.PITCH_DECK_FOUNDER_PROFILE_MARKET_SUMMARY,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,evidence,required_evidence,financial_model cap_table customer_references security_review,EVID.FINANCIAL_MODEL_CAP_TABLE_CUSTOMER_REFERENCES_SECURITY_REVIEW,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,evidence,required_evidence,IC_memo term_sheet approval_record,EVID.IC_MEMO_TERM_SHEET_APPROVAL_RECORD,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,evidence,required_evidence,board_updates KPI_export investor_update,EVID.BOARD_UPDATES_KPI_EXPORT_INVESTOR_UPDATE,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,evidence,required_evidence,pilot_plan success_metrics integration_review,EVID.PILOT_PLAN_SUCCESS_METRICS_INTEGRATION_REVIEW,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,approval,approval_gates,investment_authority,APP.INVESTMENT_AUTHORITY,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,approval,approval_gates,business_owner compliance_owner,APP.BUSINESS_OWNER_COMPLIANCE_OWNER,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,approval,approval_gates,executive_owner,APP.EXECUTIVE_OWNER,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,kpi,kpis,companies_sourced,KPI.COMPANIES_SOURCED,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,kpi,kpis,decks_reviewed,KPI.DECKS_REVIEWED,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,kpi,kpis,IC_reviews,KPI.IC_REVIEWS,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,kpi,kpis,investments_closed,KPI.INVESTMENTS_CLOSED,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,kpi,kpis,ARR,KPI.ARR,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,kpi,kpis,MRR,KPI.MRR,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,kpi,kpis,growth_rate,KPI.GROWTH_RATE,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,kpi,kpis,burn_rate,KPI.BURN_RATE,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,kpi,kpis,runway_months,KPI.RUNWAY_MONTHS,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,kpi,kpis,TVPI,KPI.TVPI,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,kpi,kpis,DPI,KPI.DPI,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,kpi,kpis,RVPI,KPI.RVPI,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,kpi,kpis,gross_IRR,KPI.GROSS_IRR,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,kpi,kpis,net_IRR,KPI.NET_IRR,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,dashboard,dashboards,Venture Fund Dashboard,DASH.VENTURE_FUND_DASHBOARD,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,dashboard,dashboards,Deal Flow Dashboard,DASH.DEAL_FLOW_DASHBOARD,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,dashboard,dashboards,Startup Portfolio Dashboard,DASH.STARTUP_PORTFOLIO_DASHBOARD,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,dashboard,dashboards,Strategic Adoption Dashboard,DASH.STRATEGIC_ADOPTION_DASHBOARD,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,connector,integration_dependencies,objects.registry.json,CONN.OBJECTS_REGISTRY_JSON,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,connector,integration_dependencies,workflows.registry.json,CONN.WORKFLOWS_REGISTRY_JSON,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,connector,integration_dependencies,agents.registry.json,CONN.AGENTS_REGISTRY_JSON,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,connector,integration_dependencies,kpis.registry.json,CONN.KPIS_REGISTRY_JSON,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,connector,integration_dependencies,dashboards.registry.json,CONN.DASHBOARDS_REGISTRY_JSON,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,connector,integration_dependencies,relationships.registry.json,CONN.RELATIONSHIPS_REGISTRY_JSON,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,connector,integration_dependencies,evidence.registry.json,CONN.EVIDENCE_REGISTRY_JSON,resolved
+FS-4007,FS-4007_VENTURE_CAPITAL.cartridge.json,connector,integration_dependencies,approvals.registry.json,CONN.APPROVALS_REGISTRY_JSON,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,object,primary_objects,Issuer,OBJ.ISSUER,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,object,primary_objects,Investor,OBJ.INVESTOR,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,object,primary_objects,Security,OBJ.SECURITY,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,object,primary_objects,Participation,OBJ.PARTICIPATION,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,object,primary_objects,Offering,OBJ.OFFERING,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,object,primary_objects,Trade,OBJ.TRADE,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,object,primary_objects,Settlement,OBJ.SETTLEMENT,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,object,primary_objects,Custodian,OBJ.CUSTODIAN,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,object,primary_objects,Valuation,OBJ.VALUATION,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,object,primary_objects,OrderBook,OBJ.ORDERBOOK,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,workflow,supported_workflows,Offering creation,WF.OFFERING_CREATION,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,workflow,supported_workflows,Investor matching,WF.INVESTOR_MATCHING,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,workflow,supported_workflows,Loan participation packaging,WF.LOAN_PARTICIPATION_PACKAGING,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,workflow,supported_workflows,Book building,WF.BOOK_BUILDING,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,workflow,supported_workflows,Trade execution review,WF.TRADE_EXECUTION_REVIEW,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,workflow,supported_workflows,Settlement,WF.SETTLEMENT,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,workflow,supported_workflows,Valuation review,WF.VALUATION_REVIEW,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,workflow,supported_workflows,Post-trade reporting,WF.POST_TRADE_REPORTING,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,agent,allowed_agents,Market Analyst,AGENT.MARKET_ANALYST,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,agent,allowed_agents,Investor Matching Agent,AGENT.INVESTOR_MATCHING_AGENT,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,agent,allowed_agents,Offering Coordinator,AGENT.OFFERING_COORDINATOR,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,agent,allowed_agents,Participation Package Agent,AGENT.PARTICIPATION_PACKAGE_AGENT,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,agent,allowed_agents,Valuation Analyst,AGENT.VALUATION_ANALYST,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,agent,allowed_agents,Settlement Agent,AGENT.SETTLEMENT_AGENT,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,agent,allowed_agents,Compliance Review Agent,AGENT.COMPLIANCE_REVIEW_AGENT,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,connector,integration_dependencies,objects.registry.json,CONN.OBJECTS_REGISTRY_JSON,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,connector,integration_dependencies,workflows.registry.json,CONN.WORKFLOWS_REGISTRY_JSON,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,connector,integration_dependencies,agents.registry.json,CONN.AGENTS_REGISTRY_JSON,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,connector,integration_dependencies,kpis.registry.json,CONN.KPIS_REGISTRY_JSON,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,connector,integration_dependencies,dashboards.registry.json,CONN.DASHBOARDS_REGISTRY_JSON,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,connector,integration_dependencies,relationships.registry.json,CONN.RELATIONSHIPS_REGISTRY_JSON,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,connector,integration_dependencies,evidence.registry.json,CONN.EVIDENCE_REGISTRY_JSON,resolved
+FS-4008,FS-4008_CAPITAL_MARKETS.cartridge.json,connector,integration_dependencies,approvals.registry.json,CONN.APPROVALS_REGISTRY_JSON,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,object,primary_objects,Household,OBJ.HOUSEHOLD,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,object,primary_objects,Client,OBJ.CLIENT,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,object,primary_objects,Advisor,OBJ.ADVISOR,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,object,primary_objects,Account,OBJ.ACCOUNT,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,object,primary_objects,Portfolio,OBJ.PORTFOLIO,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,object,primary_objects,Holding,OBJ.HOLDING,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,object,primary_objects,Goal,OBJ.GOAL,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,object,primary_objects,FinancialPlan,OBJ.FINANCIALPLAN,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,object,primary_objects,InvestmentPolicyStatement,OBJ.INVESTMENTPOLICYSTATEMENT,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,object,primary_objects,Recommendation,OBJ.RECOMMENDATION,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,object,primary_objects,BillingEvent,OBJ.BILLINGEVENT,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,object,primary_objects,Referral,OBJ.REFERRAL,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,object,primary_objects,EstatePlan,OBJ.ESTATEPLAN,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,object,primary_objects,Trust,OBJ.TRUST,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,object,primary_objects,AlternativeInvestment,OBJ.ALTERNATIVEINVESTMENT,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,relationship,relationships,SERVES,REL.SERVES,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,relationship,relationships,MEMBER_OF,REL.MEMBER_OF,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,relationship,relationships,OWNS,REL.OWNS,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,relationship,relationships,HOLDS,REL.HOLDS,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,relationship,relationships,IMPLEMENTS,REL.IMPLEMENTS,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,relationship,relationships,FUNDS,REL.FUNDS,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,relationship,relationships,SUPPORTS,REL.SUPPORTS,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,relationship,relationships,SOURCED_BY,REL.SOURCED_BY,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,relationship,relationships,GOVERNS,REL.GOVERNS,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,relationship,relationships,HELD_IN,REL.HELD_IN,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,relationship,relationships,CHARGES,REL.CHARGES,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,workflow,supported_workflows,Prospect to Client,WF.PROSPECT_TO_CLIENT,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,workflow,supported_workflows,Household Discovery,WF.HOUSEHOLD_DISCOVERY,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,workflow,supported_workflows,Financial Planning,WF.FINANCIAL_PLANNING,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,workflow,supported_workflows,IPS Creation and Review,WF.IPS_CREATION_AND_REVIEW,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,workflow,supported_workflows,Portfolio Construction,WF.PORTFOLIO_CONSTRUCTION,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,workflow,supported_workflows,Portfolio Review,WF.PORTFOLIO_REVIEW,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,workflow,supported_workflows,Account Opening,WF.ACCOUNT_OPENING,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,workflow,supported_workflows,Advisory Billing,WF.ADVISORY_BILLING,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,workflow,supported_workflows,Estate and Trust Coordination,WF.ESTATE_AND_TRUST_COORDINATION,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,workflow,supported_workflows,Alternative Investment Review,WF.ALTERNATIVE_INVESTMENT_REVIEW,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,workflow,supported_workflows,Credit Union / Bank Wealth Referral,WF.CREDIT_UNION_BANK_WEALTH_REFERRAL,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,workflow,supported_workflows,Client Review Meeting,WF.CLIENT_REVIEW_MEETING,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,agent,allowed_agents,Advisor Assistant,AGENT.ADVISOR_ASSISTANT,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,agent,allowed_agents,Household Summary Agent,AGENT.HOUSEHOLD_SUMMARY_AGENT,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,agent,allowed_agents,Client Review Prep Agent,AGENT.CLIENT_REVIEW_PREP_AGENT,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,agent,allowed_agents,Financial Planning Assistant,AGENT.FINANCIAL_PLANNING_ASSISTANT,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,agent,allowed_agents,Portfolio Analyst,AGENT.PORTFOLIO_ANALYST,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,agent,allowed_agents,Billing Review Agent,AGENT.BILLING_REVIEW_AGENT,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,agent,allowed_agents,Suitability Review Agent,AGENT.SUITABILITY_REVIEW_AGENT,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,agent,allowed_agents,Credit Union Wealth Opportunity Agent,AGENT.CREDIT_UNION_WEALTH_OPPORTUNITY_AGENT,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,agent,allowed_agents,Estate Coordination Agent,AGENT.ESTATE_COORDINATION_AGENT,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,agent,allowed_agents,Alternative Investment Review Agent,AGENT.ALTERNATIVE_INVESTMENT_REVIEW_AGENT,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,evidence,required_evidence,identity_and_profile advisory_agreement disclosures risk_profile account_documents consent,EVID.IDENTITY_AND_PROFILE_ADVISORY_AGREEMENT_DISCLOSURES_RISK_PROFILE_ACCOUNT_DOCUMENTS_CONSENT,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,evidence,required_evidence,asset_statement liability_schedule income_and_cash_flow goals estate_documents_if_available insurance_summary,EVID.ASSET_STATEMENT_LIABILITY_SCHEDULE_INCOME_AND_CASH_FLOW_GOALS_ESTATE_DOCUMENTS_IF_AVAILABLE_INSURANCE_SUMMARY,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,evidence,required_evidence,household_data assumptions goals account_values cash_flow scenario_outputs advisor_approval,EVID.HOUSEHOLD_DATA_ASSUMPTIONS_GOALS_ACCOUNT_VALUES_CASH_FLOW_SCENARIO_OUTPUTS_ADVISOR_APPROVAL,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,evidence,required_evidence,risk_profile goals time_horizon liquidity_needs restrictions client_acceptance,EVID.RISK_PROFILE_GOALS_TIME_HORIZON_LIQUIDITY_NEEDS_RESTRICTIONS_CLIENT_ACCEPTANCE,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,evidence,required_evidence,IPS account_inventory holdings recommended_allocation rationale cost_and_risk_disclosures,EVID.IPS_ACCOUNT_INVENTORY_HOLDINGS_RECOMMENDED_ALLOCATION_RATIONALE_COST_AND_RISK_DISCLOSURES,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,evidence,required_evidence,custodian_data performance_report holdings benchmark drift_analysis client_review_notes,EVID.CUSTODIAN_DATA_PERFORMANCE_REPORT_HOLDINGS_BENCHMARK_DRIFT_ANALYSIS_CLIENT_REVIEW_NOTES,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,evidence,required_evidence,fee_schedule billable_assets billing_calculation adjustment_support approval_record,EVID.FEE_SCHEDULE_BILLABLE_ASSETS_BILLING_CALCULATION_ADJUSTMENT_SUPPORT_APPROVAL_RECORD,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,evidence,required_evidence,will_or_trust_summary beneficiary_designations titling attorney_or_trustee_information client_consent,EVID.WILL_OR_TRUST_SUMMARY_BENEFICIARY_DESIGNATIONS_TITLING_ATTORNEY_OR_TRUSTEE_INFORMATION_CLIENT_CONSENT,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,evidence,required_evidence,offering_documents subscription_documents eligibility_evidence liquidity_terms valuation_source diligence_memo,EVID.OFFERING_DOCUMENTS_SUBSCRIPTION_DOCUMENTS_ELIGIBILITY_EVIDENCE_LIQUIDITY_TERMS_VALUATION_SOURCE_DILIGENCE_MEMO,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,evidence,required_evidence,member_or_customer_profile trigger_signal consent disclosure advisor_assignment outcome,EVID.MEMBER_OR_CUSTOMER_PROFILE_TRIGGER_SIGNAL_CONSENT_DISCLOSURE_ADVISOR_ASSIGNMENT_OUTCOME,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,approval,approval_gates,licensed_advisor,APP.LICENSED_ADVISOR,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,approval,approval_gates,licensed_advisor supervisory_principal_or_compliance_if_required,APP.LICENSED_ADVISOR_SUPERVISORY_PRINCIPAL_OR_COMPLIANCE_IF_REQUIRED,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,approval,approval_gates,licensed_advisor_or_trading_authority operations_owner,APP.LICENSED_ADVISOR_OR_TRADING_AUTHORITY_OPERATIONS_OWNER,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,approval,approval_gates,licensed_advisor_or_investment_authority compliance_or_supervisory_owner,APP.LICENSED_ADVISOR_OR_INVESTMENT_AUTHORITY_COMPLIANCE_OR_SUPERVISORY_OWNER,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,approval,approval_gates,billing_operations_owner,APP.BILLING_OPERATIONS_OWNER,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,approval,approval_gates,licensed_advisor legal_or_tax_professional_for_professional_opinion,APP.LICENSED_ADVISOR_LEGAL_OR_TAX_PROFESSIONAL_FOR_PROFESSIONAL_OPINION,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,approval,approval_gates,referral_compliance_owner licensed_advisor,APP.REFERRAL_COMPLIANCE_OWNER_LICENSED_ADVISOR,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,approval,approval_gates,licensed_advisor,APP.LICENSED_ADVISOR,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,AUM,KPI.AUM,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,AUA,KPI.AUA,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,net_new_assets,KPI.NET_NEW_ASSETS,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,gross_inflows,KPI.GROSS_INFLOWS,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,outflows,KPI.OUTFLOWS,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,new_households,KPI.NEW_HOUSEHOLDS,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,revenue,KPI.REVENUE,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,fee_rate,KPI.FEE_RATE,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,advisor_AUM,KPI.ADVISOR_AUM,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,pipeline,KPI.PIPELINE,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,client_retention,KPI.CLIENT_RETENTION,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,review_completion,KPI.REVIEW_COMPLETION,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,plans_completed,KPI.PLANS_COMPLETED,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,wallet_share,KPI.WALLET_SHARE,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,referrals,KPI.REFERRALS,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,next_generation_relationships,KPI.NEXT_GENERATION_RELATIONSHIPS,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,performance,KPI.PERFORMANCE,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,benchmark_variance,KPI.BENCHMARK_VARIANCE,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,allocation_drift,KPI.ALLOCATION_DRIFT,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,volatility,KPI.VOLATILITY,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,cash_drag,KPI.CASH_DRAG,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,tax_loss_harvesting,KPI.TAX_LOSS_HARVESTING,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,goals_on_track,KPI.GOALS_ON_TRACK,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,implementation_tasks_open,KPI.IMPLEMENTATION_TASKS_OPEN,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,IPS_current,KPI.IPS_CURRENT,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,billable_assets,KPI.BILLABLE_ASSETS,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,fee_revenue,KPI.FEE_REVENUE,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,billing_exceptions,KPI.BILLING_EXCEPTIONS,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,estate_reviews_due,KPI.ESTATE_REVIEWS_DUE,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,beneficiary_gaps,KPI.BENEFICIARY_GAPS,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,titling_issues,KPI.TITLING_ISSUES,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,trust_assets,KPI.TRUST_ASSETS,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,alternative_allocation,KPI.ALTERNATIVE_ALLOCATION,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,commitments,KPI.COMMITMENTS,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,unfunded_commitments,KPI.UNFUNDED_COMMITMENTS,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,NAV,KPI.NAV,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,capital_calls_due,KPI.CAPITAL_CALLS_DUE,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,suitability_exceptions,KPI.SUITABILITY_EXCEPTIONS,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,trade_review_exceptions,KPI.TRADE_REVIEW_EXCEPTIONS,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,disclosure_delivery,KPI.DISCLOSURE_DELIVERY,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,complaints,KPI.COMPLAINTS,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,wealth_referrals,KPI.WEALTH_REFERRALS,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,referral_conversion,KPI.REFERRAL_CONVERSION,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,kpi,kpis,AUM_from_referrals,KPI.AUM_FROM_REFERRALS,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,dashboard,dashboards,Wealth Executive Dashboard,DASH.WEALTH_EXECUTIVE_DASHBOARD,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,dashboard,dashboards,Advisor Dashboard,DASH.ADVISOR_DASHBOARD,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,dashboard,dashboards,Household Dashboard,DASH.HOUSEHOLD_DASHBOARD,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,dashboard,dashboards,Financial Planning Dashboard,DASH.FINANCIAL_PLANNING_DASHBOARD,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,dashboard,dashboards,Portfolio Dashboard,DASH.PORTFOLIO_DASHBOARD,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,dashboard,dashboards,IPS Dashboard,DASH.IPS_DASHBOARD,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,dashboard,dashboards,Billing Dashboard,DASH.BILLING_DASHBOARD,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,dashboard,dashboards,Estate / Trust Dashboard,DASH.ESTATE_TRUST_DASHBOARD,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,dashboard,dashboards,Alternatives Dashboard,DASH.ALTERNATIVES_DASHBOARD,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,dashboard,dashboards,Wealth Compliance Dashboard,DASH.WEALTH_COMPLIANCE_DASHBOARD,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,dashboard,dashboards,Credit Union / Bank Wealth Dashboard,DASH.CREDIT_UNION_BANK_WEALTH_DASHBOARD,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,connector,integration_dependencies,objects.registry.json,CONN.OBJECTS_REGISTRY_JSON,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,connector,integration_dependencies,workflows.registry.json,CONN.WORKFLOWS_REGISTRY_JSON,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,connector,integration_dependencies,agents.registry.json,CONN.AGENTS_REGISTRY_JSON,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,connector,integration_dependencies,kpis.registry.json,CONN.KPIS_REGISTRY_JSON,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,connector,integration_dependencies,dashboards.registry.json,CONN.DASHBOARDS_REGISTRY_JSON,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,connector,integration_dependencies,relationships.registry.json,CONN.RELATIONSHIPS_REGISTRY_JSON,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,connector,integration_dependencies,evidence.registry.json,CONN.EVIDENCE_REGISTRY_JSON,resolved
+FS-4009,FS-4009_WEALTH_MANAGEMENT.cartridge.json,connector,integration_dependencies,approvals.registry.json,CONN.APPROVALS_REGISTRY_JSON,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,object,primary_objects,Carrier,OBJ.CARRIER,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,object,primary_objects,Agency,OBJ.AGENCY,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,object,primary_objects,Producer,OBJ.PRODUCER,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,object,primary_objects,Policyholder,OBJ.POLICYHOLDER,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,object,primary_objects,Policy,OBJ.POLICY,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,object,primary_objects,Coverage,OBJ.COVERAGE,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,object,primary_objects,Premium,OBJ.PREMIUM,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,object,primary_objects,Commission,OBJ.COMMISSION,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,object,primary_objects,Claim,OBJ.CLAIM,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,object,primary_objects,Referral,OBJ.REFERRAL,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,object,primary_objects,License,OBJ.LICENSE,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,object,primary_objects,Appointment,OBJ.APPOINTMENT,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,relationship,relationships,ISSUES,REL.ISSUES,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,relationship,relationships,SELLS,REL.SELLS,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,relationship,relationships,CONTRACTS_WITH,REL.CONTRACTS_WITH,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,relationship,relationships,OWNS,REL.OWNS,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,relationship,relationships,COVERED_BY,REL.COVERED_BY,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,relationship,relationships,FILED_UNDER,REL.FILED_UNDER,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,relationship,relationships,PAID_FOR,REL.PAID_FOR,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,relationship,relationships,GENERATED_BY,REL.GENERATED_BY,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,relationship,relationships,SOURCED_BY,REL.SOURCED_BY,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,relationship,relationships,AUTHORIZES,REL.AUTHORIZES,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,workflow,supported_workflows,Risk Discovery,WF.RISK_DISCOVERY,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,workflow,supported_workflows,Quote-to-Bind,WF.QUOTE_TO_BIND,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,workflow,supported_workflows,Policy Issuance,WF.POLICY_ISSUANCE,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,workflow,supported_workflows,Renewal Review,WF.RENEWAL_REVIEW,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,workflow,supported_workflows,Endorsement,WF.ENDORSEMENT,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,workflow,supported_workflows,Claim,WF.CLAIM,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,workflow,supported_workflows,Commission Reconciliation,WF.COMMISSION_RECONCILIATION,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,workflow,supported_workflows,Producer Licensing,WF.PRODUCER_LICENSING,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,workflow,supported_workflows,Credit Union / Bank Insurance Referral,WF.CREDIT_UNION_BANK_INSURANCE_REFERRAL,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,agent,allowed_agents,Insurance Opportunity Agent,AGENT.INSURANCE_OPPORTUNITY_AGENT,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,agent,allowed_agents,Coverage Gap Agent,AGENT.COVERAGE_GAP_AGENT,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,agent,allowed_agents,Quote Prep Agent,AGENT.QUOTE_PREP_AGENT,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,agent,allowed_agents,Renewal Review Agent,AGENT.RENEWAL_REVIEW_AGENT,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,agent,allowed_agents,Claim Intake Agent,AGENT.CLAIM_INTAKE_AGENT,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,agent,allowed_agents,Commission Reconciliation Agent,AGENT.COMMISSION_RECONCILIATION_AGENT,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,agent,allowed_agents,Licensing Monitor,AGENT.LICENSING_MONITOR,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,agent,allowed_agents,Suitability Review Agent,AGENT.SUITABILITY_REVIEW_AGENT,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,evidence,required_evidence,customer_or_business_profile existing_policy_summary risk_inputs consent_status,EVID.CUSTOMER_OR_BUSINESS_PROFILE_EXISTING_POLICY_SUMMARY_RISK_INPUTS_CONSENT_STATUS,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,evidence,required_evidence,application quote carrier_terms underwriting_evidence customer_acceptance producer_authority,EVID.APPLICATION_QUOTE_CARRIER_TERMS_UNDERWRITING_EVIDENCE_CUSTOMER_ACCEPTANCE_PRODUCER_AUTHORITY,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,evidence,required_evidence,issued_policy coverage_summary premium_confirmation delivery_confirmation,EVID.ISSUED_POLICY_COVERAGE_SUMMARY_PREMIUM_CONFIRMATION_DELIVERY_CONFIRMATION,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,evidence,required_evidence,current_policy renewal_terms claims_history exposure_update producer_review,EVID.CURRENT_POLICY_RENEWAL_TERMS_CLAIMS_HISTORY_EXPOSURE_UPDATE_PRODUCER_REVIEW,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,evidence,required_evidence,loss_notice policy coverage_analysis investigation_evidence reserve_record payment_or_denial_approval,EVID.LOSS_NOTICE_POLICY_COVERAGE_ANALYSIS_INVESTIGATION_EVIDENCE_RESERVE_RECORD_PAYMENT_OR_DENIAL_APPROVAL,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,evidence,required_evidence,carrier_statement policy premium_record producer_split referral_attribution reconciliation_approval,EVID.CARRIER_STATEMENT_POLICY_PREMIUM_RECORD_PRODUCER_SPLIT_REFERRAL_ATTRIBUTION_RECONCILIATION_APPROVAL,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,evidence,required_evidence,producer_license appointment CE_record product_training authority_status,EVID.PRODUCER_LICENSE_APPOINTMENT_CE_RECORD_PRODUCT_TRAINING_AUTHORITY_STATUS,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,evidence,required_evidence,member_or_customer_profile trigger_signal consent referral_disclosure producer_assignment outcome,EVID.MEMBER_OR_CUSTOMER_PROFILE_TRIGGER_SIGNAL_CONSENT_REFERRAL_DISCLOSURE_PRODUCER_ASSIGNMENT_OUTCOME,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,approval,approval_gates,licensed_insurance_owner compliance_owner_if_required,APP.LICENSED_INSURANCE_OWNER_COMPLIANCE_OWNER_IF_REQUIRED,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,approval,approval_gates,licensed_insurance_owner carrier_or_authorized_agency,APP.LICENSED_INSURANCE_OWNER_CARRIER_OR_AUTHORIZED_AGENCY,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,approval,approval_gates,licensed_insurance_owner supervisory_or_compliance_owner,APP.LICENSED_INSURANCE_OWNER_SUPERVISORY_OR_COMPLIANCE_OWNER,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,approval,approval_gates,authorized_claims_owner legal_or_compliance_if_disputed,APP.AUTHORIZED_CLAIMS_OWNER_LEGAL_OR_COMPLIANCE_IF_DISPUTED,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,approval,approval_gates,finance_or_operations_owner,APP.FINANCE_OR_OPERATIONS_OWNER,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,approval,approval_gates,insurance_compliance_owner,APP.INSURANCE_COMPLIANCE_OWNER,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,approval,approval_gates,business_owner compliance_owner licensed_insurance_owner,APP.BUSINESS_OWNER_COMPLIANCE_OWNER_LICENSED_INSURANCE_OWNER,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,referrals,KPI.REFERRALS,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,referral_conversion,KPI.REFERRAL_CONVERSION,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,quotes,KPI.QUOTES,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,applications,KPI.APPLICATIONS,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,policies_issued,KPI.POLICIES_ISSUED,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,quote_to_bind,KPI.QUOTE_TO_BIND,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,premium,KPI.PREMIUM,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,commission,KPI.COMMISSION,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,cross_sell,KPI.CROSS_SELL,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,producer_productivity,KPI.PRODUCER_PRODUCTIVITY,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,policy_count,KPI.POLICY_COUNT,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,in_force_premium,KPI.IN_FORCE_PREMIUM,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,renewal_rate,KPI.RENEWAL_RATE,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,retention,KPI.RETENTION,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,lapse_rate,KPI.LAPSE_RATE,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,cancellations,KPI.CANCELLATIONS,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,reinstatements,KPI.REINSTATEMENTS,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,endorsements,KPI.ENDORSEMENTS,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,claims_count,KPI.CLAIMS_COUNT,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,claims_frequency,KPI.CLAIMS_FREQUENCY,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,claims_severity,KPI.CLAIMS_SEVERITY,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,loss_ratio,KPI.LOSS_RATIO,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,time_to_contact,KPI.TIME_TO_CONTACT,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,time_to_close,KPI.TIME_TO_CLOSE,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,reserve_accuracy,KPI.RESERVE_ACCURACY,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,denied_claims,KPI.DENIED_CLAIMS,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,reopened_claims,KPI.REOPENED_CLAIMS,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,subrogation_recovery,KPI.SUBROGATION_RECOVERY,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,licenses_current,KPI.LICENSES_CURRENT,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,appointments_current,KPI.APPOINTMENTS_CURRENT,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,CE_completion,KPI.CE_COMPLETION,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,suitability_exceptions,KPI.SUITABILITY_EXCEPTIONS,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,replacement_exceptions,KPI.REPLACEMENT_EXCEPTIONS,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,complaints,KPI.COMPLAINTS,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,earned_premium,KPI.EARNED_PREMIUM,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,unearned_premium,KPI.UNEARNED_PREMIUM,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,renewal_commission,KPI.RENEWAL_COMMISSION,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,chargebacks,KPI.CHARGEBACKS,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,billing_exceptions,KPI.BILLING_EXCEPTIONS,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,kpi,kpis,producer_payout_accuracy,KPI.PRODUCER_PAYOUT_ACCURACY,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,dashboard,dashboards,Insurance Executive Dashboard,DASH.INSURANCE_EXECUTIVE_DASHBOARD,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,dashboard,dashboards,Agency Dashboard,DASH.AGENCY_DASHBOARD,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,dashboard,dashboards,Producer Dashboard,DASH.PRODUCER_DASHBOARD,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,dashboard,dashboards,Referral Dashboard,DASH.REFERRAL_DASHBOARD,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,dashboard,dashboards,Policyholder Dashboard,DASH.POLICYHOLDER_DASHBOARD,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,dashboard,dashboards,Renewal Dashboard,DASH.RENEWAL_DASHBOARD,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,dashboard,dashboards,Claims Dashboard,DASH.CLAIMS_DASHBOARD,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,dashboard,dashboards,Commission Dashboard,DASH.COMMISSION_DASHBOARD,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,dashboard,dashboards,Insurance Compliance Dashboard,DASH.INSURANCE_COMPLIANCE_DASHBOARD,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,dashboard,dashboards,Credit Union / Bank Insurance Dashboard,DASH.CREDIT_UNION_BANK_INSURANCE_DASHBOARD,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,connector,integration_dependencies,objects.registry.json,CONN.OBJECTS_REGISTRY_JSON,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,connector,integration_dependencies,workflows.registry.json,CONN.WORKFLOWS_REGISTRY_JSON,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,connector,integration_dependencies,agents.registry.json,CONN.AGENTS_REGISTRY_JSON,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,connector,integration_dependencies,kpis.registry.json,CONN.KPIS_REGISTRY_JSON,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,connector,integration_dependencies,dashboards.registry.json,CONN.DASHBOARDS_REGISTRY_JSON,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,connector,integration_dependencies,relationships.registry.json,CONN.RELATIONSHIPS_REGISTRY_JSON,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,connector,integration_dependencies,evidence.registry.json,CONN.EVIDENCE_REGISTRY_JSON,resolved
+FS-4010,FS-4010_INSURANCE.cartridge.json,connector,integration_dependencies,approvals.registry.json,CONN.APPROVALS_REGISTRY_JSON,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,object,primary_objects,ConstructionProject,OBJ.CONSTRUCTIONPROJECT,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,object,primary_objects,Sponsor,OBJ.SPONSOR,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,object,primary_objects,Borrower,OBJ.BORROWER,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,object,primary_objects,GeneralContractor,OBJ.GENERALCONTRACTOR,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,object,primary_objects,Subcontractor,OBJ.SUBCONTRACTOR,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,object,primary_objects,ConstructionLoan,OBJ.CONSTRUCTIONLOAN,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,object,primary_objects,ProjectBudget,OBJ.PROJECTBUDGET,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,object,primary_objects,ScheduleOfValues,OBJ.SCHEDULEOFVALUES,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,object,primary_objects,DrawRequest,OBJ.DRAWREQUEST,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,object,primary_objects,InspectionReport,OBJ.INSPECTIONREPORT,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,object,primary_objects,LienWaiver,OBJ.LIENWAIVER,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,object,primary_objects,TitleUpdate,OBJ.TITLEUPDATE,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,object,primary_objects,ChangeOrder,OBJ.CHANGEORDER,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,object,primary_objects,Permit,OBJ.PERMIT,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,object,primary_objects,InsurancePolicy,OBJ.INSURANCEPOLICY,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,object,primary_objects,Bond,OBJ.BOND,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,object,primary_objects,EquipmentAsset,OBJ.EQUIPMENTASSET,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,object,primary_objects,CompletionCertificate,OBJ.COMPLETIONCERTIFICATE,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,object,primary_objects,TakeoutSource,OBJ.TAKEOUTSOURCE,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,object,primary_objects,TreasuryRelationship,OBJ.TREASURYRELATIONSHIP,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,relationship,relationships,SPONSORS,REL.SPONSORS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,relationship,relationships,OWNS_OR_CONTROLS,REL.OWNS_OR_CONTROLS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,relationship,relationships,BUILDS,REL.BUILDS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,relationship,relationships,PERFORMS_WORK_ON,REL.PERFORMS_WORK_ON,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,relationship,relationships,FINANCES,REL.FINANCES,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,relationship,relationships,GOVERNS,REL.GOVERNS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,relationship,relationships,SUPPORTS,REL.SUPPORTS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,relationship,relationships,VERIFIES,REL.VERIFIES,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,relationship,relationships,SUPPORTS,REL.SUPPORTS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,relationship,relationships,CLEARS_OR_BLOCKS,REL.CLEARS_OR_BLOCKS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,relationship,relationships,MODIFIES,REL.MODIFIES,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,relationship,relationships,AUTHORIZES,REL.AUTHORIZES,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,relationship,relationships,COVERS,REL.COVERS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,relationship,relationships,SECURES_PERFORMANCE_OR_PAYMENT,REL.SECURES_PERFORMANCE_OR_PAYMENT,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,relationship,relationships,PROVES,REL.PROVES,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,relationship,relationships,RETIRES_OR_CONVERTS,REL.RETIRES_OR_CONVERTS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,relationship,relationships,CONTROLS,REL.CONTROLS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,workflow,supported_workflows,Contractor / Developer Onboarding,WF.CONTRACTOR_DEVELOPER_ONBOARDING,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,workflow,supported_workflows,Project Underwriting,WF.PROJECT_UNDERWRITING,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,workflow,supported_workflows,Construction Loan Closing,WF.CONSTRUCTION_LOAN_CLOSING,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,workflow,supported_workflows,Draw Administration,WF.DRAW_ADMINISTRATION,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,workflow,supported_workflows,Change Order Review,WF.CHANGE_ORDER_REVIEW,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,workflow,supported_workflows,Lien / Title Control,WF.LIEN_TITLE_CONTROL,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,workflow,supported_workflows,Insurance / Bond Monitoring,WF.INSURANCE_BOND_MONITORING,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,workflow,supported_workflows,Project Monitoring,WF.PROJECT_MONITORING,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,workflow,supported_workflows,Completion / Closeout,WF.COMPLETION_CLOSEOUT,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,workflow,supported_workflows,Takeout / Conversion,WF.TAKEOUT_CONVERSION,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,workflow,supported_workflows,Equipment Finance,WF.EQUIPMENT_FINANCE,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,workflow,supported_workflows,Treasury Implementation,WF.TREASURY_IMPLEMENTATION,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,agent,allowed_agents,Contractor Relationship Agent,AGENT.CONTRACTOR_RELATIONSHIP_AGENT,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,agent,allowed_agents,Project Underwriting Agent,AGENT.PROJECT_UNDERWRITING_AGENT,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,agent,allowed_agents,Budget Review Agent,AGENT.BUDGET_REVIEW_AGENT,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,agent,allowed_agents,Draw Package Reviewer,AGENT.DRAW_PACKAGE_REVIEWER,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,agent,allowed_agents,Inspection Summary Agent,AGENT.INSPECTION_SUMMARY_AGENT,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,agent,allowed_agents,Lien Waiver Agent,AGENT.LIEN_WAIVER_AGENT,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,agent,allowed_agents,Title Update Agent,AGENT.TITLE_UPDATE_AGENT,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,agent,allowed_agents,Completion Risk Agent,AGENT.COMPLETION_RISK_AGENT,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,agent,allowed_agents,Change Order Agent,AGENT.CHANGE_ORDER_AGENT,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,agent,allowed_agents,Insurance / Bond Monitor,AGENT.INSURANCE_BOND_MONITOR,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,agent,allowed_agents,Takeout Readiness Agent,AGENT.TAKEOUT_READINESS_AGENT,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,agent,allowed_agents,Treasury Opportunity Agent,AGENT.TREASURY_OPPORTUNITY_AGENT,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,evidence,required_evidence,sponsor_profile contractor_profile financials licenses insurance bonding_capacity project_history,EVID.SPONSOR_PROFILE_CONTRACTOR_PROFILE_FINANCIALS_LICENSES_INSURANCE_BONDING_CAPACITY_PROJECT_HISTORY,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,evidence,required_evidence,project_budget sources_and_uses plans_and_specs construction_contract market_or_feasibility_support appraisal environmental sponsor_financials contractor_financials takeout_plan,EVID.PROJECT_BUDGET_SOURCES_AND_USES_PLANS_AND_SPECS_CONSTRUCTION_CONTRACT_MARKET_OR_FEASIBILITY_SUPPORT_APPRAISAL_ENVIRONMENTAL_SPONSOR_FINANCIALS_CONTRACTOR_FINANCIALS_TAKEOUT_PLAN,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,evidence,required_evidence,credit_approval loan_documents equity_evidence title_commitment insurance bonds permits construction_contract plans_specs closing_checklist,EVID.CREDIT_APPROVAL_LOAN_DOCUMENTS_EQUITY_EVIDENCE_TITLE_COMMITMENT_INSURANCE_BONDS_PERMITS_CONSTRUCTION_CONTRACT_PLANS_SPECS_CLOSING_CHECKLIST,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,evidence,required_evidence,draw_request SOV invoices inspection_report lien_waivers title_update budget_status equity_status retainage_calculation,EVID.DRAW_REQUEST_SOV_INVOICES_INSPECTION_REPORT_LIEN_WAIVERS_TITLE_UPDATE_BUDGET_STATUS_EQUITY_STATUS_RETAINAGE_CALCULATION,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,evidence,required_evidence,signed_change_order scope_description cost_support schedule_impact contingency_status approval_record,EVID.SIGNED_CHANGE_ORDER_SCOPE_DESCRIPTION_COST_SUPPORT_SCHEDULE_IMPACT_CONTINGENCY_STATUS_APPROVAL_RECORD,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,evidence,required_evidence,conditional_waivers unconditional_waivers title_continuation endorsement exception_cure,EVID.CONDITIONAL_WAIVERS_UNCONDITIONAL_WAIVERS_TITLE_CONTINUATION_ENDORSEMENT_EXCEPTION_CURE,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,evidence,required_evidence,builder_risk general_liability workers_comp flood_if_applicable performance_bond payment_bond lender_endorsements,EVID.BUILDER_RISK_GENERAL_LIABILITY_WORKERS_COMP_FLOOD_IF_APPLICABLE_PERFORMANCE_BOND_PAYMENT_BOND_LENDER_ENDORSEMENTS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,evidence,required_evidence,monthly_budget draw_history inspection_history schedule_update permit_status risk_summary,EVID.MONTHLY_BUDGET_DRAW_HISTORY_INSPECTION_HISTORY_SCHEDULE_UPDATE_PERMIT_STATUS_RISK_SUMMARY,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,evidence,required_evidence,certificate_of_occupancy substantial_completion final_inspection final_waivers title_update punch_list final_budget,EVID.CERTIFICATE_OF_OCCUPANCY_SUBSTANTIAL_COMPLETION_FINAL_INSPECTION_FINAL_WAIVERS_TITLE_UPDATE_PUNCH_LIST_FINAL_BUDGET,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,evidence,required_evidence,permanent_commitment_or_sale_contract completion_evidence lease_up_or_stabilization_data appraisal_or_value_support conversion_conditions,EVID.PERMANENT_COMMITMENT_OR_SALE_CONTRACT_COMPLETION_EVIDENCE_LEASE_UP_OR_STABILIZATION_DATA_APPRAISAL_OR_VALUE_SUPPORT_CONVERSION_CONDITIONS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,evidence,required_evidence,asset_schedule invoice_or_quote valuation maintenance_history insurance lien_search,EVID.ASSET_SCHEDULE_INVOICE_OR_QUOTE_VALUATION_MAINTENANCE_HISTORY_INSURANCE_LIEN_SEARCH,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,evidence,required_evidence,payment_flow_map account_structure control approvals positive_pay_setup wire_authority implementation_confirmation,EVID.PAYMENT_FLOW_MAP_ACCOUNT_STRUCTURE_CONTROL_APPROVALS_POSITIVE_PAY_SETUP_WIRE_AUTHORITY_IMPLEMENTATION_CONFIRMATION,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,approval,approval_gates,credit_authority,APP.CREDIT_AUTHORITY,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,approval,approval_gates,credit_authority legal_counsel operations_owner,APP.CREDIT_AUTHORITY_LEGAL_COUNSEL_OPERATIONS_OWNER,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,approval,approval_gates,credit_authority_or_delegated_draw_authority operations_owner,APP.CREDIT_AUTHORITY_OR_DELEGATED_DRAW_AUTHORITY_OPERATIONS_OWNER,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,approval,approval_gates,project_owner credit_authority_if_material,APP.PROJECT_OWNER_CREDIT_AUTHORITY_IF_MATERIAL,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,approval,approval_gates,legal_counsel credit_authority_if_material,APP.LEGAL_COUNSEL_CREDIT_AUTHORITY_IF_MATERIAL,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,approval,approval_gates,credit_authority executive_owner_if_material,APP.CREDIT_AUTHORITY_EXECUTIVE_OWNER_IF_MATERIAL,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,approval,approval_gates,credit_authority legal_counsel executive_owner_if_material,APP.CREDIT_AUTHORITY_LEGAL_COUNSEL_EXECUTIVE_OWNER_IF_MATERIAL,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,approval,approval_gates,credit_authority operations_owner,APP.CREDIT_AUTHORITY_OPERATIONS_OWNER,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,approval,approval_gates,credit_authority operations_owner,APP.CREDIT_AUTHORITY_OPERATIONS_OWNER,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,approval,approval_gates,treasury_operations_owner security_owner_if_integration,APP.TREASURY_OPERATIONS_OWNER_SECURITY_OWNER_IF_INTEGRATION,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,active_projects,KPI.ACTIVE_PROJECTS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,total_project_cost,KPI.TOTAL_PROJECT_COST,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,loan_exposure,KPI.LOAN_EXPOSURE,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,completion_percentage,KPI.COMPLETION_PERCENTAGE,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,budget_variance,KPI.BUDGET_VARIANCE,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,schedule_variance,KPI.SCHEDULE_VARIANCE,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,original_budget,KPI.ORIGINAL_BUDGET,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,current_budget,KPI.CURRENT_BUDGET,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,cost_to_date,KPI.COST_TO_DATE,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,remaining_cost,KPI.REMAINING_COST,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,contingency_remaining,KPI.CONTINGENCY_REMAINING,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,interest_reserve_remaining,KPI.INTEREST_RESERVE_REMAINING,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,equity_required,KPI.EQUITY_REQUIRED,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,equity_contributed,KPI.EQUITY_CONTRIBUTED,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,loan_balance,KPI.LOAN_BALANCE,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,undisbursed_commitment,KPI.UNDISBURSED_COMMITMENT,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,draw_requests,KPI.DRAW_REQUESTS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,draws_funded,KPI.DRAWS_FUNDED,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,draw_cycle_time,KPI.DRAW_CYCLE_TIME,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,draw_exceptions,KPI.DRAW_EXCEPTIONS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,funding_holds,KPI.FUNDING_HOLDS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,retainage,KPI.RETAINAGE,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,inspection_completion,KPI.INSPECTION_COMPLETION,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,draw_completion_variance,KPI.DRAW_COMPLETION_VARIANCE,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,lien_waiver_exceptions,KPI.LIEN_WAIVER_EXCEPTIONS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,title_exceptions,KPI.TITLE_EXCEPTIONS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,new_liens,KPI.NEW_LIENS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,permit_delays,KPI.PERMIT_DELAYS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,insurance_exceptions,KPI.INSURANCE_EXCEPTIONS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,bond_exceptions,KPI.BOND_EXCEPTIONS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,change_orders,KPI.CHANGE_ORDERS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,change_order_value,KPI.CHANGE_ORDER_VALUE,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,contractor_backlog,KPI.CONTRACTOR_BACKLOG,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,bonding_capacity,KPI.BONDING_CAPACITY,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,schedule_performance,KPI.SCHEDULE_PERFORMANCE,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,budget_performance,KPI.BUDGET_PERFORMANCE,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,delayed_projects,KPI.DELAYED_PROJECTS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,over_budget_projects,KPI.OVER_BUDGET_PROJECTS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,watchlist_projects,KPI.WATCHLIST_PROJECTS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,maturity_risk,KPI.MATURITY_RISK,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,takeout_readiness,KPI.TAKEOUT_READINESS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,takeout_risk,KPI.TAKEOUT_RISK,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,certificate_of_occupancy_status,KPI.CERTIFICATE_OF_OCCUPANCY_STATUS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,lease_up_or_sale_status,KPI.LEASE_UP_OR_SALE_STATUS,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,kpi,kpis,risk_rating_migration,KPI.RISK_RATING_MIGRATION,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,dashboard,dashboards,Construction Finance Executive Dashboard,DASH.CONSTRUCTION_FINANCE_EXECUTIVE_DASHBOARD,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,dashboard,dashboards,Project Dashboard,DASH.PROJECT_DASHBOARD,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,dashboard,dashboards,Draw Dashboard,DASH.DRAW_DASHBOARD,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,dashboard,dashboards,Budget / SOV Dashboard,DASH.BUDGET_SOV_DASHBOARD,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,dashboard,dashboards,Lien / Title Dashboard,DASH.LIEN_TITLE_DASHBOARD,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,dashboard,dashboards,Inspection Dashboard,DASH.INSPECTION_DASHBOARD,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,dashboard,dashboards,Insurance / Bond Dashboard,DASH.INSURANCE_BOND_DASHBOARD,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,dashboard,dashboards,Contractor Dashboard,DASH.CONTRACTOR_DASHBOARD,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,dashboard,dashboards,Takeout Readiness Dashboard,DASH.TAKEOUT_READINESS_DASHBOARD,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,dashboard,dashboards,Construction Portfolio Risk Dashboard,DASH.CONSTRUCTION_PORTFOLIO_RISK_DASHBOARD,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,connector,integration_dependencies,objects.registry.json,CONN.OBJECTS_REGISTRY_JSON,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,connector,integration_dependencies,workflows.registry.json,CONN.WORKFLOWS_REGISTRY_JSON,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,connector,integration_dependencies,agents.registry.json,CONN.AGENTS_REGISTRY_JSON,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,connector,integration_dependencies,kpis.registry.json,CONN.KPIS_REGISTRY_JSON,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,connector,integration_dependencies,dashboards.registry.json,CONN.DASHBOARDS_REGISTRY_JSON,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,connector,integration_dependencies,relationships.registry.json,CONN.RELATIONSHIPS_REGISTRY_JSON,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,connector,integration_dependencies,evidence.registry.json,CONN.EVIDENCE_REGISTRY_JSON,resolved
+FS-4011,FS-4011_CONSTRUCTION_FINANCE.cartridge.json,connector,integration_dependencies,approvals.registry.json,CONN.APPROVALS_REGISTRY_JSON,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,object,primary_objects,Manufacturer,OBJ.MANUFACTURER,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,object,primary_objects,Plant,OBJ.PLANT,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,object,primary_objects,ProductionLine,OBJ.PRODUCTIONLINE,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,object,primary_objects,ERPExport,OBJ.ERPEXPORT,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,object,primary_objects,Inventory,OBJ.INVENTORY,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,object,primary_objects,BOM,OBJ.BOM,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,object,primary_objects,Supplier,OBJ.SUPPLIER,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,object,primary_objects,Customer,OBJ.CUSTOMER,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,object,primary_objects,PurchaseOrder,OBJ.PURCHASEORDER,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,object,primary_objects,SalesOrder,OBJ.SALESORDER,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,object,primary_objects,EquipmentAsset,OBJ.EQUIPMENTASSET,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,object,primary_objects,BorrowingBase,OBJ.BORROWINGBASE,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,object,primary_objects,Warehouse,OBJ.WAREHOUSE,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,object,primary_objects,WorkOrder,OBJ.WORKORDER,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,object,primary_objects,QualityRecord,OBJ.QUALITYRECORD,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,object,primary_objects,CapacityPlan,OBJ.CAPACITYPLAN,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,object,primary_objects,TreasuryRelationship,OBJ.TREASURYRELATIONSHIP,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,relationship,relationships,Manufacturer OWNS Plant,REL.MANUFACTURER_OWNS_PLANT,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,relationship,relationships,Plant OPERATES ProductionLine,REL.PLANT_OPERATES_PRODUCTIONLINE,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,relationship,relationships,ProductionLine PRODUCES WorkOrder,REL.PRODUCTIONLINE_PRODUCES_WORKORDER,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,relationship,relationships,Inventory SUPPORTS BorrowingBase,REL.INVENTORY_SUPPORTS_BORROWINGBASE,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,relationship,relationships,Supplier SUPPLIES Manufacturer,REL.SUPPLIER_SUPPLIES_MANUFACTURER,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,relationship,relationships,Customer PURCHASES SalesOrder,REL.CUSTOMER_PURCHASES_SALESORDER,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,relationship,relationships,EquipmentAsset LOCATED_AT Plant,REL.EQUIPMENTASSET_LOCATED_AT_PLANT,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,relationship,relationships,TreasuryRelationship SERVES Manufacturer,REL.TREASURYRELATIONSHIP_SERVES_MANUFACTURER,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,workflow,supported_workflows,Manufacturer onboarding,WF.MANUFACTURER_ONBOARDING,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,workflow,supported_workflows,Credit underwriting,WF.CREDIT_UNDERWRITING,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,workflow,supported_workflows,Borrowing base administration,WF.BORROWING_BASE_ADMINISTRATION,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,workflow,supported_workflows,Inventory monitoring,WF.INVENTORY_MONITORING,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,workflow,supported_workflows,Production analysis,WF.PRODUCTION_ANALYSIS,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,workflow,supported_workflows,Supplier concentration review,WF.SUPPLIER_CONCENTRATION_REVIEW,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,workflow,supported_workflows,Customer concentration review,WF.CUSTOMER_CONCENTRATION_REVIEW,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,workflow,supported_workflows,Equipment finance,WF.EQUIPMENT_FINANCE,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,workflow,supported_workflows,Treasury implementation,WF.TREASURY_IMPLEMENTATION,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,workflow,supported_workflows,Working capital monitoring,WF.WORKING_CAPITAL_MONITORING,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,workflow,supported_workflows,Covenant review,WF.COVENANT_REVIEW,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,workflow,supported_workflows,Annual relationship review,WF.ANNUAL_RELATIONSHIP_REVIEW,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,agent,allowed_agents,Manufacturing Analyst,AGENT.MANUFACTURING_ANALYST,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,agent,allowed_agents,ERP Intake Agent,AGENT.ERP_INTAKE_AGENT,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,agent,allowed_agents,Inventory Analyst,AGENT.INVENTORY_ANALYST,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,agent,allowed_agents,Borrowing Base Agent,AGENT.BORROWING_BASE_AGENT,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,agent,allowed_agents,Production Intelligence Agent,AGENT.PRODUCTION_INTELLIGENCE_AGENT,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,agent,allowed_agents,Supplier Risk Agent,AGENT.SUPPLIER_RISK_AGENT,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,agent,allowed_agents,Customer Concentration Agent,AGENT.CUSTOMER_CONCENTRATION_AGENT,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,agent,allowed_agents,Equipment Finance Agent,AGENT.EQUIPMENT_FINANCE_AGENT,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,agent,allowed_agents,Treasury Opportunity Agent,AGENT.TREASURY_OPPORTUNITY_AGENT,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,agent,allowed_agents,Portfolio Monitor,AGENT.PORTFOLIO_MONITOR,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,evidence,required_evidence,financial_statements ERP_export inventory_report AR_aging AP_aging customer_listing supplier_listing equipment_schedule,EVID.FINANCIAL_STATEMENTS_ERP_EXPORT_INVENTORY_REPORT_AR_AGING_AP_AGING_CUSTOMER_LISTING_SUPPLIER_LISTING_EQUIPMENT_SCHEDULE,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,evidence,required_evidence,inventory AR eligibility_schedule advance_rates field_exam_if_available,EVID.INVENTORY_AR_ELIGIBILITY_SCHEDULE_ADVANCE_RATES_FIELD_EXAM_IF_AVAILABLE,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,evidence,required_evidence,production_reports capacity_reports quality_reports downtime backlog,EVID.PRODUCTION_REPORTS_CAPACITY_REPORTS_QUALITY_REPORTS_DOWNTIME_BACKLOG,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,evidence,required_evidence,asset_schedule valuation maintenance_history insurance,EVID.ASSET_SCHEDULE_VALUATION_MAINTENANCE_HISTORY_INSURANCE,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,evidence,required_evidence,monthly_financials borrowing_base covenants management_reporting,EVID.MONTHLY_FINANCIALS_BORROWING_BASE_COVENANTS_MANAGEMENT_REPORTING,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,approval,approval_gates,credit_authority,APP.CREDIT_AUTHORITY,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,approval,approval_gates,credit_authority,APP.CREDIT_AUTHORITY,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,approval,approval_gates,credit_authority operations_owner,APP.CREDIT_AUTHORITY_OPERATIONS_OWNER,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,approval,approval_gates,credit_authority legal_counsel,APP.CREDIT_AUTHORITY_LEGAL_COUNSEL,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,kpi,kpis,EBITDA,KPI.EBITDA,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,kpi,kpis,gross_margin,KPI.GROSS_MARGIN,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,kpi,kpis,inventory_turns,KPI.INVENTORY_TURNS,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,kpi,kpis,capacity_utilization,KPI.CAPACITY_UTILIZATION,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,kpi,kpis,OEE,KPI.OEE,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,kpi,kpis,backlog,KPI.BACKLOG,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,kpi,kpis,on_time_delivery,KPI.ON_TIME_DELIVERY,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,kpi,kpis,scrap_rate,KPI.SCRAP_RATE,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,kpi,kpis,yield,KPI.YIELD,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,kpi,kpis,AR_days,KPI.AR_DAYS,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,kpi,kpis,AP_days,KPI.AP_DAYS,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,kpi,kpis,cash_conversion_cycle,KPI.CASH_CONVERSION_CYCLE,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,kpi,kpis,borrowing_base_availability,KPI.BORROWING_BASE_AVAILABILITY,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,kpi,kpis,customer_concentration,KPI.CUSTOMER_CONCENTRATION,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,kpi,kpis,supplier_concentration,KPI.SUPPLIER_CONCENTRATION,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,kpi,kpis,downtime,KPI.DOWNTIME,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,kpi,kpis,working_capital,KPI.WORKING_CAPITAL,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,kpi,kpis,deposit_balances,KPI.DEPOSIT_BALANCES,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,dashboard,dashboards,Manufacturing Executive Dashboard,DASH.MANUFACTURING_EXECUTIVE_DASHBOARD,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,dashboard,dashboards,Working Capital Dashboard,DASH.WORKING_CAPITAL_DASHBOARD,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,dashboard,dashboards,Borrowing Base Dashboard,DASH.BORROWING_BASE_DASHBOARD,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,dashboard,dashboards,Production Dashboard,DASH.PRODUCTION_DASHBOARD,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,dashboard,dashboards,Inventory Dashboard,DASH.INVENTORY_DASHBOARD,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,dashboard,dashboards,Equipment Dashboard,DASH.EQUIPMENT_DASHBOARD,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,dashboard,dashboards,Treasury Dashboard,DASH.TREASURY_DASHBOARD,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,dashboard,dashboards,Portfolio Risk Dashboard,DASH.PORTFOLIO_RISK_DASHBOARD,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,connector,integration_dependencies,objects.registry.json,CONN.OBJECTS_REGISTRY_JSON,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,connector,integration_dependencies,workflows.registry.json,CONN.WORKFLOWS_REGISTRY_JSON,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,connector,integration_dependencies,agents.registry.json,CONN.AGENTS_REGISTRY_JSON,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,connector,integration_dependencies,kpis.registry.json,CONN.KPIS_REGISTRY_JSON,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,connector,integration_dependencies,dashboards.registry.json,CONN.DASHBOARDS_REGISTRY_JSON,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,connector,integration_dependencies,relationships.registry.json,CONN.RELATIONSHIPS_REGISTRY_JSON,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,connector,integration_dependencies,evidence.registry.json,CONN.EVIDENCE_REGISTRY_JSON,resolved
+FS-4012,FS-4012_MANUFACTURING_FINANCE.cartridge.json,connector,integration_dependencies,approvals.registry.json,CONN.APPROVALS_REGISTRY_JSON,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,object,primary_objects,HealthcarePractice,OBJ.HEALTHCAREPRACTICE,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,object,primary_objects,Provider,OBJ.PROVIDER,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,object,primary_objects,Payer,OBJ.PAYER,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,object,primary_objects,PayerContract,OBJ.PAYERCONTRACT,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,object,primary_objects,Claim,OBJ.CLAIM,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,object,primary_objects,Denial,OBJ.DENIAL,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,object,primary_objects,RevenueCycle,OBJ.REVENUECYCLE,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,object,primary_objects,PatientVolume,OBJ.PATIENTVOLUME,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,object,primary_objects,EquipmentAsset,OBJ.EQUIPMENTASSET,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,object,primary_objects,Facility,OBJ.FACILITY,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,object,primary_objects,PracticeAcquisition,OBJ.PRACTICEACQUISITION,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,object,primary_objects,PartnerBuyIn,OBJ.PARTNERBUYIN,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,object,primary_objects,HealthcareLoan,OBJ.HEALTHCARELOAN,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,object,primary_objects,License,OBJ.LICENSE,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,relationship,relationships,Provider WORKS_AT HealthcarePractice,REL.PROVIDER_WORKS_AT_HEALTHCAREPRACTICE,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,relationship,relationships,HealthcarePractice BILLS Payer,REL.HEALTHCAREPRACTICE_BILLS_PAYER,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,relationship,relationships,Payer REIMBURSES Claim,REL.PAYER_REIMBURSES_CLAIM,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,relationship,relationships,Claim CREATES Receivable,REL.CLAIM_CREATES_RECEIVABLE,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,relationship,relationships,Denial IMPACTS RevenueCycle,REL.DENIAL_IMPACTS_REVENUECYCLE,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,relationship,relationships,EquipmentAsset SUPPORTS Procedure,REL.EQUIPMENTASSET_SUPPORTS_PROCEDURE,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,relationship,relationships,HealthcareLoan FINANCES HealthcarePractice,REL.HEALTHCARELOAN_FINANCES_HEALTHCAREPRACTICE,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,relationship,relationships,TreasuryService SUPPORTS PaymentFlow,REL.TREASURYSERVICE_SUPPORTS_PAYMENTFLOW,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,relationship,relationships,License AUTHORIZES Provider,REL.LICENSE_AUTHORIZES_PROVIDER,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,relationship,relationships,InsurancePolicy COVERS MalpracticeRisk,REL.INSURANCEPOLICY_COVERS_MALPRACTICERISK,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,workflow,supported_workflows,Provider Relationship Onboarding,WF.PROVIDER_RELATIONSHIP_ONBOARDING,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,workflow,supported_workflows,Healthcare Credit Underwriting,WF.HEALTHCARE_CREDIT_UNDERWRITING,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,workflow,supported_workflows,Practice Acquisition,WF.PRACTICE_ACQUISITION,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,workflow,supported_workflows,Partner Buy-In,WF.PARTNER_BUY_IN,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,workflow,supported_workflows,Equipment Finance,WF.EQUIPMENT_FINANCE,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,workflow,supported_workflows,Revenue Cycle Monitoring,WF.REVENUE_CYCLE_MONITORING,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,workflow,supported_workflows,Treasury Assessment,WF.TREASURY_ASSESSMENT,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,workflow,supported_workflows,Annual Review,WF.ANNUAL_REVIEW,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,workflow,supported_workflows,License / Insurance Monitoring,WF.LICENSE_INSURANCE_MONITORING,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,workflow,supported_workflows,Distressed Practice Review,WF.DISTRESSED_PRACTICE_REVIEW,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,agent,allowed_agents,Healthcare Relationship Agent,AGENT.HEALTHCARE_RELATIONSHIP_AGENT,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,agent,allowed_agents,Revenue Cycle Analyst,AGENT.REVENUE_CYCLE_ANALYST,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,agent,allowed_agents,Payer Mix Analyst,AGENT.PAYER_MIX_ANALYST,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,agent,allowed_agents,Provider Productivity Analyst,AGENT.PROVIDER_PRODUCTIVITY_ANALYST,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,agent,allowed_agents,Practice Valuation Agent,AGENT.PRACTICE_VALUATION_AGENT,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,agent,allowed_agents,Credit Memo Writer,AGENT.CREDIT_MEMO_WRITER,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,agent,allowed_agents,Treasury Opportunity Agent,AGENT.TREASURY_OPPORTUNITY_AGENT,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,agent,allowed_agents,License Monitor,AGENT.LICENSE_MONITOR,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,agent,allowed_agents,Early Warning Agent,AGENT.EARLY_WARNING_AGENT,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,evidence,required_evidence,practice_profile ownership_documents provider_roster payer_mix RCM_summary facility_and_equipment_list,EVID.PRACTICE_PROFILE_OWNERSHIP_DOCUMENTS_PROVIDER_ROSTER_PAYER_MIX_RCM_SUMMARY_FACILITY_AND_EQUIPMENT_LIST,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,evidence,required_evidence,financial_statements tax_returns AR_aging payer_mix provider_productivity debt_schedule licenses malpractice_insurance credit_memo,EVID.FINANCIAL_STATEMENTS_TAX_RETURNS_AR_AGING_PAYER_MIX_PROVIDER_PRODUCTIVITY_DEBT_SCHEDULE_LICENSES_MALPRACTICE_INSURANCE_CREDIT_MEMO,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,evidence,required_evidence,purchase_agreement practice_valuation financials production_by_provider payer_mix patient_retention_data lease equipment_list transition_plan,EVID.PURCHASE_AGREEMENT_PRACTICE_VALUATION_FINANCIALS_PRODUCTION_BY_PROVIDER_PAYER_MIX_PATIENT_RETENTION_DATA_LEASE_EQUIPMENT_LIST_TRANSITION_PLAN,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,evidence,required_evidence,ownership_agreement valuation provider_production compensation_terms governance_terms financing_request,EVID.OWNERSHIP_AGREEMENT_VALUATION_PROVIDER_PRODUCTION_COMPENSATION_TERMS_GOVERNANCE_TERMS_FINANCING_REQUEST,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,evidence,required_evidence,vendor_quote equipment_description revenue_or_capacity_impact valuation insurance installation_plan,EVID.VENDOR_QUOTE_EQUIPMENT_DESCRIPTION_REVENUE_OR_CAPACITY_IMPACT_VALUATION_INSURANCE_INSTALLATION_PLAN,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,evidence,required_evidence,RCM_report AR_aging claims_report denial_report payer_mix deposit_reconciliation,EVID.RCM_REPORT_AR_AGING_CLAIMS_REPORT_DENIAL_REPORT_PAYER_MIX_DEPOSIT_RECONCILIATION,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,evidence,required_evidence,payment_flow_map merchant_data payer_deposit_data payroll_and_vendor_flows fraud_control_review,EVID.PAYMENT_FLOW_MAP_MERCHANT_DATA_PAYER_DEPOSIT_DATA_PAYROLL_AND_VENDOR_FLOWS_FRAUD_CONTROL_REVIEW,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,evidence,required_evidence,financials RCM_report payer_mix provider_productivity covenant_evidence license_and_insurance_status,EVID.FINANCIALS_RCM_REPORT_PAYER_MIX_PROVIDER_PRODUCTIVITY_COVENANT_EVIDENCE_LICENSE_AND_INSURANCE_STATUS,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,evidence,required_evidence,provider_license facility_license credentialing_evidence malpractice_certificate expiration_dates,EVID.PROVIDER_LICENSE_FACILITY_LICENSE_CREDENTIALING_EVIDENCE_MALPRACTICE_CERTIFICATE_EXPIRATION_DATES,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,evidence,required_evidence,cash_position AR_aging denial_trend provider_status payer_issues collateral legal_review,EVID.CASH_POSITION_AR_AGING_DENIAL_TREND_PROVIDER_STATUS_PAYER_ISSUES_COLLATERAL_LEGAL_REVIEW,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,approval,approval_gates,credit_authority,APP.CREDIT_AUTHORITY,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,approval,approval_gates,credit_authority legal_counsel,APP.CREDIT_AUTHORITY_LEGAL_COUNSEL,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,approval,approval_gates,credit_authority operations_owner,APP.CREDIT_AUTHORITY_OPERATIONS_OWNER,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,approval,approval_gates,credit_risk_owner,APP.CREDIT_RISK_OWNER,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,approval,approval_gates,credit_authority legal_counsel executive_owner_if_material,APP.CREDIT_AUTHORITY_LEGAL_COUNSEL_EXECUTIVE_OWNER_IF_MATERIAL,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,approval,approval_gates,treasury_operations_owner security_owner_if_integration,APP.TREASURY_OPERATIONS_OWNER_SECURITY_OWNER_IF_INTEGRATION,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,approval,approval_gates,compliance_owner,APP.COMPLIANCE_OWNER,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,approval,approval_gates,business_owner security_owner privacy_or_compliance_owner,APP.BUSINESS_OWNER_SECURITY_OWNER_PRIVACY_OR_COMPLIANCE_OWNER,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,healthcare_relationships,KPI.HEALTHCARE_RELATIONSHIPS,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,deposit_balances,KPI.DEPOSIT_BALANCES,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,treasury_revenue,KPI.TREASURY_REVENUE,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,loan_exposure,KPI.LOAN_EXPOSURE,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,equipment_finance_volume,KPI.EQUIPMENT_FINANCE_VOLUME,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,acquisition_loans,KPI.ACQUISITION_LOANS,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,buyin_loans,KPI.BUYIN_LOANS,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,relationship_profitability,KPI.RELATIONSHIP_PROFITABILITY,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,revenue,KPI.REVENUE,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,EBITDA,KPI.EBITDA,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,EBITDA_margin,KPI.EBITDA_MARGIN,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,gross_charges,KPI.GROSS_CHARGES,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,net_collections,KPI.NET_COLLECTIONS,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,collection_rate,KPI.COLLECTION_RATE,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,DSCR,KPI.DSCR,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,leverage,KPI.LEVERAGE,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,liquidity,KPI.LIQUIDITY,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,payroll_to_revenue,KPI.PAYROLL_TO_REVENUE,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,rent_to_revenue,KPI.RENT_TO_REVENUE,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,AR_days,KPI.AR_DAYS,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,AR_over_90,KPI.AR_OVER_90,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,denial_rate,KPI.DENIAL_RATE,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,clean_claim_rate,KPI.CLEAN_CLAIM_RATE,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,net_collection_rate,KPI.NET_COLLECTION_RATE,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,days_to_bill,KPI.DAYS_TO_BILL,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,days_to_pay,KPI.DAYS_TO_PAY,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,write_offs,KPI.WRITE_OFFS,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,patient_collections,KPI.PATIENT_COLLECTIONS,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,payer_concentration,KPI.PAYER_CONCENTRATION,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,patient_visits,KPI.PATIENT_VISITS,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,procedures,KPI.PROCEDURES,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,new_patients,KPI.NEW_PATIENTS,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,provider_productivity,KPI.PROVIDER_PRODUCTIVITY,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,schedule_utilization,KPI.SCHEDULE_UTILIZATION,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,no_show_rate,KPI.NO_SHOW_RATE,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,revenue_per_provider,KPI.REVENUE_PER_PROVIDER,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,staffing_ratio,KPI.STAFFING_RATIO,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,provider_turnover,KPI.PROVIDER_TURNOVER,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,license_exceptions,KPI.LICENSE_EXCEPTIONS,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,malpractice_insurance_exceptions,KPI.MALPRACTICE_INSURANCE_EXCEPTIONS,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,credentialing_exceptions,KPI.CREDENTIALING_EXCEPTIONS,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,patient_volume_decline,KPI.PATIENT_VOLUME_DECLINE,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,AR_deterioration,KPI.AR_DETERIORATION,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,kpi,kpis,risk_rating_migration,KPI.RISK_RATING_MIGRATION,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,dashboard,dashboards,Healthcare Finance Executive Dashboard,DASH.HEALTHCARE_FINANCE_EXECUTIVE_DASHBOARD,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,dashboard,dashboards,Practice Relationship Dashboard,DASH.PRACTICE_RELATIONSHIP_DASHBOARD,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,dashboard,dashboards,Revenue Cycle Dashboard,DASH.REVENUE_CYCLE_DASHBOARD,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,dashboard,dashboards,Payer Mix Dashboard,DASH.PAYER_MIX_DASHBOARD,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,dashboard,dashboards,Provider Productivity Dashboard,DASH.PROVIDER_PRODUCTIVITY_DASHBOARD,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,dashboard,dashboards,Equipment Dashboard,DASH.EQUIPMENT_DASHBOARD,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,dashboard,dashboards,Treasury Dashboard,DASH.TREASURY_DASHBOARD,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,dashboard,dashboards,Acquisition / Buy-In Dashboard,DASH.ACQUISITION_BUY_IN_DASHBOARD,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,dashboard,dashboards,Healthcare Compliance Dashboard,DASH.HEALTHCARE_COMPLIANCE_DASHBOARD,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,dashboard,dashboards,Portfolio Risk Dashboard,DASH.PORTFOLIO_RISK_DASHBOARD,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,connector,integration_dependencies,objects.registry.json,CONN.OBJECTS_REGISTRY_JSON,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,connector,integration_dependencies,workflows.registry.json,CONN.WORKFLOWS_REGISTRY_JSON,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,connector,integration_dependencies,agents.registry.json,CONN.AGENTS_REGISTRY_JSON,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,connector,integration_dependencies,kpis.registry.json,CONN.KPIS_REGISTRY_JSON,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,connector,integration_dependencies,dashboards.registry.json,CONN.DASHBOARDS_REGISTRY_JSON,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,connector,integration_dependencies,relationships.registry.json,CONN.RELATIONSHIPS_REGISTRY_JSON,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,connector,integration_dependencies,evidence.registry.json,CONN.EVIDENCE_REGISTRY_JSON,resolved
+FS-4013,FS-4013_HEALTHCARE_FINANCE.cartridge.json,connector,integration_dependencies,approvals.registry.json,CONN.APPROVALS_REGISTRY_JSON,resolved

@@ -1,0 +1,5 @@
+tier,service_definition,rto,rpo,backup,exercise_frequency,owner
+0,"security, IAM, audit, tenant boundary",1 hour,15 minutes,immutable multi-zone,quarterly,platform security
+1,"core terminal, workflow, evidence, approvals",4 hours,1 hour,encrypted multi-zone,semiannual,service owner
+2,"search, graph enrichment, reporting",24 hours,4 hours,encrypted daily plus logs,annual,service owner
+3,noncritical demo and analytics,72 hours,24 hours,daily,annual,product owner

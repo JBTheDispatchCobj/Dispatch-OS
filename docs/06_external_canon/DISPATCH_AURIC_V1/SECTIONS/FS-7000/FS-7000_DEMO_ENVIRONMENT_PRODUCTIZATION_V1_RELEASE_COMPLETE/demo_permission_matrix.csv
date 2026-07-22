@@ -1,0 +1,7 @@
+role,environment_scope,allowed_actions,prohibited_actions
+Presenter,public_demo,load|start|pause|reset|inject_synthetic_event|navigate,view restricted tenant data|enable production connector|send external message
+Executive Viewer,public_demo|institution_sandbox,view|filter|drillthrough|approve where assigned,administer tenant|view restricted evidence without permission
+Operator,institution_sandbox|controlled_pilot,run workflow|add evidence|complete tasks|request approval,approve own material action|change agent permissions
+Compliance Reviewer,institution_sandbox|controlled_pilot,review evidence|approve compliance step|lock binder,send regulator response without release approval
+Demo Admin,all_demo,configure fixture|reset|manage users|view audit,access production tenant data|promote demo data to production
+External Guest,shared_scope_only,view shared objects|complete assigned task,export unrestricted data|view private relationship notes

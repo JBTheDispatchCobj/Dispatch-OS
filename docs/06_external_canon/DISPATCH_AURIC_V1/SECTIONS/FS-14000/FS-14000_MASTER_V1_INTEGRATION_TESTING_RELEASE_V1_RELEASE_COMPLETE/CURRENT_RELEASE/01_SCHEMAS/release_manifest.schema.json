@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fs14000.release_manifest.v1",
+  "type": "object",
+  "required": [
+    "release_id",
+    "version",
+    "status",
+    "artifacts",
+    "approvals"
+  ],
+  "properties": {
+    "release_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "integration_candidate",
+        "security_candidate",
+        "release_candidate",
+        "approved",
+        "deployed",
+        "rejected",
+        "rolled_back",
+        "superseded"
+      ]
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "artifact_id",
+          "path",
+          "sha256",
+          "status"
+        ],
+        "properties": {
+          "artifact_id": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "approvals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "authority",
+          "decision"
+        ],
+        "properties": {
+          "authority": {
+            "type": "string"
+          },
+          "decision": {
+            "enum": [
+              "pending",
+              "approved",
+              "approved_with_conditions",
+              "rejected"
+            ]
+          },
+          "conditions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "reports": [
+    {
+      "report_id": "board_operating_packet",
+      "snapshot_required": true,
+      "approval_required": true,
+      "sections": [
+        "executive_summary",
+        "decisions",
+        "risk",
+        "opportunities",
+        "performance",
+        "appendix_evidence"
+      ]
+    },
+    {
+      "report_id": "exam_evidence_status",
+      "snapshot_required": true,
+      "approval_required": true,
+      "sections": [
+        "request_status",
+        "evidence_gaps",
+        "owners",
+        "remediation",
+        "locked_binder"
+      ]
+    },
+    {
+      "report_id": "opportunity_decision_memo",
+      "snapshot_required": true,
+      "approval_required": true,
+      "sections": [
+        "thesis",
+        "economics",
+        "readiness",
+        "risk",
+        "evidence",
+        "recommendation",
+        "decision"
+      ]
+    },
+    {
+      "report_id": "institution_profile_export",
+      "snapshot_required": true,
+      "approval_required": false,
+      "sections": [
+        "identity",
+        "financials",
+        "people",
+        "products",
+        "vendors",
+        "systems",
+        "risk",
+        "relationships",
+        "sources"
+      ]
+    }
+  ]
+}

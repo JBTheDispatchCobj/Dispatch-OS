@@ -1,0 +1,11 @@
+dependency_id,source_artifact,target_artifact,dependency_type,required,version_rule,test_id,owner,status
+DEP-001,FS-8000,FS-6000,schema,True,compatible V1,GJ-01,Data/Product,satisfied
+DEP-002,FS-6000,FS-9000,object,True,canonical IDs,GJ-01,Graph,satisfied
+DEP-003,FS-9000,FS-10000,API,True,query contract V1,GJ-05,UI,satisfied
+DEP-004,FS-6000,FS-11000,workflow,True,router/workflow IDs,GJ-02,Runtime,satisfied
+DEP-005,FS-12000,FS-11000,permission,True,fail closed,SEC-01,Security,satisfied
+DEP-006,FS-6000,FS-10000,evidence,True,evidence and approval IDs,GJ-03,UI,satisfied
+DEP-007,FS-13000,FS-14000,deployment,True,pilot and release controls,PRR-01,Operations,satisfied
+DEP-008,FS-5000,ALL,registry,True,canonical IDs,VAL-REF,Architecture,satisfied
+DEP-009,FS-4000,FS-6000,domain,True,domain semantics,GJ-02,Product,satisfied
+DEP-010,FS-7000,FS-14000,test,True,demo fixtures and scenarios,GJ-ALL,QA,satisfied

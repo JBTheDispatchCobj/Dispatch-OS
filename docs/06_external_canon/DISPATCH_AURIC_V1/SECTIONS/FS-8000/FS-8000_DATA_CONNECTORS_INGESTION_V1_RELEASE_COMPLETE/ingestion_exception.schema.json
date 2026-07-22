@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ingestion Exception",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "exception_id",
+    "tenant_id",
+    "ingestion_job_id",
+    "code",
+    "severity",
+    "status",
+    "created_at"
+  ],
+  "properties": {
+    "exception_id": {
+      "type": "string",
+      "pattern": "^EXC-[A-Z0-9-]+$"
+    },
+    "tenant_id": {
+      "type": "string"
+    },
+    "ingestion_job_id": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "info",
+        "warning",
+        "error",
+        "critical"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "open",
+        "assigned",
+        "retrying",
+        "waived",
+        "resolved",
+        "quarantined"
+      ]
+    },
+    "affected_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "owner_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "next_action": {
+      "type": "string"
+    },
+    "created_at": {
+      "$ref": "#/$defs/timestamp"
+    },
+    "resolved_at": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/timestamp"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "restricted",
+        "regulated"
+      ]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "unknown"
+      ]
+    },
+    "freshness": {
+      "type": "string",
+      "enum": [
+        "current",
+        "aging",
+        "stale",
+        "unknown"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ingested Document",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "document_id",
+    "tenant_id",
+    "source_snapshot_id",
+    "filename",
+    "content_hash",
+    "classification",
+    "status"
+  ],
+  "properties": {
+    "document_id": {
+      "type": "string",
+      "pattern": "^DOC-[A-Z0-9-]+$"
+    },
+    "tenant_id": {
+      "type": "string"
+    },
+    "source_snapshot_id": {
+      "type": "string"
+    },
+    "filename": {
+      "type": "string"
+    },
+    "content_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "byte_size": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "declared_mime_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "detected_mime_type": {
+      "type": "string"
+    },
+    "classification": {
+      "$ref": "#/$defs/classification"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "staged",
+        "scanned",
+        "parsed",
+        "review_required",
+        "accepted",
+        "quarantined",
+        "rejected"
+      ]
+    },
+    "coordinates_supported": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "page",
+          "sheet",
+          "cell",
+          "slide",
+          "paragraph",
+          "attachment",
+          "bounding_box"
+        ]
+      }
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "supersedes_document_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "chain_of_custody_event_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "restricted",
+        "regulated"
+      ]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "unknown"
+      ]
+    },
+    "freshness": {
+      "type": "string",
+      "enum": [
+        "current",
+        "aging",
+        "stale",
+        "unknown"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

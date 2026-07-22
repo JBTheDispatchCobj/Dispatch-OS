@@ -1,0 +1,28 @@
+{
+  "release_id": "REL-V1-RC-001",
+  "version": "1.0.0",
+  "status": "release_candidate",
+  "artifacts": [],
+  "approvals": [
+    {
+      "authority": "technical",
+      "decision": "pending",
+      "conditions": []
+    },
+    {
+      "authority": "security",
+      "decision": "pending",
+      "conditions": []
+    },
+    {
+      "authority": "operations",
+      "decision": "pending",
+      "conditions": []
+    },
+    {
+      "authority": "product",
+      "decision": "pending",
+      "conditions": []
+    }
+  ]
+}

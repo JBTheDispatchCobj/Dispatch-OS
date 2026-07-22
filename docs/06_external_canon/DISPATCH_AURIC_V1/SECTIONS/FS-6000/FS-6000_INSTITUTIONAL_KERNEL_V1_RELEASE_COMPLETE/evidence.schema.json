@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dispatch://schemas/evidence/1.0.0",
+  "title": "Evidence",
+  "type": "object",
+  "required": [
+    "evidence_id",
+    "title",
+    "evidence_type",
+    "source_type",
+    "state",
+    "classification",
+    "version"
+  ],
+  "properties": {
+    "evidence_id": {
+      "type": "string",
+      "pattern": "^EVID-[0-9A-Z-]+$"
+    },
+    "title": {
+      "type": "string"
+    },
+    "evidence_type": {
+      "type": "string"
+    },
+    "source_type": {
+      "type": "string",
+      "enum": [
+        "public",
+        "uploaded",
+        "connector",
+        "attested",
+        "inferred",
+        "system_generated",
+        "agent_generated"
+      ]
+    },
+    "source_reference": {
+      "type": "string"
+    },
+    "source_owner_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_timestamp": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "collected_timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "related_object_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "related_claim_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "period_start": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "period_end": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "version": {
+      "type": "string"
+    },
+    "hash": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "public",
+        "synthetic",
+        "internal",
+        "confidential",
+        "restricted",
+        "privileged",
+        "regulated_personal_data"
+      ]
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "requested",
+        "collected",
+        "parsing",
+        "under_review",
+        "approved",
+        "rejected",
+        "stale",
+        "superseded",
+        "archived",
+        "locked"
+      ]
+    },
+    "freshness": {
+      "type": "string",
+      "enum": [
+        "current",
+        "aging",
+        "stale",
+        "expired",
+        "historical",
+        "unknown"
+      ]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "unknown"
+      ]
+    },
+    "retention_category": {
+      "type": "string"
+    },
+    "approval_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

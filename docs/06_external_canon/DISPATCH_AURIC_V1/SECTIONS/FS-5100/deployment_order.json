@@ -1,0 +1,46 @@
+[
+  {
+    "order": 1,
+    "file": "FS-4001_BANKING.cartridge.json"
+  },
+  {
+    "order": 2,
+    "file": "FS-4002_CREDIT_UNIONS.cartridge.json"
+  },
+  {
+    "order": 3,
+    "file": "FS-4003_COMMERCIAL_BANKING.cartridge.json"
+  },
+  {
+    "order": 4,
+    "file": "FS-4004_MORTGAGE.cartridge.json"
+  },
+  {
+    "order": 7,
+    "file": "FS-4007_VENTURE_CAPITAL.cartridge.json"
+  },
+  {
+    "order": 8,
+    "file": "FS-4008_CAPITAL_MARKETS.cartridge.json"
+  },
+  {
+    "order": 9,
+    "file": "FS-4009_WEALTH_MANAGEMENT.cartridge.json"
+  },
+  {
+    "order": 10,
+    "file": "FS-4010_INSURANCE.cartridge.json"
+  },
+  {
+    "order": 11,
+    "file": "FS-4011_CONSTRUCTION_FINANCE.cartridge.json"
+  },
+  {
+    "order": 12,
+    "file": "FS-4012_MANUFACTURING_FINANCE.cartridge.json"
+  },
+  {
+    "order": 13,
+    "file": "FS-4013_HEALTHCARE_FINANCE.cartridge.json"
+  }
+]

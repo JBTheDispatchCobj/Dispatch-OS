@@ -1,0 +1,209 @@
+{
+  "schema_version": "1.0",
+  "components": [
+    {
+      "component_id": "context_header",
+      "purpose": "Displays tenant, workspace, institution, role, environment and freshness",
+      "required_props": [
+        "tenant_id",
+        "permission_context"
+      ],
+      "required_states": [
+        "loading",
+        "ready",
+        "empty",
+        "restricted",
+        "failed"
+      ],
+      "keyboard_accessible": true,
+      "telemetry": true
+    },
+    {
+      "component_id": "object_header",
+      "purpose": "Identity, status, owner, confidence, updated time and actions",
+      "required_props": [
+        "tenant_id",
+        "permission_context"
+      ],
+      "required_states": [
+        "loading",
+        "ready",
+        "empty",
+        "restricted",
+        "failed"
+      ],
+      "keyboard_accessible": true,
+      "telemetry": true
+    },
+    {
+      "component_id": "evidence_drawer",
+      "purpose": "Source, lineage, confidence, freshness and review details",
+      "required_props": [
+        "tenant_id",
+        "permission_context"
+      ],
+      "required_states": [
+        "loading",
+        "ready",
+        "empty",
+        "restricted",
+        "failed"
+      ],
+      "keyboard_accessible": true,
+      "telemetry": true
+    },
+    {
+      "component_id": "approval_panel",
+      "purpose": "Authority, decision, conditions, signatures and status",
+      "required_props": [
+        "tenant_id",
+        "permission_context"
+      ],
+      "required_states": [
+        "loading",
+        "ready",
+        "empty",
+        "restricted",
+        "failed"
+      ],
+      "keyboard_accessible": true,
+      "telemetry": true
+    },
+    {
+      "component_id": "activity_timeline",
+      "purpose": "Versioned object and workflow events",
+      "required_props": [
+        "tenant_id",
+        "permission_context"
+      ],
+      "required_states": [
+        "loading",
+        "ready",
+        "empty",
+        "restricted",
+        "failed"
+      ],
+      "keyboard_accessible": true,
+      "telemetry": true
+    },
+    {
+      "component_id": "data_quality_badge",
+      "purpose": "Unknown, stale, inferred, conflicted or verified state",
+      "required_props": [
+        "tenant_id",
+        "permission_context"
+      ],
+      "required_states": [
+        "loading",
+        "ready",
+        "empty",
+        "restricted",
+        "failed"
+      ],
+      "keyboard_accessible": true,
+      "telemetry": true
+    },
+    {
+      "component_id": "command_bar",
+      "purpose": "Permission-aware navigation and command execution",
+      "required_props": [
+        "tenant_id",
+        "permission_context"
+      ],
+      "required_states": [
+        "loading",
+        "ready",
+        "empty",
+        "restricted",
+        "failed"
+      ],
+      "keyboard_accessible": true,
+      "telemetry": true
+    },
+    {
+      "component_id": "metric_card",
+      "purpose": "Governed KPI with formula and evidence drill-through",
+      "required_props": [
+        "tenant_id",
+        "permission_context"
+      ],
+      "required_states": [
+        "loading",
+        "ready",
+        "empty",
+        "restricted",
+        "failed"
+      ],
+      "keyboard_accessible": true,
+      "telemetry": true
+    },
+    {
+      "component_id": "virtualized_table",
+      "purpose": "Large accessible tabular datasets",
+      "required_props": [
+        "tenant_id",
+        "permission_context"
+      ],
+      "required_states": [
+        "loading",
+        "ready",
+        "empty",
+        "restricted",
+        "failed"
+      ],
+      "keyboard_accessible": true,
+      "telemetry": true
+    },
+    {
+      "component_id": "graph_view",
+      "purpose": "Permission-filtered relationship visualization",
+      "required_props": [
+        "tenant_id",
+        "permission_context"
+      ],
+      "required_states": [
+        "loading",
+        "ready",
+        "empty",
+        "restricted",
+        "failed"
+      ],
+      "keyboard_accessible": true,
+      "telemetry": true
+    },
+    {
+      "component_id": "task_panel",
+      "purpose": "Assignments, dependencies, SLA and escalation",
+      "required_props": [
+        "tenant_id",
+        "permission_context"
+      ],
+      "required_states": [
+        "loading",
+        "ready",
+        "empty",
+        "restricted",
+        "failed"
+      ],
+      "keyboard_accessible": true,
+      "telemetry": true
+    },
+    {
+      "component_id": "report_preview",
+      "purpose": "Snapshot, certification and export state",
+      "required_props": [
+        "tenant_id",
+        "permission_context"
+      ],
+      "required_states": [
+        "loading",
+        "ready",
+        "empty",
+        "restricted",
+        "failed"
+      ],
+      "keyboard_accessible": true,
+      "telemetry": true
+    }
+  ]
+}

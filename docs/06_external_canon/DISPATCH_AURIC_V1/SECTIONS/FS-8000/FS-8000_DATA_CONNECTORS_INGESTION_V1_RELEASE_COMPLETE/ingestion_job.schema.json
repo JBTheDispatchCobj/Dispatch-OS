@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ingestion Job",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "ingestion_job_id",
+    "tenant_id",
+    "source_id",
+    "mode",
+    "trigger",
+    "status",
+    "idempotency_key",
+    "started_at"
+  ],
+  "properties": {
+    "ingestion_job_id": {
+      "type": "string",
+      "pattern": "^INGEST-[A-Z0-9-]+$"
+    },
+    "tenant_id": {
+      "type": "string"
+    },
+    "source_id": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "public",
+        "connector",
+        "upload",
+        "scheduled",
+        "attested"
+      ]
+    },
+    "trigger": {
+      "type": "string",
+      "enum": [
+        "manual",
+        "schedule",
+        "event",
+        "api",
+        "replay"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "queued",
+        "authenticating",
+        "receiving",
+        "scanning",
+        "parsing",
+        "mapping",
+        "validating",
+        "reconciling",
+        "awaiting_review",
+        "completed",
+        "completed_with_exceptions",
+        "failed",
+        "cancelled",
+        "quarantined"
+      ]
+    },
+    "idempotency_key": {
+      "type": "string"
+    },
+    "started_at": {
+      "$ref": "#/$defs/timestamp"
+    },
+    "completed_at": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/timestamp"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source_snapshot_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "mapping_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "received": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "parsed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "created": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "updated": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "exceptions": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "exception_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "audit_event_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "restricted",
+        "regulated"
+      ]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "unknown"
+      ]
+    },
+    "freshness": {
+      "type": "string",
+      "enum": [
+        "current",
+        "aging",
+        "stale",
+        "unknown"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

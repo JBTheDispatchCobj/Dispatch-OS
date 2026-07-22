@@ -1,0 +1,5 @@
+risk_tier,allowed_data,allowed_actions,human_review,evaluation,deployment_gate
+low,public or synthetic,"retrieve, summarize, classify",sampled,quality and safety baseline,owner approval
+moderate,internal/confidential as approved,"draft, compare, recommend",required for material output,task evaluation and leakage tests,use-case approval
+high,restricted or decision-sensitive,evidence assembly and recommendation only,mandatory named approver,"red-team, bias, accuracy, privacy",security/compliance approval
+prohibited,any,autonomous material decision or unauthorized disclosure,not applicable,not applicable,blocked

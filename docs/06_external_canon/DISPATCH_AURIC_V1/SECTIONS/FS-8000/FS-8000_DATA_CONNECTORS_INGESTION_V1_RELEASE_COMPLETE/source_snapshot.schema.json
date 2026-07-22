@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Source Snapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "source_snapshot_id",
+    "tenant_id",
+    "source_id",
+    "captured_at",
+    "content_hash",
+    "byte_size",
+    "classification"
+  ],
+  "properties": {
+    "source_snapshot_id": {
+      "type": "string",
+      "pattern": "^SNAP-[A-Z0-9-]+$"
+    },
+    "tenant_id": {
+      "type": "string"
+    },
+    "source_id": {
+      "type": "string"
+    },
+    "captured_at": {
+      "$ref": "#/$defs/timestamp"
+    },
+    "source_event_time": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/timestamp"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "content_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "byte_size": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "mime_type_declared": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "mime_type_detected": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "storage_reference": {
+      "type": "string"
+    },
+    "classification": {
+      "$ref": "#/$defs/classification"
+    },
+    "authorization_context": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "immutable": {
+      "const": true
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "restricted",
+        "regulated"
+      ]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "unknown"
+      ]
+    },
+    "freshness": {
+      "type": "string",
+      "enum": [
+        "current",
+        "aging",
+        "stale",
+        "unknown"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

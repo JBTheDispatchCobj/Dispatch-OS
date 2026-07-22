@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dispatch://schemas/vendor-product/1.0.0",
+  "title": "VendorProductRelationship",
+  "type": "object",
+  "required": [
+    "relationship_id",
+    "institution_id",
+    "vendor_id",
+    "category",
+    "status",
+    "criticality"
+  ],
+  "properties": {
+    "relationship_id": {
+      "type": "string",
+      "pattern": "^VREL-[0-9A-Z-]+$"
+    },
+    "institution_id": {
+      "type": "string"
+    },
+    "vendor_id": {
+      "type": "string"
+    },
+    "product_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "category": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "candidate",
+        "due_diligence",
+        "approved",
+        "contracting",
+        "implementation",
+        "active",
+        "watch",
+        "remediation",
+        "renewal",
+        "replacement",
+        "terminated",
+        "archived"
+      ]
+    },
+    "criticality": {
+      "type": "string",
+      "enum": [
+        "critical",
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "contract_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "renewal_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "annual_spend": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "risk_tier": {
+      "type": "string",
+      "enum": [
+        "critical",
+        "high",
+        "moderate",
+        "low",
+        "unknown"
+      ]
+    },
+    "data_access": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "integration_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "visibility": {
+      "type": "string",
+      "enum": [
+        "public",
+        "tenant_internal",
+        "confidential",
+        "restricted"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

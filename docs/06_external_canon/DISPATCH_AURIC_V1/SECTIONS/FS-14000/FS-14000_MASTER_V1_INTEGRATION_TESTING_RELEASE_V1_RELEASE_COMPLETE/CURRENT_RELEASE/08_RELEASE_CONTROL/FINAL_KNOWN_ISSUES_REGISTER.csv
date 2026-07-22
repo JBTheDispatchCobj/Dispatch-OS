@@ -1,0 +1,6 @@
+issue_id,severity,category,description,impact,owner,status
+KI-001,high,release-control,FS-7000 final approved ZIP unavailable for checksum,Master release checksum set incomplete,Release Manager,open
+KI-002,medium,implementation,Software tests not executed,Implementation defects may remain,Engineering,open
+KI-003,medium,integration,Live integrations not tested,Production connector behavior unverified,Implementation,open
+KI-004,medium,security,Penetration testing not performed,Production security posture not independently validated,Security,open
+KI-005,medium,migration,Production migration not performed,Migration remains documentation-complete only,Operations,open

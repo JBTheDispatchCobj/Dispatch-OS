@@ -1,0 +1,35 @@
+{
+  "report_id": "FS13000-CROSS-SECTION-RECONCILIATION",
+  "version": "1.0.0",
+  "generated_at": "2026-07-22T09:13:51.514307+00:00",
+  "checks": [
+    {
+      "requirement": "Pilot definitions align with FS-7000 demo and pilot architecture",
+      "status": "pass",
+      "evidence": [
+        "13003_PILOT_QUALIFICATION_SCOPING_V1_RELEASE.md",
+        "13004_PILOT_IMPLEMENTATION_PLAYBOOK_V1_RELEASE.md",
+        "PILOT_CHARTER_TEMPLATE.md",
+        "PILOT_SOW_TEMPLATE.md"
+      ]
+    },
+    {
+      "requirement": "Tenant provisioning aligns with FS-12000 security and governance",
+      "status": "pass",
+      "evidence": [
+        "13002_TENANT_PROVISIONING_ONBOARDING_V1_RELEASE.md",
+        "tenant_provisioning.schema.json",
+        "FIXTURE_TENANT_PROVISIONING.json"
+      ]
+    },
+    {
+      "requirement": "Deployment environments align with FS-11000 runtime and FS-14000 release",
+      "status": "pass",
+      "evidence": [
+        "13001_DEPLOYMENT_ARCHITECTURE_ENVIRONMENTS_V1_RELEASE.md",
+        "ENVIRONMENT_MANIFEST.csv",
+        "environment.schema.json"
+      ]
+    }
+  ]
+}

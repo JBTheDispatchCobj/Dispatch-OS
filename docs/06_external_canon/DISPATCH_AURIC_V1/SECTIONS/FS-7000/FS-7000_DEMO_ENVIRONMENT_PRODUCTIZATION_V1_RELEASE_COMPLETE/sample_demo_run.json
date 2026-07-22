@@ -1,0 +1,17 @@
+{
+  "run_id": "DEMO-RUN-000001",
+  "scenario_id": "DEMO-CU-TERMINAL",
+  "environment": "public_demo",
+  "state": "ready",
+  "presenter_id": "PER-PRESENTER-001",
+  "audience": "credit_union_executives",
+  "started_at": "2026-07-22T00:00:00Z",
+  "completed_at": null,
+  "loaded_fixture_ids": [
+    "FIX-CU-TERMINAL-001"
+  ],
+  "workflow_instance_ids": [],
+  "approval_ids": [],
+  "output_ids": [],
+  "error_ids": []
+}

@@ -1,0 +1,1787 @@
+{
+  "section_id": "FS-5100",
+  "manifest_class": "event",
+  "count": 178,
+  "entries": [
+    {
+      "id": "EVENT.CUSTOMER_ONBOARDING_STARTED",
+      "name": "Customer Onboarding Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.CUSTOMER_ONBOARDING"
+      ]
+    },
+    {
+      "id": "EVENT.CUSTOMER_ONBOARDING_COMPLETED",
+      "name": "Customer Onboarding Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.CUSTOMER_ONBOARDING"
+      ]
+    },
+    {
+      "id": "EVENT.DEPOSIT_ACCOUNT_OPENING_STARTED",
+      "name": "Deposit Account Opening Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.DEPOSIT_ACCOUNT_OPENING"
+      ]
+    },
+    {
+      "id": "EVENT.DEPOSIT_ACCOUNT_OPENING_COMPLETED",
+      "name": "Deposit Account Opening Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.DEPOSIT_ACCOUNT_OPENING"
+      ]
+    },
+    {
+      "id": "EVENT.LOAN_ORIGINATION_STARTED",
+      "name": "Loan Origination Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.LOAN_ORIGINATION"
+      ]
+    },
+    {
+      "id": "EVENT.LOAN_ORIGINATION_COMPLETED",
+      "name": "Loan Origination Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.LOAN_ORIGINATION"
+      ]
+    },
+    {
+      "id": "EVENT.TREASURY_IMPLEMENTATION_STARTED",
+      "name": "Treasury Implementation Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.TREASURY_IMPLEMENTATION"
+      ]
+    },
+    {
+      "id": "EVENT.TREASURY_IMPLEMENTATION_COMPLETED",
+      "name": "Treasury Implementation Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.TREASURY_IMPLEMENTATION"
+      ]
+    },
+    {
+      "id": "EVENT.COMPLAINT_MANAGEMENT_STARTED",
+      "name": "Complaint Management Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.COMPLAINT_MANAGEMENT"
+      ]
+    },
+    {
+      "id": "EVENT.COMPLAINT_MANAGEMENT_COMPLETED",
+      "name": "Complaint Management Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.COMPLAINT_MANAGEMENT"
+      ]
+    },
+    {
+      "id": "EVENT.BOARD_REPORTING_STARTED",
+      "name": "Board Reporting Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.BOARD_REPORTING"
+      ]
+    },
+    {
+      "id": "EVENT.BOARD_REPORTING_COMPLETED",
+      "name": "Board Reporting Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.BOARD_REPORTING"
+      ]
+    },
+    {
+      "id": "EVENT.MEMBER_ONBOARDING_STARTED",
+      "name": "Member Onboarding Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.MEMBER_ONBOARDING"
+      ]
+    },
+    {
+      "id": "EVENT.MEMBER_ONBOARDING_COMPLETED",
+      "name": "Member Onboarding Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.MEMBER_ONBOARDING"
+      ]
+    },
+    {
+      "id": "EVENT.CUSO_REVIEW_STARTED",
+      "name": "CUSO Review Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.CUSO_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.CUSO_REVIEW_COMPLETED",
+      "name": "CUSO Review Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.CUSO_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.FINTECH_PILOT_READINESS_STARTED",
+      "name": "Fintech Pilot Readiness Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.FINTECH_PILOT_READINESS"
+      ]
+    },
+    {
+      "id": "EVENT.FINTECH_PILOT_READINESS_COMPLETED",
+      "name": "Fintech Pilot Readiness Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.FINTECH_PILOT_READINESS"
+      ]
+    },
+    {
+      "id": "EVENT.MEMBER_OPPORTUNITY_DETECTION_STARTED",
+      "name": "Member Opportunity Detection Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.MEMBER_OPPORTUNITY_DETECTION"
+      ]
+    },
+    {
+      "id": "EVENT.MEMBER_OPPORTUNITY_DETECTION_COMPLETED",
+      "name": "Member Opportunity Detection Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.MEMBER_OPPORTUNITY_DETECTION"
+      ]
+    },
+    {
+      "id": "EVENT.BOARD_GOVERNANCE_REVIEW_STARTED",
+      "name": "Board Governance Review Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.BOARD_GOVERNANCE_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.BOARD_GOVERNANCE_REVIEW_COMPLETED",
+      "name": "Board Governance Review Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.BOARD_GOVERNANCE_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.REGULATORY_READINESS_STARTED",
+      "name": "Regulatory Readiness Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.REGULATORY_READINESS"
+      ]
+    },
+    {
+      "id": "EVENT.REGULATORY_READINESS_COMPLETED",
+      "name": "Regulatory Readiness Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.REGULATORY_READINESS"
+      ]
+    },
+    {
+      "id": "EVENT.COMMERCIAL_CREDIT_UNDERWRITING_STARTED",
+      "name": "Commercial Credit Underwriting Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.COMMERCIAL_CREDIT_UNDERWRITING"
+      ]
+    },
+    {
+      "id": "EVENT.COMMERCIAL_CREDIT_UNDERWRITING_COMPLETED",
+      "name": "Commercial Credit Underwriting Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.COMMERCIAL_CREDIT_UNDERWRITING"
+      ]
+    },
+    {
+      "id": "EVENT.ANNUAL_REVIEW_STARTED",
+      "name": "Annual Review Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.ANNUAL_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.ANNUAL_REVIEW_COMPLETED",
+      "name": "Annual Review Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.ANNUAL_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.COVENANT_MONITORING_STARTED",
+      "name": "Covenant Monitoring Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.COVENANT_MONITORING"
+      ]
+    },
+    {
+      "id": "EVENT.COVENANT_MONITORING_COMPLETED",
+      "name": "Covenant Monitoring Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.COVENANT_MONITORING"
+      ]
+    },
+    {
+      "id": "EVENT.TREASURY_ASSESSMENT_STARTED",
+      "name": "Treasury Assessment Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.TREASURY_ASSESSMENT"
+      ]
+    },
+    {
+      "id": "EVENT.TREASURY_ASSESSMENT_COMPLETED",
+      "name": "Treasury Assessment Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.TREASURY_ASSESSMENT"
+      ]
+    },
+    {
+      "id": "EVENT.PORTFOLIO_WATCHLIST_STARTED",
+      "name": "Portfolio Watchlist Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.PORTFOLIO_WATCHLIST"
+      ]
+    },
+    {
+      "id": "EVENT.PORTFOLIO_WATCHLIST_COMPLETED",
+      "name": "Portfolio Watchlist Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.PORTFOLIO_WATCHLIST"
+      ]
+    },
+    {
+      "id": "EVENT.WORKOUT_REVIEW_STARTED",
+      "name": "Workout Review Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.WORKOUT_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.WORKOUT_REVIEW_COMPLETED",
+      "name": "Workout Review Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.WORKOUT_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.MORTGAGE_APPLICATION_INTAKE_STARTED",
+      "name": "Mortgage Application Intake Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.MORTGAGE_APPLICATION_INTAKE"
+      ]
+    },
+    {
+      "id": "EVENT.MORTGAGE_APPLICATION_INTAKE_COMPLETED",
+      "name": "Mortgage Application Intake Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.MORTGAGE_APPLICATION_INTAKE"
+      ]
+    },
+    {
+      "id": "EVENT.DOCUMENT_COLLECTION_STARTED",
+      "name": "Document Collection Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.DOCUMENT_COLLECTION"
+      ]
+    },
+    {
+      "id": "EVENT.DOCUMENT_COLLECTION_COMPLETED",
+      "name": "Document Collection Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.DOCUMENT_COLLECTION"
+      ]
+    },
+    {
+      "id": "EVENT.PROCESSING_AND_UNDERWRITING_STARTED",
+      "name": "Processing and Underwriting Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.PROCESSING_AND_UNDERWRITING"
+      ]
+    },
+    {
+      "id": "EVENT.PROCESSING_AND_UNDERWRITING_COMPLETED",
+      "name": "Processing and Underwriting Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.PROCESSING_AND_UNDERWRITING"
+      ]
+    },
+    {
+      "id": "EVENT.DISCLOSURE_TIMING_REVIEW_STARTED",
+      "name": "Disclosure Timing Review Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.DISCLOSURE_TIMING_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.DISCLOSURE_TIMING_REVIEW_COMPLETED",
+      "name": "Disclosure Timing Review Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.DISCLOSURE_TIMING_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.CLOSING_AND_FUNDING_STARTED",
+      "name": "Closing and Funding Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.CLOSING_AND_FUNDING"
+      ]
+    },
+    {
+      "id": "EVENT.CLOSING_AND_FUNDING_COMPLETED",
+      "name": "Closing and Funding Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.CLOSING_AND_FUNDING"
+      ]
+    },
+    {
+      "id": "EVENT.POST_CLOSE_QC_STARTED",
+      "name": "Post-Close QC Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.POST_CLOSE_QC"
+      ]
+    },
+    {
+      "id": "EVENT.POST_CLOSE_QC_COMPLETED",
+      "name": "Post-Close QC Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.POST_CLOSE_QC"
+      ]
+    },
+    {
+      "id": "EVENT.DEAL_SOURCING_STARTED",
+      "name": "Deal sourcing Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.DEAL_SOURCING"
+      ]
+    },
+    {
+      "id": "EVENT.DEAL_SOURCING_COMPLETED",
+      "name": "Deal sourcing Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.DEAL_SOURCING"
+      ]
+    },
+    {
+      "id": "EVENT.INITIAL_SCREENING_STARTED",
+      "name": "Initial screening Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.INITIAL_SCREENING"
+      ]
+    },
+    {
+      "id": "EVENT.INITIAL_SCREENING_COMPLETED",
+      "name": "Initial screening Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.INITIAL_SCREENING"
+      ]
+    },
+    {
+      "id": "EVENT.INVESTMENT_COMMITTEE_MEMO_STARTED",
+      "name": "Investment committee memo Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.INVESTMENT_COMMITTEE_MEMO"
+      ]
+    },
+    {
+      "id": "EVENT.INVESTMENT_COMMITTEE_MEMO_COMPLETED",
+      "name": "Investment committee memo Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.INVESTMENT_COMMITTEE_MEMO"
+      ]
+    },
+    {
+      "id": "EVENT.DUE_DILIGENCE_STARTED",
+      "name": "Due diligence Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.DUE_DILIGENCE"
+      ]
+    },
+    {
+      "id": "EVENT.DUE_DILIGENCE_COMPLETED",
+      "name": "Due diligence Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.DUE_DILIGENCE"
+      ]
+    },
+    {
+      "id": "EVENT.PORTFOLIO_MONITORING_STARTED",
+      "name": "Portfolio monitoring Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.PORTFOLIO_MONITORING"
+      ]
+    },
+    {
+      "id": "EVENT.PORTFOLIO_MONITORING_COMPLETED",
+      "name": "Portfolio monitoring Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.PORTFOLIO_MONITORING"
+      ]
+    },
+    {
+      "id": "EVENT.STRATEGIC_PILOT_STARTED",
+      "name": "Strategic pilot Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.STRATEGIC_PILOT"
+      ]
+    },
+    {
+      "id": "EVENT.STRATEGIC_PILOT_COMPLETED",
+      "name": "Strategic pilot Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.STRATEGIC_PILOT"
+      ]
+    },
+    {
+      "id": "EVENT.FOLLOW_ON_DECISION_STARTED",
+      "name": "Follow-on decision Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.FOLLOW_ON_DECISION"
+      ]
+    },
+    {
+      "id": "EVENT.FOLLOW_ON_DECISION_COMPLETED",
+      "name": "Follow-on decision Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.FOLLOW_ON_DECISION"
+      ]
+    },
+    {
+      "id": "EVENT.LP_REPORTING_STARTED",
+      "name": "LP reporting Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.LP_REPORTING"
+      ]
+    },
+    {
+      "id": "EVENT.LP_REPORTING_COMPLETED",
+      "name": "LP reporting Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.LP_REPORTING"
+      ]
+    },
+    {
+      "id": "EVENT.OFFERING_CREATION_STARTED",
+      "name": "Offering creation Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.OFFERING_CREATION"
+      ]
+    },
+    {
+      "id": "EVENT.OFFERING_CREATION_COMPLETED",
+      "name": "Offering creation Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.OFFERING_CREATION"
+      ]
+    },
+    {
+      "id": "EVENT.INVESTOR_MATCHING_STARTED",
+      "name": "Investor matching Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.INVESTOR_MATCHING"
+      ]
+    },
+    {
+      "id": "EVENT.INVESTOR_MATCHING_COMPLETED",
+      "name": "Investor matching Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.INVESTOR_MATCHING"
+      ]
+    },
+    {
+      "id": "EVENT.LOAN_PARTICIPATION_PACKAGING_STARTED",
+      "name": "Loan participation packaging Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.LOAN_PARTICIPATION_PACKAGING"
+      ]
+    },
+    {
+      "id": "EVENT.LOAN_PARTICIPATION_PACKAGING_COMPLETED",
+      "name": "Loan participation packaging Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.LOAN_PARTICIPATION_PACKAGING"
+      ]
+    },
+    {
+      "id": "EVENT.BOOK_BUILDING_STARTED",
+      "name": "Book building Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.BOOK_BUILDING"
+      ]
+    },
+    {
+      "id": "EVENT.BOOK_BUILDING_COMPLETED",
+      "name": "Book building Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.BOOK_BUILDING"
+      ]
+    },
+    {
+      "id": "EVENT.TRADE_EXECUTION_REVIEW_STARTED",
+      "name": "Trade execution review Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.TRADE_EXECUTION_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.TRADE_EXECUTION_REVIEW_COMPLETED",
+      "name": "Trade execution review Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.TRADE_EXECUTION_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.SETTLEMENT_STARTED",
+      "name": "Settlement Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.SETTLEMENT"
+      ]
+    },
+    {
+      "id": "EVENT.SETTLEMENT_COMPLETED",
+      "name": "Settlement Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.SETTLEMENT"
+      ]
+    },
+    {
+      "id": "EVENT.VALUATION_REVIEW_STARTED",
+      "name": "Valuation review Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.VALUATION_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.VALUATION_REVIEW_COMPLETED",
+      "name": "Valuation review Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.VALUATION_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.POST_TRADE_REPORTING_STARTED",
+      "name": "Post-trade reporting Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.POST_TRADE_REPORTING"
+      ]
+    },
+    {
+      "id": "EVENT.POST_TRADE_REPORTING_COMPLETED",
+      "name": "Post-trade reporting Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.POST_TRADE_REPORTING"
+      ]
+    },
+    {
+      "id": "EVENT.PROSPECT_TO_CLIENT_STARTED",
+      "name": "Prospect to Client Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.PROSPECT_TO_CLIENT"
+      ]
+    },
+    {
+      "id": "EVENT.PROSPECT_TO_CLIENT_COMPLETED",
+      "name": "Prospect to Client Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.PROSPECT_TO_CLIENT"
+      ]
+    },
+    {
+      "id": "EVENT.HOUSEHOLD_DISCOVERY_STARTED",
+      "name": "Household Discovery Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.HOUSEHOLD_DISCOVERY"
+      ]
+    },
+    {
+      "id": "EVENT.HOUSEHOLD_DISCOVERY_COMPLETED",
+      "name": "Household Discovery Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.HOUSEHOLD_DISCOVERY"
+      ]
+    },
+    {
+      "id": "EVENT.FINANCIAL_PLANNING_STARTED",
+      "name": "Financial Planning Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.FINANCIAL_PLANNING"
+      ]
+    },
+    {
+      "id": "EVENT.FINANCIAL_PLANNING_COMPLETED",
+      "name": "Financial Planning Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.FINANCIAL_PLANNING"
+      ]
+    },
+    {
+      "id": "EVENT.IPS_CREATION_AND_REVIEW_STARTED",
+      "name": "IPS Creation and Review Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.IPS_CREATION_AND_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.IPS_CREATION_AND_REVIEW_COMPLETED",
+      "name": "IPS Creation and Review Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.IPS_CREATION_AND_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.PORTFOLIO_CONSTRUCTION_STARTED",
+      "name": "Portfolio Construction Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.PORTFOLIO_CONSTRUCTION"
+      ]
+    },
+    {
+      "id": "EVENT.PORTFOLIO_CONSTRUCTION_COMPLETED",
+      "name": "Portfolio Construction Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.PORTFOLIO_CONSTRUCTION"
+      ]
+    },
+    {
+      "id": "EVENT.PORTFOLIO_REVIEW_STARTED",
+      "name": "Portfolio Review Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.PORTFOLIO_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.PORTFOLIO_REVIEW_COMPLETED",
+      "name": "Portfolio Review Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.PORTFOLIO_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.ACCOUNT_OPENING_STARTED",
+      "name": "Account Opening Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.ACCOUNT_OPENING"
+      ]
+    },
+    {
+      "id": "EVENT.ACCOUNT_OPENING_COMPLETED",
+      "name": "Account Opening Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.ACCOUNT_OPENING"
+      ]
+    },
+    {
+      "id": "EVENT.ADVISORY_BILLING_STARTED",
+      "name": "Advisory Billing Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.ADVISORY_BILLING"
+      ]
+    },
+    {
+      "id": "EVENT.ADVISORY_BILLING_COMPLETED",
+      "name": "Advisory Billing Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.ADVISORY_BILLING"
+      ]
+    },
+    {
+      "id": "EVENT.ESTATE_AND_TRUST_COORDINATION_STARTED",
+      "name": "Estate and Trust Coordination Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.ESTATE_AND_TRUST_COORDINATION"
+      ]
+    },
+    {
+      "id": "EVENT.ESTATE_AND_TRUST_COORDINATION_COMPLETED",
+      "name": "Estate and Trust Coordination Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.ESTATE_AND_TRUST_COORDINATION"
+      ]
+    },
+    {
+      "id": "EVENT.ALTERNATIVE_INVESTMENT_REVIEW_STARTED",
+      "name": "Alternative Investment Review Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.ALTERNATIVE_INVESTMENT_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.ALTERNATIVE_INVESTMENT_REVIEW_COMPLETED",
+      "name": "Alternative Investment Review Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.ALTERNATIVE_INVESTMENT_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.CREDIT_UNION_BANK_WEALTH_REFERRAL_STARTED",
+      "name": "Credit Union / Bank Wealth Referral Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.CREDIT_UNION_BANK_WEALTH_REFERRAL"
+      ]
+    },
+    {
+      "id": "EVENT.CREDIT_UNION_BANK_WEALTH_REFERRAL_COMPLETED",
+      "name": "Credit Union / Bank Wealth Referral Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.CREDIT_UNION_BANK_WEALTH_REFERRAL"
+      ]
+    },
+    {
+      "id": "EVENT.CLIENT_REVIEW_MEETING_STARTED",
+      "name": "Client Review Meeting Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.CLIENT_REVIEW_MEETING"
+      ]
+    },
+    {
+      "id": "EVENT.CLIENT_REVIEW_MEETING_COMPLETED",
+      "name": "Client Review Meeting Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.CLIENT_REVIEW_MEETING"
+      ]
+    },
+    {
+      "id": "EVENT.RISK_DISCOVERY_STARTED",
+      "name": "Risk Discovery Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.RISK_DISCOVERY"
+      ]
+    },
+    {
+      "id": "EVENT.RISK_DISCOVERY_COMPLETED",
+      "name": "Risk Discovery Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.RISK_DISCOVERY"
+      ]
+    },
+    {
+      "id": "EVENT.QUOTE_TO_BIND_STARTED",
+      "name": "Quote-to-Bind Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.QUOTE_TO_BIND"
+      ]
+    },
+    {
+      "id": "EVENT.QUOTE_TO_BIND_COMPLETED",
+      "name": "Quote-to-Bind Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.QUOTE_TO_BIND"
+      ]
+    },
+    {
+      "id": "EVENT.POLICY_ISSUANCE_STARTED",
+      "name": "Policy Issuance Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.POLICY_ISSUANCE"
+      ]
+    },
+    {
+      "id": "EVENT.POLICY_ISSUANCE_COMPLETED",
+      "name": "Policy Issuance Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.POLICY_ISSUANCE"
+      ]
+    },
+    {
+      "id": "EVENT.RENEWAL_REVIEW_STARTED",
+      "name": "Renewal Review Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.RENEWAL_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.RENEWAL_REVIEW_COMPLETED",
+      "name": "Renewal Review Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.RENEWAL_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.ENDORSEMENT_STARTED",
+      "name": "Endorsement Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.ENDORSEMENT"
+      ]
+    },
+    {
+      "id": "EVENT.ENDORSEMENT_COMPLETED",
+      "name": "Endorsement Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.ENDORSEMENT"
+      ]
+    },
+    {
+      "id": "EVENT.CLAIM_STARTED",
+      "name": "Claim Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.CLAIM"
+      ]
+    },
+    {
+      "id": "EVENT.CLAIM_COMPLETED",
+      "name": "Claim Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.CLAIM"
+      ]
+    },
+    {
+      "id": "EVENT.COMMISSION_RECONCILIATION_STARTED",
+      "name": "Commission Reconciliation Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.COMMISSION_RECONCILIATION"
+      ]
+    },
+    {
+      "id": "EVENT.COMMISSION_RECONCILIATION_COMPLETED",
+      "name": "Commission Reconciliation Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.COMMISSION_RECONCILIATION"
+      ]
+    },
+    {
+      "id": "EVENT.PRODUCER_LICENSING_STARTED",
+      "name": "Producer Licensing Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.PRODUCER_LICENSING"
+      ]
+    },
+    {
+      "id": "EVENT.PRODUCER_LICENSING_COMPLETED",
+      "name": "Producer Licensing Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.PRODUCER_LICENSING"
+      ]
+    },
+    {
+      "id": "EVENT.CREDIT_UNION_BANK_INSURANCE_REFERRAL_STARTED",
+      "name": "Credit Union / Bank Insurance Referral Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.CREDIT_UNION_BANK_INSURANCE_REFERRAL"
+      ]
+    },
+    {
+      "id": "EVENT.CREDIT_UNION_BANK_INSURANCE_REFERRAL_COMPLETED",
+      "name": "Credit Union / Bank Insurance Referral Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.CREDIT_UNION_BANK_INSURANCE_REFERRAL"
+      ]
+    },
+    {
+      "id": "EVENT.CONTRACTOR_DEVELOPER_ONBOARDING_STARTED",
+      "name": "Contractor / Developer Onboarding Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.CONTRACTOR_DEVELOPER_ONBOARDING"
+      ]
+    },
+    {
+      "id": "EVENT.CONTRACTOR_DEVELOPER_ONBOARDING_COMPLETED",
+      "name": "Contractor / Developer Onboarding Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.CONTRACTOR_DEVELOPER_ONBOARDING"
+      ]
+    },
+    {
+      "id": "EVENT.PROJECT_UNDERWRITING_STARTED",
+      "name": "Project Underwriting Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.PROJECT_UNDERWRITING"
+      ]
+    },
+    {
+      "id": "EVENT.PROJECT_UNDERWRITING_COMPLETED",
+      "name": "Project Underwriting Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.PROJECT_UNDERWRITING"
+      ]
+    },
+    {
+      "id": "EVENT.CONSTRUCTION_LOAN_CLOSING_STARTED",
+      "name": "Construction Loan Closing Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.CONSTRUCTION_LOAN_CLOSING"
+      ]
+    },
+    {
+      "id": "EVENT.CONSTRUCTION_LOAN_CLOSING_COMPLETED",
+      "name": "Construction Loan Closing Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.CONSTRUCTION_LOAN_CLOSING"
+      ]
+    },
+    {
+      "id": "EVENT.DRAW_ADMINISTRATION_STARTED",
+      "name": "Draw Administration Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.DRAW_ADMINISTRATION"
+      ]
+    },
+    {
+      "id": "EVENT.DRAW_ADMINISTRATION_COMPLETED",
+      "name": "Draw Administration Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.DRAW_ADMINISTRATION"
+      ]
+    },
+    {
+      "id": "EVENT.CHANGE_ORDER_REVIEW_STARTED",
+      "name": "Change Order Review Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.CHANGE_ORDER_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.CHANGE_ORDER_REVIEW_COMPLETED",
+      "name": "Change Order Review Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.CHANGE_ORDER_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.LIEN_TITLE_CONTROL_STARTED",
+      "name": "Lien / Title Control Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.LIEN_TITLE_CONTROL"
+      ]
+    },
+    {
+      "id": "EVENT.LIEN_TITLE_CONTROL_COMPLETED",
+      "name": "Lien / Title Control Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.LIEN_TITLE_CONTROL"
+      ]
+    },
+    {
+      "id": "EVENT.INSURANCE_BOND_MONITORING_STARTED",
+      "name": "Insurance / Bond Monitoring Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.INSURANCE_BOND_MONITORING"
+      ]
+    },
+    {
+      "id": "EVENT.INSURANCE_BOND_MONITORING_COMPLETED",
+      "name": "Insurance / Bond Monitoring Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.INSURANCE_BOND_MONITORING"
+      ]
+    },
+    {
+      "id": "EVENT.PROJECT_MONITORING_STARTED",
+      "name": "Project Monitoring Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.PROJECT_MONITORING"
+      ]
+    },
+    {
+      "id": "EVENT.PROJECT_MONITORING_COMPLETED",
+      "name": "Project Monitoring Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.PROJECT_MONITORING"
+      ]
+    },
+    {
+      "id": "EVENT.COMPLETION_CLOSEOUT_STARTED",
+      "name": "Completion / Closeout Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.COMPLETION_CLOSEOUT"
+      ]
+    },
+    {
+      "id": "EVENT.COMPLETION_CLOSEOUT_COMPLETED",
+      "name": "Completion / Closeout Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.COMPLETION_CLOSEOUT"
+      ]
+    },
+    {
+      "id": "EVENT.TAKEOUT_CONVERSION_STARTED",
+      "name": "Takeout / Conversion Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.TAKEOUT_CONVERSION"
+      ]
+    },
+    {
+      "id": "EVENT.TAKEOUT_CONVERSION_COMPLETED",
+      "name": "Takeout / Conversion Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.TAKEOUT_CONVERSION"
+      ]
+    },
+    {
+      "id": "EVENT.EQUIPMENT_FINANCE_STARTED",
+      "name": "Equipment Finance Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.EQUIPMENT_FINANCE"
+      ]
+    },
+    {
+      "id": "EVENT.EQUIPMENT_FINANCE_COMPLETED",
+      "name": "Equipment Finance Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.EQUIPMENT_FINANCE"
+      ]
+    },
+    {
+      "id": "EVENT.MANUFACTURER_ONBOARDING_STARTED",
+      "name": "Manufacturer onboarding Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.MANUFACTURER_ONBOARDING"
+      ]
+    },
+    {
+      "id": "EVENT.MANUFACTURER_ONBOARDING_COMPLETED",
+      "name": "Manufacturer onboarding Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.MANUFACTURER_ONBOARDING"
+      ]
+    },
+    {
+      "id": "EVENT.CREDIT_UNDERWRITING_STARTED",
+      "name": "Credit underwriting Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.CREDIT_UNDERWRITING"
+      ]
+    },
+    {
+      "id": "EVENT.CREDIT_UNDERWRITING_COMPLETED",
+      "name": "Credit underwriting Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.CREDIT_UNDERWRITING"
+      ]
+    },
+    {
+      "id": "EVENT.BORROWING_BASE_ADMINISTRATION_STARTED",
+      "name": "Borrowing base administration Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.BORROWING_BASE_ADMINISTRATION"
+      ]
+    },
+    {
+      "id": "EVENT.BORROWING_BASE_ADMINISTRATION_COMPLETED",
+      "name": "Borrowing base administration Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.BORROWING_BASE_ADMINISTRATION"
+      ]
+    },
+    {
+      "id": "EVENT.INVENTORY_MONITORING_STARTED",
+      "name": "Inventory monitoring Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.INVENTORY_MONITORING"
+      ]
+    },
+    {
+      "id": "EVENT.INVENTORY_MONITORING_COMPLETED",
+      "name": "Inventory monitoring Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.INVENTORY_MONITORING"
+      ]
+    },
+    {
+      "id": "EVENT.PRODUCTION_ANALYSIS_STARTED",
+      "name": "Production analysis Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.PRODUCTION_ANALYSIS"
+      ]
+    },
+    {
+      "id": "EVENT.PRODUCTION_ANALYSIS_COMPLETED",
+      "name": "Production analysis Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.PRODUCTION_ANALYSIS"
+      ]
+    },
+    {
+      "id": "EVENT.SUPPLIER_CONCENTRATION_REVIEW_STARTED",
+      "name": "Supplier concentration review Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.SUPPLIER_CONCENTRATION_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.SUPPLIER_CONCENTRATION_REVIEW_COMPLETED",
+      "name": "Supplier concentration review Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.SUPPLIER_CONCENTRATION_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.CUSTOMER_CONCENTRATION_REVIEW_STARTED",
+      "name": "Customer concentration review Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.CUSTOMER_CONCENTRATION_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.CUSTOMER_CONCENTRATION_REVIEW_COMPLETED",
+      "name": "Customer concentration review Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.CUSTOMER_CONCENTRATION_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.WORKING_CAPITAL_MONITORING_STARTED",
+      "name": "Working capital monitoring Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.WORKING_CAPITAL_MONITORING"
+      ]
+    },
+    {
+      "id": "EVENT.WORKING_CAPITAL_MONITORING_COMPLETED",
+      "name": "Working capital monitoring Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.WORKING_CAPITAL_MONITORING"
+      ]
+    },
+    {
+      "id": "EVENT.COVENANT_REVIEW_STARTED",
+      "name": "Covenant review Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.COVENANT_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.COVENANT_REVIEW_COMPLETED",
+      "name": "Covenant review Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.COVENANT_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.ANNUAL_RELATIONSHIP_REVIEW_STARTED",
+      "name": "Annual relationship review Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.ANNUAL_RELATIONSHIP_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.ANNUAL_RELATIONSHIP_REVIEW_COMPLETED",
+      "name": "Annual relationship review Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.ANNUAL_RELATIONSHIP_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.PROVIDER_RELATIONSHIP_ONBOARDING_STARTED",
+      "name": "Provider Relationship Onboarding Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.PROVIDER_RELATIONSHIP_ONBOARDING"
+      ]
+    },
+    {
+      "id": "EVENT.PROVIDER_RELATIONSHIP_ONBOARDING_COMPLETED",
+      "name": "Provider Relationship Onboarding Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.PROVIDER_RELATIONSHIP_ONBOARDING"
+      ]
+    },
+    {
+      "id": "EVENT.HEALTHCARE_CREDIT_UNDERWRITING_STARTED",
+      "name": "Healthcare Credit Underwriting Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.HEALTHCARE_CREDIT_UNDERWRITING"
+      ]
+    },
+    {
+      "id": "EVENT.HEALTHCARE_CREDIT_UNDERWRITING_COMPLETED",
+      "name": "Healthcare Credit Underwriting Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.HEALTHCARE_CREDIT_UNDERWRITING"
+      ]
+    },
+    {
+      "id": "EVENT.PRACTICE_ACQUISITION_STARTED",
+      "name": "Practice Acquisition Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.PRACTICE_ACQUISITION"
+      ]
+    },
+    {
+      "id": "EVENT.PRACTICE_ACQUISITION_COMPLETED",
+      "name": "Practice Acquisition Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.PRACTICE_ACQUISITION"
+      ]
+    },
+    {
+      "id": "EVENT.PARTNER_BUY_IN_STARTED",
+      "name": "Partner Buy-In Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.PARTNER_BUY_IN"
+      ]
+    },
+    {
+      "id": "EVENT.PARTNER_BUY_IN_COMPLETED",
+      "name": "Partner Buy-In Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.PARTNER_BUY_IN"
+      ]
+    },
+    {
+      "id": "EVENT.REVENUE_CYCLE_MONITORING_STARTED",
+      "name": "Revenue Cycle Monitoring Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.REVENUE_CYCLE_MONITORING"
+      ]
+    },
+    {
+      "id": "EVENT.REVENUE_CYCLE_MONITORING_COMPLETED",
+      "name": "Revenue Cycle Monitoring Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.REVENUE_CYCLE_MONITORING"
+      ]
+    },
+    {
+      "id": "EVENT.LICENSE_INSURANCE_MONITORING_STARTED",
+      "name": "License / Insurance Monitoring Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.LICENSE_INSURANCE_MONITORING"
+      ]
+    },
+    {
+      "id": "EVENT.LICENSE_INSURANCE_MONITORING_COMPLETED",
+      "name": "License / Insurance Monitoring Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.LICENSE_INSURANCE_MONITORING"
+      ]
+    },
+    {
+      "id": "EVENT.DISTRESSED_PRACTICE_REVIEW_STARTED",
+      "name": "Distressed Practice Review Started",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.DISTRESSED_PRACTICE_REVIEW"
+      ]
+    },
+    {
+      "id": "EVENT.DISTRESSED_PRACTICE_REVIEW_COMPLETED",
+      "name": "Distressed Practice Review Completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_workflows": [
+        "WF.DISTRESSED_PRACTICE_REVIEW"
+      ]
+    }
+  ]
+}

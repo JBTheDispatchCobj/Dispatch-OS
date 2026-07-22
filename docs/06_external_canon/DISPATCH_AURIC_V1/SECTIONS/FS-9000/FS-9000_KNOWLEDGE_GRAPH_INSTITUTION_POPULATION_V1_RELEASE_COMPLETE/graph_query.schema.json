@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Graph Query Request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "query_id",
+    "tenant_id",
+    "actor_id",
+    "purpose",
+    "query_type",
+    "filters",
+    "requested_at"
+  ],
+  "properties": {
+    "query_id": {
+      "type": "string"
+    },
+    "tenant_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "actor_id": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "query_type": {
+      "enum": [
+        "profile_expand",
+        "path",
+        "search",
+        "ranking",
+        "similarity",
+        "impact",
+        "evidence_trace",
+        "aggregate"
+      ]
+    },
+    "filters": {
+      "type": "object"
+    },
+    "max_depth": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 6
+    },
+    "limit": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "include_inferred": {
+      "type": "boolean"
+    },
+    "requested_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

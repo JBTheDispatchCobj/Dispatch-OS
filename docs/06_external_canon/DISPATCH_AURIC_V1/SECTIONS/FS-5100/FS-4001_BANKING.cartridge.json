@@ -1,0 +1,567 @@
+{
+  "manifest_name": "FS-4001_BANKING.cartridge.json",
+  "version": "1.0",
+  "owner": "Auric Works",
+  "product": "Dispatch / Auric Institutional Intelligence Network",
+  "created_at": "2026-07-21T20:17:29.665505",
+  "domain_id": "FS-4001",
+  "domain_name": "Banking",
+  "source_volume": "FS-4001_BANKING_OPERATING_FRAMEWORK_V1.zip",
+  "purpose": "Deployable cartridge manifest for general banking operating intelligence across deposits, lending, treasury, channels, relationships, risk, and governance.",
+  "cartridge_type": "domain_operating_cartridge",
+  "status": "production_manifest",
+  "strategic_lens": "Banking is the institutional operating system for deposits, lending, payments, treasury, channels, relationships, risk, compliance, and balance sheet economics.",
+  "primary_objects": [
+    {
+      "object": "Institution",
+      "role": "Root banking entity profile.",
+      "required_fields": [
+        "institution_id",
+        "name",
+        "charter_type",
+        "asset_size",
+        "regulators",
+        "products",
+        "channels",
+        "risk_profile",
+        "vendors",
+        "executives"
+      ]
+    },
+    {
+      "object": "CustomerRelationship",
+      "role": "Person, household, or business relationship with product, profitability, risk, and opportunity context.",
+      "required_fields": [
+        "relationship_id",
+        "customer",
+        "relationship_type",
+        "products",
+        "profitability",
+        "opportunities",
+        "risk"
+      ]
+    },
+    {
+      "object": "DepositAccount",
+      "role": "Deposit product and funding relationship.",
+      "required_fields": [
+        "account_id",
+        "owner",
+        "type",
+        "balance",
+        "rate",
+        "status",
+        "fees",
+        "activity",
+        "risk_flags"
+      ]
+    },
+    {
+      "object": "Loan",
+      "role": "Credit exposure and repayment relationship.",
+      "required_fields": [
+        "loan_id",
+        "borrower",
+        "product_type",
+        "amount",
+        "rate",
+        "term",
+        "collateral",
+        "risk_rating",
+        "status",
+        "covenants"
+      ]
+    },
+    {
+      "object": "TreasuryService",
+      "role": "Business payment, liquidity, and fee-income service.",
+      "required_fields": [
+        "service_id",
+        "customer",
+        "rail",
+        "volume",
+        "fees",
+        "risk_controls",
+        "status"
+      ]
+    },
+    {
+      "object": "Branch",
+      "role": "Physical delivery channel and local market node.",
+      "required_fields": [
+        "branch_id",
+        "location",
+        "staffing",
+        "deposits",
+        "loans",
+        "transactions",
+        "performance"
+      ]
+    },
+    {
+      "object": "DigitalChannel",
+      "role": "Digital banking delivery and engagement channel.",
+      "required_fields": [
+        "channel_id",
+        "platform",
+        "users",
+        "activity",
+        "availability",
+        "vendors",
+        "risk"
+      ]
+    }
+  ],
+  "supported_workflows": [
+    {
+      "workflow": "Customer Onboarding",
+      "description": "Open and verify new retail/business relationship.",
+      "required_objects": [
+        "CustomerRelationship",
+        "Account",
+        "KYC/KYB Evidence"
+      ],
+      "outputs": [
+        "Account opening package",
+        "Compliance evidence"
+      ],
+      "approval_gates": [
+        "operations_review",
+        "compliance_review_if_exception"
+      ]
+    },
+    {
+      "workflow": "Deposit Account Opening",
+      "description": "Create and fund deposit account.",
+      "required_objects": [
+        "CustomerRelationship",
+        "DepositAccount",
+        "Disclosure"
+      ],
+      "outputs": [
+        "Opened account",
+        "Disclosure evidence"
+      ],
+      "approval_gates": [
+        "operations_review"
+      ]
+    },
+    {
+      "workflow": "Loan Origination",
+      "description": "Intake, underwrite, approve, close, and board loan.",
+      "required_objects": [
+        "Borrower",
+        "Loan",
+        "Collateral",
+        "CreditMemo"
+      ],
+      "outputs": [
+        "Booked loan",
+        "Credit file"
+      ],
+      "approval_gates": [
+        "credit_authority_approval",
+        "closing_review"
+      ]
+    },
+    {
+      "workflow": "Treasury Implementation",
+      "description": "Map payment flows and implement treasury services.",
+      "required_objects": [
+        "BusinessCustomer",
+        "TreasuryService",
+        "PaymentFlow"
+      ],
+      "outputs": [
+        "Treasury setup",
+        "Implementation checklist"
+      ],
+      "approval_gates": [
+        "treasury_operations_approval",
+        "security_review_if_needed"
+      ]
+    },
+    {
+      "workflow": "Complaint Management",
+      "description": "Intake, classify, investigate, respond, and close complaints.",
+      "required_objects": [
+        "Complaint",
+        "CustomerRelationship",
+        "Evidence"
+      ],
+      "outputs": [
+        "Response",
+        "Complaint log"
+      ],
+      "approval_gates": [
+        "compliance_review",
+        "legal_review_if_escalated"
+      ]
+    },
+    {
+      "workflow": "Board Reporting",
+      "description": "Prepare executive/board banking performance report.",
+      "required_objects": [
+        "KPI",
+        "Report",
+        "Committee"
+      ],
+      "outputs": [
+        "Board packet",
+        "Action items"
+      ],
+      "approval_gates": [
+        "executive_owner_approval"
+      ]
+    }
+  ],
+  "allowed_agents": [
+    {
+      "agent": "Customer Relationship Agent",
+      "allowed_actions": [
+        "profile_relationships",
+        "identify_product_gaps",
+        "summarize_customer_context",
+        "prepare_relationship_brief"
+      ],
+      "prohibited_actions": [
+        "approve_account",
+        "make_final_compliance_determination",
+        "send_external_commitment"
+      ]
+    },
+    {
+      "agent": "Deposit Product Agent",
+      "allowed_actions": [
+        "summarize_deposit_mix",
+        "detect_pricing_or_retention_issues",
+        "draft_deposit_dashboard_commentary"
+      ],
+      "prohibited_actions": [
+        "change_rate",
+        "approve_product_terms",
+        "commit_to_customer"
+      ]
+    },
+    {
+      "agent": "Loan Origination Agent",
+      "allowed_actions": [
+        "intake_loan_request",
+        "identify_missing_documents",
+        "draft_credit_file_summary",
+        "route_to_credit_authority"
+      ],
+      "prohibited_actions": [
+        "approve_credit",
+        "waive_conditions",
+        "fund_loan"
+      ]
+    },
+    {
+      "agent": "Treasury Services Agent",
+      "allowed_actions": [
+        "map_payment_flows",
+        "recommend_treasury_options",
+        "draft_implementation_checklist"
+      ],
+      "prohibited_actions": [
+        "execute_contract",
+        "open_service_without_approval"
+      ]
+    },
+    {
+      "agent": "Branch Performance Agent",
+      "allowed_actions": [
+        "summarize_branch_KPIs",
+        "identify_local_market_opportunities",
+        "flag_service_exceptions"
+      ],
+      "prohibited_actions": [
+        "change_staffing",
+        "approve_branch_actions"
+      ]
+    },
+    {
+      "agent": "Digital Channel Agent",
+      "allowed_actions": [
+        "summarize_digital_usage",
+        "flag_availability_or_vendor_issues",
+        "identify_adoption_opportunities"
+      ],
+      "prohibited_actions": [
+        "change_system_settings",
+        "approve_vendor_changes"
+      ]
+    },
+    {
+      "agent": "Complaint Management Agent",
+      "allowed_actions": [
+        "classify_complaint",
+        "summarize_evidence",
+        "draft_response_for_review",
+        "track_resolution"
+      ],
+      "prohibited_actions": [
+        "issue_final_response_without_approval",
+        "admit_liability"
+      ]
+    },
+    {
+      "agent": "Board Reporting Agent",
+      "allowed_actions": [
+        "draft_board_packet",
+        "summarize_KPIs",
+        "flag_governance_actions"
+      ],
+      "prohibited_actions": [
+        "release_board_packet_without_approval",
+        "invent_KPIs"
+      ]
+    }
+  ],
+  "required_evidence": {
+    "customer_onboarding": [
+      "customer_identification",
+      "KYC/KYB_evidence",
+      "account_disclosures",
+      "approval_or_exception_record"
+    ],
+    "deposit_account": [
+      "account_application",
+      "disclosures",
+      "signature_or_e_acceptance",
+      "funding_confirmation"
+    ],
+    "loan_origination": [
+      "credit_application",
+      "credit_memo",
+      "financials",
+      "collateral_evidence",
+      "approval_record",
+      "loan_documents"
+    ],
+    "treasury": [
+      "payment_flow_map",
+      "service_agreement",
+      "risk_control_setup",
+      "implementation_confirmation"
+    ],
+    "complaints": [
+      "complaint_record",
+      "investigation_notes",
+      "supporting_documents",
+      "response_approval",
+      "closure_evidence"
+    ],
+    "board_reporting": [
+      "source_KPIs",
+      "management_commentary",
+      "risk_summary",
+      "approval_record"
+    ]
+  },
+  "approval_gates": {
+    "credit_approval": [
+      "credit_authority"
+    ],
+    "loan_funding_or_closing": [
+      "credit_authority",
+      "operations_owner"
+    ],
+    "board_report_release": [
+      "executive_owner"
+    ],
+    "complaint_response": [
+      "compliance_owner",
+      "legal_counsel_if_escalated"
+    ],
+    "vendor_or_digital_change": [
+      "business_owner",
+      "vendor_risk_owner",
+      "security_owner"
+    ]
+  },
+  "dashboards": [
+    {
+      "dashboard": "Banking Executive Dashboard",
+      "primary_kpis": [
+        "total_assets",
+        "loan_growth",
+        "deposit_growth",
+        "net_interest_margin",
+        "delinquency_rate",
+        "complaints"
+      ]
+    },
+    {
+      "dashboard": "Relationship Dashboard",
+      "primary_kpis": [
+        "active_relationships",
+        "products_per_customer",
+        "relationship_profitability",
+        "retention_rate",
+        "cross_sell_rate"
+      ]
+    },
+    {
+      "dashboard": "Deposit Dashboard",
+      "primary_kpis": [
+        "deposit_growth",
+        "cost_of_funds",
+        "loan_to_deposit_ratio",
+        "liquidity_ratio"
+      ]
+    },
+    {
+      "dashboard": "Loan Portfolio Dashboard",
+      "primary_kpis": [
+        "loan_growth",
+        "delinquency_rate",
+        "charge_off_rate",
+        "criticized_assets",
+        "watchlist_exposure"
+      ]
+    },
+    {
+      "dashboard": "Channel Operations Dashboard",
+      "primary_kpis": [
+        "digital_active_users",
+        "branch_transactions",
+        "service_SLA",
+        "exception_rate"
+      ]
+    }
+  ],
+  "kpis": [
+    "total_assets",
+    "loan_growth",
+    "deposit_growth",
+    "loan_to_deposit_ratio",
+    "cost_of_funds",
+    "net_interest_margin",
+    "liquidity_ratio",
+    "customers",
+    "active_relationships",
+    "products_per_customer",
+    "relationship_profitability",
+    "retention_rate",
+    "cross_sell_rate",
+    "delinquency_rate",
+    "charge_off_rate",
+    "criticized_assets",
+    "watchlist_exposure",
+    "complaints",
+    "fraud_events",
+    "account_opening_cycle_time",
+    "digital_active_users",
+    "branch_transactions",
+    "service_SLA",
+    "exception_rate"
+  ],
+  "relationships": [
+    {
+      "source": "Institution",
+      "relationship": "OFFERS",
+      "target": "Product"
+    },
+    {
+      "source": "Customer",
+      "relationship": "OWNS",
+      "target": "DepositAccount"
+    },
+    {
+      "source": "Borrower",
+      "relationship": "BORROWS_FROM",
+      "target": "Institution"
+    },
+    {
+      "source": "Loan",
+      "relationship": "SECURED_BY",
+      "target": "Collateral"
+    },
+    {
+      "source": "TreasuryService",
+      "relationship": "SUPPORTS",
+      "target": "PaymentFlow"
+    },
+    {
+      "source": "Complaint",
+      "relationship": "CREATES",
+      "target": "InvestigationWorkflow"
+    }
+  ],
+  "router_examples": [
+    {
+      "user_request": "Show the executive banking dashboard.",
+      "route_to_workflow": "Board Reporting",
+      "required_objects": [
+        "Institution",
+        "KPI",
+        "Report"
+      ],
+      "agents": [
+        "Board Reporting Agent"
+      ],
+      "outputs": [
+        "Executive dashboard commentary",
+        "Board packet draft"
+      ]
+    },
+    {
+      "user_request": "What treasury services should we offer this business customer?",
+      "route_to_workflow": "Treasury Implementation",
+      "required_objects": [
+        "CustomerRelationship",
+        "PaymentFlow",
+        "TreasuryService"
+      ],
+      "agents": [
+        "Treasury Services Agent"
+      ],
+      "outputs": [
+        "Treasury recommendation",
+        "Implementation checklist"
+      ]
+    },
+    {
+      "user_request": "Prepare this loan request for credit review.",
+      "route_to_workflow": "Loan Origination",
+      "required_objects": [
+        "Borrower",
+        "Loan",
+        "Collateral",
+        "CreditMemo"
+      ],
+      "agents": [
+        "Loan Origination Agent"
+      ],
+      "outputs": [
+        "Credit file summary",
+        "Missing evidence list"
+      ]
+    }
+  ],
+  "integration_dependencies": [
+    "objects.registry.json",
+    "workflows.registry.json",
+    "agents.registry.json",
+    "kpis.registry.json",
+    "dashboards.registry.json",
+    "relationships.registry.json",
+    "evidence.registry.json",
+    "approvals.registry.json"
+  ],
+  "acceptance_tests": [
+    "Can create a banking institution profile.",
+    "Can create customer, deposit, loan, treasury, branch, and digital channel objects.",
+    "Can route customer onboarding, deposit opening, loan origination, treasury implementation, complaint management, and board reporting workflows.",
+    "Can enforce credit approval before loan approval/funding.",
+    "Can link board dashboard KPIs to source evidence.",
+    "Can produce an audit-ready complaint management record.",
+    "Can surface relationship opportunities from banking product gaps."
+  ],
+  "section_id": "FS-5100",
+  "section_aliases": [
+    "FS-5000"
+  ]
+}

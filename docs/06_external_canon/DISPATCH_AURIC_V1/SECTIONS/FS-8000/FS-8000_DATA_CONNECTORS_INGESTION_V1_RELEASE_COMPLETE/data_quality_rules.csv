@@ -1,0 +1,5 @@
+rule_id,name,scope,dimension,severity,expression,failure_action,waiver_authority,status
+DQR-REQ-ID,Required authoritative identifier,record,completeness,error,official institution records require one recognized identifier,candidate_only,data_owner,active
+DQR-HASH,Snapshot hash integrity,file,integrity,critical,stored bytes hash equals recorded sha256,quarantine,none,active
+DQR-LINEAGE,Canonical field lineage,field,traceability,critical,every accepted canonical field has lineage edge,block_publish,none,active
+DQR-TOTALS,Control total reconciliation,aggregate,accuracy,error,absolute variance <= configured tolerance,awaiting_review,finance_data_owner,active

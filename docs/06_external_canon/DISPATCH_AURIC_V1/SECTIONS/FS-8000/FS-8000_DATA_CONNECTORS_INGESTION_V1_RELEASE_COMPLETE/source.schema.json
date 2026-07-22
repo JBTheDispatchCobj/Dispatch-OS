@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Dispatch Source",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "source_id",
+    "tenant_id",
+    "name",
+    "source_type",
+    "authority_tier",
+    "classification",
+    "status",
+    "created_at"
+  ],
+  "properties": {
+    "source_id": {
+      "type": "string",
+      "pattern": "^SRC-[A-Z0-9-]+$"
+    },
+    "tenant_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_type": {
+      "type": "string",
+      "enum": [
+        "public",
+        "connector",
+        "upload",
+        "scheduled",
+        "attested"
+      ]
+    },
+    "authority_tier": {
+      "type": "string",
+      "enum": [
+        "official",
+        "verified_issuer",
+        "trusted_secondary",
+        "unverified_secondary",
+        "attested",
+        "inferred"
+      ]
+    },
+    "classification": {
+      "$ref": "#/$defs/classification"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "approved",
+        "active",
+        "restricted",
+        "suspended",
+        "retired"
+      ]
+    },
+    "owner_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "license_review_status": {
+      "type": "string",
+      "enum": [
+        "approved",
+        "restricted",
+        "pending",
+        "not_required"
+      ]
+    },
+    "terms_reference": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "freshness_policy_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "created_at": {
+      "$ref": "#/$defs/timestamp"
+    },
+    "updated_at": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/timestamp"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "restricted",
+        "regulated"
+      ]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "unknown"
+      ]
+    },
+    "freshness": {
+      "type": "string",
+      "enum": [
+        "current",
+        "aging",
+        "stale",
+        "unknown"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

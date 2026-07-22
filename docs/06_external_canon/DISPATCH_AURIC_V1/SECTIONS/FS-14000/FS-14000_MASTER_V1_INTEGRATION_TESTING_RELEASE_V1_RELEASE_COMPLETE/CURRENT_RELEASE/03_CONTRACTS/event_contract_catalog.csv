@@ -1,0 +1,8 @@
+event_type,version,producer,consumers,subject_type,payload_schema,classification,ordering_key,delivery,idempotency_key,retention_days,replay,owner
+institution.updated,1.0,profile-service,graph-service;opportunity-engine;terminal,institution,institution-event-v1,confidential,institution_id,at_least_once,event_id,2555,true,Product
+document.ingested,1.0,ingestion-service,evidence-service;profile-service;graph-service,document,document-ingested-v1,source_classification,document_id,at_least_once,event_id,2555,true,Data
+workflow.started,1.0,workflow-service,agent-harness;terminal;audit-service,workflow_instance,workflow-event-v1,confidential,workflow_instance_id,at_least_once,event_id,2555,true,Runtime
+approval.decided,1.0,approval-service,workflow-service;terminal;audit-service,approval,approval-event-v1,restricted,approval_id,at_least_once,event_id,2555,true,Governance
+opportunity.detected,1.0,opportunity-engine,terminal;workflow-service;notification-service,opportunity,opportunity-event-v1,confidential,opportunity_id,at_least_once,event_id,2555,true,Product
+connector.failed,1.0,connector-service,operations;notification-service;audit-service,connector_run,connector-failed-v1,confidential,connector_run_id,at_least_once,event_id,365,true,Data
+release.decided,1.0,release-service,deployment;operations;audit-service,release,release-decision-v1,internal,release_id,at_least_once,event_id,2555,true,Release

@@ -1,0 +1,103 @@
+{
+  "validated_at": "2026-07-22T09:30:49.368893+00:00",
+  "validation_scope": [
+    "JSON parsing",
+    "schema registry resolution",
+    "institution fixture validation",
+    "cross-file reference validation"
+  ],
+  "json_parse_results": [
+    {
+      "file": "PACKAGE_INDEX.json",
+      "passed": true
+    },
+    {
+      "file": "SECTION_RELEASE_MANIFEST.json",
+      "passed": true
+    },
+    {
+      "file": "VALIDATION_REPORT.json",
+      "passed": true
+    },
+    {
+      "file": "approval.schema.json",
+      "passed": true
+    },
+    {
+      "file": "audit_event.schema.json",
+      "passed": true
+    },
+    {
+      "file": "evidence.schema.json",
+      "passed": true
+    },
+    {
+      "file": "executive.schema.json",
+      "passed": true
+    },
+    {
+      "file": "institution.schema.json",
+      "passed": true
+    },
+    {
+      "file": "institutional_kernel_acceptance_tests.json",
+      "passed": true
+    },
+    {
+      "file": "institutional_kernel_api_contracts.json",
+      "passed": true
+    },
+    {
+      "file": "metric.schema.json",
+      "passed": true
+    },
+    {
+      "file": "opportunity.schema.json",
+      "passed": true
+    },
+    {
+      "file": "opportunity_scoring_model.json",
+      "passed": true
+    },
+    {
+      "file": "readiness_score.schema.json",
+      "passed": true
+    },
+    {
+      "file": "schema_registry.json",
+      "passed": true
+    },
+    {
+      "file": "synthetic_complete_fixture.json",
+      "passed": true
+    },
+    {
+      "file": "vendor_product.schema.json",
+      "passed": true
+    }
+  ],
+  "schema_registry_resolution": [
+    {
+      "reference": "dispatch://schemas/metric/1.0.0",
+      "resolved_file": "metric.schema.json",
+      "resolved": true
+    }
+  ],
+  "institution_fixture_validation": {
+    "schema": "institution.schema.json",
+    "fixture": "synthetic_complete_fixture.json#institution",
+    "passed": true,
+    "errors": []
+  },
+  "cross_file_reference_validation": {
+    "passed": true,
+    "references": [
+      {
+        "reference": "dispatch://schemas/metric/1.0.0",
+        "resolved_file": "metric.schema.json",
+        "resolved": true
+      }
+    ]
+  },
+  "all_passed": true
+}

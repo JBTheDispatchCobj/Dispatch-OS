@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fs14000.api_contract.v1",
+  "type": "object",
+  "required": [
+    "api_id",
+    "service",
+    "operation",
+    "method",
+    "path",
+    "version",
+    "permission",
+    "tenant_scope",
+    "error_model"
+  ],
+  "properties": {
+    "api_id": {
+      "type": "string"
+    },
+    "service": {
+      "type": "string"
+    },
+    "operation": {
+      "type": "string"
+    },
+    "method": {
+      "enum": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE"
+      ]
+    },
+    "path": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "request_schema": {
+      "type": "string"
+    },
+    "response_schema": {
+      "type": "string"
+    },
+    "permission": {
+      "type": "string"
+    },
+    "tenant_scope": {
+      "type": "string"
+    },
+    "idempotency": {
+      "type": "string"
+    },
+    "error_model": {
+      "type": "string"
+    },
+    "audit_event": {
+      "type": "string"
+    },
+    "slo_ms": {
+      "type": "integer"
+    }
+  }
+}

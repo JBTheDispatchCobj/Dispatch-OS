@@ -1,0 +1,4 @@
+level,training,assessment,practical,permissions,renewal
+registered,"product, ethics, confidentiality",knowledge check,none,referral only,annual
+implementation_certified,"tenant, workflow, evidence, connectors, security",proctored exam,sandbox implementation,tenant-scoped configuration,annual + quality threshold
+advanced_operator,"multi-cartridge, managed ops, production support",advanced exam,supervised production simulation,approved managed operations,annual + incident review

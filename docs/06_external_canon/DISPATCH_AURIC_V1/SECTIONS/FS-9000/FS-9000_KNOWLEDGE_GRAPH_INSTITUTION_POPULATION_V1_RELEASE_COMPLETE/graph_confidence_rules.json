@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "base_weights": {
+    "authoritative": 0.98,
+    "authoritative_private": 0.99,
+    "primary": 0.9,
+    "supporting": 0.7,
+    "inferred": 0.55
+  },
+  "freshness_multipliers": {
+    "current": 1.0,
+    "aging": 0.85,
+    "stale": 0.6,
+    "unknown": 0.5
+  },
+  "corroboration_bonus_per_independent_source": 0.04,
+  "corroboration_cap": 0.12,
+  "conflict_penalty": 0.25,
+  "verified_threshold": 0.9,
+  "review_threshold": 0.75,
+  "quarantine_threshold": 0.55,
+  "rule": "clamp((base_weight * freshness_multiplier) + corroboration_bonus - conflict_penalty,0,1)",
+  "requirements": [
+    "record source IDs",
+    "record timestamps",
+    "record method version",
+    "never promote inferred to attested automatically"
+  ]
+}

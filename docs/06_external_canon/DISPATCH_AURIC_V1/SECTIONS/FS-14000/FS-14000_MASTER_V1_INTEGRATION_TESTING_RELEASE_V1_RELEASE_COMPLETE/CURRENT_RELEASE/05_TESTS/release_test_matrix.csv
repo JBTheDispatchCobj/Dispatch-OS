@@ -1,0 +1,12 @@
+test_id,suite,scenario,blocking,required_environment,owner,status,evidence_required
+VAL-JSON,validation,all JSON parses,yes,package,Release,passed,validation report
+VAL-REF,validation,cross-file references resolve,yes,package,Architecture,passed,validation report
+GJ-01,end_to_end,Institution Digital Twin,yes,synthetic/pilot,QA,not_run,execution trace
+GJ-02,end_to_end,Fintech Pilot Readiness,yes,synthetic/pilot,QA,not_run,execution trace
+GJ-03,end_to_end,Exam Response Binder,yes,synthetic/pilot,QA,not_run,execution trace
+GJ-04,end_to_end,Loan Participation,yes,synthetic/pilot,QA,not_run,execution trace
+GJ-05,end_to_end,Institutional Intelligence Search,yes,synthetic/pilot,QA,not_run,execution trace
+SEC-01,security,Tenant isolation,yes,release candidate,Security,not_run,security evidence
+PERF-01,performance,Pilot load profile,conditional,release candidate,Engineering,not_run,benchmark report
+MIG-01,migration,Dry-run and reconciliation,yes,pre-production,Data,not_run,migration report
+PRR-01,readiness,Production readiness review,yes,release candidate,Operations,not_run,signed checklist

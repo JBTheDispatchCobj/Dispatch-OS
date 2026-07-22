@@ -1,0 +1,11 @@
+source_id,source_name,source_state,coverage,refresh_cadence,authority_rank,graph_targets,conflict_precedence
+SRC-NCUA-CALL,NCUA Call Reports,public,credit_union,quarterly,authoritative,"institution,financial_metric,branch",1
+SRC-NCUA-CUA,NCUA Credit Union and Corporate CU Data,public,credit_union,quarterly,authoritative,"institution,charter,geography",2
+SRC-FDIC-SOD,FDIC Summary of Deposits,public,bank,annual,authoritative,"institution,branch,deposit_market",3
+SRC-FDIC-CERT,FDIC BankFind Suite,public,bank,quarterly,authoritative,"institution,executive,financial_metric",4
+SRC-SEC-EDGAR,SEC EDGAR,public,"company,fintech,fund",event_driven,authoritative,"company,filing,executive,investment",5
+SRC-STATE-REG,State Regulator Sources,public,institution,varies,authoritative,"institution,license,obligation",6
+SRC-WEBSITE,Official Website,public,all,daily,primary,"product,executive,vendor,location",7
+SRC-ATTEST,Institution Attestation,attested,tenant,on_change,authoritative_private,all private profile attributes,8
+SRC-CONTRACT,Contract Repository,private,tenant,on_change,authoritative_private,"vendor,product,system,contract",9
+SRC-COMMS,Permissioned Communications,private,tenant,continuous,supporting,"relationship,task,opportunity",10

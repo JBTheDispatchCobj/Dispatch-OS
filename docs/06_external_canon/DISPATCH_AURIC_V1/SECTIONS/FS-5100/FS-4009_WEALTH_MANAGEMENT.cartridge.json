@@ -1,0 +1,1098 @@
+{
+  "manifest_name": "FS-4009_WEALTH_MANAGEMENT.cartridge.json",
+  "version": "1.0",
+  "owner": "Auric Works",
+  "product": "Dispatch / Auric Institutional Intelligence Network",
+  "created_at": "2026-07-22T03:17:10.008600",
+  "domain_id": "FS-4009",
+  "domain_name": "Wealth Management",
+  "source_volume": "FS-4009_WEALTH_MANAGEMENT_OPERATING_FRAMEWORK_V1.zip",
+  "purpose": "Deployable cartridge manifest for household financial intelligence, advisory operations, planning, portfolio management, billing, compliance, estate and trust coordination, alternatives, referrals, and credit union/bank wealth integration.",
+  "cartridge_type": "domain_operating_cartridge",
+  "status": "production_manifest",
+  "strategic_lens": "Wealth management is a household operating system connecting goals, assets, liabilities, accounts, portfolios, tax, estate, insurance, lending, family relationships, fiduciary duties, advice, and long-term revenue economics.",
+  "primary_objects": [
+    {
+      "object": "Household",
+      "role": "Root wealth relationship object connecting people, accounts, goals, assets, liabilities, plans, referrals, and opportunities.",
+      "required_fields": [
+        "household_id",
+        "name",
+        "members",
+        "advisor",
+        "AUM",
+        "net_worth",
+        "income",
+        "cash_flow",
+        "goals",
+        "accounts",
+        "risk_profile",
+        "estate_status",
+        "insurance_status",
+        "opportunities"
+      ]
+    },
+    {
+      "object": "Client",
+      "role": "Individual advisory client with identity, suitability, goals, ownership, and relationship context.",
+      "required_fields": [
+        "client_id",
+        "name",
+        "household",
+        "advisor",
+        "accounts",
+        "employment",
+        "income",
+        "assets",
+        "liabilities",
+        "goals",
+        "risk_profile",
+        "time_horizon",
+        "liquidity_needs",
+        "consent_status"
+      ]
+    },
+    {
+      "object": "Advisor",
+      "role": "Licensed relationship owner responsible for planning, advice, implementation, and supervision.",
+      "required_fields": [
+        "advisor_id",
+        "name",
+        "firm",
+        "licenses",
+        "designations",
+        "clients",
+        "households",
+        "AUM",
+        "revenue",
+        "pipeline",
+        "supervisory_status",
+        "capacity"
+      ]
+    },
+    {
+      "object": "Account",
+      "role": "Advisory, brokerage, retirement, trust, banking, or alternative investment account.",
+      "required_fields": [
+        "account_id",
+        "client",
+        "household",
+        "account_type",
+        "custodian",
+        "registration",
+        "tax_status",
+        "balance",
+        "strategy",
+        "fee_schedule",
+        "status"
+      ]
+    },
+    {
+      "object": "Portfolio",
+      "role": "Managed collection of holdings, allocation, performance, risk, and implementation decisions.",
+      "required_fields": [
+        "portfolio_id",
+        "household",
+        "accounts",
+        "strategy",
+        "allocation",
+        "holdings",
+        "cost_basis",
+        "market_value",
+        "performance",
+        "benchmark",
+        "risk",
+        "drift",
+        "cash"
+      ]
+    },
+    {
+      "object": "Holding",
+      "role": "Security, fund, cash, insurance, private market, or other investable asset position.",
+      "required_fields": [
+        "holding_id",
+        "portfolio",
+        "instrument",
+        "quantity",
+        "cost_basis",
+        "market_value",
+        "allocation",
+        "liquidity",
+        "tax_lot",
+        "risk_classification"
+      ]
+    },
+    {
+      "object": "Goal",
+      "role": "Household objective with amount, timing, priority, and funding status.",
+      "required_fields": [
+        "goal_id",
+        "household",
+        "goal_type",
+        "target_amount",
+        "target_date",
+        "priority",
+        "funding_source",
+        "progress",
+        "status"
+      ]
+    },
+    {
+      "object": "FinancialPlan",
+      "role": "Integrated household plan covering goals, cash flow, retirement, tax, estate, insurance, investments, and scenarios.",
+      "required_fields": [
+        "plan_id",
+        "household",
+        "goals",
+        "assets",
+        "liabilities",
+        "cash_flow",
+        "assumptions",
+        "scenarios",
+        "recommendations",
+        "implementation_tasks",
+        "review_date",
+        "status"
+      ]
+    },
+    {
+      "object": "InvestmentPolicyStatement",
+      "role": "Governed mandate for portfolio objectives, allocation, risk, liquidity, constraints, and monitoring.",
+      "required_fields": [
+        "IPS_id",
+        "household_or_institution",
+        "objectives",
+        "risk_tolerance",
+        "time_horizon",
+        "liquidity_needs",
+        "target_allocation",
+        "ranges",
+        "restrictions",
+        "review_frequency",
+        "approval_status"
+      ]
+    },
+    {
+      "object": "Recommendation",
+      "role": "Advice object preserving rationale, alternatives, suitability or fiduciary basis, disclosures, and approval.",
+      "required_fields": [
+        "recommendation_id",
+        "client",
+        "household",
+        "advisor",
+        "recommendation_type",
+        "rationale",
+        "alternatives",
+        "risks",
+        "costs",
+        "suitability_basis",
+        "fiduciary_basis",
+        "disclosures",
+        "approval_status"
+      ]
+    },
+    {
+      "object": "BillingEvent",
+      "role": "Advisory fee calculation, review, accrual, invoice, and exception object.",
+      "required_fields": [
+        "billing_id",
+        "client",
+        "account",
+        "period",
+        "billable_assets",
+        "fee_schedule",
+        "fee_rate",
+        "fee_amount",
+        "adjustments",
+        "approval_status",
+        "payment_status"
+      ]
+    },
+    {
+      "object": "Referral",
+      "role": "Bank, credit union, CPA, attorney, insurance, mortgage, trust, or other relationship referral.",
+      "required_fields": [
+        "referral_id",
+        "source",
+        "household",
+        "need",
+        "advisor_or_partner",
+        "consent",
+        "disclosures",
+        "status",
+        "outcome",
+        "revenue_attribution"
+      ]
+    },
+    {
+      "object": "EstatePlan",
+      "role": "Household estate, trust, beneficiary, ownership, and attorney coordination object.",
+      "required_fields": [
+        "estate_plan_id",
+        "household",
+        "will_status",
+        "trusts",
+        "beneficiaries",
+        "POA_status",
+        "healthcare_directive",
+        "titling_issues",
+        "attorney",
+        "review_date",
+        "gaps"
+      ]
+    },
+    {
+      "object": "Trust",
+      "role": "Trust relationship, fiduciary, beneficiary, asset, distribution, and administration object.",
+      "required_fields": [
+        "trust_id",
+        "trust_name",
+        "trust_type",
+        "grantor",
+        "trustee",
+        "beneficiaries",
+        "assets",
+        "distribution_rules",
+        "tax_status",
+        "advisor",
+        "custodian",
+        "status"
+      ]
+    },
+    {
+      "object": "AlternativeInvestment",
+      "role": "Private equity, private credit, real estate, venture, hedge, interval fund, or other alternative allocation.",
+      "required_fields": [
+        "alternative_id",
+        "issuer_or_fund",
+        "strategy",
+        "vehicle_type",
+        "commitment",
+        "funded_amount",
+        "NAV",
+        "liquidity_terms",
+        "accreditation_or_eligibility",
+        "capital_calls",
+        "distributions",
+        "risk"
+      ]
+    }
+  ],
+  "supported_workflows": [
+    {
+      "workflow": "Prospect to Client",
+      "description": "Convert a prospect into a governed advisory relationship.",
+      "required_objects": [
+        "Prospect",
+        "Client",
+        "Household",
+        "Advisor",
+        "Account"
+      ],
+      "outputs": [
+        "Client profile",
+        "Household profile",
+        "Onboarding checklist",
+        "Service agreement package"
+      ],
+      "approval_gates": [
+        "advisor_review",
+        "compliance_or_supervisory_review_if_exception"
+      ]
+    },
+    {
+      "workflow": "Household Discovery",
+      "description": "Collect household relationships, goals, assets, liabilities, cash flow, estate, insurance, banking, and planning context.",
+      "required_objects": [
+        "Household",
+        "Client",
+        "Goal",
+        "EstatePlan"
+      ],
+      "outputs": [
+        "Discovery summary",
+        "Data gap list",
+        "Opportunity map"
+      ],
+      "approval_gates": [
+        "advisor_review"
+      ]
+    },
+    {
+      "workflow": "Financial Planning",
+      "description": "Create integrated household scenarios, recommendations, priorities, and implementation tasks.",
+      "required_objects": [
+        "FinancialPlan",
+        "Household",
+        "Goal",
+        "Portfolio",
+        "EstatePlan"
+      ],
+      "outputs": [
+        "Financial plan",
+        "Scenario analysis",
+        "Implementation roadmap"
+      ],
+      "approval_gates": [
+        "licensed_advisor_approval",
+        "supervisory_review_if_required"
+      ]
+    },
+    {
+      "workflow": "IPS Creation and Review",
+      "description": "Create or update objectives, constraints, allocation ranges, liquidity needs, and review standards.",
+      "required_objects": [
+        "InvestmentPolicyStatement",
+        "Household",
+        "Portfolio",
+        "RiskProfile"
+      ],
+      "outputs": [
+        "Draft IPS",
+        "Allocation framework",
+        "Approval record"
+      ],
+      "approval_gates": [
+        "licensed_advisor_approval",
+        "client_acceptance"
+      ]
+    },
+    {
+      "workflow": "Portfolio Construction",
+      "description": "Translate IPS and planning objectives into allocation, account placement, holdings, and implementation.",
+      "required_objects": [
+        "Portfolio",
+        "Account",
+        "Holding",
+        "InvestmentPolicyStatement",
+        "Recommendation"
+      ],
+      "outputs": [
+        "Target allocation",
+        "Implementation trades for approval",
+        "Rationale and disclosures"
+      ],
+      "approval_gates": [
+        "licensed_advisor_approval",
+        "trade_or_supervisory_review_if_required"
+      ]
+    },
+    {
+      "workflow": "Portfolio Review",
+      "description": "Review performance, allocation drift, risk, taxes, cash, goals, and recommended changes.",
+      "required_objects": [
+        "Portfolio",
+        "Holding",
+        "Goal",
+        "Recommendation"
+      ],
+      "outputs": [
+        "Client review package",
+        "Drift report",
+        "Recommended actions"
+      ],
+      "approval_gates": [
+        "advisor_review",
+        "supervisory_review_if recommendation-sensitive"
+      ]
+    },
+    {
+      "workflow": "Account Opening",
+      "description": "Open advisory, brokerage, retirement, trust, or alternative account.",
+      "required_objects": [
+        "Client",
+        "Household",
+        "Account",
+        "Document",
+        "Disclosure"
+      ],
+      "outputs": [
+        "Opened account",
+        "Custodian confirmation",
+        "Compliance evidence"
+      ],
+      "approval_gates": [
+        "advisor_or_operations_review",
+        "compliance_review_if exception"
+      ]
+    },
+    {
+      "workflow": "Advisory Billing",
+      "description": "Calculate, review, approve, invoice, and reconcile advisory fees.",
+      "required_objects": [
+        "BillingEvent",
+        "Account",
+        "FeeSchedule",
+        "Portfolio"
+      ],
+      "outputs": [
+        "Billing file",
+        "Exception report",
+        "Approval record"
+      ],
+      "approval_gates": [
+        "billing_operations_approval",
+        "supervisory_review_if adjustment"
+      ]
+    },
+    {
+      "workflow": "Estate and Trust Coordination",
+      "description": "Identify estate gaps, coordinate attorney/trustee/custodian actions, and align ownership and beneficiaries.",
+      "required_objects": [
+        "EstatePlan",
+        "Trust",
+        "Household",
+        "Account",
+        "Referral"
+      ],
+      "outputs": [
+        "Estate gap summary",
+        "Attorney or trust referral",
+        "Titling and beneficiary task list"
+      ],
+      "approval_gates": [
+        "advisor_review",
+        "legal_professional_review_for_legal_documents"
+      ]
+    },
+    {
+      "workflow": "Alternative Investment Review",
+      "description": "Assess eligibility, liquidity, concentration, suitability, diligence, capital calls, and portfolio fit.",
+      "required_objects": [
+        "AlternativeInvestment",
+        "Client",
+        "Household",
+        "Portfolio",
+        "Recommendation"
+      ],
+      "outputs": [
+        "Alternative review memo",
+        "Eligibility checklist",
+        "Liquidity and concentration analysis"
+      ],
+      "approval_gates": [
+        "licensed_advisor_or_investment_authority",
+        "compliance_or_supervisory_approval"
+      ]
+    },
+    {
+      "workflow": "Credit Union / Bank Wealth Referral",
+      "description": "Detect member/customer wealth need, capture consent, route referral, track outcome, and attribute value.",
+      "required_objects": [
+        "MemberOrCustomer",
+        "Household",
+        "Referral",
+        "Opportunity"
+      ],
+      "outputs": [
+        "Referral brief",
+        "Consent/disclosure record",
+        "Advisor task",
+        "Outcome attribution"
+      ],
+      "approval_gates": [
+        "referral_compliance_review",
+        "licensed_advisor_review"
+      ]
+    },
+    {
+      "workflow": "Client Review Meeting",
+      "description": "Prepare household, performance, goal, planning, service, and opportunity package for review.",
+      "required_objects": [
+        "Household",
+        "FinancialPlan",
+        "Portfolio",
+        "Goal",
+        "Referral"
+      ],
+      "outputs": [
+        "Meeting brief",
+        "Client review deck",
+        "Action items",
+        "Follow-up tasks"
+      ],
+      "approval_gates": [
+        "advisor_review"
+      ]
+    }
+  ],
+  "allowed_agents": [
+    {
+      "agent": "Advisor Assistant",
+      "allowed_actions": [
+        "prepare_meeting_briefs",
+        "summarize_household_context",
+        "track_tasks",
+        "draft_follow_up"
+      ],
+      "prohibited_actions": [
+        "provide_unapproved_advice",
+        "execute_trades",
+        "send_final_recommendation_without_review"
+      ]
+    },
+    {
+      "agent": "Household Summary Agent",
+      "allowed_actions": [
+        "aggregate_accounts",
+        "summarize_goals",
+        "identify_data_gaps",
+        "map_relationships"
+      ],
+      "prohibited_actions": [
+        "invent_household_data",
+        "make_final_suitability_determination"
+      ]
+    },
+    {
+      "agent": "Client Review Prep Agent",
+      "allowed_actions": [
+        "compile_performance",
+        "summarize_plan_progress",
+        "flag_service_items",
+        "draft_review_agenda"
+      ],
+      "prohibited_actions": [
+        "approve_recommendations",
+        "alter_performance_data"
+      ]
+    },
+    {
+      "agent": "Financial Planning Assistant",
+      "allowed_actions": [
+        "build_scenarios",
+        "summarize_cash_flow",
+        "track_goals",
+        "draft_plan_sections"
+      ],
+      "prohibited_actions": [
+        "deliver_final_financial_plan_without_advisor_approval",
+        "provide_legal_or_tax_opinion"
+      ]
+    },
+    {
+      "agent": "Portfolio Analyst",
+      "allowed_actions": [
+        "analyze_allocation",
+        "calculate_performance",
+        "flag_drift",
+        "summarize_risk_and_liquidity"
+      ],
+      "prohibited_actions": [
+        "execute_trades",
+        "approve_final_allocation",
+        "approve_valuation"
+      ]
+    },
+    {
+      "agent": "Billing Review Agent",
+      "allowed_actions": [
+        "calculate_fees",
+        "compare_fee_schedule",
+        "identify_exceptions",
+        "prepare_billing_file"
+      ],
+      "prohibited_actions": [
+        "release_billing_without_approval",
+        "change_fee_terms"
+      ]
+    },
+    {
+      "agent": "Suitability Review Agent",
+      "allowed_actions": [
+        "check_required_factors",
+        "identify_missing_rationale",
+        "flag_concentration_or_liquidity_issues",
+        "prepare_supervisory_review"
+      ],
+      "prohibited_actions": [
+        "make_final_suitability_determination",
+        "approve_recommendation"
+      ]
+    },
+    {
+      "agent": "Credit Union Wealth Opportunity Agent",
+      "allowed_actions": [
+        "detect_referral_triggers",
+        "prepare_opportunity_briefs",
+        "route_consented_referrals",
+        "track_outcomes"
+      ],
+      "prohibited_actions": [
+        "provide_advice",
+        "share_data_without_consent",
+        "execute_referral_without_required_disclosure"
+      ]
+    },
+    {
+      "agent": "Estate Coordination Agent",
+      "allowed_actions": [
+        "identify_document_or_titling_gaps",
+        "prepare_attorney_referral",
+        "track_beneficiary_and_trust_tasks"
+      ],
+      "prohibited_actions": [
+        "draft_legal_documents",
+        "provide_legal_opinion"
+      ]
+    },
+    {
+      "agent": "Alternative Investment Review Agent",
+      "allowed_actions": [
+        "summarize_fund_terms",
+        "analyze_liquidity_and_concentration",
+        "track_capital_calls",
+        "prepare_review_memo"
+      ],
+      "prohibited_actions": [
+        "approve_investment",
+        "determine_accreditation_final",
+        "commit_capital"
+      ]
+    }
+  ],
+  "required_evidence": {
+    "onboarding": [
+      "identity_and_profile",
+      "advisory_agreement",
+      "disclosures",
+      "risk_profile",
+      "account_documents",
+      "consent"
+    ],
+    "household_discovery": [
+      "asset_statement",
+      "liability_schedule",
+      "income_and_cash_flow",
+      "goals",
+      "estate_documents_if_available",
+      "insurance_summary"
+    ],
+    "financial_planning": [
+      "household_data",
+      "assumptions",
+      "goals",
+      "account_values",
+      "cash_flow",
+      "scenario_outputs",
+      "advisor_approval"
+    ],
+    "IPS": [
+      "risk_profile",
+      "goals",
+      "time_horizon",
+      "liquidity_needs",
+      "restrictions",
+      "client_acceptance"
+    ],
+    "portfolio_construction": [
+      "IPS",
+      "account_inventory",
+      "holdings",
+      "recommended_allocation",
+      "rationale",
+      "cost_and_risk_disclosures"
+    ],
+    "portfolio_review": [
+      "custodian_data",
+      "performance_report",
+      "holdings",
+      "benchmark",
+      "drift_analysis",
+      "client_review_notes"
+    ],
+    "billing": [
+      "fee_schedule",
+      "billable_assets",
+      "billing_calculation",
+      "adjustment_support",
+      "approval_record"
+    ],
+    "estate_and_trust": [
+      "will_or_trust_summary",
+      "beneficiary_designations",
+      "titling",
+      "attorney_or_trustee_information",
+      "client_consent"
+    ],
+    "alternatives": [
+      "offering_documents",
+      "subscription_documents",
+      "eligibility_evidence",
+      "liquidity_terms",
+      "valuation_source",
+      "diligence_memo"
+    ],
+    "referral": [
+      "member_or_customer_profile",
+      "trigger_signal",
+      "consent",
+      "disclosure",
+      "advisor_assignment",
+      "outcome"
+    ]
+  },
+  "approval_gates": {
+    "financial_plan_delivery": [
+      "licensed_advisor"
+    ],
+    "investment_recommendation": [
+      "licensed_advisor",
+      "supervisory_principal_or_compliance_if_required"
+    ],
+    "trade_execution": [
+      "licensed_advisor_or_trading_authority",
+      "operations_owner"
+    ],
+    "alternative_investment": [
+      "licensed_advisor_or_investment_authority",
+      "compliance_or_supervisory_owner"
+    ],
+    "billing_release": [
+      "billing_operations_owner"
+    ],
+    "estate_or_tax_output": [
+      "licensed_advisor",
+      "legal_or_tax_professional_for_professional_opinion"
+    ],
+    "bank_or_CU_referral": [
+      "referral_compliance_owner",
+      "licensed_advisor"
+    ],
+    "external_client_output": [
+      "licensed_advisor"
+    ]
+  },
+  "dashboards": [
+    {
+      "dashboard": "Wealth Executive Dashboard",
+      "primary_kpis": [
+        "AUM",
+        "AUA",
+        "net_new_assets",
+        "revenue",
+        "client_retention",
+        "plans_completed"
+      ]
+    },
+    {
+      "dashboard": "Advisor Dashboard",
+      "primary_kpis": [
+        "advisor_AUM",
+        "new_households",
+        "revenue",
+        "review_completion",
+        "pipeline",
+        "service_capacity"
+      ]
+    },
+    {
+      "dashboard": "Household Dashboard",
+      "primary_kpis": [
+        "net_worth",
+        "wallet_share",
+        "goal_funding",
+        "review_completion",
+        "referrals",
+        "open_actions"
+      ]
+    },
+    {
+      "dashboard": "Financial Planning Dashboard",
+      "primary_kpis": [
+        "plans_completed",
+        "goals_on_track",
+        "implementation_tasks_open",
+        "review_dates_due"
+      ]
+    },
+    {
+      "dashboard": "Portfolio Dashboard",
+      "primary_kpis": [
+        "performance",
+        "benchmark_variance",
+        "allocation_drift",
+        "volatility",
+        "cash_drag",
+        "tax_loss_harvesting"
+      ]
+    },
+    {
+      "dashboard": "IPS Dashboard",
+      "primary_kpis": [
+        "IPS_current",
+        "drift_exceptions",
+        "liquidity_exceptions",
+        "restriction_exceptions"
+      ]
+    },
+    {
+      "dashboard": "Billing Dashboard",
+      "primary_kpis": [
+        "billable_assets",
+        "fee_revenue",
+        "billing_exceptions",
+        "adjustments",
+        "collection_status"
+      ]
+    },
+    {
+      "dashboard": "Estate / Trust Dashboard",
+      "primary_kpis": [
+        "estate_reviews_due",
+        "beneficiary_gaps",
+        "titling_issues",
+        "trust_assets",
+        "referrals_open"
+      ]
+    },
+    {
+      "dashboard": "Alternatives Dashboard",
+      "primary_kpis": [
+        "alternative_allocation",
+        "commitments",
+        "unfunded_commitments",
+        "NAV",
+        "liquidity_risk",
+        "capital_calls_due"
+      ]
+    },
+    {
+      "dashboard": "Wealth Compliance Dashboard",
+      "primary_kpis": [
+        "suitability_exceptions",
+        "trade_review_exceptions",
+        "disclosure_delivery",
+        "complaints",
+        "supervisory_reviews_due"
+      ]
+    },
+    {
+      "dashboard": "Credit Union / Bank Wealth Dashboard",
+      "primary_kpis": [
+        "wealth_referrals",
+        "referral_conversion",
+        "AUM_from_referrals",
+        "revenue_attribution",
+        "wallet_share_growth"
+      ]
+    }
+  ],
+  "kpis": [
+    "AUM",
+    "AUA",
+    "net_new_assets",
+    "gross_inflows",
+    "outflows",
+    "new_households",
+    "revenue",
+    "fee_rate",
+    "advisor_AUM",
+    "pipeline",
+    "client_retention",
+    "review_completion",
+    "plans_completed",
+    "wallet_share",
+    "referrals",
+    "next_generation_relationships",
+    "performance",
+    "benchmark_variance",
+    "allocation_drift",
+    "volatility",
+    "cash_drag",
+    "tax_loss_harvesting",
+    "goals_on_track",
+    "implementation_tasks_open",
+    "IPS_current",
+    "billable_assets",
+    "fee_revenue",
+    "billing_exceptions",
+    "estate_reviews_due",
+    "beneficiary_gaps",
+    "titling_issues",
+    "trust_assets",
+    "alternative_allocation",
+    "commitments",
+    "unfunded_commitments",
+    "NAV",
+    "capital_calls_due",
+    "suitability_exceptions",
+    "trade_review_exceptions",
+    "disclosure_delivery",
+    "complaints",
+    "wealth_referrals",
+    "referral_conversion",
+    "AUM_from_referrals"
+  ],
+  "relationships": [
+    {
+      "source": "Advisor",
+      "relationship": "SERVES",
+      "target": "Household"
+    },
+    {
+      "source": "Client",
+      "relationship": "MEMBER_OF",
+      "target": "Household"
+    },
+    {
+      "source": "Client",
+      "relationship": "OWNS",
+      "target": "Account"
+    },
+    {
+      "source": "Account",
+      "relationship": "HOLDS",
+      "target": "Holding"
+    },
+    {
+      "source": "Portfolio",
+      "relationship": "IMPLEMENTS",
+      "target": "InvestmentPolicyStatement"
+    },
+    {
+      "source": "FinancialPlan",
+      "relationship": "FUNDS",
+      "target": "Goal"
+    },
+    {
+      "source": "Recommendation",
+      "relationship": "SUPPORTS",
+      "target": "Goal"
+    },
+    {
+      "source": "Referral",
+      "relationship": "SOURCED_BY",
+      "target": "Institution"
+    },
+    {
+      "source": "EstatePlan",
+      "relationship": "GOVERNS",
+      "target": "Trust"
+    },
+    {
+      "source": "AlternativeInvestment",
+      "relationship": "HELD_IN",
+      "target": "Account"
+    },
+    {
+      "source": "BillingEvent",
+      "relationship": "CHARGES",
+      "target": "Account"
+    }
+  ],
+  "router_examples": [
+    {
+      "user_request": "Prepare this household for an annual review.",
+      "route_to_workflow": "Client Review Meeting",
+      "required_objects": [
+        "Household",
+        "FinancialPlan",
+        "Portfolio",
+        "Goal",
+        "Referral"
+      ],
+      "agents": [
+        "Advisor Assistant",
+        "Household Summary Agent",
+        "Client Review Prep Agent",
+        "Portfolio Analyst"
+      ],
+      "outputs": [
+        "Meeting brief",
+        "Portfolio review",
+        "Plan progress",
+        "Action items"
+      ]
+    },
+    {
+      "user_request": "Build a financial plan from these statements and notes.",
+      "route_to_workflow": "Financial Planning",
+      "required_objects": [
+        "Household",
+        "Client",
+        "Goal",
+        "FinancialPlan",
+        "Portfolio"
+      ],
+      "agents": [
+        "Household Summary Agent",
+        "Financial Planning Assistant",
+        "Portfolio Analyst"
+      ],
+      "outputs": [
+        "Draft financial plan",
+        "Scenario analysis",
+        "Missing data list",
+        "Implementation roadmap"
+      ]
+    },
+    {
+      "user_request": "Find wealth opportunities in this credit union member base.",
+      "route_to_workflow": "Credit Union / Bank Wealth Referral",
+      "required_objects": [
+        "MemberOrCustomer",
+        "Household",
+        "Referral",
+        "Opportunity"
+      ],
+      "agents": [
+        "Credit Union Wealth Opportunity Agent",
+        "Household Summary Agent",
+        "Suitability Review Agent"
+      ],
+      "outputs": [
+        "Opportunity list",
+        "Referral tasks",
+        "Consent/disclosure checklist"
+      ]
+    },
+    {
+      "user_request": "Review this private investment for the household.",
+      "route_to_workflow": "Alternative Investment Review",
+      "required_objects": [
+        "AlternativeInvestment",
+        "Household",
+        "Portfolio",
+        "Recommendation"
+      ],
+      "agents": [
+        "Alternative Investment Review Agent",
+        "Portfolio Analyst",
+        "Suitability Review Agent"
+      ],
+      "outputs": [
+        "Alternative review memo",
+        "Liquidity analysis",
+        "Concentration analysis",
+        "Eligibility checklist"
+      ]
+    }
+  ],
+  "integration_dependencies": [
+    "objects.registry.json",
+    "workflows.registry.json",
+    "agents.registry.json",
+    "kpis.registry.json",
+    "dashboards.registry.json",
+    "relationships.registry.json",
+    "evidence.registry.json",
+    "approvals.registry.json"
+  ],
+  "acceptance_tests": [
+    "Can create household, client, advisor, account, portfolio, holding, goal, plan, IPS, recommendation, billing, referral, estate, trust, and alternative investment objects.",
+    "Can aggregate fragmented household information into a governed profile without inventing missing data.",
+    "Can draft a financial plan and scenarios while preserving assumptions and advisor approval requirements.",
+    "Can build and monitor an IPS, allocation ranges, drift, liquidity, and restrictions.",
+    "Can prepare portfolio reviews with source holdings, performance, benchmark, and tax context.",
+    "Can calculate advisory billing and route exceptions for approval.",
+    "Can identify estate, trust, titling, and beneficiary gaps without providing legal advice.",
+    "Can review alternative investments for eligibility, liquidity, concentration, diligence, and portfolio fit.",
+    "Can route bank or credit union wealth referrals with consent, disclosure, attribution, and licensed advisor review.",
+    "Can link every recommendation, board, client, billing, and compliance output to source evidence and audit trail."
+  ],
+  "section_id": "FS-5100",
+  "section_aliases": [
+    "FS-5000"
+  ]
+}

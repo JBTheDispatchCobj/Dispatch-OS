@@ -1,0 +1,11 @@
+stage,minimum_evidence,exit_criterion,default_probability
+target,ICP match,contact or path identified,0.05
+engaged,documented interaction,discovery scheduled,0.10
+qualified,"pain, sponsor, timing, plausible budget",qualification accepted,0.25
+discovery,current state and desired outcome,solution scope drafted,0.40
+solution,"scope, success, security path",capacity and deal desk review,0.55
+proposal,approved price and terms,proposal acknowledged,0.65
+negotiation,active redlines/procurement,verbal or written intent,0.80
+committed,signature path and start date,executed agreement,0.95
+closed_won,executed agreement,implementation created,1.00
+closed_lost,loss reason,learning captured,0.00

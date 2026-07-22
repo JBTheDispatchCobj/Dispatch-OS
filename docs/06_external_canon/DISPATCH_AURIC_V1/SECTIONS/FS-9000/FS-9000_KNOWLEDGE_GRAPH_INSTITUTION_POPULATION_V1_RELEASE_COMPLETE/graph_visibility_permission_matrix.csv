@@ -1,0 +1,7 @@
+principal_role,graph_layer,actions,scope_constraint,condition,enforcement_note
+public_reader,public,read,public,,deny private and derived-private
+tenant_user,tenant_private,read,same tenant,purpose allowed,field and relationship filters apply
+network_member,network_shared,read,authorized network,sharing agreement active,never reveal origin-private data
+analyst,derived_private,read,same tenant,include_inferred permission,must display confidence and method
+graph_operator,all,admin,assigned scope,break-glass for restricted,full audit required
+agent,authorized subset,read/write proposed,workflow scoped,tool manifest and purpose bound,cannot approve or publish

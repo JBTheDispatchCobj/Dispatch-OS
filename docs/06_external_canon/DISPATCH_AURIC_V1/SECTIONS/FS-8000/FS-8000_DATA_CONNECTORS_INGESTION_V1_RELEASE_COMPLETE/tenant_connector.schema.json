@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Tenant Connector",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "tenant_connector_id",
+    "tenant_id",
+    "connector_id",
+    "status",
+    "authorized_by",
+    "authorized_at"
+  ],
+  "properties": {
+    "tenant_connector_id": {
+      "type": "string",
+      "pattern": "^TCONN-[A-Z0-9-]+$"
+    },
+    "tenant_id": {
+      "type": "string"
+    },
+    "connector_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "configured",
+        "active",
+        "degraded",
+        "suspended",
+        "revoked"
+      ]
+    },
+    "authorized_by": {
+      "type": "string"
+    },
+    "authorized_at": {
+      "$ref": "#/$defs/timestamp"
+    },
+    "revoked_at": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/timestamp"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "selected_scopes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "schedule": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "filters": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "credential_reference": {
+      "type": "string"
+    },
+    "mapping_profile_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "last_health_status": {
+      "type": "string",
+      "enum": [
+        "healthy",
+        "degraded",
+        "failed",
+        "unknown"
+      ]
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "restricted",
+        "regulated"
+      ]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "unknown"
+      ]
+    },
+    "freshness": {
+      "type": "string",
+      "enum": [
+        "current",
+        "aging",
+        "stale",
+        "unknown"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

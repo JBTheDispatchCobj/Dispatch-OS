@@ -1,0 +1,9 @@
+control_id,domain,control_name,control_type,mandatory,owner_role,evidence,test_frequency,failure_action
+SEC-IAM-001,IAM,MFA for privileged users,preventive,yes,security_admin,identity-provider report,monthly,disable privileged access
+SEC-TEN-001,Tenant Isolation,Tenant-scoped authorization,preventive,yes,platform_security,automated isolation tests,release,block release
+SEC-DAT-001,Data Security,Encryption at rest and transit,preventive,yes,platform_security,configuration evidence,quarterly,incident and remediation
+SEC-SEC-001,Secrets,Vaulted secrets and rotation,preventive,yes,platform_operator,vault report,monthly,revoke and rotate
+SEC-AI-001,AI Governance,Approved model/use-case route,governance,yes,ai_governance_owner,use-case inventory,per change,block inference
+SEC-LOG-001,Monitoring,Immutable security audit logging,detective,yes,security_operations,log integrity test,daily,incident escalation
+SEC-IR-001,Incident Response,Severity-based response,corrective,yes,incident_commander,incident record,per incident,executive escalation
+SEC-BCP-001,Resilience,Backup restoration test,corrective,yes,service_owner,restore evidence,quarterly,corrective action plan

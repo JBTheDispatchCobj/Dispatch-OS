@@ -1,0 +1,50 @@
+{
+  "registry_version": "1.0.0",
+  "tools": [
+    {
+      "tool_id": "TOOL-DOCUMENT-RETRIEVAL",
+      "version": "1.0.0",
+      "status": "active",
+      "operations": [
+        {
+          "operation_id": "search",
+          "risk_class": "read_only",
+          "input_schema_ref": "registry://search_request",
+          "output_schema_ref": "registry://search_result",
+          "idempotency": "not_applicable",
+          "approval_type": null
+        }
+      ]
+    },
+    {
+      "tool_id": "TOOL-EMAIL-SEND",
+      "version": "1.0.0",
+      "status": "active",
+      "operations": [
+        {
+          "operation_id": "send",
+          "risk_class": "material_write",
+          "input_schema_ref": "registry://email_send_request",
+          "output_schema_ref": "registry://side_effect_receipt",
+          "idempotency": "gateway_enforced",
+          "approval_type": "external_communication"
+        }
+      ]
+    },
+    {
+      "tool_id": "TOOL-GRAPH-QUERY",
+      "version": "1.0.0",
+      "status": "active",
+      "operations": [
+        {
+          "operation_id": "query",
+          "risk_class": "read_only",
+          "approval_type": null,
+          "idempotency": "not_applicable",
+          "input_schema_ref": "registry://graph_query_request",
+          "output_schema_ref": "registry://graph_query_result"
+        }
+      ]
+    }
+  ]
+}

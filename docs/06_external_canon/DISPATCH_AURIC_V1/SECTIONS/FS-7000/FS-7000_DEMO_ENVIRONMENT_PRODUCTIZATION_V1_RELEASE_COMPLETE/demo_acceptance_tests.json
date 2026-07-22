@@ -1,0 +1,99 @@
+{
+  "version": "1.0.0",
+  "tests": [
+    {
+      "test_id": "D-T-001",
+      "scenario": "Credit Union Terminal",
+      "case": "load clean fixture",
+      "expected": "all canonical objects and dashboards render"
+    },
+    {
+      "test_id": "D-T-002",
+      "scenario": "Credit Union Terminal",
+      "case": "vendor renewal inside 180 days",
+      "expected": "replacement or renewal opportunity alert created"
+    },
+    {
+      "test_id": "D-T-003",
+      "scenario": "Fintech Pilot",
+      "case": "missing data-flow evidence",
+      "expected": "readiness lowered and security approval blocked"
+    },
+    {
+      "test_id": "D-T-004",
+      "scenario": "Fintech Pilot",
+      "case": "attempt agent approval",
+      "expected": "blocked; human approval requested"
+    },
+    {
+      "test_id": "D-T-005",
+      "scenario": "Exam Binder",
+      "case": "stale policy evidence",
+      "expected": "evidence gap created; response cannot lock"
+    },
+    {
+      "test_id": "D-T-006",
+      "scenario": "Exam Binder",
+      "case": "final binder approved",
+      "expected": "version locked and export recorded"
+    },
+    {
+      "test_id": "D-T-007",
+      "scenario": "Participation",
+      "case": "allocation exceeds buyer maximum",
+      "expected": "allocation rejected"
+    },
+    {
+      "test_id": "D-T-008",
+      "scenario": "Participation",
+      "case": "missing legal approval",
+      "expected": "settlement blocked"
+    },
+    {
+      "test_id": "D-T-009",
+      "scenario": "Wealth",
+      "case": "no consent",
+      "expected": "referral blocked"
+    },
+    {
+      "test_id": "D-T-010",
+      "scenario": "Search",
+      "case": "criterion unknown",
+      "expected": "unknown displayed; not treated as mismatch"
+    },
+    {
+      "test_id": "D-T-011",
+      "scenario": "Runtime",
+      "case": "reset after completed demo",
+      "expected": "all fixture data removed and deterministic IDs restored"
+    },
+    {
+      "test_id": "D-T-012",
+      "scenario": "Security",
+      "case": "private data injected into public demo",
+      "expected": "run stopped and data quarantined"
+    },
+    {
+      "test_id": "D-T-013",
+      "scenario": "Accessibility",
+      "case": "keyboard-only navigation",
+      "expected": "primary demo path usable"
+    },
+    {
+      "test_id": "D-T-014",
+      "scenario": "Narrative",
+      "case": "20-minute executive demo",
+      "expected": "Understand-Decide-Execute-Prove arc completed"
+    },
+    {
+      "test_id": "D-T-015",
+      "scenario": "Value",
+      "case": "pilot outcome generated",
+      "expected": "baseline, actual, attribution confidence, and scale decision shown"
+    }
+  ],
+  "release_gate": {
+    "critical_failures_allowed": 0,
+    "all_primary_scenarios_required": true
+  }
+}

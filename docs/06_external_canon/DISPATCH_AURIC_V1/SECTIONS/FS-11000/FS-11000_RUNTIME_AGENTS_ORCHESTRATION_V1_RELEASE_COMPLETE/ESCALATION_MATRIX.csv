@@ -1,0 +1,6 @@
+reason_code,severity,required_authority,sla_minutes,auto_pause,secondary_approval
+LOW_CONFIDENCE,medium,workflow_owner,240,true,false
+CONFLICTING_AUTHORITY,high,domain_owner,120,true,false
+MATERIAL_EXTERNAL_ACTION,high,business_authority,60,true,true
+SECURITY_CONCERN,critical,security_incident_commander,15,true,true
+SLA_BREACH,medium,operations_owner,60,false,false

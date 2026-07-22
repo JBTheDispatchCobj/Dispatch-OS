@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Dispatch Graph Node",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "node_id",
+    "canonical_object_id",
+    "node_type",
+    "source_state",
+    "visibility",
+    "status",
+    "version",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "node_id": {
+      "type": "string",
+      "pattern": "^NODE-[A-Z0-9_-]+$"
+    },
+    "canonical_object_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "node_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tenant_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_state": {
+      "enum": [
+        "public",
+        "private",
+        "attested",
+        "inferred",
+        "synthetic",
+        "derived"
+      ]
+    },
+    "visibility": {
+      "enum": [
+        "public",
+        "tenant_private",
+        "network_shared",
+        "restricted",
+        "derived_private"
+      ]
+    },
+    "status": {
+      "enum": [
+        "proposed",
+        "active",
+        "inactive",
+        "stale",
+        "superseded",
+        "quarantined",
+        "deleted"
+      ]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "freshness_status": {
+      "enum": [
+        "current",
+        "aging",
+        "stale",
+        "unknown"
+      ]
+    },
+    "source_evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "attributes": {
+      "type": "object"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "valid_from": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "valid_to": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    }
+  }
+}

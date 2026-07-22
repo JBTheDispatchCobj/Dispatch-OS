@@ -1,0 +1,167 @@
+{
+  "section_id": "FS-5100",
+  "manifest_class": "connector",
+  "count": 8,
+  "entries": [
+    {
+      "id": "CONN.OBJECTS_REGISTRY_JSON",
+      "name": "objects.registry.json",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001",
+        "FS-4002",
+        "FS-4003",
+        "FS-4004",
+        "FS-4007",
+        "FS-4008",
+        "FS-4009",
+        "FS-4010",
+        "FS-4011",
+        "FS-4012",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "CONN.WORKFLOWS_REGISTRY_JSON",
+      "name": "workflows.registry.json",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001",
+        "FS-4002",
+        "FS-4003",
+        "FS-4004",
+        "FS-4007",
+        "FS-4008",
+        "FS-4009",
+        "FS-4010",
+        "FS-4011",
+        "FS-4012",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "CONN.AGENTS_REGISTRY_JSON",
+      "name": "agents.registry.json",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001",
+        "FS-4002",
+        "FS-4003",
+        "FS-4004",
+        "FS-4007",
+        "FS-4008",
+        "FS-4009",
+        "FS-4010",
+        "FS-4011",
+        "FS-4012",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "CONN.KPIS_REGISTRY_JSON",
+      "name": "kpis.registry.json",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001",
+        "FS-4002",
+        "FS-4003",
+        "FS-4004",
+        "FS-4007",
+        "FS-4008",
+        "FS-4009",
+        "FS-4010",
+        "FS-4011",
+        "FS-4012",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "CONN.DASHBOARDS_REGISTRY_JSON",
+      "name": "dashboards.registry.json",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001",
+        "FS-4002",
+        "FS-4003",
+        "FS-4004",
+        "FS-4007",
+        "FS-4008",
+        "FS-4009",
+        "FS-4010",
+        "FS-4011",
+        "FS-4012",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "CONN.RELATIONSHIPS_REGISTRY_JSON",
+      "name": "relationships.registry.json",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001",
+        "FS-4002",
+        "FS-4003",
+        "FS-4004",
+        "FS-4007",
+        "FS-4008",
+        "FS-4009",
+        "FS-4010",
+        "FS-4011",
+        "FS-4012",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "CONN.EVIDENCE_REGISTRY_JSON",
+      "name": "evidence.registry.json",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001",
+        "FS-4002",
+        "FS-4003",
+        "FS-4004",
+        "FS-4007",
+        "FS-4008",
+        "FS-4009",
+        "FS-4010",
+        "FS-4011",
+        "FS-4012",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "CONN.APPROVALS_REGISTRY_JSON",
+      "name": "approvals.registry.json",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001",
+        "FS-4002",
+        "FS-4003",
+        "FS-4004",
+        "FS-4007",
+        "FS-4008",
+        "FS-4009",
+        "FS-4010",
+        "FS-4011",
+        "FS-4012",
+        "FS-4013"
+      ]
+    }
+  ]
+}

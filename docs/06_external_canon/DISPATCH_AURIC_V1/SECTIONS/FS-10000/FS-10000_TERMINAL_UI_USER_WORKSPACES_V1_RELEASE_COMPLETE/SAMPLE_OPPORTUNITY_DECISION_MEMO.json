@@ -1,0 +1,18 @@
+{
+  "report_id": "opportunity_decision_memo",
+  "snapshot_at": "2026-07-22T12:00:00Z",
+  "institution_id": "inst_demo_cu_001",
+  "opportunity_id": "opp_001",
+  "recommendation": {
+    "status": "draft",
+    "text": "Proceed to controlled pilot subject to approval and listed conditions."
+  },
+  "evidence_references": [
+    "ev_001"
+  ],
+  "approval": {
+    "status": "pending",
+    "required_authority": "executive_sponsor"
+  },
+  "disclaimer": "Automated analysis is not an approval or commitment."
+}

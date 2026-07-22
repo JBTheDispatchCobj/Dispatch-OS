@@ -1,0 +1,14 @@
+{
+  "section_id": "FS-5100",
+  "manifest_class": "report",
+  "count": 1,
+  "entries": [
+    {
+      "id": "REPORT.DOMAIN_OPERATING_SUMMARY",
+      "name": "Domain Operating Summary",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active"
+    }
+  ]
+}

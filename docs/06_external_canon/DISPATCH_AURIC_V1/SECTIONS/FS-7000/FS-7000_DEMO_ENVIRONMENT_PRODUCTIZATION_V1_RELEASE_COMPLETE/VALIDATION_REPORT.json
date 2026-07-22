@@ -1,0 +1,133 @@
+{
+  "validated_at": "2026-07-22T05:56:59.596628",
+  "schema_results": [
+    {
+      "instance": "FIX-CU-TERMINAL-001",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "instance": "FIX-FINTECH-PILOT-001",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "instance": "FIX-EXAM-001",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "instance": "FIX-PARTICIPATION-001",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "instance": "FIX-WEALTH-001",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "instance": "FIX-SEARCH-001",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "instance": "DB-CU-EXEC",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "instance": "DB-PILOT",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "instance": "DB-EXAM",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "instance": "DB-PARTICIPATION",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "instance": "sample_demo_run",
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "cross_registry_checks": [
+    {
+      "check": "all scenario fixture references exist",
+      "passed": true,
+      "details": []
+    },
+    {
+      "check": "all fixture scenario references exist",
+      "passed": true,
+      "details": []
+    },
+    {
+      "check": "six core scenarios present",
+      "passed": true,
+      "details": 6
+    },
+    {
+      "check": "four core dashboards present",
+      "passed": true,
+      "details": 4
+    }
+  ],
+  "json_parse_results": [
+    {
+      "file": "PACKAGE_INDEX.json",
+      "passed": true
+    },
+    {
+      "file": "SECTION_RELEASE_MANIFEST.json",
+      "passed": true
+    },
+    {
+      "file": "dashboard_spec.schema.json",
+      "passed": true
+    },
+    {
+      "file": "dashboard_specs.json",
+      "passed": true
+    },
+    {
+      "file": "demo_acceptance_tests.json",
+      "passed": true
+    },
+    {
+      "file": "demo_fixture_pack.schema.json",
+      "passed": true
+    },
+    {
+      "file": "demo_run.schema.json",
+      "passed": true
+    },
+    {
+      "file": "demo_runtime_api_event_contracts.json",
+      "passed": true
+    },
+    {
+      "file": "demo_scenario_registry.json",
+      "passed": true
+    },
+    {
+      "file": "demo_ui_view_contracts.json",
+      "passed": true
+    },
+    {
+      "file": "fixture_pack_registry.json",
+      "passed": true
+    },
+    {
+      "file": "sample_demo_run.json",
+      "passed": true
+    }
+  ],
+  "all_passed": true
+}

@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "relationship_types": [
+    "owns",
+    "member_of",
+    "regulates",
+    "examines",
+    "employs",
+    "serves_on_board",
+    "advises",
+    "uses",
+    "integrates_with",
+    "provides",
+    "customer_of",
+    "partnered_with",
+    "piloted",
+    "implemented",
+    "invested_in",
+    "financed",
+    "participated_in",
+    "referred",
+    "introduced",
+    "sponsors",
+    "processes_for",
+    "settles_through",
+    "depends_on",
+    "competes_with",
+    "acquired",
+    "approved",
+    "rejected"
+  ]
+}

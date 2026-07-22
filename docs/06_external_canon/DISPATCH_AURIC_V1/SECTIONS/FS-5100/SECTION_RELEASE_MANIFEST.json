@@ -1,0 +1,19 @@
+{
+  "section_id": "FS-5100",
+  "section_name": "Master Registries & Cartridge Manifests",
+  "version": "1.0.0",
+  "status": "V1_RELEASE_COMPLETE",
+  "generated_at": "2026-07-22T00:00:00-05:00",
+  "canonical_aliases": [
+    "FS-5000"
+  ],
+  "scope": [
+    "schemas",
+    "registries",
+    "cartridge manifests",
+    "reference resolution",
+    "dependency validation",
+    "synthetic installation fixture"
+  ],
+  "runtime_ui_scope_excluded": true
+}

@@ -1,0 +1,5 @@
+severity,definition,acknowledgement_target,update_cadence,restore_target,escalation
+critical,"security, tenant isolation, material outage or unauthorized action",15 minutes,30 minutes,4 hours target,executive + security incident
+high,major workflow unavailable or material data defect,1 hour,4 hours,1 business day target,support lead + product owner
+medium,degraded noncritical function,1 business day,2 business days,5 business days target,support owner
+low,"question, training or enhancement",2 business days,weekly,planned,success owner

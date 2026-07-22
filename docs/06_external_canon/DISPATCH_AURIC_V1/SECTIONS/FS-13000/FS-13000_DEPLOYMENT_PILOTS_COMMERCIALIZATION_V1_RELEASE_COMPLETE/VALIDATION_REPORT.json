@@ -1,0 +1,464 @@
+{
+  "report_id": "FS13000-VALIDATION-REPORT",
+  "section": "FS-13000",
+  "canonical_name": "Deployment, Pilots and Commercialization",
+  "version": "1.0.0",
+  "generated_at": "2026-07-22T09:14:49.519675+00:00",
+  "release_status": "pass",
+  "summary": {
+    "expected_numbered_volumes": 15,
+    "numbered_volumes_present": 15,
+    "json_files_parsed": 31,
+    "json_files_failed": 0,
+    "csv_files_parsed": 12,
+    "csv_files_failed": 0,
+    "fixtures_schema_passed": 15,
+    "fixtures_failed": 0
+  },
+  "numbered_volume_presence": {
+    "13001_": true,
+    "13002_": true,
+    "13003_": true,
+    "13004_": true,
+    "13005_": true,
+    "13006_": true,
+    "13007_": true,
+    "13008_": true,
+    "13009_": true,
+    "13010_": true,
+    "13011_": true,
+    "13012_": true,
+    "13013_": true,
+    "13014_": true,
+    "13015_": true
+  },
+  "cross_section_checks": [
+    {
+      "requirement": "Pilot definitions align with FS-7000 demo and pilot architecture",
+      "status": "pass",
+      "evidence": [
+        "13003_PILOT_QUALIFICATION_SCOPING_V1_RELEASE.md",
+        "13004_PILOT_IMPLEMENTATION_PLAYBOOK_V1_RELEASE.md",
+        "PILOT_CHARTER_TEMPLATE.md",
+        "PILOT_SOW_TEMPLATE.md"
+      ]
+    },
+    {
+      "requirement": "Tenant provisioning aligns with FS-12000 security and governance",
+      "status": "pass",
+      "evidence": [
+        "13002_TENANT_PROVISIONING_ONBOARDING_V1_RELEASE.md",
+        "tenant_provisioning.schema.json",
+        "FIXTURE_TENANT_PROVISIONING.json"
+      ]
+    },
+    {
+      "requirement": "Deployment environments align with FS-11000 runtime and FS-14000 release",
+      "status": "pass",
+      "evidence": [
+        "13001_DEPLOYMENT_ARCHITECTURE_ENVIRONMENTS_V1_RELEASE.md",
+        "ENVIRONMENT_MANIFEST.csv",
+        "environment.schema.json"
+      ]
+    }
+  ],
+  "commercial_model_checks": [
+    {
+      "check": "pilot_reconciled_to_FS7000",
+      "status": "pass"
+    },
+    {
+      "check": "tenant_provisioning_reconciled_to_FS12000",
+      "status": "pass"
+    },
+    {
+      "check": "deployment_reconciled_to_FS11000",
+      "status": "pass"
+    },
+    {
+      "check": "deployment_reconciled_to_FS14000",
+      "status": "pass"
+    },
+    {
+      "check": "pricing_platform_fee",
+      "status": "pass"
+    },
+    {
+      "check": "pricing_setup_implementation",
+      "status": "pass"
+    },
+    {
+      "check": "pricing_managed_service",
+      "status": "pass"
+    },
+    {
+      "check": "pricing_usage_pass_through",
+      "status": "pass"
+    },
+    {
+      "check": "pricing_transaction_execution",
+      "status": "pass"
+    },
+    {
+      "check": "regulated_decision_exclusions",
+      "status": "pass"
+    },
+    {
+      "check": "sales_stage_qualification",
+      "status": "pass"
+    },
+    {
+      "check": "sales_stage_discovery",
+      "status": "pass"
+    },
+    {
+      "check": "sales_stage_security_review",
+      "status": "pass"
+    },
+    {
+      "check": "sales_stage_pilot",
+      "status": "pass"
+    },
+    {
+      "check": "sales_stage_contract",
+      "status": "pass"
+    },
+    {
+      "check": "sales_stage_implementation",
+      "status": "pass"
+    },
+    {
+      "check": "sales_stage_value",
+      "status": "pass"
+    },
+    {
+      "check": "sales_stage_conversion",
+      "status": "pass"
+    }
+  ],
+  "sales_stage_sequence": [
+    "qualification",
+    "discovery",
+    "security_review",
+    "pilot_scope",
+    "contracting",
+    "implementation",
+    "value_review",
+    "conversion"
+  ],
+  "regulated_decision_boundary": {
+    "status": "pass",
+    "statement": "Dispatch may assemble, analyze, recommend, route, and evidence, but regulated final decisions remain with authorized human or licensed parties."
+  },
+  "measurable_trigger_checks": {
+    "support": "pass",
+    "renewal": "pass",
+    "expansion": "pass",
+    "partner": "pass",
+    "capacity": "pass",
+    "evidence": [
+      "SUPPORT_SLA_MATRIX.csv",
+      "RENEWAL_TIMELINE.csv",
+      "PARTNER_CERTIFICATION_MATRIX.csv",
+      "COMMERCIAL_METRICS_CATALOG.csv",
+      "13014_COMMERCIAL_METRICS_FORECAST_CAPACITY_V1_RELEASE.md"
+    ]
+  },
+  "fixture_schema_validation": [
+    {
+      "fixture": "FIXTURE_COMMERCIAL_METRIC_SNAPSHOT.json",
+      "schema": "commercial_metric_snapshot.schema.json",
+      "status": "pass"
+    },
+    {
+      "fixture": "FIXTURE_COMMERCIAL_OPPORTUNITY.json",
+      "schema": "commercial_opportunity.schema.json",
+      "status": "pass"
+    },
+    {
+      "fixture": "FIXTURE_COMMERCIAL_PACKAGE.json",
+      "schema": "commercial_package.schema.json",
+      "status": "pass"
+    },
+    {
+      "fixture": "FIXTURE_COMMERCIAL_RELEASE_INDEX.json",
+      "schema": "commercial_release_index.schema.json",
+      "status": "pass"
+    },
+    {
+      "fixture": "FIXTURE_CONTENT_ITEM.json",
+      "schema": "content_item.schema.json",
+      "status": "pass"
+    },
+    {
+      "fixture": "FIXTURE_ENVIRONMENT.json",
+      "schema": "environment.schema.json",
+      "status": "pass"
+    },
+    {
+      "fixture": "FIXTURE_MARKET_SEGMENT.json",
+      "schema": "market_segment.schema.json",
+      "status": "pass"
+    },
+    {
+      "fixture": "FIXTURE_PARTNER.json",
+      "schema": "partner.schema.json",
+      "status": "pass"
+    },
+    {
+      "fixture": "FIXTURE_PARTNER_CERTIFICATION.json",
+      "schema": "partner_certification.schema.json",
+      "status": "pass"
+    },
+    {
+      "fixture": "FIXTURE_PILOT_IMPLEMENTATION.json",
+      "schema": "pilot_implementation.schema.json",
+      "status": "pass"
+    },
+    {
+      "fixture": "FIXTURE_PILOT_SCOPE.json",
+      "schema": "pilot_scope.schema.json",
+      "status": "pass"
+    },
+    {
+      "fixture": "FIXTURE_PROCUREMENT_MATTER.json",
+      "schema": "procurement_matter.schema.json",
+      "status": "pass"
+    },
+    {
+      "fixture": "FIXTURE_RENEWAL.json",
+      "schema": "renewal.schema.json",
+      "status": "pass"
+    },
+    {
+      "fixture": "FIXTURE_SUPPORT_CASE.json",
+      "schema": "support_case.schema.json",
+      "status": "pass"
+    },
+    {
+      "fixture": "FIXTURE_TENANT_PROVISIONING.json",
+      "schema": "tenant_provisioning.schema.json",
+      "status": "pass"
+    }
+  ],
+  "json_parse_results": [
+    {
+      "file": "FIXTURE_COMMERCIAL_METRIC_SNAPSHOT.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "FIXTURE_COMMERCIAL_OPPORTUNITY.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "FIXTURE_COMMERCIAL_PACKAGE.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "FIXTURE_COMMERCIAL_RELEASE_INDEX.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "FIXTURE_CONTENT_ITEM.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "FIXTURE_ENVIRONMENT.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "FIXTURE_MARKET_SEGMENT.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "FIXTURE_PARTNER.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "FIXTURE_PARTNER_CERTIFICATION.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "FIXTURE_PILOT_IMPLEMENTATION.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "FIXTURE_PILOT_SCOPE.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "FIXTURE_PROCUREMENT_MATTER.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "FIXTURE_RENEWAL.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "FIXTURE_SUPPORT_CASE.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "FIXTURE_TENANT_PROVISIONING.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "RELEASE_MANIFEST.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "commercial_metric_snapshot.schema.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "commercial_opportunity.schema.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "commercial_package.schema.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "commercial_release_index.schema.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "content_item.schema.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "environment.schema.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "market_segment.schema.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "partner.schema.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "partner_certification.schema.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "pilot_implementation.schema.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "pilot_scope.schema.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "procurement_matter.schema.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "renewal.schema.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "support_case.schema.json",
+      "status": "pass",
+      "detail": "parsed"
+    },
+    {
+      "file": "tenant_provisioning.schema.json",
+      "status": "pass",
+      "detail": "parsed"
+    }
+  ],
+  "csv_parse_results": [
+    {
+      "file": "COMMERCIAL_METRICS_CATALOG.csv",
+      "status": "pass",
+      "rows_or_error": 6
+    },
+    {
+      "file": "DEAL_DESK_APPROVAL_MATRIX.csv",
+      "status": "pass",
+      "rows_or_error": 5
+    },
+    {
+      "file": "ENVIRONMENT_MANIFEST.csv",
+      "status": "pass",
+      "rows_or_error": 1
+    },
+    {
+      "file": "IMPLEMENTATION_RACI.csv",
+      "status": "pass",
+      "rows_or_error": 5
+    },
+    {
+      "file": "KNOWN_ISSUES_REGISTER.csv",
+      "status": "pass",
+      "rows_or_error": 1
+    },
+    {
+      "file": "PARTNER_CERTIFICATION_MATRIX.csv",
+      "status": "pass",
+      "rows_or_error": 3
+    },
+    {
+      "file": "PILOT_QUALIFICATION_SCORECARD.csv",
+      "status": "pass",
+      "rows_or_error": 7
+    },
+    {
+      "file": "PRICING_COST_MODEL.csv",
+      "status": "pass",
+      "rows_or_error": 5
+    },
+    {
+      "file": "RENEWAL_TIMELINE.csv",
+      "status": "pass",
+      "rows_or_error": 6
+    },
+    {
+      "file": "SALES_STAGE_EVIDENCE.csv",
+      "status": "pass",
+      "rows_or_error": 10
+    },
+    {
+      "file": "SUPPORT_SLA_MATRIX.csv",
+      "status": "pass",
+      "rows_or_error": 4
+    },
+    {
+      "file": "VALIDATION_REPORT.csv",
+      "status": "pass",
+      "rows_or_error": 57
+    }
+  ],
+  "integrity_policy": "INTEGRITY_INDEX.csv covers all release artifacts except itself and PACKAGE_INDEX.json; PACKAGE_INDEX.json is generated last and records the finalized integrity index checksum and size."
+}

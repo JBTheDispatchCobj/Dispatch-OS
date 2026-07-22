@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dispatch://schemas/audit-event/1.0.0",
+  "title": "AuditEvent",
+  "type": "object",
+  "required": [
+    "audit_event_id",
+    "timestamp",
+    "tenant_id",
+    "actor_id",
+    "actor_type",
+    "action",
+    "object_id"
+  ],
+  "properties": {
+    "audit_event_id": {
+      "type": "string",
+      "pattern": "^AUD-[0-9A-Z-]+$"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "tenant_id": {
+      "type": "string"
+    },
+    "actor_id": {
+      "type": "string"
+    },
+    "actor_type": {
+      "type": "string",
+      "enum": [
+        "user",
+        "agent",
+        "system",
+        "connector",
+        "regulator",
+        "vendor",
+        "external_party"
+      ]
+    },
+    "action": {
+      "type": "string"
+    },
+    "object_id": {
+      "type": "string"
+    },
+    "workflow_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "prior_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "new_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "approval_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "reason": {
+      "type": "string"
+    },
+    "environment": {
+      "type": "string"
+    },
+    "retention_category": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

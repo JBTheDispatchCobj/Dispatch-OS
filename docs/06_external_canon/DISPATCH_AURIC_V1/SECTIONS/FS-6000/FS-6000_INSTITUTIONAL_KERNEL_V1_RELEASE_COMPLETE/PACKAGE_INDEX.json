@@ -1,0 +1,311 @@
+{
+  "section": "FS-6000",
+  "package": "FS-6000_INSTITUTIONAL_KERNEL_V1_RELEASE_COMPLETE",
+  "generated_at": "2026-07-22T09:30:49.369949+00:00",
+  "files": [
+    {
+      "filename": "6001_INSTITUTION_PROFILE_SCHEMA_V1_RELEASE.md",
+      "file_size": 11342,
+      "sha256": "4ff0a8912885476c5c10ae5ff9daf8485a64bc6fd13fad1fd2ab661676c0f415",
+      "artifact_type": "md",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "6002_EXECUTIVE_PROFILE_SCHEMA_V1_RELEASE.md",
+      "file_size": 5008,
+      "sha256": "60172efd17cc35ebdda09cc0c7f9e278d4c34f6361dd7229c14539973696398c",
+      "artifact_type": "md",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "6003_VENDOR_PRODUCT_STACK_SCHEMA_V1_RELEASE.md",
+      "file_size": 3201,
+      "sha256": "5223db5ed22b361259ea2f7df6e07e28d48797667f5632a6cc3b4cfaa2a8ae90",
+      "artifact_type": "md",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "6004_REGULATORY_SYSTEMS_PROFILE_V1_RELEASE.md",
+      "file_size": 2805,
+      "sha256": "7b1657fb2fbec570d4fcfa4d662d0c3631833987b358ad562fb398f401ff55d7",
+      "artifact_type": "md",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "6005_STRATEGIC_PRIORITIES_RISK_PROFILE_V1_RELEASE.md",
+      "file_size": 2121,
+      "sha256": "ab2f57d262ae98aa87380c07cd3b15eb63438fe3eaae09b92beae9f2180a7138",
+      "artifact_type": "md",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "6006_READINESS_SCORING_FRAMEWORK_V1_RELEASE.md",
+      "file_size": 3088,
+      "sha256": "e5a23843ba0769975c2f47d62a3d2fd96d150c01cc0d04734292abf886ccc2d3",
+      "artifact_type": "md",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "6007_OPPORTUNITY_OBJECT_MODEL_V1_RELEASE.md",
+      "file_size": 2062,
+      "sha256": "061e61cdae4fd609a620b2572e28f37e478e27413f963e32cd541df1f21be3ac",
+      "artifact_type": "md",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "6008_WORKFLOW_ROUTER_V1_RELEASE.md",
+      "file_size": 2794,
+      "sha256": "42d413f72ab931e8bd8b199c00ee7d0d9e1271a98ac30e43249e866f4a102744",
+      "artifact_type": "md",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "6009_AGENT_PERMISSION_MATRIX_V1_RELEASE.md",
+      "file_size": 2363,
+      "sha256": "e1c52db2228bd7f412ad82b7a5b0572a91b102c593fa36086d6175300a16d0f3",
+      "artifact_type": "md",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "6010_EVIDENCE_OBJECT_MODEL_V1_RELEASE.md",
+      "file_size": 2024,
+      "sha256": "c60fc02a89515537f5c9ebc204829a85eebf64335349aebbbcaaf162b94aee3f",
+      "artifact_type": "md",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "6011_APPROVAL_OBJECT_MODEL_V1_RELEASE.md",
+      "file_size": 1811,
+      "sha256": "49505bc15a04e321a5adee57d890cefcd2af79a304ada74ac55b498ed5ed872b",
+      "artifact_type": "md",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "6012_AUDIT_TRAIL_VERSIONING_V1_RELEASE.md",
+      "file_size": 1403,
+      "sha256": "e460fb1b94228ef7361b0b71fcd8f6fd3c05b5045adda89cf20160dc17fa6e6d",
+      "artifact_type": "md",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "6013_OPPORTUNITY_ENGINE_RULES_V1_RELEASE.md",
+      "file_size": 2089,
+      "sha256": "e5533b09fd277666fc5e46da612614aa13d7b1feae54052243d37c3e945071b1",
+      "artifact_type": "md",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "6014_DEMO_FIXTURE_PACK_SPECIFICATIONS_V1_RELEASE.md",
+      "file_size": 2177,
+      "sha256": "40186a612c87af1e8e102c796f9c1fa950e9800fae0002d6c3b4f75285a2b7ef",
+      "artifact_type": "md",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "6015_MASTER_INTEGRATION_INDEX_V1_RELEASE.md",
+      "file_size": 2055,
+      "sha256": "505067a913c3f8a4c5a674aff8477ce3c69c871dee70be9b5576bc9f3e86f9d0",
+      "artifact_type": "md",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "INSTITUTIONAL_KERNEL_IMPLEMENTATION_RUNBOOK.md",
+      "file_size": 2297,
+      "sha256": "108f2cbc13bce4ba769ed84d7f4f251442b5f736f2a1b7ab1689c5a150716279",
+      "artifact_type": "md",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "README_FS_6000_V1_RELEASE_COMPLETE.md",
+      "file_size": 1045,
+      "sha256": "be9c2df14194ffea1ebd87a543c1105fc648a438dee117827cf51ee83c82a8ed",
+      "artifact_type": "md",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "SECTION_RELEASE_MANIFEST.json",
+      "file_size": 1213,
+      "sha256": "c4c988c0ec82bb89321a89fbb69f08b95f554a3c205f33d27f695c0b6a4c62a9",
+      "artifact_type": "json",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "VALIDATION_REPORT.json",
+      "file_size": 2174,
+      "sha256": "eee60a10a2c10ee23ce4a8e88e5f0257ad8437a0580d7f10998a78835254f569",
+      "artifact_type": "json",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "agent_permission_matrix.csv",
+      "file_size": 2087,
+      "sha256": "4491a838cb123ee545693509547e031bb78777c8640122b1554b7251aba12d8d",
+      "artifact_type": "csv",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "approval.schema.json",
+      "file_size": 2576,
+      "sha256": "4ed6ffce59da28e7426b0fcc425e758309f7c0f77c76c8260b8fff0d7647d5f1",
+      "artifact_type": "json",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "approval_matrix.csv",
+      "file_size": 1202,
+      "sha256": "13a07bbd84a3c3d12af17580948a3215aa02cbf4738de626cb901834c885ff1d",
+      "artifact_type": "csv",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "audit_event.schema.json",
+      "file_size": 1524,
+      "sha256": "e61b2d749be4e521bc431c5f0d01a120162bef6d491024fa3cedda89cd9a2975",
+      "artifact_type": "json",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "evidence.schema.json",
+      "file_size": 2657,
+      "sha256": "fccc3bb4ce9d096f1bd025dbbfafb773777297b72e02826919ca39699422c3ee",
+      "artifact_type": "json",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "evidence_requirements_catalog.csv",
+      "file_size": 961,
+      "sha256": "19d8bcccf396cd3278186b07a4941a085f92be08a3a88e9339ecbb5010e19cf2",
+      "artifact_type": "csv",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "executive.schema.json",
+      "file_size": 3389,
+      "sha256": "bfa71fa594263b2befc323da73e557a98544bf943b3bc78b3db1af823844fe9c",
+      "artifact_type": "json",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "institution.schema.json",
+      "file_size": 5331,
+      "sha256": "bd8f2d0ca84f6c392e9028129caa9a2f1ed927a142f8f9a0f30600975ae65a55",
+      "artifact_type": "json",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "institutional_kernel_acceptance_tests.json",
+      "file_size": 2183,
+      "sha256": "e7efe398d8896be8ecc8e414aaa6db8aef7d3732b4c5822341ae3ffcc03a06de",
+      "artifact_type": "json",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "institutional_kernel_api_contracts.json",
+      "file_size": 2725,
+      "sha256": "4b73f84f3e1be5b90bdc3830638cc8c48036107102ba2cea6208eae951bf5dba",
+      "artifact_type": "json",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "institutional_kernel_field_dictionary.csv",
+      "file_size": 1159,
+      "sha256": "156e2bbdfde2f453412ddb6ea594fad2cefde00ef2fbc94fdc01061e6e75feff",
+      "artifact_type": "csv",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "metric.schema.json",
+      "file_size": 1425,
+      "sha256": "7ea30ced3c9f3ddc6073d3272b0a4fa8e2cff04fe701d1760e850b17d15f6fdf",
+      "artifact_type": "json",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "opportunity.schema.json",
+      "file_size": 3055,
+      "sha256": "b1313768d12d1c4ebc9a8ff887f85155f70cc59b62778c9e9de79f9120f5f6ae",
+      "artifact_type": "json",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "opportunity_scoring_model.json",
+      "file_size": 1994,
+      "sha256": "d3b630e3ed80b69df69a2c898aa9d74b6d93e58912f34692b2841b6a52153da5",
+      "artifact_type": "json",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "readiness_score.schema.json",
+      "file_size": 1891,
+      "sha256": "688a75365d0a01b004a7665b6a8e2f01cf9ebc2b0d10ccc5dfbbde368443234a",
+      "artifact_type": "json",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "schema_registry.json",
+      "file_size": 145,
+      "sha256": "4a6a6b7f93246fb4dbbd517b88f1b753eb2bba3c1125e04e55dd5ff5d45cdae6",
+      "artifact_type": "json",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "synthetic_complete_fixture.json",
+      "file_size": 3402,
+      "sha256": "199ef5219ba68074f6336c51df5b9960b1e08bd8c18feff159a0fda92c928630",
+      "artifact_type": "json",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "vendor_product.schema.json",
+      "file_size": 2094,
+      "sha256": "ccb0d5b09c03e53941ab933dbdababb9183fea5e5b35f197ffba8b8ffbab2ea6",
+      "artifact_type": "json",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "workflow_router_decision_table.csv",
+      "file_size": 2013,
+      "sha256": "a2e8aae52c9ec7ce1d7852a0db39700fbb6b113d92dfdb5470344bd212177f3a",
+      "artifact_type": "csv",
+      "section": "FS-6000",
+      "version": "1.0.0"
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "version": "1.0.0",
+  "apis": [
+    {
+      "id": "IK-API-001",
+      "operation": "create_or_update_institution",
+      "method": "POST",
+      "path": "/v1/institutions:upsert",
+      "request_schema": "institution.schema.json",
+      "permissions": [
+        "institution.write"
+      ],
+      "idempotency_required": true
+    },
+    {
+      "id": "IK-API-002",
+      "operation": "route_request",
+      "method": "POST",
+      "path": "/v1/routes",
+      "request_fields": [
+        "tenant_id",
+        "user_id",
+        "request",
+        "institution_id",
+        "object_ids",
+        "requested_output"
+      ],
+      "response_fields": [
+        "route_id",
+        "domains",
+        "objects",
+        "workflow_id",
+        "agents",
+        "evidence",
+        "approvals",
+        "outputs",
+        "confidence"
+      ]
+    },
+    {
+      "id": "IK-API-003",
+      "operation": "calculate_readiness",
+      "method": "POST",
+      "path": "/v1/readiness:calculate",
+      "request_fields": [
+        "institution_id",
+        "subject_id",
+        "assessment_type",
+        "evidence_ids"
+      ],
+      "response_schema": "readiness_score.schema.json"
+    },
+    {
+      "id": "IK-API-004",
+      "operation": "create_opportunity",
+      "method": "POST",
+      "path": "/v1/opportunities",
+      "request_schema": "opportunity.schema.json",
+      "permissions": [
+        "opportunity.create"
+      ]
+    },
+    {
+      "id": "IK-API-005",
+      "operation": "assemble_evidence_package",
+      "method": "POST",
+      "path": "/v1/evidence-packages",
+      "request_fields": [
+        "workflow_id",
+        "object_id",
+        "evidence_ids"
+      ],
+      "permissions": [
+        "evidence.package"
+      ]
+    },
+    {
+      "id": "IK-API-006",
+      "operation": "request_approval",
+      "method": "POST",
+      "path": "/v1/approvals",
+      "request_schema": "approval.schema.json",
+      "permissions": [
+        "approval.request"
+      ]
+    }
+  ],
+  "events": [
+    {
+      "type": "institution.updated",
+      "version": "1.0",
+      "subject": "institution_id"
+    },
+    {
+      "type": "executive.updated",
+      "version": "1.0",
+      "subject": "executive_id"
+    },
+    {
+      "type": "readiness.changed",
+      "version": "1.0",
+      "subject": "score_id"
+    },
+    {
+      "type": "opportunity.detected",
+      "version": "1.0",
+      "subject": "opportunity_id"
+    },
+    {
+      "type": "route.created",
+      "version": "1.0",
+      "subject": "route_id"
+    },
+    {
+      "type": "evidence.approved",
+      "version": "1.0",
+      "subject": "evidence_id"
+    },
+    {
+      "type": "approval.decided",
+      "version": "1.0",
+      "subject": "approval_id"
+    }
+  ]
+}

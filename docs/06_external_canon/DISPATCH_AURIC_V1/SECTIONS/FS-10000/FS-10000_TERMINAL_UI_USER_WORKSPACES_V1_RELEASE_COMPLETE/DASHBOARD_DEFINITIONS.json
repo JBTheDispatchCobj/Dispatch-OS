@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "dashboards": [
+    {
+      "dashboard_id": "executive_command_center",
+      "persona": "executive",
+      "widgets": [
+        "priority_alerts",
+        "approval_queue",
+        "top_opportunities",
+        "risk_changes",
+        "freshness_summary"
+      ],
+      "filters": [
+        "institution",
+        "period"
+      ],
+      "certification": "governed"
+    },
+    {
+      "dashboard_id": "operations_control",
+      "persona": "operator",
+      "widgets": [
+        "active_workflows",
+        "overdue_tasks",
+        "connector_health",
+        "data_quality",
+        "exceptions"
+      ],
+      "filters": [
+        "owner",
+        "status",
+        "sla"
+      ],
+      "certification": "operational"
+    },
+    {
+      "dashboard_id": "institution_360",
+      "persona": "analyst",
+      "widgets": [
+        "financials",
+        "vendors",
+        "systems",
+        "readiness",
+        "relationships",
+        "evidence_confidence"
+      ],
+      "filters": [
+        "as_of_date"
+      ],
+      "certification": "governed"
+    }
+  ]
+}

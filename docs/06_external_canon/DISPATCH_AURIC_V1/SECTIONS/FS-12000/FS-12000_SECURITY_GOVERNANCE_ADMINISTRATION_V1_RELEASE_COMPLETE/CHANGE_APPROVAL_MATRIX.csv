@@ -1,0 +1,5 @@
+change_class,examples,required_approvals,testing,change_window,rollback_required
+standard,preapproved low-risk configuration,service owner,automated,any approved window,yes
+normal,application or policy change,service owner and control owner,staging and acceptance,scheduled,yes
+high,"IAM, tenant, encryption, model, connector boundary","security and service owner, dual control",full regression and security,restricted,yes
+emergency,active incident containment,incident commander plus second approver,minimum safe validation,immediate,yes; retrospective review

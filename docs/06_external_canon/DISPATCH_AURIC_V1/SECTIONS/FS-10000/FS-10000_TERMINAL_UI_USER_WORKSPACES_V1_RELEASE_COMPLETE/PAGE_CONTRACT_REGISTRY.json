@@ -1,0 +1,455 @@
+{
+  "schema_version": "1.0",
+  "pages": [
+    {
+      "page_contract_id": "home_command_center",
+      "route_id": "home",
+      "shell": "terminal_shell",
+      "regions": [
+        "context_header",
+        "primary_content",
+        "evidence_drawer",
+        "activity_drawer"
+      ],
+      "loaders": [
+        "primary_object",
+        "related_summary",
+        "permissions",
+        "freshness"
+      ],
+      "commands": [
+        "open_object",
+        "refresh",
+        "export_snapshot"
+      ],
+      "evidence_drillthrough": true,
+      "freshness_badge": true,
+      "responsive_modes": [
+        "desktop",
+        "tablet",
+        "mobile_restricted"
+      ],
+      "performance_budget_ms": 3000
+    },
+    {
+      "page_contract_id": "institution_directory",
+      "route_id": "institution.list",
+      "shell": "terminal_shell",
+      "regions": [
+        "context_header",
+        "primary_content",
+        "evidence_drawer",
+        "activity_drawer"
+      ],
+      "loaders": [
+        "primary_object",
+        "related_summary",
+        "permissions",
+        "freshness"
+      ],
+      "commands": [
+        "open_object",
+        "refresh",
+        "export_snapshot"
+      ],
+      "evidence_drillthrough": true,
+      "freshness_badge": true,
+      "responsive_modes": [
+        "desktop",
+        "tablet",
+        "mobile_restricted"
+      ],
+      "performance_budget_ms": 3000
+    },
+    {
+      "page_contract_id": "institution_terminal",
+      "route_id": "institution.detail",
+      "shell": "terminal_shell",
+      "regions": [
+        "context_header",
+        "primary_content",
+        "evidence_drawer",
+        "activity_drawer"
+      ],
+      "loaders": [
+        "primary_object",
+        "related_summary",
+        "permissions",
+        "freshness"
+      ],
+      "commands": [
+        "open_object",
+        "refresh",
+        "export_snapshot"
+      ],
+      "evidence_drillthrough": true,
+      "freshness_badge": true,
+      "responsive_modes": [
+        "desktop",
+        "tablet",
+        "mobile_restricted"
+      ],
+      "performance_budget_ms": 3000
+    },
+    {
+      "page_contract_id": "executive_directory",
+      "route_id": "executive.list",
+      "shell": "terminal_shell",
+      "regions": [
+        "context_header",
+        "primary_content",
+        "evidence_drawer",
+        "activity_drawer"
+      ],
+      "loaders": [
+        "primary_object",
+        "related_summary",
+        "permissions",
+        "freshness"
+      ],
+      "commands": [
+        "open_object",
+        "refresh",
+        "export_snapshot"
+      ],
+      "evidence_drillthrough": true,
+      "freshness_badge": true,
+      "responsive_modes": [
+        "desktop",
+        "tablet",
+        "mobile_restricted"
+      ],
+      "performance_budget_ms": 3000
+    },
+    {
+      "page_contract_id": "executive_workspace",
+      "route_id": "executive.detail",
+      "shell": "terminal_shell",
+      "regions": [
+        "context_header",
+        "primary_content",
+        "evidence_drawer",
+        "activity_drawer"
+      ],
+      "loaders": [
+        "primary_object",
+        "related_summary",
+        "permissions",
+        "freshness"
+      ],
+      "commands": [
+        "open_object",
+        "refresh",
+        "export_snapshot"
+      ],
+      "evidence_drillthrough": true,
+      "freshness_badge": true,
+      "responsive_modes": [
+        "desktop",
+        "tablet",
+        "mobile_restricted"
+      ],
+      "performance_budget_ms": 3000
+    },
+    {
+      "page_contract_id": "opportunity_queue",
+      "route_id": "opportunity.list",
+      "shell": "terminal_shell",
+      "regions": [
+        "context_header",
+        "primary_content",
+        "evidence_drawer",
+        "activity_drawer"
+      ],
+      "loaders": [
+        "primary_object",
+        "related_summary",
+        "permissions",
+        "freshness"
+      ],
+      "commands": [
+        "open_object",
+        "refresh",
+        "export_snapshot"
+      ],
+      "evidence_drillthrough": true,
+      "freshness_badge": true,
+      "responsive_modes": [
+        "desktop",
+        "tablet",
+        "mobile_restricted"
+      ],
+      "performance_budget_ms": 3000
+    },
+    {
+      "page_contract_id": "opportunity_workspace",
+      "route_id": "opportunity.detail",
+      "shell": "terminal_shell",
+      "regions": [
+        "context_header",
+        "primary_content",
+        "evidence_drawer",
+        "activity_drawer"
+      ],
+      "loaders": [
+        "primary_object",
+        "related_summary",
+        "permissions",
+        "freshness"
+      ],
+      "commands": [
+        "open_object",
+        "refresh",
+        "export_snapshot"
+      ],
+      "evidence_drillthrough": true,
+      "freshness_badge": true,
+      "responsive_modes": [
+        "desktop",
+        "tablet",
+        "mobile_restricted"
+      ],
+      "performance_budget_ms": 3000
+    },
+    {
+      "page_contract_id": "workflow_queue",
+      "route_id": "workflow.list",
+      "shell": "terminal_shell",
+      "regions": [
+        "context_header",
+        "primary_content",
+        "evidence_drawer",
+        "activity_drawer"
+      ],
+      "loaders": [
+        "primary_object",
+        "related_summary",
+        "permissions",
+        "freshness"
+      ],
+      "commands": [
+        "open_object",
+        "refresh",
+        "export_snapshot"
+      ],
+      "evidence_drillthrough": true,
+      "freshness_badge": true,
+      "responsive_modes": [
+        "desktop",
+        "tablet",
+        "mobile_restricted"
+      ],
+      "performance_budget_ms": 3000
+    },
+    {
+      "page_contract_id": "workflow_workspace",
+      "route_id": "workflow.detail",
+      "shell": "terminal_shell",
+      "regions": [
+        "context_header",
+        "primary_content",
+        "evidence_drawer",
+        "activity_drawer"
+      ],
+      "loaders": [
+        "primary_object",
+        "related_summary",
+        "permissions",
+        "freshness"
+      ],
+      "commands": [
+        "open_object",
+        "refresh",
+        "export_snapshot"
+      ],
+      "evidence_drillthrough": true,
+      "freshness_badge": true,
+      "responsive_modes": [
+        "desktop",
+        "tablet",
+        "mobile_restricted"
+      ],
+      "performance_budget_ms": 3000
+    },
+    {
+      "page_contract_id": "evidence_library",
+      "route_id": "evidence.list",
+      "shell": "terminal_shell",
+      "regions": [
+        "context_header",
+        "primary_content",
+        "evidence_drawer",
+        "activity_drawer"
+      ],
+      "loaders": [
+        "primary_object",
+        "related_summary",
+        "permissions",
+        "freshness"
+      ],
+      "commands": [
+        "open_object",
+        "refresh",
+        "export_snapshot"
+      ],
+      "evidence_drillthrough": true,
+      "freshness_badge": true,
+      "responsive_modes": [
+        "desktop",
+        "tablet",
+        "mobile_restricted"
+      ],
+      "performance_budget_ms": 3000
+    },
+    {
+      "page_contract_id": "approval_queue",
+      "route_id": "approval.list",
+      "shell": "terminal_shell",
+      "regions": [
+        "context_header",
+        "primary_content",
+        "evidence_drawer",
+        "activity_drawer"
+      ],
+      "loaders": [
+        "primary_object",
+        "related_summary",
+        "permissions",
+        "freshness"
+      ],
+      "commands": [
+        "open_object",
+        "refresh",
+        "export_snapshot"
+      ],
+      "evidence_drillthrough": true,
+      "freshness_badge": true,
+      "responsive_modes": [
+        "desktop",
+        "tablet",
+        "mobile_restricted"
+      ],
+      "performance_budget_ms": 3000
+    },
+    {
+      "page_contract_id": "network_discovery",
+      "route_id": "network.search",
+      "shell": "terminal_shell",
+      "regions": [
+        "context_header",
+        "primary_content",
+        "evidence_drawer",
+        "activity_drawer"
+      ],
+      "loaders": [
+        "primary_object",
+        "related_summary",
+        "permissions",
+        "freshness"
+      ],
+      "commands": [
+        "open_object",
+        "refresh",
+        "export_snapshot"
+      ],
+      "evidence_drillthrough": true,
+      "freshness_badge": true,
+      "responsive_modes": [
+        "desktop",
+        "tablet",
+        "mobile_restricted"
+      ],
+      "performance_budget_ms": 3000
+    },
+    {
+      "page_contract_id": "dashboard_library",
+      "route_id": "dashboard.list",
+      "shell": "terminal_shell",
+      "regions": [
+        "context_header",
+        "primary_content",
+        "evidence_drawer",
+        "activity_drawer"
+      ],
+      "loaders": [
+        "primary_object",
+        "related_summary",
+        "permissions",
+        "freshness"
+      ],
+      "commands": [
+        "open_object",
+        "refresh",
+        "export_snapshot"
+      ],
+      "evidence_drillthrough": true,
+      "freshness_badge": true,
+      "responsive_modes": [
+        "desktop",
+        "tablet",
+        "mobile_restricted"
+      ],
+      "performance_budget_ms": 3000
+    },
+    {
+      "page_contract_id": "report_library",
+      "route_id": "report.list",
+      "shell": "terminal_shell",
+      "regions": [
+        "context_header",
+        "primary_content",
+        "evidence_drawer",
+        "activity_drawer"
+      ],
+      "loaders": [
+        "primary_object",
+        "related_summary",
+        "permissions",
+        "freshness"
+      ],
+      "commands": [
+        "open_object",
+        "refresh",
+        "export_snapshot"
+      ],
+      "evidence_drillthrough": true,
+      "freshness_badge": true,
+      "responsive_modes": [
+        "desktop",
+        "tablet",
+        "mobile_restricted"
+      ],
+      "performance_budget_ms": 3000
+    },
+    {
+      "page_contract_id": "administration",
+      "route_id": "admin.home",
+      "shell": "terminal_shell",
+      "regions": [
+        "context_header",
+        "primary_content",
+        "evidence_drawer",
+        "activity_drawer"
+      ],
+      "loaders": [
+        "primary_object",
+        "related_summary",
+        "permissions",
+        "freshness"
+      ],
+      "commands": [
+        "open_object",
+        "refresh",
+        "export_snapshot"
+      ],
+      "evidence_drillthrough": true,
+      "freshness_badge": true,
+      "responsive_modes": [
+        "desktop",
+        "tablet",
+        "mobile_restricted"
+      ],
+      "performance_budget_ms": 3000
+    }
+  ]
+}

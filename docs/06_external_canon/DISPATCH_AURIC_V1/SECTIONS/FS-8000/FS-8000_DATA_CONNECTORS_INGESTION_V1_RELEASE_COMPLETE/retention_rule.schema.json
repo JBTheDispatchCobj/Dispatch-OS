@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Retention Rule",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "retention_rule_id",
+    "applies_to",
+    "trigger",
+    "duration_days",
+    "disposition",
+    "status"
+  ],
+  "properties": {
+    "retention_rule_id": {
+      "type": "string",
+      "pattern": "^RET-[A-Z0-9-]+$"
+    },
+    "applies_to": {
+      "type": "string"
+    },
+    "trigger": {
+      "type": "string",
+      "enum": [
+        "creation",
+        "last_activity",
+        "contract_end",
+        "consent_revocation",
+        "case_close",
+        "custom"
+      ]
+    },
+    "duration_days": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "disposition": {
+      "type": "string",
+      "enum": [
+        "delete",
+        "anonymize",
+        "archive",
+        "review"
+      ]
+    },
+    "legal_hold_behavior": {
+      "type": "string",
+      "enum": [
+        "suspend",
+        "copy_to_hold_store",
+        "review"
+      ]
+    },
+    "approval_required": {
+      "type": "boolean"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "approved",
+        "active",
+        "suspended",
+        "retired"
+      ]
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "restricted",
+        "regulated"
+      ]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "unknown"
+      ]
+    },
+    "freshness": {
+      "type": "string",
+      "enum": [
+        "current",
+        "aging",
+        "stale",
+        "unknown"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

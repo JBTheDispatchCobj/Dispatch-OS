@@ -1,0 +1,87 @@
+{
+  "section": "FS-8000",
+  "title": "Data, Connectors & Ingestion",
+  "version": "1.0.0",
+  "status": "V1_CONTENT_COMPLETE",
+  "generated_date": "2026-07-22",
+  "source_baseline": "FS-8000_DATA_CONNECTORS_INGESTION_BASELINE_V1",
+  "completion_reference": "FS-6000_INSTITUTIONAL_KERNEL_V1_RELEASE_COMPLETE",
+  "narrative_volumes": [
+    "8001_DATA_INGESTION_ARCHITECTURE_V1_RELEASE.md",
+    "8002_CONNECTOR_REGISTRY_LIFECYCLE_V1_RELEASE.md",
+    "8003_PUBLIC_DATA_SOURCE_CATALOG_V1_RELEASE.md",
+    "8004_FILE_UPLOAD_DOCUMENT_INGESTION_V1_RELEASE.md",
+    "8005_EMAIL_CALENDAR_COMMUNICATION_INGESTION_V1_RELEASE.md",
+    "8006_API_WEBHOOK_EVENT_INGESTION_V1_RELEASE.md",
+    "8007_BATCH_SFTP_SCHEDULED_EXPORTS_V1_RELEASE.md",
+    "8008_SCHEMA_MAPPING_TRANSFORMATION_ENGINE_V1_RELEASE.md",
+    "8009_ENTITY_RESOLUTION_DEDUPLICATION_V1_RELEASE.md",
+    "8010_DATA_QUALITY_VALIDATION_RECONCILIATION_V1_RELEASE.md",
+    "8011_DATA_LINEAGE_PROVENANCE_V1_RELEASE.md",
+    "8012_DATA_FRESHNESS_INCREMENTAL_SYNC_V1_RELEASE.md",
+    "8013_PRIVACY_CLASSIFICATION_RETENTION_V1_RELEASE.md",
+    "8014_INGESTION_OBSERVABILITY_OPERATIONS_V1_RELEASE.md",
+    "8015_MASTER_DATA_CONNECTOR_INTEGRATION_INDEX_V1_RELEASE.md"
+  ],
+  "schemas": [
+    "classification.schema.json",
+    "connector_manifest.schema.json",
+    "data_quality_result.schema.json",
+    "document.schema.json",
+    "entity_resolution_record.schema.json",
+    "freshness_policy.schema.json",
+    "ingestion_exception.schema.json",
+    "ingestion_job.schema.json",
+    "lineage_edge.schema.json",
+    "mapping_profile.schema.json",
+    "retention_rule.schema.json",
+    "source.schema.json",
+    "source_snapshot.schema.json",
+    "tenant_connector.schema.json"
+  ],
+  "registries": [
+    "connector_permission_matrix.csv",
+    "connector_registry.csv",
+    "data_quality_rules.csv",
+    "error_exception_matrix.csv",
+    "public_source_catalog.csv",
+    "retention_schedule.csv",
+    "transformation_registry.csv"
+  ],
+  "contracts": [
+    "ingestion_api_contracts.json",
+    "ingestion_event_catalog.json"
+  ],
+  "fixtures": [
+    "synthetic_ingestion_fixture.json"
+  ],
+  "tests": [
+    "fs8000_acceptance_tests.json"
+  ],
+  "runbooks": [
+    "FS8000_IMPLEMENTATION_OPERATIONS_RUNBOOK.md"
+  ],
+  "security": [
+    "FS8000_SECURITY_THREAT_MODEL.md"
+  ],
+  "validation": [
+    "VALIDATION_REPORT.json"
+  ],
+  "human_authority": "Automation may stage and recommend; approval and material conflict resolution remain human-controlled.",
+  "data_truth_classes": [
+    "public",
+    "private",
+    "synthetic",
+    "attested",
+    "inferred"
+  ],
+  "downstream_sections": [
+    "FS-6000",
+    "FS-9000",
+    "FS-10000",
+    "FS-11000",
+    "FS-12000",
+    "FS-13000",
+    "FS-14000"
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "version": "1.0.0",
+  "scale": {
+    "minimum": 0,
+    "maximum": 100
+  },
+  "dimensions": [
+    {
+      "name": "value",
+      "weight": 20,
+      "direction": "higher_better"
+    },
+    {
+      "name": "urgency",
+      "weight": 12,
+      "direction": "higher_better"
+    },
+    {
+      "name": "feasibility",
+      "weight": 10,
+      "direction": "higher_better"
+    },
+    {
+      "name": "institution_readiness",
+      "weight": 12,
+      "direction": "higher_better"
+    },
+    {
+      "name": "regulatory_burden",
+      "weight": 8,
+      "direction": "lower_better"
+    },
+    {
+      "name": "integration_burden",
+      "weight": 8,
+      "direction": "lower_better"
+    },
+    {
+      "name": "sponsor_strength",
+      "weight": 10,
+      "direction": "higher_better"
+    },
+    {
+      "name": "time_to_execute",
+      "weight": 8,
+      "direction": "lower_better"
+    },
+    {
+      "name": "relationship_value",
+      "weight": 7,
+      "direction": "higher_better"
+    },
+    {
+      "name": "confidence",
+      "weight": 5,
+      "direction": "higher_better"
+    }
+  ],
+  "penalties": [
+    {
+      "condition": "missing_required_evidence",
+      "points": -15
+    },
+    {
+      "condition": "no_sponsor",
+      "points": -20
+    },
+    {
+      "condition": "unresolved_authority",
+      "points": -15
+    },
+    {
+      "condition": "critical_security_risk",
+      "points": -30
+    },
+    {
+      "condition": "stale_material_data",
+      "points": -10
+    },
+    {
+      "condition": "prohibited_activity",
+      "action": "disqualify"
+    }
+  ],
+  "bands": [
+    {
+      "min": 0,
+      "max": 34,
+      "decision": "do_not_activate"
+    },
+    {
+      "min": 35,
+      "max": 54,
+      "decision": "discovery"
+    },
+    {
+      "min": 55,
+      "max": 69,
+      "decision": "conditional"
+    },
+    {
+      "min": 70,
+      "max": 84,
+      "decision": "execute_or_pilot"
+    },
+    {
+      "min": 85,
+      "max": 100,
+      "decision": "priority_scale"
+    }
+  ]
+}

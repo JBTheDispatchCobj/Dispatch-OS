@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dispatch://schemas/approval/1.0.0",
+  "title": "Approval",
+  "type": "object",
+  "required": [
+    "approval_id",
+    "approval_type",
+    "related_object_id",
+    "requestor_id",
+    "authority_type",
+    "decision_state"
+  ],
+  "properties": {
+    "approval_id": {
+      "type": "string",
+      "pattern": "^APR-[0-9A-Z-]+$"
+    },
+    "approval_type": {
+      "type": "string"
+    },
+    "related_object_id": {
+      "type": "string"
+    },
+    "workflow_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "requestor_id": {
+      "type": "string"
+    },
+    "approver_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "authority_type": {
+      "type": "string"
+    },
+    "authority_record_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "threshold_value": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "evidence_package_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "decision_state": {
+      "type": "string",
+      "enum": [
+        "requested",
+        "under_review",
+        "approved",
+        "approved_with_conditions",
+        "rejected",
+        "deferred",
+        "escalated",
+        "withdrawn",
+        "expired"
+      ]
+    },
+    "conditions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "condition",
+          "status"
+        ],
+        "properties": {
+          "condition": {
+            "type": "string"
+          },
+          "owner_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "due_date": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date"
+          },
+          "required_evidence_type": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "open",
+              "satisfied",
+              "waived_by_authority",
+              "failed"
+            ]
+          }
+        }
+      }
+    },
+    "requested_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "decided_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}

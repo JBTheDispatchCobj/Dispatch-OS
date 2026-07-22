@@ -1,0 +1,119 @@
+{
+  "catalog_version": "1.0.0",
+  "events": [
+    {
+      "event_type": "runtime.execution.created",
+      "schema_ref": "schemas/runtime_event.schema.json",
+      "retention_class": "audit",
+      "replayable": true
+    },
+    {
+      "event_type": "runtime.execution.started",
+      "schema_ref": "schemas/runtime_event.schema.json",
+      "retention_class": "audit",
+      "replayable": true
+    },
+    {
+      "event_type": "runtime.execution.paused",
+      "schema_ref": "schemas/runtime_event.schema.json",
+      "retention_class": "audit",
+      "replayable": true
+    },
+    {
+      "event_type": "runtime.execution.resumed",
+      "schema_ref": "schemas/runtime_event.schema.json",
+      "retention_class": "audit",
+      "replayable": true
+    },
+    {
+      "event_type": "runtime.execution.completed",
+      "schema_ref": "schemas/runtime_event.schema.json",
+      "retention_class": "audit",
+      "replayable": true
+    },
+    {
+      "event_type": "runtime.execution.failed",
+      "schema_ref": "schemas/runtime_event.schema.json",
+      "retention_class": "audit",
+      "replayable": true
+    },
+    {
+      "event_type": "runtime.step.started",
+      "schema_ref": "schemas/runtime_event.schema.json",
+      "retention_class": "audit",
+      "replayable": true
+    },
+    {
+      "event_type": "runtime.step.completed",
+      "schema_ref": "schemas/runtime_event.schema.json",
+      "retention_class": "audit",
+      "replayable": true
+    },
+    {
+      "event_type": "runtime.step.failed",
+      "schema_ref": "schemas/runtime_event.schema.json",
+      "retention_class": "audit",
+      "replayable": true
+    },
+    {
+      "event_type": "runtime.agent.invoked",
+      "schema_ref": "schemas/runtime_event.schema.json",
+      "retention_class": "audit",
+      "replayable": true
+    },
+    {
+      "event_type": "runtime.agent.output_validated",
+      "schema_ref": "schemas/runtime_event.schema.json",
+      "retention_class": "audit",
+      "replayable": true
+    },
+    {
+      "event_type": "runtime.tool.requested",
+      "schema_ref": "schemas/runtime_event.schema.json",
+      "retention_class": "audit",
+      "replayable": true
+    },
+    {
+      "event_type": "runtime.tool.executed",
+      "schema_ref": "schemas/runtime_event.schema.json",
+      "retention_class": "audit",
+      "replayable": false
+    },
+    {
+      "event_type": "runtime.approval.requested",
+      "schema_ref": "schemas/runtime_event.schema.json",
+      "retention_class": "audit",
+      "replayable": true
+    },
+    {
+      "event_type": "runtime.approval.decided",
+      "schema_ref": "schemas/runtime_event.schema.json",
+      "retention_class": "audit",
+      "replayable": true
+    },
+    {
+      "event_type": "runtime.evidence.attached",
+      "schema_ref": "schemas/runtime_event.schema.json",
+      "retention_class": "audit",
+      "replayable": true
+    },
+    {
+      "event_type": "runtime.escalation.created",
+      "schema_ref": "schemas/runtime_event.schema.json",
+      "retention_class": "audit",
+      "replayable": true
+    },
+    {
+      "event_type": "runtime.policy.denied",
+      "schema_ref": "schemas/runtime_event.schema.json",
+      "retention_class": "audit",
+      "replayable": true
+    },
+    {
+      "event_type": "runtime.cost.threshold_breached",
+      "schema_ref": "schemas/runtime_event.schema.json",
+      "retention_class": "audit",
+      "replayable": true
+    }
+  ]
+}

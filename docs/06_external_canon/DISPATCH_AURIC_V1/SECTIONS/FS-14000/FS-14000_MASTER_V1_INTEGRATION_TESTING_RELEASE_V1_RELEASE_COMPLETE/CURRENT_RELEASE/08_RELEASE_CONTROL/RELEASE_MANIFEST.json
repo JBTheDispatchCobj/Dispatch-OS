@@ -1,0 +1,311 @@
+{
+  "release_id": "REL-V1-RC-001",
+  "version": "1.0.0",
+  "status": "release_candidate",
+  "artifacts": [
+    {
+      "artifact_id": "FS14000-57B0B78A6B",
+      "path": "01_SCHEMAS/api_contract.schema.json",
+      "sha256": "3431453eb06431f3575e391552d6b7a72958da6fc1d309952bc45c19b6e5e062",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-C589BDFD8E",
+      "path": "01_SCHEMAS/dependency_record.schema.json",
+      "sha256": "757f62780edfb56a2ee9a01267286b48153447f8cca872a9006defbb30028c49",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-0AA0753A6F",
+      "path": "01_SCHEMAS/event_contract.schema.json",
+      "sha256": "84ac88c1000f7a6845acf2583e39b042a10da4afd6f145a3d7ed7d0d170de5a4",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-E3E59B1800",
+      "path": "01_SCHEMAS/migration_batch.schema.json",
+      "sha256": "9e8dd124c5353adbc8b46636e5233ed0411c2ff213421a63adfefac439b8ed0e",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-DCC75FAC7A",
+      "path": "01_SCHEMAS/release_gate.schema.json",
+      "sha256": "6e562108382fea43d1325e49fe2119aa2a2530826e761c4ac8015ade2c112c03",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-3F8A6C1B86",
+      "path": "01_SCHEMAS/release_manifest.schema.json",
+      "sha256": "cfb20578c288c56139275ba4a3055b73b9bb7b3f8e759aa9b823e69764030f58",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-51F220F9DE",
+      "path": "01_SCHEMAS/test_case.schema.json",
+      "sha256": "950a1ff5bdd7352eca8a8e5e5c5f6fef89309da08c59908e61b710e4cfed5af7",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-DD35BD9E21",
+      "path": "01_SCHEMAS/value_acceptance.schema.json",
+      "sha256": "b02dbc1d93608afd346197493c863082c86f047492e984cc8fdf47ff0449cf98",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-2536C8E747",
+      "path": "02_REGISTRIES/artifact_dependency_registry.csv",
+      "sha256": "fed3915cefb45b7debb3ee18efcc6670b4f1ae39a191dbff912b58a7c40e2d74",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-D9DC39F94F",
+      "path": "02_REGISTRIES/master_section_registry.csv",
+      "sha256": "1523313d001bbae7462e3ad48921191e9c8461175b1bf4c0f8c5b73c15e0089a",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-1693B12972",
+      "path": "03_CONTRACTS/api_contract_catalog.csv",
+      "sha256": "3219bd5938a4f2c203dd7f11dcf123c7fabef562aa132a625397717873403aae",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-451C4A1F6D",
+      "path": "03_CONTRACTS/event_contract_catalog.csv",
+      "sha256": "0227924f9fb525af35ec3cd8fce704ed7bfd818c354d582b27ba2af708df090f",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-8BB5222C53",
+      "path": "04_FIXTURES/migration_batch_fixture.json",
+      "sha256": "17aa47c3adbbe2c67ecb456ee8631dba0727450ae5a3730d890c72a804a8a4a5",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-5F34B9FDD4",
+      "path": "04_FIXTURES/release_candidate_fixture.json",
+      "sha256": "55c0771725a687293f8e9607684ab6889ad3b6c8da1da506ea5e86fbf616c8e8",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-871D587C8E",
+      "path": "04_FIXTURES/security_gate_fixture.json",
+      "sha256": "b7623fea0744f6b685bc8f0794cfc7eb06472fa7c3aacd7422a1c0c6424b1c9c",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-DB112AF1A0",
+      "path": "05_TESTS/gj-01_test.json",
+      "sha256": "dc7d4fa50f4c1b31b96e1bd1878761b6e9143a78a3d15807bfc45f0326370380",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-8B2DBD68E6",
+      "path": "05_TESTS/gj-02_test.json",
+      "sha256": "7549c11ecb99804c98e264db15835461f5346543a9fc4660ef4d4ff4643e6e4d",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-668F2D7C69",
+      "path": "05_TESTS/gj-03_test.json",
+      "sha256": "193352bcc471effca9fa282c1014124de30a7e9e30e8207e86aac192408f7230",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-4E8B18BE79",
+      "path": "05_TESTS/gj-04_test.json",
+      "sha256": "91bec993bfd8a7eb7878bfa2478eef75d4383b5af58d093ca8a0cfdbd8c48929",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-B71C74A8EA",
+      "path": "05_TESTS/gj-05_test.json",
+      "sha256": "aeed7486ad059547654a27e2d64b06dd60c414b0e134d13f818d5f018487f33e",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-200F108390",
+      "path": "05_TESTS/release_test_matrix.csv",
+      "sha256": "4fe76c9eda366430856a1ca9ec00d641d3aa7bae6d39517ebdee4b3b6d9d4521",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-A76F2DF894",
+      "path": "06_GATES_AND_TEMPLATES/PRODUCTION_READINESS_CHECKLIST.md",
+      "sha256": "7ae5084d11525f3a69eecec84e211fbb00acd44ff44ec07f5c5ce687d97ac0ee",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-DCD131CB65",
+      "path": "06_GATES_AND_TEMPLATES/SECURITY_PRIVACY_RELEASE_GATE.md",
+      "sha256": "05dbfced9d9ff034242d5489f08f33295ea01b319227b2b3273b9722cc9e99c9",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-067C681314",
+      "path": "06_GATES_AND_TEMPLATES/V1_RELEASE_DECISION_TEMPLATE.md",
+      "sha256": "62f8e9e7364f8a6ffef167fb657d842a907372beba21bb2b6022cdac5395c80e",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-65B22AC35F",
+      "path": "06_GATES_AND_TEMPLATES/V1_VALUE_ACCEPTANCE_TEMPLATE.md",
+      "sha256": "9f804ece786613c771fa94dc63972bc9324b9b2ae0b0ea27241c444689c3cc8b",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-9A8A420331",
+      "path": "07_RUNBOOKS/RELEASE_EXECUTION_RUNBOOK.md",
+      "sha256": "ae07800579e5137f590419479532941b46e2e2b98f4083151aad3d91fb6a9e63",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-54A8D1C725",
+      "path": "07_RUNBOOKS/ROLLBACK_AND_RECOVERY_RUNBOOK.md",
+      "sha256": "0e923c16c6d060559da790e00c1ee1680dc515ecd89443e732c519e2a3d4d63c",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-85AFB32E19",
+      "path": "08_RELEASE_CONTROL/known_issues_register.csv",
+      "sha256": "b53164612a7d61197dc551bb06e78b1c88ed852a8198fc5b522ef781cb36a156",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-4761864104",
+      "path": "08_RELEASE_CONTROL/refinement_issue_register.csv",
+      "sha256": "025417c0f80b9beb68666b6ec293974f68976f191f1d524c31e74fa9a124346a",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-F8921AD0AA",
+      "path": "14001_MASTER_V1_SYSTEM_ARCHITECTURE_V1_RELEASE.md",
+      "sha256": "47d1845079747c2cb10e1a01caab544fa038fbe9c483933f0101a552272cb089",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-9287219794",
+      "path": "14002_CROSS_SECTION_DEPENDENCY_GRAPH_V1_RELEASE.md",
+      "sha256": "5f1bade8249a108ee90459cac2b4a68e3b4f3e638cbb307af4ae14f7dfbf61a6",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-2164C5CB0B",
+      "path": "14003_CANONICAL_API_AND_EVENT_CATALOG_V1_RELEASE.md",
+      "sha256": "dade20a62249214091b74de8d1faba31ac392d43a84cc9357ade5f860793ddf3",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-EF30FBBA9D",
+      "path": "14004_END_TO_END_INTEGRATION_TEST_PLAN_V1_RELEASE.md",
+      "sha256": "20643f5eba3792d0aee8b9f893c3c947bf549751ceec6f4df5bf329747a7324d",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-B51023BFE8",
+      "path": "14005_TESTING_STRATEGY_AND_AUTOMATION_V1_RELEASE.md",
+      "sha256": "d84772ad0c368acfe1ec5a976dd780a767948ab0ee844008e558808bafcf626f",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-9186B1FC5D",
+      "path": "14006_PERFORMANCE_SCALE_AND_CAPACITY_TESTING_V1_RELEASE.md",
+      "sha256": "dbb6a146cf2171d5f4a64aa2270ada57b796a390a5809bbad4779f7f1402bf0f",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-65D7F6BB92",
+      "path": "14007_SECURITY_AND_PRIVACY_RELEASE_GATE_V1_RELEASE.md",
+      "sha256": "4f17dccd3f98e228101894e4e95577833beb291f42855898f603342aa30a9953",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-351D391B65",
+      "path": "14008_DATA_MIGRATION_AND_VALIDATION_V1_RELEASE.md",
+      "sha256": "12aa9ef5c265efd3e9c8bed1fc00f6924626221a034c610f98475dc733217765",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-561D3CB68D",
+      "path": "14009_RELEASE_MANAGEMENT_AND_VERSIONING_V1_RELEASE.md",
+      "sha256": "8dce15e098360eee3ff60bb4caafae9af5a649af50ed0372d4e3e94ef5a6e60f",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-8765AFB8D1",
+      "path": "14010_PRODUCTION_READINESS_AND_OPERATIONAL_HANDOFF_V1_RELEASE.md",
+      "sha256": "3fe3ebe5a8492dbbe53db39f3089b0947a42427417d443a13345682be2cc0bbd",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-CEA8768033",
+      "path": "14011_DOCUMENTATION_TRAINING_AND_ENABLEMENT_V1_RELEASE.md",
+      "sha256": "c9778233ae857979416ab5835aeebcab4a3c731f8a1a67adff5f5ef2e30877e9",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-0B451282B7",
+      "path": "14012_LAUNCH_ROLLOUT_AND_CHANGE_MANAGEMENT_V1_RELEASE.md",
+      "sha256": "c9e38f0a4d407b10abfc176acdb3039f72f7cb2bf521b31d2944ac1fe91346ac",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-4DC18FD822",
+      "path": "14013_V1_VALUE_ACCEPTANCE_AND_SUCCESS_CRITERIA_V1_RELEASE.md",
+      "sha256": "87a89ce6d66a64e59a5eb7ba1749527cc22befd40956a50b1d93e12a565480c2",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-59AF622351",
+      "path": "14014_V1_REFINEMENT_BACKLOG_V1_RELEASE.md",
+      "sha256": "1e6b247ecfa262a7c0c7a35e04ba0920c66e56174a8e7c4eeff74c40320e5096",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-93BFFFD472",
+      "path": "14015_MASTER_V1_RELEASE_INDEX_V1_RELEASE.md",
+      "sha256": "5e11397f7d2395b7ef0d4ac59aeb5d8d2e3f8cf2a45b41bf154f5d24f19a66da",
+      "status": "content_complete"
+    },
+    {
+      "artifact_id": "FS14000-A3F9322753",
+      "path": "README_FS_14000_V1_RELEASE_COMPLETE.md",
+      "sha256": "1657dc6020eef7b60136e9a12a9ce7228478d7c1b1fca72b0faa62b53dd9857d",
+      "status": "content_complete"
+    }
+  ],
+  "approvals": [
+    {
+      "authority": "technical",
+      "decision": "pending",
+      "conditions": []
+    },
+    {
+      "authority": "security",
+      "decision": "pending",
+      "conditions": []
+    },
+    {
+      "authority": "operations",
+      "decision": "pending",
+      "conditions": []
+    },
+    {
+      "authority": "product",
+      "decision": "pending",
+      "conditions": []
+    }
+  ],
+  "baseline_source": {
+    "path": "00_BASELINE_SOURCE/",
+    "status": "historical_superseded_noncanonical",
+    "included_for": [
+      "provenance",
+      "audit history",
+      "before-and-after comparison"
+    ],
+    "implementation_use_allowed": false
+  },
+  "canonical_release_path": "CURRENT_RELEASE/",
+  "canonical_release_only": true
+}

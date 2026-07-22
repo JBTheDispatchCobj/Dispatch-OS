@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fs14000.event_contract.v1",
+  "type": "object",
+  "required": [
+    "event_type",
+    "version",
+    "producer",
+    "subject_type",
+    "payload_schema",
+    "classification",
+    "delivery",
+    "owner"
+  ],
+  "properties": {
+    "event_type": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "producer": {
+      "type": "string"
+    },
+    "consumers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "subject_type": {
+      "type": "string"
+    },
+    "payload_schema": {
+      "type": "string"
+    },
+    "classification": {
+      "type": "string"
+    },
+    "ordering_key": {
+      "type": "string"
+    },
+    "delivery": {
+      "enum": [
+        "at_least_once",
+        "at_most_once"
+      ]
+    },
+    "idempotency_key": {
+      "type": "string"
+    },
+    "retention_days": {
+      "type": "integer"
+    },
+    "replay": {
+      "type": "boolean"
+    },
+    "owner": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+test_id,result,artifact,fixture_or_reference,notes
+schema_fixture_13001,PASS,environment.schema.json,FIXTURE_ENVIRONMENT.json,
+schema_fixture_13002,PASS,tenant_provisioning.schema.json,FIXTURE_TENANT_PROVISIONING.json,
+schema_fixture_13003,PASS,pilot_scope.schema.json,FIXTURE_PILOT_SCOPE.json,
+schema_fixture_13004,PASS,pilot_implementation.schema.json,FIXTURE_PILOT_IMPLEMENTATION.json,
+schema_fixture_13005,PASS,support_case.schema.json,FIXTURE_SUPPORT_CASE.json,
+schema_fixture_13006,PASS,commercial_package.schema.json,FIXTURE_COMMERCIAL_PACKAGE.json,
+schema_fixture_13007,PASS,procurement_matter.schema.json,FIXTURE_PROCUREMENT_MATTER.json,
+schema_fixture_13008,PASS,partner.schema.json,FIXTURE_PARTNER.json,
+schema_fixture_13009,PASS,market_segment.schema.json,FIXTURE_MARKET_SEGMENT.json,
+schema_fixture_13010,PASS,commercial_opportunity.schema.json,FIXTURE_COMMERCIAL_OPPORTUNITY.json,
+schema_fixture_13011,PASS,content_item.schema.json,FIXTURE_CONTENT_ITEM.json,
+schema_fixture_13012,PASS,partner_certification.schema.json,FIXTURE_PARTNER_CERTIFICATION.json,
+schema_fixture_13013,PASS,renewal.schema.json,FIXTURE_RENEWAL.json,
+schema_fixture_13014,PASS,commercial_metric_snapshot.schema.json,FIXTURE_COMMERCIAL_METRIC_SNAPSHOT.json,
+schema_fixture_13015,PASS,commercial_release_index.schema.json,FIXTURE_COMMERCIAL_RELEASE_INDEX.json,
+csv_ENVIRONMENT_MANIFEST,PASS,ENVIRONMENT_MANIFEST.csv,,1 data rows
+csv_RENEWAL_TIMELINE,PASS,RENEWAL_TIMELINE.csv,,6 data rows
+csv_SUPPORT_SLA_MATRIX,PASS,SUPPORT_SLA_MATRIX.csv,,4 data rows
+csv_KNOWN_ISSUES_REGISTER,PASS,KNOWN_ISSUES_REGISTER.csv,,1 data rows
+csv_SALES_STAGE_EVIDENCE,PASS,SALES_STAGE_EVIDENCE.csv,,10 data rows
+csv_COMMERCIAL_METRICS_CATALOG,PASS,COMMERCIAL_METRICS_CATALOG.csv,,6 data rows
+csv_PARTNER_CERTIFICATION_MATRIX,PASS,PARTNER_CERTIFICATION_MATRIX.csv,,3 data rows
+csv_PILOT_QUALIFICATION_SCORECARD,PASS,PILOT_QUALIFICATION_SCORECARD.csv,,7 data rows
+csv_IMPLEMENTATION_RACI,PASS,IMPLEMENTATION_RACI.csv,,5 data rows
+csv_DEAL_DESK_APPROVAL_MATRIX,PASS,DEAL_DESK_APPROVAL_MATRIX.csv,,5 data rows
+csv_PRICING_COST_MODEL,PASS,PRICING_COST_MODEL.csv,,5 data rows
+json_partner_certification.schema,PASS,partner_certification.schema.json,,
+json_commercial_metric_snapshot.schema,PASS,commercial_metric_snapshot.schema.json,,
+json_renewal.schema,PASS,renewal.schema.json,,
+json_FIXTURE_PROCUREMENT_MATTER,PASS,FIXTURE_PROCUREMENT_MATTER.json,,
+json_tenant_provisioning.schema,PASS,tenant_provisioning.schema.json,,
+json_FIXTURE_CONTENT_ITEM,PASS,FIXTURE_CONTENT_ITEM.json,,
+json_procurement_matter.schema,PASS,procurement_matter.schema.json,,
+json_FIXTURE_PARTNER,PASS,FIXTURE_PARTNER.json,,
+json_FIXTURE_TENANT_PROVISIONING,PASS,FIXTURE_TENANT_PROVISIONING.json,,
+json_FIXTURE_PILOT_IMPLEMENTATION,PASS,FIXTURE_PILOT_IMPLEMENTATION.json,,
+json_pilot_implementation.schema,PASS,pilot_implementation.schema.json,,
+json_market_segment.schema,PASS,market_segment.schema.json,,
+json_FIXTURE_COMMERCIAL_OPPORTUNITY,PASS,FIXTURE_COMMERCIAL_OPPORTUNITY.json,,
+json_commercial_release_index.schema,PASS,commercial_release_index.schema.json,,
+json_FIXTURE_PARTNER_CERTIFICATION,PASS,FIXTURE_PARTNER_CERTIFICATION.json,,
+json_FIXTURE_PILOT_SCOPE,PASS,FIXTURE_PILOT_SCOPE.json,,
+json_FIXTURE_COMMERCIAL_PACKAGE,PASS,FIXTURE_COMMERCIAL_PACKAGE.json,,
+json_FIXTURE_COMMERCIAL_RELEASE_INDEX,PASS,FIXTURE_COMMERCIAL_RELEASE_INDEX.json,,
+json_content_item.schema,PASS,content_item.schema.json,,
+json_FIXTURE_COMMERCIAL_METRIC_SNAPSHOT,PASS,FIXTURE_COMMERCIAL_METRIC_SNAPSHOT.json,,
+json_FIXTURE_MARKET_SEGMENT,PASS,FIXTURE_MARKET_SEGMENT.json,,
+json_support_case.schema,PASS,support_case.schema.json,,
+json_commercial_opportunity.schema,PASS,commercial_opportunity.schema.json,,
+json_FIXTURE_SUPPORT_CASE,PASS,FIXTURE_SUPPORT_CASE.json,,
+json_partner.schema,PASS,partner.schema.json,,
+json_environment.schema,PASS,environment.schema.json,,
+json_FIXTURE_ENVIRONMENT,PASS,FIXTURE_ENVIRONMENT.json,,
+json_pilot_scope.schema,PASS,pilot_scope.schema.json,,
+json_FIXTURE_RENEWAL,PASS,FIXTURE_RENEWAL.json,,
+json_commercial_package.schema,PASS,commercial_package.schema.json,,
+release_manifest_parse,PASS,RELEASE_MANIFEST.json,,

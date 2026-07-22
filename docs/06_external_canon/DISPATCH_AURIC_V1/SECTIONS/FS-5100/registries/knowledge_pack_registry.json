@@ -1,0 +1,14 @@
+{
+  "section_id": "FS-5100",
+  "manifest_class": "knowledge_pack",
+  "count": 1,
+  "entries": [
+    {
+      "id": "KPACK.CORE_DOMAIN_FOUNDATION",
+      "name": "Core Domain Foundation",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active"
+    }
+  ]
+}

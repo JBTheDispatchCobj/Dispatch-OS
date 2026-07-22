@@ -1,0 +1,213 @@
+{
+  "manifest_name": "FS-4012_MANUFACTURING_FINANCE.cartridge.json",
+  "version": "1.0",
+  "owner": "Auric Works",
+  "product": "Dispatch / Auric Institutional Intelligence Network",
+  "created_at": "2026-07-22T04:05:46.155763",
+  "domain_id": "FS-4012",
+  "domain_name": "Manufacturing Finance",
+  "source_volume": "FS-4012_MANUFACTURING_FINANCE_OPERATING_FRAMEWORK_V1.zip",
+  "purpose": "Production cartridge for manufacturing lending, treasury, equipment finance, working capital, borrowing base, ERP intelligence, supply chain analysis, and portfolio monitoring.",
+  "cartridge_type": "domain_operating_cartridge",
+  "status": "production_manifest",
+  "primary_objects": [
+    "Manufacturer",
+    "Plant",
+    "ProductionLine",
+    "ERPExport",
+    "Inventory",
+    "BOM",
+    "Supplier",
+    "Customer",
+    "PurchaseOrder",
+    "SalesOrder",
+    "EquipmentAsset",
+    "BorrowingBase",
+    "Warehouse",
+    "WorkOrder",
+    "QualityRecord",
+    "CapacityPlan",
+    "TreasuryRelationship"
+  ],
+  "supported_workflows": [
+    "Manufacturer onboarding",
+    "Credit underwriting",
+    "Borrowing base administration",
+    "Inventory monitoring",
+    "Production analysis",
+    "Supplier concentration review",
+    "Customer concentration review",
+    "Equipment finance",
+    "Treasury implementation",
+    "Working capital monitoring",
+    "Covenant review",
+    "Annual relationship review"
+  ],
+  "allowed_agents": [
+    "Manufacturing Analyst",
+    "ERP Intake Agent",
+    "Inventory Analyst",
+    "Borrowing Base Agent",
+    "Production Intelligence Agent",
+    "Supplier Risk Agent",
+    "Customer Concentration Agent",
+    "Equipment Finance Agent",
+    "Treasury Opportunity Agent",
+    "Portfolio Monitor"
+  ],
+  "required_evidence": {
+    "underwriting": [
+      "financial_statements",
+      "ERP_export",
+      "inventory_report",
+      "AR_aging",
+      "AP_aging",
+      "customer_listing",
+      "supplier_listing",
+      "equipment_schedule"
+    ],
+    "borrowing_base": [
+      "inventory",
+      "AR",
+      "eligibility_schedule",
+      "advance_rates",
+      "field_exam_if_available"
+    ],
+    "operations": [
+      "production_reports",
+      "capacity_reports",
+      "quality_reports",
+      "downtime",
+      "backlog"
+    ],
+    "equipment": [
+      "asset_schedule",
+      "valuation",
+      "maintenance_history",
+      "insurance"
+    ],
+    "monitoring": [
+      "monthly_financials",
+      "borrowing_base",
+      "covenants",
+      "management_reporting"
+    ]
+  },
+  "approval_gates": {
+    "credit": [
+      "credit_authority"
+    ],
+    "advance_rate_change": [
+      "credit_authority"
+    ],
+    "equipment_finance": [
+      "credit_authority",
+      "operations_owner"
+    ],
+    "policy_exception": [
+      "credit_authority",
+      "legal_counsel"
+    ]
+  },
+  "dashboards": [
+    "Manufacturing Executive Dashboard",
+    "Working Capital Dashboard",
+    "Borrowing Base Dashboard",
+    "Production Dashboard",
+    "Inventory Dashboard",
+    "Equipment Dashboard",
+    "Treasury Dashboard",
+    "Portfolio Risk Dashboard"
+  ],
+  "kpis": [
+    "EBITDA",
+    "gross_margin",
+    "inventory_turns",
+    "capacity_utilization",
+    "OEE",
+    "backlog",
+    "on_time_delivery",
+    "scrap_rate",
+    "yield",
+    "AR_days",
+    "AP_days",
+    "cash_conversion_cycle",
+    "borrowing_base_availability",
+    "customer_concentration",
+    "supplier_concentration",
+    "downtime",
+    "working_capital",
+    "deposit_balances"
+  ],
+  "relationships": [
+    [
+      "Manufacturer",
+      "OWNS",
+      "Plant"
+    ],
+    [
+      "Plant",
+      "OPERATES",
+      "ProductionLine"
+    ],
+    [
+      "ProductionLine",
+      "PRODUCES",
+      "WorkOrder"
+    ],
+    [
+      "Inventory",
+      "SUPPORTS",
+      "BorrowingBase"
+    ],
+    [
+      "Supplier",
+      "SUPPLIES",
+      "Manufacturer"
+    ],
+    [
+      "Customer",
+      "PURCHASES",
+      "SalesOrder"
+    ],
+    [
+      "EquipmentAsset",
+      "LOCATED_AT",
+      "Plant"
+    ],
+    [
+      "TreasuryRelationship",
+      "SERVES",
+      "Manufacturer"
+    ]
+  ],
+  "router_examples": [
+    "Review this manufacturer for credit.",
+    "Calculate borrowing base.",
+    "Analyze ERP export.",
+    "Identify supply-chain concentration.",
+    "Prepare annual relationship review."
+  ],
+  "integration_dependencies": [
+    "objects.registry.json",
+    "workflows.registry.json",
+    "agents.registry.json",
+    "kpis.registry.json",
+    "dashboards.registry.json",
+    "relationships.registry.json",
+    "evidence.registry.json",
+    "approvals.registry.json"
+  ],
+  "acceptance_tests": [
+    "Can ingest ERP exports.",
+    "Can calculate borrowing base availability.",
+    "Can analyze production and inventory trends.",
+    "Can monitor working capital deterioration.",
+    "Can support manufacturing credit underwriting.",
+    "Can preserve evidence and approval gates."
+  ],
+  "section_id": "FS-5100",
+  "section_aliases": [
+    "FS-5000"
+  ]
+}

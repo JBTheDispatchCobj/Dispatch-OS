@@ -1,0 +1,41 @@
+{
+  "version": "1.0.0",
+  "features": [
+    {
+      "id": "asset_band",
+      "weight": 0.15
+    },
+    {
+      "id": "charter_type",
+      "weight": 0.08
+    },
+    {
+      "id": "geography",
+      "weight": 0.1
+    },
+    {
+      "id": "membership_profile",
+      "weight": 0.1
+    },
+    {
+      "id": "product_mix",
+      "weight": 0.12
+    },
+    {
+      "id": "technology_stack",
+      "weight": 0.15
+    },
+    {
+      "id": "financial_performance",
+      "weight": 0.15
+    },
+    {
+      "id": "strategic_readiness",
+      "weight": 0.15
+    }
+  ],
+  "formula": "sum(weight * normalized_similarity) / sum(applicable_weights)",
+  "missing_data": "exclude missing feature and report coverage ratio",
+  "minimum_coverage": 0.6,
+  "explainability": "return every feature score, weight, source freshness, and exclusions"
+}

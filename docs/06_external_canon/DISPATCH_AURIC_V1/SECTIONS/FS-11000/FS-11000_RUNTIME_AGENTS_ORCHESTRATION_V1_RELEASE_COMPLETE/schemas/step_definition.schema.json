@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "StepDefinition",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "step_id",
+    "type",
+    "entry_conditions",
+    "exit_conditions",
+    "next_steps"
+  ],
+  "properties": {
+    "step_id": {
+      "type": "string"
+    },
+    "type": {
+      "enum": [
+        "intake",
+        "classify",
+        "retrieve",
+        "validate",
+        "calculate",
+        "analyze",
+        "draft",
+        "review",
+        "approve",
+        "notify",
+        "controlled_action",
+        "wait",
+        "branch",
+        "reconcile",
+        "close"
+      ]
+    },
+    "agent_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "tool_operation": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "entry_conditions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "exit_conditions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "next_steps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "retry_policy_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "timeout_seconds": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "approval_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

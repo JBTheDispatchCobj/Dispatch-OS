@@ -1,0 +1,196 @@
+{
+  "section": "FS-8000",
+  "release": "V1_RELEASE_COMPLETE",
+  "generated_at": "2026-07-22T00:00:00Z",
+  "checks": [
+    {
+      "check": "json_parse",
+      "file": "classification.schema.json",
+      "status": "pass"
+    },
+    {
+      "check": "json_parse",
+      "file": "connector_manifest.schema.json",
+      "status": "pass"
+    },
+    {
+      "check": "json_parse",
+      "file": "data_quality_result.schema.json",
+      "status": "pass"
+    },
+    {
+      "check": "json_parse",
+      "file": "document.schema.json",
+      "status": "pass"
+    },
+    {
+      "check": "json_parse",
+      "file": "entity_resolution_record.schema.json",
+      "status": "pass"
+    },
+    {
+      "check": "json_parse",
+      "file": "freshness_policy.schema.json",
+      "status": "pass"
+    },
+    {
+      "check": "json_parse",
+      "file": "fs8000_acceptance_tests.json",
+      "status": "pass"
+    },
+    {
+      "check": "json_parse",
+      "file": "ingestion_api_contracts.json",
+      "status": "pass"
+    },
+    {
+      "check": "json_parse",
+      "file": "ingestion_event_catalog.json",
+      "status": "pass"
+    },
+    {
+      "check": "json_parse",
+      "file": "ingestion_exception.schema.json",
+      "status": "pass"
+    },
+    {
+      "check": "json_parse",
+      "file": "ingestion_job.schema.json",
+      "status": "pass"
+    },
+    {
+      "check": "json_parse",
+      "file": "lineage_edge.schema.json",
+      "status": "pass"
+    },
+    {
+      "check": "json_parse",
+      "file": "mapping_profile.schema.json",
+      "status": "pass"
+    },
+    {
+      "check": "json_parse",
+      "file": "retention_rule.schema.json",
+      "status": "pass"
+    },
+    {
+      "check": "json_parse",
+      "file": "source.schema.json",
+      "status": "pass"
+    },
+    {
+      "check": "json_parse",
+      "file": "source_snapshot.schema.json",
+      "status": "pass"
+    },
+    {
+      "check": "json_parse",
+      "file": "synthetic_ingestion_fixture.json",
+      "status": "pass"
+    },
+    {
+      "check": "json_parse",
+      "file": "tenant_connector.schema.json",
+      "status": "pass"
+    },
+    {
+      "check": "fixture_schema",
+      "fixture": "source",
+      "schema": "source.schema.json",
+      "status": "pass"
+    },
+    {
+      "check": "fixture_schema",
+      "fixture": "connector_manifest",
+      "schema": "connector_manifest.schema.json",
+      "status": "pass"
+    },
+    {
+      "check": "fixture_schema",
+      "fixture": "tenant_connector",
+      "schema": "tenant_connector.schema.json",
+      "status": "pass"
+    },
+    {
+      "check": "fixture_schema",
+      "fixture": "source_snapshot",
+      "schema": "source_snapshot.schema.json",
+      "status": "pass"
+    },
+    {
+      "check": "fixture_schema",
+      "fixture": "ingestion_job",
+      "schema": "ingestion_job.schema.json",
+      "status": "pass"
+    },
+    {
+      "check": "fixture_schema",
+      "fixture": "mapping_profile",
+      "schema": "mapping_profile.schema.json",
+      "status": "pass"
+    },
+    {
+      "check": "fixture_schema",
+      "fixture": "quality_result",
+      "schema": "data_quality_result.schema.json",
+      "status": "pass"
+    },
+    {
+      "check": "fixture_schema",
+      "fixture": "lineage_edge",
+      "schema": "lineage_edge.schema.json",
+      "status": "pass"
+    },
+    {
+      "check": "csv_structure",
+      "file": "connector_permission_matrix.csv",
+      "status": "pass",
+      "columns": 10,
+      "rows": 4
+    },
+    {
+      "check": "csv_structure",
+      "file": "connector_registry.csv",
+      "status": "pass",
+      "columns": 11,
+      "rows": 4
+    },
+    {
+      "check": "csv_structure",
+      "file": "data_quality_rules.csv",
+      "status": "pass",
+      "columns": 9,
+      "rows": 4
+    },
+    {
+      "check": "csv_structure",
+      "file": "error_exception_matrix.csv",
+      "status": "pass",
+      "columns": 7,
+      "rows": 6
+    },
+    {
+      "check": "csv_structure",
+      "file": "public_source_catalog.csv",
+      "status": "pass",
+      "columns": 10,
+      "rows": 3
+    },
+    {
+      "check": "csv_structure",
+      "file": "retention_schedule.csv",
+      "status": "pass",
+      "columns": 8,
+      "rows": 3
+    },
+    {
+      "check": "csv_structure",
+      "file": "transformation_registry.csv",
+      "status": "pass",
+      "columns": 9,
+      "rows": 3
+    }
+  ],
+  "errors": [],
+  "status": "pass"
+}

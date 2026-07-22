@@ -1,0 +1,596 @@
+{
+  "manifest_name": "FS-4003_COMMERCIAL_BANKING.cartridge.json",
+  "version": "1.0",
+  "owner": "Auric Works",
+  "product": "Dispatch / Auric Institutional Intelligence Network",
+  "created_at": "2026-07-21T20:19:35.095680",
+  "domain_id": "FS-4003",
+  "domain_name": "Commercial Banking",
+  "source_volume": "FS-4003_COMMERCIAL_BANKING_OPERATING_FRAMEWORK_V1.zip",
+  "purpose": "Deployable cartridge manifest for commercial banking intelligence across borrowers, credit facilities, treasury services, covenants, collateral, monitoring, relationship profitability, and workouts.",
+  "cartridge_type": "domain_operating_cartridge",
+  "status": "production_manifest",
+  "strategic_lens": "Commercial banking is relationship finance. Credit, deposits, treasury, collateral, covenants, borrower operations, and risk monitoring should be understood as one institutional relationship, not isolated products.",
+  "primary_objects": [
+    {
+      "object": "CommercialBorrower",
+      "role": "Root business borrower and relationship profile.",
+      "required_fields": [
+        "borrower_id",
+        "legal_name",
+        "industry",
+        "NAICS",
+        "ownership",
+        "revenue",
+        "EBITDA",
+        "cash_flow",
+        "risk_rating",
+        "relationship_manager"
+      ]
+    },
+    {
+      "object": "CommercialLoan",
+      "role": "Commercial credit exposure, structure, collateral, pricing, and repayment object.",
+      "required_fields": [
+        "loan_id",
+        "borrower",
+        "facility_type",
+        "amount",
+        "purpose",
+        "repayment_source",
+        "collateral",
+        "covenants",
+        "risk_rating",
+        "status"
+      ]
+    },
+    {
+      "object": "CreditMemo",
+      "role": "Credit decision support object.",
+      "required_fields": [
+        "memo_id",
+        "borrower",
+        "request",
+        "financial_analysis",
+        "structure",
+        "risks",
+        "mitigants",
+        "approval_recommendation"
+      ]
+    },
+    {
+      "object": "Collateral",
+      "role": "Assets securing a commercial facility.",
+      "required_fields": [
+        "collateral_id",
+        "type",
+        "value",
+        "valuation_source",
+        "lien_position",
+        "perfection_status",
+        "coverage_ratio"
+      ]
+    },
+    {
+      "object": "Covenant",
+      "role": "Contractual performance, reporting, and control obligation.",
+      "required_fields": [
+        "covenant_id",
+        "facility",
+        "metric",
+        "threshold",
+        "frequency",
+        "evidence",
+        "status",
+        "exceptions"
+      ]
+    },
+    {
+      "object": "TreasuryRelationship",
+      "role": "Payment flow, deposit, fee-income, and fraud-control service object.",
+      "required_fields": [
+        "relationship_id",
+        "customer",
+        "payment_flows",
+        "services",
+        "volumes",
+        "fees",
+        "fraud_controls",
+        "implementation_status"
+      ]
+    },
+    {
+      "object": "AnnualReview",
+      "role": "Periodic borrower and facility review object.",
+      "required_fields": [
+        "review_id",
+        "borrower",
+        "period",
+        "financials",
+        "covenants",
+        "risk_rating",
+        "relationship_profitability",
+        "recommendation"
+      ]
+    },
+    {
+      "object": "WorkoutPlan",
+      "role": "Distressed borrower strategy and recovery object.",
+      "required_fields": [
+        "workout_id",
+        "borrower",
+        "default_type",
+        "collateral",
+        "strategy",
+        "milestones",
+        "recovery_estimate",
+        "status"
+      ]
+    }
+  ],
+  "supported_workflows": [
+    {
+      "workflow": "Commercial Credit Underwriting",
+      "description": "Analyze borrower, financials, collateral, repayment source, covenants, and structure for credit approval.",
+      "required_objects": [
+        "CommercialBorrower",
+        "CommercialLoan",
+        "Collateral",
+        "CreditMemo"
+      ],
+      "outputs": [
+        "Credit memo",
+        "Approval package",
+        "Missing evidence list"
+      ],
+      "approval_gates": [
+        "credit_authority_approval",
+        "policy_exception_review_if_needed"
+      ]
+    },
+    {
+      "workflow": "Annual Review",
+      "description": "Review commercial borrower financials, covenants, relationship performance, and risk rating.",
+      "required_objects": [
+        "CommercialBorrower",
+        "AnnualReview",
+        "Financials",
+        "Covenant"
+      ],
+      "outputs": [
+        "Annual review memo",
+        "Risk rating update",
+        "Relationship action plan"
+      ],
+      "approval_gates": [
+        "credit_review_approval"
+      ]
+    },
+    {
+      "workflow": "Covenant Monitoring",
+      "description": "Collect evidence and test commercial loan covenants.",
+      "required_objects": [
+        "Covenant",
+        "ComplianceCertificate",
+        "Financials",
+        "CommercialLoan"
+      ],
+      "outputs": [
+        "Pass/fail status",
+        "Exception report",
+        "Waiver/escalation recommendation"
+      ],
+      "approval_gates": [
+        "credit_authority_approval_for_waivers"
+      ]
+    },
+    {
+      "workflow": "Treasury Assessment",
+      "description": "Map commercial customer payment flows and recommend treasury products.",
+      "required_objects": [
+        "CommercialBorrower",
+        "TreasuryRelationship",
+        "PaymentFlow"
+      ],
+      "outputs": [
+        "Treasury proposal",
+        "Implementation plan",
+        "Fraud controls checklist"
+      ],
+      "approval_gates": [
+        "treasury_operations_approval",
+        "security_review_if_integration"
+      ]
+    },
+    {
+      "workflow": "Portfolio Watchlist",
+      "description": "Identify, classify, and manage deteriorating commercial credits.",
+      "required_objects": [
+        "CommercialLoan",
+        "CommercialBorrower",
+        "Risk",
+        "AnnualReview"
+      ],
+      "outputs": [
+        "Watchlist action plan",
+        "Risk migration summary",
+        "Monitoring tasks"
+      ],
+      "approval_gates": [
+        "credit_risk_review"
+      ]
+    },
+    {
+      "workflow": "Workout Review",
+      "description": "Create strategy for distressed commercial borrower, default, forbearance, collateral, and recovery.",
+      "required_objects": [
+        "WorkoutPlan",
+        "Default",
+        "Collateral",
+        "CommercialBorrower"
+      ],
+      "outputs": [
+        "Workout memo",
+        "Recovery plan",
+        "Approval actions"
+      ],
+      "approval_gates": [
+        "credit_authority_approval",
+        "legal_review_if_needed"
+      ]
+    }
+  ],
+  "allowed_agents": [
+    {
+      "agent": "Commercial Credit Analyst",
+      "allowed_actions": [
+        "analyze_financials",
+        "summarize_borrower",
+        "identify_risks",
+        "draft_credit_analysis"
+      ],
+      "prohibited_actions": [
+        "approve_credit",
+        "waive_policy",
+        "commit_terms"
+      ]
+    },
+    {
+      "agent": "Credit Memo Writer",
+      "allowed_actions": [
+        "draft_credit_memo",
+        "compile_evidence",
+        "summarize_structure",
+        "list_conditions"
+      ],
+      "prohibited_actions": [
+        "approve_credit",
+        "invent_financials",
+        "remove_risk_disclosures"
+      ]
+    },
+    {
+      "agent": "Covenant Monitor",
+      "allowed_actions": [
+        "calculate_covenants",
+        "flag_breaches",
+        "track_reporting",
+        "draft_exception_summary"
+      ],
+      "prohibited_actions": [
+        "approve_waiver",
+        "change_covenant_terms"
+      ]
+    },
+    {
+      "agent": "Treasury Opportunity Agent",
+      "allowed_actions": [
+        "map_payment_flows",
+        "recommend_services",
+        "estimate_fee_opportunity",
+        "draft_treasury_proposal"
+      ],
+      "prohibited_actions": [
+        "execute_service_agreement",
+        "modify_account_permissions"
+      ]
+    },
+    {
+      "agent": "Portfolio Watchlist Agent",
+      "allowed_actions": [
+        "identify_deterioration",
+        "summarize_watchlist",
+        "rank_risk",
+        "prepare_monitoring_tasks"
+      ],
+      "prohibited_actions": [
+        "downgrade_or_upgrade_final_rating_without_approval"
+      ]
+    },
+    {
+      "agent": "Collateral Analyst",
+      "allowed_actions": [
+        "summarize_collateral",
+        "compare_value_to_exposure",
+        "flag_perfection_or_insurance_gaps"
+      ],
+      "prohibited_actions": [
+        "approve_collateral_release",
+        "finalize_appraisal_value"
+      ]
+    },
+    {
+      "agent": "Annual Review Agent",
+      "allowed_actions": [
+        "draft_annual_review",
+        "summarize_financial_trends",
+        "identify_missing_reporting"
+      ],
+      "prohibited_actions": [
+        "approve_annual_review",
+        "change_risk_rating_final"
+      ]
+    },
+    {
+      "agent": "Workout Strategy Agent",
+      "allowed_actions": [
+        "summarize_default",
+        "draft_workout_options",
+        "track_milestones",
+        "estimate_recovery_scenarios"
+      ],
+      "prohibited_actions": [
+        "approve_forbearance",
+        "modify_loan_terms",
+        "initiate_legal_action"
+      ]
+    }
+  ],
+  "required_evidence": {
+    "credit_underwriting": [
+      "borrower_financials",
+      "tax_returns",
+      "debt_schedule",
+      "collateral_evidence",
+      "credit_memo",
+      "approval_record"
+    ],
+    "annual_review": [
+      "financial_statements",
+      "covenant_certificate",
+      "relationship_profitability",
+      "risk_rating_support",
+      "review_approval"
+    ],
+    "covenant_monitoring": [
+      "compliance_certificate",
+      "financials",
+      "calculation_workpaper",
+      "exception_log",
+      "waiver_approval_if_needed"
+    ],
+    "treasury_assessment": [
+      "payment_flow_map",
+      "account_analysis",
+      "service_pricing",
+      "fraud_control_review",
+      "implementation_confirmation"
+    ],
+    "portfolio_watchlist": [
+      "payment_history",
+      "financial_trends",
+      "risk_rating_history",
+      "watchlist_notes",
+      "action_plan"
+    ],
+    "workout_review": [
+      "default_notice",
+      "forbearance_request",
+      "collateral_value",
+      "legal_review",
+      "workout_memo",
+      "approval_record"
+    ]
+  },
+  "approval_gates": {
+    "credit_approval": [
+      "credit_authority"
+    ],
+    "loan_closing_or_funding": [
+      "credit_authority",
+      "operations_owner"
+    ],
+    "covenant_waiver": [
+      "credit_authority",
+      "legal_counsel_if_material"
+    ],
+    "risk_rating_change": [
+      "credit_risk_owner"
+    ],
+    "workout_or_forbearance": [
+      "credit_authority",
+      "legal_counsel",
+      "executive_owner_if_material"
+    ],
+    "treasury_implementation": [
+      "treasury_operations_owner",
+      "security_owner_if_integration"
+    ]
+  },
+  "dashboards": [
+    {
+      "dashboard": "Commercial Banking Executive Dashboard",
+      "primary_kpis": [
+        "commercial_loan_exposure",
+        "portfolio_yield",
+        "deposit_balances",
+        "treasury_fee_income",
+        "watchlist_loans"
+      ]
+    },
+    {
+      "dashboard": "Commercial Credit Dashboard",
+      "primary_kpis": [
+        "DSCR",
+        "leverage",
+        "risk_rating",
+        "covenant_breaches",
+        "annual_reviews_due"
+      ]
+    },
+    {
+      "dashboard": "Treasury Management Dashboard",
+      "primary_kpis": [
+        "deposit_balances",
+        "treasury_fee_income",
+        "ACH_volume",
+        "wire_volume",
+        "positive_pay_adoption"
+      ]
+    },
+    {
+      "dashboard": "Portfolio Watchlist Dashboard",
+      "primary_kpis": [
+        "criticized_classified_loans",
+        "watchlist_loans",
+        "risk_rating_migration",
+        "covenant_breaches"
+      ]
+    }
+  ],
+  "kpis": [
+    "commercial_loan_exposure",
+    "DSCR",
+    "leverage",
+    "risk_rating",
+    "covenant_breaches",
+    "delinquency_rate",
+    "charge_off_rate",
+    "criticized_classified_loans",
+    "watchlist_loans",
+    "annual_reviews_due",
+    "portfolio_yield",
+    "concentration_by_industry",
+    "deposit_balances",
+    "treasury_fee_income",
+    "ACH_volume",
+    "wire_volume",
+    "positive_pay_adoption",
+    "relationship_profitability",
+    "cross_sell_ratio",
+    "new_relationships",
+    "retention_rate"
+  ],
+  "relationships": [
+    {
+      "source": "CommercialBorrower",
+      "relationship": "BORROWS_FROM",
+      "target": "Institution"
+    },
+    {
+      "source": "CommercialLoan",
+      "relationship": "SECURED_BY",
+      "target": "Collateral"
+    },
+    {
+      "source": "Covenant",
+      "relationship": "GOVERNS",
+      "target": "CreditFacility"
+    },
+    {
+      "source": "TreasuryService",
+      "relationship": "SUPPORTS",
+      "target": "BusinessCustomer"
+    },
+    {
+      "source": "AnnualReview",
+      "relationship": "UPDATES",
+      "target": "RiskRating"
+    },
+    {
+      "source": "WorkoutPlan",
+      "relationship": "REMEDIATES",
+      "target": "Default"
+    }
+  ],
+  "router_examples": [
+    {
+      "user_request": "Prepare this borrower for credit review.",
+      "route_to_workflow": "Commercial Credit Underwriting",
+      "required_objects": [
+        "CommercialBorrower",
+        "CommercialLoan",
+        "Collateral",
+        "CreditMemo"
+      ],
+      "agents": [
+        "Commercial Credit Analyst",
+        "Credit Memo Writer",
+        "Collateral Analyst"
+      ],
+      "outputs": [
+        "Credit memo",
+        "Missing evidence list",
+        "Approval package"
+      ]
+    },
+    {
+      "user_request": "Which commercial borrowers are becoming risky?",
+      "route_to_workflow": "Portfolio Watchlist",
+      "required_objects": [
+        "CommercialLoan",
+        "Risk",
+        "AnnualReview"
+      ],
+      "agents": [
+        "Portfolio Watchlist Agent",
+        "Covenant Monitor",
+        "Annual Review Agent"
+      ],
+      "outputs": [
+        "Watchlist summary",
+        "Risk migration",
+        "Action plan"
+      ]
+    },
+    {
+      "user_request": "What treasury products fit this business?",
+      "route_to_workflow": "Treasury Assessment",
+      "required_objects": [
+        "CommercialBorrower",
+        "TreasuryRelationship",
+        "PaymentFlow"
+      ],
+      "agents": [
+        "Treasury Opportunity Agent"
+      ],
+      "outputs": [
+        "Treasury recommendation",
+        "Implementation checklist"
+      ]
+    }
+  ],
+  "integration_dependencies": [
+    "objects.registry.json",
+    "workflows.registry.json",
+    "agents.registry.json",
+    "kpis.registry.json",
+    "dashboards.registry.json",
+    "relationships.registry.json",
+    "evidence.registry.json",
+    "approvals.registry.json"
+  ],
+  "acceptance_tests": [
+    "Can create a commercial borrower profile with financial, relationship, collateral, and risk context.",
+    "Can draft a commercial credit memo with source evidence and approval gates.",
+    "Can test covenants and flag breaches without approving waivers.",
+    "Can produce an annual review and proposed risk rating update.",
+    "Can map treasury payment flows into product recommendations.",
+    "Can move a deteriorating credit into watchlist workflow.",
+    "Can create a workout plan with required legal and credit approvals."
+  ],
+  "section_id": "FS-5100",
+  "section_aliases": [
+    "FS-5000"
+  ]
+}

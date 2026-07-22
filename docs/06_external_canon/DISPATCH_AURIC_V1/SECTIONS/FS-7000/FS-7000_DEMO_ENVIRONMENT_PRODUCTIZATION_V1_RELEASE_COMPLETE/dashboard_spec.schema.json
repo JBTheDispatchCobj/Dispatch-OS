@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dispatch://schemas/dashboard-spec/1.0.0",
+  "title": "DashboardSpec",
+  "type": "object",
+  "required": [
+    "dashboard_id",
+    "title",
+    "persona",
+    "widgets"
+  ],
+  "properties": {
+    "dashboard_id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "persona": {
+      "type": "string"
+    },
+    "institution_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "widgets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "widget_id",
+          "widget_type",
+          "title",
+          "data_contract"
+        ],
+        "properties": {
+          "widget_id": {
+            "type": "string"
+          },
+          "widget_type": {
+            "type": "string",
+            "enum": [
+              "kpi",
+              "trend",
+              "table",
+              "queue",
+              "heatmap",
+              "graph",
+              "timeline",
+              "scorecard",
+              "alert_list",
+              "narrative"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "data_contract": {
+            "type": "string"
+          },
+          "drillthrough_target": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source_required": {
+            "type": "boolean"
+          },
+          "freshness_required": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "visibility": {
+      "type": "string",
+      "enum": [
+        "public_demo",
+        "tenant_internal",
+        "confidential",
+        "board_only"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

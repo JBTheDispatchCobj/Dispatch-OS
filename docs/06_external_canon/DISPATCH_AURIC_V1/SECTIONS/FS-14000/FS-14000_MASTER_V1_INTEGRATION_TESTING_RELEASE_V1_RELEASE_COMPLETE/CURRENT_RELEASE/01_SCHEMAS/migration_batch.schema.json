@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fs14000.migration_batch.v1",
+  "type": "object",
+  "required": [
+    "batch_id",
+    "source_snapshot",
+    "mapping_version",
+    "target_environment",
+    "status",
+    "reconciliation"
+  ],
+  "properties": {
+    "batch_id": {
+      "type": "string"
+    },
+    "source_snapshot": {
+      "type": "string"
+    },
+    "mapping_version": {
+      "type": "string"
+    },
+    "target_environment": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "planned",
+        "dry_run",
+        "validated",
+        "executed",
+        "rolled_back",
+        "failed"
+      ]
+    },
+    "reconciliation": {
+      "type": "object",
+      "required": [
+        "source_count",
+        "target_count",
+        "exceptions"
+      ],
+      "properties": {
+        "source_count": {
+          "type": "integer"
+        },
+        "target_count": {
+          "type": "integer"
+        },
+        "exceptions": {
+          "type": "integer"
+        }
+      }
+    },
+    "rollback_point": {
+      "type": "string"
+    }
+  }
+}

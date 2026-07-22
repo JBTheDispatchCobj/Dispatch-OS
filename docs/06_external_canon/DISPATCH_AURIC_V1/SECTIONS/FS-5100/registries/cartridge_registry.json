@@ -1,0 +1,207 @@
+{
+  "section_id": "FS-5100",
+  "aliases": [
+    "FS-5000"
+  ],
+  "count": 11,
+  "entries": [
+    {
+      "id": "FS-4001",
+      "name": "Banking",
+      "namespace": "dispatch.domains",
+      "version": "1.0",
+      "file": "FS-4001_BANKING.cartridge.json",
+      "status": "production_manifest",
+      "dependencies": [
+        "objects.registry.json",
+        "workflows.registry.json",
+        "agents.registry.json",
+        "kpis.registry.json",
+        "dashboards.registry.json",
+        "relationships.registry.json",
+        "evidence.registry.json",
+        "approvals.registry.json"
+      ]
+    },
+    {
+      "id": "FS-4002",
+      "name": "Credit Unions",
+      "namespace": "dispatch.domains",
+      "version": "1.0",
+      "file": "FS-4002_CREDIT_UNIONS.cartridge.json",
+      "status": "production_manifest",
+      "dependencies": [
+        "objects.registry.json",
+        "workflows.registry.json",
+        "agents.registry.json",
+        "kpis.registry.json",
+        "dashboards.registry.json",
+        "relationships.registry.json",
+        "evidence.registry.json",
+        "approvals.registry.json"
+      ]
+    },
+    {
+      "id": "FS-4003",
+      "name": "Commercial Banking",
+      "namespace": "dispatch.domains",
+      "version": "1.0",
+      "file": "FS-4003_COMMERCIAL_BANKING.cartridge.json",
+      "status": "production_manifest",
+      "dependencies": [
+        "objects.registry.json",
+        "workflows.registry.json",
+        "agents.registry.json",
+        "kpis.registry.json",
+        "dashboards.registry.json",
+        "relationships.registry.json",
+        "evidence.registry.json",
+        "approvals.registry.json"
+      ]
+    },
+    {
+      "id": "FS-4004",
+      "name": "Mortgage",
+      "namespace": "dispatch.domains",
+      "version": "1.0",
+      "file": "FS-4004_MORTGAGE.cartridge.json",
+      "status": "production_manifest",
+      "dependencies": [
+        "objects.registry.json",
+        "workflows.registry.json",
+        "agents.registry.json",
+        "kpis.registry.json",
+        "dashboards.registry.json",
+        "relationships.registry.json",
+        "evidence.registry.json",
+        "approvals.registry.json"
+      ]
+    },
+    {
+      "id": "FS-4007",
+      "name": "Venture Capital",
+      "namespace": "dispatch.domains",
+      "version": "1.0",
+      "file": "FS-4007_VENTURE_CAPITAL.cartridge.json",
+      "status": "production_manifest",
+      "dependencies": [
+        "objects.registry.json",
+        "workflows.registry.json",
+        "agents.registry.json",
+        "kpis.registry.json",
+        "dashboards.registry.json",
+        "relationships.registry.json",
+        "evidence.registry.json",
+        "approvals.registry.json"
+      ]
+    },
+    {
+      "id": "FS-4008",
+      "name": "Capital Markets",
+      "namespace": "dispatch.domains",
+      "version": "1.0",
+      "file": "FS-4008_CAPITAL_MARKETS.cartridge.json",
+      "status": "release_complete",
+      "dependencies": [
+        "objects.registry.json",
+        "workflows.registry.json",
+        "agents.registry.json",
+        "kpis.registry.json",
+        "dashboards.registry.json",
+        "relationships.registry.json",
+        "evidence.registry.json",
+        "approvals.registry.json"
+      ]
+    },
+    {
+      "id": "FS-4009",
+      "name": "Wealth Management",
+      "namespace": "dispatch.domains",
+      "version": "1.0",
+      "file": "FS-4009_WEALTH_MANAGEMENT.cartridge.json",
+      "status": "production_manifest",
+      "dependencies": [
+        "objects.registry.json",
+        "workflows.registry.json",
+        "agents.registry.json",
+        "kpis.registry.json",
+        "dashboards.registry.json",
+        "relationships.registry.json",
+        "evidence.registry.json",
+        "approvals.registry.json"
+      ]
+    },
+    {
+      "id": "FS-4010",
+      "name": "Insurance",
+      "namespace": "dispatch.domains",
+      "version": "1.0",
+      "file": "FS-4010_INSURANCE.cartridge.json",
+      "status": "production_manifest",
+      "dependencies": [
+        "objects.registry.json",
+        "workflows.registry.json",
+        "agents.registry.json",
+        "kpis.registry.json",
+        "dashboards.registry.json",
+        "relationships.registry.json",
+        "evidence.registry.json",
+        "approvals.registry.json"
+      ]
+    },
+    {
+      "id": "FS-4011",
+      "name": "Construction Finance",
+      "namespace": "dispatch.domains",
+      "version": "1.0",
+      "file": "FS-4011_CONSTRUCTION_FINANCE.cartridge.json",
+      "status": "production_manifest",
+      "dependencies": [
+        "objects.registry.json",
+        "workflows.registry.json",
+        "agents.registry.json",
+        "kpis.registry.json",
+        "dashboards.registry.json",
+        "relationships.registry.json",
+        "evidence.registry.json",
+        "approvals.registry.json"
+      ]
+    },
+    {
+      "id": "FS-4012",
+      "name": "Manufacturing Finance",
+      "namespace": "dispatch.domains",
+      "version": "1.0",
+      "file": "FS-4012_MANUFACTURING_FINANCE.cartridge.json",
+      "status": "production_manifest",
+      "dependencies": [
+        "objects.registry.json",
+        "workflows.registry.json",
+        "agents.registry.json",
+        "kpis.registry.json",
+        "dashboards.registry.json",
+        "relationships.registry.json",
+        "evidence.registry.json",
+        "approvals.registry.json"
+      ]
+    },
+    {
+      "id": "FS-4013",
+      "name": "Healthcare Finance",
+      "namespace": "dispatch.domains",
+      "version": "1.0",
+      "file": "FS-4013_HEALTHCARE_FINANCE.cartridge.json",
+      "status": "production_manifest",
+      "dependencies": [
+        "objects.registry.json",
+        "workflows.registry.json",
+        "agents.registry.json",
+        "kpis.registry.json",
+        "dashboards.registry.json",
+        "relationships.registry.json",
+        "evidence.registry.json",
+        "approvals.registry.json"
+      ]
+    }
+  ]
+}

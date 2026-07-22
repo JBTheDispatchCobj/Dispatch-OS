@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.dispatch.local/fs12000/ai_use_case.schema.json",
+  "title": "AIUseCase",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "tenant_id",
+    "name",
+    "purpose",
+    "data_classes",
+    "model_route",
+    "risk_tier",
+    "human_authority",
+    "prohibited_actions",
+    "evaluation_plan",
+    "approval_refs",
+    "status",
+    "version"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tenant_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "classification": {
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "restricted"
+      ]
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "approval_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "data_classes": {
+      "type": "array"
+    },
+    "model_route": {
+      "type": "string"
+    },
+    "risk_tier": {
+      "enum": [
+        "low",
+        "moderate",
+        "high",
+        "prohibited"
+      ]
+    },
+    "human_authority": {
+      "type": "object"
+    },
+    "prohibited_actions": {
+      "type": "array"
+    },
+    "evaluation_plan": {
+      "type": "object"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "active",
+        "under_review",
+        "approved",
+        "suspended",
+        "retired"
+      ]
+    }
+  }
+}

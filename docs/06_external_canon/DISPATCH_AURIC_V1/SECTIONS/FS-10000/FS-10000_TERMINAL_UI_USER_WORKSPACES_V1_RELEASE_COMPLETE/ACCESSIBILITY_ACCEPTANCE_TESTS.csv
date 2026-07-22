@@ -1,0 +1,9 @@
+test_id,requirement,expected_result,severity
+A11Y-001,Complete primary journeys with keyboard only,No trap; visible focus; logical order,critical
+A11Y-002,"Screen reader announces route, heading and dynamic status",Correct landmarks and live regions,critical
+A11Y-003,Text and controls meet contrast requirements,WCAG 2.2 AA,critical
+A11Y-004,Zoom to 200 percent,No loss of content or function,high
+A11Y-005,Errors identify field and correction,Programmatic association present,high
+A11Y-006,Graphs have textual alternatives,Equivalent table or summary available,high
+A11Y-007,Motion respects reduced-motion preference,Nonessential animation disabled,medium
+A11Y-008,Touch targets meet minimum size,All primary controls usable,high

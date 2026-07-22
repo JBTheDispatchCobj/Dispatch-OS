@@ -1,0 +1,870 @@
+{
+  "manifest_name": "FS-4010_INSURANCE.cartridge.json",
+  "version": "1.0",
+  "owner": "Auric Works",
+  "product": "Dispatch / Auric Institutional Intelligence Network",
+  "created_at": "2026-07-21T21:37:36.261282",
+  "domain_id": "FS-4010",
+  "domain_name": "Insurance",
+  "source_volume": "FS-4010_INSURANCE_OPERATING_FRAMEWORK_V1.zip",
+  "purpose": "Deployable cartridge manifest for insurance distribution, underwriting support, policy administration, claims, renewals, commissions, licensing, compliance, and credit union/bank insurance integration.",
+  "cartridge_type": "domain_operating_cartridge",
+  "status": "production_manifest",
+  "strategic_lens": "Insurance is a governed risk-transfer operating system connecting customers, risks, carriers, producers, coverages, premiums, claims, compliance obligations, and relationship economics.",
+  "primary_objects": [
+    {
+      "object": "Carrier",
+      "role": "Risk-bearing organization issuing policies and paying covered claims.",
+      "required_fields": [
+        "carrier_id",
+        "name",
+        "lines",
+        "ratings",
+        "states",
+        "products",
+        "appointments",
+        "claims_capability",
+        "financial_strength"
+      ]
+    },
+    {
+      "object": "Agency",
+      "role": "Distribution organization managing producers, carrier relationships, books, and compliance.",
+      "required_fields": [
+        "agency_id",
+        "name",
+        "structure",
+        "carriers",
+        "producers",
+        "licenses",
+        "appointments",
+        "book_of_business",
+        "compliance_status"
+      ]
+    },
+    {
+      "object": "Producer",
+      "role": "Licensed individual authorized to sell, solicit, or negotiate insurance.",
+      "required_fields": [
+        "producer_id",
+        "name",
+        "licenses",
+        "states",
+        "appointments",
+        "product_authority",
+        "production",
+        "training_status",
+        "compliance_status"
+      ]
+    },
+    {
+      "object": "Policyholder",
+      "role": "Household, individual, or business owning insurance coverage.",
+      "required_fields": [
+        "policyholder_id",
+        "name",
+        "type",
+        "risk_profile",
+        "policies",
+        "claims_history",
+        "premium_history",
+        "renewal_dates",
+        "protection_gaps"
+      ]
+    },
+    {
+      "object": "Policy",
+      "role": "Insurance contract linking carrier, insured, coverage, premium, exclusions, and claims rights.",
+      "required_fields": [
+        "policy_id",
+        "policy_number",
+        "carrier",
+        "policyholder",
+        "insured",
+        "product_type",
+        "coverage",
+        "limits",
+        "deductibles",
+        "effective_date",
+        "expiration_date",
+        "premium",
+        "status"
+      ]
+    },
+    {
+      "object": "Coverage",
+      "role": "Specific protection, limit, deductible, rider, endorsement, or exclusion.",
+      "required_fields": [
+        "coverage_id",
+        "policy",
+        "coverage_type",
+        "limit",
+        "deductible",
+        "riders",
+        "endorsements",
+        "exclusions"
+      ]
+    },
+    {
+      "object": "Premium",
+      "role": "Policy billing and earned/unearned premium object.",
+      "required_fields": [
+        "premium_id",
+        "policy",
+        "amount",
+        "frequency",
+        "due_date",
+        "paid_date",
+        "status",
+        "billing_mode",
+        "earned_premium",
+        "unearned_premium"
+      ]
+    },
+    {
+      "object": "Commission",
+      "role": "Producer, agency, referral, override, trail, and chargeback economics.",
+      "required_fields": [
+        "commission_id",
+        "policy",
+        "producer",
+        "agency",
+        "carrier",
+        "premium",
+        "rate",
+        "amount",
+        "split",
+        "override",
+        "payment_date",
+        "chargeback"
+      ]
+    },
+    {
+      "object": "Claim",
+      "role": "Loss notice, investigation, reserve, adjudication, payment, denial, and recovery object.",
+      "required_fields": [
+        "claim_id",
+        "policy",
+        "claimant",
+        "loss_date",
+        "loss_type",
+        "coverage_status",
+        "adjuster",
+        "reserve",
+        "paid_amount",
+        "status",
+        "documents"
+      ]
+    },
+    {
+      "object": "Referral",
+      "role": "Institutional or partner-originated insurance opportunity with consent, attribution, and outcome.",
+      "required_fields": [
+        "referral_id",
+        "source_institution",
+        "source_person",
+        "customer",
+        "insurance_need",
+        "producer",
+        "status",
+        "consent",
+        "disclosure_required",
+        "outcome"
+      ]
+    },
+    {
+      "object": "License",
+      "role": "Producer authority by jurisdiction and line of authority.",
+      "required_fields": [
+        "license_id",
+        "producer",
+        "state",
+        "line_of_authority",
+        "issue_date",
+        "expiration_date",
+        "CE_status",
+        "status"
+      ]
+    },
+    {
+      "object": "Appointment",
+      "role": "Carrier authorization for producer or agency.",
+      "required_fields": [
+        "appointment_id",
+        "producer_or_agency",
+        "carrier",
+        "state",
+        "product_authority",
+        "effective_date",
+        "status"
+      ]
+    }
+  ],
+  "supported_workflows": [
+    {
+      "workflow": "Risk Discovery",
+      "description": "Identify household, business, income, liability, collateral, estate, and continuity risks.",
+      "required_objects": [
+        "Policyholder",
+        "RiskProfile",
+        "Policy",
+        "Coverage"
+      ],
+      "outputs": [
+        "Protection gap summary",
+        "Product category recommendations",
+        "Referral or quote task"
+      ],
+      "approval_gates": [
+        "licensed_producer_review_before_recommendation"
+      ]
+    },
+    {
+      "workflow": "Quote-to-Bind",
+      "description": "Route discovery, quote, application, underwriting, proposal, approval, and policy issuance.",
+      "required_objects": [
+        "Policyholder",
+        "Quote",
+        "Application",
+        "UnderwritingFile",
+        "Policy"
+      ],
+      "outputs": [
+        "Quote comparison",
+        "Application package",
+        "Bound policy"
+      ],
+      "approval_gates": [
+        "licensed_producer_approval",
+        "carrier_underwriting_approval",
+        "customer_acceptance"
+      ]
+    },
+    {
+      "workflow": "Policy Issuance",
+      "description": "Issue policy, collect premium, deliver documents, and preserve coverage evidence.",
+      "required_objects": [
+        "Policy",
+        "Premium",
+        "Coverage",
+        "Document"
+      ],
+      "outputs": [
+        "Issued policy",
+        "Delivery evidence",
+        "Billing setup"
+      ],
+      "approval_gates": [
+        "carrier_or_authorized_agency_approval"
+      ]
+    },
+    {
+      "workflow": "Renewal Review",
+      "description": "Review exposures, claims, coverage, carrier terms, premium, and retention risk.",
+      "required_objects": [
+        "Policy",
+        "Renewal",
+        "Claim",
+        "Coverage"
+      ],
+      "outputs": [
+        "Renewal comparison",
+        "Coverage gap summary",
+        "Client review package"
+      ],
+      "approval_gates": [
+        "licensed_producer_review"
+      ]
+    },
+    {
+      "workflow": "Endorsement",
+      "description": "Process policy changes, coverage updates, endorsements, and premium impacts.",
+      "required_objects": [
+        "Policy",
+        "Endorsement",
+        "Coverage",
+        "Premium"
+      ],
+      "outputs": [
+        "Approved endorsement",
+        "Updated policy evidence",
+        "Premium change"
+      ],
+      "approval_gates": [
+        "carrier_or_authorized_agency_approval"
+      ]
+    },
+    {
+      "workflow": "Claim",
+      "description": "Intake loss, review coverage, investigate, reserve, adjudicate, pay or deny, and close.",
+      "required_objects": [
+        "Claim",
+        "Policy",
+        "Coverage",
+        "Evidence"
+      ],
+      "outputs": [
+        "Claim file",
+        "Status summary",
+        "Payment or denial package",
+        "Closure record"
+      ],
+      "approval_gates": [
+        "authorized_claims_owner",
+        "legal_or_compliance_review_if_denial_or_dispute"
+      ]
+    },
+    {
+      "workflow": "Commission Reconciliation",
+      "description": "Match policy, premium, producer, agency, referral source, carrier statement, and payout.",
+      "required_objects": [
+        "Commission",
+        "Premium",
+        "Policy",
+        "Producer"
+      ],
+      "outputs": [
+        "Reconciliation report",
+        "Exception queue",
+        "Producer payout file"
+      ],
+      "approval_gates": [
+        "finance_or_operations_approval"
+      ]
+    },
+    {
+      "workflow": "Producer Licensing",
+      "description": "Verify license, appointment, CE, training, and product authority before activity.",
+      "required_objects": [
+        "Producer",
+        "License",
+        "Appointment",
+        "TrainingRecord"
+      ],
+      "outputs": [
+        "Authority status",
+        "Exception list",
+        "Renewal tasks"
+      ],
+      "approval_gates": [
+        "insurance_compliance_approval"
+      ]
+    },
+    {
+      "workflow": "Credit Union / Bank Insurance Referral",
+      "description": "Detect protection need, capture consent, route referral, track outcome, and attribute economics.",
+      "required_objects": [
+        "CustomerOrMember",
+        "Referral",
+        "InsuranceOpportunity",
+        "Producer"
+      ],
+      "outputs": [
+        "Referral brief",
+        "Consent/disclosure record",
+        "Outcome and revenue attribution"
+      ],
+      "approval_gates": [
+        "referral_compliance_review",
+        "licensed_producer_review"
+      ]
+    }
+  ],
+  "allowed_agents": [
+    {
+      "agent": "Insurance Opportunity Agent",
+      "allowed_actions": [
+        "detect_referral_triggers",
+        "identify_product_categories",
+        "prepare_opportunity_brief",
+        "route_referral"
+      ],
+      "prohibited_actions": [
+        "recommend_specific_policy_without_license",
+        "bind_coverage",
+        "make_final_suitability_determination"
+      ]
+    },
+    {
+      "agent": "Coverage Gap Agent",
+      "allowed_actions": [
+        "summarize_existing_coverage",
+        "identify_unaddressed_risks",
+        "prepare_review_checklist"
+      ],
+      "prohibited_actions": [
+        "issue_final_recommendation",
+        "represent_policy_terms_without_source"
+      ]
+    },
+    {
+      "agent": "Quote Prep Agent",
+      "allowed_actions": [
+        "collect_application_inputs",
+        "prepare_carrier_ready_summary",
+        "compare_quoted_terms",
+        "flag_missing_evidence"
+      ],
+      "prohibited_actions": [
+        "submit_without_authorization",
+        "bind_policy",
+        "alter_carrier_terms"
+      ]
+    },
+    {
+      "agent": "Renewal Review Agent",
+      "allowed_actions": [
+        "summarize_claims_and_exposures",
+        "compare_current_and_renewal_terms",
+        "flag_lapse_or_retention_risk"
+      ],
+      "prohibited_actions": [
+        "accept_renewal",
+        "change_coverage",
+        "commit_to_customer"
+      ]
+    },
+    {
+      "agent": "Claim Intake Agent",
+      "allowed_actions": [
+        "capture_loss_notice",
+        "classify_claim",
+        "prepare_evidence_checklist",
+        "draft_status_update"
+      ],
+      "prohibited_actions": [
+        "approve_payment",
+        "deny_claim",
+        "make_final_coverage_determination"
+      ]
+    },
+    {
+      "agent": "Commission Reconciliation Agent",
+      "allowed_actions": [
+        "match_statements_to_policies",
+        "calculate_splits",
+        "identify_chargebacks",
+        "draft_exception_report"
+      ],
+      "prohibited_actions": [
+        "release_payment_without_approval",
+        "change_compensation_terms"
+      ]
+    },
+    {
+      "agent": "Licensing Monitor",
+      "allowed_actions": [
+        "track_license_expiration",
+        "track_CE",
+        "verify_appointment_status",
+        "flag_unauthorized_activity"
+      ],
+      "prohibited_actions": [
+        "grant_authority",
+        "override_license_requirement"
+      ]
+    },
+    {
+      "agent": "Suitability Review Agent",
+      "allowed_actions": [
+        "check_required_factors",
+        "identify_missing_rationale",
+        "prepare_supervisory_review package"
+      ],
+      "prohibited_actions": [
+        "make_final_suitability_determination",
+        "approve_replacement",
+        "approve_annuity_sale"
+      ]
+    }
+  ],
+  "required_evidence": {
+    "risk_discovery": [
+      "customer_or_business_profile",
+      "existing_policy_summary",
+      "risk_inputs",
+      "consent_status"
+    ],
+    "quote_to_bind": [
+      "application",
+      "quote",
+      "carrier_terms",
+      "underwriting_evidence",
+      "customer_acceptance",
+      "producer_authority"
+    ],
+    "policy_issuance": [
+      "issued_policy",
+      "coverage_summary",
+      "premium_confirmation",
+      "delivery_confirmation"
+    ],
+    "renewal_review": [
+      "current_policy",
+      "renewal_terms",
+      "claims_history",
+      "exposure_update",
+      "producer_review"
+    ],
+    "claim": [
+      "loss_notice",
+      "policy",
+      "coverage_analysis",
+      "investigation_evidence",
+      "reserve_record",
+      "payment_or_denial_approval"
+    ],
+    "commission": [
+      "carrier_statement",
+      "policy",
+      "premium_record",
+      "producer_split",
+      "referral_attribution",
+      "reconciliation_approval"
+    ],
+    "licensing": [
+      "producer_license",
+      "appointment",
+      "CE_record",
+      "product_training",
+      "authority_status"
+    ],
+    "institutional_referral": [
+      "member_or_customer_profile",
+      "trigger_signal",
+      "consent",
+      "referral_disclosure",
+      "producer_assignment",
+      "outcome"
+    ]
+  },
+  "approval_gates": {
+    "specific_product_recommendation": [
+      "licensed_insurance_owner",
+      "compliance_owner_if_required"
+    ],
+    "policy_binding": [
+      "licensed_insurance_owner",
+      "carrier_or_authorized_agency"
+    ],
+    "annuity_or_replacement": [
+      "licensed_insurance_owner",
+      "supervisory_or_compliance_owner"
+    ],
+    "claim_payment_or_denial": [
+      "authorized_claims_owner",
+      "legal_or_compliance_if_disputed"
+    ],
+    "commission_payout": [
+      "finance_or_operations_owner"
+    ],
+    "producer_authority": [
+      "insurance_compliance_owner"
+    ],
+    "bank_or_CU_referral_program": [
+      "business_owner",
+      "compliance_owner",
+      "licensed_insurance_owner"
+    ]
+  },
+  "dashboards": [
+    {
+      "dashboard": "Insurance Executive Dashboard",
+      "primary_kpis": [
+        "premium",
+        "commission",
+        "policies_issued",
+        "renewal_rate",
+        "loss_ratio"
+      ]
+    },
+    {
+      "dashboard": "Agency Dashboard",
+      "primary_kpis": [
+        "policy_count",
+        "premium",
+        "commission_revenue",
+        "producer_productivity",
+        "retention"
+      ]
+    },
+    {
+      "dashboard": "Producer Dashboard",
+      "primary_kpis": [
+        "referrals",
+        "quotes",
+        "applications",
+        "policies_issued",
+        "quote_to_bind",
+        "licenses_current"
+      ]
+    },
+    {
+      "dashboard": "Referral Dashboard",
+      "primary_kpis": [
+        "referrals",
+        "referral_conversion",
+        "expected_premium",
+        "commission",
+        "outcome"
+      ]
+    },
+    {
+      "dashboard": "Policyholder Dashboard",
+      "primary_kpis": [
+        "policy_count",
+        "in_force_premium",
+        "renewal_rate",
+        "claims_count",
+        "protection_gaps"
+      ]
+    },
+    {
+      "dashboard": "Renewal Dashboard",
+      "primary_kpis": [
+        "renewals_due",
+        "renewal_rate",
+        "premium_change",
+        "coverage_changes",
+        "lapse_risk"
+      ]
+    },
+    {
+      "dashboard": "Claims Dashboard",
+      "primary_kpis": [
+        "claims_count",
+        "claims_frequency",
+        "claims_severity",
+        "loss_ratio",
+        "time_to_close",
+        "reserve_accuracy"
+      ]
+    },
+    {
+      "dashboard": "Commission Dashboard",
+      "primary_kpis": [
+        "commission_revenue",
+        "renewal_commission",
+        "chargebacks",
+        "reconciliation_exceptions",
+        "payout_accuracy"
+      ]
+    },
+    {
+      "dashboard": "Insurance Compliance Dashboard",
+      "primary_kpis": [
+        "licenses_current",
+        "appointments_current",
+        "CE_completion",
+        "suitability_exceptions",
+        "complaints"
+      ]
+    },
+    {
+      "dashboard": "Credit Union / Bank Insurance Dashboard",
+      "primary_kpis": [
+        "insurance_referrals",
+        "referral_conversion",
+        "premium",
+        "commission",
+        "non_interest_income",
+        "protection_gaps_closed"
+      ]
+    }
+  ],
+  "kpis": [
+    "referrals",
+    "referral_conversion",
+    "quotes",
+    "applications",
+    "policies_issued",
+    "quote_to_bind",
+    "premium",
+    "commission",
+    "cross_sell",
+    "producer_productivity",
+    "policy_count",
+    "in_force_premium",
+    "renewal_rate",
+    "retention",
+    "lapse_rate",
+    "cancellations",
+    "reinstatements",
+    "endorsements",
+    "claims_count",
+    "claims_frequency",
+    "claims_severity",
+    "loss_ratio",
+    "time_to_contact",
+    "time_to_close",
+    "reserve_accuracy",
+    "denied_claims",
+    "reopened_claims",
+    "subrogation_recovery",
+    "licenses_current",
+    "appointments_current",
+    "CE_completion",
+    "suitability_exceptions",
+    "replacement_exceptions",
+    "complaints",
+    "earned_premium",
+    "unearned_premium",
+    "renewal_commission",
+    "chargebacks",
+    "billing_exceptions",
+    "producer_payout_accuracy"
+  ],
+  "relationships": [
+    {
+      "source": "Carrier",
+      "relationship": "ISSUES",
+      "target": "Policy"
+    },
+    {
+      "source": "Producer",
+      "relationship": "SELLS",
+      "target": "Policy"
+    },
+    {
+      "source": "Agency",
+      "relationship": "CONTRACTS_WITH",
+      "target": "Carrier"
+    },
+    {
+      "source": "Policyholder",
+      "relationship": "OWNS",
+      "target": "Policy"
+    },
+    {
+      "source": "Insured",
+      "relationship": "COVERED_BY",
+      "target": "Policy"
+    },
+    {
+      "source": "Claim",
+      "relationship": "FILED_UNDER",
+      "target": "Policy"
+    },
+    {
+      "source": "Premium",
+      "relationship": "PAID_FOR",
+      "target": "Policy"
+    },
+    {
+      "source": "Commission",
+      "relationship": "GENERATED_BY",
+      "target": "Premium"
+    },
+    {
+      "source": "Referral",
+      "relationship": "SOURCED_BY",
+      "target": "Institution"
+    },
+    {
+      "source": "License",
+      "relationship": "AUTHORIZES",
+      "target": "Producer"
+    }
+  ],
+  "router_examples": [
+    {
+      "user_request": "Find insurance opportunities in this member base.",
+      "route_to_workflow": "Credit Union / Bank Insurance Referral",
+      "required_objects": [
+        "Member",
+        "Policyholder",
+        "Referral",
+        "InsuranceOpportunity"
+      ],
+      "agents": [
+        "Insurance Opportunity Agent",
+        "Coverage Gap Agent"
+      ],
+      "outputs": [
+        "Opportunity list",
+        "Referral tasks",
+        "Consent/disclosure checklist"
+      ]
+    },
+    {
+      "user_request": "Prepare this client for an insurance review.",
+      "route_to_workflow": "Risk Discovery",
+      "required_objects": [
+        "Policyholder",
+        "Policy",
+        "Coverage",
+        "RiskProfile"
+      ],
+      "agents": [
+        "Coverage Gap Agent",
+        "Insurance Opportunity Agent"
+      ],
+      "outputs": [
+        "Coverage summary",
+        "Protection gap checklist",
+        "Producer review package"
+      ]
+    },
+    {
+      "user_request": "Reconcile the carrier commission statement.",
+      "route_to_workflow": "Commission Reconciliation",
+      "required_objects": [
+        "Commission",
+        "Premium",
+        "Policy",
+        "Producer"
+      ],
+      "agents": [
+        "Commission Reconciliation Agent"
+      ],
+      "outputs": [
+        "Reconciliation report",
+        "Exception queue",
+        "Payout file for approval"
+      ]
+    },
+    {
+      "user_request": "Check whether this producer can sell this product in this state.",
+      "route_to_workflow": "Producer Licensing",
+      "required_objects": [
+        "Producer",
+        "License",
+        "Appointment",
+        "TrainingRecord"
+      ],
+      "agents": [
+        "Licensing Monitor"
+      ],
+      "outputs": [
+        "Authority status",
+        "Missing requirements",
+        "Escalation task"
+      ]
+    }
+  ],
+  "integration_dependencies": [
+    "objects.registry.json",
+    "workflows.registry.json",
+    "agents.registry.json",
+    "kpis.registry.json",
+    "dashboards.registry.json",
+    "relationships.registry.json",
+    "evidence.registry.json",
+    "approvals.registry.json"
+  ],
+  "acceptance_tests": [
+    "Can create carrier, agency, producer, policyholder, policy, coverage, premium, commission, claim, referral, license, and appointment objects.",
+    "Can identify protection gaps without issuing an unlicensed recommendation.",
+    "Can route quote-to-bind and enforce producer/carrier approval gates.",
+    "Can monitor renewals, lapses, coverage changes, and retention risk.",
+    "Can create a claim intake file without approving payment or denial.",
+    "Can reconcile carrier commission statements and flag exceptions.",
+    "Can verify producer licensing, appointment, CE, and product authority.",
+    "Can route credit union or bank insurance opportunities with consent, disclosures, and attribution.",
+    "Can link regulated outputs to source evidence and audit trail."
+  ],
+  "section_id": "FS-5100",
+  "section_aliases": [
+    "FS-5000"
+  ]
+}

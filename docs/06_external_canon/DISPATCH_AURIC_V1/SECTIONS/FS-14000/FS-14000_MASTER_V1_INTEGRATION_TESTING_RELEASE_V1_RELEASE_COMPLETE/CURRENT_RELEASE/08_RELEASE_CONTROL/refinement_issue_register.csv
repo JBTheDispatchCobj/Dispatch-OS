@@ -1,0 +1,5 @@
+issue_id,section,artifact,missing_component,severity,dependency,owner,target,status,evidence,approval
+REF-14000-001,FS-14000,Baseline package,machine-readable artifacts,high,none,Architecture,V1 docs,closed,included schemas/registries/contracts,Release
+REF-14000-002,FS-14000,Baseline package,fixtures and executable test definitions,high,FS-7000,QA,V1 docs,closed,fixture and test folders,Release
+REF-14000-003,FS-14000,Baseline package,security/readiness gates,high,FS-12000/13000,Security/Ops,V1 docs,closed,gate templates,Release
+REF-14000-004,FS-14000,Baseline package,manifest/checksum/validation,critical,all,Release,V1 docs,closed,release control artifacts,Release

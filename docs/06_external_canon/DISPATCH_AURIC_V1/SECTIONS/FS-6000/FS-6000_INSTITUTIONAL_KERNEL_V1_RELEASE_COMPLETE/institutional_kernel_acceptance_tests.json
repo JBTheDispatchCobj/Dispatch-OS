@@ -1,0 +1,81 @@
+{
+  "version": "1.0.0",
+  "tests": [
+    {
+      "test_id": "IK-T-001",
+      "area": "institution schema",
+      "case": "valid CU fixture",
+      "expected": "passes"
+    },
+    {
+      "test_id": "IK-T-002",
+      "area": "institution schema",
+      "case": "missing legal_name",
+      "expected": "fails required field validation"
+    },
+    {
+      "test_id": "IK-T-003",
+      "area": "executive authority",
+      "case": "expired authority attempts approval",
+      "expected": "approval blocked"
+    },
+    {
+      "test_id": "IK-T-004",
+      "area": "router",
+      "case": "fintech pilot request",
+      "expected": "routes to WF-FINTECH-PILOT with security/compliance gates"
+    },
+    {
+      "test_id": "IK-T-005",
+      "area": "evidence",
+      "case": "agent-generated draft offered as source evidence",
+      "expected": "rejected as source evidence"
+    },
+    {
+      "test_id": "IK-T-006",
+      "area": "evidence",
+      "case": "stale evidence for time-bound exam request",
+      "expected": "gap exception created"
+    },
+    {
+      "test_id": "IK-T-007",
+      "area": "opportunity",
+      "case": "prohibited activity signal",
+      "expected": "opportunity disqualified"
+    },
+    {
+      "test_id": "IK-T-008",
+      "area": "tenant isolation",
+      "case": "private vendor contract queried by another tenant",
+      "expected": "not returned"
+    },
+    {
+      "test_id": "IK-T-009",
+      "area": "audit",
+      "case": "conditional approval condition satisfied",
+      "expected": "task and closure audit events recorded"
+    },
+    {
+      "test_id": "IK-T-010",
+      "area": "readiness",
+      "case": "unknown integration evidence",
+      "expected": "confidence reduced; unknown not converted to score 1"
+    },
+    {
+      "test_id": "IK-T-011",
+      "area": "identity",
+      "case": "two executives share same name",
+      "expected": "no automatic merge"
+    },
+    {
+      "test_id": "IK-T-012",
+      "area": "versioning",
+      "case": "material institution field changes",
+      "expected": "prior version preserved and event published"
+    }
+  ],
+  "release_gate": {
+    "all_required": true,
+    "critical_failures_allowed": 0
+  }
+}

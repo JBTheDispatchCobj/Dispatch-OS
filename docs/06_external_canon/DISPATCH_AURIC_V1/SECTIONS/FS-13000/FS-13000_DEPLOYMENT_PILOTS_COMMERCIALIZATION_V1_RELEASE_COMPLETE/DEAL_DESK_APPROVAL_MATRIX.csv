@@ -1,0 +1,6 @@
+condition,reviewers,required_evidence,decision
+standard package within guardrails,commercial owner; delivery owner,scope; cost; capacity,approve
+discount below floor,finance; executive,margin model; rationale; term,approve or reject
+custom development,product; engineering; delivery,requirements; estimate; reuse plan,"approve, defer or reject"
+restricted data or production write,security; legal; tenant authority,data flow; controls; approvals,approve with controls or reject
+transaction compensation,legal; compliance; executive,jurisdiction; licenses; role; disclosures,approve only when permitted

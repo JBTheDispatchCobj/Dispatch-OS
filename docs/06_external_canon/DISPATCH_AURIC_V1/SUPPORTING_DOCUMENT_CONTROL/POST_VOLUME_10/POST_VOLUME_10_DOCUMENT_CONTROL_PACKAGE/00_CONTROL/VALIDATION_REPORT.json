@@ -1,0 +1,18 @@
+{
+  "package": "POST_VOLUME_10_DOCUMENT_CONTROL_PACKAGE",
+  "validation_date": "2026-07-22",
+  "status": "PASS",
+  "files_indexed": 124,
+  "fs4000_reconciliation": {
+    "removed_active_derivatives": 19,
+    "original_sources_preserved": true,
+    "register": "00_CONTROL/FS4000_REDUNDANCY_RECONCILIATION.csv"
+  },
+  "checks": {
+    "required_control_files_present": true,
+    "csv_parse": true,
+    "json_parse": true,
+    "original_sources_preserved": true,
+    "removed_derivatives_absent": true
+  }
+}

@@ -1,0 +1,57 @@
+[
+  {
+    "file": "FS-4001_BANKING.cartridge.json",
+    "path": "/mnt/data/FS-5100_CARTRIDGE_MANIFESTS/FS-4001_BANKING.cartridge.json",
+    "sha256": "2fa65fc72a3e0df669207768a11a9a9e5c0995eb9e67b054b497048a22e9b108"
+  },
+  {
+    "file": "FS-4002_CREDIT_UNIONS.cartridge.json",
+    "path": "/mnt/data/FS-5100_CARTRIDGE_MANIFESTS/FS-4002_CREDIT_UNIONS.cartridge.json",
+    "sha256": "18f192ca55dd64710e81637583e895efc80d7cb8ca42090555965f91c191b235"
+  },
+  {
+    "file": "FS-4003_COMMERCIAL_BANKING.cartridge.json",
+    "path": "/mnt/data/FS-5100_CARTRIDGE_MANIFESTS/FS-4003_COMMERCIAL_BANKING.cartridge.json",
+    "sha256": "8509a3387df56a7320525b63fe00cfcc477864dbb8dbfc6b8966719c0adc08fb"
+  },
+  {
+    "file": "FS-4004_MORTGAGE.cartridge.json",
+    "path": "/mnt/data/FS-5100_CARTRIDGE_MANIFESTS/FS-4004_MORTGAGE.cartridge.json",
+    "sha256": "52df24b71c859ff68dde463507911a6057934f0963669f4e4d1f47816e13c83b"
+  },
+  {
+    "file": "FS-4007_VENTURE_CAPITAL.cartridge.json",
+    "path": "/mnt/data/FS-5100_CARTRIDGE_MANIFESTS/FS-4007_VENTURE_CAPITAL.cartridge.json",
+    "sha256": "69633647911324187adb07ec8f3347a1d4e6b05d31ccbd9493a6e371f3a4e683"
+  },
+  {
+    "file": "FS-4008_CAPITAL_MARKETS.cartridge.json",
+    "path": "/mnt/data/cm_out/FS-4008_CAPITAL_MARKETS.cartridge.json",
+    "sha256": "1f7e0c42cd31f055c29bfb07c08ad9cf0b9ad9da637e9e7095b4d6d197b0db92"
+  },
+  {
+    "file": "FS-4009_WEALTH_MANAGEMENT.cartridge.json",
+    "path": "/mnt/data/FS-5100_CARTRIDGE_MANIFESTS_REBUILT/FS-4009_WEALTH_MANAGEMENT.cartridge.json",
+    "sha256": "e44fd41da91d37aec65162188af0c895bba36cfa2c9702a89e50c63d22fbd0e5"
+  },
+  {
+    "file": "FS-4010_INSURANCE.cartridge.json",
+    "path": "/mnt/data/FS-5100_CARTRIDGE_MANIFESTS_V2/FS-4010_INSURANCE.cartridge.json",
+    "sha256": "ac6fb9e79f935b72dcefa225720b07d093f936a7b9eb066439f8e8728abf3a87"
+  },
+  {
+    "file": "FS-4011_CONSTRUCTION_FINANCE.cartridge.json",
+    "path": "/mnt/data/FS-5100_CARTRIDGE_MANIFESTS_FINAL/FS-4011_CONSTRUCTION_FINANCE.cartridge.json",
+    "sha256": "73b52ee051d697e9124a7b8cf9debfe5c63c44d805fdab3f6058ec18902c97b6"
+  },
+  {
+    "file": "FS-4012_MANUFACTURING_FINANCE.cartridge.json",
+    "path": "/mnt/data/FS-5100_CARTRIDGE_MANIFESTS_FINAL/FS-4012_MANUFACTURING_FINANCE.cartridge.json",
+    "sha256": "f00b802e39ac1ef0aa10e7f346c9993bce3888f1cf3f899dc261bdeba5d0f0ff"
+  },
+  {
+    "file": "FS-4013_HEALTHCARE_FINANCE.cartridge.json",
+    "path": "/mnt/data/FS-5100_CARTRIDGE_MANIFESTS_CONTINUED/FS-4013_HEALTHCARE_FINANCE.cartridge.json",
+    "sha256": "f166635ef3479540ad54d4dd7b3235c68871728e790eb5004664f1ddfc9de77b"
+  }
+]

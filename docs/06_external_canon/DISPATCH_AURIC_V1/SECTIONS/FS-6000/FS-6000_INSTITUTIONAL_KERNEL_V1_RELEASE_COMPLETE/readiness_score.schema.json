@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dispatch://schemas/readiness-score/1.0.0",
+  "title": "ReadinessScore",
+  "type": "object",
+  "required": [
+    "score_id",
+    "institution_id",
+    "subject_id",
+    "dimension",
+    "score",
+    "weight",
+    "confidence",
+    "reviewed_at"
+  ],
+  "properties": {
+    "score_id": {
+      "type": "string",
+      "pattern": "^READY-[0-9A-Z-]+$"
+    },
+    "institution_id": {
+      "type": "string"
+    },
+    "subject_id": {
+      "type": "string"
+    },
+    "dimension": {
+      "type": "string",
+      "enum": [
+        "product",
+        "compliance",
+        "integration",
+        "adoption",
+        "investment",
+        "data",
+        "security",
+        "governance",
+        "operations",
+        "vendor",
+        "financial",
+        "sponsor"
+      ]
+    },
+    "score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "weight": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "weighted_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "unknown"
+      ]
+    },
+    "reviewer_id": {
+      "type": "string"
+    },
+    "reviewed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "next_action": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

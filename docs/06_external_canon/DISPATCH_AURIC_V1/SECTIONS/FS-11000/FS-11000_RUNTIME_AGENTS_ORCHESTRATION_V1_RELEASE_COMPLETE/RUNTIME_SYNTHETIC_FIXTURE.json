@@ -1,0 +1,145 @@
+{
+  "fixture_id": "FIX-RT-EXAM-001",
+  "tenant_id": "TENANT-DEMO-CU",
+  "workflow_definition": {
+    "workflow_id": "WF-EXAM-RESPONSE",
+    "version": "1.0.0",
+    "name": "Exam Response and Evidence Binder",
+    "status": "active",
+    "trigger_types": [
+      "user_request",
+      "regulatory_request_received"
+    ],
+    "steps": [
+      {
+        "step_id": "intake",
+        "type": "intake",
+        "entry_conditions": [],
+        "exit_conditions": [],
+        "next_steps": [
+          "classify_requests"
+        ]
+      },
+      {
+        "step_id": "classify_requests",
+        "type": "validate",
+        "entry_conditions": [],
+        "exit_conditions": [],
+        "next_steps": [
+          "retrieve_evidence"
+        ]
+      },
+      {
+        "step_id": "retrieve_evidence",
+        "type": "retrieve",
+        "entry_conditions": [],
+        "exit_conditions": [],
+        "next_steps": [
+          "validate_gaps"
+        ]
+      },
+      {
+        "step_id": "validate_gaps",
+        "type": "validate",
+        "entry_conditions": [],
+        "exit_conditions": [],
+        "next_steps": [
+          "draft_response"
+        ]
+      },
+      {
+        "step_id": "draft_response",
+        "type": "draft",
+        "entry_conditions": [],
+        "exit_conditions": [],
+        "next_steps": [
+          "human_review"
+        ]
+      },
+      {
+        "step_id": "human_review",
+        "type": "review",
+        "entry_conditions": [],
+        "exit_conditions": [],
+        "next_steps": [
+          "approve"
+        ]
+      },
+      {
+        "step_id": "approve",
+        "type": "approve",
+        "entry_conditions": [],
+        "exit_conditions": [],
+        "next_steps": [
+          "lock_binder"
+        ]
+      },
+      {
+        "step_id": "lock_binder",
+        "type": "intake",
+        "entry_conditions": [],
+        "exit_conditions": [],
+        "next_steps": [
+          "close"
+        ]
+      },
+      {
+        "step_id": "close",
+        "type": "close",
+        "entry_conditions": [],
+        "exit_conditions": [],
+        "next_steps": []
+      }
+    ],
+    "completion_policy": {
+      "required_approvals": [
+        "compliance_owner"
+      ],
+      "required_outputs": [
+        "approved_response",
+        "locked_evidence_binder"
+      ]
+    }
+  },
+  "instance": {
+    "execution_id": "EXEC-DEMO-0001",
+    "tenant_id": "TENANT-DEMO-CU",
+    "workflow_id": "WF-EXAM-RESPONSE",
+    "workflow_version": "1.0.0",
+    "state": "waiting_approval",
+    "current_steps": [
+      "human_review"
+    ],
+    "created_at": "2026-07-22T12:00:00Z",
+    "updated_at": "2026-07-22T12:14:00Z",
+    "correlation_id": "CORR-DEMO-0001",
+    "primary_object_ref": "EXAM-REQ-001",
+    "checkpoint": 5
+  },
+  "context": {
+    "context_id": "CTX-DEMO-0001",
+    "tenant_id": "TENANT-DEMO-CU",
+    "execution_id": "EXEC-DEMO-0001",
+    "purpose": "draft response from verified evidence",
+    "items": [
+      {
+        "ref": "EVID-001",
+        "authority": "verified",
+        "freshness": "current",
+        "classification": "confidential"
+      }
+    ],
+    "classification": "confidential",
+    "exclusions": [
+      "unrelated employee files"
+    ],
+    "token_budget": 24000,
+    "built_at": "2026-07-22T12:06:00Z",
+    "content_hash": "sha256:fixture"
+  },
+  "expected_controls": [
+    "human approval before external communication",
+    "evidence references retained",
+    "no final compliance determination by agent"
+  ]
+}

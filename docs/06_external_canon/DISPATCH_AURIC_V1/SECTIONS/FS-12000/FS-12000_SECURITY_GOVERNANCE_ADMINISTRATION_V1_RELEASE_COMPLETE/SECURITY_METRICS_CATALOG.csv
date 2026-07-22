@@ -1,0 +1,8 @@
+metric_id,metric,definition,target,frequency,owner,escalation
+SEC-M-001,privileged MFA coverage,percent privileged identities with enforced MFA,100%,daily,IAM owner,any gap
+SEC-M-002,critical patch age,days unresolved critical vulnerability,<=7 days,daily,engineering,target breach
+SEC-M-003,tenant isolation pass rate,passing automated isolation tests,100%,per release,platform security,release block
+SEC-M-004,secret rotation compliance,active secrets within rotation policy,100%,weekly,platform operations,revoke/rotate
+SEC-M-005,incident containment SLA,percent incidents contained within target,>=95%,monthly,security operations,executive review
+SEC-M-006,AI use-case inventory coverage,active AI routes with approved inventory record,100%,daily,AI governance,route suspension
+SEC-M-007,backup restore success,successful scheduled restoration tests,100%,quarterly,resilience owner,corrective plan

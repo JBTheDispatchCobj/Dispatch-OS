@@ -1,0 +1,19 @@
+artifact,status,detail
+FIXTURE_AI_USE_CASE.json,PASS,valid JSON
+FIXTURE_INCIDENT.json,PASS,valid JSON
+FIXTURE_SECURITY_CONTROL.json,PASS,valid JSON
+ai_use_case.schema.json,PASS,valid JSON
+change_request.schema.json,PASS,valid JSON
+identity_entitlement.schema.json,PASS,valid JSON
+incident.schema.json,PASS,valid JSON
+security_control.schema.json,PASS,valid JSON
+tenant_boundary.schema.json,PASS,valid JSON
+vendor_risk_assessment.schema.json,PASS,valid JSON
+AI_MODEL_RISK_MATRIX.csv,PASS,4 data rows; stable 6-column header
+BCP_DR_SERVICE_TIERS.csv,PASS,4 data rows; stable 7-column header
+CHANGE_APPROVAL_MATRIX.csv,PASS,4 data rows; stable 6-column header
+IAM_PERMISSION_MATRIX.csv,PASS,6 data rows; stable 9-column header
+INCIDENT_SEVERITY_MATRIX.csv,PASS,5 data rows; stable 7-column header
+SECURITY_CONTROL_LIBRARY.csv,PASS,8 data rows; stable 9-column header
+SECURITY_METRICS_CATALOG.csv,PASS,7 data rows; stable 7-column header
+VENDOR_RISK_DUE_DILIGENCE_MATRIX.csv,PASS,6 data rows; stable 5-column header

@@ -1,0 +1,7 @@
+risk_area,required_evidence,high_risk_trigger,approval_owner,monitoring_frequency
+security,"SOC report or equivalent, architecture, incident history",restricted data or privileged integration,security,annual
+privacy,"data map, subprocessors, retention and deletion",sensitive personal data,privacy/compliance,annual
+resilience,BCP/DR and recovery test,critical workflow dependency,service owner,annual
+financial,financial capacity and insurance,single-source critical vendor,procurement/finance,annual
+AI/model,"model inventory, training/data controls, evaluation",material AI output,AI governance,per material change
+contractual,"security terms, breach notice, audit, exit",unacceptable limitation or no deletion right,legal authority,renewal

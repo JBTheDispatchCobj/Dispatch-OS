@@ -1,0 +1,7 @@
+approval_type,required_roles,chain,evidence_package,decisions,notes
+fintech_pilot,business owner|security|vendor risk|compliance,parallel then executive sponsor,pilot scope|security package|data flow|readiness score,approved|approved_with_conditions|rejected,material data or policy exception may require board
+vendor_approval,business owner|vendor risk|security|legal,parallel,due diligence|contract|risk score|exit plan,approved|approved_with_conditions|rejected,critical vendors may require executive/board threshold
+regulator_response,compliance|legal where needed|executive owner,sequential,request|approved evidence binder|response draft,approved|rejected|deferred,agent cannot transmit
+credit_decision,credit authority,threshold based,credit memo|financials|collateral|policy exceptions,approved|approved_with_conditions|rejected,human only
+investment_decision,investment authority|committee|board threshold,committee/threshold,investment memo|eligibility|valuation|risk|legal,approved|approved_with_conditions|rejected,human only
+external_board_report,executive owner|board secretary/committee owner,sequential,approved KPIs|evidence|draft report,approved|rejected,lock released version

@@ -1,0 +1,13 @@
+area,acceptance,test_method,severity
+Fixture integrity,All required files and IDs present,Automated,Release blocker
+Financial reconciliation,Synthetic totals reconcile,Automated,High
+Object creation,Expected canonical objects created,Automated,High
+Workflow routing,Correct workflow and agents selected,Automated,High
+Permissions,Prohibited actions blocked,Automated + manual,Critical
+Evidence,Claims drill to evidence,Manual + automated,Critical
+Approvals,Material actions blocked pending human approval,Automated,Critical
+Dashboard,Widgets load and drill through,UI automated,High
+Accessibility,Keyboard and labels,Manual + automated,High
+Reset,Clean reset and deterministic reload,Automated,Critical
+Narrative,20-30 minute arc works,Manual rehearsal,Medium
+Security,No private data or production actions,Manual + automated,Critical

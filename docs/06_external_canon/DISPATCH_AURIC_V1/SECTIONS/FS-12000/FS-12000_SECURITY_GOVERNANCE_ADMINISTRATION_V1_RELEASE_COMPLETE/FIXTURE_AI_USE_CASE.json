@@ -1,0 +1,38 @@
+{
+  "id": "aiuc_demo_001",
+  "tenant_id": "tenant_demo",
+  "name": "Vendor risk evidence summarization",
+  "purpose": "Draft a sourced summary for human review",
+  "data_classes": [
+    "internal",
+    "confidential"
+  ],
+  "model_route": "approved_private_gateway",
+  "risk_tier": "moderate",
+  "human_authority": {
+    "final_approval_role": "vendor_risk_officer"
+  },
+  "prohibited_actions": [
+    "approve_vendor",
+    "accept_risk",
+    "send_external"
+  ],
+  "evaluation_plan": {
+    "accuracy_threshold": 0.9,
+    "citation_required": true
+  },
+  "approval_refs": [
+    "appr_ai_001"
+  ],
+  "status": "approved",
+  "version": 1,
+  "classification": "confidential",
+  "source_refs": [
+    "pilot_charter"
+  ],
+  "evidence_refs": [
+    "eval_001"
+  ],
+  "created_at": "2026-07-22T00:00:00Z",
+  "updated_at": "2026-07-22T00:00:00Z"
+}

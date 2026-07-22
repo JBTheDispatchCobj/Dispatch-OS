@@ -1,0 +1,9 @@
+api_id,service,operation,method,path,version,permission,tenant_scope,idempotency,error_model,audit_event,slo_ms
+API-INST-001,profile-service,get institution profile,GET,/v1/tenants/{tenant_id}/institutions/{institution_id},1.0,institution.read,path tenant equals token tenant,not applicable,standard-error,audit.read,500
+API-ING-001,ingestion-service,create ingestion job,POST,/v1/tenants/{tenant_id}/ingestion-jobs,1.0,ingestion.create,path tenant equals token tenant,Idempotency-Key required,standard-error,ingestion.job.created,1000
+API-GRAPH-001,graph-service,search institution graph,POST,/v1/tenants/{tenant_id}/graph/search,1.0,graph.search,tenant visibility filter required,request hash,standard-error,graph.search.executed,3000
+API-WF-001,workflow-service,start workflow,POST,/v1/tenants/{tenant_id}/workflows,1.0,workflow.start,tenant + cartridge authorization,Idempotency-Key required,standard-error,workflow.started,1000
+API-EVD-001,evidence-service,create evidence object,POST,/v1/tenants/{tenant_id}/evidence,1.0,evidence.create,tenant + object permission,Idempotency-Key required,standard-error,evidence.created,1000
+API-APR-001,approval-service,decide approval,POST,/v1/tenants/{tenant_id}/approvals/{approval_id}/decision,1.0,approval.decide,authority and separation-of-duties check,Idempotency-Key required,standard-error,approval.decided,1000
+API-RPT-001,report-service,publish report,POST,/v1/tenants/{tenant_id}/reports/{report_id}/publish,1.0,report.publish,approved report + export permission,Idempotency-Key required,standard-error,report.published,1000
+API-REL-001,release-service,record release decision,POST,/v1/releases/{release_id}/decision,1.0,release.approve,release authority,Idempotency-Key required,standard-error,release.decided,1000

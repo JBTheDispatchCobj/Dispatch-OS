@@ -1,0 +1,5 @@
+connector_id,name,category,auth_methods,capabilities,incremental_method,deletion_semantics,data_classifications,model_use_policy,status,owner
+CONN-GMAIL,Gmail,email,oauth2,read|attachments|incremental_sync|health_check,history_id,explicit_delete,internal|confidential|restricted,tenant_policy,approved,connector_owner
+CONN-GCAL,Google Calendar,calendar,oauth2,read|incremental_sync|health_check,sync_token,explicit_delete,internal|confidential,tenant_policy,approved,connector_owner
+CONN-SFTP,Managed SFTP,sftp,ssh_key|pgp,read|full_sync|incremental_sync|health_check,file_watermark,none,internal|confidential|restricted|regulated,restricted,approved,data_ops
+CONN-PUBLIC-HTTP,Public Data HTTP,public_data,none|api_key,read|incremental_sync|schema_discovery|health_check,etag_or_period,snapshot_compare,public,allowed,approved,data_ops

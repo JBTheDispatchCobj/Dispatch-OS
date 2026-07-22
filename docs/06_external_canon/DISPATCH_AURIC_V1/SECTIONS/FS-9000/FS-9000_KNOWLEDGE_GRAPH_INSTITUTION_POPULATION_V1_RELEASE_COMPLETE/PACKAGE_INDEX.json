@@ -1,0 +1,311 @@
+{
+  "section": "FS-9000",
+  "package": "FS-9000_KNOWLEDGE_GRAPH_INSTITUTION_POPULATION_V1_RELEASE_COMPLETE",
+  "artifact_count": 38,
+  "artifacts": [
+    {
+      "filename": "9001_KNOWLEDGE_GRAPH_ARCHITECTURE_V1_RELEASE.md",
+      "size_bytes": 7150,
+      "sha256": "2e9dd91fb7107f34b852fec5609f0c7bd2e7263aa55b15c9fd1d37fd9b34746f",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "9002_INSTITUTION_POPULATION_PIPELINE_V1_RELEASE.md",
+      "size_bytes": 5924,
+      "sha256": "9d80c8b2c58f650dee698ccd13143b17fd803115ced9bf3768ee7458cbcc4c08",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "9003_CREDIT_UNION_UNIVERSE_POPULATION_V1_RELEASE.md",
+      "size_bytes": 5800,
+      "sha256": "d82527cc7a4b133ae21a77553bc29b4bd25760ad935cdc7e94ccd578cd6a6f7d",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "9004_BANK_FINTECH_VENDOR_POPULATION_V1_RELEASE.md",
+      "size_bytes": 5515,
+      "sha256": "f7a82b75a0c29ca856940d11e6bd16a0abfad7460ca043ae35b106247852e7ad",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "9005_EXECUTIVE_BOARD_GRAPH_POPULATION_V1_RELEASE.md",
+      "size_bytes": 5507,
+      "sha256": "dbf48d77d8b1a18341f059c7b0ee2f9de1bb02c97b226f826414262b5149bdd3",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "9006_VENDOR_PRODUCT_SYSTEM_GRAPH_POPULATION_V1_RELEASE.md",
+      "size_bytes": 5133,
+      "sha256": "cc6ee95c724ca3b9bc1845d7bd9a9596ea69ee8086cb31907a59e210b6fca090",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "9007_REGULATORY_OBLIGATION_GRAPH_POPULATION_V1_RELEASE.md",
+      "size_bytes": 5025,
+      "sha256": "6601c25546f397a2ea9d13b0dfb8dacae9f9523b152dc1bd02f4b7e6d5bbd782",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "9008_RELATIONSHIP_NETWORK_GRAPH_V1_RELEASE.md",
+      "size_bytes": 5410,
+      "sha256": "34a6c1fb4f1edf812baa9fa7fe640e1998428302e09d06dedaa459a93c3a095d",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "9009_INSTITUTION_SIMILARITY_PEER_COHORTS_V1_RELEASE.md",
+      "size_bytes": 5059,
+      "sha256": "fce73281dfe83615f1271113b36882df2144b95b688c74900fb394d2de38efa8",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "9010_PROFILE_ENRICHMENT_RESEARCH_WORKBENCH_V1_RELEASE.md",
+      "size_bytes": 4956,
+      "sha256": "35e7608570ae6ae9ff54445fb73bf3757b7dea4d4c0fd6bc6ea8c4163c9fac5f",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "9011_GRAPH_QUERY_SEARCH_RANKING_V1_RELEASE.md",
+      "size_bytes": 5095,
+      "sha256": "5927498afa6ddc372f80c27fe1f0cbf5775beb7a2f81bf06bbfd1b6d1110977e",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "9012_GRAPH_INFERENCE_CONFIDENCE_V1_RELEASE.md",
+      "size_bytes": 5249,
+      "sha256": "5cb949803942028c630775809a0c5c9f1ef5b0da1805776518c6aec7e986eadb",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "9013_GRAPH_GOVERNANCE_PRIVACY_TENANCY_V1_RELEASE.md",
+      "size_bytes": 5072,
+      "sha256": "61408a33e8703dba8ea79d24cf1c0bc2d945677905deba1f13da78e5c24f6854",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "9014_GRAPH_OPERATIONS_QUALITY_REFRESH_V1_RELEASE.md",
+      "size_bytes": 5112,
+      "sha256": "10e0c0f0b25d9254a37c9a14480b69a05cb66f1ffd0b247581041de57f0d0933",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "9015_MASTER_KNOWLEDGE_GRAPH_POPULATION_INDEX_V1_RELEASE.md",
+      "size_bytes": 6284,
+      "sha256": "75a195b9e31cf1626a5ff848ae92e4ea9bd8f71ae00036b8bef9c9e98d6ca3b1",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "FS9000_IMPLEMENTATION_OPERATIONS_RUNBOOK.md",
+      "size_bytes": 2576,
+      "sha256": "516994a4604e53db2e9922a8cdedd743c8936b69c769c4c6d7c7bff6d3867363",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "FS9000_SECURITY_PRIVACY_THREAT_MODEL.md",
+      "size_bytes": 2439,
+      "sha256": "d538b6e1e82dd27d978a25e0f9aa3671fea0d0c10b6846c7bac9c819ef8bce97",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "README_FS_9000_V1_RELEASE_COMPLETE.md",
+      "size_bytes": 945,
+      "sha256": "7c6b0a3ce538aa931476965bcc328ba6a4c315f5ad32163f3afddac1626e7b2b",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "SECTION_RELEASE_MANIFEST.json",
+      "size_bytes": 907,
+      "sha256": "80bfaff0d7b6eefd28d44d3a04b96940534c8961ff6b75ff78a27d5d56134d3d",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "VALIDATION_REPORT.json",
+      "size_bytes": 2742,
+      "sha256": "3deb93b931ac23b72fe163defc9e64ccdf2efac69409cd47def914cd1594b855",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "graph_acceptance_tests.json",
+      "size_bytes": 5657,
+      "sha256": "edab61c9178cacff0bdc367f532a70e55b737325795d780ed70b3a6baf660d4b",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "graph_api_contracts.json",
+      "size_bytes": 1351,
+      "sha256": "dc912baa19e25a8c71f87929f0b413bb984f321119bbcc41043de265a4fdbaeb",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "graph_confidence_rules.json",
+      "size_bytes": 746,
+      "sha256": "290f9b442c316c97bb554496ad54f019697eec646deeb9e7081b599ee9ac1655",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "graph_edge.schema.json",
+      "size_bytes": 2335,
+      "sha256": "1a6d50268e3ebd80fd4ef47e0dd691ca5924a3dbc3fdaf17a991b1544c6665a5",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "graph_event_contracts.json",
+      "size_bytes": 1699,
+      "sha256": "1e20c58bfa4803bf7cd9a7fa9f4c567bbd371b97081666124facb624c54cbb44",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "graph_node.schema.json",
+      "size_bytes": 2052,
+      "sha256": "18e401386cdbf9af61745276dfbcf8d3bfb01a89ac6f53bebe0a4f781800b71a",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "graph_node_type_registry.csv",
+      "size_bytes": 4795,
+      "sha256": "75ca5615b8112c73677d4574bd8625c1e8c3a69f762f1363829f5648a46bdf74",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "graph_query.schema.json",
+      "size_bytes": 1115,
+      "sha256": "83e978ed06cc395b73972487c6c409a6bfd78f6c2bdd68d6670659a322e4bb02",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "graph_query_contracts.json",
+      "size_bytes": 1827,
+      "sha256": "e5df1091ab912dc1e793aa14c70f90bb845090dd87968f6223f1b15f2c5cbee2",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "graph_relationship_type_registry.csv",
+      "size_bytes": 2852,
+      "sha256": "9c6e94912cbbaa853b735e80cef335c73915deecb5bb36a1bc126e9cae1f7f1f",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "graph_visibility_permission_matrix.csv",
+      "size_bytes": 671,
+      "sha256": "35964dd312b1955a99a939ce24656719f807effc336005b9147fe04285467b9a",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "identity_resolution_case.schema.json",
+      "size_bytes": 1211,
+      "sha256": "41c6504a9d685e4ae6d3765d72fe8de91f891eb1610ccfc17185f07b4ef933cd",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "inference_record.schema.json",
+      "size_bytes": 1229,
+      "sha256": "0efc923edee6a462bd7808b4722fcd33b05d7ca9ab9d2300ec10ab4a9df48eac",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "institution_similarity_model.json",
+      "size_bytes": 826,
+      "sha256": "2175c85864ca2023a97607e19fc780f0e35316a53f699e0664d9fb4abf738dc5",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "population_job.schema.json",
+      "size_bytes": 1214,
+      "sha256": "ddf8e3d18b4be23a87ba352f696285350a0ffe2053b07227ba7ede50dae1ca95",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "population_manifests.json",
+      "size_bytes": 1392,
+      "sha256": "71466d86f20e7a2de3bd18647a0ff0f1d8b76d13a186b1c459809ea603e735a5",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "population_source_priority.csv",
+      "size_bytes": 1256,
+      "sha256": "f12309860999994b573b6e8cf633314aabc77c8216f753e7a14be5c275696fd2",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    },
+    {
+      "filename": "synthetic_graph_fixture.json",
+      "size_bytes": 3735,
+      "sha256": "eb678ea2ed78e369c15255e377aa77a5c5f332d231f5425b4d1a9c05d3ce8908",
+      "section": "FS-9000",
+      "generation_date": "2026-07-22",
+      "validation_status": "PASS"
+    }
+  ]
+}

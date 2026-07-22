@@ -1,0 +1,253 @@
+{
+  "version": "1.0.0",
+  "tests": [
+    {
+      "test_id": "FS9000-001",
+      "name": "Stable canonical identity",
+      "area": "identity",
+      "severity": "critical",
+      "preconditions": [
+        "fixture loaded"
+      ],
+      "steps": [
+        "upsert same canonical object twice"
+      ],
+      "expected": [
+        "one active node",
+        "version increments",
+        "no duplicate node"
+      ]
+    },
+    {
+      "test_id": "FS9000-002",
+      "name": "Unresolved identity quarantine",
+      "area": "identity",
+      "severity": "critical",
+      "preconditions": [
+        "two ambiguous records"
+      ],
+      "steps": [
+        "run resolver"
+      ],
+      "expected": [
+        "no silent merge",
+        "case created",
+        "records quarantined"
+      ]
+    },
+    {
+      "test_id": "FS9000-003",
+      "name": "Private-edge isolation",
+      "area": "security",
+      "severity": "critical",
+      "preconditions": [
+        "public and tenant queries available"
+      ],
+      "steps": [
+        "query public actor"
+      ],
+      "expected": [
+        "zero tenant-private edges",
+        "no existence leakage"
+      ]
+    },
+    {
+      "test_id": "FS9000-004",
+      "name": "Evidence-linked material edge",
+      "area": "provenance",
+      "severity": "critical",
+      "preconditions": [
+        "edge upsert requested"
+      ],
+      "steps": [
+        "omit evidence"
+      ],
+      "expected": [
+        "verified status rejected",
+        "confidence reduced or quarantine"
+      ]
+    },
+    {
+      "test_id": "FS9000-005",
+      "name": "Inference labeling",
+      "area": "inference",
+      "severity": "critical",
+      "preconditions": [
+        "derived match generated"
+      ],
+      "steps": [
+        "read result"
+      ],
+      "expected": [
+        "source_state inferred/derived",
+        "method and version present",
+        "expiry present"
+      ]
+    },
+    {
+      "test_id": "FS9000-006",
+      "name": "Population idempotency",
+      "area": "population",
+      "severity": "critical",
+      "preconditions": [
+        "same idempotency key"
+      ],
+      "steps": [
+        "run job twice"
+      ],
+      "expected": [
+        "same result",
+        "no duplicate mutations"
+      ]
+    },
+    {
+      "test_id": "FS9000-007",
+      "name": "Conflict preservation",
+      "area": "reconciliation",
+      "severity": "critical",
+      "preconditions": [
+        "two authoritative sources conflict"
+      ],
+      "steps": [
+        "reconcile"
+      ],
+      "expected": [
+        "both claims preserved",
+        "conflict record created",
+        "human review routed"
+      ]
+    },
+    {
+      "test_id": "FS9000-008",
+      "name": "Stale propagation",
+      "area": "freshness",
+      "severity": "critical",
+      "preconditions": [
+        "source exceeds TTL"
+      ],
+      "steps": [
+        "run refresh monitor"
+      ],
+      "expected": [
+        "node/edge marked stale",
+        "queries disclose stale status"
+      ]
+    },
+    {
+      "test_id": "FS9000-009",
+      "name": "Query explanation",
+      "area": "search",
+      "severity": "critical",
+      "preconditions": [
+        "institution search"
+      ],
+      "steps": [
+        "execute criteria search"
+      ],
+      "expected": [
+        "matched and missing criteria",
+        "confidence",
+        "evidence",
+        "freshness"
+      ]
+    },
+    {
+      "test_id": "FS9000-010",
+      "name": "Similarity missing-data handling",
+      "area": "similarity",
+      "severity": "critical",
+      "preconditions": [
+        "one feature absent"
+      ],
+      "steps": [
+        "score peers"
+      ],
+      "expected": [
+        "feature excluded",
+        "coverage ratio returned",
+        "no zero substitution"
+      ]
+    },
+    {
+      "test_id": "FS9000-011",
+      "name": "Deletion propagation",
+      "area": "governance",
+      "severity": "critical",
+      "preconditions": [
+        "legal deletion approved"
+      ],
+      "steps": [
+        "delete source object"
+      ],
+      "expected": [
+        "indexes and derived edges suppressed",
+        "audit retained per policy"
+      ]
+    },
+    {
+      "test_id": "FS9000-012",
+      "name": "Human authority",
+      "area": "governance",
+      "severity": "critical",
+      "preconditions": [
+        "agent proposes investment match"
+      ],
+      "steps": [
+        "attempt approval via agent"
+      ],
+      "expected": [
+        "approval denied",
+        "human approval object required"
+      ]
+    },
+    {
+      "test_id": "FS9000-013",
+      "name": "Replay recovery",
+      "area": "operations",
+      "severity": "critical",
+      "preconditions": [
+        "checkpointed population job"
+      ],
+      "steps": [
+        "simulate failure and replay"
+      ],
+      "expected": [
+        "resume from checkpoint",
+        "no duplicate mutations"
+      ]
+    },
+    {
+      "test_id": "FS9000-014",
+      "name": "Tenant export filtering",
+      "area": "security",
+      "severity": "critical",
+      "preconditions": [
+        "mixed graph fixture"
+      ],
+      "steps": [
+        "export tenant graph"
+      ],
+      "expected": [
+        "only authorized content",
+        "source-state labels retained"
+      ]
+    },
+    {
+      "test_id": "FS9000-015",
+      "name": "Package reference integrity",
+      "area": "release",
+      "severity": "critical",
+      "preconditions": [
+        "all release files present"
+      ],
+      "steps": [
+        "run validator"
+      ],
+      "expected": [
+        "all JSON parses",
+        "all CSV headers stable",
+        "all manifest hashes match"
+      ]
+    }
+  ]
+}

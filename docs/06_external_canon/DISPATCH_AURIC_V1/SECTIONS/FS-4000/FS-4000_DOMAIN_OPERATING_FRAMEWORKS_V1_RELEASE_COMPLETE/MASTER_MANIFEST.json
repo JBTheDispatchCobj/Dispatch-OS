@@ -1,0 +1,95 @@
+{
+  "bundle": "FS-4000_INSTITUTIONAL_INTELLIGENCE_MASTER_BUNDLE",
+  "version": "1.0",
+  "created": "2026-07-21T19:52:22.185421",
+  "owner": "Auric Works",
+  "purpose": "Master bundle for Dispatch/Auric Institutional Intelligence domain operating frameworks.",
+  "included_volume_zips": [
+    "FS-4001_BANKING_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4002_CREDIT_UNION_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4003_COMMERCIAL_BANKING_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4004_MORTGAGE_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4005_PRIVATE_CREDIT_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4006_PRIVATE_EQUITY_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4007_VENTURE_CAPITAL_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4008_CAPITAL_MARKETS_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4009_WEALTH_MANAGEMENT_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4010_INSURANCE_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4011_CONSTRUCTION_FINANCE_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4012_MANUFACTURING_FINANCE_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4013_HEALTHCARE_FINANCE_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4014_REGULATION_REPORTING_EXAMINATION_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4015_INSTITUTIONAL_INTELLIGENCE_INTEGRATION_DEPLOYMENT_FRAMEWORK_V1.zip"
+  ],
+  "included_count": 15,
+  "domains": [
+    {
+      "id": "FS-4001",
+      "name": "Banking"
+    },
+    {
+      "id": "FS-4002",
+      "name": "Credit Unions"
+    },
+    {
+      "id": "FS-4003",
+      "name": "Commercial Banking"
+    },
+    {
+      "id": "FS-4004",
+      "name": "Mortgage"
+    },
+    {
+      "id": "FS-4005",
+      "name": "Private Credit"
+    },
+    {
+      "id": "FS-4006",
+      "name": "Private Equity"
+    },
+    {
+      "id": "FS-4007",
+      "name": "Venture Capital"
+    },
+    {
+      "id": "FS-4008",
+      "name": "Capital Markets"
+    },
+    {
+      "id": "FS-4009",
+      "name": "Wealth Management"
+    },
+    {
+      "id": "FS-4010",
+      "name": "Insurance"
+    },
+    {
+      "id": "FS-4011",
+      "name": "Construction Finance"
+    },
+    {
+      "id": "FS-4012",
+      "name": "Manufacturing Finance"
+    },
+    {
+      "id": "FS-4013",
+      "name": "Healthcare Finance"
+    },
+    {
+      "id": "FS-4014",
+      "name": "Regulation, Reporting & Examination"
+    },
+    {
+      "id": "FS-4015",
+      "name": "Institutional Intelligence Integration & Deployment"
+    }
+  ],
+  "next_build_priority": [
+    "Generate master machine-readable object registry across all volumes.",
+    "Generate master workflow registry across all volumes.",
+    "Generate master agent registry and permissions matrix.",
+    "Generate master KPI/dashboard registry.",
+    "Generate demo fixture packs: CU Terminal, Fintech Pilot, Exam Response, Participation Opportunity.",
+    "Wire registry into Dispatch router and Claude build prompts."
+  ]
+}

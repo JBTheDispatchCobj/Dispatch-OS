@@ -1,0 +1,7 @@
+metric_id,name,type,dimensions,alert_rule
+MET-RT-001,execution_count,counter,tenant|workflow|state,none
+MET-RT-002,step_latency_ms,histogram,tenant|workflow|step,p95 above SLO for 15m
+MET-RT-003,unauthorized_action_count,counter,tenant|agent|tool,greater than 0
+MET-RT-004,model_cost,gauge,tenant|workflow|agent|model,budget threshold
+MET-RT-005,approval_wait_seconds,histogram,tenant|workflow|authority,SLA breach
+MET-RT-006,unsupported_material_claim_rate,gauge,agent|version|domain,above release threshold

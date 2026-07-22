@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Freshness Policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "freshness_policy_id",
+    "applies_to",
+    "expected_cadence",
+    "aging_after_seconds",
+    "stale_after_seconds",
+    "stale_behavior"
+  ],
+  "properties": {
+    "freshness_policy_id": {
+      "type": "string",
+      "pattern": "^FRESH-[A-Z0-9-]+$"
+    },
+    "applies_to": {
+      "type": "string"
+    },
+    "expected_cadence": {
+      "type": "string"
+    },
+    "aging_after_seconds": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "stale_after_seconds": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "grace_period_seconds": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "stale_behavior": {
+      "type": "string",
+      "enum": [
+        "display_warning",
+        "block_scoring",
+        "block_recommendation",
+        "block_final_output",
+        "route_review"
+      ]
+    },
+    "owner_id": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "restricted",
+        "regulated"
+      ]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "unknown"
+      ]
+    },
+    "freshness": {
+      "type": "string",
+      "enum": [
+        "current",
+        "aging",
+        "stale",
+        "unknown"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

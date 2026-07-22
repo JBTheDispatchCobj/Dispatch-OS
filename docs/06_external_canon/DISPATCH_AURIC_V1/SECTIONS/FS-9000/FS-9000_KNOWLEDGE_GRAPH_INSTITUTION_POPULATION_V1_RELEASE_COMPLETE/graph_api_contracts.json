@@ -1,0 +1,62 @@
+{
+  "version": "1.0.0",
+  "base_path": "/v1/graph",
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/nodes:upsert",
+      "permission": "graph.node.write",
+      "idempotent": true
+    },
+    {
+      "method": "POST",
+      "path": "/edges:upsert",
+      "permission": "graph.edge.write",
+      "idempotent": true
+    },
+    {
+      "method": "POST",
+      "path": "/queries",
+      "permission": "graph.query.execute",
+      "idempotent": false
+    },
+    {
+      "method": "POST",
+      "path": "/population-jobs",
+      "permission": "graph.population.run",
+      "idempotent": true
+    },
+    {
+      "method": "GET",
+      "path": "/population-jobs/{id}",
+      "permission": "graph.population.read",
+      "idempotent": true
+    },
+    {
+      "method": "POST",
+      "path": "/identity-cases/{id}:resolve",
+      "permission": "graph.identity.resolve",
+      "idempotent": true
+    },
+    {
+      "method": "POST",
+      "path": "/inferences/{id}:review",
+      "permission": "graph.inference.review",
+      "idempotent": true
+    },
+    {
+      "method": "POST",
+      "path": "/reconcile",
+      "permission": "graph.reconcile.run",
+      "idempotent": true
+    }
+  ],
+  "response_requirements": [
+    "correlation_id",
+    "version",
+    "visibility_applied",
+    "evidence_summary",
+    "freshness_summary",
+    "errors"
+  ]
+}

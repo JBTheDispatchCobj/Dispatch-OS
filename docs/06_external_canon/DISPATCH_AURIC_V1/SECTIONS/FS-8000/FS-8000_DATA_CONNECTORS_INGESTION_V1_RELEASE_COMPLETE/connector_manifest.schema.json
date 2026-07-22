@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Connector Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "connector_id",
+    "name",
+    "version",
+    "category",
+    "auth_methods",
+    "capabilities",
+    "status"
+  ],
+  "properties": {
+    "connector_id": {
+      "type": "string",
+      "pattern": "^CONN-[A-Z0-9-]+$"
+    },
+    "name": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "email",
+        "calendar",
+        "crm",
+        "core",
+        "los",
+        "warehouse",
+        "document_store",
+        "project",
+        "grc",
+        "accounting",
+        "cloud_storage",
+        "api",
+        "sftp",
+        "public_data",
+        "other"
+      ]
+    },
+    "auth_methods": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "enum": [
+          "oauth2",
+          "api_key",
+          "basic",
+          "mtls",
+          "ssh_key",
+          "pgp",
+          "service_account",
+          "none"
+        ]
+      }
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "read",
+          "write",
+          "webhook",
+          "incremental_sync",
+          "full_sync",
+          "attachments",
+          "schema_discovery",
+          "health_check"
+        ]
+      },
+      "minItems": 1
+    },
+    "required_scopes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "object_types": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "pagination": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "rate_limits": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "retry_policy_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "incremental_method": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "deletion_semantics": {
+      "type": "string",
+      "enum": [
+        "tombstone",
+        "snapshot_compare",
+        "explicit_delete",
+        "none",
+        "unknown"
+      ]
+    },
+    "data_classifications": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/classification"
+      }
+    },
+    "model_use_policy": {
+      "type": "string",
+      "enum": [
+        "allowed",
+        "restricted",
+        "prohibited",
+        "tenant_policy"
+      ]
+    },
+    "owner_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "reviewed",
+        "approved",
+        "available",
+        "deprecated",
+        "retired"
+      ]
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "restricted",
+        "regulated"
+      ]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "unknown"
+      ]
+    },
+    "freshness": {
+      "type": "string",
+      "enum": [
+        "current",
+        "aging",
+        "stale",
+        "unknown"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

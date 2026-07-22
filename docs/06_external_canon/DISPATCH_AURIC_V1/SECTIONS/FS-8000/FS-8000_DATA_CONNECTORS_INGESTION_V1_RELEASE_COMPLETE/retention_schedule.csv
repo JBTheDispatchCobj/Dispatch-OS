@@ -1,0 +1,4 @@
+retention_rule_id,record_class,trigger,duration_days,disposition,legal_hold_behavior,approval_required,status
+RET-RAW-PUBLIC,public raw snapshots,creation,2555,archive,suspend,false,active
+RET-UPLOAD-STAGING,rejected upload staging,creation,30,delete,suspend,false,active
+RET-AUDIT,ingestion audit events,creation,2555,archive,suspend,true,active

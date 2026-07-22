@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ui_state_machine.schema.json",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "states"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "states": {
+      "type": "object"
+    }
+  }
+}

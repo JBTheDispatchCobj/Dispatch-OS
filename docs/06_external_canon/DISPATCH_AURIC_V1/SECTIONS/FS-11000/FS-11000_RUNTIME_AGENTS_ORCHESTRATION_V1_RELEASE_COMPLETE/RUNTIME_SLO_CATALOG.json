@@ -1,0 +1,23 @@
+{
+  "catalog_version": "1.0.0",
+  "slos": [
+    {
+      "id": "SLO-CONTROL-AVAIL",
+      "metric": "control_plane_availability",
+      "target": 0.999,
+      "window": "30d"
+    },
+    {
+      "id": "SLO-EVENT-ACCEPT",
+      "metric": "durable_event_acceptance",
+      "target": 0.9995,
+      "window": "30d"
+    },
+    {
+      "id": "SLO-QUEUE-DISPATCH",
+      "metric": "queued_step_dispatch_p95_seconds",
+      "target": 5,
+      "window": "1h"
+    }
+  ]
+}

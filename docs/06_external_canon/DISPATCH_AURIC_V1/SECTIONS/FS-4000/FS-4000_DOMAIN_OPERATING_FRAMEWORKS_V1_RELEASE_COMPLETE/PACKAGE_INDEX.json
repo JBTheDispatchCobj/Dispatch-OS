@@ -1,0 +1,174 @@
+{
+  "section": "FS-4000",
+  "version": "1.0",
+  "artifacts": [
+    {
+      "filename": "CLAUDE_BUILD_ORDER.md",
+      "file_size": 3464,
+      "sha256": "9b83bf75c94cd5487e971655b7d7bf2000db30213b8369856b10bd5868e66eb8",
+      "artifact_type": "documentation",
+      "domain": "FS-4000",
+      "version": "1.0"
+    },
+    {
+      "filename": "FS-4001_BANKING_OPERATING_FRAMEWORK_V1.zip",
+      "file_size": 26583,
+      "sha256": "cbb3e05cf65c6129b15974c3ef1a24db6f7ad6b64122ce03c44e031b320bb864",
+      "artifact_type": "domain_package",
+      "domain": "Banking",
+      "version": "1.0"
+    },
+    {
+      "filename": "FS-4002_CREDIT_UNION_OPERATING_FRAMEWORK_V1.zip",
+      "file_size": 33121,
+      "sha256": "6631eb933a27dc31cf9f123bb6aec472af50638d606cf4fdded8416fd83823e6",
+      "artifact_type": "domain_package",
+      "domain": "Credit Unions",
+      "version": "1.0"
+    },
+    {
+      "filename": "FS-4003_COMMERCIAL_BANKING_OPERATING_FRAMEWORK_V1.zip",
+      "file_size": 28113,
+      "sha256": "fd0381091c8a7294191fff99a3090bb825041e79c15e41746aa423c3a60a76f4",
+      "artifact_type": "domain_package",
+      "domain": "Commercial Banking",
+      "version": "1.0"
+    },
+    {
+      "filename": "FS-4004_MORTGAGE_OPERATING_FRAMEWORK_V1.zip",
+      "file_size": 24597,
+      "sha256": "22e4ab072bea8f6d2c2c847f77efd1ffdcf2523f502c6e0013277d6a94bb373f",
+      "artifact_type": "domain_package",
+      "domain": "Mortgage",
+      "version": "1.0"
+    },
+    {
+      "filename": "FS-4005_PRIVATE_CREDIT_OPERATING_FRAMEWORK_V1.zip",
+      "file_size": 40699,
+      "sha256": "5f41d5eaf0e326b52dc9618c19f6adb5a6a3afdde5437d3ecea63072243f9402",
+      "artifact_type": "domain_package",
+      "domain": "Private Credit",
+      "version": "1.0"
+    },
+    {
+      "filename": "FS-4006_PRIVATE_EQUITY_OPERATING_FRAMEWORK_V1.zip",
+      "file_size": 27548,
+      "sha256": "74377d6df6832fec354bd0872e1a354fd7205df7dde9ca2c6db34ede142fdfc3",
+      "artifact_type": "domain_package",
+      "domain": "Private Equity",
+      "version": "1.0"
+    },
+    {
+      "filename": "FS-4007_VENTURE_CAPITAL_OPERATING_FRAMEWORK_V1.zip",
+      "file_size": 28547,
+      "sha256": "25c68e54d1b7ea434fec55457921a3a5b88632ea3cd4c4abb2b6e1c64c6ee096",
+      "artifact_type": "domain_package",
+      "domain": "Venture Capital",
+      "version": "1.0"
+    },
+    {
+      "filename": "FS-4008_CAPITAL_MARKETS_OPERATING_FRAMEWORK_V1.zip",
+      "file_size": 27421,
+      "sha256": "a810bf654916ddac64ab85359d3c9d73ac61a130be83d2b4677baac7f72771f7",
+      "artifact_type": "domain_package",
+      "domain": "Capital Markets",
+      "version": "1.0"
+    },
+    {
+      "filename": "FS-4009_WEALTH_MANAGEMENT_OPERATING_FRAMEWORK_V1.zip",
+      "file_size": 25641,
+      "sha256": "ef066a7da155dc8e7c9ecde58bec50f446dc35d55f326f922fecb4d85b050de7",
+      "artifact_type": "domain_package",
+      "domain": "Wealth Management",
+      "version": "1.0"
+    },
+    {
+      "filename": "FS-4010_INSURANCE_OPERATING_FRAMEWORK_V1.zip",
+      "file_size": 26219,
+      "sha256": "84eaed581bc4aadabe369ba0883457ab0be5a324af0d76da26052200c24bf131",
+      "artifact_type": "domain_package",
+      "domain": "Insurance",
+      "version": "1.0"
+    },
+    {
+      "filename": "FS-4011_CONSTRUCTION_FINANCE_OPERATING_FRAMEWORK_V1.zip",
+      "file_size": 28084,
+      "sha256": "ffa8691324577485151454f043ddd421a9faf7cfcd821d49efc7ebd03b32db63",
+      "artifact_type": "domain_package",
+      "domain": "Construction Finance",
+      "version": "1.0"
+    },
+    {
+      "filename": "FS-4012_MANUFACTURING_FINANCE_OPERATING_FRAMEWORK_V1.zip",
+      "file_size": 27225,
+      "sha256": "02e635714094cb739129aea9939f37a8b3c770fc617261a1799d12eb13ddf85d",
+      "artifact_type": "domain_package",
+      "domain": "Manufacturing Finance",
+      "version": "1.0"
+    },
+    {
+      "filename": "FS-4013_HEALTHCARE_FINANCE_OPERATING_FRAMEWORK_V1.zip",
+      "file_size": 27557,
+      "sha256": "aad48ade0be9fe145dd5a122ea4f320c38487c7d1c2f72958fe0e590876e6b3f",
+      "artifact_type": "domain_package",
+      "domain": "Healthcare Finance",
+      "version": "1.0"
+    },
+    {
+      "filename": "FS-4014_REGULATION_REPORTING_EXAMINATION_OPERATING_FRAMEWORK_V1.zip",
+      "file_size": 28432,
+      "sha256": "ddc56e16f2b981d17a0b652b5ac6ec4f515e08f0445f125e36996061eadaadb0",
+      "artifact_type": "domain_package",
+      "domain": "Regulation, Reporting & Examination",
+      "version": "1.0"
+    },
+    {
+      "filename": "FS-4015_INSTITUTIONAL_INTELLIGENCE_INTEGRATION_DEPLOYMENT_FRAMEWORK_V1.zip",
+      "file_size": 19878,
+      "sha256": "8dc56e10f12e54b5c893b5e9db502b22388b3173af6effdbf01611795066ad60",
+      "artifact_type": "domain_package",
+      "domain": "Institutional Intelligence Integration & Deployment",
+      "version": "1.0"
+    },
+    {
+      "filename": "FS4000_TO_FS5100_RECONCILIATION.csv",
+      "file_size": 32517,
+      "sha256": "f77556775f2b67ea4a6cdb8428a7175dfd01c93154b276bdb8d9a36a93939eb5",
+      "artifact_type": "reconciliation_register",
+      "domain": "FS-4000",
+      "version": "1.0"
+    },
+    {
+      "filename": "MASTER_MANIFEST.json",
+      "file_size": 2760,
+      "sha256": "27af630626a2261feb20217f9289878688eeb0a2b346ebfa3967a1e6a6b5883e",
+      "artifact_type": "manifest_or_validation",
+      "domain": "FS-4000",
+      "version": "1.0"
+    },
+    {
+      "filename": "README_MASTER_BUNDLE.md",
+      "file_size": 2719,
+      "sha256": "86594e188aba382c4d1f33b06748301d8738f12839541977cd73086b0a0c74ca",
+      "artifact_type": "documentation",
+      "domain": "FS-4000",
+      "version": "1.0"
+    },
+    {
+      "filename": "SECTION_RELEASE_MANIFEST.json",
+      "file_size": 1670,
+      "sha256": "66374d977e4ee1bd7b1fa929a617b4abfae5920e68d1efc977f161cb113860fe",
+      "artifact_type": "manifest_or_validation",
+      "domain": "FS-4000",
+      "version": "1.0"
+    },
+    {
+      "filename": "VALIDATION_REPORT.json",
+      "file_size": 1223,
+      "sha256": "7c770bd0a010a1cb0fab52f987b80f32332f1e3a803acd8001bf9917ac74a156",
+      "artifact_type": "manifest_or_validation",
+      "domain": "FS-4000",
+      "version": "1.0"
+    }
+  ]
+}

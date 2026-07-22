@@ -1,0 +1,25 @@
+Agent,Purpose,Primary Inputs,Primary Outputs
+Institution Profile Agent,Assembles and refreshes public/private institution profiles,"Institution identifiers, sources, graph","Profile projection, gaps, confidence"
+Executive Profile Agent,"Builds career, expertise, relationship, and influence profiles","People sources, institution graph","Executive profile, relationship paths"
+Fintech Mapping Agent,Maps products to canonical capabilities and infrastructure roles,Company/product evidence,"Capability map, dependencies"
+Institutional Readiness Agent,Assesses institution ability to execute a specific initiative,"Institution profile, initiative",Readiness score and preparation plan
+Fintech Readiness Agent,Assesses whether a company is institution-ready,Diligence evidence,Readiness score and missing evidence
+Match Agent,Ranks institution-fintech-product opportunities,"Profiles, capability need, graph",Explainable matches
+Warm Introduction Agent,Finds highest-trust relationship path,Relationship graph,Introduction path and owner
+Regulatory Applicability Agent,"Maps rules to entities, products, and activities","Official sources, institution profile",Applicability candidates for review
+Compliance Evidence Agent,Builds control and evidence packages,"Requirements, controls, documents",Evidence package and gaps
+Vendor Diligence Agent,Coordinates third-party diligence,"Vendor evidence, policies",Risk package and exceptions
+Pilot Design Agent,Creates governed pilot plan,"Problem, candidate, constraints","Pilot plan, KPIs, tasks"
+Implementation Readiness Agent,"Assesses integrations, resources, and dependencies","Systems, teams, vendor plan",Implementation readiness and critical path
+Adoption Agent,Monitors usage and change-management outcomes,"Telemetry, cohorts, workflows",Adoption analysis and interventions
+Investment Analyst Agent,Prepares evidence-backed investment analysis,"Company, market, operational evidence",IC package and questions
+Portfolio Intelligence Agent,"Monitors investments, vendors, and initiatives",Portfolio objects and outcomes,"Risks, opportunities, scenarios"
+Participation Market Agent,Matches loan or investment participation supply and demand,"Asset, appetite, eligibility",Qualified counterparties and package
+Credit Underwriting Agent,Prepares structured credit analysis,"Application, financials, collateral",Credit memo draft and policy tests
+Treasury and Liquidity Agent,"Monitors liquidity, funding, and settlement needs","Balances, forecasts, policies",Liquidity alerts and actions
+Board Packet Agent,Assembles governance-ready reporting,"Metrics, decisions, risks",Board packet and evidence
+Auric Intelligence Agent,Creates Intelligence Objects from verified signals,"Facts, evidence, audience",Publication-ready intelligence
+Source Research Agent,Discovers and evaluates public sources,"Source registry, domain need",Source candidates and contracts
+Connector Research Agent,Maps systems to connector capabilities,Provider docs and registry,Connector backlog and mappings
+Relationship Steward Agent,Maintains relationship health and next actions,Interactions and outcomes,Relationship updates and prompts
+Human Escalation Agent,Routes judgment to authorized people,"Risk, authority, context",Review package and assignment

@@ -1,0 +1,16 @@
+test_id,scenario,expected_validation_status
+UI-AT-001,Executive opens home and sees only authorized tenant data,pass
+UI-AT-002,Analyst drills from KPI to evidence and lineage,pass
+UI-AT-003,Operator launches workflow with idempotent command,pass
+UI-AT-004,Unauthorized user cannot infer restricted board object,pass
+UI-AT-005,Stale data is visibly distinguished from current data,pass
+UI-AT-006,Approval recommendation remains separate from human decision,pass
+UI-AT-007,Report export preserves snapshot and evidence references,pass
+UI-AT-008,Version conflict prevents silent overwrite,pass
+UI-AT-009,Keyboard-only user completes approval review,pass
+UI-AT-010,Tenant switch clears prior tenant caches and state,pass
+UI-AT-011,Partial loader failure renders available regions safely,pass
+UI-AT-012,Search result ranking exposes matched and missing criteria,pass
+UI-AT-013,Mobile restricted mode blocks high-risk administration,pass
+UI-AT-014,All route and page references resolve,pass
+UI-AT-015,All JSON artifacts parse,pass

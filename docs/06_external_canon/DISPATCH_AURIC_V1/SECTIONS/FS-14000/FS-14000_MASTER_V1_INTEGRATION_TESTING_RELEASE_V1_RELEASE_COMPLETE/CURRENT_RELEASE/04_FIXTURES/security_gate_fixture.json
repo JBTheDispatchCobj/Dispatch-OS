@@ -1,0 +1,26 @@
+{
+  "gate_id": "SEC-GATE-V1-001",
+  "gate_type": "security_privacy",
+  "decision": "pending",
+  "checks": [
+    {
+      "check_id": "tenant-isolation",
+      "result": "pending",
+      "evidence": [],
+      "owner": "security"
+    },
+    {
+      "check_id": "prompt-injection",
+      "result": "pending",
+      "evidence": [],
+      "owner": "ai-governance"
+    },
+    {
+      "check_id": "backup-restore",
+      "result": "pending",
+      "evidence": [],
+      "owner": "operations"
+    }
+  ],
+  "conditions": []
+}

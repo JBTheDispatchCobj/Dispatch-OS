@@ -1,0 +1,6 @@
+activity,executive_sponsor,institution_owner,security_owner,data_owner,auric_lead,workflow_owner,approver
+approve_scope,A,R,C,C,C,R,A
+classify_data,I,C,A,R,C,I,I
+configure_workflow,I,C,C,C,R,A,I
+user_acceptance,I,A,C,C,R,R,C
+launch_approval,A,R,A,C,R,C,A

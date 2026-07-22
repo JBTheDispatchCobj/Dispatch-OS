@@ -1,0 +1,24 @@
+{
+  "test_id": "GJ-05",
+  "suite": "end_to_end",
+  "scenario": "Institutional Intelligence Search",
+  "fixture": "fixture_search_v1",
+  "steps": [
+    "initialize isolated tenant",
+    "load synthetic fixture",
+    "execute canonical journey",
+    "verify expected object and event states",
+    "verify evidence, approvals, permissions, audit and UI output",
+    "exercise rollback or recovery path"
+  ],
+  "expected": [
+    "canonical IDs resolve",
+    "tenant boundary holds",
+    "material outputs have evidence",
+    "human approval gates enforce authority",
+    "audit reconstructs the journey",
+    "no hidden stale, missing or inferred state"
+  ],
+  "status": "not_run",
+  "evidence": []
+}

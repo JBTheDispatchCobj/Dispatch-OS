@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dispatch://schemas/metric/1.0.0",
+  "title": "InstitutionMetric",
+  "type": "object",
+  "required": [
+    "metric_id",
+    "metric_name",
+    "value",
+    "period_end",
+    "source_type",
+    "confidence"
+  ],
+  "properties": {
+    "metric_id": {
+      "type": "string"
+    },
+    "metric_name": {
+      "type": "string"
+    },
+    "value": {
+      "type": "number"
+    },
+    "unit": {
+      "type": "string"
+    },
+    "period_start": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "period_end": {
+      "type": "string",
+      "format": "date"
+    },
+    "calculation": {
+      "type": "string"
+    },
+    "source_type": {
+      "type": "string",
+      "enum": [
+        "public",
+        "uploaded",
+        "connector",
+        "attested",
+        "inferred",
+        "system_generated",
+        "agent_generated"
+      ]
+    },
+    "source_reference": {
+      "type": "string"
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "unknown"
+      ]
+    },
+    "freshness": {
+      "type": "string",
+      "enum": [
+        "current",
+        "aging",
+        "stale",
+        "expired",
+        "historical",
+        "unknown"
+      ]
+    },
+    "approved": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}

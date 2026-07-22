@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Identity Resolution Case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "candidate_record_ids",
+    "decision_status",
+    "created_at"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string"
+    },
+    "candidate_record_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 2
+    },
+    "proposed_canonical_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "decision_status": {
+      "enum": [
+        "open",
+        "auto_merged",
+        "human_merged",
+        "kept_separate",
+        "rejected",
+        "superseded"
+      ]
+    },
+    "match_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "match_reasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "reviewer_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "resolved_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    }
+  }
+}

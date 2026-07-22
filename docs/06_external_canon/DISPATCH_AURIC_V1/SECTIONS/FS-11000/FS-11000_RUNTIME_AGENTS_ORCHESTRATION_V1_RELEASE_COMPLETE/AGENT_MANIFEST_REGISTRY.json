@@ -1,0 +1,36 @@
+{
+  "registry_version": "1.0.0",
+  "agents": [
+    {
+      "agent_id": "AGENT-EVIDENCE-ASSEMBLER",
+      "version": "1.0.0",
+      "purpose": "Locate and assemble permitted evidence without making final compliance determinations.",
+      "status": "active",
+      "allowed_actions": [
+        "retrieve",
+        "classify",
+        "compare",
+        "assemble"
+      ],
+      "prohibited_actions": [
+        "approve",
+        "communicate_with_regulator",
+        "waive_policy"
+      ],
+      "allowed_tools": [
+        "TOOL-GRAPH-QUERY",
+        "TOOL-DOCUMENT-RETRIEVAL"
+      ],
+      "allowed_data_classes": [
+        "public",
+        "internal",
+        "confidential"
+      ],
+      "input_schema_ref": "schemas/context_package.schema.json",
+      "output_schema_ref": "schemas/context_package.schema.json",
+      "confidence_threshold": 0.8,
+      "evaluation_suite_id": "EVAL-EVIDENCE-ASSEMBLER-V1",
+      "persistent_memory_policy": "approved_facts_only"
+    }
+  ]
+}

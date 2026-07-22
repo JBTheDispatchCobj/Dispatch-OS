@@ -1,0 +1,54 @@
+{
+  "tenant_id": "tenant_demo_001",
+  "environment": "demo",
+  "users": [
+    {
+      "user_id": "usr_exec",
+      "role": "executive"
+    },
+    {
+      "user_id": "usr_ops",
+      "role": "operator"
+    },
+    {
+      "user_id": "usr_analyst",
+      "role": "analyst"
+    },
+    {
+      "user_id": "usr_approver",
+      "role": "approver"
+    },
+    {
+      "user_id": "usr_admin",
+      "role": "tenant_admin"
+    }
+  ],
+  "institution": {
+    "institution_id": "inst_demo_cu_001",
+    "name": "Prairie Horizon Credit Union",
+    "data_status": "attested",
+    "freshness": "current",
+    "confidence": 0.96
+  },
+  "opportunity": {
+    "opportunity_id": "opp_001",
+    "type": "fintech_pilot",
+    "status": "qualified",
+    "recommendation_status": "draft",
+    "approval_status": "pending"
+  },
+  "workflow": {
+    "workflow_instance_id": "wf_001",
+    "definition_id": "fintech_pilot_readiness",
+    "state": "awaiting_approval",
+    "current_step": "executive_sponsor_approval"
+  },
+  "evidence": [
+    {
+      "evidence_id": "ev_001",
+      "classification": "private",
+      "review_status": "reviewed",
+      "freshness": "current"
+    }
+  ]
+}

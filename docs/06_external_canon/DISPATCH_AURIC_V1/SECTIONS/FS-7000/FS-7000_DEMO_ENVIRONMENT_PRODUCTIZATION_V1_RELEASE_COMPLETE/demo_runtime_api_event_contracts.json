@@ -1,0 +1,92 @@
+{
+  "version": "1.0.0",
+  "apis": [
+    {
+      "id": "DEMO-API-001",
+      "method": "POST",
+      "path": "/v1/demo-runs",
+      "operation": "create_demo_run",
+      "request_schema": "demo_run.schema.json",
+      "permissions": [
+        "demo.run.create"
+      ]
+    },
+    {
+      "id": "DEMO-API-002",
+      "method": "POST",
+      "path": "/v1/demo-runs/{run_id}:load",
+      "operation": "load_fixture_pack",
+      "request_fields": [
+        "fixture_pack_id"
+      ],
+      "permissions": [
+        "demo.run.control"
+      ]
+    },
+    {
+      "id": "DEMO-API-003",
+      "method": "POST",
+      "path": "/v1/demo-runs/{run_id}:reset",
+      "operation": "reset_demo_run",
+      "request_fields": [
+        "reset_group"
+      ],
+      "permissions": [
+        "demo.run.control"
+      ]
+    },
+    {
+      "id": "DEMO-API-004",
+      "method": "POST",
+      "path": "/v1/demo-runs/{run_id}:inject-event",
+      "operation": "inject_demo_event",
+      "request_fields": [
+        "event_type",
+        "subject",
+        "payload"
+      ],
+      "permissions": [
+        "demo.run.control"
+      ]
+    },
+    {
+      "id": "DEMO-API-005",
+      "method": "GET",
+      "path": "/v1/demo-runs/{run_id}/expected-results",
+      "operation": "get_expected_results",
+      "permissions": [
+        "demo.run.read"
+      ]
+    }
+  ],
+  "events": [
+    {
+      "type": "demo.run.created",
+      "version": "1.0"
+    },
+    {
+      "type": "demo.fixture.loaded",
+      "version": "1.0"
+    },
+    {
+      "type": "demo.workflow.started",
+      "version": "1.0"
+    },
+    {
+      "type": "demo.approval.requested",
+      "version": "1.0"
+    },
+    {
+      "type": "demo.output.generated",
+      "version": "1.0"
+    },
+    {
+      "type": "demo.run.reset",
+      "version": "1.0"
+    },
+    {
+      "type": "demo.run.failed",
+      "version": "1.0"
+    }
+  ]
+}

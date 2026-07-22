@@ -1,0 +1,50 @@
+{
+  "manifest_name": "SYNTHETIC_COMMUNITY_FINANCE_CARTRIDGE",
+  "version": "1.0.0",
+  "owner": "Auric Works",
+  "product": "Dispatch",
+  "created_at": "2026-07-22T00:00:00-05:00",
+  "domain_id": "FS-5199",
+  "domain_name": "Synthetic Community Finance",
+  "purpose": "Validation fixture for registry resolution and installation ordering.",
+  "cartridge_type": "synthetic_fixture",
+  "status": "test_only",
+  "primary_objects": [
+    "Institution"
+  ],
+  "supported_workflows": [
+    "Customer Onboarding"
+  ],
+  "allowed_agents": [
+    "Customer Relationship Agent"
+  ],
+  "required_evidence": [
+    "customer_identification KYC/KYB_evidence account_disclosures approval_or_exception_record"
+  ],
+  "approval_gates": [
+    "credit_authority"
+  ],
+  "dashboards": [
+    "Banking Executive Dashboard"
+  ],
+  "kpis": [
+    "total_assets"
+  ],
+  "relationships": [
+    "OFFERS"
+  ],
+  "integration_dependencies": [
+    "objects.registry.json"
+  ],
+  "section_id": "FS-5100",
+  "section_aliases": [
+    "FS-5000"
+  ],
+  "installation_order": [
+    "load_schemas",
+    "load_registries",
+    "resolve_references",
+    "install_cartridge",
+    "run_acceptance_tests"
+  ]
+}

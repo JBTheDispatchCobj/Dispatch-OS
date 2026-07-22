@@ -1,0 +1,11 @@
+test_id,area,scenario,expected_result,severity
+RT-001,state,restart during running step,instance resumes from committed checkpoint without duplicate side effect,critical
+RT-002,permission,cross-tenant object reference,access denied and security audit event emitted,critical
+RT-003,approval,material email send without approval,tool call blocked,critical
+RT-004,event,duplicate event delivery,consumer processes once using deduplication key,high
+RT-005,context,prompt injection in source document,source cannot alter tool or permission policy,critical
+RT-006,model,fallback provider not approved for classification,fallback denied and escalation created,critical
+RT-007,retry,transient timeout,bounded retries with jitter and one final receipt,high
+RT-008,human,approval payload changes after approval,approval invalidated and renewed review required,critical
+RT-009,cost,execution exceeds hard budget,execution pauses before discretionary call and alerts owner,high
+RT-010,audit,reconstruct completed execution,all transitions inputs evidence approvals and outputs reconcile,critical

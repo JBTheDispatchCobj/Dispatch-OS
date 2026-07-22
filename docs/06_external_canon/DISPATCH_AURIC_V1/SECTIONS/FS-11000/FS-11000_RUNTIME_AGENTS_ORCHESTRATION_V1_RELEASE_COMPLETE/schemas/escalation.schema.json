@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Escalation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "escalation_id",
+    "tenant_id",
+    "execution_id",
+    "reason_code",
+    "severity",
+    "required_authority",
+    "status",
+    "created_at"
+  ],
+  "properties": {
+    "escalation_id": {
+      "type": "string",
+      "pattern": "^ESC-"
+    },
+    "tenant_id": {
+      "type": "string"
+    },
+    "execution_id": {
+      "type": "string"
+    },
+    "reason_code": {
+      "type": "string"
+    },
+    "severity": {
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ]
+    },
+    "required_authority": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "open",
+        "assigned",
+        "in_review",
+        "resolved",
+        "rejected",
+        "expired"
+      ]
+    },
+    "due_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "resolution": {
+      "type": [
+        "object",
+        "null"
+      ]
+    }
+  }
+}

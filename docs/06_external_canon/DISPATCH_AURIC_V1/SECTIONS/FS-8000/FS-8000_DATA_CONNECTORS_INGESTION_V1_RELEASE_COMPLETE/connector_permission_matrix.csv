@@ -1,0 +1,5 @@
+actor,action,connector_definition,tenant_connector,credentials,source_data,activate,revoke,export,approval_required
+platform_connector_admin,manage definition,write,read,none,none,no,no,no,platform change approval
+tenant_admin,authorize tenant connector,read,write,reference_only,metadata,yes,yes,policy_limited,tenant authorization
+data_operator,operate jobs,read,operate,none,classification_limited,no,no,no,none
+agent,retrieve approved context,read,invoke_scoped,none,policy_limited,no,no,no,tool and workflow policy

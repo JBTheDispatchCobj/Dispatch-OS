@@ -1,0 +1,6 @@
+severity,definition,examples,ack_target,containment_target,notification_authority,required_review
+SEV0,existential or widespread confirmed compromise,cross-tenant disclosure; signing-key compromise,15 minutes,1 hour,executive and legal authority,board-level postmortem
+SEV1,critical tenant or platform impact,restricted-data exposure; privileged takeover,30 minutes,4 hours,security executive,formal postmortem
+SEV2,material contained impact,malware; significant control failure,1 hour,8 hours,security lead,corrective action review
+SEV3,limited impact,single-user compromise; blocked exfiltration,4 hours,1 business day,security operations,case review
+SEV4,event or near miss,policy alert with no confirmed impact,1 business day,as risk warrants,control owner,trend review

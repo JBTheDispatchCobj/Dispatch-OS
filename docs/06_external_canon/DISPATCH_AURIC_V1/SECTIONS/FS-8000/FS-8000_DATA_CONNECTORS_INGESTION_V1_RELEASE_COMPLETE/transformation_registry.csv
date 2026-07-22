@@ -1,0 +1,4 @@
+transformation_id,name,input_type,output_type,deterministic,description,error_behavior,version,status
+TRIM-STRING,Trim String,string,string,true,Remove leading and trailing whitespace,preserve original and flag type mismatch,1.0.0,active
+PARSE-ISO-DATE,Parse ISO Date,string,date,true,Parse approved date formats to ISO-8601,null candidate plus exception; no guessed date,1.0.0,active
+NORMALIZE-ORG-NAME,Normalize Organization Name,string,string,true,Case and punctuation normalization for matching only,retain source value,1.0.0,active

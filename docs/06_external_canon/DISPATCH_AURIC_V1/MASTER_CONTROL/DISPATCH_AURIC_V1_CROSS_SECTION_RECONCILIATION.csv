@@ -1,0 +1,16 @@
+record_type,identifier,source_sections,classification,canonical_authority,resolution_or_status,severity,notes
+section_release,FS-10000,FS-10000,canonical_release,FS-5100 for registry identities; section package for section-specific artifacts,validated,none,FS-10000_TERMINAL_UI_USER_WORKSPACES_V1_RELEASE_COMPLETE.zip
+section_release,FS-11000,FS-11000,canonical_release,FS-5100 for registry identities; section package for section-specific artifacts,validated,none,FS-11000_RUNTIME_AGENTS_ORCHESTRATION_V1_RELEASE_COMPLETE.zip
+section_release,FS-12000,FS-12000,canonical_release,FS-5100 for registry identities; section package for section-specific artifacts,validated,none,FS-12000_SECURITY_GOVERNANCE_ADMINISTRATION_V1_RELEASE_COMPLETE.zip
+section_release,FS-13000,FS-13000,canonical_release,FS-5100 for registry identities; section package for section-specific artifacts,validated,none,FS-13000_DEPLOYMENT_PILOTS_COMMERCIALIZATION_V1_RELEASE_COMPLETE.zip
+section_release,FS-14000,FS-14000,canonical_release,FS-5100 for registry identities; section package for section-specific artifacts,validated,none,FS-14000_MASTER_V1_INTEGRATION_TESTING_RELEASE_V1_RELEASE_COMPLETE.zip
+section_release,FS-4000,FS-4000,canonical_release,FS-5100 for registry identities; section package for section-specific artifacts,validated,none,FS-4000_DOMAIN_OPERATING_FRAMEWORKS_V1_RELEASE_COMPLETE.zip
+section_release,FS-5100,FS-5100,canonical_release,FS-5100 for registry identities; section package for section-specific artifacts,validated,none,FS-5100_MASTER_REGISTRIES_CARTRIDGE_MANIFESTS_V1_RELEASE_COMPLETE.zip
+section_release,FS-6000,FS-6000,canonical_release,FS-5100 for registry identities; section package for section-specific artifacts,validated,none,FS-6000_INSTITUTIONAL_KERNEL_V1_RELEASE_COMPLETE.zip
+section_release,FS-7000,FS-7000,canonical_release,FS-5100 for registry identities; section package for section-specific artifacts,validated,none,FS-7000_DEMO_ENVIRONMENT_PRODUCTIZATION_V1_RELEASE_COMPLETE.zip
+section_release,FS-8000,FS-8000,canonical_release,FS-5100 for registry identities; section package for section-specific artifacts,validated,none,FS-8000_DATA_CONNECTORS_INGESTION_V1_RELEASE_COMPLETE.zip
+section_release,FS-9000,FS-9000,canonical_release,FS-5100 for registry identities; section package for section-specific artifacts,validated,none,FS-9000_KNOWLEDGE_GRAPH_INSTITUTION_POPULATION_V1_RELEASE_COMPLETE.zip
+section_release,POST_VOLUME_10,POST_VOLUME_10,supporting_control,FS-5100 for registry identities; section package for section-specific artifacts,validated,none,POST_VOLUME_10_DOCUMENT_CONTROL_PACKAGE_FS4000_RECONCILED.zip
+alias,FS-5000,master,alias,FS-5100,documented,low,FS-5100 is the canonical registries and cartridge manifests section name.
+resolved_reference,dispatch://schemas/metric/1.0.0,FS-6000,resolved,metric.schema.json,resolved,none,Metric schema URI and institution reference check.
+baseline_authority,00_BASELINE_SOURCE/,FS-14000,historical_superseded_noncanonical,CURRENT_RELEASE layer,resolved,none,Implementation use is prohibited.

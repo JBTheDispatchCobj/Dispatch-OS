@@ -1,0 +1,45 @@
+{
+  "section_id": "FS-4000",
+  "section_name": "Domain Operating Frameworks",
+  "version": "1.0",
+  "release_status": "V1_RELEASE_COMPLETE",
+  "certification": "Domain-intelligence and operating-framework layer",
+  "scope_includes": [
+    "domain taxonomies",
+    "domain objects",
+    "domain workflows",
+    "domain agents",
+    "evidence requirements",
+    "approvals",
+    "KPIs",
+    "connectors",
+    "knowledge packs",
+    "implementation guidance"
+  ],
+  "scope_excludes": [
+    "runtime implementation",
+    "Terminal UI artifacts",
+    "production credentials",
+    "live integrations"
+  ],
+  "domain_package_count": 15,
+  "expected_domain_packages": [
+    "FS-4001_BANKING_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4002_CREDIT_UNION_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4003_COMMERCIAL_BANKING_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4004_MORTGAGE_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4005_PRIVATE_CREDIT_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4006_PRIVATE_EQUITY_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4007_VENTURE_CAPITAL_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4008_CAPITAL_MARKETS_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4009_WEALTH_MANAGEMENT_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4010_INSURANCE_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4011_CONSTRUCTION_FINANCE_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4012_MANUFACTURING_FINANCE_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4013_HEALTHCARE_FINANCE_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4014_REGULATION_REPORTING_EXAMINATION_OPERATING_FRAMEWORK_V1.zip",
+    "FS-4015_INSTITUTIONAL_INTELLIGENCE_INTEGRATION_DEPLOYMENT_FRAMEWORK_V1.zip"
+  ],
+  "external_registry_dependency": "FS-5100",
+  "generated_at": "2026-07-22T08:50:17.572743+00:00"
+}

@@ -1,0 +1,133 @@
+{
+  "institution": {
+    "institution_id": "CU-100001",
+    "legal_name": "Example Community Credit Union",
+    "display_name": "Example Community CU",
+    "institution_type": "credit_union",
+    "operating_status": "active",
+    "profile_status": "reviewed",
+    "official_identifiers": [
+      {
+        "identifier_type": "NCUA_charter",
+        "value": "00000",
+        "jurisdiction": "US"
+      }
+    ],
+    "headquarters": {
+      "city": "Example City",
+      "state": "IL",
+      "country": "US"
+    },
+    "website": "https://example.invalid",
+    "executive_ids": [
+      "PER-100001"
+    ],
+    "product_ids": [
+      "PROD-WEALTH-001"
+    ],
+    "readiness_score_ids": [
+      "READY-100001"
+    ],
+    "opportunity_ids": [
+      "OPP-100001"
+    ],
+    "metadata": {
+      "source_type": "synthetic",
+      "confidence": "high",
+      "freshness": "current",
+      "visibility": "synthetic",
+      "as_of": "2026-07-22T00:00:00Z",
+      "version": "1.0.0"
+    }
+  },
+  "executive": {
+    "executive_id": "PER-100001",
+    "full_name": "Jordan Example",
+    "current_roles": [
+      {
+        "institution_id": "CU-100001",
+        "title": "Chief Executive Officer",
+        "start_date": "2022-01-01",
+        "status": "active",
+        "source_reference": "synthetic institution website",
+        "confidence": "high"
+      }
+    ],
+    "authority_records": [
+      {
+        "authority_type": "pilot_sponsorship",
+        "scope": "institution-wide controlled pilots",
+        "threshold": null,
+        "currency": null,
+        "effective_from": "2022-01-01",
+        "expires_at": null,
+        "status": "active",
+        "evidence_id": "EVID-100001"
+      }
+    ],
+    "relationship_ids": [],
+    "profile_status": "verified",
+    "visibility": "synthetic"
+  },
+  "readiness_score": {
+    "score_id": "READY-100001",
+    "institution_id": "CU-100001",
+    "subject_id": "FINTECH-100001",
+    "dimension": "integration",
+    "score": 3,
+    "weight": 12,
+    "weighted_score": 0.36,
+    "evidence_ids": [
+      "EVID-100002"
+    ],
+    "blockers": [
+      "No production-like test environment"
+    ],
+    "assumptions": [
+      "Vendor API supports documented member-service workflow"
+    ],
+    "confidence": "medium",
+    "reviewer_id": "PER-100001",
+    "reviewed_at": "2026-07-22T00:00:00Z",
+    "expires_at": "2026-10-22T00:00:00Z",
+    "next_action": "Create sandbox integration plan"
+  },
+  "opportunity": {
+    "opportunity_id": "OPP-100001",
+    "institution_id": "CU-100001",
+    "type": "fintech_pilot",
+    "domains": [
+      "credit_unions",
+      "venture_capital",
+      "regulation",
+      "vendor_oversight"
+    ],
+    "source_signal_ids": [
+      "SIG-100001"
+    ],
+    "problem": "Member-service workflow requires manual rekeying and long response times.",
+    "proposed_solution": "Run a limited workflow-automation pilot.",
+    "estimated_value": {
+      "low": 75000,
+      "high": 175000,
+      "currency": "USD",
+      "period": "annual",
+      "confidence": "medium"
+    },
+    "readiness_score_ids": [
+      "READY-100001"
+    ],
+    "sponsor_id": "PER-100001",
+    "workflow_id": "WF-FINTECH-PILOT",
+    "required_evidence_ids": [
+      "EVID-100002"
+    ],
+    "approval_type_ids": [
+      "fintech_pilot"
+    ],
+    "score": 74,
+    "confidence": "medium",
+    "status": "qualified",
+    "next_action": "Complete security and data-flow review"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ContextPackage",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "context_id",
+    "tenant_id",
+    "execution_id",
+    "purpose",
+    "items",
+    "classification",
+    "built_at",
+    "content_hash"
+  ],
+  "properties": {
+    "context_id": {
+      "type": "string",
+      "pattern": "^CTX-"
+    },
+    "tenant_id": {
+      "type": "string"
+    },
+    "execution_id": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "ref",
+          "authority",
+          "freshness",
+          "classification"
+        ],
+        "properties": {
+          "ref": {
+            "type": "string"
+          },
+          "authority": {
+            "enum": [
+              "approved_policy",
+              "attested",
+              "verified",
+              "canonical",
+              "approved_output",
+              "public_authoritative",
+              "inferred",
+              "untrusted"
+            ]
+          },
+          "freshness": {
+            "enum": [
+              "current",
+              "stale",
+              "unknown"
+            ]
+          },
+          "classification": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "classification": {
+      "type": "string"
+    },
+    "exclusions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "token_budget": {
+      "type": "integer"
+    },
+    "built_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "content_hash": {
+      "type": "string"
+    }
+  }
+}

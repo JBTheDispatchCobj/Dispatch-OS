@@ -1,0 +1,124 @@
+{
+  "section": "FS-9000",
+  "validated_at": "2026-07-22T00:00:00Z",
+  "checks": [
+    {
+      "check": "json_parse",
+      "file": "SECTION_RELEASE_MANIFEST.json",
+      "status": "PASS"
+    },
+    {
+      "check": "json_parse",
+      "file": "graph_acceptance_tests.json",
+      "status": "PASS"
+    },
+    {
+      "check": "json_parse",
+      "file": "graph_api_contracts.json",
+      "status": "PASS"
+    },
+    {
+      "check": "json_parse",
+      "file": "graph_confidence_rules.json",
+      "status": "PASS"
+    },
+    {
+      "check": "json_parse",
+      "file": "graph_edge.schema.json",
+      "status": "PASS"
+    },
+    {
+      "check": "json_parse",
+      "file": "graph_event_contracts.json",
+      "status": "PASS"
+    },
+    {
+      "check": "json_parse",
+      "file": "graph_node.schema.json",
+      "status": "PASS"
+    },
+    {
+      "check": "json_parse",
+      "file": "graph_query.schema.json",
+      "status": "PASS"
+    },
+    {
+      "check": "json_parse",
+      "file": "graph_query_contracts.json",
+      "status": "PASS"
+    },
+    {
+      "check": "json_parse",
+      "file": "identity_resolution_case.schema.json",
+      "status": "PASS"
+    },
+    {
+      "check": "json_parse",
+      "file": "inference_record.schema.json",
+      "status": "PASS"
+    },
+    {
+      "check": "json_parse",
+      "file": "institution_similarity_model.json",
+      "status": "PASS"
+    },
+    {
+      "check": "json_parse",
+      "file": "population_job.schema.json",
+      "status": "PASS"
+    },
+    {
+      "check": "json_parse",
+      "file": "population_manifests.json",
+      "status": "PASS"
+    },
+    {
+      "check": "json_parse",
+      "file": "synthetic_graph_fixture.json",
+      "status": "PASS"
+    },
+    {
+      "check": "csv_parse_headers",
+      "file": "graph_node_type_registry.csv",
+      "status": "PASS",
+      "columns": 7
+    },
+    {
+      "check": "csv_parse_headers",
+      "file": "graph_relationship_type_registry.csv",
+      "status": "PASS",
+      "columns": 8
+    },
+    {
+      "check": "csv_parse_headers",
+      "file": "graph_visibility_permission_matrix.csv",
+      "status": "PASS",
+      "columns": 6
+    },
+    {
+      "check": "csv_parse_headers",
+      "file": "population_source_priority.csv",
+      "status": "PASS",
+      "columns": 8
+    },
+    {
+      "check": "fixture_schema_validation",
+      "schema": "graph_node.schema.json",
+      "objects": 3,
+      "status": "PASS"
+    },
+    {
+      "check": "fixture_schema_validation",
+      "schema": "graph_edge.schema.json",
+      "objects": 2,
+      "status": "PASS"
+    },
+    {
+      "check": "required_artifacts_present",
+      "status": "PASS",
+      "artifact_count": 37
+    }
+  ],
+  "errors": [],
+  "overall_status": "PASS"
+}

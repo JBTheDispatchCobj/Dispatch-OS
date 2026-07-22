@@ -1,0 +1,25 @@
+{
+  "registry_version": "1.0.0",
+  "policies": [
+    {
+      "retry_policy_id": "RETRY-TRANSIENT-DEFAULT",
+      "max_attempts": 4,
+      "backoff": "exponential",
+      "base_seconds": 2,
+      "max_seconds": 60,
+      "jitter": true,
+      "retryable_classes": [
+        "timeout",
+        "rate_limit",
+        "provider_unavailable"
+      ],
+      "non_retryable_classes": [
+        "permission",
+        "validation",
+        "security",
+        "human_rejection"
+      ],
+      "dead_letter_after_exhaustion": true
+    }
+  ]
+}

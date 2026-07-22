@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Cartridge Manifest Schema",
+  "type": "object",
+  "required": [
+    "manifest_name",
+    "version",
+    "domain_id",
+    "domain_name",
+    "purpose",
+    "primary_objects",
+    "supported_workflows",
+    "allowed_agents",
+    "integration_dependencies",
+    "section_id"
+  ],
+  "properties": {
+    "manifest_name": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "domain_id": {
+      "type": "string"
+    },
+    "domain_name": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "primary_objects": {
+      "type": "array"
+    },
+    "supported_workflows": {
+      "type": "array"
+    },
+    "allowed_agents": {
+      "type": "array"
+    },
+    "required_evidence": {
+      "type": "array"
+    },
+    "approval_gates": {
+      "type": "array"
+    },
+    "dashboards": {
+      "type": "array"
+    },
+    "kpis": {
+      "type": "array"
+    },
+    "relationships": {
+      "type": "array"
+    },
+    "integration_dependencies": {
+      "type": "array"
+    },
+    "section_id": {
+      "const": "FS-5100"
+    },
+    "section_aliases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,12 @@
+object,field,type,required,definition,governance
+Institution,institution_id,string,yes,Canonical stable ID,System generated or deterministic official identifier mapping
+Institution,legal_name,string,yes,Registered legal name,Authoritative public source or tenant attestation
+Institution,profile_status,enum,yes,Profile lifecycle state,System controlled
+InstitutionMetric,period_end,date,yes,Metric reporting period end,Source period
+Executive,authority_records.status,enum,yes,"Whether authority is active, expired, inactive, or inferred",Internal evidence required for active
+VendorRelationship,renewal_date,date,no,Contract renewal date,Executed contract or owner attestation
+ReadinessScore,score,integer 0-5,yes,Dimension score; 0 means unknown,Human-reviewed or approved assessment
+Opportunity,score,number 0-100,yes,Opportunity ranking score,Scoring engine version required
+Evidence,state,enum,yes,Evidence lifecycle state,Evidence service controlled
+Approval,decision_state,enum,yes,Approval lifecycle/decision,Approval service controlled
+AuditEvent,actor_type,enum,yes,"Human, agent, system, connector, or external actor",Runtime generated

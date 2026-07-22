@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.dispatch.local/fs12000/change_request.schema.json",
+  "title": "ChangeRequest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "tenant_id",
+    "change_type",
+    "environment",
+    "risk",
+    "implementation_plan",
+    "test_plan",
+    "rollback_plan",
+    "approvals",
+    "status",
+    "version"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tenant_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "classification": {
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "restricted"
+      ]
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "approval_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "change_type": {
+      "type": "string"
+    },
+    "environment": {
+      "enum": [
+        "demo",
+        "sandbox",
+        "pilot",
+        "production"
+      ]
+    },
+    "risk": {
+      "enum": [
+        "standard",
+        "normal",
+        "high",
+        "emergency"
+      ]
+    },
+    "implementation_plan": {
+      "type": "string"
+    },
+    "test_plan": {
+      "type": "string"
+    },
+    "rollback_plan": {
+      "type": "string"
+    },
+    "approvals": {
+      "type": "array"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "review",
+        "approved",
+        "scheduled",
+        "implementing",
+        "validated",
+        "rolled_back",
+        "closed"
+      ]
+    }
+  }
+}

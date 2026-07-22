@@ -1,0 +1,4 @@
+source_id,name,source_category,authority_tier,retrieval_mode,expected_cadence,license_review_status,redistribution,canonical_use,owner
+SRC-NCUA-CALL,NCUA Call Report Data,regulator_dataset,official,scheduled_download,quarterly,approved,review_terms,regulated identifiers and reported financial metrics,public_data_owner
+SRC-FDIC-BANKFIND,FDIC BankFind Suite,regulator_directory,official,api_or_download,monthly,approved,review_terms,bank identity and regulatory profile,public_data_owner
+SRC-SEC-EDGAR,SEC EDGAR,regulatory_filings,official,api,daily,approved,attribution_required,filings and issuer facts,public_data_owner

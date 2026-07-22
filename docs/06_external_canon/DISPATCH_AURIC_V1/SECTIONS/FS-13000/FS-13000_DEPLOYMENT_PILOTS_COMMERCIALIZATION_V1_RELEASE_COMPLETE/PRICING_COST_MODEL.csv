@@ -1,0 +1,6 @@
+component,pricing_basis,direct_cost_basis,margin_control,approval_trigger
+platform,tenant/month,hosting + core operations,target contribution margin,discount or custom tenancy
+implementation,fixed scope or time/materials,delivery labor + partner cost,scope contingency,custom integration
+managed_operations,monthly retainer,operator capacity,minimum staffing margin,24x7 or regulated operation
+usage,metered event/model/data,provider pass-through,cost-plus floor,unbounded usage
+transaction,per completed permitted transaction,legal + operational cost,jurisdiction review,finder/broker/regulated compensation

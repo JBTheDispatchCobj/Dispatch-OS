@@ -1,0 +1,85 @@
+{
+  "trace_id": "TRACE-RT-EXAM-001",
+  "fixture_id": "FIX-RT-EXAM-001",
+  "schema_version": "1.0.0",
+  "events": [
+    {
+      "event_id": "EVT-DEMO-0001",
+      "event_type": "runtime.execution.created",
+      "schema_version": "1.0.0",
+      "tenant_id": "TENANT-DEMO-CU",
+      "subject_ref": "EXEC-DEMO-0001",
+      "correlation_id": "CORR-DEMO-0001",
+      "occurred_at": "2026-07-22T12:01:00Z",
+      "recorded_at": "2026-07-22T12:01:01Z",
+      "payload_ref": "fixture://FIX-RT-EXAM-001/event/1"
+    },
+    {
+      "event_id": "EVT-DEMO-0002",
+      "event_type": "runtime.execution.started",
+      "schema_version": "1.0.0",
+      "tenant_id": "TENANT-DEMO-CU",
+      "subject_ref": "EXEC-DEMO-0001",
+      "correlation_id": "CORR-DEMO-0001",
+      "occurred_at": "2026-07-22T12:02:00Z",
+      "recorded_at": "2026-07-22T12:02:01Z",
+      "payload_ref": "fixture://FIX-RT-EXAM-001/event/2"
+    },
+    {
+      "event_id": "EVT-DEMO-0003",
+      "event_type": "runtime.agent.invoked",
+      "schema_version": "1.0.0",
+      "tenant_id": "TENANT-DEMO-CU",
+      "subject_ref": "EXEC-DEMO-0001",
+      "correlation_id": "CORR-DEMO-0001",
+      "occurred_at": "2026-07-22T12:03:00Z",
+      "recorded_at": "2026-07-22T12:03:01Z",
+      "payload_ref": "fixture://FIX-RT-EXAM-001/event/3"
+    },
+    {
+      "event_id": "EVT-DEMO-0004",
+      "event_type": "runtime.agent.output_validated",
+      "schema_version": "1.0.0",
+      "tenant_id": "TENANT-DEMO-CU",
+      "subject_ref": "EXEC-DEMO-0001",
+      "correlation_id": "CORR-DEMO-0001",
+      "occurred_at": "2026-07-22T12:04:00Z",
+      "recorded_at": "2026-07-22T12:04:01Z",
+      "payload_ref": "fixture://FIX-RT-EXAM-001/event/4"
+    },
+    {
+      "event_id": "EVT-DEMO-0005",
+      "event_type": "runtime.approval.requested",
+      "schema_version": "1.0.0",
+      "tenant_id": "TENANT-DEMO-CU",
+      "subject_ref": "EXEC-DEMO-0001",
+      "correlation_id": "CORR-DEMO-0001",
+      "occurred_at": "2026-07-22T12:05:00Z",
+      "recorded_at": "2026-07-22T12:05:01Z",
+      "payload_ref": "fixture://FIX-RT-EXAM-001/event/5"
+    },
+    {
+      "event_id": "EVT-DEMO-0006",
+      "event_type": "runtime.approval.decided",
+      "schema_version": "1.0.0",
+      "tenant_id": "TENANT-DEMO-CU",
+      "subject_ref": "EXEC-DEMO-0001",
+      "correlation_id": "CORR-DEMO-0001",
+      "occurred_at": "2026-07-22T12:06:00Z",
+      "recorded_at": "2026-07-22T12:06:01Z",
+      "payload_ref": "fixture://FIX-RT-EXAM-001/event/6"
+    },
+    {
+      "event_id": "EVT-DEMO-0007",
+      "event_type": "runtime.execution.completed",
+      "schema_version": "1.0.0",
+      "tenant_id": "TENANT-DEMO-CU",
+      "subject_ref": "EXEC-DEMO-0001",
+      "correlation_id": "CORR-DEMO-0001",
+      "occurred_at": "2026-07-22T12:07:00Z",
+      "recorded_at": "2026-07-22T12:07:01Z",
+      "payload_ref": "fixture://FIX-RT-EXAM-001/event/7"
+    }
+  ],
+  "validation_status": "PASS"
+}

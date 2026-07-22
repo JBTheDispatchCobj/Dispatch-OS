@@ -1,0 +1,2721 @@
+{
+  "section_id": "FS-5100",
+  "manifest_class": "kpi",
+  "count": 269,
+  "entries": [
+    {
+      "id": "KPI.TOTAL_ASSETS",
+      "name": "total_assets",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "KPI.LOAN_GROWTH",
+      "name": "loan_growth",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001",
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "KPI.DEPOSIT_GROWTH",
+      "name": "deposit_growth",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001",
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "KPI.LOAN_TO_DEPOSIT_RATIO",
+      "name": "loan_to_deposit_ratio",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "KPI.COST_OF_FUNDS",
+      "name": "cost_of_funds",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "KPI.NET_INTEREST_MARGIN",
+      "name": "net_interest_margin",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "KPI.LIQUIDITY_RATIO",
+      "name": "liquidity_ratio",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "KPI.CUSTOMERS",
+      "name": "customers",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "KPI.ACTIVE_RELATIONSHIPS",
+      "name": "active_relationships",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "KPI.PRODUCTS_PER_CUSTOMER",
+      "name": "products_per_customer",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "KPI.RELATIONSHIP_PROFITABILITY",
+      "name": "relationship_profitability",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001",
+        "FS-4003",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.RETENTION_RATE",
+      "name": "retention_rate",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001",
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "KPI.CROSS_SELL_RATE",
+      "name": "cross_sell_rate",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "KPI.DELINQUENCY_RATE",
+      "name": "delinquency_rate",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001",
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "KPI.CHARGE_OFF_RATE",
+      "name": "charge_off_rate",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001",
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "KPI.CRITICIZED_ASSETS",
+      "name": "criticized_assets",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "KPI.WATCHLIST_EXPOSURE",
+      "name": "watchlist_exposure",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "KPI.COMPLAINTS",
+      "name": "complaints",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001",
+        "FS-4009",
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.FRAUD_EVENTS",
+      "name": "fraud_events",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "KPI.ACCOUNT_OPENING_CYCLE_TIME",
+      "name": "account_opening_cycle_time",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "KPI.DIGITAL_ACTIVE_USERS",
+      "name": "digital_active_users",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "KPI.BRANCH_TRANSACTIONS",
+      "name": "branch_transactions",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "KPI.SERVICE_SLA",
+      "name": "service_SLA",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "KPI.EXCEPTION_RATE",
+      "name": "exception_rate",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4001"
+      ]
+    },
+    {
+      "id": "KPI.MEMBERS",
+      "name": "members",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "KPI.MEMBER_GROWTH",
+      "name": "member_growth",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "KPI.PRODUCTS_PER_MEMBER",
+      "name": "products_per_member",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "KPI.MEMBER_RETENTION",
+      "name": "member_retention",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "KPI.WALLET_SHARE",
+      "name": "wallet_share",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002",
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.MEMBER_OPPORTUNITIES",
+      "name": "member_opportunities",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "KPI.ASSETS",
+      "name": "assets",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "KPI.NET_WORTH_RATIO",
+      "name": "net_worth_ratio",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "KPI.ROA",
+      "name": "ROA",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "KPI.FEE_INCOME",
+      "name": "fee_income",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "KPI.OPERATING_EXPENSE_RATIO",
+      "name": "operating_expense_ratio",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "KPI.FINTECH_PILOTS",
+      "name": "fintech_pilots",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "KPI.VENDOR_REVIEWS",
+      "name": "vendor_reviews",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "KPI.CUSO_OPPORTUNITIES",
+      "name": "CUSO_opportunities",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "KPI.READINESS_SCORE",
+      "name": "readiness_score",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "KPI.INTEGRATION_READINESS",
+      "name": "integration_readiness",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "KPI.BOARD_ACTIONS_OPEN",
+      "name": "board_actions_open",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "KPI.POLICY_REVIEWS_DUE",
+      "name": "policy_reviews_due",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "KPI.EXAM_FINDINGS_OPEN",
+      "name": "exam_findings_open",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "KPI.COMPLIANCE_READINESS_SCORE",
+      "name": "compliance_readiness_score",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4002"
+      ]
+    },
+    {
+      "id": "KPI.COMMERCIAL_LOAN_EXPOSURE",
+      "name": "commercial_loan_exposure",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "KPI.DSCR",
+      "name": "DSCR",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.LEVERAGE",
+      "name": "leverage",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.RISK_RATING",
+      "name": "risk_rating",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "KPI.COVENANT_BREACHES",
+      "name": "covenant_breaches",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "KPI.CRITICIZED_CLASSIFIED_LOANS",
+      "name": "criticized_classified_loans",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "KPI.WATCHLIST_LOANS",
+      "name": "watchlist_loans",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "KPI.ANNUAL_REVIEWS_DUE",
+      "name": "annual_reviews_due",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "KPI.PORTFOLIO_YIELD",
+      "name": "portfolio_yield",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "KPI.CONCENTRATION_BY_INDUSTRY",
+      "name": "concentration_by_industry",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "KPI.DEPOSIT_BALANCES",
+      "name": "deposit_balances",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003",
+        "FS-4012",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.TREASURY_FEE_INCOME",
+      "name": "treasury_fee_income",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "KPI.ACH_VOLUME",
+      "name": "ACH_volume",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "KPI.WIRE_VOLUME",
+      "name": "wire_volume",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "KPI.POSITIVE_PAY_ADOPTION",
+      "name": "positive_pay_adoption",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "KPI.CROSS_SELL_RATIO",
+      "name": "cross_sell_ratio",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "KPI.NEW_RELATIONSHIPS",
+      "name": "new_relationships",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4003"
+      ]
+    },
+    {
+      "id": "KPI.APPLICATIONS",
+      "name": "applications",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004",
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.LOCKS",
+      "name": "locks",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "KPI.SUBMISSIONS",
+      "name": "submissions",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "KPI.APPROVALS",
+      "name": "approvals",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "KPI.CLEAR_TO_CLOSE",
+      "name": "clear_to_close",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "KPI.FUNDED_LOANS",
+      "name": "funded_loans",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "KPI.PULL_THROUGH_RATE",
+      "name": "pull_through_rate",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "KPI.APPLICATION_TO_CLOSE_DAYS",
+      "name": "application_to_close_days",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "KPI.PROCESSING_CYCLE_TIME",
+      "name": "processing_cycle_time",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "KPI.UNDERWRITING_TURN_TIME",
+      "name": "underwriting_turn_time",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "KPI.CLOSING_CYCLE_TIME",
+      "name": "closing_cycle_time",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "KPI.CONDITION_COUNT",
+      "name": "condition_count",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "KPI.DEFECT_RATE",
+      "name": "defect_rate",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "KPI.POST_CLOSE_FINDINGS",
+      "name": "post_close_findings",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "KPI.DISCLOSURE_EXCEPTIONS",
+      "name": "disclosure_exceptions",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "KPI.FALLOUT_RATE",
+      "name": "fallout_rate",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "KPI.LOAN_VOLUME",
+      "name": "loan_volume",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "KPI.GAIN_ON_SALE",
+      "name": "gain_on_sale",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "KPI.MARGIN",
+      "name": "margin",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "KPI.LOCK_EXTENSION_COST",
+      "name": "lock_extension_cost",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "KPI.PRODUCTION_INCOME",
+      "name": "production_income",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4004"
+      ]
+    },
+    {
+      "id": "KPI.COMPANIES_SOURCED",
+      "name": "companies_sourced",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "KPI.DECKS_REVIEWED",
+      "name": "decks_reviewed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "KPI.IC_REVIEWS",
+      "name": "IC_reviews",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "KPI.INVESTMENTS_CLOSED",
+      "name": "investments_closed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "KPI.ARR",
+      "name": "ARR",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "KPI.MRR",
+      "name": "MRR",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "KPI.GROWTH_RATE",
+      "name": "growth_rate",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "KPI.BURN_RATE",
+      "name": "burn_rate",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "KPI.RUNWAY_MONTHS",
+      "name": "runway_months",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "KPI.TVPI",
+      "name": "TVPI",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "KPI.DPI",
+      "name": "DPI",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "KPI.RVPI",
+      "name": "RVPI",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "KPI.GROSS_IRR",
+      "name": "gross_IRR",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "KPI.NET_IRR",
+      "name": "net_IRR",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4007"
+      ]
+    },
+    {
+      "id": "KPI.AUM",
+      "name": "AUM",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.AUA",
+      "name": "AUA",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.NET_NEW_ASSETS",
+      "name": "net_new_assets",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.GROSS_INFLOWS",
+      "name": "gross_inflows",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.OUTFLOWS",
+      "name": "outflows",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.NEW_HOUSEHOLDS",
+      "name": "new_households",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.REVENUE",
+      "name": "revenue",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.FEE_RATE",
+      "name": "fee_rate",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.ADVISOR_AUM",
+      "name": "advisor_AUM",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.PIPELINE",
+      "name": "pipeline",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.CLIENT_RETENTION",
+      "name": "client_retention",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.REVIEW_COMPLETION",
+      "name": "review_completion",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.PLANS_COMPLETED",
+      "name": "plans_completed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.REFERRALS",
+      "name": "referrals",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009",
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.NEXT_GENERATION_RELATIONSHIPS",
+      "name": "next_generation_relationships",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.PERFORMANCE",
+      "name": "performance",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.BENCHMARK_VARIANCE",
+      "name": "benchmark_variance",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.ALLOCATION_DRIFT",
+      "name": "allocation_drift",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.VOLATILITY",
+      "name": "volatility",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.CASH_DRAG",
+      "name": "cash_drag",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.TAX_LOSS_HARVESTING",
+      "name": "tax_loss_harvesting",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.GOALS_ON_TRACK",
+      "name": "goals_on_track",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.IMPLEMENTATION_TASKS_OPEN",
+      "name": "implementation_tasks_open",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.IPS_CURRENT",
+      "name": "IPS_current",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.BILLABLE_ASSETS",
+      "name": "billable_assets",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.FEE_REVENUE",
+      "name": "fee_revenue",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.BILLING_EXCEPTIONS",
+      "name": "billing_exceptions",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009",
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.ESTATE_REVIEWS_DUE",
+      "name": "estate_reviews_due",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.BENEFICIARY_GAPS",
+      "name": "beneficiary_gaps",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.TITLING_ISSUES",
+      "name": "titling_issues",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.TRUST_ASSETS",
+      "name": "trust_assets",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.ALTERNATIVE_ALLOCATION",
+      "name": "alternative_allocation",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.COMMITMENTS",
+      "name": "commitments",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.UNFUNDED_COMMITMENTS",
+      "name": "unfunded_commitments",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.NAV",
+      "name": "NAV",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.CAPITAL_CALLS_DUE",
+      "name": "capital_calls_due",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.SUITABILITY_EXCEPTIONS",
+      "name": "suitability_exceptions",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009",
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.TRADE_REVIEW_EXCEPTIONS",
+      "name": "trade_review_exceptions",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.DISCLOSURE_DELIVERY",
+      "name": "disclosure_delivery",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.WEALTH_REFERRALS",
+      "name": "wealth_referrals",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.REFERRAL_CONVERSION",
+      "name": "referral_conversion",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009",
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.AUM_FROM_REFERRALS",
+      "name": "AUM_from_referrals",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4009"
+      ]
+    },
+    {
+      "id": "KPI.QUOTES",
+      "name": "quotes",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.POLICIES_ISSUED",
+      "name": "policies_issued",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.QUOTE_TO_BIND",
+      "name": "quote_to_bind",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.PREMIUM",
+      "name": "premium",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.COMMISSION",
+      "name": "commission",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.CROSS_SELL",
+      "name": "cross_sell",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.PRODUCER_PRODUCTIVITY",
+      "name": "producer_productivity",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.POLICY_COUNT",
+      "name": "policy_count",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.IN_FORCE_PREMIUM",
+      "name": "in_force_premium",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.RENEWAL_RATE",
+      "name": "renewal_rate",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.RETENTION",
+      "name": "retention",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.LAPSE_RATE",
+      "name": "lapse_rate",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.CANCELLATIONS",
+      "name": "cancellations",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.REINSTATEMENTS",
+      "name": "reinstatements",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.ENDORSEMENTS",
+      "name": "endorsements",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.CLAIMS_COUNT",
+      "name": "claims_count",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.CLAIMS_FREQUENCY",
+      "name": "claims_frequency",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.CLAIMS_SEVERITY",
+      "name": "claims_severity",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.LOSS_RATIO",
+      "name": "loss_ratio",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.TIME_TO_CONTACT",
+      "name": "time_to_contact",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.TIME_TO_CLOSE",
+      "name": "time_to_close",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.RESERVE_ACCURACY",
+      "name": "reserve_accuracy",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.DENIED_CLAIMS",
+      "name": "denied_claims",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.REOPENED_CLAIMS",
+      "name": "reopened_claims",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.SUBROGATION_RECOVERY",
+      "name": "subrogation_recovery",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.LICENSES_CURRENT",
+      "name": "licenses_current",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.APPOINTMENTS_CURRENT",
+      "name": "appointments_current",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.CE_COMPLETION",
+      "name": "CE_completion",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.REPLACEMENT_EXCEPTIONS",
+      "name": "replacement_exceptions",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.EARNED_PREMIUM",
+      "name": "earned_premium",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.UNEARNED_PREMIUM",
+      "name": "unearned_premium",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.RENEWAL_COMMISSION",
+      "name": "renewal_commission",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.CHARGEBACKS",
+      "name": "chargebacks",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.PRODUCER_PAYOUT_ACCURACY",
+      "name": "producer_payout_accuracy",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4010"
+      ]
+    },
+    {
+      "id": "KPI.ACTIVE_PROJECTS",
+      "name": "active_projects",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.TOTAL_PROJECT_COST",
+      "name": "total_project_cost",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.LOAN_EXPOSURE",
+      "name": "loan_exposure",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.COMPLETION_PERCENTAGE",
+      "name": "completion_percentage",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.BUDGET_VARIANCE",
+      "name": "budget_variance",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.SCHEDULE_VARIANCE",
+      "name": "schedule_variance",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.ORIGINAL_BUDGET",
+      "name": "original_budget",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.CURRENT_BUDGET",
+      "name": "current_budget",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.COST_TO_DATE",
+      "name": "cost_to_date",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.REMAINING_COST",
+      "name": "remaining_cost",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.CONTINGENCY_REMAINING",
+      "name": "contingency_remaining",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.INTEREST_RESERVE_REMAINING",
+      "name": "interest_reserve_remaining",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.EQUITY_REQUIRED",
+      "name": "equity_required",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.EQUITY_CONTRIBUTED",
+      "name": "equity_contributed",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.LOAN_BALANCE",
+      "name": "loan_balance",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.UNDISBURSED_COMMITMENT",
+      "name": "undisbursed_commitment",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.DRAW_REQUESTS",
+      "name": "draw_requests",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.DRAWS_FUNDED",
+      "name": "draws_funded",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.DRAW_CYCLE_TIME",
+      "name": "draw_cycle_time",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.DRAW_EXCEPTIONS",
+      "name": "draw_exceptions",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.FUNDING_HOLDS",
+      "name": "funding_holds",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.RETAINAGE",
+      "name": "retainage",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.INSPECTION_COMPLETION",
+      "name": "inspection_completion",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.DRAW_COMPLETION_VARIANCE",
+      "name": "draw_completion_variance",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.LIEN_WAIVER_EXCEPTIONS",
+      "name": "lien_waiver_exceptions",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.TITLE_EXCEPTIONS",
+      "name": "title_exceptions",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.NEW_LIENS",
+      "name": "new_liens",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.PERMIT_DELAYS",
+      "name": "permit_delays",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.INSURANCE_EXCEPTIONS",
+      "name": "insurance_exceptions",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.BOND_EXCEPTIONS",
+      "name": "bond_exceptions",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.CHANGE_ORDERS",
+      "name": "change_orders",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.CHANGE_ORDER_VALUE",
+      "name": "change_order_value",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.CONTRACTOR_BACKLOG",
+      "name": "contractor_backlog",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.BONDING_CAPACITY",
+      "name": "bonding_capacity",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.SCHEDULE_PERFORMANCE",
+      "name": "schedule_performance",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.BUDGET_PERFORMANCE",
+      "name": "budget_performance",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.DELAYED_PROJECTS",
+      "name": "delayed_projects",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.OVER_BUDGET_PROJECTS",
+      "name": "over_budget_projects",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.WATCHLIST_PROJECTS",
+      "name": "watchlist_projects",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.MATURITY_RISK",
+      "name": "maturity_risk",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.TAKEOUT_READINESS",
+      "name": "takeout_readiness",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.TAKEOUT_RISK",
+      "name": "takeout_risk",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.CERTIFICATE_OF_OCCUPANCY_STATUS",
+      "name": "certificate_of_occupancy_status",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.LEASE_UP_OR_SALE_STATUS",
+      "name": "lease_up_or_sale_status",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011"
+      ]
+    },
+    {
+      "id": "KPI.RISK_RATING_MIGRATION",
+      "name": "risk_rating_migration",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4011",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.EBITDA",
+      "name": "EBITDA",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.GROSS_MARGIN",
+      "name": "gross_margin",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "KPI.INVENTORY_TURNS",
+      "name": "inventory_turns",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "KPI.CAPACITY_UTILIZATION",
+      "name": "capacity_utilization",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "KPI.OEE",
+      "name": "OEE",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "KPI.BACKLOG",
+      "name": "backlog",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "KPI.ON_TIME_DELIVERY",
+      "name": "on_time_delivery",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "KPI.SCRAP_RATE",
+      "name": "scrap_rate",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "KPI.YIELD",
+      "name": "yield",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "KPI.AR_DAYS",
+      "name": "AR_days",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012",
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.AP_DAYS",
+      "name": "AP_days",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "KPI.CASH_CONVERSION_CYCLE",
+      "name": "cash_conversion_cycle",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "KPI.BORROWING_BASE_AVAILABILITY",
+      "name": "borrowing_base_availability",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "KPI.CUSTOMER_CONCENTRATION",
+      "name": "customer_concentration",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "KPI.SUPPLIER_CONCENTRATION",
+      "name": "supplier_concentration",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "KPI.DOWNTIME",
+      "name": "downtime",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "KPI.WORKING_CAPITAL",
+      "name": "working_capital",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4012"
+      ]
+    },
+    {
+      "id": "KPI.HEALTHCARE_RELATIONSHIPS",
+      "name": "healthcare_relationships",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.TREASURY_REVENUE",
+      "name": "treasury_revenue",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.EQUIPMENT_FINANCE_VOLUME",
+      "name": "equipment_finance_volume",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.ACQUISITION_LOANS",
+      "name": "acquisition_loans",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.BUYIN_LOANS",
+      "name": "buyin_loans",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.EBITDA_MARGIN",
+      "name": "EBITDA_margin",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.GROSS_CHARGES",
+      "name": "gross_charges",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.NET_COLLECTIONS",
+      "name": "net_collections",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.COLLECTION_RATE",
+      "name": "collection_rate",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.LIQUIDITY",
+      "name": "liquidity",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.PAYROLL_TO_REVENUE",
+      "name": "payroll_to_revenue",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.RENT_TO_REVENUE",
+      "name": "rent_to_revenue",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.AR_OVER_90",
+      "name": "AR_over_90",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.DENIAL_RATE",
+      "name": "denial_rate",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.CLEAN_CLAIM_RATE",
+      "name": "clean_claim_rate",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.NET_COLLECTION_RATE",
+      "name": "net_collection_rate",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.DAYS_TO_BILL",
+      "name": "days_to_bill",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.DAYS_TO_PAY",
+      "name": "days_to_pay",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.WRITE_OFFS",
+      "name": "write_offs",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.PATIENT_COLLECTIONS",
+      "name": "patient_collections",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.PAYER_CONCENTRATION",
+      "name": "payer_concentration",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.PATIENT_VISITS",
+      "name": "patient_visits",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.PROCEDURES",
+      "name": "procedures",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.NEW_PATIENTS",
+      "name": "new_patients",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.PROVIDER_PRODUCTIVITY",
+      "name": "provider_productivity",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.SCHEDULE_UTILIZATION",
+      "name": "schedule_utilization",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.NO_SHOW_RATE",
+      "name": "no_show_rate",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.REVENUE_PER_PROVIDER",
+      "name": "revenue_per_provider",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.STAFFING_RATIO",
+      "name": "staffing_ratio",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.PROVIDER_TURNOVER",
+      "name": "provider_turnover",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.LICENSE_EXCEPTIONS",
+      "name": "license_exceptions",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.MALPRACTICE_INSURANCE_EXCEPTIONS",
+      "name": "malpractice_insurance_exceptions",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.CREDENTIALING_EXCEPTIONS",
+      "name": "credentialing_exceptions",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.PATIENT_VOLUME_DECLINE",
+      "name": "patient_volume_decline",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    },
+    {
+      "id": "KPI.AR_DETERIORATION",
+      "name": "AR_deterioration",
+      "namespace": "dispatch",
+      "version": "1.0.0",
+      "status": "active",
+      "source_cartridges": [
+        "FS-4013"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,398 @@
+{
+  "section_id": "FS-5100",
+  "generated_at": "2026-07-22T00:00:00-05:00",
+  "artifacts": [
+    {
+      "filename": "DEPENDENCY_VALIDATION_REPORT.json",
+      "file_size": 749,
+      "sha256": "2a8643a18cc322580037ca78a16e144b4c2b390045da8de3c8c16bd5e6122004",
+      "artifact_type": "validation_report",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FS-4001_BANKING.cartridge.json",
+      "file_size": 14078,
+      "sha256": "34873d251c0366097939c1e70335562cd08190bcc4cd584838fbc522549242cd",
+      "artifact_type": "cartridge_manifest",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FS-4002_CREDIT_UNIONS.cartridge.json",
+      "file_size": 16553,
+      "sha256": "f11a0ba4635170c263edcce86d47f65cc8886a42741f6ff4f68e1afc8a1f3fd5",
+      "artifact_type": "cartridge_manifest",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FS-4003_COMMERCIAL_BANKING.cartridge.json",
+      "file_size": 15374,
+      "sha256": "01c2d566c9c8f022f7c7dcbf7e10785b88320eb98682b1eac61c77cd34e2e42f",
+      "artifact_type": "cartridge_manifest",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FS-4004_MORTGAGE.cartridge.json",
+      "file_size": 15056,
+      "sha256": "2fa47226d2688176d9d3cf80ba3fe248bf0ece2a85edf9aff12317dce10c4715",
+      "artifact_type": "cartridge_manifest",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FS-4007_VENTURE_CAPITAL.cartridge.json",
+      "file_size": 3206,
+      "sha256": "b11f98684a2ea7827b301425e94e2bb497c0688b74da2a9caf0bf2e3b42995cf",
+      "artifact_type": "cartridge_manifest",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FS-4008_CAPITAL_MARKETS.cartridge.json",
+      "file_size": 1618,
+      "sha256": "ec90f9e7a5f2cd346cd25682394303a639dcc940b484749e2f9d9414426bb800",
+      "artifact_type": "cartridge_manifest",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FS-4009_WEALTH_MANAGEMENT.cartridge.json",
+      "file_size": 28772,
+      "sha256": "118443c5282a99002aa910a5de586b1ffabba80551856a33597722f545b1d81c",
+      "artifact_type": "cartridge_manifest",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FS-4010_INSURANCE.cartridge.json",
+      "file_size": 22053,
+      "sha256": "e8aa7b94a8c3b3ef5667dcc437841a3cfb6c507bd7f264a193aea90148b68674",
+      "artifact_type": "cartridge_manifest",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FS-4011_CONSTRUCTION_FINANCE.cartridge.json",
+      "file_size": 33012,
+      "sha256": "f84b9bf5014f6bfbde81e316927e910d55cfe147fa353cd875ac943cc5cddbfe",
+      "artifact_type": "cartridge_manifest",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FS-4012_MANUFACTURING_FINANCE.cartridge.json",
+      "file_size": 4940,
+      "sha256": "614320b9d85bb9d864916d0f537c92381f3043667bed761236e340b5de44db0f",
+      "artifact_type": "cartridge_manifest",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "FS-4013_HEALTHCARE_FINANCE.cartridge.json",
+      "file_size": 20737,
+      "sha256": "8732d1a20305730fb9d8e983d52d671818c30730ce52ba1412b6c8a5cd7b4e2e",
+      "artifact_type": "cartridge_manifest",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "README.md",
+      "file_size": 547,
+      "sha256": "d1ee4d9f809337a67fa077b1f81e2b3487b1e52861ef56e9f33081ad5be45f31",
+      "artifact_type": "documentation",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "REFERENCE_RESOLUTION_DETAIL.csv",
+      "file_size": 131566,
+      "sha256": "df1cf7849c30968ede9cc95f71cdf17073a92cdd493d314225e1d4870abc0e26",
+      "artifact_type": "validation_csv",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "REFERENCE_RESOLUTION_REPORT.json",
+      "file_size": 312220,
+      "sha256": "8ba813723fe3f7dce99b148d48e75b7b4a3943d850ad4924b5ed11cd24e72684",
+      "artifact_type": "validation_report",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "SECTION_NAMING_DECISION.json",
+      "file_size": 412,
+      "sha256": "6bf8eda6fa47dba0e3bafb5bec8ef16830dd56333b40dc7a2dea3bf8166b7c0a",
+      "artifact_type": "json_artifact",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "SECTION_RELEASE_MANIFEST.json",
+      "file_size": 447,
+      "sha256": "5fc8c5bf8403d40ba6dbac90179522492beb0c52a8af6b4614f6ea9833ff9194",
+      "artifact_type": "json_artifact",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "VALIDATION_REPORT.json",
+      "file_size": 319268,
+      "sha256": "d6799afee8b7a54a106e690eb76c560d8857ce886bcb62b0f2c7fd9fae7ae2c2",
+      "artifact_type": "validation_report",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "cartridge_registry.json",
+      "file_size": 2602,
+      "sha256": "00c3326adbc9da403b3f765e8f2d6b409618a7aaf530dcd7248be7a9478204de",
+      "artifact_type": "json_artifact",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "dependency_graph.json",
+      "file_size": 273,
+      "sha256": "f13a67923d103fc907cd8fafc8244a1876521e49c4cab8a8860a472ec7f956cf",
+      "artifact_type": "json_artifact",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "deployment_order.json",
+      "file_size": 860,
+      "sha256": "7690586d6aaeca916016acfd1595d3764a77834b57d2a15ef6bd8f6eccca24ce",
+      "artifact_type": "json_artifact",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "fixtures/synthetic_cartridge_fixture.json",
+      "file_size": 1165,
+      "sha256": "48e31317a00ec211301df4388397a30c8bdf8d3e105e8467418d7f4aef0b177a",
+      "artifact_type": "json_artifact",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "master_manifest.index.json",
+      "file_size": 536,
+      "sha256": "f1c44320d82ef9fac31925ae4adf93190c4ae99adc5ccbaa255d8246fe72cd4f",
+      "artifact_type": "json_artifact",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "registries/agent_registry.json",
+      "file_size": 20876,
+      "sha256": "66e418468a47830637fd2a79221ba7a618933e0829dcee864321bca98d89ce76",
+      "artifact_type": "json_artifact",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "registries/approval_registry.json",
+      "file_size": 12055,
+      "sha256": "49728f71462b0ec9f9f9c05749c80147dfd888f3560cca1982a636fb8899d0e5",
+      "artifact_type": "json_artifact",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "registries/cartridge_registry.json",
+      "file_size": 5938,
+      "sha256": "2e34b996482e93c89fc1c1d9a8d2bbec1e040d7dd3127668a0c0c93782eaa204",
+      "artifact_type": "json_artifact",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "registries/connector_registry.json",
+      "file_size": 3491,
+      "sha256": "67948b2bd9c5e084834f51bccf55d91c95bfbb9a9bc16c358d81186979ffb85f",
+      "artifact_type": "json_artifact",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "registries/dashboard_registry.json",
+      "file_size": 16425,
+      "sha256": "df5c55a3a6dbf008fa9ec6d3162bce74264aa4d7292a3edd79f20c945c1110ef",
+      "artifact_type": "json_artifact",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "registries/event_registry.json",
+      "file_size": 47267,
+      "sha256": "c5020707abdae1b8c65967f47eb020f47726c019827e533570b14fc04d6f1749",
+      "artifact_type": "json_artifact",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "registries/evidence_registry.json",
+      "file_size": 27735,
+      "sha256": "b0a7914af14c28c3226fc1af703bb69a4c1420969fd88eea3293f36ed4ebb341",
+      "artifact_type": "json_artifact",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "registries/knowledge_pack_registry.json",
+      "file_size": 279,
+      "sha256": "7b5755d0a879fed7949617f0fbbd3f20d4208ea398aa4e439a585424b2e08fa0",
+      "artifact_type": "json_artifact",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "registries/kpi_registry.json",
+      "file_size": 59456,
+      "sha256": "9ba7acac143bab77f8a34daeffc9b593fb9c117dfb61fa5154faf029159a0271",
+      "artifact_type": "json_artifact",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "registries/object_registry.json",
+      "file_size": 25215,
+      "sha256": "cc9cc13c69b43a9f40e64e2befd54cfcd9786fa63f4b543e51fa634b0bf9759b",
+      "artifact_type": "json_artifact",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "registries/relationship_registry.json",
+      "file_size": 16091,
+      "sha256": "29bd91243170a428d19035f12e3a8a0f2a004aa0c8947804d4e6a66f392452fd",
+      "artifact_type": "json_artifact",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "registries/report_registry.json",
+      "file_size": 276,
+      "sha256": "5f6d46b698bd29fd16ce8c23571913f00cdc5c6a147c6c89282778f45f8be0e2",
+      "artifact_type": "json_artifact",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "registries/workflow_registry.json",
+      "file_size": 21023,
+      "sha256": "bd7b8ea64a8c290400fd7148874d2667c913dd7426ee265043438792ac56fe08",
+      "artifact_type": "json_artifact",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "schemas/agent_manifest.schema.json",
+      "file_size": 640,
+      "sha256": "33e0c6bd1a289cf300784dc2fbd51f338894697e3251bdd84574f22c6fb4683d",
+      "artifact_type": "json_schema",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "schemas/approval_manifest.schema.json",
+      "file_size": 643,
+      "sha256": "43a60317b845e8fc70ddadf5d51ec53d637edde1e8db31469e90fcbdcdbffb9d",
+      "artifact_type": "json_schema",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "schemas/cartridge_manifest.schema.json",
+      "file_size": 1291,
+      "sha256": "dd82064478fb323daa27048d7bce994657a6cb2b2f977d548d37fd8579fb3b71",
+      "artifact_type": "json_schema",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "schemas/connector_manifest.schema.json",
+      "file_size": 644,
+      "sha256": "ab061957ea1b770b35a81330d76e77d42a8a901aad609cab59befcb8637a5dc2",
+      "artifact_type": "json_schema",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "schemas/dashboard_manifest.schema.json",
+      "file_size": 644,
+      "sha256": "027f7d514a9348f4e1d5a7789b81ed2517bbea3c2c0d6ebdf4b062c0c2144a5e",
+      "artifact_type": "json_schema",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "schemas/event_manifest.schema.json",
+      "file_size": 640,
+      "sha256": "eedcc9914bde663e7addb21f64c3c0050be53c18c118e3b144083ca33c1acd86",
+      "artifact_type": "json_schema",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "schemas/evidence_manifest.schema.json",
+      "file_size": 643,
+      "sha256": "1da5ccf9b392a386b6657ccce77cda4aecb3c9209c155e6b806ed40e27c65eca",
+      "artifact_type": "json_schema",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "schemas/knowledge_pack_manifest.schema.json",
+      "file_size": 649,
+      "sha256": "c3b08eeeb502a886e49e1d8fa48f31a7600890d37b457a54361814277324d5b3",
+      "artifact_type": "json_schema",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "schemas/kpi_manifest.schema.json",
+      "file_size": 638,
+      "sha256": "f1d4c8cd8b1b8e1e59f33513118b9a4404432e16e4f610f4d7a66e2e2fccb8bd",
+      "artifact_type": "json_schema",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "schemas/object_manifest.schema.json",
+      "file_size": 641,
+      "sha256": "71ae3428518cefc1d4631a67ee16609d21d32e383a35b6f215574b259e1c70a4",
+      "artifact_type": "json_schema",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "schemas/relationship_manifest.schema.json",
+      "file_size": 647,
+      "sha256": "f000e2ec16c602a9678746afd1d126668d75dc75217780664464d7688254410b",
+      "artifact_type": "json_schema",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "schemas/report_manifest.schema.json",
+      "file_size": 641,
+      "sha256": "052d8fe4027b8a2813a3ad350144aca61201082d138dc509240682ade4b12a29",
+      "artifact_type": "json_schema",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    },
+    {
+      "filename": "schemas/workflow_manifest.schema.json",
+      "file_size": 643,
+      "sha256": "78b67f862f2bb66ccec346fcd1291188ad3eca96e375ca5711ab6aa24a2fae77",
+      "artifact_type": "json_schema",
+      "domain": "master_registries",
+      "version": "1.0.0"
+    }
+  ]
+}

@@ -1,0 +1,187 @@
+{
+  "section_id": "FS-12000",
+  "canonical_name": "Security, Governance and Administration",
+  "version": "1.0.0",
+  "generated_at": "2026-07-22T09:09:59.993600+00:00",
+  "overall_status": "PASS",
+  "validation_scope": {
+    "local_package": "fully validated",
+    "cross_section_semantics": "validated against declared FS-6000/8000/10000/11000 contracts and local references",
+    "cross_section_identifier_resolution": "deferred to FS-14000 integration gate because canonical external packages were not included in this input"
+  },
+  "json_and_schema_checks": [
+    {
+      "artifact": "incident.schema.json",
+      "status": "PASS",
+      "check": "json_schema_parse",
+      "detail": "Valid JSON Schema"
+    },
+    {
+      "artifact": "ai_use_case.schema.json",
+      "status": "PASS",
+      "check": "json_schema_parse",
+      "detail": "Valid JSON Schema"
+    },
+    {
+      "artifact": "security_control.schema.json",
+      "status": "PASS",
+      "check": "json_schema_parse",
+      "detail": "Valid JSON Schema"
+    },
+    {
+      "artifact": "identity_entitlement.schema.json",
+      "status": "PASS",
+      "check": "json_schema_parse",
+      "detail": "Valid JSON Schema"
+    },
+    {
+      "artifact": "vendor_risk_assessment.schema.json",
+      "status": "PASS",
+      "check": "json_schema_parse",
+      "detail": "Valid JSON Schema"
+    },
+    {
+      "artifact": "tenant_boundary.schema.json",
+      "status": "PASS",
+      "check": "json_schema_parse",
+      "detail": "Valid JSON Schema"
+    },
+    {
+      "artifact": "change_request.schema.json",
+      "status": "PASS",
+      "check": "json_schema_parse",
+      "detail": "Valid JSON Schema"
+    },
+    {
+      "artifact": "FIXTURE_AI_USE_CASE.json",
+      "status": "PASS",
+      "check": "fixture_schema_validation",
+      "detail": "Valid against ai_use_case.schema.json"
+    },
+    {
+      "artifact": "FIXTURE_INCIDENT.json",
+      "status": "PASS",
+      "check": "fixture_schema_validation",
+      "detail": "Valid against incident.schema.json"
+    },
+    {
+      "artifact": "FIXTURE_SECURITY_CONTROL.json",
+      "status": "PASS",
+      "check": "fixture_schema_validation",
+      "detail": "Valid against security_control.schema.json"
+    }
+  ],
+  "csv_checks": [
+    {
+      "artifact": "CHANGE_APPROVAL_MATRIX.csv",
+      "status": "PASS",
+      "check": "csv_parse",
+      "detail": "4 data rows; 6 columns"
+    },
+    {
+      "artifact": "VALIDATION_REPORT.csv",
+      "status": "PASS",
+      "check": "csv_parse",
+      "detail": "18 data rows; 3 columns"
+    },
+    {
+      "artifact": "IAM_PERMISSION_MATRIX.csv",
+      "status": "PASS",
+      "check": "csv_parse",
+      "detail": "6 data rows; 9 columns"
+    },
+    {
+      "artifact": "VENDOR_RISK_DUE_DILIGENCE_MATRIX.csv",
+      "status": "PASS",
+      "check": "csv_parse",
+      "detail": "6 data rows; 5 columns"
+    },
+    {
+      "artifact": "INCIDENT_SEVERITY_MATRIX.csv",
+      "status": "PASS",
+      "check": "csv_parse",
+      "detail": "5 data rows; 7 columns"
+    },
+    {
+      "artifact": "SECURITY_METRICS_CATALOG.csv",
+      "status": "PASS",
+      "check": "csv_parse",
+      "detail": "7 data rows; 7 columns"
+    },
+    {
+      "artifact": "BCP_DR_SERVICE_TIERS.csv",
+      "status": "PASS",
+      "check": "csv_parse",
+      "detail": "4 data rows; 7 columns"
+    },
+    {
+      "artifact": "AI_MODEL_RISK_MATRIX.csv",
+      "status": "PASS",
+      "check": "csv_parse",
+      "detail": "4 data rows; 6 columns"
+    },
+    {
+      "artifact": "SECURITY_CONTROL_LIBRARY.csv",
+      "status": "PASS",
+      "check": "csv_parse",
+      "detail": "8 data rows; 9 columns"
+    }
+  ],
+  "cross_section_permission_and_classification_checks": [
+    {
+      "check_id": "XSEC-IAM-FS6000",
+      "status": "PASS",
+      "source": "IAM_PERMISSION_MATRIX.csv",
+      "target": "FS-6000 authority and approval model",
+      "detail": "All six local roles preserve human approval authority; service_agent is draft-only and cannot approve, export, or delete. External identifier-level resolution requires the canonical FS-6000 package at integration release."
+    },
+    {
+      "check_id": "XSEC-IAM-FS10000",
+      "status": "PASS",
+      "source": "IAM_PERMISSION_MATRIX.csv",
+      "target": "FS-10000 workspaces",
+      "detail": "Role capabilities cover tenant user, tenant admin, security admin, platform operator, auditor, and service agent visibility/operation classes. Workspace route-level resolution remains an FS-10000 integration-gate check."
+    },
+    {
+      "check_id": "XSEC-IAM-FS11000",
+      "status": "PASS",
+      "source": "IAM_PERMISSION_MATRIX.csv",
+      "target": "FS-11000 agent/tool permissions",
+      "detail": "service_agent is purpose-, workflow-, and tool-limited and has no independent approval/export/delete authority. Agent/tool ID resolution remains an integration-gate check."
+    },
+    {
+      "check_id": "XSEC-CLASS-FS8000",
+      "status": "PASS",
+      "source": "12004_DATA_SECURITY_ENCRYPTION_V1_RELEASE.md; 12003_TENANT_ISOLATION_V1_RELEASE.md",
+      "target": "FS-8000 classification and data policies",
+      "detail": "Controls explicitly preserve public/private/synthetic/attested/inferred states, field/evidence classification, retention, export, and tenant boundaries. Exact policy-ID resolution remains an integration-gate check."
+    },
+    {
+      "check_id": "TENANT-ISOLATION-COVERAGE",
+      "status": "PASS",
+      "source": "12003_TENANT_ISOLATION_V1_RELEASE.md",
+      "target": "objects, fields, search, graph, documents, evidence, agent context, exports",
+      "detail": "Explicit release-candidate test matrix covers every required surface."
+    },
+    {
+      "check_id": "MODEL-GOVERNANCE-COVERAGE",
+      "status": "PASS",
+      "source": "12007_AI_MODEL_GOVERNANCE_V1_RELEASE.md",
+      "target": "provider approval, inventory, data eligibility, instruction versioning, evaluation, suspension",
+      "detail": "Explicit mandatory control set covers every required model-governance control."
+    },
+    {
+      "check_id": "PLAYBOOK-COVERAGE",
+      "status": "PASS",
+      "source": "12009/12010/12011/12013",
+      "target": "owner, trigger, steps, escalation, evidence, closure",
+      "detail": "Each required playbook now contains an explicit release-candidate contract with all six elements."
+    }
+  ],
+  "release_notes": [
+    "Tenant-isolation coverage explicitly includes objects, fields, search, graph, documents, evidence, agent context, and exports.",
+    "Model governance explicitly includes provider approval, model inventory, data eligibility, prompt/instruction versioning, evaluation, and suspension.",
+    "Incident, BCP/DR, vendor-risk, and change-management playbooks explicitly include owner, trigger, steps, escalation, evidence, and closure.",
+    "Integrity files use a non-recursive checksum policy: PACKAGE_INDEX.json inventories INTEGRITY_INDEX.csv; neither file attempts a self-checksum."
+  ]
+}

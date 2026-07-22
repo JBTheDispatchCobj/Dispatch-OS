@@ -1,0 +1,7 @@
+code,condition,severity,automatic_action,retryable,human_owner,downstream_gate
+AUTH_FAILED,connector authentication rejected,error,suspend job and preserve state,yes_after_credentials,tenant_admin,block
+MALWARE_DETECTED,malicious content detected,critical,quarantine and security alert,no,security,block
+SCHEMA_DRIFT,source structure incompatible with mapping,error,preserve snapshot and route mapping review,yes_after_mapping,mapping_owner,block affected records
+IDENTITY_AMBIGUOUS,multiple plausible canonical entities,warning,create review queue item,no,data_steward,candidate_only
+RECONCILIATION_FAIL,control totals exceed tolerance,error,hold publication,yes_after_correction,finance_data_owner,block
+RESTRICTED_DATA,content exceeds approved connector/use classification,critical,quarantine and policy review,no,privacy_security,block

@@ -1,0 +1,1264 @@
+{
+  "manifest_name": "FS-4011_CONSTRUCTION_FINANCE.cartridge.json",
+  "version": "1.0",
+  "owner": "Auric Works",
+  "product": "Dispatch / Auric Institutional Intelligence Network",
+  "created_at": "2026-07-22T04:04:53.229474",
+  "domain_id": "FS-4011",
+  "domain_name": "Construction Finance",
+  "source_volume": "FS-4011_CONSTRUCTION_FINANCE_OPERATING_FRAMEWORK_V1.zip",
+  "purpose": "Deployable cartridge manifest for construction lending, project underwriting, budgets, draws, inspections, lien and title control, contractor oversight, bonding, equipment, treasury, completion risk, and takeout readiness.",
+  "cartridge_type": "domain_operating_cartridge",
+  "status": "production_manifest",
+  "strategic_lens": "Construction finance is controlled disbursement against verified progress. Credit quality depends on sponsor strength, contractor execution, budget integrity, equity contribution, permits, insurance, lien control, inspection evidence, schedule discipline, and a credible completion and takeout path.",
+  "primary_objects": [
+    {
+      "object": "ConstructionProject",
+      "role": "Root project object.",
+      "required_fields": [
+        "project_id",
+        "name",
+        "sponsor",
+        "borrower",
+        "contractor",
+        "project_type",
+        "location",
+        "budget",
+        "schedule",
+        "completion_percentage",
+        "draw_status",
+        "risk_status",
+        "takeout_source"
+      ]
+    },
+    {
+      "object": "Sponsor",
+      "role": "Project owner and equity support object.",
+      "required_fields": [
+        "sponsor_id",
+        "name",
+        "ownership",
+        "experience",
+        "liquidity",
+        "net_worth",
+        "equity_commitment",
+        "guarantees",
+        "track_record",
+        "risk_flags"
+      ]
+    },
+    {
+      "object": "Borrower",
+      "role": "Legal borrowing entity.",
+      "required_fields": [
+        "borrower_id",
+        "legal_name",
+        "entity_type",
+        "owners",
+        "project",
+        "financials",
+        "debt",
+        "guarantees",
+        "risk_rating"
+      ]
+    },
+    {
+      "object": "GeneralContractor",
+      "role": "Primary construction execution counterparty.",
+      "required_fields": [
+        "contractor_id",
+        "name",
+        "license",
+        "experience",
+        "bonding_capacity",
+        "insurance",
+        "financials",
+        "backlog",
+        "subcontractors",
+        "performance_history"
+      ]
+    },
+    {
+      "object": "Subcontractor",
+      "role": "Trade contractor and lien-risk object.",
+      "required_fields": [
+        "subcontractor_id",
+        "contractor",
+        "trade",
+        "contract_amount",
+        "paid_to_date",
+        "retainage",
+        "lien_status",
+        "insurance",
+        "performance_status"
+      ]
+    },
+    {
+      "object": "ConstructionLoan",
+      "role": "Loan structure and funding authority object.",
+      "required_fields": [
+        "loan_id",
+        "project",
+        "borrower",
+        "loan_amount",
+        "LTC",
+        "LTV",
+        "interest_reserve",
+        "equity_requirement",
+        "maturity",
+        "pricing",
+        "draw_schedule",
+        "takeout_source",
+        "covenants",
+        "status"
+      ]
+    },
+    {
+      "object": "ProjectBudget",
+      "role": "Sources, uses, hard costs, soft costs, contingencies, reserves, and variance object.",
+      "required_fields": [
+        "budget_id",
+        "project",
+        "sources",
+        "uses",
+        "hard_costs",
+        "soft_costs",
+        "contingency",
+        "interest_reserve",
+        "developer_fee",
+        "equity",
+        "loan",
+        "approved_budget",
+        "current_budget",
+        "variance"
+      ]
+    },
+    {
+      "object": "ScheduleOfValues",
+      "role": "Line-item completion and draw basis.",
+      "required_fields": [
+        "SOV_id",
+        "project",
+        "line_items",
+        "original_contract",
+        "approved_changes",
+        "revised_contract",
+        "completed_to_date",
+        "stored_materials",
+        "retainage",
+        "balance_to_finish"
+      ]
+    },
+    {
+      "object": "DrawRequest",
+      "role": "Borrower funding request tied to progress and evidence.",
+      "required_fields": [
+        "draw_id",
+        "project",
+        "request_number",
+        "period",
+        "requested_amount",
+        "approved_amount",
+        "budget_lines",
+        "supporting_invoices",
+        "inspection_status",
+        "lien_status",
+        "title_status",
+        "funding_status"
+      ]
+    },
+    {
+      "object": "InspectionReport",
+      "role": "Independent progress, quality, and funding recommendation evidence.",
+      "required_fields": [
+        "inspection_id",
+        "project",
+        "inspection_date",
+        "inspector",
+        "completion_percentage",
+        "work_in_place",
+        "stored_materials",
+        "issues",
+        "photos",
+        "recommended_funding",
+        "remaining_cost"
+      ]
+    },
+    {
+      "object": "LienWaiver",
+      "role": "Conditional or unconditional lien release evidence.",
+      "required_fields": [
+        "waiver_id",
+        "project",
+        "contractor_or_subcontractor",
+        "waiver_type",
+        "amount",
+        "period",
+        "through_date",
+        "signature_status",
+        "notarization_if_required",
+        "exception"
+      ]
+    },
+    {
+      "object": "TitleUpdate",
+      "role": "Title continuation and intervening-lien control object.",
+      "required_fields": [
+        "title_update_id",
+        "project",
+        "title_company",
+        "effective_date",
+        "exceptions",
+        "new_liens",
+        "endorsement_status",
+        "funding_clearance"
+      ]
+    },
+    {
+      "object": "ChangeOrder",
+      "role": "Scope, budget, schedule, and approval change object.",
+      "required_fields": [
+        "change_order_id",
+        "project",
+        "description",
+        "reason",
+        "cost_change",
+        "schedule_change",
+        "funding_source",
+        "approval_status",
+        "revised_budget",
+        "revised_completion_date"
+      ]
+    },
+    {
+      "object": "Permit",
+      "role": "Municipal or regulatory authorization to perform work.",
+      "required_fields": [
+        "permit_id",
+        "project",
+        "jurisdiction",
+        "permit_type",
+        "application_date",
+        "issue_date",
+        "expiration_date",
+        "inspection_requirements",
+        "status"
+      ]
+    },
+    {
+      "object": "InsurancePolicy",
+      "role": "Builder's risk, liability, workers comp, property, flood, and other coverage.",
+      "required_fields": [
+        "policy_id",
+        "project",
+        "insured",
+        "carrier",
+        "coverage_type",
+        "limits",
+        "effective_date",
+        "expiration_date",
+        "lender_loss_payee_status",
+        "exceptions"
+      ]
+    },
+    {
+      "object": "Bond",
+      "role": "Performance, payment, bid, subdivision, or completion bond.",
+      "required_fields": [
+        "bond_id",
+        "project",
+        "bond_type",
+        "principal",
+        "surety",
+        "obligee",
+        "amount",
+        "effective_date",
+        "expiration_date",
+        "claim_status"
+      ]
+    },
+    {
+      "object": "EquipmentAsset",
+      "role": "Construction equipment, collateral, utilization, and finance object.",
+      "required_fields": [
+        "equipment_id",
+        "owner",
+        "type",
+        "make",
+        "model",
+        "serial_number",
+        "value",
+        "loan_balance",
+        "utilization",
+        "condition",
+        "insurance",
+        "lien_status"
+      ]
+    },
+    {
+      "object": "CompletionCertificate",
+      "role": "Substantial completion, certificate of occupancy, and final closeout evidence.",
+      "required_fields": [
+        "completion_id",
+        "project",
+        "type",
+        "issuer",
+        "issue_date",
+        "conditions",
+        "punch_list",
+        "status"
+      ]
+    },
+    {
+      "object": "TakeoutSource",
+      "role": "Permanent financing, sale, refinance, lease-up, or other exit source.",
+      "required_fields": [
+        "takeout_id",
+        "project",
+        "type",
+        "provider_or_buyer",
+        "amount",
+        "conditions",
+        "timing",
+        "commitment_status",
+        "risk"
+      ]
+    },
+    {
+      "object": "TreasuryRelationship",
+      "role": "Project accounts, disbursement, controls, deposits, and payment flows.",
+      "required_fields": [
+        "relationship_id",
+        "project",
+        "accounts",
+        "payment_flows",
+        "dual_controls",
+        "positive_pay",
+        "wire_controls",
+        "deposit_balances",
+        "status"
+      ]
+    }
+  ],
+  "supported_workflows": [
+    {
+      "workflow": "Contractor / Developer Onboarding",
+      "description": "Profile sponsor, borrower, contractor, experience, capacity, insurance, bonding, treasury, and relationship needs.",
+      "required_objects": [
+        "Sponsor",
+        "Borrower",
+        "GeneralContractor",
+        "ConstructionProject"
+      ],
+      "outputs": [
+        "Relationship profile",
+        "Capacity summary",
+        "Risk and opportunity map"
+      ],
+      "approval_gates": [
+        "relationship_manager_review",
+        "compliance_review_if_exception"
+      ]
+    },
+    {
+      "workflow": "Project Underwriting",
+      "description": "Underwrite sponsor, borrower, contractor, budget, schedule, market, collateral, equity, reserves, and takeout.",
+      "required_objects": [
+        "ConstructionProject",
+        "Sponsor",
+        "Borrower",
+        "GeneralContractor",
+        "ConstructionLoan",
+        "ProjectBudget",
+        "TakeoutSource"
+      ],
+      "outputs": [
+        "Construction credit memo",
+        "Sources and uses review",
+        "Risk summary",
+        "Conditions and covenants"
+      ],
+      "approval_gates": [
+        "credit_authority_approval",
+        "policy_exception_review_if_needed"
+      ]
+    },
+    {
+      "workflow": "Construction Loan Closing",
+      "description": "Track equity, documents, permits, title, insurance, bonding, contracts, inspections, and funding conditions.",
+      "required_objects": [
+        "ConstructionLoan",
+        "ProjectBudget",
+        "Permit",
+        "InsurancePolicy",
+        "Bond",
+        "TitleUpdate"
+      ],
+      "outputs": [
+        "Closing checklist",
+        "Conditions cleared",
+        "Funding authorization package"
+      ],
+      "approval_gates": [
+        "credit_authority",
+        "legal_counsel",
+        "operations_owner"
+      ]
+    },
+    {
+      "workflow": "Draw Administration",
+      "description": "Review draw request, invoices, SOV, inspection, lien waivers, title, equity, budget, retainage, and funding.",
+      "required_objects": [
+        "DrawRequest",
+        "ScheduleOfValues",
+        "InspectionReport",
+        "LienWaiver",
+        "TitleUpdate",
+        "ProjectBudget"
+      ],
+      "outputs": [
+        "Draw analysis",
+        "Approved funding amount",
+        "Exceptions and holds",
+        "Updated budget and loan balance"
+      ],
+      "approval_gates": [
+        "credit_authority_or_delegated_draw_authority",
+        "operations_owner"
+      ]
+    },
+    {
+      "workflow": "Change Order Review",
+      "description": "Assess scope, cost, schedule, contingency, borrower equity, and loan impact.",
+      "required_objects": [
+        "ChangeOrder",
+        "ProjectBudget",
+        "ScheduleOfValues",
+        "ConstructionLoan"
+      ],
+      "outputs": [
+        "Change order analysis",
+        "Budget update",
+        "Funding source recommendation",
+        "Approval record"
+      ],
+      "approval_gates": [
+        "credit_authority_if_material",
+        "project_owner_review"
+      ]
+    },
+    {
+      "workflow": "Lien / Title Control",
+      "description": "Validate waivers, title continuation, intervening liens, exceptions, and funding clearance.",
+      "required_objects": [
+        "LienWaiver",
+        "TitleUpdate",
+        "DrawRequest",
+        "Subcontractor"
+      ],
+      "outputs": [
+        "Lien status",
+        "Title clearance",
+        "Funding blockers",
+        "Cure tasks"
+      ],
+      "approval_gates": [
+        "legal_or_title_review_if_exception",
+        "operations_owner"
+      ]
+    },
+    {
+      "workflow": "Insurance / Bond Monitoring",
+      "description": "Track builder's risk, liability, workers comp, flood, performance/payment bonds, and expiration.",
+      "required_objects": [
+        "InsurancePolicy",
+        "Bond",
+        "ConstructionProject",
+        "GeneralContractor"
+      ],
+      "outputs": [
+        "Coverage status",
+        "Expiration alerts",
+        "Exceptions and cure tasks"
+      ],
+      "approval_gates": [
+        "risk_or_compliance_owner_if_exception"
+      ]
+    },
+    {
+      "workflow": "Project Monitoring",
+      "description": "Monitor budget, schedule, completion, draws, equity, reserves, permits, inspections, and risk.",
+      "required_objects": [
+        "ConstructionProject",
+        "ProjectBudget",
+        "DrawRequest",
+        "InspectionReport",
+        "ConstructionLoan"
+      ],
+      "outputs": [
+        "Monthly project report",
+        "Early warning alerts",
+        "Risk rating recommendation",
+        "Action plan"
+      ],
+      "approval_gates": [
+        "credit_or_portfolio_review"
+      ]
+    },
+    {
+      "workflow": "Completion / Closeout",
+      "description": "Validate substantial completion, CO, punch list, final lien waivers, title, final draw, retainage, and closeout.",
+      "required_objects": [
+        "CompletionCertificate",
+        "DrawRequest",
+        "LienWaiver",
+        "TitleUpdate",
+        "ConstructionProject"
+      ],
+      "outputs": [
+        "Closeout checklist",
+        "Final funding package",
+        "Outstanding punch list",
+        "Completion report"
+      ],
+      "approval_gates": [
+        "credit_authority",
+        "operations_owner",
+        "legal_review_if_exception"
+      ]
+    },
+    {
+      "workflow": "Takeout / Conversion",
+      "description": "Validate permanent financing, sale, refinance, lease-up, stabilization, or conversion conditions.",
+      "required_objects": [
+        "TakeoutSource",
+        "ConstructionLoan",
+        "ConstructionProject",
+        "CompletionCertificate"
+      ],
+      "outputs": [
+        "Takeout readiness memo",
+        "Conversion checklist",
+        "Maturity risk summary",
+        "Payoff or renewal actions"
+      ],
+      "approval_gates": [
+        "credit_authority",
+        "executive_owner_if_material"
+      ]
+    },
+    {
+      "workflow": "Equipment Finance",
+      "description": "Underwrite construction equipment, value, useful life, utilization, insurance, and collateral.",
+      "required_objects": [
+        "EquipmentAsset",
+        "Borrower",
+        "GeneralContractor",
+        "ConstructionLoan"
+      ],
+      "outputs": [
+        "Equipment finance memo",
+        "Collateral summary",
+        "Funding checklist"
+      ],
+      "approval_gates": [
+        "credit_authority",
+        "operations_owner"
+      ]
+    },
+    {
+      "workflow": "Treasury Implementation",
+      "description": "Establish project operating, escrow, disbursement, payroll, vendor, positive pay, wire, and control structures.",
+      "required_objects": [
+        "TreasuryRelationship",
+        "ConstructionProject",
+        "Borrower",
+        "PaymentFlow"
+      ],
+      "outputs": [
+        "Account structure",
+        "Control matrix",
+        "Implementation checklist"
+      ],
+      "approval_gates": [
+        "treasury_operations_owner",
+        "security_owner_if_integration"
+      ]
+    }
+  ],
+  "allowed_agents": [
+    {
+      "agent": "Contractor Relationship Agent",
+      "allowed_actions": [
+        "profile_sponsor_and_contractor",
+        "summarize_capacity",
+        "identify_product_needs",
+        "prepare_relationship_brief"
+      ],
+      "prohibited_actions": [
+        "approve_credit",
+        "commit_terms",
+        "make_final_bonding_determination"
+      ]
+    },
+    {
+      "agent": "Project Underwriting Agent",
+      "allowed_actions": [
+        "analyze_project",
+        "summarize_sponsor_and_contractor",
+        "draft_underwriting_sections",
+        "identify_risks_and_conditions"
+      ],
+      "prohibited_actions": [
+        "approve_credit",
+        "waive_equity",
+        "change_terms"
+      ]
+    },
+    {
+      "agent": "Budget Review Agent",
+      "allowed_actions": [
+        "analyze_sources_and_uses",
+        "compare_budget_versions",
+        "calculate_variances",
+        "flag_contingency_or_reserve_issues"
+      ],
+      "prohibited_actions": [
+        "approve_budget_change",
+        "authorize_funding"
+      ]
+    },
+    {
+      "agent": "Draw Package Reviewer",
+      "allowed_actions": [
+        "match_invoices_to_SOV",
+        "summarize_draw",
+        "calculate_available_funding",
+        "flag_missing_evidence"
+      ],
+      "prohibited_actions": [
+        "approve_draw",
+        "waive_lien_or_title_requirement",
+        "release_funds"
+      ]
+    },
+    {
+      "agent": "Inspection Summary Agent",
+      "allowed_actions": [
+        "summarize_progress",
+        "compare_inspection_to_draw",
+        "flag_completion_or_quality_issues",
+        "extract_photos_and_findings"
+      ],
+      "prohibited_actions": [
+        "replace_inspector",
+        "certify_completion",
+        "approve_funding"
+      ]
+    },
+    {
+      "agent": "Lien Waiver Agent",
+      "allowed_actions": [
+        "track_waivers",
+        "match_parties_and_amounts",
+        "flag_missing_or_inconsistent_waivers",
+        "prepare_exception list"
+      ],
+      "prohibited_actions": [
+        "provide_final_legal_clearance",
+        "waive_lien_requirement"
+      ]
+    },
+    {
+      "agent": "Title Update Agent",
+      "allowed_actions": [
+        "track_title_updates",
+        "summarize_exceptions",
+        "flag_new_liens",
+        "route_legal_review"
+      ],
+      "prohibited_actions": [
+        "issue_title opinion",
+        "clear_title_final"
+      ]
+    },
+    {
+      "agent": "Completion Risk Agent",
+      "allowed_actions": [
+        "monitor_budget_schedule_and_draws",
+        "flag_maturity_or_takeout_risk",
+        "prepare_completion scenarios"
+      ],
+      "prohibited_actions": [
+        "change_risk_rating_final",
+        "approve_extension",
+        "declare_default"
+      ]
+    },
+    {
+      "agent": "Change Order Agent",
+      "allowed_actions": [
+        "summarize_change",
+        "calculate_budget_and_schedule_impact",
+        "identify_funding_source",
+        "draft approval memo"
+      ],
+      "prohibited_actions": [
+        "approve_change_order",
+        "increase_commitment"
+      ]
+    },
+    {
+      "agent": "Insurance / Bond Monitor",
+      "allowed_actions": [
+        "track_expirations",
+        "summarize_limits",
+        "flag missing endorsements or bonds",
+        "create cure tasks"
+      ],
+      "prohibited_actions": [
+        "bind insurance",
+        "approve bond adequacy final"
+      ]
+    },
+    {
+      "agent": "Takeout Readiness Agent",
+      "allowed_actions": [
+        "track_completion_and_takeout_conditions",
+        "summarize permanent financing status",
+        "flag maturity risk"
+      ],
+      "prohibited_actions": [
+        "approve conversion",
+        "commit refinance terms"
+      ]
+    },
+    {
+      "agent": "Treasury Opportunity Agent",
+      "allowed_actions": [
+        "map_project_payment_flows",
+        "recommend account controls",
+        "draft implementation plan"
+      ],
+      "prohibited_actions": [
+        "open_accounts",
+        "change_permissions",
+        "execute wires"
+      ]
+    }
+  ],
+  "required_evidence": {
+    "relationship_onboarding": [
+      "sponsor_profile",
+      "contractor_profile",
+      "financials",
+      "licenses",
+      "insurance",
+      "bonding_capacity",
+      "project_history"
+    ],
+    "project_underwriting": [
+      "project_budget",
+      "sources_and_uses",
+      "plans_and_specs",
+      "construction_contract",
+      "market_or_feasibility_support",
+      "appraisal",
+      "environmental",
+      "sponsor_financials",
+      "contractor_financials",
+      "takeout_plan"
+    ],
+    "closing": [
+      "credit_approval",
+      "loan_documents",
+      "equity_evidence",
+      "title_commitment",
+      "insurance",
+      "bonds",
+      "permits",
+      "construction_contract",
+      "plans_specs",
+      "closing_checklist"
+    ],
+    "draw": [
+      "draw_request",
+      "SOV",
+      "invoices",
+      "inspection_report",
+      "lien_waivers",
+      "title_update",
+      "budget_status",
+      "equity_status",
+      "retainage_calculation"
+    ],
+    "change_order": [
+      "signed_change_order",
+      "scope_description",
+      "cost_support",
+      "schedule_impact",
+      "contingency_status",
+      "approval_record"
+    ],
+    "lien_title": [
+      "conditional_waivers",
+      "unconditional_waivers",
+      "title_continuation",
+      "endorsement",
+      "exception_cure"
+    ],
+    "insurance_bond": [
+      "builder_risk",
+      "general_liability",
+      "workers_comp",
+      "flood_if_applicable",
+      "performance_bond",
+      "payment_bond",
+      "lender_endorsements"
+    ],
+    "monitoring": [
+      "monthly_budget",
+      "draw_history",
+      "inspection_history",
+      "schedule_update",
+      "permit_status",
+      "risk_summary"
+    ],
+    "completion": [
+      "certificate_of_occupancy",
+      "substantial_completion",
+      "final_inspection",
+      "final_waivers",
+      "title_update",
+      "punch_list",
+      "final_budget"
+    ],
+    "takeout": [
+      "permanent_commitment_or_sale_contract",
+      "completion_evidence",
+      "lease_up_or_stabilization_data",
+      "appraisal_or_value_support",
+      "conversion_conditions"
+    ],
+    "equipment": [
+      "asset_schedule",
+      "invoice_or_quote",
+      "valuation",
+      "maintenance_history",
+      "insurance",
+      "lien_search"
+    ],
+    "treasury": [
+      "payment_flow_map",
+      "account_structure",
+      "control approvals",
+      "positive_pay_setup",
+      "wire_authority",
+      "implementation_confirmation"
+    ]
+  },
+  "approval_gates": {
+    "credit_approval": [
+      "credit_authority"
+    ],
+    "loan_closing_or_initial_funding": [
+      "credit_authority",
+      "legal_counsel",
+      "operations_owner"
+    ],
+    "draw_funding": [
+      "credit_authority_or_delegated_draw_authority",
+      "operations_owner"
+    ],
+    "change_order": [
+      "project_owner",
+      "credit_authority_if_material"
+    ],
+    "lien_or_title_exception": [
+      "legal_counsel",
+      "credit_authority_if_material"
+    ],
+    "budget_overrun_or_additional_equity": [
+      "credit_authority",
+      "executive_owner_if_material"
+    ],
+    "maturity_extension_or_workout": [
+      "credit_authority",
+      "legal_counsel",
+      "executive_owner_if_material"
+    ],
+    "completion_or_conversion": [
+      "credit_authority",
+      "operations_owner"
+    ],
+    "equipment_funding": [
+      "credit_authority",
+      "operations_owner"
+    ],
+    "treasury_implementation": [
+      "treasury_operations_owner",
+      "security_owner_if_integration"
+    ]
+  },
+  "dashboards": [
+    {
+      "dashboard": "Construction Finance Executive Dashboard",
+      "primary_kpis": [
+        "active_projects",
+        "total_project_cost",
+        "loan_exposure",
+        "completion_percentage",
+        "budget_variance",
+        "takeout_readiness"
+      ]
+    },
+    {
+      "dashboard": "Project Dashboard",
+      "primary_kpis": [
+        "completion_percentage",
+        "budget_variance",
+        "schedule_variance",
+        "equity_contributed",
+        "loan_balance",
+        "remaining_cost"
+      ]
+    },
+    {
+      "dashboard": "Draw Dashboard",
+      "primary_kpis": [
+        "draw_requests",
+        "draws_funded",
+        "draw_cycle_time",
+        "draw_exceptions",
+        "funding_holds",
+        "retainage"
+      ]
+    },
+    {
+      "dashboard": "Budget / SOV Dashboard",
+      "primary_kpis": [
+        "approved_budget",
+        "current_budget",
+        "cost_to_date",
+        "remaining_cost",
+        "contingency_remaining",
+        "change_orders"
+      ]
+    },
+    {
+      "dashboard": "Lien / Title Dashboard",
+      "primary_kpis": [
+        "waivers_received",
+        "waiver_exceptions",
+        "title_exceptions",
+        "new_liens",
+        "funding_blockers"
+      ]
+    },
+    {
+      "dashboard": "Inspection Dashboard",
+      "primary_kpis": [
+        "inspection_completion",
+        "draw_completion_variance",
+        "quality_issues",
+        "recommended_funding",
+        "remaining_cost"
+      ]
+    },
+    {
+      "dashboard": "Insurance / Bond Dashboard",
+      "primary_kpis": [
+        "policies_current",
+        "bonds_current",
+        "coverage_exceptions",
+        "expirations_due"
+      ]
+    },
+    {
+      "dashboard": "Contractor Dashboard",
+      "primary_kpis": [
+        "backlog",
+        "bonding_capacity",
+        "projects_active",
+        "schedule_performance",
+        "budget_performance",
+        "claims_or_liens"
+      ]
+    },
+    {
+      "dashboard": "Takeout Readiness Dashboard",
+      "primary_kpis": [
+        "completion_percentage",
+        "CO_status",
+        "takeout_commitment",
+        "lease_up_or_sale_status",
+        "maturity_risk"
+      ]
+    },
+    {
+      "dashboard": "Construction Portfolio Risk Dashboard",
+      "primary_kpis": [
+        "delayed_projects",
+        "over_budget_projects",
+        "watchlist_projects",
+        "maturity_risk",
+        "takeout_risk",
+        "risk_rating_migration"
+      ]
+    }
+  ],
+  "kpis": [
+    "active_projects",
+    "total_project_cost",
+    "loan_exposure",
+    "completion_percentage",
+    "budget_variance",
+    "schedule_variance",
+    "original_budget",
+    "current_budget",
+    "cost_to_date",
+    "remaining_cost",
+    "contingency_remaining",
+    "interest_reserve_remaining",
+    "equity_required",
+    "equity_contributed",
+    "loan_balance",
+    "undisbursed_commitment",
+    "draw_requests",
+    "draws_funded",
+    "draw_cycle_time",
+    "draw_exceptions",
+    "funding_holds",
+    "retainage",
+    "inspection_completion",
+    "draw_completion_variance",
+    "lien_waiver_exceptions",
+    "title_exceptions",
+    "new_liens",
+    "permit_delays",
+    "insurance_exceptions",
+    "bond_exceptions",
+    "change_orders",
+    "change_order_value",
+    "contractor_backlog",
+    "bonding_capacity",
+    "schedule_performance",
+    "budget_performance",
+    "delayed_projects",
+    "over_budget_projects",
+    "watchlist_projects",
+    "maturity_risk",
+    "takeout_readiness",
+    "takeout_risk",
+    "certificate_of_occupancy_status",
+    "lease_up_or_sale_status",
+    "risk_rating_migration"
+  ],
+  "relationships": [
+    {
+      "source": "Sponsor",
+      "relationship": "SPONSORS",
+      "target": "ConstructionProject"
+    },
+    {
+      "source": "Borrower",
+      "relationship": "OWNS_OR_CONTROLS",
+      "target": "ConstructionProject"
+    },
+    {
+      "source": "GeneralContractor",
+      "relationship": "BUILDS",
+      "target": "ConstructionProject"
+    },
+    {
+      "source": "Subcontractor",
+      "relationship": "PERFORMS_WORK_ON",
+      "target": "ConstructionProject"
+    },
+    {
+      "source": "ConstructionLoan",
+      "relationship": "FINANCES",
+      "target": "ConstructionProject"
+    },
+    {
+      "source": "ProjectBudget",
+      "relationship": "GOVERNS",
+      "target": "DrawRequest"
+    },
+    {
+      "source": "ScheduleOfValues",
+      "relationship": "SUPPORTS",
+      "target": "DrawRequest"
+    },
+    {
+      "source": "InspectionReport",
+      "relationship": "VERIFIES",
+      "target": "DrawRequest"
+    },
+    {
+      "source": "LienWaiver",
+      "relationship": "SUPPORTS",
+      "target": "FundingDecision"
+    },
+    {
+      "source": "TitleUpdate",
+      "relationship": "CLEARS_OR_BLOCKS",
+      "target": "FundingDecision"
+    },
+    {
+      "source": "ChangeOrder",
+      "relationship": "MODIFIES",
+      "target": "ProjectBudget"
+    },
+    {
+      "source": "Permit",
+      "relationship": "AUTHORIZES",
+      "target": "Work"
+    },
+    {
+      "source": "InsurancePolicy",
+      "relationship": "COVERS",
+      "target": "ProjectRisk"
+    },
+    {
+      "source": "Bond",
+      "relationship": "SECURES_PERFORMANCE_OR_PAYMENT",
+      "target": "ConstructionProject"
+    },
+    {
+      "source": "CompletionCertificate",
+      "relationship": "PROVES",
+      "target": "Completion"
+    },
+    {
+      "source": "TakeoutSource",
+      "relationship": "RETIRES_OR_CONVERTS",
+      "target": "ConstructionLoan"
+    },
+    {
+      "source": "TreasuryRelationship",
+      "relationship": "CONTROLS",
+      "target": "ProjectPaymentFlow"
+    }
+  ],
+  "router_examples": [
+    {
+      "user_request": "Review this construction draw package.",
+      "route_to_workflow": "Draw Administration",
+      "required_objects": [
+        "DrawRequest",
+        "ScheduleOfValues",
+        "InspectionReport",
+        "LienWaiver",
+        "TitleUpdate",
+        "ProjectBudget"
+      ],
+      "agents": [
+        "Draw Package Reviewer",
+        "Inspection Summary Agent",
+        "Lien Waiver Agent",
+        "Title Update Agent",
+        "Budget Review Agent"
+      ],
+      "outputs": [
+        "Draw analysis",
+        "Funding recommendation",
+        "Exceptions and holds",
+        "Updated budget"
+      ]
+    },
+    {
+      "user_request": "Underwrite this construction project.",
+      "route_to_workflow": "Project Underwriting",
+      "required_objects": [
+        "ConstructionProject",
+        "Sponsor",
+        "Borrower",
+        "GeneralContractor",
+        "ConstructionLoan",
+        "ProjectBudget",
+        "TakeoutSource"
+      ],
+      "agents": [
+        "Project Underwriting Agent",
+        "Budget Review Agent",
+        "Completion Risk Agent"
+      ],
+      "outputs": [
+        "Construction credit memo",
+        "Risk summary",
+        "Conditions and covenants",
+        "Missing evidence"
+      ]
+    },
+    {
+      "user_request": "What projects are at risk of not finishing or refinancing?",
+      "route_to_workflow": "Project Monitoring",
+      "required_objects": [
+        "ConstructionProject",
+        "ProjectBudget",
+        "DrawRequest",
+        "InspectionReport",
+        "TakeoutSource"
+      ],
+      "agents": [
+        "Completion Risk Agent",
+        "Takeout Readiness Agent",
+        "Budget Review Agent"
+      ],
+      "outputs": [
+        "Watchlist",
+        "Completion risk summary",
+        "Takeout risk summary",
+        "Action plans"
+      ]
+    },
+    {
+      "user_request": "Check lien waivers and title before funding.",
+      "route_to_workflow": "Lien / Title Control",
+      "required_objects": [
+        "LienWaiver",
+        "TitleUpdate",
+        "DrawRequest",
+        "Subcontractor"
+      ],
+      "agents": [
+        "Lien Waiver Agent",
+        "Title Update Agent"
+      ],
+      "outputs": [
+        "Waiver status",
+        "Title clearance",
+        "Funding blockers",
+        "Cure tasks"
+      ]
+    }
+  ],
+  "integration_dependencies": [
+    "objects.registry.json",
+    "workflows.registry.json",
+    "agents.registry.json",
+    "kpis.registry.json",
+    "dashboards.registry.json",
+    "relationships.registry.json",
+    "evidence.registry.json",
+    "approvals.registry.json"
+  ],
+  "acceptance_tests": [
+    "Can create project, sponsor, borrower, contractor, subcontractor, loan, budget, SOV, draw, inspection, lien waiver, title, change order, permit, insurance, bond, equipment, completion, takeout, and treasury objects.",
+    "Can underwrite construction projects using sponsor, contractor, budget, equity, collateral, schedule, permits, reserves, and takeout evidence.",
+    "Can calculate draw availability and identify missing or inconsistent draw evidence without authorizing funding.",
+    "Can compare inspection progress to draw amounts and SOV completion.",
+    "Can track conditional and unconditional lien waivers and title updates by contractor, amount, and period.",
+    "Can evaluate change-order impact on budget, contingency, schedule, equity, and loan exposure.",
+    "Can monitor insurance, bonding, permits, equipment, and contractor capacity.",
+    "Can produce portfolio early-warning alerts for delay, overrun, maturity, completion, and takeout risk.",
+    "Can manage completion, final draw, retainage, punch list, CO, and closeout evidence.",
+    "Can enforce credit, legal, operations, and treasury approval gates.",
+    "Can link all credit, draw, board, and closeout outputs to source evidence and audit trail."
+  ],
+  "section_id": "FS-5100",
+  "section_aliases": [
+    "FS-5000"
+  ]
+}

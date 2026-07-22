@@ -1,0 +1,9 @@
+error_id,state,required_ui_behavior,recovery
+UI-001,authorization_denied,Do not reveal object existence where policy requires concealment,Offer access request only when permitted
+UI-002,tenant_context_mismatch,Terminate request and clear cached data,Require context reload
+UI-003,stale_data,Display stale badge and as-of date,Allow refresh or acknowledged continuation
+UI-004,partial_dependency_failure,Render available regions and mark unavailable region,Retry failed loader independently
+UI-005,command_timeout,Preserve input and show trace ID,Check durable command status before retry
+UI-006,version_conflict,Prevent overwrite and display field-level difference,"Reload, merge or abandon"
+UI-007,export_failed,No partial unmarked export,Retry from durable report job
+UI-008,evidence_unavailable,Mark conclusion unsupported,Request evidence or remove assertion
