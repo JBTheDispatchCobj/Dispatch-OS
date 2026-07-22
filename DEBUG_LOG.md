@@ -4,6 +4,29 @@ Convention: **[BLOCKER]** stops production → fix immediately · **[NON-BLOCKIN
 when convenient · **[DEFERRED]** intentional, needs a decision/later phase. Run the review harness
 any time with `node scripts/debug-loop.mjs` (after `npm install`).
 
+## 2026-07-22 — Olympic Sprint III Wave 5 (frame the whole product UI + /network)
+- **[BLOCKER — FIXED] `next build` prerender crash on the config-as-data loaders.** `npm run build` failed
+  prerendering `/_not-found` then `/network` with `TypeError: The "path" argument must be of type string or an
+  instance of URL. Received an instance of URL` from `fileURLToPath(new URL("./data/*.json", import.meta.url))`.
+  Root cause: under Turbopack the bundled `import.meta.url` yields a non-node `URL` instance, so `fileURLToPath`
+  rejects it; `connectors.ts`/`canon.ts` had used this pattern "safely" only because no *prerendered* page had ever
+  loaded them — `/network` (which runs `run_registry_candidates` + the canon seam) is the first. Also newly triggered
+  via `ui_surfaces.ts`, which `layout.tsx` loads on every page (incl `/_not-found`). Fix: root all three loaders
+  (`ui_surfaces.ts`, `connectors.ts`, `canon.ts`) at `process.cwd()` — the project root in the Next build/prerender,
+  the node debug loop, and `node --test` alike — instead of `fileURLToPath(new URL(...))`. Behavior-preserving; the
+  connector RUNTIME (`core/kernel/connector_runtime.ts`) is untouched. Re-gate: build exit 0, 26/26 routes prerender.
+- **[NON-BLOCKING] JSON-import vs node type-stripping.** First attempted the `ontology.ts` pattern (`import data from
+  "@/...json"`) for `ui_surfaces.ts`, but that only ever runs through Turbopack — under `node`'s native type-stripping
+  a JSON import needs `with { type: "json" }`, which the alias hook does not add, so the debug loop + tests failed.
+  Resolved by the `process.cwd()` fs read above (works in every context, no import attribute, no bundler URL).
+- **[NON-BLOCKING] catalog status convention.** The 20 new `connectors.json` entries were first written `status:
+  "proposed"`; the CONNECTOR debug step asserts `connector_count === active_count` (the repo convention: a *qualified*
+  manifest is `active`; "really coded" is a separate concept — only 6 connectors are coded). Flipped the 20 to
+  `active` to match the existing 73. Noted so a later wave can add a distinct "implemented" flag if that distinction
+  is wanted.
+- **Gate at close:** debug-loop **16/16** green (new UI-SURFACES + NETWORK steps) · `tsc --noEmit` clean · `npm run
+  build` exit 0 · **308** unit tests pass. Adversarially verified (4-lens).
+
 ## Open
 
 ### Sprint III Wave 4 — FS/Dispatch-Auric V1 canon reconciliation seam (2026-07-22)

@@ -4,7 +4,21 @@
 Cooperative Markets foundation on Dispatch OS. The full Specification Program (Vols
 I–X) is reconciled/adopted; forward work is BUILD.
 
-**Olympic Sprint III (Connectors & scale, target ~68%) — IN PROGRESS, ~59% after Wave 4.**
+**Olympic Sprint III (Connectors & scale, target ~68%) — IN PROGRESS, ~60% after Wave 5.**
+**Wave 5 (DONE, 2026-07-22) — FRAME THE WHOLE PRODUCT UI + the JOINT /network surface.** Bryan's steer: don't
+co-design one polished surface now — frame the ENTIRE product's UI as placeholders/wireframes/scaffolding so the
+product is complete end-to-end, and defer look/feel/flow/cadence to a polish sprint. Shipped: a config-as-data **UI
+surface registry** (`core/registry/data/ui_surfaces.json` + generic loader `core/registry/ui_surfaces.ts`,
+closed-graph) declaring the whole FS-10000 IA as **23 surfaces** (10 live, 13 scaffold); a reusable `ScaffoldView` +
+a generated page per scaffold route; registry-driven nav. The ONE real surface: **`/network`** (review-queue-FIRST) —
+the PROPOSE-ONLY queue (cross-source entity duplicates + external-canon alias proposals, `merged_count`=0, never
+auto-merge) over the LABELED-synthetic full-market list. CANON crosswalk 5→**15** (2 new confirmed FS-8000 sources +
+8 proposed FS-5100 registries); CATALOG 73→**93**. New **UI-SURFACES** + **NETWORK** debug steps (**16/16**), **308**
+tests, `tsc` clean, `build` exit 0 (all 26 routes prerender). Fixed a latent prerender blocker (registry loaders now
+`process.cwd()`-rooted, not `fileURLToPath`; runtime untouched). Adversarially verified (4-lens). **Next (Wave 6):**
+begin filling scaffolds into real surfaces (Institutions directory, Approvals/Evidence over the live gates) and/or the
+Sprint-III depth targets — a real bulk 5300 feed (Bryan) + more real connectors + harness/truth depth toward ~68%.
+
 **Wave 4 (DONE, 2026-07-22):** wove the external FS / Dispatch-Auric V1 spec package in as a
 REFERENCE/operational canon via a generic canon reconciliation seam (`core/registry/canon.ts`
 + config-as-data `canon_aliases.json`) — reconciles FS identifiers to the repo's live canonical

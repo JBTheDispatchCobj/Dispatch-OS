@@ -29,7 +29,7 @@
 // for type-only imports. Safe under `node` native type-stripping.
 
 import fs from "node:fs";
-import { fileURLToPath } from "node:url";
+import path from "node:path";
 import type {
   ConnectorSpec,
   SourceRegistryEntry,
@@ -71,9 +71,15 @@ const VALID_STATUSES: RegistryStatus[] = ["proposed", "active", "deprecated", "a
 
 let CACHE: ConnectorCatalog | null = null;
 
-/** Absolute path to the config-as-data catalog, relative to THIS module. */
+/**
+ * Absolute path to the config-as-data catalog, rooted at `process.cwd()` (the
+ * project root in the Next server bundle at build/prerender, the `node` debug
+ * loop, and `node --test` alike). A cwd-relative read avoids `fileURLToPath(new
+ * URL(...))`, which a bundler can hand a non-node URL — breaking prerender the
+ * first time a page (e.g. /network) loads the catalog.
+ */
 function catalogPath(): string {
-  return fileURLToPath(new URL("./data/connectors.json", import.meta.url));
+  return path.join(process.cwd(), "core/registry/data/connectors.json");
 }
 
 /**

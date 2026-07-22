@@ -1,6 +1,6 @@
 {
   "key": "registry:connectors:coop_markets_v1",
-  "label": "Cooperative Markets connector catalog (config-as-data; DKR \u00a72)",
+  "label": "Cooperative Markets connector catalog (config-as-data; DKR §2)",
   "version": 1,
   "notes": "Config-as-data ConnectorSpec + SourceRegistryEntry manifests qualifying the DKR placeholder connectors across the SOURCE_CATALOG families. Connectors NORMALIZE only; tier/plane/visibility come from the source manifest, never connector code. Runtime: core/kernel/connector_runtime.ts.",
   "sources": [
@@ -1508,7 +1508,7 @@
     },
     {
       "key": "source:govinfo",
-      "label": "GovInfo (CFR \u00b7 US Code \u00b7 FR)",
+      "label": "GovInfo (CFR · US Code · FR)",
       "version": 1,
       "status": "active",
       "authority": "government",
@@ -1685,6 +1685,468 @@
       "connector_key": "connector:build_with_directories",
       "output_object_keys": [
         "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:world_bank_open_data",
+      "label": "World Bank Open Data",
+      "version": 1,
+      "status": "active",
+      "authority": "government",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://data.worldbank.org",
+      "publisher": "World Bank",
+      "refresh_cadence": "monthly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:world_bank_open_data",
+      "output_object_keys": [
+        "indicator:macro:country"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:data_gov_catalog",
+      "label": "Data.gov Catalog",
+      "version": 1,
+      "status": "active",
+      "authority": "government",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://catalog.data.gov",
+      "publisher": "U.S. General Services Administration",
+      "refresh_cadence": "weekly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:data_gov_catalog",
+      "output_object_keys": [
+        "dataset:public:catalog_entry"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:sec_xbrl_financials",
+      "label": "SEC XBRL Financial Statements",
+      "version": 1,
+      "status": "active",
+      "authority": "official_filing",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.sec.gov/dera/data/financial-statement-data-sets",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "refresh_cadence": "quarterly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:sec_xbrl_financials",
+      "output_object_keys": [
+        "entity:coop_markets:company",
+        "filing:sec:financial_statement"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:msrb_emma",
+      "label": "MSRB EMMA Municipal Disclosures",
+      "version": 1,
+      "status": "active",
+      "authority": "official_filing",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://emma.msrb.org",
+      "publisher": "Municipal Securities Rulemaking Board",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:msrb_emma",
+      "output_object_keys": [
+        "disclosure:municipal:issuer"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:fred_economic_data",
+      "label": "FRED Economic Data (Federal Reserve)",
+      "version": 1,
+      "status": "active",
+      "authority": "government",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://fred.stlouisfed.org",
+      "publisher": "Federal Reserve Bank of St. Louis",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:fred_economic_data",
+      "output_object_keys": [
+        "indicator:macro:series"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:bls_labor_statistics",
+      "label": "BLS Labor Statistics",
+      "version": 1,
+      "status": "active",
+      "authority": "government",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.bls.gov/data",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "refresh_cadence": "monthly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:bls_labor_statistics",
+      "output_object_keys": [
+        "indicator:labor:series"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:census_business_patterns",
+      "label": "Census County Business Patterns",
+      "version": 1,
+      "status": "active",
+      "authority": "government",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.census.gov/programs-surveys/cbp.html",
+      "publisher": "U.S. Census Bureau",
+      "refresh_cadence": "yearly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:census_business_patterns",
+      "output_object_keys": [
+        "indicator:market:county"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:opencorporates_registry",
+      "label": "OpenCorporates Company Registry",
+      "version": 1,
+      "status": "active",
+      "authority": "community",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "third_party_claim",
+      "official_url": "https://opencorporates.com",
+      "publisher": "OpenCorporates",
+      "refresh_cadence": "weekly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:opencorporates_registry",
+      "output_object_keys": [
+        "entity:coop_markets:company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:wikidata_entities",
+      "label": "Wikidata Entities",
+      "version": 1,
+      "status": "active",
+      "authority": "community",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "third_party_claim",
+      "official_url": "https://www.wikidata.org",
+      "publisher": "Wikimedia Foundation",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:wikidata_entities",
+      "output_object_keys": [
+        "entity:coop_markets:company",
+        "person:executive"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:ror_research_orgs",
+      "label": "ROR Research Organization Registry",
+      "version": 1,
+      "status": "active",
+      "authority": "community",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "third_party_claim",
+      "official_url": "https://ror.org",
+      "publisher": "Research Organization Registry",
+      "refresh_cadence": "monthly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:ror_research_orgs",
+      "output_object_keys": [
+        "entity:coop_markets:organization"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:opensanctions_screening",
+      "label": "OpenSanctions Screening Data",
+      "version": 1,
+      "status": "active",
+      "authority": "community",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "third_party_claim",
+      "official_url": "https://www.opensanctions.org",
+      "publisher": "OpenSanctions",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:opensanctions_screening",
+      "output_object_keys": [
+        "screening:sanctions:entity"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:hud_housing_data",
+      "label": "HUD Open Housing Data",
+      "version": 1,
+      "status": "active",
+      "authority": "government",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.huduser.gov/portal/pdrdatas_landing.html",
+      "publisher": "U.S. Dept. of Housing & Urban Development",
+      "refresh_cadence": "monthly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:hud_housing_data",
+      "output_object_keys": [
+        "indicator:housing:region"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:sba_loan_data",
+      "label": "SBA Loan-Level Data",
+      "version": 1,
+      "status": "active",
+      "authority": "government",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://data.sba.gov",
+      "publisher": "U.S. Small Business Administration",
+      "refresh_cadence": "quarterly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:sba_loan_data",
+      "output_object_keys": [
+        "record:sba:loan"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:ginnie_mae_disclosures",
+      "label": "Ginnie Mae Disclosure Data",
+      "version": 1,
+      "status": "active",
+      "authority": "official_filing",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.ginniemae.gov/data_and_reports",
+      "publisher": "Government National Mortgage Association",
+      "refresh_cadence": "monthly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:ginnie_mae_disclosures",
+      "output_object_keys": [
+        "disclosure:mbs:pool"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:gao_reports",
+      "label": "GAO Reports & Recommendations",
+      "version": 1,
+      "status": "active",
+      "authority": "government",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.gao.gov/reports-testimonies",
+      "publisher": "U.S. Government Accountability Office",
+      "refresh_cadence": "weekly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:gao_reports",
+      "output_object_keys": [
+        "regulation:oversight:report"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:cfpb_complaints",
+      "label": "CFPB Consumer Complaint Database",
+      "version": 1,
+      "status": "active",
+      "authority": "government",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.consumerfinance.gov/data-research/consumer-complaints",
+      "publisher": "Consumer Financial Protection Bureau",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:cfpb_complaints",
+      "output_object_keys": [
+        "record:cfpb:complaint"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:swift_bic_directory",
+      "label": "SWIFT BIC Directory",
+      "version": 1,
+      "status": "active",
+      "authority": "trade_association",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "third_party_claim",
+      "official_url": "https://www.swift.com/standards/data-standards/bic",
+      "publisher": "SWIFT",
+      "refresh_cadence": "monthly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:swift_bic_directory",
+      "output_object_keys": [
+        "entity:coop_markets:financial_institution"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:npm_registry",
+      "label": "npm Package Registry",
+      "version": 1,
+      "status": "active",
+      "authority": "community",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "third_party_claim",
+      "official_url": "https://registry.npmjs.org",
+      "publisher": "npm, Inc.",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:npm_registry",
+      "output_object_keys": [
+        "artifact:tech:package"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:dockerhub_images",
+      "label": "Docker Hub Image Registry",
+      "version": 1,
+      "status": "active",
+      "authority": "community",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "third_party_claim",
+      "official_url": "https://hub.docker.com",
+      "publisher": "Docker, Inc.",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:dockerhub_images",
+      "output_object_keys": [
+        "artifact:tech:image"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:openalex_research",
+      "label": "OpenAlex Scholarly Works",
+      "version": 1,
+      "status": "active",
+      "authority": "community",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "third_party_claim",
+      "official_url": "https://openalex.org",
+      "publisher": "OpenAlex",
+      "refresh_cadence": "weekly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:openalex_research",
+      "output_object_keys": [
+        "artifact:research:work"
       ],
       "applicable_cartridges": [
         "coop_markets"
@@ -2806,7 +3268,7 @@
     },
     {
       "key": "connector:govinfo",
-      "label": "GovInfo (CFR \u00b7 US Code \u00b7 FR) connector",
+      "label": "GovInfo (CFR · US Code · FR) connector",
       "version": 1,
       "status": "active",
       "source_key": "source:govinfo",
@@ -2934,6 +3396,348 @@
       "refresh_strategy": "poll",
       "entity_object_keys": [
         "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:world_bank_open_data",
+      "label": "World Bank Open Data connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:world_bank_open_data",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "incremental",
+      "entity_object_keys": [
+        "indicator:macro:country"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:data_gov_catalog",
+      "label": "Data.gov Catalog connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:data_gov_catalog",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "incremental",
+      "entity_object_keys": [
+        "dataset:public:catalog_entry"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:sec_xbrl_financials",
+      "label": "SEC XBRL Financial Statements connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:sec_xbrl_financials",
+      "connector_type": "bulk_download",
+      "authentication": "none",
+      "refresh_strategy": "bulk",
+      "entity_object_keys": [
+        "entity:coop_markets:company",
+        "filing:sec:financial_statement"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:msrb_emma",
+      "label": "MSRB EMMA Municipal Disclosures connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:msrb_emma",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "incremental",
+      "entity_object_keys": [
+        "disclosure:municipal:issuer"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:fred_economic_data",
+      "label": "FRED Economic Data (Federal Reserve) connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:fred_economic_data",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "incremental",
+      "entity_object_keys": [
+        "indicator:macro:series"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:bls_labor_statistics",
+      "label": "BLS Labor Statistics connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:bls_labor_statistics",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "incremental",
+      "entity_object_keys": [
+        "indicator:labor:series"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:census_business_patterns",
+      "label": "Census County Business Patterns connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:census_business_patterns",
+      "connector_type": "bulk_download",
+      "authentication": "none",
+      "refresh_strategy": "bulk",
+      "entity_object_keys": [
+        "indicator:market:county"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:opencorporates_registry",
+      "label": "OpenCorporates Company Registry connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:opencorporates_registry",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "incremental",
+      "entity_object_keys": [
+        "entity:coop_markets:company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:wikidata_entities",
+      "label": "Wikidata Entities connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:wikidata_entities",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "incremental",
+      "entity_object_keys": [
+        "entity:coop_markets:company",
+        "person:executive"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:ror_research_orgs",
+      "label": "ROR Research Organization Registry connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:ror_research_orgs",
+      "connector_type": "bulk_download",
+      "authentication": "none",
+      "refresh_strategy": "bulk",
+      "entity_object_keys": [
+        "entity:coop_markets:organization"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:opensanctions_screening",
+      "label": "OpenSanctions Screening Data connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:opensanctions_screening",
+      "connector_type": "bulk_download",
+      "authentication": "none",
+      "refresh_strategy": "bulk",
+      "entity_object_keys": [
+        "screening:sanctions:entity"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:hud_housing_data",
+      "label": "HUD Open Housing Data connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:hud_housing_data",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "incremental",
+      "entity_object_keys": [
+        "indicator:housing:region"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:sba_loan_data",
+      "label": "SBA Loan-Level Data connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:sba_loan_data",
+      "connector_type": "bulk_download",
+      "authentication": "none",
+      "refresh_strategy": "bulk",
+      "entity_object_keys": [
+        "record:sba:loan"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:ginnie_mae_disclosures",
+      "label": "Ginnie Mae Disclosure Data connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:ginnie_mae_disclosures",
+      "connector_type": "bulk_download",
+      "authentication": "none",
+      "refresh_strategy": "bulk",
+      "entity_object_keys": [
+        "disclosure:mbs:pool"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:gao_reports",
+      "label": "GAO Reports & Recommendations connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:gao_reports",
+      "connector_type": "rss_atom",
+      "authentication": "none",
+      "refresh_strategy": "incremental",
+      "entity_object_keys": [
+        "regulation:oversight:report"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:cfpb_complaints",
+      "label": "CFPB Consumer Complaint Database connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:cfpb_complaints",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "incremental",
+      "entity_object_keys": [
+        "record:cfpb:complaint"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:swift_bic_directory",
+      "label": "SWIFT BIC Directory connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:swift_bic_directory",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "incremental",
+      "entity_object_keys": [
+        "entity:coop_markets:financial_institution"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:npm_registry",
+      "label": "npm Package Registry connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:npm_registry",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "incremental",
+      "entity_object_keys": [
+        "artifact:tech:package"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:dockerhub_images",
+      "label": "Docker Hub Image Registry connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:dockerhub_images",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "incremental",
+      "entity_object_keys": [
+        "artifact:tech:image"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:openalex_research",
+      "label": "OpenAlex Scholarly Works connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:openalex_research",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "incremental",
+      "entity_object_keys": [
+        "artifact:research:work"
       ],
       "cartridges_impacted": [
         "coop_markets"

@@ -936,7 +936,7 @@ await step("CONNECTOR  (runtime: normalize · authorize · change · persist)", 
   // ---- WAVE 3 · CATALOG GROWTH toward the ~93 (config-as-data, closed graph holds).
   assert(v.connector_count >= 73 && v.source_count === v.connector_count, `catalog grew toward the ~93 (one connector per source; got ${v.connector_count})`);
 
-  return `catalog ${v.connector_count} connectors (closed graph, toward ~93) · authorize-first (service-only) · output-contract + correlated event/cost · change-detect n/u/d/unchanged · failure→offline (no fabricated deletion) + circuit breaker · FULL-MARKET 5300 → ${rMarket.persisted.length} persisted profiles reconcile at scale (labeled synthetic) · startup-intake → deal engine (advance/block/hold, third_party_claim, human gates intact) · SEC EDGAR + FDIC BankFind + Federal Register (6 real connectors; tier-from-source, differing-source proof) · connector candidates → Object Registry (${rCand.proposed.length} cross-source dupes PROPOSED, 0 merged) · REAL ${regs.length}-section corpus · deterministic`;
+  return `catalog ${v.connector_count} connectors (closed graph, reached ~93) · authorize-first (service-only) · output-contract + correlated event/cost · change-detect n/u/d/unchanged · failure→offline (no fabricated deletion) + circuit breaker · FULL-MARKET 5300 → ${rMarket.persisted.length} persisted profiles reconcile at scale (labeled synthetic) · startup-intake → deal engine (advance/block/hold, third_party_claim, human gates intact) · SEC EDGAR + FDIC BankFind + Federal Register (6 real connectors; tier-from-source, differing-source proof) · connector candidates → Object Registry (${rCand.proposed.length} cross-source dupes PROPOSED, 0 merged) · REAL ${regs.length}-section corpus · deterministic`;
 });
 
 // --- 11. Unit tests (Wave 4: the engines have teeth) -------------------------
@@ -978,6 +978,91 @@ await step("CANON      (external-canon → repo identity: propose-only · closed
   assert(REG.aliases.find((a) => a.incoming === "OBJ.INSTITUTION").status === "proposed", "a label match that is not a semantic merge stays proposed (identity ≠ authority)");
 
   return `crosswalk ${v.alias_count} aliases (${v.confirmed_count} confirmed, closed graph) · verified FS sources resolve to LIVE keys · confirmed-alias memory · unseen id PROPOSED (never auto-merged) · no-clobber · authority precedence (live_code > FS) · identity-not-authority (OBJ.INSTITUTION proposed) · deterministic`;
+});
+
+await step("UI-SURFACES(registry closed-graph · whole product framed · live routes have pages)", async () => {
+  const { register } = await import("node:module");
+  register("./alias-hook.mjs", import.meta.url);
+  const ui = await import("@/core/registry/ui_surfaces");
+
+  const REG = JSON.parse(fs.readFileSync(path.join(root, "core/registry/data/ui_surfaces.json"), "utf8"));
+
+  // ---- CLOSED GRAPH: unique routes · sections resolve · state vocab enforced.
+  const v = ui.validateUiSurfaceRegistry(REG);
+  assert(v.ok, "ui surface registry is a closed graph: " + v.errors.join("; "));
+  assert(v.live_count >= 6 && v.scaffold_count >= 8, "the whole product is FRAMED (live surfaces + a breadth of scaffolds)");
+
+  // teeth: a surface pointing at a non-existent section MUST fail validation (non-vacuous).
+  const brokenSection = JSON.parse(JSON.stringify(REG));
+  brokenSection.surfaces[0].section = "__no_such_section__";
+  assert(ui.validateUiSurfaceRegistry(brokenSection).ok === false, "a dangling section reference fails the closed-graph check");
+  // teeth: a duplicate route MUST fail.
+  const dupRoute = JSON.parse(JSON.stringify(REG));
+  dupRoute.surfaces.push({ ...dupRoute.surfaces[0] });
+  assert(ui.validateUiSurfaceRegistry(dupRoute).ok === false, "a duplicate route fails the closed-graph check");
+  // teeth: a state outside the vocabulary MUST fail.
+  const badState = JSON.parse(JSON.stringify(REG));
+  badState.surfaces[0].states = ["__not_a_state__"];
+  assert(ui.validateUiSurfaceRegistry(badState).ok === false, "a state outside the declared vocabulary fails validation");
+
+  // ---- LIVENESS: every declared route (live AND scaffold) has a real page file.
+  const pagePath = (route) => (route === "/" ? "app/page.tsx" : `app${route}/page.tsx`);
+  for (const route of ui.liveRoutes()) {
+    assert(fs.existsSync(path.join(root, pagePath(route))), `live route ${route} has a page file (${pagePath(route)})`);
+  }
+  for (const route of ui.scaffoldRoutes()) {
+    assert(fs.existsSync(path.join(root, pagePath(route))), `scaffold route ${route} has a page file (${pagePath(route)})`);
+  }
+
+  // ---- NAV: grouped-by-section render source covers every surface once + is strictly ordered.
+  const groups = ui.surfacesBySection();
+  const navRoutes = groups.flatMap((g) => g.surfaces.map((s) => s.route));
+  assert(navRoutes.length === v.surface_count && new Set(navRoutes).size === navRoutes.length, "the registry-driven nav covers every surface exactly once (no drops, no dupes)");
+  const sectionOrder = ui.navSections().map((s) => s.id);
+  assert(JSON.stringify(groups.map((g) => g.section.id)) === JSON.stringify(sectionOrder), "nav groups follow nav-section order");
+  for (const g of groups) {
+    for (let i = 1; i < g.surfaces.length; i++) {
+      const a = g.surfaces[i - 1], b = g.surfaces[i];
+      assert(a.order < b.order || (a.order === b.order && a.route < b.route), `nav group ${g.section.id} is strictly ordered by (order, route)`);
+    }
+  }
+  // teeth: the pure section sort actually reorders shuffled input (a dropped .sort() would fail).
+  assert(
+    JSON.stringify(ui.orderSections([{ id: "z", label: "Z", order: 9 }, { id: "a", label: "A", order: 1 }]).map((s) => s.id)) === JSON.stringify(["a", "z"]),
+    "orderSections reorders out-of-order input",
+  );
+
+  return `ui surface registry ${v.surface_count} surfaces (${v.live_count} live, ${v.scaffold_count} scaffold across ${v.section_count} sections; closed graph) · every route has a page (liveness) · dangling section / dup route / bad state all FAIL (teeth) · nav covers all + deterministic`;
+});
+
+await step("NETWORK    (joint surface: review-queue propose-only · synthetic labeled · canon proposals)", async () => {
+  const { register } = await import("node:module");
+  register("./alias-hook.mjs", import.meta.url);
+  const { runNetworkSurface } = await import("@/cartridges/cooperative_markets/run_network_surface");
+
+  const AS_OF = "2026-07-22T00:00:00.000Z";
+  const vm = await runNetworkSurface({ as_of: AS_OF, market_size: 120 });
+
+  // ---- PROPOSE-ONLY: the review queue never auto-merges.
+  assert(vm.reviewQueue.mergedCount === 0, "the review queue is PROPOSE-ONLY — nothing auto-merges (merged_count = 0)");
+  assert(vm.reviewQueue.entityDuplicates.length >= 1, "cross-source entity duplicates are surfaced for human review");
+  assert(vm.reviewQueue.canonProposals.length >= 1, "external-canon alias proposals are surfaced for human review");
+  assert(vm.reviewQueue.canonProposals.every((p) => p.status === "proposed"), "every canon proposal is PROPOSED (never a confirmed/auto-applied alias)");
+  assert(
+    vm.reviewQueue.pendingCount === vm.reviewQueue.entityDuplicates.length + vm.reviewQueue.canonProposals.length,
+    "pending count == duplicates + canon proposals (no phantom items)",
+  );
+
+  // ---- SYNTHETIC LABEL: the market is labeled, computed from the data (not asserted true blindly).
+  assert(vm.market.allLabeledSynthetic === true, "the full-market run is fully LABELED synthetic (never presentable as real)");
+  assert(vm.market.size === 120 && vm.market.synthetic > 0, "the synthetic market ran at scale with labeled synthetic filings");
+  assert(vm.market.sample.length >= 1 && vm.market.sample.every((s) => typeof s.source_ref === "string" && s.source_ref.length > 0), "the illustrative sample carries NON-EMPTY source refs (every field traces to a filing)");
+
+  // ---- DETERMINISTIC: same as_of → byte-identical VM.
+  const vm2 = await runNetworkSurface({ as_of: AS_OF, market_size: 120 });
+  assert(JSON.stringify(vm) === JSON.stringify(vm2), "the network surface is deterministic (same as_of → identical VM)");
+
+  return `review queue ${vm.reviewQueue.pendingCount} pending (${vm.reviewQueue.entityDuplicates.length} dupes + ${vm.reviewQueue.canonProposals.length} canon proposals) · ${vm.reviewQueue.mergedCount} auto-merges (propose-only) · market ${vm.market.size} LABELED synthetic (all_labeled ✓) · deterministic`;
 });
 
 await step("TESTS      (node --test: engine unit suite)", () => {

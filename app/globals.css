@@ -160,3 +160,21 @@ a.wrow__title:hover { color: var(--accent); }
 .pill { font-size: 12px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); background: var(--panel); }
 .pill:hover { border-color: var(--accent); color: var(--ink); }
 .pill--on { color: var(--ink); border-color: var(--accent); background: var(--panel-2); }
+
+/* --- Registry-driven nav (Sprint III Wave 5: the whole product framed) ------
+   Grouped by IA section; scaffold routes are dimmed + tagged with a °. This is
+   framing chrome only — final nav styling is deferred to the Terminal polish
+   sprint. */
+.navgroup { display: inline-flex; align-items: center; gap: 4px; padding: 0 4px; border-left: 1px solid var(--line); }
+.navgroup:first-child { border-left: 0; }
+.navgroup__label { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); opacity: 0.7; margin-right: 2px; }
+.nav a.scaffold { opacity: 0.55; }
+.nav a.scaffold:hover { opacity: 1; }
+.navdot { color: var(--review); margin-left: 1px; }
+
+/* Cross-source / canon review-queue rows (the propose-only network surface). */
+.chip--review { color: var(--review); border-color: var(--review); }
+.chip--synthetic { color: var(--review); border-color: var(--review); background: rgba(163,113,247,0.08); }
+.qrow { background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; }
+.qrow--canon { border-left: 3px solid var(--review); }
+.qrow--dupe { border-left: 3px solid var(--accent); }

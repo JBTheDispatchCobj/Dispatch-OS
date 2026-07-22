@@ -52,6 +52,88 @@
       "source": "fs_5100",
       "status": "proposed",
       "note": "PENDING HUMAN REVIEW — FS OBJ.INSTITUTION is broader than the repo's financial_institution (could also cover credit_union). Left proposed to demonstrate identity-not-authority: the label match is a proposal, not a semantic merge."
+    },
+    {
+      "incoming": "SRC-CFPB-REGS",
+      "canonical": "source:cfpb_regulations",
+      "kind": "source",
+      "source": "fs_8000",
+      "status": "confirmed",
+      "verify": true,
+      "note": "FS-8000 CFPB regulations source == the repo CFPB regulations connector source. Confirmed + liveness-checked (Wave 5 crosswalk growth)."
+    },
+    {
+      "incoming": "SRC-FDIC-FAILED-BANKS",
+      "canonical": "source:fdic_failed_banks",
+      "kind": "source",
+      "source": "fs_8000",
+      "status": "confirmed",
+      "verify": true,
+      "note": "FS-8000 FDIC failed-banks source == the repo fdic_failed_banks connector source. Confirmed + liveness-checked (Wave 5 crosswalk growth)."
+    },
+    {
+      "incoming": "WF.PILOT_EVALUATION",
+      "canonical": "workflow:coop_markets:pilot_evaluation",
+      "kind": "workflow",
+      "source": "fs_5100",
+      "status": "proposed",
+      "note": "PENDING HUMAN REVIEW — FS-5100 workflow_registry pilot-evaluation workflow proposed against the cartridge workflow namespace. Doc-grade proposal: no live workflow registry yet, so identity is proposed, never confirmed. IDENTITY not AUTHORITY."
+    },
+    {
+      "incoming": "WF.VENDOR_DILIGENCE",
+      "canonical": "workflow:coop_markets:vendor_diligence",
+      "kind": "workflow",
+      "source": "fs_5100",
+      "status": "proposed",
+      "note": "PENDING HUMAN REVIEW — FS-5100 workflow_registry vendor-diligence workflow. Proposed until the repo workflow registry is built (documentation-complete ≠ built)."
+    },
+    {
+      "incoming": "AGT.PROFILE_ASSEMBLER",
+      "canonical": "agent:core:profile_assembler",
+      "kind": "agent",
+      "source": "fs_5100",
+      "status": "proposed",
+      "note": "PENDING HUMAN REVIEW — FS-5100 agent_registry profile-assembler proposed against core profile assembly. A name match is not a semantic merge; the agent contract must be tightened doc-grade → contract-grade before confirming."
+    },
+    {
+      "incoming": "AGT.IC_MEMO_DRAFTER",
+      "canonical": "agent:coop_markets:ic_memo_drafter",
+      "kind": "agent",
+      "source": "fs_5100",
+      "status": "proposed",
+      "note": "PENDING HUMAN REVIEW — FS-5100 agent_registry IC-memo drafter. Agents may draft/recommend but never approve; the approval stays a human gate. Proposed."
+    },
+    {
+      "incoming": "EVT.OBSERVATION_INGESTED",
+      "canonical": "event:core:observation_ingested",
+      "kind": "event",
+      "source": "fs_5100",
+      "status": "proposed",
+      "note": "PENDING HUMAN REVIEW — FS-5100 event_registry observation-ingested proposed against the kernel event bus. No live event-type registry yet; proposed."
+    },
+    {
+      "incoming": "EVD.CALL_REPORT_FILING",
+      "canonical": "evidence:coop_markets:call_report_filing",
+      "kind": "evidence",
+      "source": "fs_5100",
+      "status": "proposed",
+      "note": "PENDING HUMAN REVIEW — FS-5100 evidence_registry call-report filing. Evidence contracts stay stricter than entity-space; proposed, never auto-confirmed."
+    },
+    {
+      "incoming": "APR.IC_APPROVAL",
+      "canonical": "approval:coop_markets:ic_approval",
+      "kind": "approval",
+      "source": "fs_5100",
+      "status": "proposed",
+      "note": "PENDING HUMAN REVIEW — FS-5100 approval_registry IC approval proposed against the live ICApproval human gate. Human-authority contract → propose-only until an approval registry exists."
+    },
+    {
+      "incoming": "KPI.NET_WORTH_RATIO",
+      "canonical": "kpi:coop_markets:net_worth_ratio",
+      "kind": "kpi",
+      "source": "fs_5100",
+      "status": "proposed",
+      "note": "PENDING HUMAN REVIEW — FS-5100 kpi_registry net-worth ratio proposed against the deterministic call-report ratio. Proposed until a KPI registry is built."
     }
   ],
   "section_map": [

@@ -1,5 +1,40 @@
 # Current State
 
+## Running now (Olympic Sprint III — Wave 5, ~60%, 2026-07-22) — the WHOLE product UI FRAMED + the JOINT /network surface
+Wave 5 reframed (Bryan's steer): rather than co-designing one polished Terminal surface, **frame the ENTIRE product's UI**
+as placeholders/wireframes/scaffolding so the product is complete end-to-end, and defer all look/feel/flow/cadence to a
+later polish sprint (aligns with CLAUDE.md: "UI follows the domain and data contracts — do not optimize visual design
+before core contracts stabilize"). What shipped, additive + new-files-only, no vertical noun in `core/`:
+
+- **UI surface registry (config-as-data)** — `core/registry/data/ui_surfaces.json` declares the whole FS-10000 Terminal
+  IA as **23 surfaces** (10 live, 13 scaffold) across 11 nav sections; each surface names its primary object, planned
+  tabs/commands, human gates, and the doctrine **state legend** it must render distinctly (current/missing/stale/
+  inferred/synthetic/restricted/pending_approval/conflicted). Generic loader `core/registry/ui_surfaces.ts`
+  (closed-graph validated: unique routes · sections resolve · state vocabulary enforced; pure; names no vertical).
+- **ScaffoldView + scaffold pages** — a reusable `components/terminal/ScaffoldView.tsx` renders each `scaffold` route as
+  a framed wireframe; a page per scaffold route (`app/{institutions,executives,relationships,opportunities,workflows,
+  evidence,approvals,search,reports,collaboration,cartridges,personas,administration}/page.tsx`) was generated from the
+  registry. `app/layout.tsx` renders the nav FROM the registry (grouped by section; scaffolds dimmed + tagged), so the
+  whole product is reachable from any page.
+- **The JOINT `/network` surface (the one real surface)** — `app/network/page.tsx` + `components/terminal/NetworkView.tsx`
+  over `cartridges/cooperative_markets/run_network_surface.ts`, **review-queue-FIRST** (Bryan's pick): the PROPOSE-ONLY
+  review queue leads — cross-source entity duplicates (`run_registry_candidates`) + external-canon alias proposals (the
+  canon seam), each confirm/reject, **`merged_count` = 0**, NEVER an auto-merge — above the full-market institution list
+  (LABELED synthetic; `all_labeled` computed from the data and shown; a real bulk 5300 feed stays a Bryan-only item).
+- **CANON grown 5→15 aliases** (`canon_aliases.json`): +2 confirmed FS-8000 sources (`SRC-CFPB-REGS`,
+  `SRC-FDIC-FAILED-BANKS`) liveness-checked to live connector sources; +8 FS-5100 registry ids
+  (workflow/agent/event/evidence/approval/kpi) left **proposed** (doc-grade, identity-not-authority — surfaced in the
+  /network queue). **CATALOG grown 73→93** config-as-data source+connector manifests (closed graph).
+- **Gate**: `node scripts/debug-loop.mjs` **ALL GREEN 16/16** (new **UI-SURFACES** + **NETWORK** steps) · `tsc --noEmit`
+  clean · `npm run build` exit 0 (all 26 routes prerender incl `/network` + 13 scaffolds) · **308 unit tests** (+10).
+  Adversarially verified (4-lens). A latent prerender blocker was caught + fixed: the registry loaders located their JSON
+  via `fileURLToPath(new URL(...))`, which a bundler hands a non-node URL — `/network` was the first prerendered page to
+  load the catalog/canon; the three loaders now read via `process.cwd()`. The connector RUNTIME is untouched.
+
+There are now **6 real Terminal surfaces** (`/terminal`, `/market`, `/network`, `/distribution`, `/observability`,
+`/dashboard`) plus **13 framed scaffolds** and the live human-gate surfaces (`/work`, `/proposals`, `/review`).
+**Bryan-only (route around):** git push · apply 0018 · a real bulk 5300 feed · investment-vehicle decision · VC/Alloya legal.
+
 ## Running now (Olympic Sprint — Sprint I CLOSED at Wave 4, ~38%, 2026-07-21)
 The first product vertical **RUNS end-to-end.** `cartridges/cooperative_markets/pipeline.ts`
 (`runDealPipeline`) chains **ingest(5300) → score → IC memo → allocate → settle → assembleIO →

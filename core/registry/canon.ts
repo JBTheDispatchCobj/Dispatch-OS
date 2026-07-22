@@ -45,7 +45,7 @@
 // for type-only imports. Safe under `node` native type-stripping.
 
 import fs from "node:fs";
-import { fileURLToPath } from "node:url";
+import path from "node:path";
 
 // ---------------------------------------------------------------------------
 // Types (config-as-data view over data/canon_aliases.json)
@@ -104,7 +104,10 @@ const VALID_STATUSES: AliasStatus[] = ["proposed", "confirmed", "rejected"];
 let CACHE: CanonRegistry | null = null;
 
 function registryPath(): string {
-  return fileURLToPath(new URL("./data/canon_aliases.json", import.meta.url));
+  // Rooted at process.cwd() (project root in every context) rather than
+  // fileURLToPath(new URL(...)) — a bundler can hand the latter a non-node URL,
+  // which breaks prerender the first time a page loads the crosswalk (/network).
+  return path.join(process.cwd(), "core/registry/data/canon_aliases.json");
 }
 
 /** Load + validate the canon alias registry. Pass `raw` to inject a fixture (no fs). */
