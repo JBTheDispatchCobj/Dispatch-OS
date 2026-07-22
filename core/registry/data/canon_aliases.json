@@ -1,0 +1,65 @@
+{
+  "key": "registry:canon_aliases:v1",
+  "label": "External-canon → repo identity crosswalk (config-as-data; DKR §2). Reconciles FS / Dispatch-Auric V1 release-package identifiers to the repo's LIVE canonical identifiers. IDENTITY only — never authority. Propose-only; a human-confirmed alias is sticky. Closed-graph validated (core/registry/canon.ts).",
+  "authority_order": [
+    "live_code",
+    "confirmed_alias",
+    "fs_5100",
+    "fs_8000",
+    "fs_section",
+    "new_input"
+  ],
+  "aliases": [
+    {
+      "incoming": "SRC-NCUA-CALL",
+      "canonical": "source:ncua_5300_call_report",
+      "kind": "source",
+      "source": "fs_8000",
+      "status": "confirmed",
+      "verify": true,
+      "note": "FS-8000 public_source_catalog SRC-NCUA-CALL is the NCUA 5300 call report source the repo already ingests."
+    },
+    {
+      "incoming": "SRC-FDIC-BANKFIND",
+      "canonical": "source:fdic_bankfind",
+      "kind": "source",
+      "source": "fs_8000",
+      "status": "confirmed",
+      "verify": true,
+      "note": "FS-8000 SRC-FDIC-BANKFIND == the repo FDIC BankFind connector source (Sprint III Wave 3)."
+    },
+    {
+      "incoming": "SRC-SEC-EDGAR",
+      "canonical": "source:sec_edgar",
+      "kind": "source",
+      "source": "fs_8000",
+      "status": "confirmed",
+      "verify": true,
+      "note": "FS-8000 SRC-SEC-EDGAR == the repo SEC EDGAR connector source (Sprint III Wave 2)."
+    },
+    {
+      "incoming": "OBJ.CREDITUNION",
+      "canonical": "entity:coop_markets:credit_union",
+      "kind": "object",
+      "source": "fs_5100",
+      "status": "confirmed",
+      "note": "FS-5100 object_registry OBJ.CREDITUNION == the repo credit-union entity class (Volume XI ontology)."
+    },
+    {
+      "incoming": "OBJ.INSTITUTION",
+      "canonical": "entity:coop_markets:financial_institution",
+      "kind": "object",
+      "source": "fs_5100",
+      "status": "proposed",
+      "note": "PENDING HUMAN REVIEW — FS OBJ.INSTITUTION is broader than the repo's financial_institution (could also cover credit_union). Left proposed to demonstrate identity-not-authority: the label match is a proposal, not a semantic merge."
+    }
+  ],
+  "section_map": [
+    { "fs_section": "FS-5100", "repo_ref": "core/registry (object/connector/ontology catalogs)", "status": "confirmed", "note": "Canonical registries & cartridge manifests." },
+    { "fs_section": "FS-6000", "repo_ref": "core/kernel + core/truth (identity, permissions, envelope, contracts, truth tiers)", "status": "confirmed", "note": "Institutional kernel." },
+    { "fs_section": "FS-8000", "repo_ref": "core/kernel/connector_runtime.ts + core/registry/connectors.ts + cartridges/*/connectors", "status": "confirmed", "note": "Data, connectors & ingestion — the Sprint III build territory." },
+    { "fs_section": "FS-9000", "repo_ref": "core/registry/{service,resolver,candidate_bridge}.ts + core/profile", "status": "confirmed", "note": "Knowledge graph & institution population." },
+    { "fs_section": "FS-10000", "repo_ref": "app/terminal + components/terminal (+ /market, /distribution, /observability)", "status": "proposed", "note": "Terminal UI — the joint UI build target." },
+    { "fs_section": "FS-11000", "repo_ref": "core/kernel (event_bus, cost_ledger, harness) + cartridges deal engine", "status": "proposed", "note": "Runtime, agents & orchestration." }
+  ]
+}

@@ -4,7 +4,16 @@
 Cooperative Markets foundation on Dispatch OS. The full Specification Program (Vols
 I–X) is reconciled/adopted; forward work is BUILD.
 
-**Olympic Sprint III (Connectors & scale, target ~68%) — IN PROGRESS, ~58% after Wave 3.**
+**Olympic Sprint III (Connectors & scale, target ~68%) — IN PROGRESS, ~59% after Wave 4.**
+**Wave 4 (DONE, 2026-07-22):** wove the external FS / Dispatch-Auric V1 spec package in as a
+REFERENCE/operational canon via a generic canon reconciliation seam (`core/registry/canon.ts`
++ config-as-data `canon_aliases.json`) — reconciles FS identifiers to the repo's live canonical
+ids, PROPOSE-ONLY, closed-graph, identity-not-authority, authority precedence (`live_code` first);
+`ADR-0017` records it (repo wave order leads). Gate 14/14, 297 tests. **Next (Wave 5): the JOINT
+Terminal UI** over the full-market profiles + the registry/canon review queue, plus continued
+catalog qualification (73→~93) and reconciling more FS-5100 registries.
+
+**Prior — Olympic Sprint III (Connectors & scale) waves 1–3 (~58% after Wave 3).**
 Wave 1 shipped the generic Connector Runtime + SDK (RFC-2011). Wave 2 shipped full-market
 5300 at scale (labeled synthetic) + the startup-intake → deal-engine path + SEC EDGAR +
 catalog 39→57. **Wave 3 (DONE, 2026-07-22):** two more REAL connectors (FDIC BankFind →

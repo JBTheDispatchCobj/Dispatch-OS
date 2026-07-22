@@ -940,6 +940,46 @@ await step("CONNECTOR  (runtime: normalize · authorize · change · persist)", 
 });
 
 // --- 11. Unit tests (Wave 4: the engines have teeth) -------------------------
+await step("CANON      (external-canon → repo identity: propose-only · closed-graph)", async () => {
+  const { register } = await import("node:module");
+  register("./alias-hook.mjs", import.meta.url);
+  const canon = await import("@/core/registry/canon");
+  const { connectorSources } = await import("@/core/registry/connectors");
+
+  const REG = JSON.parse(fs.readFileSync(path.join(root, "core/registry/data/canon_aliases.json"), "utf8"));
+  const live = connectorSources().map((s) => s.key);
+  const liveSourceKeys = new Set(live);
+
+  // ---- CLOSED GRAPH + verified aliases resolve to LIVE keys (teeth).
+  const v = canon.validateCanonRegistry(REG, { source: liveSourceKeys });
+  assert(v.ok, "canon crosswalk is a closed graph + verified aliases live: " + v.errors.join("; "));
+  assert(v.confirmed_count >= 4, "the confirmed FS↔repo crosswalk is seeded");
+  const broken = JSON.parse(JSON.stringify(REG));
+  broken.aliases.find((a) => a.incoming === "SRC-NCUA-CALL").canonical = "source:__dead__";
+  assert(canon.validateCanonRegistry(broken, { source: liveSourceKeys }).ok === false, "a verified alias to a dead canonical FAILS the closed-graph check (non-vacuous)");
+
+  // ---- RESOLUTION: confirmed-alias memory · similarity proposal · unresolved.
+  const reg = canon.loadCanonRegistry(REG);
+  assert(canon.resolveCanon("SRC-NCUA-CALL", live, reg).canonical === "source:ncua_5300_call_report", "a confirmed external alias resolves via sticky memory");
+  const prop = canon.resolveCanon("SRC-FEDERAL-REGISTER", live, reg);
+  assert(prop.via === "proposed" && prop.canonical === "source:federal_register", "an UNSEEN id is PROPOSED (never auto-confirmed) to the best live canonical");
+  assert(canon.resolveCanon("SRC-ZZZ-NOTHING", live, reg).via === "unresolved", "no plausible match → unresolved, never force-mapped");
+
+  // ---- PROPOSE-ONLY + NO-CLOBBER + authority precedence.
+  const out = canon.proposeAliases(["SRC-NCUA-CALL", "SRC-FEDERAL-REGISTER"], live, reg, { kind: "source", source: "fs_8000" });
+  assert(out.already_resolved.includes("SRC-NCUA-CALL") && out.proposed.length === 1 && out.proposed[0].status === "proposed", "propose-only + no-clobber: a confirmed id is not re-proposed; a new id yields a PROPOSAL");
+  const pick = canon.pickByAuthority([
+    { incoming: "X", canonical: "repo:live", kind: "k", source: "live_code", status: "confirmed" },
+    { incoming: "X", canonical: "fs:claim", kind: "k", source: "fs_5100", status: "confirmed" },
+  ], REG.authority_order);
+  assert(pick.canonical === "repo:live", "authority precedence: live code outranks an external-canon claim on the same id");
+
+  // ---- IDENTITY not AUTHORITY: the ambiguous object stays PROPOSED.
+  assert(REG.aliases.find((a) => a.incoming === "OBJ.INSTITUTION").status === "proposed", "a label match that is not a semantic merge stays proposed (identity ≠ authority)");
+
+  return `crosswalk ${v.alias_count} aliases (${v.confirmed_count} confirmed, closed graph) · verified FS sources resolve to LIVE keys · confirmed-alias memory · unseen id PROPOSED (never auto-merged) · no-clobber · authority precedence (live_code > FS) · identity-not-authority (OBJ.INSTITUTION proposed) · deterministic`;
+});
+
 await step("TESTS      (node --test: engine unit suite)", () => {
   if (!fs.existsSync(path.join(root, "node_modules"))) {
     throw new Error("node_modules missing — run `npm install`, then re-run this loop (env, not code)");

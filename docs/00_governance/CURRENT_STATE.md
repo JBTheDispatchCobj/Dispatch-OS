@@ -323,6 +323,42 @@ flag given store-round-trip teeth) + test-teeth hardening. Layers: connectors 57
 so full-market 5300 stays LABELED synthetic — full catalog qualification 73→~93, and a
 Terminal surface).
 
+## Running now (Olympic Sprint III — Wave 4, ~59%, 2026-07-22)
+**The external FS / Dispatch-Auric V1 canon is woven in as an operational layer — a
+canon reconciliation seam that reconciles IDENTITY, never authority.** An externally-
+authored, documentation-complete V1 product spec (11 FS sections FS-4000…FS-14000, 636
+artifacts; the package itself marks content APPROVED, implementation NOT_ASSESSED,
+production NOT_APPROVED) is adopted as a REFERENCE / operational canon rather than a
+competing build spec. Additive, new-files-only, pure/deterministic, **no vertical noun in
+`core/`**; the connector runtime + engines are UNCHANGED:
+- **`core/registry/canon.ts`** — a generic seam that reconciles incoming external
+  identifiers (FS `OBJ.CREDITUNION`, `SRC-NCUA-CALL`) to the repo's LIVE canonical ids
+  (`entity:coop_markets:credit_union`, `source:ncua_5300_call_report`). PROPOSE-ONLY +
+  NO-CLOBBER (mirrors the entity resolver): an unseen id is proposed by deterministic
+  token similarity (prefix-strip + Jaccard), never auto-merged; a human-confirmed alias is
+  sticky. CLOSED-GRAPH validated (a `verify`-flagged alias's canonical must resolve to a
+  live repo key; no incoming confirmed to two canonicals). AUTHORITY PRECEDENCE
+  `live_code > confirmed_alias > fs_5100 > fs_8000 > fs_section > new_input` resolves the
+  canonical LABEL only — **identity is reconciled, authority is not.**
+- **`core/registry/data/canon_aliases.json`** — config-as-data crosswalk grounded in the
+  REAL FS-5100/FS-8000 identifiers: `SRC-NCUA-CALL`/`SRC-FDIC-BANKFIND`/`SRC-SEC-EDGAR`
+  confirmed (and `verify`-checked) to the live connector sources; `OBJ.CREDITUNION`
+  confirmed; the broader `OBJ.INSTITUTION` left **proposed** on purpose (a label match is
+  not a semantic merge). Section map FS-####→repo module for the doc crosswalk.
+- **`ADR-0017`** records the adoption: reference/operational canon, identity-not-authority,
+  the precedence order, and the rule that **repo wave order leads** (the FS section is
+  pulled in per wave as reference; the package's "document everything first" order does not
+  drive the build).
+Gate: **debug-loop ALL GREEN (14/14)** (new **CANON** step: closed-graph + verified-alias-
+live · confirmed-alias memory · unseen id PROPOSED not merged · no-clobber · authority
+precedence · identity-not-authority) + `tsc` clean + `npm run build` exit 0 + **297 unit
+tests** (was 290; +7). Adversarially self-reviewed — a stopword over-drop (dropping body
+words like "report") caught + fixed (prefix-strip, not global drop) + a vertical-namespace
+default pulled out of `core/` (caller-injected, like the resolver). Layers: kernel 61→62,
+truth 55→57, tests 63→65; headline **~58% → ~59%** (an architecture/governance wave — small
+build delta by design; the FS canon is now weave-able per wave, and the **Terminal UI is the
+next, JOINT build**).
+
 ## Existing foundation
 - Next.js app; Supabase/Postgres adapter + migrations (`0001`–`0017` **applied 2026-07-21**;
   the full `0001`–`0017` chain is live — all 14 registry-table RLS policies confirmed).

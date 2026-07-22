@@ -1,74 +1,64 @@
-# HANDOFF — Olympic Sprint III, Wave 3 (2026-07-22)
+# HANDOFF — Olympic Sprint III, Wave 4 (2026-07-22)
 
-**Build: ~58%** (honest recompute; was ~56% at Wave 2). Sprint III target ~68% still needs the
-REAL bulk 5300 feed + full catalog qualification + a Terminal surface.
+**Build: ~59%** (honest recompute; was ~58% at Wave 3). This was an architecture/governance wave —
+small build delta by design. Sprint III target ~68% still needs the real bulk 5300 feed, catalog
+73→~93, and the Terminal surface.
 
-## What shipped this wave (additive, config-as-data, no vertical noun in `core/`, runtime UNCHANGED)
-1. **FDIC BankFind — a real connector** (`cartridges/cooperative_markets/connectors/fdic_bankfind_connector.ts`
-   + `run_fdic_bankfind.ts`). Normalizes FDIC-insured **institution** metadata → `public_fact` FROM THE
-   SOURCE MANIFEST (differing-source proof). Banks are classed `entity:coop_markets:financial_institution`
-   — never a credit union. Real reject path (blank CERT/name).
-2. **Federal Register — a real connector** (`connectors/federal_register_connector.ts` + `run_federal_register.ts`).
-   Normalizes rule/notice **headers** → `public_fact`; surfaces each as a `regulation` candidate; draws NO
-   regulatory conclusion. Real reject path (blank document_number/title).
-3. **Second live surface — connector candidates → the Object Registry (propose-only)**:
-   - `core/registry/candidate_bridge.ts` — GENERIC core seam mapping a connector `EntityCandidate` →
-     `CanonicalObjectInput` (plane/visibility FROM the injected source scope; no vertical noun).
-   - `cartridges/cooperative_markets/run_registry_candidates.ts` — runs SEC EDGAR (public filing) + startup
-     intake (private submission) through the runtime, bridges the surfaced candidates into the registry, and
-     the matured resolver **PROPOSES the 3 cross-source duplicates** (Halcyon/Meridian/Cobalt, differing legal
-     names) for HUMAN review. Never auto-merges; no-clobber holds.
-4. **Catalog 57→73** (`core/registry/data/connectors.json`) — 16 real public source/connector pairs toward
-   the ~93 (closed graph, one-connector-per-source, honest authority→tier mappings). FDIC output key corrected
-   to `financial_institution`.
-5. **Tests + gate**: `tests/{fdic_bankfind_connector,federal_register_connector,candidate_bridge}.test.mjs`
-   (+18, → **290**); the debug-loop CONNECTOR step gained FDIC · Federal Register · connector-candidates→registry
-   propose-only · catalog-73 · plane/visibility-from-source assertions.
+## What shipped this wave — weave the external FS canon in as an operational layer
+The `DISPATCH_AURIC_V1_MASTER_RELEASE_COMPLETE` package (11 FS sections FS-4000…FS-14000, 636
+artifacts; content APPROVED, implementation NOT_ASSESSED, production NOT_APPROVED) is adopted as a
+REFERENCE / operational canon — NOT a competing build spec — via a generic, deterministic seam.
+Additive, new-files-only, no vertical noun in `core/`, connector runtime + engines UNCHANGED.
 
-## Adversarial verification (4-lens fleet + focused re-verify)
-- **1 MAJOR fixed (blocker):** a previously-seen record failing validation on a valid key was fabricated as a
-  DELETION across ALL real connectors (rejection ref unrecoverable → `alsoPresentRefs` guard defeated). Fixed
-  by tagging acquired records with a generic `external_ref` change-key (`withRef`) on FDIC, Federal Register,
-  and SEC EDGAR; regression tests with TEETH on all three (removing `withRef` now fails the test).
-- **1 minor fixed:** vacuous reconciliation flag → store-round-trip teeth.
-- **test-teeth hardening:** object_class literals (not self-comparison); plane/visibility-from-source proof
-  (EDGAR `public` vs intake `network`).
+1. **`core/registry/canon.ts`** — reconciles incoming external identifiers to the repo's LIVE
+   canonical ids. PROPOSE-ONLY + NO-CLOBBER (mirrors the entity resolver): unseen id proposed by
+   deterministic token similarity (prefix-strip + Jaccard), never auto-merged; human-confirmed alias
+   sticky. CLOSED-GRAPH validated (a `verify`-flagged alias's canonical must resolve to a live repo
+   key; no incoming confirmed to two canonicals). AUTHORITY PRECEDENCE
+   `live_code > confirmed_alias > fs_5100 > fs_8000 > fs_section > new_input` — resolves the canonical
+   LABEL only. **Identity reconciled, authority not.**
+2. **`core/registry/data/canon_aliases.json`** — config-as-data crosswalk grounded in the REAL
+   FS-5100/FS-8000 files: `SRC-NCUA-CALL` / `SRC-FDIC-BANKFIND` / `SRC-SEC-EDGAR` confirmed +
+   verify-checked to live connector sources; `OBJ.CREDITUNION` confirmed; `OBJ.INSTITUTION` left
+   **proposed** on purpose (label ≠ semantic merge). Plus an FS-section → repo-module map.
+3. **`docs/01_architecture/adr/ADR-0017-FS-V1-CANON-ADOPTION.md`** — the decision: reference/
+   operational canon; identity-not-authority; precedence; repo-wave-order-leads; the guardrails from
+   the design review (stricter in name-space; propose-only for authority/evidence contracts;
+   per-domain stopword config is a living cost; identity resolution stays deterministic + human-
+   confirmed, never in weights).
+4. **`tests/canon.test.mjs`** (+7, → **297**) + a debug-loop **CANON** step (14/14).
+
+## Adversarial self-review (findings fixed this wave)
+- Stopword over-drop (a body word equal to a convention, e.g. "report", was dropped) → prefix-strip
+  instead of global drop; default stopwords now empty.
+- A vertical-namespace default (`["coop","markets"]`) in `core/` → pulled out, caller-injected
+  (mirrors the resolver). `core/registry/canon.ts` names no vertical.
 
 ## Gate (all green in the cloud)
-- `node scripts/debug-loop.mjs` → **ALL GREEN 13/13**
-- `npx tsc --noEmit` → clean
-- `npm run build` → exit 0 (all Terminal surfaces prerender)
-- `npm test` → **290 pass, 0 fail**
+- `node scripts/debug-loop.mjs` → **ALL GREEN 14/14** (new CANON step)
+- `npx tsc --noEmit` → clean · `npm run build` → exit 0 · `npm test` → **297 pass, 0 fail**
 
-## Changed / new files
-- NEW: `cartridges/cooperative_markets/connectors/fdic_bankfind_connector.ts`,
-  `cartridges/cooperative_markets/connectors/federal_register_connector.ts`,
-  `cartridges/cooperative_markets/run_fdic_bankfind.ts`,
-  `cartridges/cooperative_markets/run_federal_register.ts`,
-  `cartridges/cooperative_markets/run_registry_candidates.ts`,
-  `core/registry/candidate_bridge.ts`,
-  `tests/fdic_bankfind_connector.test.mjs`, `tests/federal_register_connector.test.mjs`,
-  `tests/candidate_bridge.test.mjs`
-- EDITED: `core/registry/data/connectors.json` (57→73 + FDIC key fix),
-  `scripts/debug-loop.mjs` (Wave 3 CONNECTOR assertions),
-  `cartridges/cooperative_markets/connectors/sec_edgar_connector.ts` (withRef deletion-guard fix),
-  docs (`BUILD_PROGRESS.md`, `CURRENT_STATE.md`, `ACTIVE_BUILD.md`, `DEBUG_LOG.md`, `HANDOFF.md`),
-  `SPRINT_III_WAVE4_KICKOFF_PROMPT.md` (new)
+## New / changed files
+- NEW: `core/registry/canon.ts`, `core/registry/data/canon_aliases.json`,
+  `tests/canon.test.mjs`, `docs/01_architecture/adr/ADR-0017-FS-V1-CANON-ADOPTION.md`
+- EDITED: `scripts/debug-loop.mjs` (CANON step), docs
+  (`BUILD_PROGRESS.md`, `CURRENT_STATE.md`, `ACTIVE_BUILD.md`, `DEBUG_LOG.md`, `HANDOFF.md`),
+  `SPRINT_III_WAVE5_KICKOFF_PROMPT.md` (new)
 
-## IMPORTANT — this wave includes Wave 2's uncommitted work too
-The repo HEAD on `main` was still the **Sprint III Wave 1** commit; Wave 2 was staged in
-`_wave2_sprint3_incoming.tgz` but never extracted/committed. This session applied Wave 2 first, then built
-Wave 3 on top. The staging tarball for this handback therefore contains **Wave 2 + Wave 3** — one commit brings
-both onto `main`.
+## The FS package (context for future waves)
+It maps 1:1 onto repo layers (FS-5100↔`core/registry`, FS-6000↔`core/kernel`+`core/truth`,
+FS-8000↔connector runtime/catalog, FS-9000↔registry/resolver, FS-10000↔Terminal, FS-11000↔harness).
+Doctrine is aligned. Adopt per wave via the canon seam; **repo wave order leads.** Only a few
+identifiers are crosswalked so far — the rest grow as inputs flow (propose → confirm → sticky).
 
-## State / invariants preserved
-- Migrations 0001–0017 applied; 0018 written + additive (Bryan-only apply). Default in-memory + creds-free.
-- Connectors NORMALIZE only; tier/plane FROM the source manifest; no regulated conclusion in weights; human
-  gates (ICApproval + EditorialDisposition) untouched; propose-only registry (no auto-merge).
+## NEXT — the JOINT Terminal UI (Wave 5), with Bryan
+Wave 5 is the co-built Terminal surface over the full-market institution profiles + the registry/
+canon review queue (the propose-only cross-source duplicates + canon proposals awaiting human
+review). I build the surface; Bryan steers look/feel/priority. Also: catalog 73→~93 and reconcile
+more FS-5100 registries. See `SPRINT_III_WAVE5_KICKOFF_PROMPT.md`.
 
-## Bryan-only (route around, do not block)
-git push · apply 0018 · a REAL bulk 5300 feed · the investment-vehicle decision · VC/Alloya legal.
+## Bryan-only (route around, don't block)
+git push · apply 0018 · a REAL bulk 5300 feed · investment-vehicle decision · VC/Alloya legal.
 
 ## NEXT COMMAND
-See the exact `tar xzf` + commit/push command handed back in chat. Next chat: paste
-`SPRINT_III_WAVE4_KICKOFF_PROMPT.md`.
+See the exact `tar xzf` + commit/push command in chat (glob-free — zsh-safe).

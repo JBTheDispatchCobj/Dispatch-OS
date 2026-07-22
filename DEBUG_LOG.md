@@ -6,6 +6,27 @@ any time with `node scripts/debug-loop.mjs` (after `npm install`).
 
 ## Open
 
+### Sprint III Wave 4 — FS/Dispatch-Auric V1 canon reconciliation seam (2026-07-22)
+- **[NON-BLOCKING — FIXED] Stopword over-drop corrupted token similarity.** The first canon
+  `normalizeTokens` used a big convention list (`src`, `obj`, `report`, `event`, `source`…) as
+  GLOBAL stopwords, so a body word that happened to equal a convention (e.g. "report" in
+  `source:ncua_5300_call_report`) was dropped — exactly the "wrong stopword set → wrong matches"
+  risk flagged in the design review. Caught by the unit test on the first run. **Fix:** strip the
+  leading convention prefix as a PREFIX (`^[^.\-:]+[.\-:]`), then tokenize the remainder; the
+  default stopword list is now empty (domain-namespace stopwords are caller-injected).
+- **[NON-BLOCKING — FIXED] Vertical-namespace default in `core/`.** The default stopwords briefly
+  hardcoded `["coop","markets"]` — a vertical-namespace leak into `core/`. Pulled to `[]`; the
+  caller injects the domain namespace as config-as-data (mirrors the resolver's designator
+  stopwords). `core/registry/canon.ts` now names no vertical.
+- **[DEFERRED] Only the source + a couple of object identifiers are crosswalked.** The remaining
+  FS-5100 registries (workflow/agent/event/evidence/approval/KPI/dashboard/relationship) and the
+  FS-8000 transport connectors (CONN-GMAIL/SFTP…, which the repo does not yet implement) are not
+  yet reconciled — a fan-out-friendly follow-on. The seam + precedence + closed-graph are proven;
+  the crosswalk grows as inputs flow (propose → confirm → sticky).
+- **[DEFERRED] Identity reconciled ≠ contract reconciled.** A confirmed alias resolves a LABEL; it
+  does NOT certify the FS schema/behavior matches the repo contract. Semantic merges remain explicit
+  human/ADR acts (ADR-0017).
+
 ### Sprint III Wave 3 — FDIC + Federal Register connectors + connector→registry + catalog 57→73 (2026-07-22)
 - **[BLOCKER — FIXED] A previously-seen record that failed validation on a valid key was fabricated as a DELETION**
   (violates the load-bearing RFC-2011 rule "a normalization failure is NEVER a deletion"). Across all real
