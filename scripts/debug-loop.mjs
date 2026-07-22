@@ -14,8 +14,11 @@
 //
 //   ... plus the Sprint-II service steps: PERMISSIONS (authz == the 0016/0017 RLS
 //   truth table), PROFILES (live decay + outcome-feedback + query), CONTRACTS
-//   (RFC-2001/2014 request envelope + authorize-FIRST service contracts), and the
-//   engine unit-test suite (TESTS).
+//   (RFC-2001/2014 request envelope + authorize-FIRST service contracts),
+//   REGISTRY-PERSISTENCE (governed write-chain + resolver + profile round-trip),
+//   the Sprint-III CONNECTOR step (RFC-2011 connector runtime: normalize-only,
+//   authorize-first, change detection, failure/health, persisted profiles
+//   reconcile to source), and the engine unit-test suite (TESTS).
 //
 // Steps are independent: a failure in one does not stop the others, so one run shows
 // every problem. Requires only `node` + the repo's `typescript` dep.
@@ -730,6 +733,107 @@ await step("REGISTRY-PERSISTENCE(governed write-chain · resolver no-clobber · 
   }
 
   return "governed write-chain (authorize-FIRST · shared-market merge service-only · correlated event+cost · serialized flush) · resolver blocking+similarity (charter-less proposal) + NO-CLOBBER (reviewed candidate sticky) · profile persist→hydrate byte-identical · deterministic";
+});
+
+// --- 11b. Connector runtime (Sprint III Wave 1: RFC-2011) --------------------
+await step("CONNECTOR  (runtime: normalize · authorize · change · persist)", async () => {
+  const { register } = await import("node:module");
+  register("./alias-hook.mjs", import.meta.url);
+  const { runConnector, stateFromOutput } = await import("@/core/kernel/connector_runtime");
+  const { defineConnector, detectChanges, tallyChanges, deriveHealth, recordToObservation } = await import("@/core/kernel/connector_sdk");
+  const { makeEnvelope } = await import("@/core/kernel/envelope");
+  const idm = await import("@/core/kernel/identity");
+  const { EventBus } = await import("@/core/kernel/event_bus");
+  const { CostLedger } = await import("@/core/kernel/cost_ledger");
+  const { validateConnectorCatalog, connectorSpecs, sourceForConnector } = await import("@/core/registry/connectors");
+  const { runNcua5300, runNcuaRegulations } = await import("@/cartridges/cooperative_markets/run_connectors");
+  const { institutionBatchFixtures } = await import("@/cartridges/cooperative_markets/batch_fixtures");
+
+  const AS_OF = "2026-07-22T00:00:00.000Z";
+  const SRC = { key: "source:test", label: "T", version: 1, status: "active", authority: "regulatory", default_plane: "shared_market", default_visibility: "public", default_tier: "public_fact" };
+  const mem = (ws, role) => ({ workspace_id: ws, organization_id: "org", role });
+  const env = (p, cid) => makeEnvelope({ principal: p, correlation_id: cid ?? "corr:c", plane: "shared_market", occurred_at: AS_OF, request_id: "req:1" });
+  const cnt = (p) => { let n = 0; return () => `${p}:${n++}`; };
+  const okConn = (records) => defineConnector({ connector_key: "connector:test", source_key: "source:test", acquire: () => ({ records }), parse: (raw) => [{ external_ref: raw.ref, value: { v: raw.v } }] });
+
+  // ---- CONFIG-AS-DATA CATALOG: the placeholders are qualified as a closed graph.
+  const catalog = JSON.parse(fs.readFileSync(path.join(root, "core/registry/data/connectors.json"), "utf8"));
+  const v = validateConnectorCatalog(catalog);
+  assert(v.ok, "connector catalog is a closed graph: " + v.errors.join("; "));
+  assert(v.connector_count >= 30 && v.connector_count === v.active_count, "a breadth of connectors is qualified + active");
+  assert(sourceForConnector("connector:ncua_5300_call_report").default_tier === "public_fact", "5300 as-reported figures are public_fact (tier from source, not connector)");
+
+  // ---- AUTHORIZE FIRST: a shared-market ingestion run is service-role-only.
+  {
+    let acquired = false;
+    const conn = defineConnector({ connector_key: "c", source_key: "source:test", acquire: () => { acquired = true; return { records: [] }; }, parse: () => [] });
+    const denied = await runConnector({ connector: conn, source: SRC, env: env(idm.userPrincipal("u1", [mem("ws1", "owner")])) }, { idGen: cnt("ev") });
+    assert(denied.ok === false && denied.refusal.reason === "no_tenant", "a non-service principal is refused the shared-market run");
+    assert(acquired === false, "authorize FIRST: acquire never ran on a refused run");
+  }
+
+  // ---- OUTPUT CONTRACT + CORRELATION: a service run emits correlated event+cost.
+  {
+    const bus = new EventBus(); const ledger = new CostLedger();
+    const res = await runConnector({ connector: okConn([{ ref: "a", v: 1 }, { ref: "b", v: 2 }]), source: SRC, env: env(idm.systemPrincipal(), "corr:run") }, { idGen: cnt("ev"), bus, ledger, costPerAttempt: 0.01 });
+    assert(res.ok && res.output.status === "success" && res.output.observations.length === 2, "the service role runs + normalizes");
+    for (const k of ["quality_report", "health", "metrics", "change_events", "entity_candidates", "source_artifacts"]) assert(k in res.output, "output contract carries " + k);
+    assert(bus.history({ type: "connector.started" })[0].correlation_id === "corr:run", "events correlate to the envelope");
+    assert(ledger.byCategory().connector === 0.01, "a correlated connector CostEntry is recorded");
+  }
+
+  // ---- CHANGE DETECTION determinism: unchanged, updated, deleted.
+  {
+    const first = await runConnector({ connector: okConn([{ ref: "a", v: 1 }, { ref: "gone", v: 9 }]), source: SRC, env: env(idm.systemPrincipal()) }, { idGen: cnt("e1") });
+    const prior = stateFromOutput(first.output);
+    const second = await runConnector({ connector: okConn([{ ref: "a", v: 2 }]), source: SRC, env: env(idm.systemPrincipal()) }, { idGen: cnt("e2"), prior });
+    assert(second.output.metrics.changes.updated === 1 && second.output.metrics.changes.deleted === 1, "a changed value updates; a dropped ref deletes");
+    const same = await runConnector({ connector: okConn([{ ref: "a", v: 1 }, { ref: "gone", v: 9 }]), source: SRC, env: env(idm.systemPrincipal()) }, { idGen: cnt("e3"), prior });
+    assert(same.output.metrics.changes.unchanged === 2 && same.output.metrics.changes.updated === 0, "re-running identical data detects only 'unchanged'");
+    const pureA = tallyChanges(detectChanges([{ external_ref: "a", value: { v: 1 } }], undefined));
+    assert(pureA.new === 1, "no prior state → everything new");
+    // A ref that was SEEN but failed to normalize (a rejection) is NEVER a deletion.
+    const rejConn = defineConnector({ connector_key: "c", source_key: "source:test", acquire: () => ({ records: [{ ref: "ok", v: 1 }, { ref: "bad", v: 2 }] }), parse: (raw) => { if (raw.ref === "bad") throw new Error("x"); return [{ external_ref: raw.ref, value: { v: raw.v } }]; } });
+    const rej = await runConnector({ connector: rejConn, source: SRC, env: env(idm.systemPrincipal()) }, { idGen: cnt("e4"), prior: new Map([["ok", "h"], ["bad", "h"]]) });
+    assert(rej.output.metrics.changes.deleted === 0 && rej.output.quality_report.rejected_records === 1, "a normalization failure is a rejection, NEVER a fabricated deletion");
+  }
+
+  // ---- TIER FROM SOURCE (not the connector): two sources → two tiers/planes.
+  {
+    const pub = recordToObservation({ external_ref: "e", value: { v: 1 } }, SRC, { id: "o1", observed_at: AS_OF, asserted_by: "system" });
+    const tenantSrc = { key: "source:t", label: "T", version: 1, status: "active", authority: "institution_official", default_plane: "private_terminal", default_visibility: "tenant_private", default_tier: "private_tenant_fact" };
+    const priv = recordToObservation({ external_ref: "e", value: { v: 1 } }, tenantSrc, { id: "o2", observed_at: AS_OF, asserted_by: "system" });
+    assert(pub.tier === "public_fact" && priv.tier === "private_tenant_fact" && pub.plane !== priv.plane, "tier/plane are READ FROM the source manifest, not hardcoded in the connector");
+  }
+
+  // ---- FAILURE SEMANTICS: retry → failed (offline), and NEVER a fabricated deletion.
+  {
+    let calls = 0;
+    const flaky = defineConnector({ connector_key: "c", source_key: "source:test", acquire: () => { calls++; throw new Error("down"); }, parse: () => [] });
+    const res = await runConnector({ connector: flaky, source: SRC, env: env(idm.systemPrincipal()) }, { idGen: cnt("ev"), prior: new Map([["x", "h"]]), retry: { max_attempts: 3, circuit_breaker_threshold: 5 } });
+    assert(res.ok && res.output.status === "failed" && res.output.health.state === "offline", "an exhausted acquire is a failed/offline output, not a throw");
+    assert(calls === 3 && res.output.change_events.length === 0, "retried to the budget · a fetch failure NEVER fabricates a deletion");
+    const circuit = await runConnector({ connector: flaky, source: SRC, env: env(idm.systemPrincipal()) }, { idGen: cnt("ev"), consecutiveFailures: 5, retry: { max_attempts: 3, circuit_breaker_threshold: 5 } });
+    assert(circuit.output.health.reason === "circuit_open", "the circuit breaker short-circuits a struggling source");
+    assert(deriveHealth(1, 0, false).state === "healthy" && deriveHealth(0.5, 0, false).state === "degraded", "health bands by normalization rate");
+  }
+
+  // ---- REAL WIRING: 5300 → normalized → PERSISTED profiles reconcile to source.
+  const batch = institutionBatchFixtures().map((i) => i.raw);
+  const r5300 = await runNcua5300(batch, { as_of: AS_OF });
+  assert(r5300.output.status === "success" && r5300.output.observations.length === batch.length, "5300 connector normalizes every filing");
+  assert(r5300.persisted.length === batch.length && r5300.reconciliation.reconciled === true, "persisted live profiles reconcile to the connector source refs");
+  assert(r5300.reconciliation.profile_source_refs.length >= batch.length, "reconciliation is non-vacuous (source refs actually present, not an empty .every())");
+  assert(r5300.persisted[0].scope.plane === "shared_market" && r5300.observations[0].tier === "public_fact", "plane-aware persistence · tier from the source manifest, not the connector");
+  const r5300b = await runNcua5300(batch, { as_of: AS_OF });
+  assert(JSON.stringify(r5300.output) === JSON.stringify(r5300b.output), "the wired connector run is deterministic");
+
+  // ---- REAL CORPUS AT SCALE: the 675-section 12 CFR corpus normalizes.
+  const regs = JSON.parse(fs.readFileSync(path.join(root, "docs/04_sources/ncua/ncua_regulations_clean.json"), "utf8"));
+  const rReg = await runNcuaRegulations(regs, "2026-07-15", { as_of: AS_OF });
+  assert(rReg.output.status === "success" && rReg.output.observations.length === regs.length && regs.length >= 600, "the REAL 675-section corpus normalizes at scale");
+
+  return `catalog ${v.connector_count} connectors (closed graph) · authorize-first (shared-market service-only) · output-contract + correlated event/cost · change-detect new/updated/deleted/unchanged · failure→offline (no fabricated deletion) + circuit breaker · 5300→${r5300.persisted.length} persisted profiles reconcile to source · REAL ${regs.length}-section corpus normalized · deterministic`;
 });
 
 // --- 11. Unit tests (Wave 4: the engines have teeth) -------------------------

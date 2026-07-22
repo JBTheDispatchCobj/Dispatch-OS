@@ -190,6 +190,53 @@ test-teeth added). Layers: kernel 46→55, truth 40→45, tests 51→54, data 87
 recompute; Sprint II's ~55% roadmap projection also assumed harness/Auric/connector/terminal deltas this wave did not
 target — those move in Sprint III–IV, per roadmap caveat #4).
 
+## Running now (Olympic Sprint III — Wave 1, ~54%, 2026-07-22)
+**Sprint III opens (Connectors & scale, target ~68%). A connector is now an EXECUTABLE thing,
+not a manifest on paper.** Wave 1 built the generic Connector Runtime + SDK (Kernel RFC-2011;
+Volume IX) — additive, new-files-only, pure/deterministic, **no vertical noun in `core/`**; the
+engines are UNCHANGED and the default stays in-memory + creds-free:
+- **`core/kernel/connector_sdk.ts`** — the typed **Connector Output Contract** (normalized
+  observations, entity/relationship candidates, captured source artifacts, `change_events`,
+  `quality_report`, `connector_health`, run metrics), a pure **parser contract**, deterministic
+  FNV content hashing, change detection (new/updated/deleted/unchanged), health-band derivation,
+  and the **normalize→truth-`Observation` bridge** (`recordToObservation`) that takes tier / plane
+  / visibility FROM THE SOURCE MANIFEST — never from connector code. "Normalization never creates
+  Facts": a connector emits normalized records, not tiered conclusions.
+- **`core/kernel/connector_runtime.ts`** — the generic executor. A run takes one `RequestEnvelope`
+  and **AUTHORIZES FIRST** (a shared-market ingestion write is **service-role-only**, the same
+  0017 invariant the registry uses; a non-service principal is refused, `acquire` never runs),
+  then acquires with **retry → circuit-breaker** (deterministic attempt counts, no wall-clock
+  sleeps), drives the connector's PURE parser to normalize, detects changes vs a prior state,
+  scores quality, derives health, and emits an envelope-**correlated** `KernelEvent` + `CostEntry`.
+  A connector fault is a `failed` output (offline health), never a throw; a fetch failure NEVER
+  fabricates a deletion.
+- **`core/registry/connectors.ts` + `core/registry/data/connectors.json`** — a config-as-data
+  catalog (**39 sources + 39 connectors** across the SOURCE_CATALOG families — regulatory /
+  securities / institution / vendor / news / network / intake) qualifying the DKR placeholders as
+  DATA, plus a generic loader/validator with a **closed-graph** check (every connector's
+  `source_key` resolves; no dup keys; valid type/status).
+- **`cartridges/cooperative_markets/connectors/{ncua_5300_connector,ncua_regulations_connector}.ts`
+  + `run_connectors.ts`** — two REAL connectors run THROUGH the runtime. The **NCUA 5300** connector
+  normalizes the as-reported figures (no ratios — those stay a downstream `deterministic_calculation`)
+  → the existing ratio calc + live assembly → **live institution profiles that PERSIST** through the
+  Wave-4 profile seam, **plane-aware** (shared_market / public) and **reconciling to the connector
+  source refs**. The **NCUA regulations** connector normalizes the **REAL 675-section 12 CFR corpus**
+  at scale (genuinely real public-domain text, not fixtures).
+Gate: **debug-loop ALL GREEN (13/13)** (new **CONNECTOR** step: catalog closed-graph · authorize-first ·
+output-contract + correlated event/cost · change-detect new/updated/deleted/unchanged (incl. a
+rejection is never a deletion) · failure→offline + circuit breaker · tier-from-source · 5300→persisted
+profiles reconcile to source · REAL 675-section corpus) + `tsc` clean + `npm run build` exit 0 +
+**246 unit tests** (was 214; +32). Adversarially verified (4-lens fleet: correctness · truth-doctrine/
+no-core-vertical-leak · purity/determinism · test-teeth) — **1 blocker fixed** (a record acquired but
+failing to NORMALIZE whose ref was in prior state was fabricated as a `deleted` change event — a
+deletion invented from a failure; fixed by carrying seen-but-unparsed refs into change detection) +
+**3 hardened** (a vertical-noun leak — `charter_number`/`cfr_ref`/`section` — removed from the core
+rejection-labeler; the reconcile-to-source gate made non-vacuous; a tautological tier-from-source
+assertion replaced with a differing-source proof). Layers: **connectors 20→45, kernel 55→60,
+truth 45→47, cartridge 77→80, tests 54→57**; headline **~50% → ~54%** (honest re-baseline; the
+Sprint-III-end ~68% needs 2–3 more waves — full-market/bulk 5300 at scale, startup-intake, and
+qualifying the remaining placeholders).
+
 ## Existing foundation
 - Next.js app; Supabase/Postgres adapter + migrations (`0001`–`0017` **applied 2026-07-21**;
   the full `0001`–`0017` chain is live — all 14 registry-table RLS policies confirmed).

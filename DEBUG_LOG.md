@@ -6,6 +6,37 @@ any time with `node scripts/debug-loop.mjs` (after `npm install`).
 
 ## Open
 
+### Sprint III Wave 1 — Connector Runtime + SDK (2026-07-22)
+- **[BLOCKER — FIXED] Fabricated deletion from a normalization failure.** In
+  `core/kernel/connector_runtime.ts`, change detection was run over the successfully-PARSED records
+  only; a record that was ACQUIRED but failed to normalize (a rejection) whose `external_ref` was in
+  the prior state was treated as ABSENT → emitted as a `deleted` change event. A downstream consumer
+  would retire an object that is still present at the source and merely failed to parse — the exact
+  "never fabricate a deletion from a failure" rule violation (RFC-2011; DOCTRINE). Surfaced by the
+  4-lens adversarial fleet (correctness lens). **Fix:** `detectChanges` now takes `alsoPresentRefs`
+  (the seen-but-unparsed rejection refs); a prior ref is a deletion only if absent from BOTH the
+  parsed set AND the rejection set. Regression tests added (SDK-level + runtime-level + the CONNECTOR
+  debug step). debug-loop 13/13 green after the fix.
+- **[NON-BLOCKING — FIXED] Vertical noun leak in core/kernel.** The core rejection-labeler `rawRef`
+  hardcoded `charter_number` / `cfr_ref` / `section` (NCUA/regulation nouns) — coupling the generic
+  kernel to a vertical (CLAUDE.md: no vertical noun in `core/`). **Fix:** restricted to generic ids
+  (`external_ref` / `source_ref` / `ref` / `id`); a connector whose raw keys differ surfaces its own
+  ref. A rejection with no derivable ref is still counted + reported, never silently dropped.
+- **[NON-BLOCKING — FIXED] Reconcile-to-source gate was vacuous.** `run_connectors.ts` reconciliation
+  is an `.every()` over a set that could be empty (→ trivially true if profile lineage vanished). The
+  test/debug step now also assert `profile_source_refs.length >= batch.length`, so a dropped-lineage
+  regression fails.
+- **[NON-BLOCKING — FIXED] Tautological tier-from-source test.** Every test source used
+  `default_tier: public_fact`, so a hardcoded tier in `recordToObservation` would have passed. Added a
+  second source with a DIFFERENT tier/plane/visibility and asserted the observation reflects THAT
+  manifest (proving the value is read from the source, not a constant). Mirrored in the CONNECTOR step.
+- **[DEFERRED] Real bulk NCUA 5300 feed.** The 5300 connector runs on the LABELED illustrative batch
+  (`batch_fixtures.ts`); a real per-CU bulk 5300 pull is a Bryan-only external item. The runtime +
+  the normalize→persist→reconcile path are proven and source-agnostic — Wave 2 swaps the `acquire`
+  data source to run the whole market with no code change to the runtime.
+- **[DEFERRED] Startup-intake connector.** The "live intake path" into the deal engine (P1/P2) is
+  authored as a catalog source (`source:startup_intake`) but not yet wired through the runtime — Wave 2/3.
+
 - **[NON-BLOCKING] Debug harness needs a full checkout to be all-green.** `scripts/debug-loop.mjs`
   TYPECHECK + ENGINE steps require `node_modules` + a local `typescript` dep. Verified in-cloud on a
   partial checkout: ONTOLOGY ✓, CARTRIDGE ✓; code proven green via a consolidated `tsc` over all 18

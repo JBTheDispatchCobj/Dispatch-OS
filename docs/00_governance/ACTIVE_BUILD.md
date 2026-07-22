@@ -222,6 +222,35 @@ now DRIVES profile assembly instead of a fixed 0.9:
     persistence) + hardened. Layers: kernel 46→55, truth 40→45, tests 51→54, data 87→88; headline ~47→~50%.
   - **Sprint II CLOSED at ~50%** (honest recompute; roadmap caveat #4). **Next: Sprint III — Connectors & scale**
     (`SPRINT_III_KICKOFF_PROMPT.md`).
+
+## Sprint III — Wave 1 (Connectors & scale; target ~68%)
+**✅ WAVE 1 — Connector Runtime + SDK (Kernel RFC-2011; Volume IX) OPENS Sprint III (DONE, 2026-07-22, ~54%).**
+Additive, new-files-only, pure/deterministic, **no vertical noun in `core/`**; the engines are UNCHANGED;
+default stays in-memory + creds-free. A connector is now EXECUTABLE, not a paper manifest:
+- **`core/kernel/connector_sdk.ts`** — the typed **Connector Output Contract** (normalized observations,
+  entity/relationship candidates, source artifacts, change_events, quality_report, connector_health, run
+  metrics), the pure **parser contract**, deterministic FNV hashing, change detection, health bands, and
+  `recordToObservation` — the normalize→truth-Observation bridge that tiers a record FROM THE SOURCE
+  MANIFEST (connectors NORMALIZE only; no ratio, no conclusion, no tier in connector code).
+- **`core/kernel/connector_runtime.ts`** — the generic executor: **authorize FIRST** (shared-market
+  ingestion is service-role-only), acquire with **retry → circuit-breaker**, drive the pure parser,
+  detect changes (new/updated/deleted/unchanged; a rejection is NEVER a deletion), score quality, derive
+  health, emit an envelope-**correlated** KernelEvent + CostEntry. A fault is a `failed` output, not a throw.
+- **`core/registry/connectors.ts` + `core/registry/data/connectors.json`** — config-as-data catalog
+  (39 sources + 39 connectors across the SOURCE_CATALOG families) + a generic closed-graph loader/validator,
+  qualifying the DKR placeholders as DATA (not code forks).
+- **`cartridges/cooperative_markets/connectors/{ncua_5300,ncua_regulations}_connector.ts` + `run_connectors.ts`
+  + `scripts/connector-demo.ts`** — two REAL connectors THROUGH the runtime: 5300 → normalized → live
+  institution profiles PERSISTED (Wave-4 seam, plane-aware) reconciling to source; the REAL 675-section
+  12 CFR corpus normalized at scale.
+- **Gate:** debug-loop **ALL GREEN (13/13)** (new **CONNECTOR** step) + `tsc` clean + `npm run build` exit 0 +
+  **246 unit tests** (+32). Adversarially verified (4-lens) — **1 blocker fixed** (a normalization failure
+  fabricated as a deletion) + 3 hardened (vertical-noun leak removed from core; reconcile gate made
+  non-vacuous; tier-from-source proven). Layers: connectors 20→45, kernel 55→60, truth 45→47, cartridge
+  77→80, tests 54→57; headline **~50% → ~54%** (honest; Sprint-III-end ~68% needs 2–3 more waves).
+  **Next: Sprint III Wave 2** — full-market/bulk 5300 at scale (retire `batch_fixtures.ts`) + the
+  startup-intake connector into the deal engine + qualify the remaining placeholders
+  (`SPRINT_III_WAVE2_KICKOFF_PROMPT.md`).
 2. **Live intake path** — call-report/startup ingestion so the loop runs on real data, not the
    seed (a real connector over the `ncua_call_reports` / `startup_intake` source types).
 3. **Canonical Entity Model + entity resolution (RFC-3002)** and **Identity & Tenancy

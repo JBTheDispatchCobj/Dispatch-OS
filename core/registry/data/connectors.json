@@ -1,0 +1,1584 @@
+{
+  "key": "registry:connectors:coop_markets_v1",
+  "label": "Cooperative Markets connector catalog (config-as-data; DKR \u00a72)",
+  "version": 1,
+  "notes": "Config-as-data ConnectorSpec + SourceRegistryEntry manifests qualifying the DKR placeholder connectors across the SOURCE_CATALOG families. Connectors NORMALIZE only; tier/plane/visibility come from the source manifest, never connector code. Runtime: core/kernel/connector_runtime.ts.",
+  "sources": [
+    {
+      "key": "source:ncua_5300_call_report",
+      "label": "NCUA 5300 Call Report & Profile",
+      "version": 1,
+      "status": "active",
+      "authority": "regulatory",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://ncua.gov/analysis/credit-union-corporate-call-report-data",
+      "publisher": "National Credit Union Administration",
+      "refresh_cadence": "quarterly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:ncua_5300_call_report",
+      "output_object_keys": [
+        "entity:coop_markets:credit_union",
+        "entity:coop_markets:call_report"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:ncua_active_institutions",
+      "label": "NCUA Active Credit-Union List",
+      "version": 1,
+      "status": "active",
+      "authority": "regulatory",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://ncua.gov/analysis/credit-union-corporate-call-report-data/quarterly-data",
+      "publisher": "National Credit Union Administration",
+      "refresh_cadence": "quarterly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:ncua_active_institutions",
+      "output_object_keys": [
+        "entity:coop_markets:credit_union"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:ncua_regulations",
+      "label": "NCUA Regulations (12 CFR 700-799)",
+      "version": 1,
+      "status": "active",
+      "authority": "government",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.ecfr.gov/current/title-12",
+      "publisher": "eCFR / GPO",
+      "refresh_cadence": "on_publish",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:ncua_regulations",
+      "output_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:ncua_guidance",
+      "label": "NCUA Legal Opinions, Letters & Guidance",
+      "version": 1,
+      "status": "active",
+      "authority": "regulatory",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://ncua.gov/regulation-supervision/legal-opinions",
+      "publisher": "National Credit Union Administration",
+      "refresh_cadence": "weekly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:ncua_guidance",
+      "output_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:ncua_enforcement",
+      "label": "NCUA Enforcement Actions & Board Materials",
+      "version": 1,
+      "status": "active",
+      "authority": "regulatory",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://ncua.gov/regulation-supervision/enforcement-actions",
+      "publisher": "National Credit Union Administration",
+      "refresh_cadence": "weekly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:ncua_enforcement",
+      "output_object_keys": [
+        "entity:coop_markets:credit_union",
+        "entity:coop_markets:regulation"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:fcu_act",
+      "label": "Federal Credit Union Act & Amendments",
+      "version": 1,
+      "status": "active",
+      "authority": "government",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://uscode.house.gov",
+      "publisher": "U.S. Congress / GPO",
+      "refresh_cadence": "on_publish",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:fcu_act",
+      "output_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:ffiec_data",
+      "label": "FFIEC Data & Guidance",
+      "version": 1,
+      "status": "active",
+      "authority": "regulatory",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.ffiec.gov",
+      "publisher": "FFIEC",
+      "refresh_cadence": "quarterly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:ffiec_data",
+      "output_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:state_cu_regulators",
+      "label": "State CU Statutes, Codes & Regulator Guidance",
+      "version": 1,
+      "status": "active",
+      "authority": "regulatory",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.nascus.org",
+      "publisher": "State credit-union regulators",
+      "refresh_cadence": "monthly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:state_cu_regulators",
+      "output_object_keys": [
+        "entity:coop_markets:regulation",
+        "entity:coop_markets:credit_union"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:nascus_resources",
+      "label": "NASCUS Resources (where licensed/public)",
+      "version": 1,
+      "status": "active",
+      "authority": "trade_association",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "third_party_claim",
+      "official_url": "https://www.nascus.org",
+      "publisher": "NASCUS",
+      "refresh_cadence": "monthly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:nascus_resources",
+      "output_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:corporate_cu_disclosures",
+      "label": "Corporate Credit-Union Disclosures",
+      "version": 1,
+      "status": "active",
+      "authority": "institution_official",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.alloya.com",
+      "publisher": "Corporate credit unions",
+      "refresh_cadence": "quarterly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:corporate_cu_disclosures",
+      "output_object_keys": [
+        "entity:coop_markets:credit_union"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:sec_edgar",
+      "label": "SEC EDGAR Company Filings",
+      "version": 1,
+      "status": "active",
+      "authority": "official_filing",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.sec.gov/edgar",
+      "publisher": "U.S. SEC",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:sec_edgar",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:sec_form_d",
+      "label": "SEC Form D & Amended Form D",
+      "version": 1,
+      "status": "active",
+      "authority": "official_filing",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.sec.gov/edgar/search",
+      "publisher": "U.S. SEC",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:sec_form_d",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company",
+        "entity:coop_markets:investment"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:sec_form_adv",
+      "label": "Investment Adviser Public Disclosure / Form ADV",
+      "version": 1,
+      "status": "active",
+      "authority": "official_filing",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://adviserinfo.sec.gov",
+      "publisher": "SEC / IAPD",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:sec_form_adv",
+      "output_object_keys": [
+        "entity:coop_markets:fund"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:state_securities",
+      "label": "State Securities Filings (where accessible)",
+      "version": 1,
+      "status": "active",
+      "authority": "official_filing",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.nasaa.org",
+      "publisher": "State securities regulators",
+      "refresh_cadence": "weekly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:state_securities",
+      "output_object_keys": [
+        "entity:coop_markets:investment"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:public_fund_disclosures",
+      "label": "Public Fund & Portfolio Disclosures",
+      "version": 1,
+      "status": "active",
+      "authority": "official_filing",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.sec.gov/edgar",
+      "publisher": "Public funds",
+      "refresh_cadence": "quarterly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:public_fund_disclosures",
+      "output_object_keys": [
+        "entity:coop_markets:fund",
+        "entity:coop_markets:investment"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:funding_announcements",
+      "label": "Company Funding Announcements",
+      "version": 1,
+      "status": "active",
+      "authority": "press",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "third_party_claim",
+      "official_url": "https://news.crunchbase.com",
+      "publisher": "Trade press",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:funding_announcements",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company",
+        "entity:coop_markets:investment"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:cu_websites",
+      "label": "Official Credit-Union Websites",
+      "version": 1,
+      "status": "active",
+      "authority": "institution_official",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://example-cu.org",
+      "publisher": "Institutions",
+      "refresh_cadence": "monthly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:cu_websites",
+      "output_object_keys": [
+        "entity:coop_markets:credit_union"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:cu_annual_reports",
+      "label": "Annual Reports & Financial Statements",
+      "version": 1,
+      "status": "active",
+      "authority": "institution_official",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://example-cu.org/about",
+      "publisher": "Institutions",
+      "refresh_cadence": "annual",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:cu_annual_reports",
+      "output_object_keys": [
+        "entity:coop_markets:credit_union"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:press_releases",
+      "label": "Institution Press Releases",
+      "version": 1,
+      "status": "active",
+      "authority": "institution_official",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "third_party_claim",
+      "official_url": "https://example-cu.org/news",
+      "publisher": "Institutions",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:press_releases",
+      "output_object_keys": [
+        "entity:coop_markets:credit_union"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:executive_board_pages",
+      "label": "Executive & Board Pages",
+      "version": 1,
+      "status": "active",
+      "authority": "institution_official",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://example-cu.org/leadership",
+      "publisher": "Institutions",
+      "refresh_cadence": "monthly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:executive_board_pages",
+      "output_object_keys": [
+        "entity:coop_markets:executive"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:job_postings",
+      "label": "Job Postings",
+      "version": 1,
+      "status": "active",
+      "authority": "institution_official",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "third_party_claim",
+      "official_url": "https://example-cu.org/careers",
+      "publisher": "Institutions / boards",
+      "refresh_cadence": "weekly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:job_postings",
+      "output_object_keys": [
+        "entity:coop_markets:credit_union"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:conference_speakers",
+      "label": "Conference Speakers & Committee Memberships",
+      "version": 1,
+      "status": "active",
+      "authority": "trade_association",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "third_party_claim",
+      "official_url": "https://www.cuna.org",
+      "publisher": "Trade events",
+      "refresh_cadence": "monthly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:conference_speakers",
+      "output_object_keys": [
+        "entity:coop_markets:executive"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:cuso_registrations",
+      "label": "Public CUSO / Corporate Registrations",
+      "version": 1,
+      "status": "active",
+      "authority": "institution_official",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.ncua.gov/support-services/credit-union-resources-expansion/cuso-registry",
+      "publisher": "State registries",
+      "refresh_cadence": "quarterly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:cuso_registrations",
+      "output_object_keys": [
+        "entity:coop_markets:cuso"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:vendor_websites",
+      "label": "Vendor Websites & Product Docs",
+      "version": 1,
+      "status": "active",
+      "authority": "institution_official",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://example-vendor.com",
+      "publisher": "Vendors",
+      "refresh_cadence": "monthly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:vendor_websites",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:trust_status_pages",
+      "label": "Security, Trust & Status Pages",
+      "version": 1,
+      "status": "active",
+      "authority": "institution_official",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://trust.example-vendor.com",
+      "publisher": "Vendors",
+      "refresh_cadence": "weekly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:trust_status_pages",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:api_docs",
+      "label": "Public API & Integration Documentation",
+      "version": 1,
+      "status": "active",
+      "authority": "institution_official",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://docs.example-vendor.com",
+      "publisher": "Vendors",
+      "refresh_cadence": "monthly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:api_docs",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:github_repos",
+      "label": "Public GitHub Repositories",
+      "version": 1,
+      "status": "active",
+      "authority": "community",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "third_party_claim",
+      "official_url": "https://api.github.com",
+      "publisher": "GitHub",
+      "refresh_cadence": "daily",
+      "authentication": "api_key",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:github_repos",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:patents_trademarks",
+      "label": "Patent & Trademark Databases",
+      "version": 1,
+      "status": "active",
+      "authority": "government",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://developer.uspto.gov",
+      "publisher": "USPTO",
+      "refresh_cadence": "weekly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:patents_trademarks",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:customer_case_studies",
+      "label": "Customer Announcements & Case Studies",
+      "version": 1,
+      "status": "active",
+      "authority": "press",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "third_party_claim",
+      "official_url": "https://example-vendor.com/customers",
+      "publisher": "Vendors / press",
+      "refresh_cadence": "weekly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:customer_case_studies",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:app_review_sources",
+      "label": "App Stores & Product-Review Sources",
+      "version": 1,
+      "status": "active",
+      "authority": "press",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "third_party_claim",
+      "official_url": "https://apps.apple.com",
+      "publisher": "App stores",
+      "refresh_cadence": "weekly",
+      "authentication": "none",
+      "cost": "subject_to_terms",
+      "attribution_required": true,
+      "connector_key": "connector:app_review_sources",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:primary_press_feeds",
+      "label": "Primary-Source Feeds & Press Releases",
+      "version": 1,
+      "status": "active",
+      "authority": "press",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "third_party_claim",
+      "official_url": "https://www.prnewswire.com/rss",
+      "publisher": "Newswires",
+      "refresh_cadence": "hourly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:primary_press_feeds",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:licensed_rss",
+      "label": "Licensed / Permitted RSS Feeds",
+      "version": 1,
+      "status": "active",
+      "authority": "press",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "third_party_claim",
+      "official_url": "https://www.cutimes.com/feed",
+      "publisher": "Trade press",
+      "refresh_cadence": "hourly",
+      "authentication": "none",
+      "cost": "licensed",
+      "attribution_required": true,
+      "connector_key": "connector:licensed_rss",
+      "output_object_keys": [
+        "entity:coop_markets:credit_union"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:market_trade_press",
+      "label": "Market Publications & Trade Press",
+      "version": 1,
+      "status": "active",
+      "authority": "press",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "third_party_claim",
+      "official_url": "https://www.americanbanker.com",
+      "publisher": "Trade press",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "licensed",
+      "attribution_required": true,
+      "connector_key": "connector:market_trade_press",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:web_reporting",
+      "label": "Public Web Reporting (attributed summaries)",
+      "version": 1,
+      "status": "active",
+      "authority": "press",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "third_party_claim",
+      "official_url": "https://www.google.com/search",
+      "publisher": "Public web",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "fair_use",
+      "attribution_required": true,
+      "connector_key": "connector:web_reporting",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:profile_claims",
+      "label": "Profile Claims & Corrections",
+      "version": 1,
+      "status": "active",
+      "authority": "community",
+      "default_plane": "shared_market",
+      "default_visibility": "network",
+      "default_tier": "third_party_claim",
+      "official_url": "internal://network/claims",
+      "publisher": "Dispatch network",
+      "refresh_cadence": "on_event",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:profile_claims",
+      "output_object_keys": [
+        "entity:coop_markets:credit_union",
+        "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:engagement_events",
+      "label": "Interest / Save / Vote / Referral Events",
+      "version": 1,
+      "status": "active",
+      "authority": "community",
+      "default_plane": "shared_market",
+      "default_visibility": "network",
+      "default_tier": "third_party_claim",
+      "official_url": "internal://network/engagement",
+      "publisher": "Dispatch network",
+      "refresh_cadence": "on_event",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:engagement_events",
+      "output_object_keys": [
+        "entity:coop_markets:relationship"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:relationship_outcomes",
+      "label": "Pilot / Integration / Partnership / Investment Outcomes",
+      "version": 1,
+      "status": "active",
+      "authority": "community",
+      "default_plane": "private_terminal",
+      "default_visibility": "tenant_private",
+      "default_tier": "institution_verified_fact",
+      "official_url": "internal://network/outcomes",
+      "publisher": "Dispatch network",
+      "refresh_cadence": "on_event",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:relationship_outcomes",
+      "output_object_keys": [
+        "entity:coop_markets:relationship"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:expert_annotations",
+      "label": "Expert Annotations",
+      "version": 1,
+      "status": "active",
+      "authority": "human_expert",
+      "default_plane": "shared_market",
+      "default_visibility": "network",
+      "default_tier": "third_party_claim",
+      "official_url": "internal://network/experts",
+      "publisher": "Dispatch experts",
+      "refresh_cadence": "on_demand",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:expert_annotations",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:startup_intake",
+      "label": "Startup Intake Submissions",
+      "version": 1,
+      "status": "active",
+      "authority": "institution_official",
+      "default_plane": "shared_market",
+      "default_visibility": "network",
+      "default_tier": "third_party_claim",
+      "official_url": "internal://intake/startup",
+      "publisher": "Applicant companies",
+      "refresh_cadence": "on_event",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:startup_intake",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    }
+  ],
+  "connectors": [
+    {
+      "key": "connector:ncua_5300_call_report",
+      "label": "NCUA 5300 Call Report & Profile connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:ncua_5300_call_report",
+      "connector_type": "bulk_download",
+      "authentication": "none",
+      "refresh_strategy": "bulk",
+      "entity_object_keys": [
+        "entity:coop_markets:credit_union",
+        "entity:coop_markets:call_report"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:ncua_active_institutions",
+      "label": "NCUA Active Credit-Union List connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:ncua_active_institutions",
+      "connector_type": "bulk_download",
+      "authentication": "none",
+      "refresh_strategy": "bulk",
+      "entity_object_keys": [
+        "entity:coop_markets:credit_union"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:ncua_regulations",
+      "label": "NCUA Regulations (12 CFR 700-799) connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:ncua_regulations",
+      "connector_type": "bulk_download",
+      "authentication": "none",
+      "refresh_strategy": "bulk",
+      "entity_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:ncua_guidance",
+      "label": "NCUA Legal Opinions, Letters & Guidance connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:ncua_guidance",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:ncua_enforcement",
+      "label": "NCUA Enforcement Actions & Board Materials connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:ncua_enforcement",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:credit_union",
+        "entity:coop_markets:regulation"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:fcu_act",
+      "label": "Federal Credit Union Act & Amendments connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:fcu_act",
+      "connector_type": "manual_upload",
+      "authentication": "none",
+      "refresh_strategy": "on_demand",
+      "entity_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:ffiec_data",
+      "label": "FFIEC Data & Guidance connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:ffiec_data",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:state_cu_regulators",
+      "label": "State CU Statutes, Codes & Regulator Guidance connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:state_cu_regulators",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:regulation",
+        "entity:coop_markets:credit_union"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:nascus_resources",
+      "label": "NASCUS Resources (where licensed/public) connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:nascus_resources",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:corporate_cu_disclosures",
+      "label": "Corporate Credit-Union Disclosures connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:corporate_cu_disclosures",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:credit_union"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:sec_edgar",
+      "label": "SEC EDGAR Company Filings connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:sec_edgar",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:sec_form_d",
+      "label": "SEC Form D & Amended Form D connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:sec_form_d",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company",
+        "entity:coop_markets:investment"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:sec_form_adv",
+      "label": "Investment Adviser Public Disclosure / Form ADV connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:sec_form_adv",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:fund"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:state_securities",
+      "label": "State Securities Filings (where accessible) connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:state_securities",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:investment"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:public_fund_disclosures",
+      "label": "Public Fund & Portfolio Disclosures connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:public_fund_disclosures",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:fund",
+        "entity:coop_markets:investment"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:funding_announcements",
+      "label": "Company Funding Announcements connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:funding_announcements",
+      "connector_type": "rss_atom",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company",
+        "entity:coop_markets:investment"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:cu_websites",
+      "label": "Official Credit-Union Websites connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:cu_websites",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:credit_union"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:cu_annual_reports",
+      "label": "Annual Reports & Financial Statements connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:cu_annual_reports",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:credit_union"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:press_releases",
+      "label": "Institution Press Releases connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:press_releases",
+      "connector_type": "rss_atom",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:credit_union"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:executive_board_pages",
+      "label": "Executive & Board Pages connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:executive_board_pages",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:executive"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:job_postings",
+      "label": "Job Postings connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:job_postings",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:credit_union"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:conference_speakers",
+      "label": "Conference Speakers & Committee Memberships connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:conference_speakers",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:executive"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:cuso_registrations",
+      "label": "Public CUSO / Corporate Registrations connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:cuso_registrations",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:cuso"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:vendor_websites",
+      "label": "Vendor Websites & Product Docs connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:vendor_websites",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:trust_status_pages",
+      "label": "Security, Trust & Status Pages connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:trust_status_pages",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:api_docs",
+      "label": "Public API & Integration Documentation connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:api_docs",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:github_repos",
+      "label": "Public GitHub Repositories connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:github_repos",
+      "connector_type": "direct_api",
+      "authentication": "api_key",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:patents_trademarks",
+      "label": "Patent & Trademark Databases connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:patents_trademarks",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:customer_case_studies",
+      "label": "Customer Announcements & Case Studies connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:customer_case_studies",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:app_review_sources",
+      "label": "App Stores & Product-Review Sources connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:app_review_sources",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:primary_press_feeds",
+      "label": "Primary-Source Feeds & Press Releases connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:primary_press_feeds",
+      "connector_type": "rss_atom",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:licensed_rss",
+      "label": "Licensed / Permitted RSS Feeds connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:licensed_rss",
+      "connector_type": "rss_atom",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:credit_union"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:market_trade_press",
+      "label": "Market Publications & Trade Press connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:market_trade_press",
+      "connector_type": "rss_atom",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:web_reporting",
+      "label": "Public Web Reporting (attributed summaries) connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:web_reporting",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:profile_claims",
+      "label": "Profile Claims & Corrections connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:profile_claims",
+      "connector_type": "webhook",
+      "authentication": "none",
+      "refresh_strategy": "webhook",
+      "entity_object_keys": [
+        "entity:coop_markets:credit_union",
+        "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:engagement_events",
+      "label": "Interest / Save / Vote / Referral Events connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:engagement_events",
+      "connector_type": "webhook",
+      "authentication": "none",
+      "refresh_strategy": "webhook",
+      "entity_object_keys": [
+        "entity:coop_markets:relationship"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:relationship_outcomes",
+      "label": "Pilot / Integration / Partnership / Investment Outcomes connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:relationship_outcomes",
+      "connector_type": "webhook",
+      "authentication": "none",
+      "refresh_strategy": "webhook",
+      "entity_object_keys": [
+        "entity:coop_markets:relationship"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:expert_annotations",
+      "label": "Expert Annotations connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:expert_annotations",
+      "connector_type": "manual_upload",
+      "authentication": "none",
+      "refresh_strategy": "on_demand",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:startup_intake",
+      "label": "Startup Intake Submissions connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:startup_intake",
+      "connector_type": "manual_upload",
+      "authentication": "none",
+      "refresh_strategy": "on_demand",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    }
+  ]
+}
