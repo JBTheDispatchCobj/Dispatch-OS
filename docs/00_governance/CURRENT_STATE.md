@@ -152,6 +152,44 @@ review now actually routes through the contract) + 2 test-teeth gaps closed. Ker
 tests 49→51. Profile PERSISTENCE + the matured entity-resolution pipeline + the live Supabase registry
 client remain (Wave 4 — moves kernel 46→55, truth 40→45).
 
+## Running now (Olympic Sprint II — Wave 4, ~50%, Sprint II CLOSED, 2026-07-22)
+**The Object Registry has a live-persistence client governed through a kernel contract, a matured
+entity-resolution pipeline, and live profiles now PERSIST.** Wave 4 closes Sprint II — additive,
+new-files-only in `core/`, pure/deterministic, no vertical nouns; the registry service + engines are
+UNCHANGED and the default stays in-memory (gate green with no creds):
+- **`core/registry/governed_registry.ts`** — `GovernedObjectRegistry` wraps the unchanged
+  `ObjectRegistryService`. `registerThrough`/`mergeThrough` **authorize FIRST** via `guard` (the
+  permission engine); a shared-market registry merge is **service-role-only** (registry objects are the
+  shared-market identity index with no tenant, so `app_can_admin_object` grants NO authenticated user —
+  the load-bearing 0017 §8 invariant). Each governed mutation emits an envelope-**correlated**
+  `KernelEvent` + `CostEntry`, and durable flushes run on a **serialized write-chain** so a merge's flush
+  never races the register that precedes it; `drain()` surfaces a flush failure without poisoning the chain.
+- **`core/data/supabase-table-client.ts`** — the one new file importing `@supabase/supabase-js`: a real
+  client adapted to the narrow `{upsert,selectAll}` seam the registry + profile adapters consume;
+  env-gated (returns null with no `SUPABASE_URL`/`SUPABASE_SERVICE_ROLE_KEY`, so the gate stays in-memory).
+- **`core/registry/resolver.ts`** — matured entity resolution: **blocking keys** (identifying external id /
+  exact slug / normalized name-alias tokens) + **deterministic similarity** (token Jaccard; the corporate
+  designator stopwords are caller-injected config-as-data so `core/` names no vertical), still **PROPOSE-only**.
+  Resolves the DEFERRED **NO-CLOBBER** note: a human-reviewed (`confirmed`/`rejected`) candidate is **sticky** and
+  never re-proposed; only genuinely-new pairs are proposed.
+- **`core/profile/persistence.ts`** — `ProfilePersistencePort` + `InMemoryProfileStore` (default) +
+  `SupabaseProfileStore` (hybrid) + pure mappers. A `LiveAssembledProfile` persists **byte-identically** (the
+  whole profile is a canonical-JSON **`text`** snapshot, so even a real Postgres backend returns exact bytes)
+  and **plane-aware** (an explicit `ProfileScope` keeps a public shared-market profile and a private tenant
+  profile un-conflated — the discriminator drives the 0018 RLS), surviving a process boundary with its
+  confidence/freshness/lineage/outcome-audit intact. Migration **`0018_profile_snapshots.sql`** (additive,
+  plane-aware RLS reusing 0016) lands the table; `profileStore()` stays in-memory unless a client is supplied.
+Gate: **debug-loop ALL GREEN (12/12)** (new **REGISTRY-PERSISTENCE** step: governed authorize-first + service-only
+merge + correlated event/cost + serialized flush · resolver blocking+similarity charter-less proposal + NO-CLOBBER ·
+profile persist→hydrate byte-identical + plane-aware · deterministic) + `tsc` clean + `npm run build` exit 0 +
+**214 unit tests** (was 182; +32). Adversarially verified (4-lens fleet + a focused re-verify) — **1 blocker fixed**
+(profile persistence had dropped the plane/visibility/tenant discriminator → planes conflated + the plane-aware RLS a
+dead letter; fixed by carrying the explicit plane-aware scope) + hardened (byte-identity vs real Postgres jsonb via the
+text snapshot; flush no-lost-update incl. a same-id re-put; the write-chain no longer poisoned by a single flush failure;
+test-teeth added). Layers: kernel 46→55, truth 40→45, tests 51→54, data 87→88; headline ~47% → **~50%** (honest
+recompute; Sprint II's ~55% roadmap projection also assumed harness/Auric/connector/terminal deltas this wave did not
+target — those move in Sprint III–IV, per roadmap caveat #4).
+
 ## Existing foundation
 - Next.js app; Supabase/Postgres adapter + migrations (`0001`–`0017` **applied 2026-07-21**;
   the full `0001`–`0017` chain is live — all 14 registry-table RLS policies confirmed).

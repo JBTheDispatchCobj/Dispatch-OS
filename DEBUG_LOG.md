@@ -28,6 +28,70 @@ any time with `node scripts/debug-loop.mjs` (after `npm install`).
   behind the existing seam (default in-memory; drops in when a client is configured) + the RFC-2002
   identity/permission substrate that mirrors the now-live RLS predicates.
 
+## Sprint II Wave 4 — Registry live-persistence + matured resolution + profile persistence (2026-07-22, Sprint II CLOSED)
+
+Additive, new-files-only in `core/`; the registry service + engines UNCHANGED; default stays in-memory.
+Adversarially verified by a 4-lens skeptic fleet (correctness · truth-doctrine · purity/determinism ·
+test-teeth) + a focused fresh-eyes re-verify of the two most-changed files. Fixes applied before commit:
+
+- **[was BLOCKER → FIXED] Profile persistence conflated planes.** `profileToRow` dropped the
+  plane/visibility/workspace_id/organization_id discriminator, so EVERY persisted profile landed on the
+  0018 table's fail-closed defaults (`private_terminal`/`tenant_private`/null) regardless of its true plane
+  — a shared-market PUBLIC institution/regulation-environment profile and a private tenant profile became
+  indistinguishable on persistence (violates DOCTRINE "truth planes never conflated"), and the plane-aware
+  RLS I shipped in 0018 could never gate correctly (it always ran against the wrong constants — a dead
+  letter). Root cause: `LiveAssembledProfile` carries no plane of its own. **Fix:** the persist unit is now
+  a `PersistedProfile { profile, scope }` where `ProfileScope` = {plane, visibility, workspace_id?,
+  organization_id?}; the caller (who knows the plane) supplies it, `profileToRow` writes the real
+  discriminator columns, and `rowToProfile` restores the scope (original non-uuid ids preserved in
+  metadata). Covered by `tests/profile_persistence.test.mjs` (a public and a tenant profile persist with
+  distinct discriminators) + a REGISTRY-PERSISTENCE debug assertion.
+- **[was NON-BLOCKING → FIXED] "Byte-identical" did not hold against a real Postgres backend.** The first
+  cut stored the profile in a `jsonb` snapshot column; Postgres jsonb may renormalize number formatting +
+  key order, so `JSON.stringify(hydrated) === JSON.stringify(original)` would break against the real DB even
+  though it passed through the in-memory fake. **Fix:** the snapshot is a canonical JSON **string** in a
+  `text` column (0018 updated), so a read returns the exact bytes written — the guarantee now holds end to
+  end. `rowToProfile` accepts either a text snapshot (real Postgres) or an already-parsed object (a jsonb
+  column / an in-memory fake).
+- **[was NON-BLOCKING → FIXED] `flush()` could silently drop a write that landed during the await.** The
+  first cut cleared the entire pending map after the upsert; a `put()` during the in-flight flush (including
+  a re-`put()` of the SAME id) was lost. **Fix:** `flush` captures the exact queued object references, and
+  after success deletes an entry ONLY if `pending.get(id)` is still that same reference — a newer value that
+  replaced it mid-flush survives to the next flush. Covered by a new-key AND a same-id-re-put test.
+- **[was DESIGN GAP → FIXED] The governed write-chain was poisoned by a single flush failure.** A rejected
+  `store.flush` left `this.chain` a rejected promise, so every later governed write's flush silently never
+  ran while callers still got `ok:true`. **Fix:** `enqueueFlush` catches (first-error-wins into
+  `flushError`) so the chain stays alive and later writes still attempt to persist (mirrors the
+  catch-and-continue write-through in `core/data/supabase-adapter.ts`); `drain()` surfaces the first error
+  (sticky — a failed durable write means persisted state is inconsistent until reconciled). Covered by a
+  drain-rejects-on-failure test.
+- **[was TEST-TEETH gaps → CLOSED]** serialize concurrency guard (a fake client tracks max in-flight == 1,
+  so a non-serialized `Promise.all` impl would be caught); the register-path event/cost emission + the
+  CostEntry SHAPE (category/usd/label, not just correlation_id); the resolver min-Jaccard gate (a below-gate
+  weak name overlap emits NO `name_similarity` reason); and `core/data/supabase-table-client.ts` coverage
+  (driven with a fake SupabaseClient stub — delegation, onConflict, error passthrough, env→null).
+- **[RESOLVED — the DEFERRED resolver note]** The Wave-1 "[DEFERRED — resolver-level] Re-proposal does not
+  respect a prior human review status" item is closed by `core/registry/resolver.ts`: `proposeMatches`
+  reads the store's existing candidates and treats a `confirmed`/`rejected` pair as **sticky** (skipped,
+  reported in `skipped_reviewed`) — only genuinely-new pairs are proposed. `ObjectRegistryService.resolve()`
+  (the shared-external-id pass the DATA step exercises) is left UNCHANGED per the additive/new-files rule;
+  the matured resolver is the new path the REGISTRY-PERSISTENCE step + governed runtime use.
+- **[DESIGN NOTE — not a defect] `objectResource` fixes `workspace_id: null`.** Registry objects are the
+  shared-market identity index and carry no tenant (`objectToRow` always writes `workspace_id: null`), so a
+  governed registry merge authorizes against a null-workspace resource → service-role-only by construction,
+  faithfully reproducing the 0017 §8 invariant. Intentional.
+- **[NON-BLOCKING — carried] `SupabaseRegistryStore.flush` clears its pending map after the await** (the
+  same shape as the profile pre-fix). Benign in practice: governed flushes are serialized by the write-chain
+  (each awaited before the next is enqueued) and the registry port is driven only through the governed layer,
+  so a put never lands mid-flush there. Left unchanged to honor "don't rewrite the registry adapter"; noted
+  so a future direct-caller path applies the same delete-what-you-flushed guard.
+- **[DEFERRED] Migration `0018_profile_snapshots.sql` not yet applied in Supabase** (Bryan-only apply, like
+  0016/0017). The profile-persistence default is in-memory; the Supabase adapter drops in when a client is
+  configured + 0018 is applied. No gate impact.
+- **Gate:** debug-loop **ALL GREEN (12/12)** (new **REGISTRY-PERSISTENCE** step) · `tsc --noEmit` exit 0 ·
+  `npm run build` exit 0 · **214/214** unit tests (+32). Layers: kernel 46→55, truth 40→45, tests 51→54,
+  data 87→88; headline ~47→~50%. Sprint II CLOSED at ~50% (honest recompute; roadmap caveat #4).
+
 ## Sprint II Wave 3 — Kernel request envelope + contracts/API (2026-07-22)
 
 - **[was NON-BLOCKING → FIXED] Evidence review bypassed the contract.** The first cut wired the

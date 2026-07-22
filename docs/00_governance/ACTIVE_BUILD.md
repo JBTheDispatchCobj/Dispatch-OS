@@ -200,9 +200,28 @@ now DRIVES profile assembly instead of a fixed 0.9:
   EditorialDisposition) untouched. Gate: debug-loop **ALL GREEN (11/11)** (new **CONTRACTS** step) + `tsc` clean +
   `npm run build` exit 0 + **182 unit tests** (+20). Adversarially verified (4-lens; 0 blockers; evidence-review
   wiring gap + 2 test-teeth gaps fixed). Layers: kernel 34→46, harness 18→22, tests 49→51.
-- **Remaining Sprint II wave:** (Wave 4) wire the Supabase registry adapter onto a
-  real `@supabase/supabase-js` client on a serialized write-chain (respect the DEFERRED resolver re-proposal note)
-  + the matured entity-resolution/match-candidate pipeline + profile PERSISTENCE (moves truth 40→45, kernel 46→55).
+- **✅ Sprint II Wave 4 — DONE (2026-07-22, ~50%, Sprint II CLOSED): Object Registry live-persistence client +
+  matured entity resolution + profile PERSISTENCE.** Additive, new-files-only in `core/`, pure/deterministic, no
+  vertical nouns; the registry service + engines are UNCHANGED; default stays in-memory (gate green with no creds).
+  - **`core/registry/governed_registry.ts`** — `GovernedObjectRegistry` wraps the unchanged `ObjectRegistryService`:
+    `registerThrough`/`mergeThrough` authorize FIRST via `guard`; a shared-market registry merge is **service-role-only**
+    (workspace-null registry object → `app_can_admin_object` grants no authenticated user); each mutation emits an
+    envelope-correlated `KernelEvent` + `CostEntry`; a **serialized write-chain** flushes in call order (a merge's flush
+    never races the register before it); `drain()` surfaces a flush failure without poisoning the chain.
+  - **`core/data/supabase-table-client.ts`** — the one new file importing `@supabase/supabase-js`; a real client adapted
+    to the narrow `{upsert,selectAll}` seam; env-gated to null so the gate stays in-memory with no creds.
+  - **`core/registry/resolver.ts`** — matured resolution: blocking keys + deterministic name/alias/charter token
+    similarity (caller-injected designator stopwords keep `core/` vertical-free), PROPOSE-only, resolving the DEFERRED
+    **NO-CLOBBER** note (a reviewed candidate is sticky, never re-proposed).
+  - **`core/profile/persistence.ts`** + **`db/migrations/0018_profile_snapshots.sql`** — a `LiveAssembledProfile`
+    persists **byte-identically** (canonical-JSON text snapshot) and **plane-aware** (an explicit `ProfileScope` keeps a
+    public shared-market profile and a private tenant profile un-conflated) through a seam (in-memory default; Supabase
+    adapter when a client is configured), surviving a process boundary with confidence/freshness/lineage intact.
+  - **Gate:** debug-loop **ALL GREEN (12/12)** (new **REGISTRY-PERSISTENCE** step) + `tsc` clean + `npm run build` exit 0
+    + **214 unit tests** (+32). Adversarially verified (4-lens + focused re-verify) — 1 blocker fixed (plane conflation on
+    persistence) + hardened. Layers: kernel 46→55, truth 40→45, tests 51→54, data 87→88; headline ~47→~50%.
+  - **Sprint II CLOSED at ~50%** (honest recompute; roadmap caveat #4). **Next: Sprint III — Connectors & scale**
+    (`SPRINT_III_KICKOFF_PROMPT.md`).
 2. **Live intake path** — call-report/startup ingestion so the loop runs on real data, not the
    seed (a real connector over the `ncua_call_reports` / `startup_intake` source types).
 3. **Canonical Entity Model + entity resolution (RFC-3002)** and **Identity & Tenancy

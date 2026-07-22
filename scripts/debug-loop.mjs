@@ -607,7 +607,132 @@ await step("CONTRACTS  (RFC-2001/2014: envelope + authorize-first)", async () =>
   return "envelope pure+derives · authorize-FIRST (deny→refusal, delegate unrun) · review/approve/promote truth table · service bypass · canReview shim = engine · deal run correlates to the envelope";
 });
 
-// --- 10. Unit tests (Wave 4: the engines have teeth) -------------------------
+// --- 10. Registry persistence + matured resolution + profile persistence -----
+await step("REGISTRY-PERSISTENCE(governed write-chain · resolver no-clobber · profile round-trip)", async () => {
+  const { register } = await import("node:module");
+  register("./alias-hook.mjs", import.meta.url);
+  const idm = await import("@/core/kernel/identity");
+  const { makeEnvelope } = await import("@/core/kernel/envelope");
+  const { EventBus } = await import("@/core/kernel/event_bus");
+  const { CostLedger } = await import("@/core/kernel/cost_ledger");
+  const { ObjectRegistryService, InMemoryRegistryStore } = await import("@/core/registry/service");
+  const { SupabaseRegistryStore } = await import("@/core/registry/supabase-store");
+  const { GovernedObjectRegistry } = await import("@/core/registry/governed_registry");
+  const { proposeMatches, resolveThroughStore } = await import("@/core/registry/resolver");
+  const { assembleLiveProfile } = await import("@/core/profile/assemble_live");
+  const { SupabaseProfileStore, profileToRow, rowToProfile, InMemoryProfileStore } =
+    await import("@/core/profile/persistence");
+
+  const cls = "entity:coop_markets:credit_union";
+  const STOP = ["fcu", "federal", "credit", "union", "cu"];
+  const mem = (ws, role) => ({ workspace_id: ws, organization_id: "org", role });
+  const envOf = (principal, cid) => makeEnvelope({ principal, correlation_id: cid ?? "corr:reg", plane: "shared_market", occurred_at: "2026-07-22T00:00:00.000Z", request_id: "req:1" });
+  const sharedInput = (slug, name, charter, aliases) => ({ object_class: cls, canonical_slug: slug, display_name: name, plane: "shared_market", visibility: "public", external_ids: charter ? [{ system: "ncua_charter", value: charter }] : undefined, aliases });
+
+  // A tiny in-memory fake of the narrow table client (records call order).
+  const fakeClient = () => {
+    const tables = { object_registry: [], object_match_candidates: [], object_merges: [], profile_snapshots: [] };
+    const calls = [];
+    return {
+      tables, calls,
+      async upsert(table, rows) { calls.push(table); const t = tables[table]; for (const row of rows) { const i = t.findIndex((r) => r.id === row.id); if (i >= 0) t[i] = row; else t.push(row); } return { error: null }; },
+      async selectAll(table) { return { data: tables[table].slice(), error: null }; },
+    };
+  };
+
+  // ---- GOVERNED WRITE-CHAIN: authorize-FIRST + service-only merge + serialized flush.
+  {
+    const store = new SupabaseRegistryStore();
+    const client = fakeClient();
+    const bus = new EventBus();
+    const ledger = new CostLedger();
+    let n = 0, e = 0;
+    const service = new ObjectRegistryService(store, { idGen: () => `reg:${n++}`, now: "2026-07-22T00:00:00.000Z" });
+    const gov = new GovernedObjectRegistry({ service, store, client, bus, ledger, idGen: () => `ev:${e++}` });
+    const svc = envOf(idm.systemPrincipal(), "corr:persist");
+    const a = gov.registerThrough(svc, sharedInput("s", "Alpha", "1")).value;
+    const b = gov.registerThrough(svc, sharedInput("s2", "Alpha", "1")).value;
+
+    // A non-service user is REFUSED the shared-market merge; the engine never runs.
+    const user = idm.userPrincipal("u1", [mem("ws1", "owner")]);
+    const denied = gov.mergeThrough(envOf(user, "corr:persist"), a.id, b.id, "decision:x");
+    assert(denied.ok === false && denied.refusal.reason === "no_tenant", "a shared-market registry merge is governable by NO authenticated user (service-role-only)");
+    assert(gov.merges().length === 0, "authorize-FIRST: a refused merge never runs the engine");
+
+    const ok = gov.mergeThrough(svc, a.id, b.id, "decision:x");
+    assert(ok.ok === true && gov.objects().find((o) => o.id === b.id).status === "merged", "the service role performs the merge");
+    const evts = bus.history({ type: "registry.objects_merged" });
+    assert(evts.length === 1 && evts[0].correlation_id === "corr:persist", "the merge emits a KernelEvent correlated to the request envelope");
+    assert(ledger.entries({ correlation_id: "corr:persist" }).length >= 1, "the governed write emits a correlated CostEntry");
+
+    await gov.drain(); // await the serialized durable flush
+    assert(client.tables.object_registry.length === 2 && client.tables.object_merges.length === 1, "the write-chain persisted both objects + the merge");
+    const firstObj = client.calls.indexOf("object_registry");
+    const firstMerge = client.calls.indexOf("object_merges");
+    assert(firstObj >= 0 && firstMerge > firstObj, "serialized write-chain: a merge flush never precedes the register flush (no race)");
+  }
+
+  // ---- RESOLVER NO-CLOBBER: a human-reviewed candidate is never re-proposed.
+  {
+    const store = new InMemoryRegistryStore();
+    let n = 0;
+    const service = new ObjectRegistryService(store, { idGen: () => `reg:${n++}`, now: "2026-07-22T00:00:00.000Z" });
+    // Charter-less near-duplicate proposed purely on name/alias token similarity.
+    service.register(sharedInput("summit_ridge_fcu", "Summit Ridge FCU", undefined, undefined));
+    service.register(sharedInput("summit_ridge_federal_credit_union", "Summit Ridge Federal Credit Union", undefined, undefined));
+    const first = resolveThroughStore(store, { stopwords: STOP });
+    assert(first.proposed.length === 1 && first.proposed[0].reasons.some((r) => r.startsWith("name_similarity:")), "matured resolver proposes a charter-less duplicate on name/alias similarity (blocking + similarity)");
+    assert(first.proposed[0].status === "proposed", "propose-only (never auto-merge)");
+    // A human REJECTS it, then a re-run must NOT clobber that decision.
+    const c = store.candidates()[0];
+    store.putCandidate({ ...c, status: "rejected" });
+    const second = resolveThroughStore(store, { stopwords: STOP });
+    assert(second.proposed.length === 0 && second.skipped_reviewed.length === 1, "NO-CLOBBER: a reviewed (rejected) candidate is not re-proposed");
+    assert(store.candidates()[0].status === "rejected", "the human review decision is sticky across re-resolution");
+    // Determinism.
+    const j = JSON.stringify(proposeMatches({ objects: store.all(), existing: store.candidates(), opts: { stopwords: STOP } }));
+    assert(j === JSON.stringify(proposeMatches({ objects: store.all(), existing: store.candidates(), opts: { stopwords: STOP } })), "matured resolution is deterministic");
+  }
+
+  // ---- PROFILE PERSISTENCE: persist -> hydrate round-trips a profile byte-
+  //      identically AND plane-aware (planes never conflated on persistence).
+  {
+    const p = assembleLiveProfile({
+      id: "profile:cu:60441", subject_ref: "ncua_charter:60441", subject_type: "credit_union", display_name: "Summit Ridge FCU",
+      as_of: "2026-07-22T00:00:00.000Z",
+      fields: [
+        { key: "net_worth_ratio", label: "Net Worth Ratio", value: 11.2, unit: "%", source_ref: "fact:5300:60441:nwr", tier: "deterministic_calculation", confidence: 0.9, observed_at: "2026-03-31T00:00:00.000Z", outcomes: [{ agreed: true, source_ref: "verification:exam:2026Q2" }] },
+        { key: "roa", label: "Return on Assets", value: 0.85, unit: "%", source_ref: "fact:5300:60441:roa", tier: "deterministic_calculation", confidence: 0.8, observed_at: "2026-03-31T00:00:00.000Z" },
+      ],
+    });
+    // A shared-market public profile; the scope keeps the plane un-conflated.
+    const pp = { profile: p, scope: { plane: "shared_market", visibility: "public", workspace_id: null, organization_id: null } };
+    // Pure mapper round-trip: profile byte-identical + plane preserved.
+    const row = profileToRow(pp);
+    assert(typeof row.snapshot === "string" && row.plane === "shared_market" && row.visibility === "public", "the row carries the plane-aware discriminator (planes not conflated)");
+    const back0 = rowToProfile(row);
+    assert(JSON.stringify(back0.profile) === JSON.stringify(p), "profileToRow -> rowToProfile is byte-identical");
+    assert(back0.scope.plane === "shared_market" && back0.scope.visibility === "public", "the plane-aware scope round-trips");
+    // Persist through a fake client, hydrate a FRESH store (a process boundary).
+    const client = fakeClient();
+    const s1 = new SupabaseProfileStore();
+    s1.put(pp);
+    await s1.flush(client);
+    assert(client.tables.profile_snapshots.length === 1 && s1.pendingRows().length === 0, "flush persists the profile then clears the queue");
+    const s2 = new SupabaseProfileStore();
+    await s2.hydrateFromSupabase(client);
+    const back = s2.get(p.id);
+    assert(JSON.stringify(back.profile) === JSON.stringify(p), "a profile survives persist->hydrate byte-identically (confidence/freshness/lineage intact)");
+    assert(back.scope.plane === "shared_market", "the plane survives the process boundary");
+    assert(back.profile.outcome_adjustments[0].outcome_source_refs.length === 1, "outcome evidence lineage survives persistence");
+    // Default seam stays in-memory (gate green with no creds).
+    assert(new InMemoryProfileStore().all().length === 0, "in-memory default constructs without a client");
+  }
+
+  return "governed write-chain (authorize-FIRST · shared-market merge service-only · correlated event+cost · serialized flush) · resolver blocking+similarity (charter-less proposal) + NO-CLOBBER (reviewed candidate sticky) · profile persist→hydrate byte-identical · deterministic";
+});
+
+// --- 11. Unit tests (Wave 4: the engines have teeth) -------------------------
 await step("TESTS      (node --test: engine unit suite)", () => {
   if (!fs.existsSync(path.join(root, "node_modules"))) {
     throw new Error("node_modules missing — run `npm install`, then re-run this loop (env, not code)");
