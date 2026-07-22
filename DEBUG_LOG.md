@@ -6,6 +6,69 @@ any time with `node scripts/debug-loop.mjs` (after `npm install`).
 
 ## Open
 
+### Sprint III Wave 3 — FDIC + Federal Register connectors + connector→registry + catalog 57→73 (2026-07-22)
+- **[BLOCKER — FIXED] A previously-seen record that failed validation on a valid key was fabricated as a DELETION**
+  (violates the load-bearing RFC-2011 rule "a normalization failure is NEVER a deletion"). Across all real
+  throw-path connectors (FDIC CERT / Federal Register document_number / SEC EDGAR accession_number), the raw
+  key field is not in the runtime's generic `rawRef` whitelist `{external_ref, source_ref, ref, id}`, so when
+  `parse` rejected a record for a blank *secondary* field (e.g. valid CERT + blank name) the rejection's ref
+  came back `undefined` — defeating the `alsoPresentRefs` guard — and change detection saw the prior ref as
+  absent and emitted `kind:"deleted"`. Confirmed empirically (`deleted === 1`). The Wave-2 reject tests missed
+  it by only exercising blank-KEY rejections (never present in `prior`). Surfaced by the 4-lens adversarial
+  fleet (correctness + test-teeth lenses), confirmed by a focused re-verify. **Fix:** each throw-path connector
+  now tags its acquired records with a generic `external_ref` = the change-key via a `withRef` helper (runtime
+  UNCHANGED, no vertical noun in core/), so a seen-but-unparseable record is protected by `alsoPresentRefs`
+  instead of fabricated as a deletion; plus a regression test with TEETH on all three connectors (seed `prior`
+  with a valid key, feed a blank-secondary-field record → assert `deleted === 0`, `rejected === 1`). Verified:
+  removing `withRef` now flips the new test to FAIL (was green before). debug-loop 13/13, 290 tests.
+- **[NON-BLOCKING — FIXED] `run_registry_candidates` reconciliation flag was vacuous.** `reconciled` compared
+  `registered.length === inputs.length`, structurally always true (Array.map), so it gave no signal. **Fix:**
+  `reconciled` now proves a store ROUND-TRIP — `candidate_count` is counted independently from the real
+  connector outputs, every registered object must be retrievable from the store by id (and carry a surfaced
+  external id), and `merges === 0` — so it flips false if the bridge drops a candidate, a persist fails, or a
+  merge fires.
+- **[NON-BLOCKING — FIXED] test-teeth hardening.** object_class assertions compared against the same imported
+  constant (self-comparison) → now assert against string literals + `notEqual credit_union`; the plane/
+  visibility-from-source invariant was untested → added an EDGAR `public` vs startup-intake `network`
+  visibility assertion (unit test + debug-loop) that fails if the bridge hardcoded a visibility.
+- **[DEFERRED] Real bulk 5300 feed has NOT landed** (Bryan-only). The full-market 5300 path remains proven on
+  a clearly-LABELED synthetic market; it drops in with NO code change (only the injected `acquire` batch).
+  Wave 3 did not fabricate realness.
+- **[DEFERRED] Catalog at 73/~93.** 20 more source/connector manifests remain to reach the ~93; the remaining
+  real connectors (FDIC BankFind full-field, SEC full-text, Federal Reserve data, etc.) implement against
+  existing manifests with no code fork.
+
+### Sprint III Wave 2 — Full-market scale + startup-intake + catalog growth (2026-07-22)
+- **[MAJOR — FIXED] SEC EDGAR rejection test exercised a hand-rolled stub, not the real connector.**
+  In `tests/sec_edgar_connector.test.mjs` the "a raw that fails to normalize is a rejection" test built
+  `makeSecEdgarConnector(...)` into a `conn` that was never used, then asserted against a fake inline
+  `defineConnector` whose parse threw on a sentinel — so it verified only the generic runtime's rejection
+  tally, NOT `parseEdgarFiling`. Worse, `parseEdgarFiling` was a TOTAL function with no reject path, so the
+  SEC connector had no exercised "fails to normalize" case at all — the doctrine invariant "a rejection is
+  never a deletion" was falsely attributed to it. Surfaced by the 4-lens adversarial fleet (test-teeth lens),
+  confirmed by an independent verifier. **Fix:** gave `parseEdgarFiling` a real structural-validation reject
+  path (blank accession_number or CIK → throw), and rewrote the test to drive the rejection through the REAL
+  connector via `runSecEdgar([good, malformed], …)` — asserting a partial run, 1 reported rejection, the good
+  filing still normalized, and `deleted === 0` (no fabricated deletion) with change detection still running
+  (`updated === 1`). Added a direct `parseEdgarFiling` reject test. debug-loop 13/13 green after the fix.
+- **[NON-BLOCKING — FIXED] `marketProvenance.all_labeled` was a hardcoded no-op guard.**
+  `cartridges/cooperative_markets/bulk_5300_market.ts` returned `all_labeled: true` unconditionally, and the
+  debug-loop asserted it — so the load-bearing "synthetic data must be LABELED, never presentable as real"
+  invariant had no real coverage (satisfied only because `syntheticSourceRef` always embeds `:synthetic:`).
+  Surfaced by the test-teeth + correctness lenses. **Fix:** `all_labeled` is now computed FROM THE DATA (a
+  filing is labeled iff its ref carries `:synthetic:` OR is a known golden fixture ref, derived independently
+  via `institutionBatchFixtures()`); an unlabeled/real-looking ref flips it FALSE. Added a negative-control in
+  both the unit suite and the debug-loop CONNECTOR step (strip a label → `all_labeled === false`), so the guard
+  can actually fail.
+- **[NOTE — BY DESIGN] Bulk 5300 market is LABELED SYNTHETIC.** Real per-CU 5300 Call Report data is a
+  Bryan-only external item. The SCALE path (whole market → normalize → persist → reconcile at 600) is proven
+  HONESTLY on a clearly-labeled synthetic market (`sourcedoc:ncua:5300:synthetic:*`); the connector is
+  source-agnostic, so a real bulk feed drops in with NO code change — only the injected `acquire` batch changes.
+  The headline truth number (52) is held short of 60 for exactly this reason (no number inflated to a target).
+- **[DEFERRED] Catalog is 57/~93.** Wave 2 qualified 18 new source/connector pairs (config-as-data). The
+  remaining placeholders toward the DKR ~93 (and more real connector implementations against the SDK —
+  FDIC BankFind, SEC full-text, Federal Register are prime next real ones) are a later wave.
+
 ### Sprint III Wave 1 — Connector Runtime + SDK (2026-07-22)
 - **[BLOCKER — FIXED] Fabricated deletion from a normalization failure.** In
   `core/kernel/connector_runtime.ts`, change detection was run over the successfully-PARSED records

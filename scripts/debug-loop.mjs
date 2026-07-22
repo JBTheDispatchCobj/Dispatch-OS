@@ -748,6 +748,17 @@ await step("CONNECTOR  (runtime: normalize · authorize · change · persist)", 
   const { validateConnectorCatalog, connectorSpecs, sourceForConnector } = await import("@/core/registry/connectors");
   const { runNcua5300, runNcuaRegulations } = await import("@/cartridges/cooperative_markets/run_connectors");
   const { institutionBatchFixtures } = await import("@/cartridges/cooperative_markets/batch_fixtures");
+  // Sprint III Wave 2: full-market scale · startup-intake → deal engine · SEC EDGAR.
+  const { ingestFullMarket } = await import("@/cartridges/cooperative_markets/run_market_ingest");
+  const { bulkMarketRaw, marketProvenance, bulkMarket5300 } = await import("@/cartridges/cooperative_markets/bulk_5300_market");
+  const { runStartupIntake, intakeICMemo, illustrativeInstitutionReadiness } = await import("@/cartridges/cooperative_markets/run_intake");
+  const { startupIntakeFixtures } = await import("@/cartridges/cooperative_markets/intake_fixtures");
+  const { runSecEdgar, secEdgarFixtures } = await import("@/cartridges/cooperative_markets/run_sec_edgar");
+  // Sprint III Wave 3: two MORE real connectors (FDIC BankFind · Federal Register) +
+  // connector entity-candidates → the Object Registry (propose-only).
+  const { runFdicBankfind, fdicBankfindFixtures } = await import("@/cartridges/cooperative_markets/run_fdic_bankfind");
+  const { runFederalRegister, federalRegisterFixtures } = await import("@/cartridges/cooperative_markets/run_federal_register");
+  const { runRegistryCandidates } = await import("@/cartridges/cooperative_markets/run_registry_candidates");
 
   const AS_OF = "2026-07-22T00:00:00.000Z";
   const SRC = { key: "source:test", label: "T", version: 1, status: "active", authority: "regulatory", default_plane: "shared_market", default_visibility: "public", default_tier: "public_fact" };
@@ -833,7 +844,99 @@ await step("CONNECTOR  (runtime: normalize · authorize · change · persist)", 
   const rReg = await runNcuaRegulations(regs, "2026-07-15", { as_of: AS_OF });
   assert(rReg.output.status === "success" && rReg.output.observations.length === regs.length && regs.length >= 600, "the REAL 675-section corpus normalizes at scale");
 
-  return `catalog ${v.connector_count} connectors (closed graph) · authorize-first (shared-market service-only) · output-contract + correlated event/cost · change-detect new/updated/deleted/unchanged · failure→offline (no fabricated deletion) + circuit breaker · 5300→${r5300.persisted.length} persisted profiles reconcile to source · REAL ${regs.length}-section corpus normalized · deterministic`;
+  // ---- WAVE 2 · FULL-MARKET 5300 AT SCALE: a LABELED synthetic market runs the WHOLE
+  //      market through the UNCHANGED connector → PERSISTED profiles reconcile at scale.
+  const MARKET = 300;
+  const market = bulkMarket5300({ size: MARKET });
+  const prov = marketProvenance(market);
+  assert(prov.total === MARKET && prov.all_labeled && prov.golden >= 5 && prov.synthetic === MARKET - prov.golden, "the bulk market is fully labeled (golden subset + synthetic; NEVER presented as real filings)");
+  const marketRaw = bulkMarketRaw({ size: MARKET });
+  assert(new Set(marketRaw.map((r) => r.charter_number)).size === MARKET, "charters are unique across the whole market (no dupes at scale)");
+  // NEGATIVE CONTROL — the label guard has TEETH: strip a filing's synthetic label and
+  // marketProvenance must report all_labeled=false (it is computed from the data, not
+  // hardcoded, so a regression that dropped the label would fail the gate, not ship green).
+  const tampered = bulkMarket5300({ size: 12 }).map((i, idx) =>
+    idx === 11 ? { ...i, raw: { ...i.raw, source_ref: "sourcedoc:ncua:5300:UNLABELED:2026Q1" } } : i);
+  assert(marketProvenance(tampered).all_labeled === false, "all_labeled catches an unlabeled (real-looking) filing — the labeling invariant is enforced, not assumed");
+  const rMarket = await ingestFullMarket({ as_of: AS_OF, market: { size: MARKET } });
+  assert(rMarket.market_size === MARKET && rMarket.output.observations.length === MARKET, "the WHOLE market normalizes through the connector at scale");
+  assert(rMarket.persisted.length === MARKET && rMarket.reconciliation.reconciled === true, "every persisted profile (at scale) reconciles to a connector source ref");
+  assert(rMarket.reconciliation.profile_source_refs.length >= MARKET, "at-scale reconciliation is non-vacuous (source refs present, not an empty .every())");
+  assert(rMarket.persisted[0].scope.plane === "shared_market" && rMarket.observations[0].tier === "public_fact", "plane-aware persistence · tier from the source manifest at scale");
+  assert(rMarket.output.observations[0].value.net_worth_ratio === undefined, "the connector emits as-reported figures only — the ratio stays a downstream deterministic_calculation, never a weight");
+  const rMarket2 = await ingestFullMarket({ as_of: AS_OF, market: { size: MARKET } });
+  assert(JSON.stringify(rMarket.output) === JSON.stringify(rMarket2.output), "full-market ingestion is deterministic at scale");
+
+  // ---- WAVE 2 · STARTUP INTAKE → DEAL ENGINE: the deferred live intake path. The
+  //      runtime tiers intake third_party_claim; the EXISTING deal engine runs on
+  //      NORMALIZED intake (not seed), citing the submission; human gates untouched.
+  const intakeBus = new EventBus();
+  const rIntake = await runStartupIntake(startupIntakeFixtures(), illustrativeInstitutionReadiness(), { as_of: AS_OF, bus: intakeBus });
+  assert(rIntake.output.status === "success" && rIntake.observations.length === 3, "intake normalizes every submission through the runtime");
+  assert(rIntake.observations[0].tier === "third_party_claim" && rIntake.observations[0].plane === "shared_market", "intake is a company's own CLAIM — tier from the source manifest, never a fact or a score in the connector");
+  assert(intakeBus.history({ type: "connector.started" })[0].correlation_id === "corr:connector:startup_intake", "the intake run correlates to its envelope");
+  const recs = Object.fromEntries(rIntake.scored.map((s) => [s.startup.company, s.scorecard.recommendation]));
+  assert(recs["Halcyon Pay"] === "advance" && recs["Meridian Ledger"] === "blocked" && recs["Cobalt Rails"] === "hold", "the deal engine runs on normalized intake, exercising the advance/block/hold gates");
+  assert(rIntake.scored.every((s) => s.scorecard.lineage.includes(s.record.external_ref) && s.scorecard.scores.innovation.tier === "dispatch_inference"), "every score cites the intake submission (real intake) + is a dispatch inference, not a fact");
+  const advance = rIntake.scored.find((s) => s.scorecard.recommendation === "advance");
+  const memo = intakeICMemo(advance, ["compliance_fit", "regulatory", "financial", "technology", "cybersecurity"].map((c) => ({ category: c, summary: "clear", status: "clear", evidence: [{ ref: `ev:${c}`, label: c, approved: true }] })));
+  assert(memo.status === "draft" && memo.coverage.covered.length === 5, "the P2 IC memo from intake stays a DRAFT proposal (the committee decision is a separate human gate)");
+  const rIntake2 = await runStartupIntake(startupIntakeFixtures(), illustrativeInstitutionReadiness(), { as_of: AS_OF });
+  assert(JSON.stringify(rIntake.scored.map((s) => s.scorecard)) === JSON.stringify(rIntake2.scored.map((s) => s.scorecard)), "the intake→deal-engine path is deterministic");
+
+  // ---- WAVE 2 · SEC EDGAR (a third real connector): normalizes filing headers,
+  //      tiers public_fact FROM THE SOURCE MANIFEST — proven with a DIFFERING source.
+  const rEdgar = await runSecEdgar(secEdgarFixtures(), { as_of: AS_OF });
+  assert(rEdgar.output.status === "success" && rEdgar.observations.length === 3 && rEdgar.observations[0].tier === "public_fact", "SEC EDGAR headers normalize + tier public_fact from the source manifest");
+  const edgarSrc = sourceForConnector("connector:sec_edgar");
+  const claimSrc = { key: "source:alt", label: "Alt", version: 1, status: "active", authority: "press", default_plane: "shared_market", default_visibility: "public", default_tier: "third_party_claim" };
+  const rec0 = rEdgar.output.observations[0];
+  const asFact = recordToObservation(rec0, edgarSrc, { id: "o1", observed_at: AS_OF, asserted_by: "system" });
+  const asClaim = recordToObservation(rec0, claimSrc, { id: "o2", observed_at: AS_OF, asserted_by: "system" });
+  assert(asFact.tier === "public_fact" && asClaim.tier === "third_party_claim" && asFact.tier !== asClaim.tier, "identical connector code · tier read FROM the source manifest (differing-source proof, not a tautology)");
+
+  // ---- WAVE 3 · FDIC BANKFIND (a real connector): normalizes FDIC-insured banks →
+  //      public_fact FROM THE SOURCE, differing-source proof, financial_institution
+  //      candidates (NOT credit unions), deterministic.
+  const rFdic = await runFdicBankfind(fdicBankfindFixtures(), { as_of: AS_OF });
+  assert(rFdic.output.status === "success" && rFdic.observations.length === 3 && rFdic.observations[0].tier === "public_fact", "FDIC BankFind records normalize + tier public_fact from the source manifest");
+  assert(rFdic.output.entity_candidates[0].object_class === "entity:coop_markets:financial_institution", "FDIC banks surface as financial_institution — never mislabeled a credit union");
+  const fdicSrc = sourceForConnector("connector:fdic_bankfind");
+  const fFact = recordToObservation(rFdic.output.observations[0], fdicSrc, { id: "o1", observed_at: AS_OF, asserted_by: "system" });
+  const fClaim = recordToObservation(rFdic.output.observations[0], claimSrc, { id: "o2", observed_at: AS_OF, asserted_by: "system" });
+  assert(fFact.tier === "public_fact" && fClaim.tier === "third_party_claim" && fFact.tier !== fClaim.tier, "FDIC: identical connector code · tier read FROM the source manifest (differing-source proof)");
+  const rFdic2 = await runFdicBankfind(fdicBankfindFixtures(), { as_of: AS_OF });
+  assert(JSON.stringify(rFdic.output) === JSON.stringify(rFdic2.output), "the FDIC connector run is deterministic");
+
+  // ---- WAVE 3 · FEDERAL REGISTER (a real connector): normalizes rule/notice headers →
+  //      public_fact FROM THE SOURCE, regulation candidates, a real reject path.
+  const rFR = await runFederalRegister(federalRegisterFixtures(), { as_of: AS_OF });
+  assert(rFR.output.status === "success" && rFR.observations.length === 3 && rFR.observations[0].tier === "public_fact", "Federal Register documents normalize + tier public_fact from the source manifest");
+  assert(rFR.output.entity_candidates[0].object_class === "entity:coop_markets:regulation", "an FR document surfaces as a regulation candidate (the connector draws NO regulatory conclusion)");
+  // TEETH: a PREVIOUSLY-SEEN document (valid document_number) that fails validation on
+  // a blank title must NOT be fabricated as a deletion (exercises the withRef ref-recovery).
+  const frBad = await runFederalRegister([federalRegisterFixtures()[0], { document_number: "2026-15002", title: "", publication_date: "2026-06-18" }], { as_of: AS_OF, prior: new Map([[federalRegisterFixtures()[0].document_number, "stale"], ["2026-15002", "prior-hash"]]) });
+  assert(frBad.output.status === "partial" && frBad.output.quality_report.rejected_records === 1 && frBad.output.metrics.changes.deleted === 0, "a previously-seen FR header that fails validation is a reported rejection, NEVER a fabricated deletion");
+  const rFR2 = await runFederalRegister(federalRegisterFixtures(), { as_of: AS_OF });
+  assert(JSON.stringify(rFR.output) === JSON.stringify(rFR2.output), "the Federal Register connector run is deterministic");
+
+  // ---- WAVE 3 · CONNECTOR CANDIDATES → OBJECT REGISTRY (propose-only): normalized
+  //      connector output feeds the shared-market identity index; a cross-source
+  //      duplicate (SEC EDGAR public filing × private startup submission) is PROPOSED
+  //      for human review — NEVER auto-merged.
+  const rCand = await runRegistryCandidates({ as_of: AS_OF });
+  assert(rCand.registered.length === 6 && rCand.reconciliation.reconciled === true, "every surfaced connector candidate becomes a registry object (reconciled)");
+  assert(rCand.proposed.length === 3 && rCand.merges.length === 0 && rCand.reconciliation.merged_count === 0, "the three cross-source duplicates are PROPOSED; nothing auto-merges (propose-only)");
+  assert(rCand.registered.every((o) => o.status === "active"), "no object is merged away — the human review gate stands");
+  assert(rCand.cross_source_pairs.every((p) => p.reasons.some((x) => x.startsWith("name_similarity:")) && p.left_name !== p.right_name), "each proposal spans two sources on normalized-name similarity (differing legal names)");
+  assert(rCand.registered.filter((o) => o.visibility === "public").length === 3 && rCand.registered.filter((o) => o.visibility === "network").length === 3, "registry objects carry plane/visibility FROM the source manifest (EDGAR public vs startup-intake network), never a hardcoded default");
+  const rCand2 = await runRegistryCandidates({ as_of: AS_OF });
+  assert(JSON.stringify(rCand.proposed) === JSON.stringify(rCand2.proposed), "the connector→registry→resolve pass is deterministic");
+
+  // ---- WAVE 3 · CATALOG GROWTH toward the ~93 (config-as-data, closed graph holds).
+  assert(v.connector_count >= 73 && v.source_count === v.connector_count, `catalog grew toward the ~93 (one connector per source; got ${v.connector_count})`);
+
+  return `catalog ${v.connector_count} connectors (closed graph, toward ~93) · authorize-first (service-only) · output-contract + correlated event/cost · change-detect n/u/d/unchanged · failure→offline (no fabricated deletion) + circuit breaker · FULL-MARKET 5300 → ${rMarket.persisted.length} persisted profiles reconcile at scale (labeled synthetic) · startup-intake → deal engine (advance/block/hold, third_party_claim, human gates intact) · SEC EDGAR + FDIC BankFind + Federal Register (6 real connectors; tier-from-source, differing-source proof) · connector candidates → Object Registry (${rCand.proposed.length} cross-source dupes PROPOSED, 0 merged) · REAL ${regs.length}-section corpus · deterministic`;
 });
 
 // --- 11. Unit tests (Wave 4: the engines have teeth) -------------------------

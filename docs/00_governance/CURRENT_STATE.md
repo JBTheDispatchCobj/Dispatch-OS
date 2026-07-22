@@ -237,6 +237,92 @@ truth 45→47, cartridge 77→80, tests 54→57**; headline **~50% → ~54%** (h
 Sprint-III-end ~68% needs 2–3 more waves — full-market/bulk 5300 at scale, startup-intake, and
 qualifying the remaining placeholders).
 
+## Running now (Olympic Sprint III — Wave 2, ~56%, 2026-07-22)
+**The network runs on BREADTH + SCALE: the whole market ingests at scale, the deal engine runs
+on live intake, and the catalog is qualified toward the ~93.** Wave 2 is additive, new-files-only,
+pure/deterministic, **no vertical noun in `core/`**; the connector runtime + engines are UNCHANGED;
+the default stays in-memory + creds-free:
+- **Full-market NCUA 5300 at scale.** `cartridges/cooperative_markets/bulk_5300_market.ts` generates a
+  clearly-LABELED, deterministic (index-seeded; no clock/random) SYNTHETIC bulk market
+  (`sourcedoc:ncua:5300:synthetic:*`), composing the 7 golden `batch_fixtures` as a labeled subset
+  (`batch_fixtures.ts` RETIRED behind the connector). `run_market_ingest.ts` runs the WHOLE market
+  through the UNCHANGED `runNcua5300` → institution profiles PERSISTED at scale through the profile seam,
+  plane-aware (shared_market/public), reconciling to the connector source refs; the five ratios stay a
+  downstream `deterministic_calculation` (never a weight), tier `public_fact` FROM THE SOURCE MANIFEST.
+  Real per-CU 5300 data is Bryan-only — it drops in with NO code change (only the injected `acquire`
+  batch changes); the SCALE path is proven HONESTLY on labeled synthetic data (`marketProvenance.all_labeled`
+  is computed from the data with a negative-control guard, so the synthetic-label invariant has teeth).
+- **Startup-intake → the deal engine (the DEFERRED live-intake path, CLOSED).**
+  `connectors/startup_intake_connector.ts` NORMALIZES a submission (self-reported signals verbatim; no
+  score, no tier, no gate) through the runtime; `recordToObservation` tiers it `third_party_claim` from the
+  source manifest — a company's OWN claim, never a fact and never a score in the connector. `run_intake.ts`
+  materializes the normalized intake into the deal engine's `SourcedInput`s (each citing the submission) →
+  the EXISTING P1 scoring + P2 IC memo run on REAL normalized intake (advance / block / hold all exercised;
+  the memo stays a DRAFT proposal). The human gates (ICApproval + EditorialDisposition) are UNTOUCHED.
+- **SEC EDGAR — a THIRD real connector.** `connectors/sec_edgar_connector.ts` + `run_sec_edgar.ts` normalize
+  EDGAR filing headers (accession key, CIK entity) → `public_fact` (tier proven with a DIFFERING source, not
+  a tautology); `parseEdgarFiling` has a real structural-validation reject path (blank accession/CIK → a
+  reported rejection, NEVER a fabricated deletion).
+- **Catalog qualified 39→57 (config-as-data).** `core/registry/data/connectors.json` grew by 18
+  source/connector pairs toward the ~93 (CFPB, FDIC, Federal Reserve, OFAC, FinCEN, Federal Register,
+  CA/TX/NY CU regulators, SEC full-text/FINRA, IRS 990, USPTO trademarks, G2, SOC2/trust, status pages,
+  Crunchbase) — closed graph, one-connector-per-source; a DATA edit, not a code fork.
+Gate: **debug-loop ALL GREEN (13/13)** (CONNECTOR step gains full-market-scale · intake→engine · SEC EDGAR
+tier-from-source · catalog-growth · label-guard negative-control) + `tsc` clean + `npm run build` exit 0 +
+**272 unit tests** (was 246; +26). Adversarially verified (4-lens) — **1 major fixed** (the SEC EDGAR
+rejection test drove a hand-rolled stub, not the real connector; `parseEdgarFiling` given a genuine reject
+path + the test driven through the real connector) + **1 minor fixed** (`all_labeled` computed from data +
+a negative control). Layers: **truth 47→52, harness 22→26, connectors 45→57, cartridge 80→85, tests
+57→60**; headline **~54% → ~56%** (honest re-baseline; the Sprint-III-end ~68% still needs the real bulk
+5300 feed, full catalog qualification 57→~93, and more — the SCALE + intake MECHANISMS are proven, the
+5300 figures are labeled synthetic).
+
+## Running now (Olympic Sprint III — Wave 3, ~58%, 2026-07-22)
+**Two more REAL connectors + normalized connector output now feeds the Object Registry
+(propose-only) + the catalog is qualified 57→73.** Wave 3 is additive, new-files-only,
+pure/deterministic, **no vertical noun in `core/`**; the connector runtime + engines are
+UNCHANGED; the default stays in-memory + creds-free:
+- **FDIC BankFind — a real connector.** `connectors/fdic_bankfind_connector.ts` +
+  `run_fdic_bankfind.ts` normalize FDIC-insured **institution** metadata (CERT, name,
+  location, active flag, assets) → `public_fact` FROM THE SOURCE MANIFEST (tier proven with
+  a DIFFERING source). FDIC banks are classed **`entity:coop_markets:financial_institution`**
+  — a bank is NEVER mislabeled a credit union (the catalog manifest was corrected to match).
+  A real structural reject path (blank CERT/name → a reported rejection, never a fabricated
+  deletion).
+- **Federal Register — a real connector.** `connectors/federal_register_connector.ts` +
+  `run_federal_register.ts` normalize rule/proposed-rule/notice **headers** (document number,
+  title, agencies, dates) → `public_fact` from the source; each surfaces as a **regulation**
+  candidate. The connector draws NO regulatory conclusion (that stays a human-gated act).
+- **Connector candidates → the Object Registry (the SECOND live surface, propose-only).**
+  A GENERIC core seam `core/registry/candidate_bridge.ts` (`candidatesToObjectInputs` — no
+  vertical noun; plane/visibility taken FROM the injected source scope, never guessed) maps a
+  connector `EntityCandidate` → a `CanonicalObjectInput`. `run_registry_candidates.ts` runs
+  the SEC EDGAR connector (a company in a **public** filing) and the startup-intake connector
+  (the SAME company in a **private** submission) through the runtime, bridges the surfaced
+  candidates into the registry, and the matured resolver **PROPOSES the 3 cross-source
+  duplicates** (Halcyon/Meridian/Cobalt — differing legal names, matched on normalized-name
+  similarity after injected corporate-designator stopwords) for HUMAN review. Nothing
+  auto-merges; the review queue is the gate; the no-clobber rule holds (a reviewed pair is
+  sticky). Objects carry their source's plane/visibility (EDGAR `public` vs intake `network`).
+- **Catalog qualified 57→73 (config-as-data).** `core/registry/data/connectors.json` grew by
+  16 real public source/connector pairs toward the ~93 (NMLS, FFIEC CDR, GLEIF LEI, Fed NIC,
+  FDIC failed-bank list, USAspending, Congress.gov, Regulations.gov, GovInfo, OCC, FTC,
+  Treasury FiscalData, ProPublica Nonprofit, Product Hunt, StackShare, BuiltWith) — closed
+  graph, one-connector-per-source, honest authority→tier mappings; a DATA edit, not a fork.
+Gate: **debug-loop ALL GREEN (13/13)** (the CONNECTOR step gains FDIC · Federal Register ·
+connector-candidates→registry propose-only · catalog-73 · plane/visibility-from-source) +
+`tsc` clean + `npm run build` exit 0 + **290 unit tests** (was 272; +18). Adversarially
+verified (4-lens fleet + a focused re-verify) — **1 MAJOR fixed** (a previously-seen record
+that failed validation on a valid key was fabricated as a **deletion** across all real
+connectors — the load-bearing "a rejection is never a deletion" rule; fixed by recovering the
+change-key on rejection so the runtime's `alsoPresentRefs` guard protects it, + regression
+tests with teeth on all three throw-path connectors) + **1 minor** (a vacuous reconciliation
+flag given store-round-trip teeth) + test-teeth hardening. Layers: connectors 57→64, truth
+52→55, harness 26→28, kernel 60→61, cartridge 85→86, tests 60→63; headline **~56% → ~58%**
+(HONEST: the Sprint-III-end ~68% still needs the REAL bulk 5300 feed — Bryan-only, NOT landed,
+so full-market 5300 stays LABELED synthetic — full catalog qualification 73→~93, and a
+Terminal surface).
+
 ## Existing foundation
 - Next.js app; Supabase/Postgres adapter + migrations (`0001`–`0017` **applied 2026-07-21**;
   the full `0001`–`0017` chain is live — all 14 registry-table RLS policies confirmed).

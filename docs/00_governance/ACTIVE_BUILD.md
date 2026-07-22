@@ -4,6 +4,20 @@
 Cooperative Markets foundation on Dispatch OS. The full Specification Program (Vols
 I–X) is reconciled/adopted; forward work is BUILD.
 
+**Olympic Sprint III (Connectors & scale, target ~68%) — IN PROGRESS, ~58% after Wave 3.**
+Wave 1 shipped the generic Connector Runtime + SDK (RFC-2011). Wave 2 shipped full-market
+5300 at scale (labeled synthetic) + the startup-intake → deal-engine path + SEC EDGAR +
+catalog 39→57. **Wave 3 (DONE, 2026-07-22):** two more REAL connectors (FDIC BankFind →
+`financial_institution`; Federal Register → `regulation`, both `public_fact` from the source
+manifest), the SECOND live surface (normalized connector `entity_candidates` → the Object
+Registry via a generic core bridge, matured resolver PROPOSE-only across sources, never
+auto-merge), and catalog 57→73 toward the ~93. Gate: debug-loop 13/13, `tsc` clean, build
+exit 0, 290 tests. Adversarially verified (1 major fixed: rejection≠deletion recovered on all
+real connectors). **Next (Wave 4):** the REAL bulk 5300 feed if Bryan stages it (moves truth
+to real figures), catalog 73→~93 + more real connectors, and a Terminal surface over the
+full-market profiles / intake pipeline. Bryan-only: git push, apply 0018, real 5300, the
+investment-vehicle decision, VC/Alloya legal.
+
 ## Roadmap / knowledge-encoding sprints (Vol XI+)
 Plan of record: `DISPATCH_OS_REMAINING_ROADMAP.md` — Sprints 1–10 encode business
 knowledge (ontology, truth models, rule/workflow/agent/connector/KPI/knowledge-pack
@@ -251,6 +265,33 @@ default stays in-memory + creds-free. A connector is now EXECUTABLE, not a paper
   **Next: Sprint III Wave 2** — full-market/bulk 5300 at scale (retire `batch_fixtures.ts`) + the
   startup-intake connector into the deal engine + qualify the remaining placeholders
   (`SPRINT_III_WAVE2_KICKOFF_PROMPT.md`).
+
+## Sprint III — Wave 2 (Connectors & scale; target ~68%)
+**✅ WAVE 2 — Full-market ingestion at scale + startup-intake → deal engine + catalog growth (DONE,
+2026-07-22, ~56%).** Additive, new-files-only, pure/deterministic, **no vertical noun in `core/`**; the
+connector runtime + engines are UNCHANGED; default stays in-memory + creds-free:
+- **`cartridges/cooperative_markets/bulk_5300_market.ts` + `run_market_ingest.ts`** — a clearly-LABELED,
+  deterministic SYNTHETIC bulk market runs the WHOLE credit-union market through the UNCHANGED NCUA 5300
+  connector/runtime → institution profiles PERSISTED at scale (plane-aware, reconciling to source; ratios a
+  downstream `deterministic_calculation`, tier `public_fact` from the source manifest). `batch_fixtures.ts`
+  retired behind the connector as the golden subset. Real per-CU 5300 is Bryan-only (drops in with no code
+  change). `marketProvenance.all_labeled` computed from the data (negative-control-proven).
+- **`cartridges/cooperative_markets/connectors/startup_intake_connector.ts` + `intake_fixtures.ts` +
+  `run_intake.ts`** — the DEFERRED live-intake path CLOSED: the intake connector normalizes submissions
+  (`third_party_claim` from the source manifest — a company's own claim, no score/tier in the connector)
+  → sourced readiness inputs → the EXISTING deal engine P1/P2 on REAL normalized intake (advance/block/hold
+  exercised; memo a DRAFT proposal). ICApproval + EditorialDisposition UNTOUCHED.
+- **`cartridges/cooperative_markets/connectors/sec_edgar_connector.ts` + `run_sec_edgar.ts`** — a THIRD real
+  connector: EDGAR filing headers → `public_fact` (tier proven with a DIFFERING source); a real
+  structural-validation reject path (rejection never a fabricated deletion).
+- **`core/registry/data/connectors.json`** — config-as-data catalog qualified **39→57** pairs toward the ~93
+  (closed graph, one-connector-per-source; a DATA edit, not a code fork).
+- **Gate:** debug-loop **ALL GREEN (13/13)** (CONNECTOR step gains full-market-scale · intake→engine · SEC
+  EDGAR tier-from-source · catalog-growth · label-guard negative-control) + `tsc` clean + `npm run build`
+  exit 0 + **272 unit tests** (+26). Adversarially verified (4-lens) — 1 major + 1 minor fixed. Layers:
+  truth 47→52, harness 22→26, connectors 45→57, cartridge 80→85, tests 57→60; headline **~54% → ~56%**.
+  **Next: Sprint III Wave 3** — a real bulk 5300 feed (Bryan) or continued catalog qualification + more real
+  connectors (FDIC/SEC-full-text/Federal-Register) + apply `0018` (`SPRINT_III_WAVE3_KICKOFF_PROMPT.md`).
 2. **Live intake path** — call-report/startup ingestion so the loop runs on real data, not the
    seed (a real connector over the `ncua_call_reports` / `startup_intake` source types).
 3. **Canonical Entity Model + entity resolution (RFC-3002)** and **Identity & Tenancy

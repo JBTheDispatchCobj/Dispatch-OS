@@ -907,6 +907,788 @@
       "applicable_cartridges": [
         "coop_markets"
       ]
+    },
+    {
+      "key": "source:cfpb_regulations",
+      "label": "CFPB Regulations & Guidance",
+      "version": 1,
+      "status": "active",
+      "authority": "government",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.consumerfinance.gov/rules-policy/regulations/",
+      "publisher": "U.S. CFPB",
+      "refresh_cadence": "on_publish",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:cfpb_regulations",
+      "output_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:cfpb_enforcement",
+      "label": "CFPB Enforcement Actions",
+      "version": 1,
+      "status": "active",
+      "authority": "regulatory",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.consumerfinance.gov/enforcement/actions/",
+      "publisher": "U.S. CFPB",
+      "refresh_cadence": "on_publish",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:cfpb_enforcement",
+      "output_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:fdic_bankfind",
+      "label": "FDIC BankFind Institution Data",
+      "version": 1,
+      "status": "active",
+      "authority": "regulatory",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://banks.data.fdic.gov/",
+      "publisher": "U.S. FDIC",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:fdic_bankfind",
+      "output_object_keys": [
+        "entity:coop_markets:financial_institution"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:federal_reserve_data",
+      "label": "Federal Reserve Data & Guidance",
+      "version": 1,
+      "status": "active",
+      "authority": "government",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.federalreserve.gov/data.htm",
+      "publisher": "U.S. Federal Reserve",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:federal_reserve_data",
+      "output_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:treasury_ofac_sdn",
+      "label": "Treasury OFAC SDN & Sanctions Lists",
+      "version": 1,
+      "status": "active",
+      "authority": "government",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://sanctionslist.ofac.treas.gov/",
+      "publisher": "U.S. Treasury OFAC",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:treasury_ofac_sdn",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:fincen_advisories",
+      "label": "FinCEN Advisories & Guidance",
+      "version": 1,
+      "status": "active",
+      "authority": "regulatory",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.fincen.gov/resources/advisoriesbulletinsfact-sheets",
+      "publisher": "U.S. FinCEN",
+      "refresh_cadence": "on_publish",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:fincen_advisories",
+      "output_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:federal_register",
+      "label": "Federal Register Rules & Notices",
+      "version": 1,
+      "status": "active",
+      "authority": "government",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.federalregister.gov/",
+      "publisher": "U.S. GPO / OFR",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:federal_register",
+      "output_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:state_cu_regulator_ca",
+      "label": "California DFPI Credit Union Division",
+      "version": 1,
+      "status": "active",
+      "authority": "regulatory",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://dfpi.ca.gov/",
+      "publisher": "California DFPI",
+      "refresh_cadence": "weekly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:state_cu_regulator_ca",
+      "output_object_keys": [
+        "entity:coop_markets:credit_union"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:state_cu_regulator_tx",
+      "label": "Texas Credit Union Department",
+      "version": 1,
+      "status": "active",
+      "authority": "regulatory",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://cud.texas.gov/",
+      "publisher": "Texas Credit Union Department",
+      "refresh_cadence": "weekly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:state_cu_regulator_tx",
+      "output_object_keys": [
+        "entity:coop_markets:credit_union"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:state_cu_regulator_ny",
+      "label": "New York DFS Credit Unions",
+      "version": 1,
+      "status": "active",
+      "authority": "regulatory",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.dfs.ny.gov/",
+      "publisher": "New York DFS",
+      "refresh_cadence": "weekly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:state_cu_regulator_ny",
+      "output_object_keys": [
+        "entity:coop_markets:credit_union"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:sec_full_text_search",
+      "label": "SEC EDGAR Full-Text Search",
+      "version": 1,
+      "status": "active",
+      "authority": "official_filing",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://efts.sec.gov/LATEST/search-index",
+      "publisher": "U.S. SEC",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:sec_full_text_search",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:finra_brokercheck",
+      "label": "FINRA BrokerCheck",
+      "version": 1,
+      "status": "active",
+      "authority": "regulatory",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://brokercheck.finra.org/",
+      "publisher": "FINRA",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:finra_brokercheck",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:irs_form_990",
+      "label": "IRS Form 990 Filings",
+      "version": 1,
+      "status": "active",
+      "authority": "government",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.irs.gov/charities-non-profits/form-990-series-downloads",
+      "publisher": "U.S. IRS",
+      "refresh_cadence": "on_publish",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:irs_form_990",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:uspto_trademarks",
+      "label": "USPTO Trademark Database",
+      "version": 1,
+      "status": "active",
+      "authority": "government",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.uspto.gov/trademarks",
+      "publisher": "U.S. USPTO",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:uspto_trademarks",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:g2_reviews",
+      "label": "G2 Product Reviews",
+      "version": 1,
+      "status": "active",
+      "authority": "press",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "third_party_claim",
+      "official_url": "https://www.g2.com/",
+      "publisher": "G2.com",
+      "refresh_cadence": "weekly",
+      "authentication": "none",
+      "cost": "licensed",
+      "attribution_required": false,
+      "connector_key": "connector:g2_reviews",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:soc2_trust_reports",
+      "label": "Vendor SOC 2 / Trust Reports",
+      "version": 1,
+      "status": "active",
+      "authority": "institution_official",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://vendor.example/trust",
+      "publisher": "Vendor trust centers",
+      "refresh_cadence": "on_publish",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:soc2_trust_reports",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:status_page_feeds",
+      "label": "Vendor Status Page Feeds",
+      "version": 1,
+      "status": "active",
+      "authority": "institution_official",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://vendor.example/status",
+      "publisher": "Vendor status pages",
+      "refresh_cadence": "on_event",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:status_page_feeds",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:crunchbase_funding",
+      "label": "Crunchbase Funding Data",
+      "version": 1,
+      "status": "active",
+      "authority": "press",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "third_party_claim",
+      "official_url": "https://www.crunchbase.com/",
+      "publisher": "Crunchbase",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "licensed",
+      "attribution_required": false,
+      "connector_key": "connector:crunchbase_funding",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:nmls_consumer_access",
+      "label": "NMLS Consumer Access",
+      "version": 1,
+      "status": "active",
+      "authority": "regulatory",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.nmlsconsumeraccess.org/",
+      "publisher": "Conference of State Bank Supervisors",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:nmls_consumer_access",
+      "output_object_keys": [
+        "entity:coop_markets:financial_institution"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:ffiec_cdr_call_reports",
+      "label": "FFIEC Central Data Repository (Bank Call Reports)",
+      "version": 1,
+      "status": "active",
+      "authority": "regulatory",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://cdr.ffiec.gov/public/",
+      "publisher": "FFIEC",
+      "refresh_cadence": "quarterly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:ffiec_cdr_call_reports",
+      "output_object_keys": [
+        "entity:coop_markets:financial_institution"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:gleif_lei",
+      "label": "GLEIF Legal Entity Identifier",
+      "version": 1,
+      "status": "active",
+      "authority": "trade_association",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.gleif.org/en/lei-data/gleif-api",
+      "publisher": "Global LEI Foundation",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:gleif_lei",
+      "output_object_keys": [
+        "entity:coop_markets:financial_institution"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:fed_nic",
+      "label": "Federal Reserve National Information Center",
+      "version": 1,
+      "status": "active",
+      "authority": "government",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.ffiec.gov/npw/",
+      "publisher": "Federal Reserve System",
+      "refresh_cadence": "quarterly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:fed_nic",
+      "output_object_keys": [
+        "entity:coop_markets:financial_institution"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:fdic_failed_banks",
+      "label": "FDIC Failed Bank List",
+      "version": 1,
+      "status": "active",
+      "authority": "regulatory",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.fdic.gov/bank-failures/failed-bank-list",
+      "publisher": "U.S. FDIC",
+      "refresh_cadence": "weekly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:fdic_failed_banks",
+      "output_object_keys": [
+        "entity:coop_markets:financial_institution"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:usaspending_recipients",
+      "label": "USAspending Recipient Data",
+      "version": 1,
+      "status": "active",
+      "authority": "government",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://api.usaspending.gov/",
+      "publisher": "U.S. Treasury / Bureau of the Fiscal Service",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:usaspending_recipients",
+      "output_object_keys": [
+        "entity:coop_markets:financial_institution"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:congress_gov",
+      "label": "Congress.gov Bills & Laws",
+      "version": 1,
+      "status": "active",
+      "authority": "government",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://api.congress.gov/",
+      "publisher": "Library of Congress",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:congress_gov",
+      "output_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:regulations_gov",
+      "label": "Regulations.gov Dockets & Comments",
+      "version": 1,
+      "status": "active",
+      "authority": "government",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://api.regulations.gov/",
+      "publisher": "U.S. GSA / eRulemaking",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:regulations_gov",
+      "output_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:govinfo",
+      "label": "GovInfo (CFR \u00b7 US Code \u00b7 FR)",
+      "version": 1,
+      "status": "active",
+      "authority": "government",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://api.govinfo.gov/",
+      "publisher": "U.S. GPO",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:govinfo",
+      "output_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:occ_bulletins",
+      "label": "OCC Bulletins & Issuances",
+      "version": 1,
+      "status": "active",
+      "authority": "regulatory",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.occ.gov/news-issuances/bulletins/",
+      "publisher": "U.S. OCC",
+      "refresh_cadence": "weekly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:occ_bulletins",
+      "output_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:ftc_business_guidance",
+      "label": "FTC Business Guidance & Rules",
+      "version": 1,
+      "status": "active",
+      "authority": "regulatory",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://www.ftc.gov/business-guidance",
+      "publisher": "U.S. FTC",
+      "refresh_cadence": "weekly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:ftc_business_guidance",
+      "output_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:treasury_fiscaldata",
+      "label": "Treasury FiscalData",
+      "version": 1,
+      "status": "active",
+      "authority": "government",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "public_fact",
+      "official_url": "https://fiscaldata.treasury.gov/api-documentation/",
+      "publisher": "U.S. Treasury / Bureau of the Fiscal Service",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": false,
+      "connector_key": "connector:treasury_fiscaldata",
+      "output_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:propublica_nonprofit",
+      "label": "ProPublica Nonprofit Explorer",
+      "version": 1,
+      "status": "active",
+      "authority": "press",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "third_party_claim",
+      "official_url": "https://projects.propublica.org/nonprofits/api",
+      "publisher": "ProPublica",
+      "refresh_cadence": "monthly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:propublica_nonprofit",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:producthunt_launches",
+      "label": "Product Hunt Launches",
+      "version": 1,
+      "status": "active",
+      "authority": "press",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "third_party_claim",
+      "official_url": "https://www.producthunt.com/",
+      "publisher": "Product Hunt",
+      "refresh_cadence": "daily",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:producthunt_launches",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:stackshare_stacks",
+      "label": "StackShare Tech Stacks",
+      "version": 1,
+      "status": "active",
+      "authority": "community",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "third_party_claim",
+      "official_url": "https://stackshare.io/",
+      "publisher": "StackShare",
+      "refresh_cadence": "monthly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:stackshare_stacks",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
+    },
+    {
+      "key": "source:build_with_directories",
+      "label": "BuiltWith Technology Profiles",
+      "version": 1,
+      "status": "active",
+      "authority": "community",
+      "default_plane": "shared_market",
+      "default_visibility": "public",
+      "default_tier": "third_party_claim",
+      "official_url": "https://builtwith.com/",
+      "publisher": "BuiltWith",
+      "refresh_cadence": "monthly",
+      "authentication": "none",
+      "cost": "free",
+      "attribution_required": true,
+      "connector_key": "connector:build_with_directories",
+      "output_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "applicable_cartridges": [
+        "coop_markets"
+      ]
     }
   ],
   "connectors": [
@@ -1572,6 +2354,584 @@
       "connector_type": "manual_upload",
       "authentication": "none",
       "refresh_strategy": "on_demand",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:cfpb_regulations",
+      "label": "CFPB Regulations & Guidance connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:cfpb_regulations",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:cfpb_enforcement",
+      "label": "CFPB Enforcement Actions connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:cfpb_enforcement",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:fdic_bankfind",
+      "label": "FDIC BankFind Institution Data connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:fdic_bankfind",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:financial_institution"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:federal_reserve_data",
+      "label": "Federal Reserve Data & Guidance connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:federal_reserve_data",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:treasury_ofac_sdn",
+      "label": "Treasury OFAC SDN & Sanctions Lists connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:treasury_ofac_sdn",
+      "connector_type": "bulk_download",
+      "authentication": "none",
+      "refresh_strategy": "bulk",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:fincen_advisories",
+      "label": "FinCEN Advisories & Guidance connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:fincen_advisories",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:federal_register",
+      "label": "Federal Register Rules & Notices connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:federal_register",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:state_cu_regulator_ca",
+      "label": "California DFPI Credit Union Division connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:state_cu_regulator_ca",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:credit_union"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:state_cu_regulator_tx",
+      "label": "Texas Credit Union Department connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:state_cu_regulator_tx",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:credit_union"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:state_cu_regulator_ny",
+      "label": "New York DFS Credit Unions connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:state_cu_regulator_ny",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:credit_union"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:sec_full_text_search",
+      "label": "SEC EDGAR Full-Text Search connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:sec_full_text_search",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:finra_brokercheck",
+      "label": "FINRA BrokerCheck connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:finra_brokercheck",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:irs_form_990",
+      "label": "IRS Form 990 Filings connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:irs_form_990",
+      "connector_type": "bulk_download",
+      "authentication": "none",
+      "refresh_strategy": "bulk",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:uspto_trademarks",
+      "label": "USPTO Trademark Database connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:uspto_trademarks",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:g2_reviews",
+      "label": "G2 Product Reviews connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:g2_reviews",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:soc2_trust_reports",
+      "label": "Vendor SOC 2 / Trust Reports connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:soc2_trust_reports",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:status_page_feeds",
+      "label": "Vendor Status Page Feeds connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:status_page_feeds",
+      "connector_type": "rss_atom",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:crunchbase_funding",
+      "label": "Crunchbase Funding Data connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:crunchbase_funding",
+      "connector_type": "partner_feed",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:nmls_consumer_access",
+      "label": "NMLS Consumer Access connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:nmls_consumer_access",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:financial_institution"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:ffiec_cdr_call_reports",
+      "label": "FFIEC Central Data Repository (Bank Call Reports) connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:ffiec_cdr_call_reports",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:financial_institution"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:gleif_lei",
+      "label": "GLEIF Legal Entity Identifier connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:gleif_lei",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:financial_institution"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:fed_nic",
+      "label": "Federal Reserve National Information Center connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:fed_nic",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:financial_institution"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:fdic_failed_banks",
+      "label": "FDIC Failed Bank List connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:fdic_failed_banks",
+      "connector_type": "bulk_download",
+      "authentication": "none",
+      "refresh_strategy": "bulk",
+      "entity_object_keys": [
+        "entity:coop_markets:financial_institution"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:usaspending_recipients",
+      "label": "USAspending Recipient Data connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:usaspending_recipients",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:financial_institution"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:congress_gov",
+      "label": "Congress.gov Bills & Laws connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:congress_gov",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:regulations_gov",
+      "label": "Regulations.gov Dockets & Comments connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:regulations_gov",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:govinfo",
+      "label": "GovInfo (CFR \u00b7 US Code \u00b7 FR) connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:govinfo",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:occ_bulletins",
+      "label": "OCC Bulletins & Issuances connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:occ_bulletins",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:ftc_business_guidance",
+      "label": "FTC Business Guidance & Rules connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:ftc_business_guidance",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:treasury_fiscaldata",
+      "label": "Treasury FiscalData connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:treasury_fiscaldata",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:regulation"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:propublica_nonprofit",
+      "label": "ProPublica Nonprofit Explorer connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:propublica_nonprofit",
+      "connector_type": "direct_api",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:producthunt_launches",
+      "label": "Product Hunt Launches connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:producthunt_launches",
+      "connector_type": "rss_atom",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:stackshare_stacks",
+      "label": "StackShare Tech Stacks connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:stackshare_stacks",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
+      "entity_object_keys": [
+        "entity:coop_markets:innovation_company"
+      ],
+      "cartridges_impacted": [
+        "coop_markets"
+      ],
+      "raw_storage_policy": "Each retrieved artifact becomes an immutable source_documents row; never mutated; a new pull is a new row."
+    },
+    {
+      "key": "connector:build_with_directories",
+      "label": "BuiltWith Technology Profiles connector",
+      "version": 1,
+      "status": "active",
+      "source_key": "source:build_with_directories",
+      "connector_type": "structured_extraction",
+      "authentication": "none",
+      "refresh_strategy": "poll",
       "entity_object_keys": [
         "entity:coop_markets:innovation_company"
       ],
