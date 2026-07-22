@@ -1,25 +1,28 @@
-// app/institutions/page.tsx — SCAFFOLD (framed placeholder; Olympic Sprint III Wave 5)
+// app/institutions/page.tsx
 //
-// A wireframe for the "Institutions — Directory" surface. Its full contract — primary
-// object, planned tabs/commands, human gates, and the doctrine state legend —
-// is declared in the UI surface registry (core/registry/data/ui_surfaces.json)
-// and rendered through the shared ScaffoldView. Look/feel/flow is deferred to
-// the Terminal polish sprint; this exists so the whole product is FRAMED and
-// every route is reachable and reviewable against one map.
+// Olympic Sprint IV — Wave 1. The "Institutions — Directory" surface, PROMOTED
+// from a scaffold to a REAL directory over the full-market institution profiles.
+// This SERVER component builds the directory view-model (`runInstitutionsDirectory`)
+// over the labeled-synthetic full market and passes a serializable VM to the client
+// `InstitutionsDirectoryView`, which renders search / filter / sort and opens any
+// institution's Terminal.
 //
-// Server component: reads its surface entry from the registry (config-as-data)
-// and prerenders statically. No engine work, no client bundle.
+// Deterministic: a fixed `as_of` (no clock) so the page prerenders statically and
+// reproducibly under `npm run build`. Figures stay labeled synthetic (a real bulk
+// 5300 feed is a Bryan-only external item).
 
-import { surfaceByRoute } from "@/core/registry/ui_surfaces";
-import { ScaffoldView } from "@/components/terminal/ScaffoldView";
+import { runInstitutionsDirectory } from "@/cartridges/cooperative_markets/run_institutions_directory";
+import { InstitutionsDirectoryView } from "@/components/terminal/InstitutionsDirectoryView";
 
 export const metadata = {
-  title: "Institutions — Directory",
-  description: "Search + browse the full institution market, filter by region/asset-band/readiness, and open any institution's Terminal. Scales from one institution to…",
+  title: "Cooperative Markets — Institutions",
+  description:
+    "Search + browse the full institution market, filter by asset band / readiness, sort, and open any institution's Terminal (labeled synthetic).",
 };
 
-export default function Page() {
-  const surface = surfaceByRoute("/institutions");
-  if (!surface) throw new Error("ui surface not registered: /institutions");
-  return <ScaffoldView surface={surface} />;
+const AS_OF = "2026-07-22T00:00:00.000Z";
+
+export default function InstitutionsPage() {
+  const vm = runInstitutionsDirectory({ as_of: AS_OF });
+  return <InstitutionsDirectoryView vm={vm} />;
 }

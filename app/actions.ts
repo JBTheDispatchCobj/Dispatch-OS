@@ -99,6 +99,7 @@ export async function reviewEvidenceAction(formData: FormData) {
   const evidenceId = String(formData.get("evidenceId"));
   const decision = String(formData.get("decision")) as "approved" | "rejected";
   contracts.reviewEvidence(evidenceId, decision);
+  revalidatePath("/evidence");
   revalidatePath("/dashboard");
 }
 
@@ -171,6 +172,7 @@ export async function decideApprovalAction(formData: FormData) {
   const decision = String(formData.get("decision")) as "approved" | "rejected" | "changes_requested";
   const notes = String(formData.get("notes") ?? "").trim() || undefined;
   contracts.decideApproval(approvalId, decision, notes);
+  revalidatePath("/approvals");
   revalidatePath("/dashboard");
 }
 

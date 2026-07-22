@@ -1,5 +1,42 @@
 # Current State
 
+## Running now (Olympic Sprint IV — Wave 1, ~61%, 2026-07-22) — 3 scaffolds PROMOTED to REAL surfaces over live data
+**Sprint IV opens (Terminal & product surface complete, target ~80%).** Wave 1 turns three of the highest-value
+FRAMED scaffolds into REAL surfaces over live run output, using `ui_surfaces.json` as the contract. Additive,
+new-files-mostly, no vertical noun in `core/`; the connector runtime + engines + the human-gate contract layer are
+UNCHANGED; default in-memory. Look/feel still deferred (reused the existing design tokens). What shipped:
+
+- **`/institutions` — a REAL directory over the full market.** `cartridges/cooperative_markets/run_institutions_directory.ts`
+  (pure, deterministic, erasable-only) itemizes the whole synthetic market into browse rows — the five 5300 ratios
+  (deterministic calcs citing each filing), an asset band + PCA readiness band, profile confidence marked **inferred**,
+  and **REGION surfaced as `missing`** (not sourced from a 5300 → shown, NEVER faked — the doctrine "show missing,
+  never fabricate" rule made visible on a real surface). `components/terminal/InstitutionsDirectoryView.tsx` renders
+  search / filter (readiness · asset-band · label) / total-order sort; each row opens that institution's `/terminal`.
+  Scales one→thousands. Figures stay **LABELED synthetic** (`all_labeled` computed from data); a real bulk 5300 feed is
+  Bryan-only. The shared pure `queryDirectory` (filter+sort) is what both the screen and the tests run.
+- **`/approvals` — the LIVE human approval gate.** `app/_surfaces/approvals_view.ts` (pure, generic, store-free) buckets
+  the store's `Approval` objects into **awaiting vs decided** with lineage (the work item / decision / proposal each
+  governs) and the doctrine states pending_approval / **restricted** (regulated capital/compliance/lending/sharing
+  types — owner/admin-only) / current. `components/terminal/ApprovalsView.tsx` renders the queue; approve / request-
+  changes / reject post to the EXISTING `decideApprovalAction`, which routes THROUGH `app/contracts.decideApproval` →
+  `core/kernel/permissions` (authorize-FIRST). The builder NEVER decides — only a `requested` approval is `decidable`.
+- **`/evidence` — LIVE provenance with drill-through.** `app/_surfaces/evidence_view.ts` (pure, generic) projects the
+  evidence attached to every work item into lineage rows (the object it supports, who captured it, when, the value
+  keys) with the states current / **stale** (past its freshness window, aged from `created_at`→`as_of`) / **inferred**
+  (agent-captured — a Dispatch inference, not a fact) / pending_approval / **restricted** (source-document-backed),
+  each visibly distinct. `components/terminal/EvidenceView.tsx` groups by object / by source / unreviewed; approve /
+  reject routes THROUGH `app/contracts.reviewEvidence` (authorize "review"). NEVER auto-reviews.
+- **Additive demo fixtures.** The coop seed gained ONE pending high-risk approval + ONE unreviewed/old/agent-captured
+  evidence item so the live gates render their full state legend over REAL store data (no test pins seed counts).
+- **Gate**: `node scripts/debug-loop.mjs` **ALL GREEN 19/19** (new **INSTITUTIONS · APPROVALS · EVIDENCE** steps —
+  each asserts renders-over-real-data · human-gate-intact/never-auto-decide · missing/stale/inferred/synthetic/pending
+  states distinct · deterministic) · `tsc --noEmit` clean · `npm run build` exit 0 (26/26 routes prerender; the 3
+  promoted surfaces are STATIC) · **332 unit tests** (+24). Real bulk 5300 NOT staged → the full market stays LABELED
+  synthetic (stated on-surface). Adversarially verified (4-lens fleet). There are now **13 REAL Terminal surfaces**
+  (`/`, `/terminal`, `/institutions`, `/market`, `/work`, `/proposals`, `/approvals`, `/evidence`, `/review`,
+  `/network`, `/dashboard`, `/observability`, `/distribution`) + **10 framed scaffolds**.
+**Bryan-only (route around):** git push · apply 0018 · a real bulk 5300 feed · investment-vehicle decision · VC/Alloya legal.
+
 ## Running now (Olympic Sprint III — Wave 5, ~60%, 2026-07-22) — the WHOLE product UI FRAMED + the JOINT /network surface
 Wave 5 reframed (Bryan's steer): rather than co-designing one polished Terminal surface, **frame the ENTIRE product's UI**
 as placeholders/wireframes/scaffolding so the product is complete end-to-end, and defer all look/feel/flow/cadence to a

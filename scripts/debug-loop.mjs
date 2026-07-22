@@ -1065,6 +1065,134 @@ await step("NETWORK    (joint surface: review-queue propose-only · synthetic la
   return `review queue ${vm.reviewQueue.pendingCount} pending (${vm.reviewQueue.entityDuplicates.length} dupes + ${vm.reviewQueue.canonProposals.length} canon proposals) · ${vm.reviewQueue.mergedCount} auto-merges (propose-only) · market ${vm.market.size} LABELED synthetic (all_labeled ✓) · deterministic`;
 });
 
+await step("INSTITUTIONS(directory over full market: itemized · labeled · region missing · filter/sort deterministic)", async () => {
+  const { register } = await import("node:module");
+  register("./alias-hook.mjs", import.meta.url);
+  const dir = await import("@/cartridges/cooperative_markets/run_institutions_directory");
+  const AS_OF = "2026-07-22T00:00:00.000Z";
+
+  const vm = dir.runInstitutionsDirectory({ as_of: AS_OF, market_size: 150 });
+
+  // ---- RENDERS OVER REAL DATA: the full market is itemized (scales one→thousands).
+  assert(vm.rows.length === 150 && vm.market.size === 150, "every institution is itemized into a directory row");
+  assert(vm.rows.every((r) => typeof r.net_worth_ratio === "number" && r.source_ref.length > 0 && r.terminal_href.startsWith("/terminal")), "each row carries ratios + a filing source_ref + a Terminal link");
+
+  // ---- SYNTHETIC LABELED (computed from data — never presentable as real).
+  assert(vm.market.allLabeled === true, "every figure is synthetic- or illustrative-labeled (all_labeled ✓)");
+  assert(vm.market.synthetic + vm.market.illustrative === vm.rows.length && vm.market.unlabeled === 0, "no unlabeled/real-looking record present");
+  assert(vm.rows.filter((r) => r.source_ref.includes(":synthetic:")).length === vm.market.synthetic, "the :synthetic: ref count == market.synthetic (meaningful direction, not a tautology)");
+  // teeth: drive a NON-synthetic, non-golden record through the REAL labeling path → all_labeled FALSE + row flagged unlabeled.
+  const { bulkMarket5300 } = await import("@/cartridges/cooperative_markets/bulk_5300_market");
+  const synth = bulkMarket5300({ size: 8 }).find((i) => i.raw.source_ref.includes(":synthetic:"));
+  const leak = dir.buildDirectoryVM([{ input_type: synth.input_type, raw: { ...synth.raw, charter_number: "999999", source_ref: "sourcedoc:real:leak:2026Q1" } }], { as_of: AS_OF });
+  assert(leak.market.allLabeled === false && leak.market.unlabeled === 1 && leak.rows[0].label === "unlabeled", "an unlabeled real-looking record flips all_labeled FALSE + is flagged row-by-row (teeth)");
+
+  // ---- MISSING STATE VISIBLY DISTINCT: region is not sourced → shown missing, never faked.
+  assert(vm.market.regionMissing === true && vm.rows.every((r) => r.region === null), "region is MISSING (null), never fabricated");
+  // ---- INFERRED STATE: profile confidence is a bounded inference, not a fact.
+  assert(vm.rows.every((r) => r.profileConfidence >= 0 && r.profileConfidence <= 1), "confidence is a bounded Dispatch inference");
+
+  // ---- FILTER + SORT (shared pure impl) with TEETH.
+  const well = dir.queryDirectory(vm.rows, { readiness: "well_capitalized" });
+  assert(well.length > 0 && well.every((r) => r.readiness === "well_capitalized"), "readiness filter keeps only matches");
+  const desc = dir.queryDirectory(vm.rows, { sortBy: "net_worth", sortDir: "desc" });
+  for (let i = 1; i < desc.length; i++) {
+    assert(
+      desc[i - 1].net_worth_ratio > desc[i].net_worth_ratio ||
+        (desc[i - 1].net_worth_ratio === desc[i].net_worth_ratio && desc[i - 1].charter <= desc[i].charter),
+      "sort is a total order (net-worth desc, charter tiebreak)",
+    );
+  }
+  const before = vm.rows.map((r) => r.charter).join(",");
+  dir.queryDirectory(vm.rows, { sortBy: "roa", sortDir: "asc" });
+  assert(vm.rows.map((r) => r.charter).join(",") === before, "queryDirectory does not mutate its input");
+
+  // ---- DETERMINISTIC: same as_of + size → byte-identical VM.
+  const vm2 = dir.runInstitutionsDirectory({ as_of: AS_OF, market_size: 150 });
+  assert(JSON.stringify(vm) === JSON.stringify(vm2), "the directory is deterministic (same as_of → identical VM)");
+
+  return `${vm.market.size} institutions itemized (${vm.market.synthetic} synthetic · ${vm.market.illustrative} illustrative, all labeled) · region MISSING (shown, never faked) · filter/sort total-order · deterministic`;
+});
+
+await step("APPROVALS  (live human gate: pending/decided · lineage · restricted · never auto-approve)", async () => {
+  const { register } = await import("node:module");
+  register("./alias-hook.mjs", import.meta.url);
+  const av = await import("@/app/_surfaces/approvals_view");
+  const AS_OF = "2026-07-22T00:00:00.000Z";
+
+  // A representative live-shaped approval set (the same shapes the store yields).
+  const approvals = [
+    { id: "a_alloc", workspace_id: "ws1", approval_type: "capital_allocation", status: "requested", requested_by: "user:ops", related_work_item_id: "wi1", related_decision_id: "dec1", created_at: "2026-06-01T00:00:00.000Z", updated_at: "2026-06-01T00:00:00.000Z" },
+    { id: "a_share", workspace_id: "ws1", approval_type: "report_sharing", status: "requested", requested_by: "user:ops", created_at: "2026-05-01T00:00:00.000Z", updated_at: "2026-05-01T00:00:00.000Z" },
+    { id: "a_done", workspace_id: "ws1", approval_type: "proposal_promotion", status: "approved", approved_by: "user:ceo", related_work_item_id: "wi1", created_at: "2026-04-01T00:00:00.000Z", updated_at: "2026-04-02T00:00:00.000Z" },
+  ];
+  const vm = av.buildApprovalsView(approvals, { workspaceLabels: { ws1: "Demo WS" }, as_of: AS_OF });
+
+  // ---- RENDERS the pending + decided queues over real data.
+  assert(vm.counts.awaiting === 2 && vm.counts.decided === 1, "buckets awaiting vs decided from the live objects");
+
+  // ---- HUMAN GATE INTACT: never auto-approve; a decided bucket never holds a still-requested approval.
+  assert(vm.awaiting.every((r) => r.status === "requested"), "every awaiting row is a requested approval");
+  assert(vm.decided.every((r) => r.status !== "requested"), "no decided row is a still-requested approval (an auto-approve mutation would surface here)");
+  // teeth: the builder does not decide (a smuggled expectation would fail) — pending stays pending.
+  assert(av.buildApprovalsView(approvals, { as_of: AS_OF }).awaiting.find((r) => r.id === "a_alloc").status === "requested", "the projection NEVER flips a pending approval to approved");
+
+  // ---- RESTRICTED STATE VISIBLY DISTINCT (regulated types are owner/admin-only).
+  assert(vm.counts.restrictedAwaiting === 2, "regulated capital/sharing approvals are RESTRICTED");
+  assert(av.isRestrictedApprovalType("capital_allocation") === true && av.isRestrictedApprovalType("proposal_promotion") === false, "restricted detection has teeth (regulated vs routine)");
+
+  // ---- LINEAGE carried (only present refs — never fabricated).
+  const alloc = vm.awaiting.find((r) => r.id === "a_alloc");
+  assert(alloc.lineage.work_item_id === "wi1" && alloc.lineage.decision_id === "dec1" && alloc.hasLineage, "an approval carries its governed-object lineage");
+  assert(vm.awaiting.find((r) => r.id === "a_share").hasLineage === false, "an approval with no linked object reports no lineage (never faked)");
+
+  // ---- DETERMINISTIC + ordered (awaiting oldest-first).
+  assert(JSON.stringify(vm) === JSON.stringify(av.buildApprovalsView(approvals, { workspaceLabels: { ws1: "Demo WS" }, as_of: AS_OF })), "the approvals view is deterministic");
+  assert(JSON.stringify(vm.awaiting.map((r) => r.id)) === JSON.stringify(["a_share", "a_alloc"]), "awaiting is oldest-first (created_at, id)");
+
+  return `${vm.counts.awaiting} awaiting (${vm.counts.restrictedAwaiting} restricted) · ${vm.counts.decided} decided · lineage carried · NEVER auto-approve (only requested is decidable) · deterministic`;
+});
+
+await step("EVIDENCE   (live provenance: lineage · inferred/stale/restricted/pending distinct · never auto-review)", async () => {
+  const { register } = await import("node:module");
+  register("./alias-hook.mjs", import.meta.url);
+  const ev = await import("@/app/_surfaces/evidence_view");
+  const AS_OF = "2026-07-22T00:00:00.000Z";
+
+  const mk = (id, over) => ({
+    item: { id, work_item_id: "wi1", kind: "measurement", label: id, value: { a: 1 }, document_id: null, captured_by: "user:ops", created_at: "2026-06-01T00:00:00.000Z", review_status: "approved", ...over },
+    work_item_title: "Pilot", workspace_id: "ws1", workspace_label: "Demo WS",
+  });
+  const inputs = [
+    mk("e_pending", { captured_by: "agent:run", created_at: "2026-02-15T00:00:00.000Z", review_status: undefined }), // pending + inferred + stale
+    mk("e_soc2", { kind: "attestation", document_id: "doc1", review_status: "approved" }), // restricted + current
+    mk("e_score", { captured_by: "agent:run", review_status: "approved" }), // inferred + current
+  ];
+  const vm = ev.buildEvidenceView(inputs, { as_of: AS_OF });
+
+  // ---- RENDERS over real evidence with lineage (object + fields).
+  assert(vm.counts.total === 3, "evidence is projected across work items");
+  assert(vm.rows.every((r) => r.work_item_id === "wi1" && r.work_item_title === "Pilot"), "each row drills to the object it supports");
+  assert(vm.rows.find((r) => r.id === "e_score").valueKeys.length >= 1, "the value payload keys are carried for drill-through");
+
+  // ---- HUMAN GATE INTACT: never auto-review; only pending is decidable.
+  const p = vm.rows.find((r) => r.id === "e_pending");
+  assert(p.review_status === "pending" && p.decidable, "an unreviewed item is a pending review gate");
+  assert(vm.rows.filter((r) => r.review_status === "approved").every((r) => !r.decidable), "a reviewed item can never be re-reviewed by the projection");
+  assert(ev.effectiveReviewStatus({ review_status: undefined }) === "pending", "a legacy/absent status is a review owed, not silently approved");
+
+  // ---- STATES VISIBLY DISTINCT: inferred / stale / restricted / pending_approval / current.
+  assert(p.inferred && p.stale && p.states.includes("pending_approval") && p.states.includes("inferred") && p.states.includes("stale"), "an agent-captured old unreviewed item is inferred + stale + pending");
+  assert(vm.rows.find((r) => r.id === "e_soc2").restricted && vm.rows.find((r) => r.id === "e_soc2").states.includes("restricted"), "a document-backed item is restricted");
+  assert(!ev.evidenceStates({ review_status: "approved", inferred: false, stale: true, restricted: false }).includes("current"), "a stale approved item is NOT current (freshness has teeth)");
+
+  // ---- DETERMINISTIC + unreviewed-first.
+  assert(JSON.stringify(vm) === JSON.stringify(ev.buildEvidenceView(inputs, { as_of: AS_OF })), "the evidence view is deterministic");
+  assert(vm.rows[0].id === "e_pending", "the unreviewed item sinks to the top (a review is owed)");
+
+  return `${vm.counts.total} evidence (${vm.counts.unreviewed} unreviewed · ${vm.counts.inferred} inferred · ${vm.counts.stale} stale · ${vm.counts.restricted} restricted) · states distinct · NEVER auto-review · deterministic`;
+});
+
 await step("TESTS      (node --test: engine unit suite)", () => {
   if (!fs.existsSync(path.join(root, "node_modules"))) {
     throw new Error("node_modules missing — run `npm install`, then re-run this loop (env, not code)");

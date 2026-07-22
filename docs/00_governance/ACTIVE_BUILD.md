@@ -4,7 +4,29 @@
 Cooperative Markets foundation on Dispatch OS. The full Specification Program (Vols
 I–X) is reconciled/adopted; forward work is BUILD.
 
-**Olympic Sprint III (Connectors & scale, target ~68%) — IN PROGRESS, ~60% after Wave 5.**
+**Olympic Sprint IV (Terminal & product surface complete, target ~80%) — IN PROGRESS, ~61% after Wave 1.**
+**Wave 1 (DONE, 2026-07-22) — PROMOTE 3 scaffolds → REAL surfaces over live data.** Turned three of the
+highest-value FRAMED scaffolds into real surfaces over live run output, using `ui_surfaces.json` as the contract
+(now 13 live / 10 scaffold). Additive; no vertical noun in `core/`; the connector runtime + engines + human-gate
+contract layer UNCHANGED; default in-memory; look/feel deferred (reused existing tokens). (1) **`/institutions`** —
+a real DIRECTORY over the full-market profiles: `run_institutions_directory.ts` (pure/erasable-only) itemizes the
+whole synthetic market (5300 ratios as deterministic calcs citing each filing; asset + PCA readiness bands; confidence
+marked **inferred**; **region surfaced as `missing`** — shown, never faked), `InstitutionsDirectoryView.tsx` renders
+search/filter/total-order-sort, each row → `/terminal`; scales one→thousands; figures LABELED synthetic (real bulk
+5300 Bryan-only). (2) **`/approvals`** — the LIVE human gate: `app/_surfaces/approvals_view.ts` (pure/generic) buckets
+store approvals awaiting-vs-decided with lineage + states (pending_approval / **restricted** = regulated owner/admin-only
+/ current), deciding routes THROUGH `decideApprovalAction → app/contracts.decideApproval → permission engine`; NEVER
+auto-approves. (3) **`/evidence`** — LIVE provenance drill-through: `app/_surfaces/evidence_view.ts` projects evidence
+across work items with lineage + states current/**stale**/**inferred**/pending_approval/**restricted** distinct,
+review routes THROUGH `reviewEvidenceAction → contracts.reviewEvidence`; NEVER auto-reviews. Additive seed fixtures
+(1 pending approval + 1 unreviewed evidence) so the gates show their full legend over real data. Gate: debug-loop
+**19/19** (new INSTITUTIONS · APPROVALS · EVIDENCE steps), `tsc` clean, build exit 0 (26/26 prerender; the 3 promoted
+surfaces static), **332** tests (+24). Adversarially verified (4-lens). **Next (Wave 2):** the Terminal RUNTIME
+(window/layout, command palette, universal search over the directory + registry, notification/task centers — Vol VII);
+promote more scaffolds (`/opportunities`, `/workflows`, `/relationships`, `/executives`, `/search`); optionally a real
+bulk 5300 feed (Bryan) toward the ~80% Sprint-IV target.
+
+**Prior — Olympic Sprint III (Connectors & scale) — CLOSED at ~60% after Wave 5.**
 **Wave 5 (DONE, 2026-07-22) — FRAME THE WHOLE PRODUCT UI + the JOINT /network surface.** Bryan's steer: don't
 co-design one polished surface now — frame the ENTIRE product's UI as placeholders/wireframes/scaffolding so the
 product is complete end-to-end, and defer look/feel/flow/cadence to a polish sprint. Shipped: a config-as-data **UI

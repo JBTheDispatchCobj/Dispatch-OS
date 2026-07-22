@@ -4,6 +4,66 @@ Convention: **[BLOCKER]** stops production → fix immediately · **[NON-BLOCKIN
 when convenient · **[DEFERRED]** intentional, needs a decision/later phase. Run the review harness
 any time with `node scripts/debug-loop.mjs` (after `npm install`).
 
+## 2026-07-22 — Olympic Sprint IV Wave 1 (promote 3 scaffolds → real surfaces over live data)
+- **Wave scope.** Promoted `/institutions` (a real directory over the full-market profiles — search/filter/
+  sort, each row → `/terminal`), `/approvals`, and `/evidence` (real surfaces over the LIVE human gates, routed
+  through the existing permission-engine contract) from scaffold → live. Flipped their `status` in
+  `ui_surfaces.json` (13 live / 10 scaffold now). Look/feel deferred; reused the existing design tokens.
+- **[NON-BLOCKING — HANDLED] node type-stripping shapes the design.** The in-memory `store` (`core/data/store.ts`)
+  uses TS **parameter properties** (`constructor(private db: Db)`), which `node`'s strip-only mode rejects — so the
+  debug loop + `node --test` cannot import the store directly. Design consequence (kept the pattern the repo already
+  uses): the view-model builders are **pure, store-free, ERASABLE-ONLY** modules (`app/_surfaces/approvals_view.ts`,
+  `app/_surfaces/evidence_view.ts`, `cartridges/cooperative_markets/run_institutions_directory.ts`) that the tests +
+  debug steps import and drive with fixture arrays; the server pages (`app/{institutions,approvals,evidence}/page.tsx`)
+  read the store and hand the arrays to the pure builder. The Next build compiles the store fully, so the pages render.
+- **[NON-BLOCKING — FIXED during build] restricted-type marker substring.** `isRestrictedApprovalType("report_sharing")`
+  first returned false — the marker was `"share"`, but `"sharing"` has no consecutive `share` substring. Fixed the
+  marker to `"shar"` (catches share/sharing). Caught by a unit test with teeth (regulated vs routine), not by eye.
+- **Additive demo fixtures (seed).** Added ONE pending high-risk approval (`appr_alloc`, `capital_allocation`,
+  `requested`) + ONE unreviewed/old/agent-captured evidence item (`ev_delinquency`) to the coop seed so the live gates
+  render their FULL doctrine state legend (pending_approval / restricted / inferred / stale) over real store data. No
+  test/debug step pins seed approval/evidence counts, so this is regression-safe. Clearly demo fixtures, not real.
+- **Human gate stays real.** Deciding an approval / reviewing evidence posts to the EXISTING server actions
+  (`decideApprovalAction` / `reviewEvidenceAction` in `app/actions.ts`, +`revalidatePath` for the two new routes),
+  which route THROUGH `app/contracts.ts` → `core/kernel/permissions` (authorize-first). The pure builders NEVER decide
+  — only a `requested` approval / `pending` evidence item is `decidable`; the projection can't flip it.
+- **Adversarial 4-lens verification (fleet of 4) — findings fixed before close:**
+  - **[MAJOR — FIXED] doctrine: `/approvals` "restricted" was a hardcoded financial-keyword list in a builder claiming
+    "generic".** The `restricted` (owner/admin-only) advisory state was synthesized from a hardcoded substring list
+    (capital/lend/invest/…) that (a) hardcoded vertical vocabulary into a supposedly-generic builder and (b) could
+    silently under-flag a regulated type it did not match. Fixed: `restricted` now prefers a PERSISTED classification
+    (`approval.metadata.restricted` / `risk_class`) and falls back to an INJECTED marker set
+    (`DEFAULT_RESTRICTED_MARKERS`, caller-overridable — the resolver/canon "caller-injected stopwords" pattern), so the
+    builder body names no vertical and a persisted flag supersedes the heuristic. Header claim corrected. Enforcement
+    was never affected (the gate is the permission-engine contract). Tests added (persisted-supersedes · injected set).
+  - **[MAJOR — FIXED] test-teeth: two institutions-directory invariants were asserted vacuously.** (1) The
+    total-order charter tiebreak never ran (the synthetic market has no net-worth ratio ties) → added a test on a
+    constructed equal-key fixture that forces the tiebreak branch. (2) The `all_labeled=false` branch was never driven
+    through the builder (the teeth block re-implemented the check inline) → added a `buildDirectoryVM` seam and a test
+    that feeds a real-looking unlabeled record through the REAL path and asserts `all_labeled===false` + row
+    `label==='unlabeled'`. Mirrored both in the INSTITUTIONS debug step.
+  - **[MINOR — FIXED] doctrine: an unknown-provenance directory row defaulted to the benign `illustrative` label.**
+    Added an `unlabeled` `ProvenanceLabel`; the else branch now flags such a row untrusted row-by-row (⚠ in the UI),
+    not only in the aggregate banner.
+  - **[MINOR — FIXED] correctness: a rejected fresh evidence item fell through to the "current" state.** The
+    `evidenceStates` fallback is now approved-only; a rejected item emits no positive state (its status chip carries the
+    rejection). Test added.
+  - **[MINOR — FIXED] test-teeth: tautological assertions** (a `synthetic ⇒ :synthetic:` self-implication; the
+    awaiting/decided bucket lines; missing non-empty filter guards) replaced with meaningful directions
+    (`:synthetic:` count == market.synthetic; "no decided row is still requested"; `.length > 0` guards).
+  - **[DEFERRED] doctrine (nit): `/approvals` + `/evidence` composite a cross-workspace read with no read-side
+    authorize.** In the demo (single seeded in-memory store, session = owner, rows labeled by workspace → no tier/plane
+    conflation) this is safe; when these surfaces read a real MULTI-TENANT store the read must be principal-scoped or
+    routed through the same permission-engine guard as the (already-gated) write path. Noted in both pages.
+  - **CLEAN lenses:** purity/determinism (0 findings — no clock/random, injected ids/as_of, total-order sorts, no
+    mutation, no erasable-TS violations in the type-stripped graph); correctness (gate wiring reaches
+    `core/kernel/permissions`, `queryDirectory` non-mutating total order, batch↔raw pairing order-preserving, seed
+    consistent — only the one rejected→current nit, fixed).
+- **Gate at close:** debug-loop **19/19** green (new **INSTITUTIONS · APPROVALS · EVIDENCE** steps) · `tsc --noEmit`
+  clean · `npm run build` exit 0 (26/26 routes prerender; the 3 promoted surfaces are STATIC `○`) · **332** unit tests
+  (+24). REAL bulk 5300 NOT staged (checked `docs/04_sources/ncua/` — only the Act + regulations) → the full market
+  stays LABELED synthetic, stated on-surface. Adversarially verified (4-lens fleet).
+
 ## 2026-07-22 — Olympic Sprint III Wave 5 (frame the whole product UI + /network)
 - **[BLOCKER — FIXED] `next build` prerender crash on the config-as-data loaders.** `npm run build` failed
   prerendering `/_not-found` then `/network` with `TypeError: The "path" argument must be of type string or an

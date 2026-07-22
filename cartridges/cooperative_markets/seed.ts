@@ -122,6 +122,16 @@ export function seed(ws: string): SeedBundle {
     value: { vendor: "Halcyon Pay", report: "SOC 2 Type II", cu_integrations: 14 },
     document_id: id("doc_soc2"), captured_by: `user:${id("u_ops")}`, created_at: ts, review_status: "approved", reviewed_by: id("u_ops"), reviewed_at: ts,
   });
+  // An UNREVIEWED, agent-captured, older observation so `/evidence` shows its full
+  // state legend over LIVE data: pending_approval (awaiting human review), inferred
+  // (agent-captured — a Dispatch inference, not a fact), and stale (past its
+  // freshness window). Reviewing it routes through the permission-engine contract
+  // (app/contracts.reviewEvidence) — never auto-approved. Demo fixture.
+  b.evidence.push({
+    id: id("ev_delinquency"), work_item_id: pilot, kind: "observation", label: "Delinquency trend flag (agent-observed, unreviewed)",
+    value: { metric: "delinquency_ratio", trend: "rising", quarters: 2, note: "self-reported; awaiting analyst confirmation" },
+    document_id: null, captured_by: "agent:run_scan", created_at: "2026-02-15T00:00:00.000Z",
+  });
 
   // --- Decision + Approval: the pilot exists because a human approved -------
   b.decisions.push({
@@ -136,6 +146,15 @@ export function seed(ws: string): SeedBundle {
     id: id("appr_pilot"), workspace_id: ws, approval_type: "proposal_promotion", status: "approved",
     approved_by: id("u_ceo"), related_work_item_id: pilot, related_decision_id: id("dec_pilot"), related_agent_proposal_id: id("prop_match"),
     approval_notes: "Approved — capital-light, exam-defensible control set. Green-light the pilot.", created_at: ts, updated_at: ts,
+  });
+  // A PENDING, high-risk approval so the live human gate has something awaiting a
+  // decision on `/approvals`: a capital-allocation sign-off is regulated + owner/
+  // admin-only (restricted). It is NEVER auto-decided — the decision routes through
+  // the permission-engine contract (app/contracts.decideApproval). Demo fixture.
+  b.approvals.push({
+    id: id("appr_alloc"), workspace_id: ws, approval_type: "capital_allocation", status: "requested",
+    requested_by: id("u_ops"), related_work_item_id: pilot, related_decision_id: id("dec_pilot"),
+    approval_notes: null, created_at: ts, updated_at: ts,
   });
 
   // --- Context objects (versioned operating memory) ------------------------

@@ -1,62 +1,71 @@
-# HANDOFF — Olympic Sprint III, Wave 5 (2026-07-22)
+# HANDOFF — Olympic Sprint IV, Wave 1 (2026-07-22)
 
-**Build: ~60%** (honest recompute; was ~59% at Wave 4). A BREADTH / framing wave: the whole product UI is now
-framed end-to-end and one joint surface (`/network`) is real. Sprint III target ~68% still needs harness/truth/kernel
-DEPTH + the real bulk 5300 feed (Bryan-only) + more real connectors.
+**Build: ~61%** (honest recompute; was ~60% at Sprint III Wave 5). Sprint IV opens (**Terminal & product surface
+complete, target ~80%**). Wave 1 promoted three of the highest-value FRAMED scaffolds into REAL surfaces over live
+run output. Additive; no vertical noun in `core/`; connector runtime + engines + the human-gate contract layer
+UNCHANGED; default in-memory; look/feel deferred (reused the existing design tokens).
 
-## The steer (Bryan, this wave)
-Wave 5 was scoped as a UI focus group. Bryan reframed it: **frame the ENTIRE product's UI** — placeholders, wireframes,
-scaffolding for *everything* — so the product/framing is complete, and **defer all look/feel/flow/cadence** to a later
-polish sprint ("we will quarrel on the look feel flow and cadence" later). So: match the existing surfaces, mark
-everything scaffold, make the framing complete + coherent, keep marching toward V1.
+## What shipped (3 scaffolds → real surfaces, `ui_surfaces.json` the contract → 13 live / 10 scaffold)
+1. **`/institutions` — a REAL directory over the full market.** `cartridges/cooperative_markets/run_institutions_directory.ts`
+   (pure/deterministic/erasable-only) itemizes the whole synthetic market into browse rows: the five 5300 ratios as
+   deterministic calcs each citing its filing; asset-size + PCA readiness bands; profile confidence marked **inferred**;
+   **region surfaced as `missing`** (not sourced from a 5300 → shown, NEVER faked); a `buildDirectoryVM` seam +
+   `unlabeled` provenance label so an unknown-provenance row is flagged untrusted row-by-row (not defaulted benign).
+   `components/terminal/InstitutionsDirectoryView.tsx` renders search / filter (readiness · asset-band · label) /
+   total-order sort (charter tiebreak); each row → that institution's `/terminal`. Scales one→thousands. LABELED
+   synthetic (`all_labeled` computed from data); real bulk 5300 is Bryan-only.
+2. **`/approvals` — the LIVE human approval gate.** `app/_surfaces/approvals_view.ts` (pure, store-free) buckets the
+   store's `Approval` objects **awaiting vs decided** with lineage + states pending_approval / **restricted** / current.
+   `restricted` prefers a PERSISTED classification (`metadata.restricted`/`risk_class`) and falls back to an INJECTED
+   marker set (`DEFAULT_RESTRICTED_MARKERS`, caller-overridable) — no vertical hardcoded in the builder body.
+   `components/terminal/ApprovalsView.tsx` renders the queue; approve / request-changes / reject post to the EXISTING
+   `decideApprovalAction` → `app/contracts.decideApproval` → `core/kernel/permissions` (authorize-FIRST). The builder
+   NEVER decides — only a `requested` approval is `decidable`.
+3. **`/evidence` — LIVE provenance with drill-through.** `app/_surfaces/evidence_view.ts` (pure) projects evidence
+   across work items into lineage rows with states current / **stale** / **inferred** / pending_approval / **restricted**
+   distinct (rejected is never mislabeled "current"). `components/terminal/EvidenceView.tsx` groups by object / by
+   source / unreviewed; review routes THROUGH `reviewEvidenceAction` → `contracts.reviewEvidence`. NEVER auto-reviews.
 
-## What shipped (additive, new-files-only in the engine core; no vertical noun in `core/`)
-1. **UI surface registry (config-as-data)** — `core/registry/data/ui_surfaces.json` declares the whole FS-10000 Terminal
-   IA as **23 surfaces** (10 live, 13 scaffold) across 11 nav sections; each names its primary object, planned
-   tabs/commands, human gates, and the doctrine **state legend** (current/missing/stale/inferred/synthetic/restricted/
-   pending_approval/conflicted). Generic loader `core/registry/ui_surfaces.ts` (closed-graph: unique routes · sections
-   resolve · state vocab enforced; pure; names no vertical).
-2. **ScaffoldView + scaffold pages** — `components/terminal/ScaffoldView.tsx` renders each scaffold route as a framed
-   wireframe; a page per scaffold route was generated from the registry (13 routes). `app/layout.tsx` nav renders FROM
-   the registry (grouped, scaffolds dimmed + °-tagged) so the whole product is reachable from any page.
-3. **The JOINT `/network` surface** — `app/network/page.tsx` + `components/terminal/NetworkView.tsx` over
-   `cartridges/cooperative_markets/run_network_surface.ts`. **Review-queue-FIRST** (Bryan's pick): PROPOSE-ONLY queue
-   (cross-source entity duplicates + external-canon alias proposals, confirm/reject, **merged_count=0**, never
-   auto-merge) above the full-market list (LABELED synthetic; `all_labeled` computed from data + shown). Deterministic.
-4. **CANON 5→15 aliases** — +2 confirmed FS-8000 sources (`SRC-CFPB-REGS`, `SRC-FDIC-FAILED-BANKS`, liveness-checked);
-   +8 proposed FS-5100 registry ids (workflow/agent/event/evidence/approval/kpi — doc-grade, identity-not-authority,
-   surfaced in the /network queue). **CATALOG 73→93** config-as-data source+connector manifests (closed graph).
-5. **Gate**: new **UI-SURFACES** + **NETWORK** debug steps → **16/16** green; **308** unit tests (+11:
-   `tests/ui_surfaces.test.mjs`, `tests/network_surface.test.mjs`).
+Additive coop-seed fixtures (1 pending high-risk approval `appr_alloc` + 1 unreviewed/old/agent-captured evidence
+`ev_delinquency`) so the live gates render their full state legend over REAL store data (no test pins seed counts).
+`app/actions.ts` gained `revalidatePath('/approvals')` + `('/evidence')`.
 
-## Blocker found + fixed (see DEBUG_LOG)
-The three config-as-data loaders (`ui_surfaces.ts`, `connectors.ts`, `canon.ts`) located their JSON via
-`fileURLToPath(new URL(...))`, which Turbopack hands a non-node URL → `next build` crashed prerendering `/network`
-(the first prerendered page to load the catalog/canon) and `/_not-found` (layout loads the surface registry).
-Fixed by rooting all three at `process.cwd()`. The connector RUNTIME is untouched.
+## Design note (why the builders are pure/store-free)
+The in-memory `store` uses TS **parameter properties**, which `node`'s strip-only mode rejects — so `node --test` +
+the debug loop cannot import the store. The view-model builders are therefore pure, erasable-only, store-free (tests +
+debug steps drive them with fixture arrays); the server pages read the store and hand arrays to the builder; the Next
+build compiles the store fully so the pages render. See DEBUG_LOG.
+
+## Adversarially verified (4-lens fleet) — all findings fixed
+- **purity/determinism: 0 findings.** **correctness: "wave is correct"** (gate wiring reaches `core/kernel/permissions`;
+  `queryDirectory` non-mutating total order; batch↔raw order-preserving; seed consistent) — one rejected→"current" nit, fixed.
+- **doctrine (1 major + 1 minor + 1 deferred nit):** restricted-classifier de-hardcoded (persisted-supersedes + injected
+  markers); `unlabeled` provenance label added; cross-workspace read-authorize noted [DEFERRED] (safe in the single-tenant
+  demo; needs principal-scoping on a real multi-tenant store).
+- **test-teeth (2 major + 2 minor):** the total-order tiebreak + the `all_labeled=false` branch are now driven through the
+  real code (constructed equal-key fixture + `buildDirectoryVM` negative case); tautological assertions replaced with
+  meaningful directions; non-empty filter guards added. Mirrored in the debug steps.
 
 ## Gate (all green in the cloud)
-- `node scripts/debug-loop.mjs` → **ALL GREEN 16/16** (new UI-SURFACES + NETWORK steps)
-- `npx tsc --noEmit` → clean · `npm run build` → exit 0 (26/26 routes prerender incl `/network` + 13 scaffolds)
-- `npm test` → **308 pass, 0 fail** · Adversarially verified (4-lens)
+- `node scripts/debug-loop.mjs` → **ALL GREEN 19/19** (new **INSTITUTIONS · APPROVALS · EVIDENCE** steps: renders over
+  real data · human-gate-intact/never-auto-decide · missing/stale/inferred/synthetic/pending states distinct · deterministic)
+- `npx tsc --noEmit` → clean · `npm run build` → exit 0 (26/26 routes prerender; the 3 promoted surfaces STATIC `○`)
+- `npm test` → **332 pass, 0 fail** (+24)
 
 ## New / changed files
-- NEW: `core/registry/data/ui_surfaces.json`, `core/registry/ui_surfaces.ts`,
-  `components/terminal/ScaffoldView.tsx`, `components/terminal/NetworkView.tsx`, `app/network/page.tsx`,
-  `cartridges/cooperative_markets/run_network_surface.ts`, `tests/ui_surfaces.test.mjs`,
-  `tests/network_surface.test.mjs`, and 13 scaffold pages `app/{institutions,executives,relationships,opportunities,
-  workflows,evidence,approvals,search,reports,collaboration,cartridges,personas,administration}/page.tsx`
-- EDITED: `app/layout.tsx` (registry-driven nav), `app/globals.css` (nav + review-queue classes),
-  `core/registry/data/canon_aliases.json` (5→15), `core/registry/data/connectors.json` (73→93),
-  `core/registry/connectors.ts` + `core/registry/canon.ts` (loader path → process.cwd()),
-  `scripts/debug-loop.mjs` (UI-SURFACES + NETWORK steps), docs
-  (`BUILD_PROGRESS.md`, `CURRENT_STATE.md`, `ACTIVE_BUILD.md`, `DEBUG_LOG.md`, `HANDOFF.md`),
-  `SPRINT_III_WAVE6_KICKOFF_PROMPT.md` (new)
+- NEW: `cartridges/cooperative_markets/run_institutions_directory.ts`, `app/_surfaces/approvals_view.ts`,
+  `app/_surfaces/evidence_view.ts`, `components/terminal/{InstitutionsDirectoryView,ApprovalsView,EvidenceView}.tsx`,
+  `tests/{institutions_directory,approvals_view,evidence_view}.test.mjs`
+- EDITED: `app/{institutions,approvals,evidence}/page.tsx` (scaffold → real server pages), `app/actions.ts` (revalidate),
+  `core/registry/data/ui_surfaces.json` (3 flips scaffold→live + tabs/states), `cartridges/cooperative_markets/seed.ts`
+  (2 additive fixtures), `components/terminal/InstitutionsDirectoryView.tsx` (unlabeled chip), `scripts/debug-loop.mjs`
+  (3 steps), docs (`CURRENT_STATE`, `ACTIVE_BUILD`, `BUILD_PROGRESS`, `DEBUG_LOG`, `HANDOFF`)
 
-## NEXT — Wave 6 (see SPRINT_III_WAVE6_KICKOFF_PROMPT.md)
-Start turning scaffolds into real surfaces (Institutions directory over the full market; Approvals/Evidence over the
-live human gates) AND/OR push the Sprint-III depth targets — a real bulk 5300 feed (Bryan), more real connectors,
-harness/truth depth — toward ~68%. The UI surface registry is the map to build against; look/feel still deferred.
+## NEXT — Wave 2 (toward the ~80% Sprint-IV target)
+The Terminal RUNTIME (Vol VII): window/layout shell, command palette, universal search over the directory + registry,
+notification/task centers. Promote more scaffolds (`/opportunities`, `/workflows`, `/relationships`, `/executives`,
+`/search`). Optionally a real bulk 5300 feed (Bryan) → moves the market off labeled-synthetic. The UI surface registry
+is the map; look/feel still deferred.
 
 ## Bryan-only (route around, don't block)
 git push · apply 0018 · a REAL bulk 5300 feed · investment-vehicle decision · VC/Alloya legal.
