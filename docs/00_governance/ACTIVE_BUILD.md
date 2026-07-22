@@ -4,7 +4,25 @@
 Cooperative Markets foundation on Dispatch OS. The full Specification Program (Vols
 I–X) is reconciled/adopted; forward work is BUILD.
 
-**Olympic Sprint IV (Terminal & product surface complete, target ~80%) — IN PROGRESS, ~62% after Wave 2.**
+**Olympic Sprint IV (Terminal & product surface complete, target ~80%) — IN PROGRESS, ~63% after Wave 3.**
+**Wave 3 (DONE, 2026-07-22) — FINISH THE TERMINAL RUNTIME (notification + task center, Vol VII) + promote 2 more
+scaffolds → REAL surfaces.** Built the Terminal-runtime attention layer the product was still missing: a
+**notification + task center** (`app/_surfaces/activity_center.ts` — a pure/deterministic READ-ONLY projection over the
+LIVE approval / work-item / evidence queues; notifications link to the permission-engine surface that RESOLVES them
+—/approvals, /workflows, /evidence, /work— and nothing is decided there) wired onto the **Home command center**
+(`app/page.tsx`, `components/terminal/ActivityCenterView.tsx`). Promoted 2 more scaffolds → real (16→**18 live / 5
+scaffold**): (1) **`/reports`** — `app/_surfaces/reports_view.ts` over the live `ReportRun` objects + the
+**report-sharing editorial gate** (pending_approval until an authorized human clears it on /approvals; stale by
+age/gaps shown never hidden; draft=restricted; NEVER auto-shares; 4 reports + 1 share approval seeded); (2)
+**`/cartridges`** — `app/_surfaces/cartridges_view.ts`, the installed-capability manifest over the 5 live
+PackagedConfigurations (per-collection counts + which workspaces run each; current=operating / restricted=installed-but-
+not; read-only). Additive, **no vertical noun in `core/`** (new pure builders in `app/_surfaces/`; only
+`ui_surfaces.json` + coop `seed.ts` + `app/page.tsx` changed). New **ACTIVITY + REPORTS + CARTRIDGES** debug steps with
+negative-control teeth (**25/25**) + 15 tests (**363**). Gate: `tsc` clean · `npm run build` exit 0 (26/26 prerender;
+promoted surfaces + Home STATIC) · debug-loop 25/25 · 363/363. Adversarially verified (4-lens): purity + truth-doctrine
+clean; 1 correctness fix + 3 test-teeth hardenings applied. Next: `/executives` + `/relationships` (need a store
+read + SEED first — biggest gap), window/layout shell, dashboard-runtime generalization, /collaboration + /administration.
+
 **Wave 2 (DONE, 2026-07-22) — THE TERMINAL RUNTIME (Vol VII) + promote 3 more scaffolds → REAL surfaces.** Built the
 operating-environment shell the product was missing: a **registry-driven command palette** (⌘K, mounted globally in
 `app/layout.tsx`, driven from `ui_surfaces.json` so a new surface appears with no code change) + **universal search**

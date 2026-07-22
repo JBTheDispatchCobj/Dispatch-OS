@@ -156,6 +156,17 @@ export function seed(ws: string): SeedBundle {
     requested_by: id("u_ops"), related_work_item_id: pilot, related_decision_id: id("dec_pilot"),
     approval_notes: null, created_at: ts, updated_at: ts,
   });
+  // A PENDING report_sharing approval — the EDITORIAL/SHARE gate surfaced on `/reports`
+  // (the report-lifecycle realization of the EditorialDisposition family). The linked
+  // report stays `under_review` until an authorized human clears it; it is NEVER
+  // auto-shared — the decision routes through the permission engine on `/approvals`
+  // (store.requestReportShare → store.setReportStatus). Demo fixture.
+  b.approvals.push({
+    id: id("appr_share"), workspace_id: ws, approval_type: "report_sharing", status: "requested",
+    requested_by: id("u_ops"), approval_notes: null,
+    metadata: { report_id: id("rpt_brief"), report_key: "cooperative_markets:opportunity_brief" },
+    created_at: ts, updated_at: ts,
+  });
 
   // --- Context objects (versioned operating memory) ------------------------
   b.contextObjects.push({
@@ -194,6 +205,41 @@ export function seed(ws: string): SeedBundle {
       { type: "list", label: "Open opportunities", filter: "status!=completed" },
     ],
     created_at: ts,
+  });
+
+  // --- Reports (generated FROM evidence; sharing is a human editorial act) --------
+  // Real ReportRun objects so `/reports` renders its full state legend over LIVE data:
+  //   current (shared + fresh) · pending_approval (under_review + the requested
+  //   report_sharing approval above) · stale (aged out + missing-data gaps, shown never
+  //   hidden) · restricted (an internal draft, not cleared for sharing). Sharing is
+  //   NEVER auto-decided — it routes through the permission engine on `/approvals`.
+  b.reports.push({
+    id: id("rpt_scorecard"), workspace_id: ws, report_key: "cooperative_markets:institution_scorecard",
+    title: "Summit Ridge FCU — Institution Scorecard", generated_at: ts, status: "shared",
+    generated_by: `user:${id("u_ops")}`,
+    source_references: [id("ev_score"), id("ev_soc2"), "cooperative_markets:institution_readiness"],
+    sections: [
+      { heading: "Financial health", body: "Net-worth ratio 6.8%, ROA 0.62%, loan-to-share 84.1% — adequate capitalization.", source_references: [id("ev_score")] },
+      { heading: "Innovation readiness", body: "Digital adoption 0.71; core Symitar; readiness inference 0.78.", source_references: [id("ev_soc2")] },
+    ],
+  });
+  b.reports.push({
+    id: id("rpt_brief"), workspace_id: ws, report_key: "cooperative_markets:opportunity_brief",
+    title: "Summit Ridge × Halcyon Pay — Opportunity Brief (CEO lens)", generated_at: ts, status: "under_review",
+    generated_by: `user:${id("u_ops")}`, source_references: [id("ev_score")],
+    sections: [{ heading: "Thesis", body: "Capital-light RTP pilot; strategic fit 0.82, regulatory fit 0.74 (sourced inferences).", source_references: [id("ev_score")] }],
+  });
+  b.reports.push({
+    id: id("rpt_icmemo"), workspace_id: ws, report_key: "cooperative_markets:ic_memo",
+    title: "Halcyon Pay — Investment Committee Memo (draft snapshot)", generated_at: "2026-03-01T00:00:00.000Z", status: "generated",
+    generated_by: "agent:run_scan", source_references: [id("ev_soc2")],
+    missing_data_notes: ["Audited FY2025 financials not yet on file", "Third-party pentest attestation pending analyst confirmation"],
+    sections: [{ heading: "Recommendation", body: "Recommend-with-conditions, pending the missing diligence items noted below.", source_references: [id("ev_soc2")] }],
+  });
+  b.reports.push({
+    id: id("rpt_draft"), workspace_id: ws, report_key: "cooperative_markets:institution_scorecard",
+    title: "Harbor Point CU — Institution Scorecard (internal draft)", generated_at: ts, status: "draft",
+    generated_by: `user:${id("u_ops")}`, sections: [{ heading: "Draft", body: "Internal working draft — not cleared for sharing.", source_references: [] }],
   });
 
   return b;

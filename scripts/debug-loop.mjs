@@ -1341,6 +1341,156 @@ await step("WORKFLOWS  (live work items grouped by workflow · gate/conflict dis
   return `${vm.counts.workflows} workflows · ${vm.counts.items} items · ${vm.counts.awaiting} awaiting a gate · ${vm.counts.blocked} conflicted · unmapped flagged · NEVER auto-decide · deterministic`;
 });
 
+await step("ACTIVITY   (Terminal runtime: notification + task center · read-only · never decides)", async () => {
+  const { register } = await import("node:module");
+  register("./alias-hook.mjs", import.meta.url);
+  const ac = await import("@/app/_surfaces/activity_center");
+  const AS_OF = "2026-07-22T00:00:00.000Z";
+
+  const approvals = [
+    { id: "a_alloc", workspace_id: "ws1", approval_type: "capital_allocation", status: "requested", requested_by: "user:ops", created_at: "2026-06-10T00:00:00.000Z" },
+    { id: "a_share", workspace_id: "ws1", approval_type: "report_sharing", status: "requested", requested_by: "user:ops", created_at: "2026-06-12T00:00:00.000Z", metadata: { report_id: "r1" } },
+    { id: "a_promo", workspace_id: "ws1", approval_type: "proposal_promotion", status: "requested", requested_by: "user:ops", created_at: "2026-06-11T00:00:00.000Z" }, // negative control: requested but NOT regulated
+    { id: "a_done", workspace_id: "ws1", approval_type: "proposal_promotion", status: "approved", approved_by: "user:ceo", created_at: "2026-04-01T00:00:00.000Z" },
+  ];
+  const items = [
+    { id: "wi1", workspace_id: "ws1", kind: "k:pilot", title: "Halcyon pilot", status: "in_progress", priority: "high", source: "manual", entity_id: null, assignee_id: "u1", assignee_name: "Ops", context: {}, created_at: "2026-06-01T00:00:00.000Z", started_at: null, completed_at: null },
+    { id: "wi2", workspace_id: "ws1", kind: "k:pilot", title: "Aurora pilot", status: "blocked", priority: "medium", source: "manual", entity_id: null, assignee_id: null, assignee_name: null, context: {}, created_at: "2026-06-02T00:00:00.000Z", started_at: null, completed_at: null },
+    { id: "wi3", workspace_id: "ws1", kind: "k:dil", title: "Cobalt diligence", status: "awaiting_review", priority: "high", source: "manual", entity_id: null, assignee_id: null, assignee_name: null, context: {}, created_at: "2026-06-03T00:00:00.000Z", started_at: null, completed_at: null },
+    { id: "wi4", workspace_id: "ws1", kind: "k:pilot", title: "Done pilot", status: "completed", priority: "low", source: "manual", entity_id: null, assignee_id: null, assignee_name: null, context: {}, created_at: "2026-06-04T00:00:00.000Z", started_at: null, completed_at: "2026-06-20T00:00:00.000Z" },
+  ];
+  const evidence = [
+    { id: "e_old", work_item_id: "wi1", label: "Delinquency flag", captured_by: "agent:run", created_at: "2026-02-15T00:00:00.000Z", review_status: undefined, workspace_id: "ws1", work_item_title: "Halcyon pilot" },
+    { id: "e_fresh", work_item_id: "wi1", label: "Recent note", captured_by: "user:ops", created_at: "2026-07-15T00:00:00.000Z", review_status: "pending", workspace_id: "ws1", work_item_title: "Halcyon pilot" }, // negative control: pending but fresh
+    { id: "e_ok", work_item_id: "wi1", label: "SOC2", captured_by: "user:ops", created_at: "2026-06-01T00:00:00.000Z", review_status: "approved", workspace_id: "ws1", work_item_title: "Halcyon pilot" },
+  ];
+  const vm = ac.buildActivityCenter({ approvals, workItems: items, evidence, workspaceLabels: { ws1: "Demo WS" } }, { as_of: AS_OF });
+
+  // ---- NOTIFICATIONS over the live queues: approvals owed + conflicts + reviews owed.
+  assert(vm.counts.notifications === 6, "one notification per requested approval + blocked item + unreviewed evidence");
+  assert(vm.counts.gatesOwed === 3 && vm.counts.conflicts === 1 && vm.counts.reviewsOwed === 2, "the three notification sources are distinct");
+  assert(vm.notifications.every((n) => ["/approvals", "/workflows", "/evidence"].includes(n.href)), "every notification links to the surface that RESOLVES it (never resolved here)");
+
+  // ---- READ-ONLY / NEVER DECIDES: a requested approval is SURFACED, never flipped;
+  //      a decided (approved) approval is NOT a notification (only owed acts surface).
+  assert(!vm.notifications.some((n) => n.id.includes("a_done")), "a decided approval owes nothing — never a notification");
+  assert(vm.notifications.find((n) => n.kind === "approval" && n.id.includes("a_alloc")).states.join() === "pending_approval", "a requested approval stays pending_approval (the projection never decides)");
+
+  // ---- STATES VISIBLY DISTINCT with NEGATIVE CONTROLS (the distinction discriminates).
+  //      restricted: regulated capital/sharing ARE restricted; a routine promotion is NOT.
+  assert(vm.counts.restricted === 2, "regulated capital + sharing approvals are restricted");
+  assert(vm.notifications.find((n) => n.id.includes("a_promo")).restricted === false && vm.notifications.find((n) => n.id.includes("a_alloc")).restricted === true, "restricted DISCRIMINATES: a routine proposal_promotion is NOT restricted, a capital allocation IS");
+  //      stale: depends on AGE — the aged unreviewed item is stale; the fresh one is NOT.
+  assert(vm.counts.stale === 1, "exactly the aged unreviewed observation is stale");
+  const oldReview = vm.notifications.find((n) => n.id.includes("e_old"));
+  const freshReview = vm.notifications.find((n) => n.id.includes("e_fresh"));
+  assert(oldReview.states.includes("pending_approval") && oldReview.states.includes("stale"), "an old unreviewed item owes a review AND is stale");
+  assert(freshReview.states.includes("pending_approval") && !freshReview.states.includes("stale"), "a FRESH unreviewed item owes a review but is NOT stale (staleness depends on age)");
+  const conflict = vm.notifications.find((n) => n.kind === "conflict");
+  assert(conflict.states.includes("conflicted") && !conflict.states.includes("current"), "a blocked item is conflicted, never current");
+
+  // ---- TASK CENTER: open (non-terminal) work only; awaiting_* owes a gate.
+  assert(vm.counts.tasks === 3 && !vm.tasks.some((t) => t.id === "wi4"), "a completed item is NOT open work (excluded from tasks)");
+  assert(vm.counts.tasksAwaitingGate === 1 && vm.tasks.find((t) => t.id === "wi3").awaitingGate, "an awaiting_review task owes a human gate");
+  assert(ac.taskStates("completed").join() === "current" && !ac.taskStates("awaiting_review").includes("current"), "taskStates has teeth: completed → current only; awaiting_review → a gate, never current");
+  assert(ac.taskStates("blocked").includes("conflicted") && !ac.taskStates("blocked").includes("current"), "taskStates: blocked → conflicted, never current");
+  // attention (gate/conflict) tasks sink to the top.
+  assert(vm.tasks[0].states.some((s) => s === "pending_approval" || s === "conflicted"), "attention tasks sort to the top");
+
+  // ---- DETERMINISTIC.
+  assert(JSON.stringify(vm) === JSON.stringify(ac.buildActivityCenter({ approvals, workItems: items, evidence, workspaceLabels: { ws1: "Demo WS" } }, { as_of: AS_OF })), "the activity center is deterministic");
+
+  return `${vm.counts.notifications} notifications (${vm.counts.gatesOwed} gates · ${vm.counts.conflicts} conflict · ${vm.counts.reviewsOwed} review · ${vm.counts.restricted} restricted · ${vm.counts.stale} stale) · ${vm.counts.tasks} open tasks (${vm.counts.tasksAwaitingGate} awaiting a gate) · read-only (links out, never decides) · deterministic`;
+});
+
+await step("REPORTS    (live report objects · editorial gate distinct · never auto-shares)", async () => {
+  const { register } = await import("node:module");
+  register("./alias-hook.mjs", import.meta.url);
+  const rv = await import("@/app/_surfaces/reports_view");
+  const AS_OF = "2026-07-22T00:00:00.000Z";
+
+  const reports = [
+    { id: "r_shared", workspace_id: "ws1", report_key: "k:scorecard", title: "Scorecard", generated_at: "2026-07-20T00:00:00.000Z", status: "shared", generated_by: "user:ops", source_references: ["e1", "e2"], sections: [{ heading: "H", body: "B" }] },
+    { id: "r_review", workspace_id: "ws1", report_key: "k:brief", title: "Brief", generated_at: "2026-07-20T00:00:00.000Z", status: "under_review", generated_by: "user:ops", source_references: ["e1"], sections: [{ heading: "H", body: "B" }] },
+    { id: "r_old", workspace_id: "ws1", report_key: "k:memo", title: "Memo", generated_at: "2026-03-01T00:00:00.000Z", status: "generated", generated_by: "agent:run", source_references: ["e2"], missing_data_notes: ["audited financials pending"], sections: [{ heading: "H", body: "B" }] },
+    { id: "r_aged", workspace_id: "ws1", report_key: "k:memo", title: "Aged approved", generated_at: "2026-01-10T00:00:00.000Z", status: "approved", generated_by: "user:ops", source_references: ["e2"], sections: [{ heading: "H", body: "B" }] }, // negative control: stale by AGE alone, no gaps
+    { id: "r_draft", workspace_id: "ws1", report_key: "k:scorecard", title: "Draft", generated_at: "2026-07-20T00:00:00.000Z", status: "draft", generated_by: "user:ops", sections: [{ heading: "H", body: "B" }] },
+  ];
+  const approvals = [
+    { id: "appr_share", workspace_id: "ws1", approval_type: "report_sharing", status: "requested", requested_by: "user:ops", metadata: { report_id: "r_review", report_key: "k:brief" }, created_at: "2026-07-20T00:00:00.000Z" },
+    // a report_sharing approval that is DECIDED must NOT flag a report pending (teeth).
+    { id: "appr_done", workspace_id: "ws1", approval_type: "report_sharing", status: "approved", metadata: { report_id: "r_shared" }, created_at: "2026-07-19T00:00:00.000Z" },
+  ];
+  const vm = rv.buildReportsView({ reports, approvals, workspaceLabels: { ws1: "Demo WS" } }, { as_of: AS_OF });
+
+  // ---- RENDERS the live report objects with lineage (sections + evidence refs).
+  assert(vm.counts.total === 5, "every report object is a row");
+  assert(vm.rows.find((r) => r.id === "r_shared").sourceRefCount === 2, "evidence references are carried for drill-through");
+
+  // ---- EDITORIAL GATE DISTINCT: under_review + a requested report_sharing approval owes it.
+  const rev = vm.rows.find((r) => r.id === "r_review");
+  assert(rev.pendingShare && rev.linkedShareApprovalId === "appr_share" && rev.states.includes("pending_approval"), "an under_review report with a requested share approval owes the editorial gate");
+  assert(vm.counts.pendingApproval === 1, "exactly the under_review report awaits the gate");
+
+  // ---- NEVER AUTO-SHARES: the builder projects; a DECIDED share approval does not flag pending,
+  //      and a shared report stays shared (current), never re-gated by the projection.
+  const shared = vm.rows.find((r) => r.id === "r_shared");
+  assert(shared.pendingShare === false && shared.states.includes("current"), "a shared report is current — a DECIDED share approval never re-opens the gate");
+
+  // ---- STATES VISIBLY DISTINCT: current · pending_approval · stale (gaps/age) · restricted.
+  assert(vm.rows.find((r) => r.id === "r_old").states.includes("stale") && vm.rows.find((r) => r.id === "r_old").missingDataNotes.length === 1, "an aged report with missing-data gaps is stale (gaps shown, never hidden)");
+  // negative control: an aged report with NO gaps is stale by AGE alone (isolates the age trigger).
+  const aged = vm.rows.find((r) => r.id === "r_aged");
+  assert(aged.missingDataNotes.length === 0 && aged.states.includes("stale") && !aged.states.includes("current"), "an aged, no-gaps report is stale by AGE alone (freshness has teeth independent of gaps)");
+  assert(vm.rows.find((r) => r.id === "r_draft").states.includes("restricted"), "an internal draft is restricted (not cleared for sharing)");
+  // teeth on the pure state fn: a shared+stale report is NOT current; draft → restricted.
+  assert(!rv.reportStates({ status: "shared", stale: true, pendingShare: false, hasGaps: false }).includes("current"), "a stale shared report is NOT current (freshness has teeth)");
+  assert(rv.reportStates({ status: "under_review", stale: false, pendingShare: false, hasGaps: false }).includes("pending_approval"), "under_review always owes the gate even with no linked approval");
+
+  // ---- ORDERING (gate-first) + DETERMINISTIC.
+  assert(vm.rows[0].states.includes("pending_approval"), "a report owing the gate sinks to the top");
+  assert(JSON.stringify(vm) === JSON.stringify(rv.buildReportsView({ reports, approvals, workspaceLabels: { ws1: "Demo WS" } }, { as_of: AS_OF })), "the reports view is deterministic");
+
+  return `${vm.counts.total} reports (${vm.counts.pendingApproval} awaiting the editorial gate · ${vm.counts.stale} stale · ${vm.counts.restricted} restricted · ${vm.counts.shared} shared) · gate distinct · NEVER auto-shares · deterministic`;
+});
+
+await step("CARTRIDGES (installed configs manifest · states distinct · read-only)", async () => {
+  const { register } = await import("node:module");
+  register("./alias-hook.mjs", import.meta.url);
+  const cv = await import("@/app/_surfaces/cartridges_view");
+  const AS_OF = "2026-07-22T00:00:00.000Z";
+
+  const mk = (key, status, wf, rules, wsl) => ({
+    key, label: key.toUpperCase(), description: `${key} cartridge`, version: 1, status,
+    counts: { entityTypes: 3, workflows: wf, rules, metrics: 2, reports: 2, checklistTemplates: 1, dashboards: 1, knowledge: 4, sourceTypes: 1, agentInstructions: 1, approvalRules: 1 },
+    workspaceLabels: wsl,
+  });
+  const manifests = [
+    mk("cooperative_markets", "active", 6, 8, ["Cooperative Markets — Demo"]),
+    mk("wealth", "active", 3, 4, ["Wealth — Demo"]),
+    mk("legacy", "deprecated", 1, 1, []),
+  ];
+  const vm = cv.buildCartridgesView({ manifests }, { as_of: AS_OF });
+
+  // ---- RENDERS the installed-capability manifest.
+  assert(vm.counts.total === 3 && vm.counts.active === 2 && vm.counts.restricted === 1, "installed configs summarized: 2 operating, 1 restricted");
+  assert(vm.counts.workflows === 10 && vm.counts.reports === 6, "capability counts roll up across cartridges");
+
+  // ---- STATES VISIBLY DISTINCT: current (operating) vs restricted (installed, not operating).
+  const coop = vm.rows.find((r) => r.key === "cooperative_markets");
+  const legacy = vm.rows.find((r) => r.key === "legacy");
+  assert(coop.states.join() === "current" && coop.active, "an active cartridge is current");
+  assert(legacy.states.join() === "restricted" && !legacy.active && legacy.installedCount === 0, "a non-active cartridge is restricted (installed, not operating, unused)");
+  assert(cv.cartridgeStates("active").join() === "current" && cv.cartridgeStates("draft").join() === "restricted", "cartridgeStates has teeth (active→current, non-active→restricted)");
+
+  // ---- CAPABILITY TOTAL + DETERMINISTIC ORDER (surface area desc, then key).
+  assert(coop.capabilityTotal === 3 + 6 + 8 + 2 + 2 + 1 + 1 + 4 + 1 + 1 + 1, "capabilityTotal sums every declared collection");
+  assert(vm.rows[0].key === "cooperative_markets", "the richest manifest sorts first (capability desc)");
+  assert(JSON.stringify(vm) === JSON.stringify(cv.buildCartridgesView({ manifests }, { as_of: AS_OF })), "the cartridges view is deterministic");
+
+  return `${vm.counts.total} installed (${vm.counts.active} operating · ${vm.counts.restricted} restricted) · ${vm.counts.workflows} workflows · ${vm.counts.reports} report templates · states distinct · read-only · deterministic`;
+});
+
 await step("TESTS      (node --test: engine unit suite)", () => {
   if (!fs.existsSync(path.join(root, "node_modules"))) {
     throw new Error("node_modules missing — run `npm install`, then re-run this loop (env, not code)");

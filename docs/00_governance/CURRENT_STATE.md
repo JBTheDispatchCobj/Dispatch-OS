@@ -1,6 +1,45 @@
 # Current State
 
-## Running now (Olympic Sprint IV — Wave 2, ~62%, 2026-07-22) — THE TERMINAL RUNTIME + 3 more scaffolds PROMOTED to REAL surfaces
+## Running now (Olympic Sprint IV — Wave 3, ~63%, 2026-07-22) — FINISH THE TERMINAL RUNTIME (notification + task center) + 2 more scaffolds PROMOTED to REAL surfaces
+**Sprint IV continues (Terminal & product surface complete, target ~80%).** Wave 3 builds the Terminal-runtime
+attention layer that was still missing and promotes two more of the highest-value FRAMED scaffolds to real surfaces.
+Additive; **no vertical noun in `core/`** (new pure builders in `app/_surfaces/`; only `ui_surfaces.json` config-as-data
++ the coop `seed.ts` report fixtures + `app/page.tsx` changed); connector runtime + engines + human-gate contract layer
+UNCHANGED; default in-memory; look/feel deferred. Shipped:
+
+- **THE TERMINAL RUNTIME — a NOTIFICATION + TASK CENTER (Vol VII).** `app/_surfaces/activity_center.ts` (pure,
+  deterministic, erasable-only) is a READ-ONLY projection over the LIVE queues: **notifications** = the acts owed
+  (a `requested` Approval → /approvals; a blocked/rejected WorkItem → /workflows; an unreviewed EvidenceItem →
+  /evidence) and **tasks** = open (non-terminal) work items. Every notification carries an `href` to the
+  permission-engine surface that RESOLVES it; **nothing is decided, reviewed, shared, or transitioned here** — the
+  center can never be a hidden control. States kept visibly distinct: **pending_approval** (gate owed) · **conflicted**
+  (stuck) · **stale** (an aged unreviewed observation) · with **restricted** carried on regulated approvals. It reuses
+  the proven doctrine helpers (`ageDaysBetween`, `isRestrictedApprovalType`) as a single source of truth. Wired onto the
+  **Home command center** (`app/page.tsx`) above the existing workspace grid via the presentational
+  `components/terminal/ActivityCenterView.tsx` (server component; no client bundle).
+- **`/reports` (scaffold→live)** — `app/_surfaces/reports_view.ts` (pure) projects the live `ReportRun` objects and
+  joins each to its **report-sharing editorial gate** (the report-lifecycle realization of the EditorialDisposition
+  family): a report is **pending_approval** while `under_review` or while a `requested` `report_sharing` Approval is
+  linked (by `metadata.report_id`); **stale** by age OR recorded missing-data gaps (shown, never hidden); a `draft` is
+  **restricted** (internal-only, not cleared for sharing); cleared+fresh is **current**. It NEVER shares — the decision
+  is a `report_sharing` Approval taken on /approvals. Seeded 4 real reports + 1 requested share approval in the coop
+  cartridge so the surface renders its full legend over live data.
+- **`/cartridges` (scaffold→live)** — `app/_surfaces/cartridges_view.ts` (pure) is the installed-capability manifest
+  over the 5 live PackagedConfigurations: per-collection counts (entity types / workflows / rules / metrics / reports /
+  checklists / dashboards / knowledge / source types / agent prompts / approval rules), the total surface area, and
+  which workspaces run each. **current** = installed + operating (status active); **restricted** = installed but not
+  operating. Read-only — it never installs, enables, or edits a configuration. The core primitive is a "packaged
+  configuration"; the vertical lives only in the DATA each declares.
+
+`ui_surfaces.json` flipped the two surfaces scaffold→live (16→**18 live / 5 scaffold**; `/reports` states gained
+`pending_approval`, `/cartridges` gained `restricted`). New **ACTIVITY + REPORTS + CARTRIDGES** debug steps (**25/25**,
+each with negative-control teeth) + 15 unit tests (**363**). Adversarially verified (4-lens, parallel): purity +
+truth-doctrine clean; 1 correctness fix (Home open-count excludes `canceled`); 3 test-teeth gaps hardened. Look/feel
+deferred (Terminal polish sprint). The **biggest remaining Terminal gap**: `/executives` + `/relationships` need a
+store read + SEED first (no `Relationship`/`PersonalProfile` list accessor/seed yet), plus the window/layout shell,
+dashboard-runtime generalization, and /collaboration + /administration + /personas.
+
+## Prior (Olympic Sprint IV — Wave 2, ~62%, 2026-07-22) — THE TERMINAL RUNTIME + 3 more scaffolds PROMOTED to REAL surfaces
 **Sprint IV continues (Terminal & product surface complete, target ~80%).** Wave 2 builds the operating-environment
 shell the product was missing (Vol VII) and promotes three more of the highest-value FRAMED scaffolds to real surfaces
 over live run output. Additive; **no vertical noun in `core/`** (the new pure builders live in `app/_surfaces/`, the

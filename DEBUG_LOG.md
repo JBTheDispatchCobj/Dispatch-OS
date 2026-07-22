@@ -4,6 +4,35 @@ Convention: **[BLOCKER]** stops production → fix immediately · **[NON-BLOCKIN
 when convenient · **[DEFERRED]** intentional, needs a decision/later phase. Run the review harness
 any time with `node scripts/debug-loop.mjs` (after `npm install`).
 
+## 2026-07-22 — Olympic Sprint IV Wave 3 (finish the Terminal runtime + promote 2 more scaffolds)
+- **Wave scope.** Built the missing Terminal-runtime attention layer — a **notification + task center**
+  (`app/_surfaces/activity_center.ts`, pure read-only projection over the LIVE approval/work-item/evidence queues) on the
+  **Home command center** — and promoted 2 more scaffolds → real: **/reports** (`app/_surfaces/reports_view.ts` over live
+  `ReportRun` objects + the report-sharing editorial gate) and **/cartridges** (`app/_surfaces/cartridges_view.ts`, the
+  installed-config manifest over the 5 PackagedConfigurations). 16→**18 live / 5 scaffold**.
+- **Strip-safety / purity.** All three new builders are erasable-only (no enums / parameter properties), import
+  `@/core/types` as `type` only, no clock/random (`as_of` injected), never mutate input (sorts run on freshly-mapped
+  arrays), never import `@/core/data`. The store is read only in the server `page.tsx` files (Wave-1 seam). Verified
+  clean by the purity lens.
+- **Gate discipline.** The notification/task center + /reports + /cartridges are READ-ONLY projections. Every
+  notification links (`href`) to the permission-engine surface that decides it (/approvals, /workflows, /evidence,
+  /work); the report editorial gate is a `report_sharing` Approval decided on /approvals; nothing auto-decides/shares.
+- **Seed additions (coop).** Added 4 `ReportRun` fixtures (shared/current · under_review/pending · generated+old+gaps/
+  stale · draft/restricted) + 1 requested `report_sharing` Approval (linked by `metadata.report_id`) so /reports renders
+  its full legend over live data. `report_sharing` matches the restricted markers ("shar") — appears restricted on
+  /approvals + the center. No debug/test assertion regressed (those steps use inline fixtures, not the seeded store).
+- **[NON-BLOCKING] fixed — Home open-count vs terminal-status set.** The correctness lens flagged that the Home
+  per-workspace "open" count excluded only completed/archived, while the new center's `TERMINAL_STATUSES` also excludes
+  `canceled` (matching `core/engine/report.ts`). Aligned `app/page.tsx` to exclude `canceled` too. Latent (no seeded
+  canceled item) but fixed for consistency.
+- **Test-teeth hardened (adversarial).** The test-teeth lens found 3 missing negative controls (all "missing control",
+  not vacuous): added a requested NON-regulated approval (assert `restricted===false`), a FRESH pending evidence item
+  (assert not stale), and an aged-no-gaps report (assert stale by AGE alone). Applied to both the unit tests and the
+  ACTIVITY/REPORTS debug steps.
+- **Gate GREEN.** `node scripts/debug-loop.mjs` → **25/25** (new ACTIVITY · REPORTS · CARTRIDGES steps) · `npx tsc
+  --noEmit` clean · `npm run build` exit 0 (26/26 routes prerender; the 2 promoted surfaces + Home STATIC) · `npm test`
+  **363 pass, 0 fail**. Adversarial 4-lens (parallel workflow): purity + truth-doctrine NO FINDINGS.
+
 ## 2026-07-22 — Olympic Sprint IV Wave 2 (the Terminal runtime + promote 3 more scaffolds)
 - **Wave scope.** Built THE TERMINAL RUNTIME (Vol VII): a registry-driven **command palette** (`components/terminal/
   TerminalShell.tsx`, ⌘K, mounted in `app/layout.tsx`) + **universal search** (`app/_surfaces/universal_search.ts` —
