@@ -7,6 +7,13 @@ This document explains how the externally-authored **Dispatch / Auric V1 master 
 and the rules for using it. It is the companion narrative to `ADR-0017-FS-V1-CANON-ADOPTION.md` and
 the code seam `core/registry/canon.ts` + `core/registry/data/canon_aliases.json`.
 
+> **Sequel — the market-facing canon.** This package specs the *operating system* (FS-4000…14000). Its
+> market-facing companion, **FS-15000** (the Auric, Named Terminals, profiles, journeys, governed
+> engagement, the relationship graph, matching, editorial integrity, the network flywheel), was adopted
+> on the same reference/operational terms in **ADR-0018**. See `FS-15000/FS-15000_CANON_INTEGRATION.md`
+> for its section→repo crosswalk. Same rules: identity reconciled not authority merged; Vol I stays the
+> build constitution; pulled in per wave.
+
 ---
 
 ## 1. What this canon is (and is not)

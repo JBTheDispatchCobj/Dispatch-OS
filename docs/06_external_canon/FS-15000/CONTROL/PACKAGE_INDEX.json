@@ -1,0 +1,134 @@
+{
+  "section": "FS-15000",
+  "version": "1.0",
+  "files": [
+    {
+      "filename": "15001_PRODUCT_DOCTRINE_MARKET_FACING_ARCHITECTURE_V1_RELEASE_COMPLETE.md",
+      "size_bytes": 41176,
+      "sha256": "9cc29580a3b6664e60b5bad8a0e6111bbf7ceaead81a5124028fa8b9260d9042",
+      "artifact_type": "markdown",
+      "section": "FS-15000",
+      "status": "canonical"
+    },
+    {
+      "filename": "15002_AURIC_PUBLICATION_OF_RECORD_ARCHITECTURE_V1_RELEASE_COMPLETE.md",
+      "size_bytes": 48643,
+      "sha256": "c045ea6aa31384fa076b374a8c52877b490857e8d367b6ecc67c150ec23e08ec",
+      "artifact_type": "markdown",
+      "section": "FS-15000",
+      "status": "canonical"
+    },
+    {
+      "filename": "15003_CANONICAL_CONTENT_OBJECT_EDITORIAL_LIFECYCLE_V1_RELEASE_COMPLETE.md",
+      "size_bytes": 51266,
+      "sha256": "51c7583e42d7bf6e8f7d3d6057dafa42830c73b2d535686ac217dfd2ce2cc643",
+      "artifact_type": "markdown",
+      "section": "FS-15000",
+      "status": "canonical"
+    },
+    {
+      "filename": "15004_OMNICHANNEL_PUBLISHING_DELIVERY_ENGINE_V1_RELEASE_COMPLETE.md",
+      "size_bytes": 45727,
+      "sha256": "c58a767bdb65196991274d5057c4f65d506676b96072ba3a501590769fb60ab1",
+      "artifact_type": "markdown",
+      "section": "FS-15000",
+      "status": "canonical"
+    },
+    {
+      "filename": "15005_PUBLIC_PROFILE_CLAIMED_PROFILE_SYSTEM_V1_RELEASE_COMPLETE.md",
+      "size_bytes": 51830,
+      "sha256": "1bdb906aac211f2d7f39870f13de0bb2aa3b7e59194d6bfe444444ac26b82f47",
+      "artifact_type": "markdown",
+      "section": "FS-15000",
+      "status": "canonical"
+    },
+    {
+      "filename": "15006_NAMED_TERMINAL_PRODUCT_MODEL_V1_RELEASE_COMPLETE.md",
+      "size_bytes": 63831,
+      "sha256": "4f27b13717412f0cb063c0e7a6bddf6d86d60dcb72efcd4b3177e42ce2b6e0da",
+      "artifact_type": "markdown",
+      "section": "FS-15000",
+      "status": "canonical"
+    },
+    {
+      "filename": "15007_TERMINAL_EDITIONS_CONFIGURATION_MODEL_V1_RELEASE_COMPLETE.md",
+      "size_bytes": 55565,
+      "sha256": "17b0ff0156c897b8696d86e33f61c6bb9730903442f854f37d16f5ec4d0f9b44",
+      "artifact_type": "markdown",
+      "section": "FS-15000",
+      "status": "canonical"
+    },
+    {
+      "filename": "15008_FINTECH_CUSO_INSTITUTIONAL_READINESS_JOURNEY_V1_RELEASE_COMPLETE.md",
+      "size_bytes": 40367,
+      "sha256": "8de32de0ee47e8eeec84afbed99947b5594f58e2766a8c8573aaf7be3aed22b1",
+      "artifact_type": "markdown",
+      "section": "FS-15000",
+      "status": "canonical"
+    },
+    {
+      "filename": "15009_CREDIT_UNION_INSTITUTION_INNOVATION_JOURNEY_V1_RELEASE_COMPLETE.md",
+      "size_bytes": 39715,
+      "sha256": "f505654912eca4ba4b49d7a2b0e9e1e867ffcd63c2172e246a2d1896c7990a40",
+      "artifact_type": "markdown",
+      "section": "FS-15000",
+      "status": "canonical"
+    },
+    {
+      "filename": "15010_GOVERNED_ENGAGEMENT_MARKET_WORKFLOW_V1_RELEASE_COMPLETE.md",
+      "size_bytes": 30774,
+      "sha256": "f68b8b56bbea128d79978f44e391c83c80bed8fb28539490a5aff61b98cf4ace",
+      "artifact_type": "markdown",
+      "section": "FS-15000",
+      "status": "canonical"
+    },
+    {
+      "filename": "15011_INSTITUTIONAL_NETWORK_RELATIONSHIP_SYSTEM_V1_RELEASE_COMPLETE.md",
+      "size_bytes": 48426,
+      "sha256": "827af1cc66fc6bc88234db7e9e152c03b6fef7cc63149319d5c9c717fe0cb67f",
+      "artifact_type": "markdown",
+      "section": "FS-15000",
+      "status": "canonical"
+    },
+    {
+      "filename": "15012_MATCHING_ELIGIBILITY_OPPORTUNITY_DISTRIBUTION_V1_RELEASE_COMPLETE.md",
+      "size_bytes": 50944,
+      "sha256": "67798d3f19487e816d8b70601ee0baf82ea8e4606b50940e07a99d9873f518ea",
+      "artifact_type": "markdown",
+      "section": "FS-15000",
+      "status": "canonical"
+    },
+    {
+      "filename": "15013_EDITORIAL_INTEGRITY_CONFLICTS_COMMERCIAL_SEPARATION_V1_RELEASE_COMPLETE.md",
+      "size_bytes": 34346,
+      "sha256": "63506446450194cec680616344c5067ed0407b1fb7514bdf8349c8d6446432c4",
+      "artifact_type": "markdown",
+      "section": "FS-15000",
+      "status": "canonical"
+    },
+    {
+      "filename": "15014_NETWORK_FLYWHEEL_GROWTH_ECOSYSTEM_STRATEGY_V1_RELEASE_COMPLETE.md",
+      "size_bytes": 18183,
+      "sha256": "c42468772c2a0979eaedfacb2d3872c7a7054e5476fd403b31dbc7d716117257",
+      "artifact_type": "markdown",
+      "section": "FS-15000",
+      "status": "canonical"
+    },
+    {
+      "filename": "15015_PRODUCT_CONSTITUTION_AND_PLATFORM_CHARTER_V1_RELEASE_COMPLETE.md",
+      "size_bytes": 35074,
+      "sha256": "ecbcf9671df752ac44238391633e8856a1f5df616604121a7da78aa2dd730936",
+      "artifact_type": "markdown",
+      "section": "FS-15000",
+      "status": "canonical"
+    },
+    {
+      "filename": "FS-15000_README_AND_COMPLETION_GUIDE.md",
+      "size_bytes": 2699,
+      "sha256": "f7516cccccfe73109be97dfe42614ef353b512354aee95ea9582d41a8eee7dae",
+      "artifact_type": "markdown",
+      "section": "FS-15000",
+      "status": "supporting"
+    }
+  ]
+}

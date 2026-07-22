@@ -39,6 +39,20 @@ deferred (Terminal polish sprint). The **biggest remaining Terminal gap**: `/exe
 store read + SEED first (no `Relationship`/`PersonalProfile` list accessor/seed yet), plus the window/layout shell,
 dashboard-runtime generalization, and /collaboration + /administration + /personas.
 
+### Canon adopted this session (reference only — no build change) — FS-15000 market-facing canon (ADR-0018)
+The externally-authored **FS-15000 "Market-Facing Institutional Network V1"** package (15 sections: the Auric
+publication-of-record, Named Terminals, public/claimed/verified profiles, readiness journeys, governed engagement,
+the relationship graph, matching, editorial integrity, the network flywheel, a product charter) was adopted as
+**reference/operational canon** at `docs/06_external_canon/FS-15000/` — the market-facing sequel to the FS-4000…14000
+operating-system canon (ADR-0017). Section-by-section review: **doctrinal ALIGNMENT, zero contract conflicts**; the FS
+brand hierarchy / provenance / human-gate / editorial-separation doctrine restates what the repo already enforces. The
+one disposition (ADR-0018 §2): FS-15015 self-declares "Product Constitution / immutable" and omits Vol I from its
+hierarchy — adopted as **operational doctrine SUBORDINATE to the Dispatch Constitution (Vol I)**; charter amendments
+flow through the repo ADR process. **No code/contract/registry/`ui_surfaces.json` changed** — additive docs + the ADR.
+Wave-4 pull-ins: **FS-15005 (profiles) + FS-15011 (relationships)** are the spec for the `/relationships` + `/executives`
+store gap. Crosswalk: `docs/06_external_canon/FS-15000/FS-15000_CANON_INTEGRATION.md`. Build % unchanged (~63% — canon
+is a map, not shipped product).
+
 ## Prior (Olympic Sprint IV — Wave 2, ~62%, 2026-07-22) — THE TERMINAL RUNTIME + 3 more scaffolds PROMOTED to REAL surfaces
 **Sprint IV continues (Terminal & product surface complete, target ~80%).** Wave 2 builds the operating-environment
 shell the product was missing (Vol VII) and promotes three more of the highest-value FRAMED scaffolds to real surfaces

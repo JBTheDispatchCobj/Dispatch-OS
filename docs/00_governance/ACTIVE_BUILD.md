@@ -23,6 +23,14 @@ promoted surfaces + Home STATIC) · debug-loop 25/25 · 363/363. Adversarially v
 clean; 1 correctness fix + 3 test-teeth hardenings applied. Next: `/executives` + `/relationships` (need a store
 read + SEED first — biggest gap), window/layout shell, dashboard-runtime generalization, /collaboration + /administration.
 
+**Canon adopted (reference only, 2026-07-22, ADR-0018) — FS-15000 market-facing canon.** The externally-authored
+FS-15000 package (15 sections — the Auric, Named Terminals, profiles, journeys, governed engagement, relationship graph,
+matching, editorial integrity, flywheel, product charter) adopted as reference/operational canon at
+`docs/06_external_canon/FS-15000/`; section review = doctrinal alignment, zero contract conflicts; FS-15015's
+"constitutional/immutable" claim dispositioned SUBORDINATE to Vol I. **No code/contract/registry changed** — additive
+docs + ADR-0018 + crosswalk. Directly feeds Wave 4: **FS-15005 (profiles) + FS-15011 (relationships)** are the store/seed
+spec for the `/relationships` + `/executives` gap. Build % unchanged (~63%).
+
 **Wave 2 (DONE, 2026-07-22) — THE TERMINAL RUNTIME (Vol VII) + promote 3 more scaffolds → REAL surfaces.** Built the
 operating-environment shell the product was missing: a **registry-driven command palette** (⌘K, mounted globally in
 `app/layout.tsx`, driven from `ui_surfaces.json` so a new surface appears with no code change) + **universal search**
