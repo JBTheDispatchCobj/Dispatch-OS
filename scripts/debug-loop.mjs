@@ -449,7 +449,86 @@ await step("PERMISSIONS(RFC-2002: authz == 0016/0017 RLS)", async () => {
   return "read plane-aware · write owner/admin/operator vs update owner/admin · service bypass · shared-market merge = service-only · deterministic";
 });
 
-// --- 9. Unit tests (Wave 4: the engines have teeth) --------------------------
+// --- 9b. Live profiles + query (Sprint II Wave 2: confidence engine drives assembly) ---
+await step("PROFILES   (live decay + outcome-feedback + query)", async () => {
+  const { register } = await import("node:module");
+  register("./alias-hook.mjs", import.meta.url);
+
+  const readJson = (rel) => JSON.parse(fs.readFileSync(path.join(root, rel), "utf8"));
+  const records = readJson("docs/04_sources/ncua/ncua_regulations_clean.json");
+  const amendments = readJson("docs/04_sources/ncua/ncua_regulations_future_amendments.json");
+
+  const { ingestRegulatoryCorpus } = await import("@/cartridges/cooperative_markets/ingest_regulations");
+  const { institutionBatchFixtures } = await import("@/cartridges/cooperative_markets/batch_fixtures");
+  const { ingestInstitutionBatch } = await import("@/cartridges/cooperative_markets/ingest_batch");
+  const { buildLiveProfiles } = await import("@/cartridges/cooperative_markets/profiles_live");
+  const { assembleLiveProfile } = await import("@/core/profile/assemble_live");
+  const { queryProfiles, lookupField, rankProfiles } = await import("@/core/profile/query");
+  const { assessFreshness } = await import("@/core/profile/freshness");
+
+  const AS_OF = "2026-07-22T00:00:00.000Z";
+
+  // ---- FRESHNESS DECAY: a stale field contributes strictly less than a fresh one.
+  const liveBase = (observed_at, outcomes) => ({
+    id: "prof:x", subject_ref: "e:1", subject_type: "credit_union", display_name: "X", as_of: AS_OF,
+    fields: [{ key: "nw", label: "nw", value: 9, source_ref: "filing:1", tier: "deterministic_calculation", confidence: 0.9, observed_at, ...(outcomes ? { outcomes } : {}) }],
+  });
+  const freshP = assembleLiveProfile(liveBase(AS_OF));
+  const STALE = "2025-07-22T00:00:00.000Z"; // exactly one 365d half-life before AS_OF
+  const staleP = assembleLiveProfile(liveBase(STALE));
+  assert(freshP.fields[0].confidence > staleP.fields[0].confidence, "a stale field must contribute less (live decay)");
+  assert(Math.abs(staleP.fields[0].confidence - 0.45) < 1e-6, "0.9 prior halves to ~0.45 at one half-life");
+  assert(freshP.assembled_live === true && staleP.field_freshness[0].band === "aging", "live audit surface present");
+  // freshness scalar is the same decay curve on a unit prior.
+  assert(Math.abs(assessFreshness(STALE, AS_OF, 365).freshness - staleP.fields[0].confidence / 0.9) < 1e-6, "freshness == decay(1,age,halfLife)");
+
+  // ---- OUTCOME-FEEDBACK: agreement lifts, contradiction lowers (reinforce).
+  const agreed = assembleLiveProfile(liveBase(AS_OF, [{ agreed: true, weight: 0.5, source_ref: "v:1" }]));
+  const disagreed = assembleLiveProfile(liveBase(AS_OF, [{ agreed: false, weight: 0.5, source_ref: "v:2" }]));
+  assert(agreed.outcome_adjustments[0].adjusted_confidence > 0.9, "agreement must pull confidence toward 1");
+  assert(disagreed.outcome_adjustments[0].adjusted_confidence < 0.9, "contradiction must pull confidence toward 0");
+
+  // ---- LIVE over the REAL corpus: regulation-environment counts reconcile to source.
+  const corpus = ingestRegulatoryCorpus(records, amendments, {
+    issue_date: "2026-07-15", observed_at: "2026-07-21T17:00:00.000Z",
+    source_id: "source:ncua_regulations", source_document_id: "sourcedoc:ncua:regulations:2026-07-15", id_prefix: "ncua:reg",
+  });
+  const batch = ingestInstitutionBatch(institutionBatchFixtures(), { observed_at: AS_OF, id_prefix: "coop:batch" });
+  const ctx = { as_of: AS_OF, id_prefix: "coop" };
+  const set = buildLiveProfiles({ corpus, batch }, ctx);
+  const reg = set.regulation_environment;
+  assert(lookupField(reg, "in_force_sections").value === corpus.total_sections && corpus.total_sections === 675, "reg-env in_force_sections must equal the real 675-section corpus");
+  assert(reg.fields.every((f) => f.source_ref === corpus.source_document.id && f.tier === "deterministic_calculation"), "reg-env fields must be corpus-sourced deterministic calcs");
+  assert(set.all.length === batch.length + 1, "buildLiveProfiles.all = institutions + reg-env");
+  // Institution profiles are live-aged below the 0.9 filing prior (2026-Q1 → as_of).
+  assert(set.institutions.every((p) => p.confidence < 0.9 && p.assembled_live === true), "institution profiles must be live-aged below the filing prior");
+
+  // ---- QUERY: filter (tier floor + field predicate) + rank + lookup, deterministic.
+  const wellCapped = queryProfiles(set.all, { subject_type: "credit_union", field: { key: "net_worth_ratio", op: "gte", value: 7 }, rank_by: "field_value", rank_field_key: "net_worth_ratio", dir: "desc" });
+  assert(wellCapped.matched.length > 0 && wellCapped.matched.every((p) => lookupField(p, "net_worth_ratio").value >= 7), "query must keep only net_worth_ratio>=7");
+  const nwrs = wellCapped.matched.map((p) => lookupField(p, "net_worth_ratio").value);
+  assert(nwrs.every((v, i) => i === 0 || nwrs[i - 1] >= v), "field_value ranking must be non-increasing");
+  const graded = queryProfiles(set.all, { tier_floor: "deterministic_calculation", min_confidence: 0.5 });
+  assert(graded.total === set.all.length, "all live profiles sit at/above deterministic_calculation with conf>=0.5");
+  assert(graded.applied.some((a) => a.startsWith("tier_floor")), "applied predicates are reported (explainable)");
+  // Stable tiebreak: equal-confidence institutions rank by id ascending.
+  const ranked = rankProfiles(set.institutions, { rank_by: "confidence", dir: "desc" });
+  const tied = ranked.map((p) => p.id);
+  assert(JSON.stringify(tied) === JSON.stringify([...tied].sort()), "tied confidences must resolve to id-ascending (total order)");
+
+  // END-TO-END: freshness → query. A field-confidence floor filters out a
+  // genuinely STALE live-assembled field (the fresh sibling survives).
+  const staleFiltered = queryProfiles([freshP, staleP], { min_field_confidence: { key: "nw", min: 0.5 } });
+  assert(staleFiltered.matched.length === 1 && staleFiltered.matched[0].fields[0].confidence >= 0.5, "min_field_confidence must drop the stale live field, keep the fresh one");
+
+  // ---- DETERMINISM: identical inputs → byte-identical profile set + query.
+  assert(JSON.stringify(buildLiveProfiles({ corpus, batch }, ctx)) === JSON.stringify(set), "live profile assembly must be deterministic");
+  assert(JSON.stringify(queryProfiles(set.all, { rank_by: "confidence", dir: "desc", limit: 3 })) === JSON.stringify(queryProfiles(set.all, { rank_by: "confidence", dir: "desc", limit: 3 })), "query must be deterministic");
+
+  return `live decay (stale 0.9→0.45) · outcome-feedback (±) · reg-env over REAL ${corpus.total_sections} sections · ${set.institutions.length} institution profiles live-aged · query filter/rank/lookup · deterministic`;
+});
+
+// --- 10. Unit tests (Wave 4: the engines have teeth) -------------------------
 await step("TESTS      (node --test: engine unit suite)", () => {
   if (!fs.existsSync(path.join(root, "node_modules"))) {
     throw new Error("node_modules missing — run `npm install`, then re-run this loop (env, not code)");

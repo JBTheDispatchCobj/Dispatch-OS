@@ -167,9 +167,30 @@ new-files-only, pure/deterministic, no vertical nouns in `core/`:
   `ObjectRegistryService`.
 - **Gate:** debug-loop **ALL GREEN (9/9)** (new **PERMISSIONS** step) + `tsc` clean + `npm run build` exit 0 +
   **123 unit tests** (+31). Adversarially verified.
-- **Remaining Sprint II waves:** confidence engine driving LIVE profile assembly + query; kernel request
-  envelope + contracts/API layer (RFC-2001/2014); wire the Supabase registry adapter onto a real client on a
-  write-chain; surfaces call through `authorize()` instead of `canReview`.
+
+## Sprint II — Wave 2 (Kernel & Truth platform; target ~55%)
+**✅ WAVE 2 — Confidence engine drives LIVE profile assembly + a query surface (DONE, 2026-07-22, ~44%).**
+Additive, new-files-only, pure/deterministic, no vertical nouns in `core/`. The Confidence Engine (RFC-3008)
+now DRIVES profile assembly instead of a fixed 0.9:
+- **`core/profile/freshness.ts`** — per-truth-tier half-life policy (durable→volatile) + deterministic
+  `ageDaysBetween`/`assessFreshness` (freshness = `decay(1, age, halfLife)`) + fresh/aging/stale bands.
+- **`core/profile/assemble_live.ts`** — ADDITIVE wrapper over `assembleProfile`: outcome-feedback (`reinforce`)
+  THEN freshness decay (inside `combineSources`); `LiveAssembledProfile` carries `as_of`, per-field
+  `field_freshness`, and an `outcome_adjustments` audit surface that persists the outcome evidence source_refs.
+- **`core/profile/query.ts`** — deterministic, generic filter/rank/lookup: subject_type / confidence / tier-floor
+  / completeness / health / field predicate (numeric + numeric-string, blank-safe) / combined confidence+freshness
+  floor; total-order id tiebreak; direction-aware sinking of field-less profiles; explainable `applied` predicates.
+- **`cartridges/cooperative_markets/profiles_live.ts`** (+ `scripts/profile-query-demo.ts`) — live
+  regulation-environment profile over the REAL 675-section corpus + live institution profiles over the 5300 batch
+  (ratios aged from the reporting quarter-end; optional outcomes) → `buildLiveProfiles` feeds `queryProfiles`.
+- **Gate:** debug-loop **ALL GREEN (10/10)** (new **PROFILES** step) + `tsc` clean + `npm run build` exit 0 +
+  **162 unit tests** (+39). Adversarially verified (4-lens fleet; **0 blockers**; outcome-evidence lineage +
+  3 query edge cases + 3 test-teeth gaps fixed). Layers: truth 22→40, cartridge 75→77, tests 46→49.
+- **Remaining Sprint II waves:** (Wave 3) kernel request envelope + contracts/API layer (RFC-2001/2014) — surfaces
+  call THROUGH typed service contracts and route authorization through `core/kernel/permissions::authorize`,
+  retiring `core/auth/session::canReview` at the call sites; (Wave 4) wire the Supabase registry adapter onto a
+  real `@supabase/supabase-js` client on a serialized write-chain (respect the DEFERRED resolver re-proposal note)
+  + the matured entity-resolution/match-candidate pipeline + profile PERSISTENCE (moves truth 40→45).
 2. **Live intake path** — call-report/startup ingestion so the loop runs on real data, not the
    seed (a real connector over the `ncua_call_reports` / `startup_intake` source types).
 3. **Canonical Entity Model + entity resolution (RFC-3002)** and **Identity & Tenancy

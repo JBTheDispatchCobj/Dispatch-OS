@@ -83,6 +83,37 @@ Gate: **debug-loop ALL GREEN (9/9)** (adds a **PERMISSIONS** step asserting auth
 Adversarially verified. Registry persistence stays in-memory by default behind the seam; the Supabase adapter
 drops in when a client is configured.
 
+## Running now (Olympic Sprint II — Wave 2, ~44%, 2026-07-22)
+**The Confidence Engine now DRIVES live profile assembly, and profiles are queryable.** Wave 2 turned the
+profile layer from a fixed-confidence snapshot into a live, decaying, outcome-aware projection with a real
+read surface — additive, new-files-only, pure/deterministic, no vertical nouns in `core/`:
+- **`core/profile/freshness.ts`** — a per-truth-tier half-life POLICY (durable→volatile) that turns a fact's
+  `observed_at`→`as_of` into the `ageDays`/`halfLifeDays` the engine's `decay` consumes; `assessFreshness`
+  computes freshness as `decay(1, age, halfLife)` (the same curve, so freshness and post-decay confidence move
+  together) and bands it fresh/aging/stale. Generic; injected instants only.
+- **`core/profile/assemble_live.ts`** — an ADDITIVE wrapper over the unchanged `assembleProfile`: each field is
+  outcome-adjusted (`reinforce` over observed `OutcomeEvent`s, in order) THEN aged (freshness decay inside
+  `combineSources`). Returns a `LiveAssembledProfile` = the base profile + `as_of` + a per-field `field_freshness`
+  read + an `outcome_adjustments` audit surface that persists the **outcome evidence source_refs** (lineage, not
+  a silent nudge).
+- **`core/profile/query.ts`** — a deterministic, generic **query surface** over assembled profiles: filter by
+  subject_type / confidence / **tier floor** (via the truth-hierarchy rank) / completeness / health / **field
+  predicate** (exists/eq/gte/gt/lte/lt; numeric OR numeric-string thresholds; blank-string-safe) / a combined
+  confidence+freshness floor; rank by confidence/completeness/health/field_value/field_confidence with a
+  **total-order id tiebreak** and **direction-aware sinking** of field-less profiles; `lookupField`. Every
+  applied predicate is reported for explainability.
+- **`cartridges/cooperative_markets/profiles_live.ts`** (+ `scripts/profile-query-demo.ts`) — wires it over REAL
+  data: a live **regulation-environment profile** over the REAL 675-section 12 CFR corpus (coverage counts aged
+  from the eCFR issue date) + **live institution profiles** over the 5300 batch (the five ratios aged from the
+  reporting quarter-end; optional per-charter/-ratio outcomes) → `buildLiveProfiles` feeds `queryProfiles`. The
+  institution figures remain LABELED FIXTURES (the real per-CU 5300 connector is still deferred); the regulatory
+  corpus is REAL at scale; the live-assembly ENGINE is real either way.
+Gate: **debug-loop ALL GREEN (10/10)** (new **PROFILES** step: live decay + outcome-feedback + query, deterministic)
++ `tsc` clean + `npm run build` exit 0 + **162 unit tests** (was 123; +39). Adversarially verified (4-lens fleet;
+**0 blockers**; outcome-evidence lineage + 3 query edge cases + 3 test-teeth gaps fixed). Profile PERSISTENCE and
+the matured entity-resolution pipeline remain (they land with the Supabase registry-client wave), so truth is at
+40, short of the Sprint-II-end 45 by design.
+
 ## Existing foundation
 - Next.js app; Supabase/Postgres adapter + migrations (`0001`–`0017` **applied 2026-07-21**;
   the full `0001`–`0017` chain is live — all 14 registry-table RLS policies confirmed).

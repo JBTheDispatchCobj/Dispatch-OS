@@ -1,6 +1,6 @@
 # Build Progress Tracker
 
-**Current build completion: ~41%** &nbsp;·&nbsp; Last updated: 2026-07-21 (OLYMPIC SPRINT II — WAVE 1: **Kernel & Truth platform opens.** Migrations `0016`+`0017` **applied** (Bryan) → the Object Registry live-persistence path is UNBLOCKED. Built the deterministic **Identity & Tenancy + permission substrate (RFC-2002)** — `core/kernel/identity.ts` (portable cross-org identity: `Principal` + per-workspace `Membership`; the in-process mirror of `auth.uid()`/`app_is_member`/`app_has_role`) and `core/kernel/permissions.ts` (a plane+visibility-aware authorization core that is a FAITHFUL mirror of the `0016`/`0017` RLS predicates — same answer in-process as RLS at the DB boundary; service-role bypass; decisions carry a machine-readable reason; shared-market registry merges are service-role-only) — plus `core/registry/supabase-store.ts` (a Supabase adapter for the EXISTING `RegistryPersistencePort` seam over the `0017` tables; hybrid hydrate/write-through; PURE row mappers; `registryStore()` defaults to in-memory so the gate is green with no creds; no change to `ObjectRegistryService`). Gate: debug-loop **ALL GREEN (9/9)** (new **PERMISSIONS** step: authz == the RLS truth table) + `tsc` clean + `npm run build` exit 0 + **123 unit tests** (was 92; +31 across identity/permissions/adapter). Adversarially verified — one blocker fixed (an agent principal could write a row it could not read) + two non-blocking (a missing `Object.freeze`; the IO write-set exception documented). Previous: OLYMPIC SPRINT WAVE 4 COMPLETE — Sprint I closed: Auric distribution + hardening. Engine **unit-test suite** (92 tests across deal_engine/ic_memo/allocation/settlement/auric engine + distribution/confidence/profile-assemble/ingest_regulations/registry-service/harness-router) wired into the debug loop as a **TESTS** step + a **GitHub Actions CI** workflow running the whole debug loop as the commit gate; **observability** (`core/kernel/observability.ts` cost-dashboard + event-replay projection) with an **`/observability`** Terminal surface; a **`/distribution`** Terminal surface rendering the editorial-gated channel deliveries; the **`brief` channel** now carries a delivery (a channel-lens variant); registry `is_identifier` + merge-liveness/transitive-survivor guards; a router confidence-escalation FP fix; a **FinCEN** regulation object (SAR/CTR repointed). Gate: `npm run build` exit 0 (`/distribution` + `/observability` prerender) + debug-loop **ALL GREEN (8/8)** + full-app `tsc` clean. Adversarially verified (no blockers).)
+**Current build completion: ~44%** &nbsp;·&nbsp; Last updated: 2026-07-22 (OLYMPIC SPRINT II — WAVE 2: **Confidence engine drives LIVE profile assembly + a query surface.** The Confidence Engine (RFC-3008) now DRIVES profile assembly instead of a fixed 0.9: new `core/profile/freshness.ts` (a per-truth-tier half-life policy — durable→volatile — turning `observed_at`→`as_of` into the `ageDays`/`halfLifeDays` the engine's `decay` consumes), `core/profile/assemble_live.ts` (an ADDITIVE wrapper over `assembleProfile`: outcome-feedback via `reinforce` THEN freshness decay, carrying a per-field freshness + outcome-lineage audit surface — `LiveAssembledProfile`), and `core/profile/query.ts` (a deterministic, generic filter/rank/lookup surface over assembled profiles — by subject_type / confidence / tier-floor / completeness / health / field predicate / combined confidence+freshness floor; total-order id tiebreak; explainable `applied` predicates). Wired over REAL data in `cartridges/cooperative_markets/profiles_live.ts`: a live **regulation-environment profile** over the REAL 675-section 12 CFR corpus (coverage counts aged from the eCFR issue date) + **live institution profiles** over the 5300 batch (ratios aged from the reporting quarter-end, optional per-ratio outcomes) — all fed to `queryProfiles`. Gate: debug-loop **ALL GREEN (10/10)** (new **PROFILES** step: live decay + outcome-feedback + query, deterministic) + `tsc` clean + `npm run build` exit 0 + **162 unit tests** (was 123; +39 across freshness/assemble_live/query/profiles_live). Adversarially verified (4-lens fleet) — 0 blockers; 8 real findings fixed (outcome-evidence lineage now persisted; 3 query coercion/ordering edge cases hardened; 3 mutation-survivor test gaps closed). Layers: **truth 22→40** (confidence-driven live assembly + freshness + outcome-feedback + query engine + real-corpus profile at scale), **cartridge 75→77** (profiles_live wiring), **tests 46→49** (PROFILES gate step + 39 tests); headline **~41% → ~44%**. Previous — WAVE 1: **Kernel & Truth platform opens.** Migrations `0016`+`0017` **applied** (Bryan) → the Object Registry live-persistence path is UNBLOCKED. Built the deterministic **Identity & Tenancy + permission substrate (RFC-2002)** — `core/kernel/identity.ts` (portable cross-org identity: `Principal` + per-workspace `Membership`; the in-process mirror of `auth.uid()`/`app_is_member`/`app_has_role`) and `core/kernel/permissions.ts` (a plane+visibility-aware authorization core that is a FAITHFUL mirror of the `0016`/`0017` RLS predicates — same answer in-process as RLS at the DB boundary; service-role bypass; decisions carry a machine-readable reason; shared-market registry merges are service-role-only) — plus `core/registry/supabase-store.ts` (a Supabase adapter for the EXISTING `RegistryPersistencePort` seam over the `0017` tables; hybrid hydrate/write-through; PURE row mappers; `registryStore()` defaults to in-memory so the gate is green with no creds; no change to `ObjectRegistryService`). Gate: debug-loop **ALL GREEN (9/9)** (new **PERMISSIONS** step: authz == the RLS truth table) + `tsc` clean + `npm run build` exit 0 + **123 unit tests** (was 92; +31 across identity/permissions/adapter). Adversarially verified — one blocker fixed (an agent principal could write a row it could not read) + two non-blocking (a missing `Object.freeze`; the IO write-set exception documented). Previous: OLYMPIC SPRINT WAVE 4 COMPLETE — Sprint I closed: Auric distribution + hardening. Engine **unit-test suite** (92 tests across deal_engine/ic_memo/allocation/settlement/auric engine + distribution/confidence/profile-assemble/ingest_regulations/registry-service/harness-router) wired into the debug loop as a **TESTS** step + a **GitHub Actions CI** workflow running the whole debug loop as the commit gate; **observability** (`core/kernel/observability.ts` cost-dashboard + event-replay projection) with an **`/observability`** Terminal surface; a **`/distribution`** Terminal surface rendering the editorial-gated channel deliveries; the **`brief` channel** now carries a delivery (a channel-lens variant); registry `is_identifier` + merge-liveness/transitive-survivor guards; a router confidence-escalation FP fix; a **FinCEN** regulation object (SAR/CTR repointed). Gate: `npm run build` exit 0 (`/distribution` + `/observability` prerender) + debug-loop **ALL GREEN (8/8)** + full-app `tsc` clean. Adversarially verified (no blockers).)
 
 > Note: this table tracks the **platform** build. Knowledge-content sprints (Volume XI
 > Canonical Ontology and the roadmap's Truth Models / Rule / Workflow / Agent / Connector /
@@ -23,14 +23,23 @@ service (types + in-memory store; no service/API/engine/UI layer yet).
 |---|---:|---:|---:|
 | Data contracts + schema (migrations `0001`–`0017`, `core/` types) | 15% | 87% | 13.05 |
 | Kernel services (**identity/permissions**, event bus, object registry, cost ledger, observability, contracts/API) | 20% | 34% | 6.8 |
-| Truth/graph engines (resolver, confidence, entity resolution, assembly, query) | 15% | 22% | 3.3 |
+| Truth/graph engines (resolver, confidence, **live assembly**, **query**, entity resolution) | 15% | 40% | 6.0 |
 | Agent Harness + Execution Engine (router, planner, runtime, evaluation) | 15% | 18% | 2.7 |
 | Publication (Auric) engine | 8% | 36% | 2.88 |
 | Connector implementations + ingestion | 7% | 20% | 1.4 |
-| Cooperative Markets cartridge (first product) | 8% | 75% | 6.0 |
+| Cooperative Markets cartridge (first product) | 8% | 77% | 6.16 |
 | Terminal (customer-facing product) | 7% | 40% | 2.8 |
-| Tests / observability / productionization | 5% | 46% | 2.3 |
-| **Total** | **100%** | — | **~41%** |
+| Tests / observability / productionization | 5% | 49% | 2.45 |
+| **Total** | **100%** | — | **~44%** |
+
+> Sprint II Wave 2 lifted **truth 22→40**: the Confidence Engine now DRIVES profile
+> assembly (freshness decay + outcome-feedback over real sourced facts, not a fixed
+> 0.9) and a real, generic **query engine** (filter/rank/lookup) exists over assembled
+> profiles, exercised over the REAL 675-section regulatory corpus at scale under the
+> debug gate. It is short of the roadmap's Sprint-II-end truth target (45) by design:
+> profile PERSISTENCE and the matured entity-resolution/match-candidate pipeline remain
+> (they land with the Supabase registry-client wave). Cartridge 75→77 (profiles_live
+> wiring), tests 46→49 (PROFILES gate step + 39 unit tests).
 
 > Wave 4 closed Sprint I. The vertical's engines are now UNIT-TESTED (92 tests) with the
 > whole debug loop wired into a CI commit gate, the kernel emits observability (cost
@@ -123,6 +132,45 @@ service (types + in-memory store; no service/API/engine/UI layer yet).
    now seedable from the Financial Services object catalog (`core/registry/data/`).
 
 ## Changelog
+- 2026-07-22 — **OLYMPIC SPRINT II — WAVE 2: Confidence engine drives LIVE profile assembly + a query surface.**
+  Additive, new-files-only, pure/deterministic, no vertical nouns in `core/`. The Confidence Engine (RFC-3008)
+  now DRIVES profile assembly instead of a fixed per-field 0.9. New:
+  (1) **`core/profile/freshness.ts`** — a per-truth-tier half-life POLICY (`DEFAULT_HALF_LIFE_DAYS`,
+  durable→volatile: human_approved 10y … dispatch_inference 90d) + deterministic `ageDaysBetween` (future/bad
+  dates → 0, no negative age) + `assessFreshness` (freshness = `decay(1, age, halfLife)` — the SAME curve the
+  engine uses, so freshness and post-decay confidence move together) + `freshnessBand` (fresh/aging/stale).
+  Generic/core; injected instants only (Date.parse on injected strings, never a clock).
+  (2) **`core/profile/assemble_live.ts`** — an ADDITIVE wrapper over `assembleProfile`: for each field, apply
+  outcome-feedback (`reinforce` over `OutcomeEvent[]`, in order) THEN age it (freshness → `ageDays`/`halfLifeDays`
+  passed to the base assembler, so decay happens once, inside `combineSources`). Returns `LiveAssembledProfile`
+  = the base profile + `as_of` + a per-field `field_freshness` read + an `outcome_adjustments` audit surface that
+  **persists the outcome evidence source_refs** (lineage, not a silent nudge). Base assembler unchanged.
+  (3) **`core/profile/query.ts`** — a deterministic, generic **query surface**: `queryProfiles` filters by
+  subject_type / min_confidence / **tier_floor** (via `TIER_RANK`) / min_completeness / health / **field predicate**
+  (exists/eq/gte/gt/lte/lt, numeric OR numeric-string threshold, blank-string-safe) / a combined confidence+freshness
+  floor; `rankProfiles` by confidence/completeness/health/field_value/field_confidence with a **total-order id
+  tiebreak** and **direction-aware sinking** of field-less profiles; `lookupField`. Every applied predicate is
+  reported (`applied`) for explainability.
+  (4) **`cartridges/cooperative_markets/profiles_live.ts`** (+ `scripts/profile-query-demo.ts`) — wires the two
+  real intake paths into live assembly: a **regulation-environment profile** over the REAL 675-section 12 CFR
+  corpus (coverage counts = `deterministic_calculation`s citing the corpus SourceDocument, aged from the eCFR
+  issue date) + **live institution profiles** over the 5300 batch (the five ratios aged from the reporting
+  quarter-end via `periodToObservedAt`, optional per-charter/-ratio outcomes) → `buildLiveProfiles` feeds
+  `queryProfiles`. (Institution FIGURES remain labeled fixtures; the regulatory corpus is REAL at scale; the
+  live-assembly ENGINE is real either way.)
+  (5) **Debug loop gained a PROFILES step** (now 10 steps): asserts live freshness decay (a stale field
+  contributes strictly less; 0.9 prior halves at one half-life), outcome-feedback (±), the reg-env profile over
+  the REAL 675 sections (pinned), query filter/rank/lookup with teeth + the freshness→`min_field_confidence`
+  composition end-to-end, all deterministic. **+39 unit tests** (`tests/profile_freshness.test.mjs`,
+  `assemble_live.test.mjs`, `profile_query.test.mjs`, `profiles_live.test.mjs`) → **162** total.
+  **Adversarially verified** (4-lens skeptic fleet: truth-doctrine · purity/determinism · correctness/edge ·
+  test-teeth). **0 blockers.** Fixed: outcome-evidence lineage now persisted (`outcome_source_refs`); 3 query
+  coercion/ordering edge cases hardened (numeric-string thresholds compare numerically; blank/whitespace field
+  values are NOT numeric 0; field-less profiles sink in BOTH sort directions); 3 mutation-survivor test gaps
+  closed (all rank_by branches; outcome ORDER-dependence pinned to 0.48≠0.52; freshness→query composed end-to-end).
+  Purity lens found nothing. **Gate:** `node scripts/debug-loop.mjs` **ALL GREEN (10/10)**, `tsc` clean,
+  `npm run build` exit 0, **162/162** unit tests. Layers: **truth 22→40**, **cartridge 75→77**, **tests 46→49**;
+  headline **~41% → ~44%**. Additive; config-as-data; no regulated conclusion in weights; no core vertical leak.
 - 2026-07-21 — **OLYMPIC SPRINT II — WAVE 1: Identity & Tenancy + permission engine + registry live-persistence
   adapter (Kernel & Truth platform opens).** Migrations `0016`+`0017` **applied** by Bryan → the Object Registry
   live-persistence path is unblocked (governance docs flipped from "pending"). Additive, new-files-only, pure/

@@ -58,6 +58,46 @@ any time with `node scripts/debug-loop.mjs` (after `npm install`).
   scripts/ runtime shim only, never imported by `app/` or `core/`, and does not affect `next build`.
   Also: the pipeline avoids TS parameter-properties/enums (erasable-only) so type-stripping runs it.
 
+## Sprint II — Wave 2: Confidence engine → LIVE profile assembly + query (2026-07-22)
+
+Adversarially verified by a 4-lens skeptic fleet (truth-doctrine · purity/determinism · correctness/edge ·
+test-teeth). **0 blockers.** Purity/determinism found nothing (clock/random/IO-free; total-order id tiebreak;
+no input mutation; erasable-TS clean). Fixes applied before commit:
+
+- **[was NON-BLOCKING → FIXED] Outcome-feedback dropped its evidence lineage.** `assemble_live.ts` promised
+  "source-referenced lineage" but the `outcome_adjustments` record stored only the field's source_ref + a bare
+  `outcome_count` — a consumer could see "confidence rose 0.90→0.95 over 2 outcomes" but not WHICH verification
+  objects drove it (violates DOCTRINE "persist evidence/source/lineage" for a confidence change on financial-ratio
+  fields). **Fix:** `OutcomeAdjustment` now carries `outcome_source_refs: string[]` (the ordered evidence refs);
+  covered by `tests/assemble_live.test.mjs` (asserts the refs + an empty-lineage case).
+- **[was NON-BLOCKING → FIXED] Query field predicate ignored numeric-STRING thresholds.** `matchesFieldPredicate`
+  chose numeric vs string mode by `typeof pred.value`, so `{op:"gte", value:"7"}` (as query params arrive) fell to
+  the string branch (eq-only) and silently returned false for EVERY profile. **Fix:** ordering ops (gte/gt/lte/lt)
+  now coerce both sides via a shared `toNum` and compare numerically, failing closed on a non-finite side; `eq` is
+  numeric when both coerce, else exact string equality. Covered by a numeric-string-threshold test.
+- **[was NON-BLOCKING → FIXED] Blank/whitespace field value coerced to numeric 0.** `Number("")===0`, so a present
+  blank string spuriously satisfied `>= 0` / `== 0` (and ranked as 0). **Fix:** `toNum` maps blank/whitespace and
+  non-numeric strings to NaN; the predicate + `rankScalar` fail closed. Covered by a blank-value test.
+- **[was NIT → FIXED] Missing rank-field floated to the TOP on `dir:"asc"`.** `rankScalar` returned `-Infinity`
+  for a field-less profile, which sorts FIRST ascending (wrong "smallest-N"). **Fix:** `rankScalar` returns
+  `number | null`; the comparator sinks `null` to the LOSING end in BOTH directions. Covered by an asc/desc
+  field-less-sinking test.
+- **[was TEST GAP → FIXED] 3 mutation-survivors closed.** (a) `rank_by` health/completeness/field_confidence
+  branches were wholly untested — added per-branch ordering assertions. (b) Outcome ORDER-dependence was not
+  pinned (`[agree,disagree]`=0.48 vs reversed 0.52 both passed the old loose bound) — now asserts the exact 0.48
+  and `notEqual` to the reversed order. (c) The freshness→`min_field_confidence` filter was never composed
+  end-to-end — added a test (+ a debug-loop PROFILES assertion) that a genuinely STALE live-assembled field falls
+  below the floor and is filtered out while its fresh sibling survives.
+- **[NON-BLOCKING] `min_field_confidence` is a combined confidence+freshness floor, not a pure freshness filter.**
+  Post-decay confidence folds in base confidence + outcome adjustment + freshness, so a durable high-base field can
+  clear the floor while genuinely aging. The comment was corrected to say so; the per-field freshness scalar/band is
+  already carried on `LiveAssembledProfile.field_freshness`. **Action (follow-on):** add a dedicated
+  `min_field_freshness` predicate over `field_freshness` when a caller needs to filter freshness INDEPENDENTLY.
+- **[DEFERRED] Live profiles are computed, not PERSISTED.** `buildLiveProfiles` assembles + queries in-memory each
+  call; a persisted profile store (+ the matured entity-resolution pipeline populating it) lands with the Supabase
+  registry-client wave (truth 40→45). The institution 5300 figures remain LABELED FIXTURES (real per-CU connector
+  deferred, Bryan-only); the regulatory corpus is REAL at scale.
+
 ## Sprint II — Wave 1: Identity & Tenancy + permission engine + registry live-persistence adapter (2026-07-21)
 
 - **[was BLOCKER → FIXED] Agent principal could WRITE a row it could not READ.** The adversarial fleet found
